@@ -27,6 +27,7 @@ func (s *Server) Mux() *http.ServeMux {
 	mux.HandleFunc("/", s.redirectToHTTPs(s.noCacheHandler(s.mainHandler)))
 	mux.HandleFunc("/js/", s.redirectToHTTPs(s.noCacheHandler(s.assetHandler)))
 	mux.HandleFunc("/health", s.healthHandler)
+	mux.HandleFunc("/install.sh", s.redirectToHTTPs(s.noCacheHandler(s.install)))
 	return mux
 }
 
@@ -55,6 +56,10 @@ func (s *Server) assetHandler(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
 	s.write(w, []byte("ok"))
+}
+
+func (s *Server) install(w http.ResponseWriter, r *http.Request) {
+	s.write(w, []byte(Files["templates/install.sh"].Content))
 }
 
 func (s *Server) logError(w http.ResponseWriter, err error) {
