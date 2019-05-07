@@ -9,15 +9,15 @@ install() {
 	set -euo pipefail
 
 	echo "Installing ytt..."
-	wget -O- https://github.com/k14s/ytt/releases/download/v0.7.0/ytt-linux-amd64 > /tmp/ytt
-	echo "30764e32dab4cdaca432446afc75b07b13e6cdc2b5a6bd474a5b82bef13da60f  /tmp/ytt" | shasum -c -
+	wget -O- https://github.com/k14s/ytt/releases/download/v0.8.0/ytt-linux-amd64 > /tmp/ytt
+	echo "41de73008f81e2b072718557689f109087fc64911281fa2b569a4fc6d3d88cf4  /tmp/ytt" | shasum -c -
 	mv /tmp/ytt /usr/local/bin/ytt
 	chmod +x /usr/local/bin/ytt
 	echo "Installed ytt"
 
 	echo "Installing kbld..."
-	wget -O- https://github.com/k14s/kbld/releases/download/v0.2.0/kbld-linux-amd64 > /tmp/kbld
-	echo "5996b9f4605b5e2cbb017a485d144d011a8657da0f22bf53a3d55392c85ece3e  /tmp/kbld" | shasum -c -
+	wget -O- https://github.com/k14s/kbld/releases/download/v0.5.0/kbld-linux-amd64 > /tmp/kbld
+	echo "e82867e73444ed83627de198124cff29ce46a3b3d304fa54b005596ae605f2b5  /tmp/kbld" | shasum -c -
 	mv /tmp/kbld /usr/local/bin/kbld
 	chmod +x /usr/local/bin/kbld
 	echo "Installed kbld"
