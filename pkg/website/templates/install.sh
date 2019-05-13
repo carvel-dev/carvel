@@ -9,22 +9,22 @@ install() {
 	set -euo pipefail
 
 	echo "Installing ytt..."
-	wget -O- https://github.com/k14s/ytt/releases/download/v0.8.0/ytt-linux-amd64 > /tmp/ytt
-	echo "41de73008f81e2b072718557689f109087fc64911281fa2b569a4fc6d3d88cf4  /tmp/ytt" | shasum -c -
+	wget -O- https://github.com/k14s/ytt/releases/download/v0.10.0/ytt-linux-amd64 > /tmp/ytt
+	echo "5994d7a3a1692193ccad194614fda2d7b30b0c906a4ab47e5e2e989b0464af2d  /tmp/ytt" | shasum -c -
 	mv /tmp/ytt /usr/local/bin/ytt
 	chmod +x /usr/local/bin/ytt
 	echo "Installed ytt"
 
 	echo "Installing kbld..."
-	wget -O- https://github.com/k14s/kbld/releases/download/v0.5.0/kbld-linux-amd64 > /tmp/kbld
-	echo "e82867e73444ed83627de198124cff29ce46a3b3d304fa54b005596ae605f2b5  /tmp/kbld" | shasum -c -
+	wget -O- https://github.com/k14s/kbld/releases/download/v0.6.0/kbld-linux-amd64 > /tmp/kbld
+	echo "605ae37ee1b2f38883b4e55614415d3798161e9eb766088a3504aa707d9cd4ff  /tmp/kbld" | shasum -c -
 	mv /tmp/kbld /usr/local/bin/kbld
 	chmod +x /usr/local/bin/kbld
 	echo "Installed kbld"
 
 	echo "Installing kapp..."
-	wget -O- https://github.com/k14s/kapp/releases/download/v0.4.0/kapp-linux-amd64 > /tmp/kapp
-	echo "c6b603ac7dce5ba7f0679df7b69f39a35c8278f479534c2ea5cda8a83acfc0a1  /tmp/kapp" | shasum -c -
+	wget -O- https://github.com/k14s/kapp/releases/download/v0.5.0/kapp-linux-amd64 > /tmp/kapp
+	echo "2d0f057ab0518f5eaf981f4bae9a13085533475b5821f74b0b17b8aea12f6d04  /tmp/kapp" | shasum -c -
 	mv /tmp/kapp /usr/local/bin/kapp
 	chmod +x /usr/local/bin/kapp
 	echo "Installed kapp"
