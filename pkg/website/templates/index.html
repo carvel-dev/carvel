@@ -1,7 +1,7 @@
 <!DOCTYPE html >
 <html>
   <head>
-    <title class="title">k14s - Kubernetes Tools that follow Unix philosophy to be simple, modular, and extensible</title>
+    <title class="title">k14s - Kubernetes Tools that follow Unix philosophy to be simple, and composable</title>
     <link rel="stylesheet" href="js/app.css"></link>
     <!-- google analytics -->
   </head>
@@ -9,16 +9,27 @@
     <div class="content">
       <div id="header">
         <h1><span class="logo">k14s</span></h1>
-        <p>Kubernetes Tools that follow Unix philosophy to be simple, modular, and extensible</p>
+        <p>Kubernetes Tools that follow Unix philosophy to be simple, and composable</p>
+        <p>
+          <a class="link-button" href="https://github.com/k14s">Github</a>
+          <a class="link-button" href="https://slack.kubernetes.io">#k14s in Kubernetes slack</a>
+        </p>
       </div>
 
       <div id="intro">
         <div id="basic-usage">
+          <h2>Tools</h2>
+
           <pre class="terminal">
 $ ytt -f . <span class="gray">|</span> kbld -f - <span class="gray">|</span> kapp -y deploy -a app1 -f -
 </pre>
 
-          <p><a href="https://github.com/k14s">github.com/k14s</a> collection: <a href="https://get-ytt.io">ytt</a> | <a href="https://get-kbld.io">kbld</a> | <a href="https://get-kapp.io">kapp</a> | <a href="https://github.com/k14s/kwt">kwt</a></p>
+          <ul id="tools">
+            <li><a href="https://get-ytt.io">ytt</a> is a YAML templating tool that works on YAML structure instead of text</li>
+            <li><a href="https://get-kbld.io">kbld</a> helps working with container images used in Kubernetes configuration files</li>
+            <li><a href="https://get-kapp.io">kapp</a> is a simple deployment tool focused on the concept of "Kubernetes application" — a set of resources with the same label</li>
+            <li><a href="https://github.com/k14s/kwt">kwt</a> is Kubernetes Workstation Tools CLI</li>
+          </ul>
         </div>
 
         <div id="install">
