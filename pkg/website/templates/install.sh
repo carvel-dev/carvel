@@ -16,15 +16,15 @@ install() {
 	echo "Installed ytt"
 
 	echo "Installing kbld..."
-	wget -O- https://github.com/k14s/kbld/releases/download/v0.6.0/kbld-linux-amd64 > /tmp/kbld
-	echo "605ae37ee1b2f38883b4e55614415d3798161e9eb766088a3504aa707d9cd4ff  /tmp/kbld" | shasum -c -
+	wget -O- https://github.com/k14s/kbld/releases/download/v0.7.0/kbld-linux-amd64 > /tmp/kbld
+	echo "a67eb6eeeff63ac77d34c2c86b0a3fa97f69a9d3f8c9d34c20036fa79cb4214d  /tmp/kbld" | shasum -c -
 	mv /tmp/kbld /usr/local/bin/kbld
 	chmod +x /usr/local/bin/kbld
 	echo "Installed kbld"
 
 	echo "Installing kapp..."
-	wget -O- https://github.com/k14s/kapp/releases/download/v0.5.0/kapp-linux-amd64 > /tmp/kapp
-	echo "2d0f057ab0518f5eaf981f4bae9a13085533475b5821f74b0b17b8aea12f6d04  /tmp/kapp" | shasum -c -
+	wget -O- https://github.com/k14s/kapp/releases/download/v0.6.0/kapp-linux-amd64 > /tmp/kapp
+	echo "db4c5730761461e8b4ff8d607d2eb51bf7ef04e7fcbd2eeb15a8655eb4736cd2  /tmp/kapp" | shasum -c -
 	mv /tmp/kapp /usr/local/bin/kapp
 	chmod +x /usr/local/bin/kapp
 	echo "Installed kapp"
