@@ -9,8 +9,8 @@ install() {
 	set -euo pipefail
 
 	echo "Installing ytt..."
-	wget -O- https://github.com/k14s/ytt/releases/download/v0.10.0/ytt-linux-amd64 > /tmp/ytt
-	echo "5994d7a3a1692193ccad194614fda2d7b30b0c906a4ab47e5e2e989b0464af2d  /tmp/ytt" | shasum -c -
+	wget -O- https://github.com/k14s/ytt/releases/download/v0.11.0/ytt-linux-amd64 > /tmp/ytt
+	echo "08b25d21675fdc77d4281c9bb74b5b36710cc091f30552830604459512f5744c  /tmp/ytt" | shasum -c -
 	mv /tmp/ytt /usr/local/bin/ytt
 	chmod +x /usr/local/bin/ytt
 	echo "Installed ytt"
