@@ -28,6 +28,9 @@ h1 {
   font-size: 30px;
   font-family: courier;
 }
+.logo strong {
+  margin-left: 5px;
+}
 .link-button,
 .button {
   padding: 10px 15px 7px;
@@ -42,6 +45,26 @@ h1 {
 .content {
   margin: 10px auto;
   width: 1000px;
+}
+input {
+  font-family: sans-serif;
+  font-size: 14px;
+  border-radius: 3px;
+  border: 1px solid #AAA;
+  padding: 4px;
+}
+input[disabled] {
+  background: #f7f7f7;
+  border-color: #f7f7f7;
+  color: #666;
+}
+li code,
+p code {
+  background: #f1f1f1;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  padding: 2px 4px;
+  font-size: 80%;
 }
 a:visited, a, a:hover {
   color: #00c;
