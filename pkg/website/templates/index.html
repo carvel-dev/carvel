@@ -6,10 +6,14 @@
     <!-- google analytics -->
   </head>
   <body>
+    <div id="k14s-tools">
+      <p>Part of k14s.io: <a href="https://get-ytt.io">ytt</a> | <a href="https://get-kbld.io">kbld</a> | <a href="https://get-kapp.io">kapp</a> | <a href="https://github.com/k14s/kwt">kwt</a></p>
+    </div>
+
     <div class="content">
       <div id="header">
         <h1><span class="logo">k14s</span></h1>
-        <p class="hero">Kubernetes Tools that follow Unix philosophy to be simple, and composable</p>
+        <p class="hero">Kubernetes Tools that follow Unix philosophy to be simple, and composable.</p>
         <p class="hero">
           <a class="link-button" href="https://github.com/k14s">Github</a>
           <a class="link-button" href="https://slack.kubernetes.io">#k14s in Kubernetes slack</a>
@@ -24,11 +28,21 @@
 $ ytt -f . <span class="gray">|</span> kbld -f - <span class="gray">|</span> kapp -y deploy -a app1 -f -
 </pre>
 
-          <ul id="tools">
+          <ul class="tools">
             <li><a href="https://get-ytt.io">ytt</a> is a YAML templating tool that works on YAML structure instead of text</li>
             <li><a href="https://get-kbld.io">kbld</a> helps working with container images used in Kubernetes configuration files</li>
             <li><a href="https://get-kapp.io">kapp</a> is a simple deployment tool focused on the concept of "Kubernetes application" — a set of resources with the same label</li>
-            <li><a href="https://github.com/k14s/kwt">kwt</a> is Kubernetes Workstation Tools CLI</li>
+          </ul>
+
+          <pre class="terminal">
+<span class="gray"># Expose k8s overlay and DNS to your machine</span>
+$ sudo -E kwt net start
+<span class="gray"># Create temporary workspace with local source code</span>
+$ kwt workspace create --enter -i app=.
+</pre>
+
+          <ul class="tools">
+            <li><a href="https://github.com/k14s/kwt">kwt</a> is Kubernetes Workstation Tools CLI which provides convenient networking tools and development workspaces</li>
           </ul>
         </div>
 
