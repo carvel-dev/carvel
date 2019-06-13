@@ -24,7 +24,7 @@ func NewServer(opts ServerOpts) *Server {
 
 func (s *Server) Mux() *http.ServeMux {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", s.redirectToHTTPs(s.noCacheHandler(s.mainHandler)))
+	mux.HandleFunc("/", s.redirectToSubprojects(s.redirectToHTTPs(s.noCacheHandler(s.mainHandler))))
 	mux.HandleFunc("/js/", s.redirectToHTTPs(s.noCacheHandler(s.assetHandler)))
 	mux.HandleFunc("/health", s.healthHandler)
 	mux.HandleFunc("/install.sh", s.redirectToHTTPs(s.noCacheHandler(s.install)))
@@ -103,6 +103,31 @@ func (s *Server) redirectToHTTPs(wrappedFunc func(http.ResponseWriter, *http.Req
 			// Fail if it's not a GET or HEAD since req may have carried body insecurely
 			s.logError(w, fmt.Errorf("expected HTTPs connection"))
 			return
+		}
+
+		wrappedFunc(w, r)
+	}
+}
+
+var (
+	subprojectsHostMappings = map[string]string{
+		"ytt.k14s.io":  "get-ytt.io",
+		"kbld.k14s.io": "get-kbld.io",
+		"kapp.k14s.io": "get-kapp.io",
+		"kwt.k14s.io":  "github.com/k14s/kwt",
+	}
+)
+
+func (s *Server) redirectToSubprojects(wrappedFunc func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodGet || r.Method == http.MethodHead {
+			host := r.Header.Get("host")
+			if len(host) > 0 {
+				if hostMapping, found := subprojectsHostMappings[host]; found {
+					http.Redirect(w, r, "https://"+hostMapping, http.StatusMovedPermanently)
+					return
+				}
+			}
 		}
 
 		wrappedFunc(w, r)
