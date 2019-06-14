@@ -116,6 +116,7 @@ code, .terminal, .logo {
 /* Intro */
 #intro {
   clear: both;
-  border-bottom: 1px solid #efefef;
 }
 .tools a { font-weight: bold; }
+
+#footer { text-align: center; }
