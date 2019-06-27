@@ -91,6 +91,7 @@ a:hover {
   padding: 7px 9px;
   border-radius: 4px;
   border-bottom: 1px solid #ddd;
+  overflow-x: auto;
 }
 .green { color: #618402; }
 .red { color: red; }
