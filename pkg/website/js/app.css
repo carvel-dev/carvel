@@ -40,6 +40,7 @@ h3 { margin-bottom: 0; }
 }
 .content {
   margin: 10px auto;
+  padding: 0 15px;
   width: 1000px;
 }
 input {
