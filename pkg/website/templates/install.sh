@@ -23,8 +23,8 @@ install() {
 	echo "Installed kbld"
 
 	echo "Installing kapp..."
-	wget -O- https://github.com/k14s/kapp/releases/download/v0.8.0/kapp-linux-amd64 > /tmp/kapp
-	echo "010060339f5be1a1bfca97fa0c69179b8471908affa04bf32a5bab241a2f8d78  /tmp/kapp" | shasum -c -
+	wget -O- https://github.com/k14s/kapp/releases/download/v0.9.0/kapp-linux-amd64 > /tmp/kapp
+	echo "1f54e6146af55112332898108d7870375fc2a38a540bfbc420c70ecbbb0d8461  /tmp/kapp" | shasum -c -
 	mv /tmp/kapp /usr/local/bin/kapp
 	chmod +x /usr/local/bin/kapp
 	echo "Installed kapp"
