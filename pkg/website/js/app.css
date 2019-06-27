@@ -104,8 +104,8 @@ code, .terminal, .logo {
 /* k14s tools */
 #k14s-tools {
   margin: 0 auto;
+  padding: 0 15px;
   width: 1000px;
-  border-bottom: 1px solid #ddd;
 }
 #k14s-tools p {
   color: #777;
