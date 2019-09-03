@@ -27,7 +27,7 @@
           <h2>Tools</h2>
 
           <pre class="terminal">
-$ ytt -f . <span class="gray">|</span> kbld -f - <span class="gray">|</span> kapp -y deploy -a app1 -f -
+$ <span class="green">ytt</span> -f . <span class="gray">|</span> <span class="green">kbld</span> -f - <span class="gray">|</span> <span class="green">kapp</span> -y deploy -a app1 -f -
 </pre>
 
           <ul class="tools">
@@ -38,9 +38,9 @@ $ ytt -f . <span class="gray">|</span> kbld -f - <span class="gray">|</span> kap
 
           <pre class="terminal">
 <span class="gray"># Expose k8s overlay and DNS to your machine</span>
-$ sudo -E kwt net start
+$ sudo -E <span class="green">kwt</span> net start
 <span class="gray"># Create temporary workspace with local source code</span>
-$ kwt workspace create --enter -i app=.
+$ <span class="green">kwt</span> workspace create --enter -i app=.
 </pre>
 
           <ul class="tools">
