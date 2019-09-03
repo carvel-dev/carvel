@@ -121,7 +121,10 @@ code, .terminal, .logo {
 }
 .tools a { font-weight: bold; }
 
-#footer { text-align: center; }
+#footer {
+  margin-top: 40px;
+  text-align: center;
+}
 
 /* Dark mode */
 body {
