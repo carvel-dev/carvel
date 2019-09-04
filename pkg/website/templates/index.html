@@ -39,7 +39,7 @@ $ <span class="green">ytt</span> -f . <span class="gray">|</span> <span class="g
           <pre class="terminal">
 <span class="gray"># Expose k8s overlay and DNS to your machine</span>
 $ sudo -E <span class="green">kwt</span> net start
-<span class="gray"># Create temporary workspace with local source code</span>
+<span class="gray spacer-before"># Create temporary workspace with local source code</span>
 $ <span class="green">kwt</span> workspace create --enter -i app=.
 </pre>
 
@@ -68,11 +68,11 @@ $ brew install ytt kbld kapp kwt
 # (if checksums do not match, binary was not successfully downloaded)</span>
 $ shasum -a 256 ~/Downloads/ytt-darwin-amd64
 08b25d21675fdc77d4281c9bb74b5b36710cc091f30552830604459512f5744c  /Users/pivotal/Downloads/ytt-linux-amd64
-<span class="gray"># Move binary next to your other executables</span>
+<span class="gray spacer-before"># Move binary next to your other executables</span>
 $ mv ~/Downloads/ytt-darwin-amd64 /usr/local/bin/ytt
-<span class="gray"># Make binary executable</span>
+<span class="gray spacer-before"># Make binary executable</span>
 $ chmod +x /usr/local/bin/ytt
-<span class="gray"># Check its version</span>
+<span class="gray spacer-before"># Check its version</span>
 $ ytt version
 </pre>
         </div>
