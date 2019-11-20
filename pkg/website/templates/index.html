@@ -26,25 +26,31 @@
         <div id="basic-usage">
           <h2>Tools</h2>
 
-          <pre class="terminal">
-$ <span class="green">ytt</span> -f . <span class="gray">|</span> <span class="green">kbld</span> -f - <span class="gray">|</span> <span class="green">kapp</span> -y deploy -a app1 -f -
-</pre>
-
           <ul class="tools">
-            <li><a href="https://get-ytt.io">ytt</a> is a YAML templating tool that works on YAML structure instead of text</li>
-            <li><a href="https://get-kbld.io">kbld</a> helps working with container images used in Kubernetes configuration files</li>
-            <li><a href="https://get-kapp.io">kapp</a> is a simple deployment tool focused on the concept of "Kubernetes application" — a set of resources with the same label</li>
-          </ul>
-
-          <pre class="terminal">
-<span class="gray"># Expose k8s overlay and DNS to your machine</span>
-$ sudo -E <span class="green">kwt</span> net start
-<span class="gray spacer-before"># Create temporary workspace with local source code</span>
-$ <span class="green">kwt</span> workspace create --enter -i app=.
-</pre>
-
-          <ul class="tools">
-            <li><a href="https://github.com/k14s/kwt">kwt</a> is Kubernetes Workstation Tools CLI which provides convenient networking tools and development workspaces</li>
+            <li>
+              <a href="https://get-ytt.io">ytt</a> <span class="tags">#template, #overlay</span>
+              <ul><li>is a YAML templating and overlay tool that works on YAML structure instead of text</li></ul>
+            </li>
+            <li>
+              <a href="https://get-kbld.io">kbld</a> <span class="tags">#build, #img-tag-to-digest, #registry-relocate</span>
+              <ul><li>helps working with container images used in Kubernetes configuration files</li></ul>
+            </li>
+            <li>
+              <a href="https://get-kapp.io">kapp</a> <span class="tags">#deploy, #diff-apply</span>
+              <ul></li><li>is a deployment tool with a concept of "Kubernetes application" — a set of resources with the same label</li></ul>
+            </li>
+            <li>
+              <a href="https://github.com/k14s/imgpkg">imgpkg</a> <span class="tags">#package</span>
+              <ul><li>is for storing application configuration files in Docker/OCI registries</li></ul>
+            </li>
+            <li>
+              <a href="https://github.com/k14s/kapp-controller">kapp-controller</a> <span class="tags">#gitops</span>
+              <ul><li>introduces App CRD to run templating plus deployment workflow in-cluster (via ytt and kapp)</li></ul>
+            </li>
+            <li>
+              <a href="https://github.com/k14s/kwt">kwt</a>
+              <ul><li>is Kubernetes Workstation Tools CLI which provides convenient networking tools and development workspaces</li></ul>
+            </li>
           </ul>
         </div>
 
@@ -58,7 +64,7 @@ $ <span class="green">kwt</span> workspace create --enter -i app=.
           <p>Based on <a href="https://github.com/k14s/homebrew-tap">github.com/k14s/homebrew-tap</a></p>
           <pre class="terminal">
 $ brew tap k14s/tap
-$ brew install ytt kbld kapp kwt
+$ brew install ytt kbld kapp imgpkg kwt
 </pre>
 
           <h3 id="install-from-github-release">Specific version from a Github release</h3>

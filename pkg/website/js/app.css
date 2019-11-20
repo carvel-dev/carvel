@@ -119,7 +119,14 @@ code, .terminal, .logo {
 #intro {
   clear: both;
 }
-.tools a { font-weight: bold; }
+.tools a {
+  font-weight: bold;
+  color: #fff;
+}
+.tools a:visited {
+  color: #eee;
+}
+.tools .tags { color: #555; }
 
 #footer {
   margin-top: 40px;
