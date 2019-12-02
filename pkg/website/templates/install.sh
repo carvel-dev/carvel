@@ -37,6 +37,13 @@ install() {
 	mv /tmp/kwt ${dst_dir}/kwt
 	chmod +x ${dst_dir}/kwt
 	echo "Installed ${dst_dir}/kwt"
+
+	echo "Installing imgpkg..."
+	wget -O- https://github.com/k14s/imgpkg/releases/download/v0.1.0/imgpkg-linux-amd64 > /tmp/imgpkg
+	echo "a9d0ba0edaa792d0aaab2af812fda85ca31eca81079505a8a5705e8ee1d8be93  /tmp/imgpkg" | shasum -c -
+	mv /tmp/imgpkg ${dst_dir}/imgpkg
+	chmod +x ${dst_dir}/imgpkg
+	echo "Installed ${dst_dir}/imgpkg"
 }
 
 install
