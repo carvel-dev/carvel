@@ -5,6 +5,11 @@ if test -z "$BASH_VERSION"; then
   exit 1
 fi
 
+if [[ x`uname` == xDarwin ]]; then
+  echo "This script is only supported on Linux"
+  exit 1
+fi
+
 install() {
 	set -euo pipefail
 
