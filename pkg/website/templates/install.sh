@@ -32,8 +32,8 @@ install() {
 	echo "Installed ${dst_dir}/kapp"
 
 	echo "Installing kwt..."
-	wget -O- https://github.com/k14s/kwt/releases/download/v0.0.5/kwt-linux-amd64 > /tmp/kwt
-	echo "706abe487e38c4f673180600d11098e408e6bc22fefb1cc512e3ac0f07a9072c  /tmp/kwt" | shasum -c -
+	wget -O- https://github.com/k14s/kwt/releases/download/v0.0.6/kwt-linux-amd64 > /tmp/kwt
+	echo "92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0  /tmp/kwt" | shasum -c -
 	mv /tmp/kwt ${dst_dir}/kwt
 	chmod +x ${dst_dir}/kwt
 	echo "Installed ${dst_dir}/kwt"
