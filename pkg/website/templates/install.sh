@@ -16,8 +16,8 @@ install() {
 	dst_dir="${K14SIO_INSTALL_BIN_DIR:-/usr/local/bin}"
 
 	echo "Installing ytt..."
-	wget -O- https://github.com/k14s/ytt/releases/download/v0.22.0/ytt-linux-amd64 > /tmp/ytt
-	echo "7143f8c1300ae13fd7b5ed53abc02867a86b6329afaa85413eb767eddf189639  /tmp/ytt" | shasum -c -
+	wget -O- https://github.com/k14s/ytt/releases/download/v0.23.0/ytt-linux-amd64 > /tmp/ytt
+	echo "a6ef8df88c3b18044842c984f05d2e4472b3f354d42a63d3497757123e1fe108  /tmp/ytt" | shasum -c -
 	mv /tmp/ytt ${dst_dir}/ytt
 	chmod +x ${dst_dir}/ytt
 	echo "Installed ${dst_dir}/ytt"
