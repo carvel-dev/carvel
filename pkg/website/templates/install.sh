@@ -23,8 +23,8 @@ install() {
 	echo "Installed ${dst_dir}/ytt"
 
 	echo "Installing kbld..."
-	wget -O- https://github.com/k14s/kbld/releases/download/v0.12.0/kbld-linux-amd64 > /tmp/kbld
-	echo "f2f8b1882f51a6d3434d59b9622eb651487a06e8bcbac14401914e7e2a726ba3  /tmp/kbld" | shasum -c -
+	wget -O- https://github.com/k14s/kbld/releases/download/v0.13.0/kbld-linux-amd64 > /tmp/kbld
+	echo "c5dc9a5e2fc1795f64f674cbc528a28c269432ce9485ee4dc74d8d18890dd4be  /tmp/kbld" | shasum -c -
 	mv /tmp/kbld ${dst_dir}/kbld
 	chmod +x ${dst_dir}/kbld
 	echo "Installed ${dst_dir}/kbld"
