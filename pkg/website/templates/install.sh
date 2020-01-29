@@ -16,7 +16,7 @@ install() {
     dl_bin="curl -s -L"
   fi
 
-  ytt_version=v0.24.0
+  ytt_version=v0.25.0
   kbld_version=v0.13.0
   kapp_version=v0.19.0
   kwt_version=v0.0.6
@@ -24,14 +24,14 @@ install() {
 
   if [[ x`uname` == xDarwin ]]; then
     binary_type=darwin-amd64
-    ytt_checksum=dad9e162745fe2e394b3b8c798182357e5cb4caedba57d2ce0aafda6c6520418
+    ytt_checksum=84a5aa9a9d5c3b67f21136542ecb73aa2c809298094fea21edffb4d2a0cb2f0d
     kbld_checksum=62d3201b31e7f78ae3d6c1d0621aeb21a59be94bd990811e8af28b61f9ec86c1
     kapp_checksum=8817b3afea01173d53d1a76c266cb1897eb94c5d3d2df496cfa54c464c064ee7
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     imgpkg_checksum=39f1925e39cec7f5837c06c8fce3499a4a24aace9612b8cb15d3835cef4222a0
   else
     binary_type=linux-amd64
-    ytt_checksum=c3f1d4f04108ac1626c9b9036c7d4e407d4ff09f2577953ad72b6dc7adadbd39
+    ytt_checksum=2ccd2c74fea87748515ed3fd74cd45c31f91472fabadf42e6a958f52312e3b47
     kbld_checksum=c5dc9a5e2fc1795f64f674cbc528a28c269432ce9485ee4dc74d8d18890dd4be
     kapp_checksum=99a2597d29ab9cf75d636a8220cb7e5ee315ac85b7adeb48b6c1ccb56a5cf477
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
