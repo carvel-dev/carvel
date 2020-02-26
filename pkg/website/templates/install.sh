@@ -21,6 +21,7 @@ install() {
   kapp_version=v0.20.0
   kwt_version=v0.0.6
   imgpkg_version=v0.1.0
+  vendir_version=v0.7.0
 
   if [[ x`uname` == xDarwin ]]; then
     binary_type=darwin-amd64
@@ -29,6 +30,7 @@ install() {
     kapp_checksum=f4f259d3b0a226f8ea7ccbf7347de3e40529d698fb0bc2ef1f0dcf7aea25c72a
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     imgpkg_checksum=39f1925e39cec7f5837c06c8fce3499a4a24aace9612b8cb15d3835cef4222a0
+    vendir_checksum=8c753b9efda146171b511c6e8d9964c8dee7dd43320d468e600f47413d990287
   else
     binary_type=linux-amd64
     ytt_checksum=2ccd2c74fea87748515ed3fd74cd45c31f91472fabadf42e6a958f52312e3b47
@@ -36,6 +38,7 @@ install() {
     kapp_checksum=3287514b8ca14fb0378af701fce94cec09e613bff473a2ee969335edf86da5b5
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
     imgpkg_checksum=a9d0ba0edaa792d0aaab2af812fda85ca31eca81079505a8a5705e8ee1d8be93
+    vendir_checksum=58c09e2b22e8bc2136534405f5e76a544cfac3a57d165670ab3fcfb18cb3e604
   fi
 
   echo "Installing ${binary_type} binaries..."
@@ -74,6 +77,13 @@ install() {
   mv /tmp/imgpkg ${dst_dir}/imgpkg
   chmod +x ${dst_dir}/imgpkg
   echo "Installed ${dst_dir}/imgpkg"
+
+  echo "Installing vendir..."
+  $dl_bin https://github.com/k14s/vendir/releases/download/${vendir_version}/vendir-${binary_type} > /tmp/vendir
+  echo "${vendir_checksum}  /tmp/vendir" | shasum -c -
+  mv /tmp/vendir ${dst_dir}/vendir
+  chmod +x ${dst_dir}/vendir
+  echo "Installed ${dst_dir}/vendir"
 }
 
 install
