@@ -16,6 +16,8 @@ install() {
     dl_bin="curl -s -L"
   fi
 
+  shasum -v 1>/dev/null 2>&1 || (echo "Missing shasum binary" && exit 1)
+
   ytt_version=v0.25.0
   kbld_version=v0.13.0
   kapp_version=v0.21.0
