@@ -18,7 +18,7 @@ install() {
 
   shasum -v 1>/dev/null 2>&1 || (echo "Missing shasum binary" && exit 1)
 
-  ytt_version=v0.27.1
+  ytt_version=v0.27.2
   kbld_version=v0.22.0
   kapp_version=v0.26.0
   kwt_version=v0.0.6
@@ -27,7 +27,7 @@ install() {
 
   if [[ x`uname` == xDarwin ]]; then
     binary_type=darwin-amd64
-    ytt_checksum=f1c86e48452e9e2be8ffa9ad0fb53bfcf431fd70821f9f261418a72844163d66
+    ytt_checksum=0e1ee9487e09ce2f2e18be6637f69e41af2158ff3cb53737d5607b55f0326659
     kbld_checksum=ee5f7271883fe8dc10128c31bacecbce29a23a492ee7d06393d11690c3b4da4b
     kapp_checksum=41104f4b402906046a493463b4363aa3e8cf3e6477e00d85f85333b88e52c2b2
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
@@ -35,7 +35,7 @@ install() {
     vendir_checksum=ae3ba30add41e209f98732b3c319cd1bd59fc5fdfc06e33d7a3e17c30f0569f8
   else
     binary_type=linux-amd64
-    ytt_checksum=b53674a21d99576b8d69483113e1ec73d9a3ed7381170a421c9afcf8aa551f15
+    ytt_checksum=64bcc36df4270e3413fd26b68683a353089c3b15c411904307e93c12f80556ab
     kbld_checksum=eb888079b26330e71b855c3f37c8b81fe55125b9a6e26a43e9eeabfd016051d6
     kapp_checksum=7c4d525b02e0241dab13fd729735875ea2b15e2f504bd94d1480edd3072ccf96
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
