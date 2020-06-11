@@ -14,7 +14,7 @@ go fmt ./cmd/... ./pkg/...
 		-f . \
 		-f ../../hack/build-values.yml \
 		--file-mark 'generated.go.txt:exclusive-for-output=true' \
-		--output-directory ../../tmp/
+		--dangerous-emptied-output-directory ../../tmp/
 )
 mv tmp/generated.go.txt pkg/website/generated.go
 
