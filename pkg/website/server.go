@@ -25,6 +25,7 @@ func NewServer(opts ServerOpts) *Server {
 func (s *Server) Mux() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", s.redirectToSubprojects(s.redirectToHTTPs(s.noCacheHandler(s.mainHandler))))
+	mux.HandleFunc("/community", s.redirectToHTTPs(s.noCacheHandler(s.communityHandler)))
 	mux.HandleFunc("/js/", s.redirectToHTTPs(s.noCacheHandler(s.assetHandler)))
 	mux.HandleFunc("/health", s.healthHandler)
 	mux.HandleFunc("/install.sh", s.redirectToHTTPs(s.noCacheHandler(s.install)))
@@ -42,6 +43,10 @@ func (s *Server) Run() error {
 
 func (s *Server) mainHandler(w http.ResponseWriter, r *http.Request) {
 	s.write(w, []byte(Files["templates/index.html"].Content))
+}
+
+func (s *Server) communityHandler(w http.ResponseWriter, r *http.Request) {
+	s.write(w, []byte(Files["templates/community.html"].Content))
 }
 
 func (s *Server) assetHandler(w http.ResponseWriter, r *http.Request) {
