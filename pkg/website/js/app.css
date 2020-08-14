@@ -369,3 +369,28 @@ li code, p code {
 #install p {
   color: #5a575b;
 }
+
+/* Banner */
+.banner {
+  background-color: #EC7700;
+  color: #777;
+  font-size: 20px;
+  margin: 10px -50px;
+  padding: 10px 50px ;
+  text-align: center;
+  clear: both;
+}
+.banner p {
+  margin: 0px;
+  color: white;
+}
+
+.banner a, .banner a:visited{
+  margin: 0px;
+  color: white;
+}
+
+.banner a:hover {
+  color: white;
+  text-decoration-color: #1D428A;
+}
