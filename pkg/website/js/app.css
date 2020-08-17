@@ -388,9 +388,10 @@ li code, p code {
 .banner a, .banner a:visited{
   margin: 0px;
   color: white;
+  text-decoration-color: lightgrey;
 }
 
 .banner a:hover {
   color: white;
-  text-decoration-color: #1D428A;
+  text-decoration-color: white;
 }
