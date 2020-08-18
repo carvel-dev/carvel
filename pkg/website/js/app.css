@@ -191,8 +191,9 @@ a, a:visited, a:hover {
   display: inline-block;
   fill: var(--base-color);
 }
-#highlights a,
-#highlights h3 {
+#highlights h2 a { color: #fff; }
+#highlights li a,
+#highlights li h3 {
   display: block;
   font-size: 25px;
   font-weight: lighter;
