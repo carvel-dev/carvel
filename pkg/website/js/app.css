@@ -78,7 +78,7 @@ a, a:visited, a:hover {
 }
 .logo .partof { font-size: 13px; }
 .logo .project-name a {
-  color: #999;
+  color: #555;
   font-size: 30px;
   text-decoration: none;
 }
@@ -268,7 +268,7 @@ a, a:visited, a:hover {
   color: #fff;
   clear: both;
   margin: 0px -50px;
-  padding: 12px 38px 24px 38px;
+  padding: 12px 50px 24px;
 }
 #authors a,
 #authors a:visited,
@@ -278,7 +278,8 @@ a, a:visited, a:hover {
 
 /* Footer */
 #footer {
-  margin: 18px -50px 0px -50px;
+  margin: 18px -50px 0;
+  padding: 0 50px;
   font-size: 0.75rem;
   font-weight: 300;
 }
@@ -293,14 +294,12 @@ a, a:visited, a:hover {
 
 #footer .copyright {
   float: right;
-  margin-right: 18px;
 }
 #footer .vmware {
   float: right;
 }
 #footer img {
-  margin-left: 30px;
-  margin-right: 15px;
+  margin-left: 5px;
   max-width: 75px;
 }
 #footer ul {
@@ -310,7 +309,7 @@ a, a:visited, a:hover {
 #footer li a,
 #footer li a:visited {
   color: #808080;
-  padding: 30px 15px;
+  padding: 30px 20px 30px 0;
   text-decoration: none;
 }
 
