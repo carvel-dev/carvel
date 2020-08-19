@@ -377,10 +377,6 @@ li code, p code {
 
 /* --- home page specific --- */
 
-#highlights h2 {
-  color: #fff;
-}
-
 #highlights p {
   color: #5a575b;
 }
@@ -406,4 +402,12 @@ li code, p code {
 
 #install {
 	margin-bottom: 50px;
+}
+
+#suite-nav a {
+  color: #fff;
+}
+
+#suite-nav {
+  margin: 37px 0px 0px;
 }
