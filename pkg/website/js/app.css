@@ -400,10 +400,6 @@ li code, p code {
 
 /* --- Carvel site specific --- */
 
-#highlights h2 {
-  color: #fff;
-}
-
 #highlights p {
   color: #5a575b;
 }
@@ -450,4 +446,12 @@ li code, p code {
 
 #core-content {
   padding: 50px 0px;
+}
+
+#suite-nav a {
+  color: #fff;
+}
+
+#suite-nav {
+  margin: 37px 0px 0px;
 }
