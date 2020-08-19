@@ -375,7 +375,7 @@ li code, p code {
   font-size: 90%;
 }
 
-/* --- home page specific --- */
+/* --- Carvel site specific --- */
 
 #highlights h2 {
   color: #fff;
@@ -406,4 +406,8 @@ li code, p code {
 
 #install {
 	margin-bottom: 50px;
+}
+
+.list-indent ul {
+  margin-left: 30px
 }
