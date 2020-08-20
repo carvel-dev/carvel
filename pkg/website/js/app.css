@@ -71,13 +71,31 @@ a, a:visited, a:hover {
  display: none !important;
 }
 
+/* Use to center text */
+.center {
+  text-align: center;
+}
+
+/* Use to emphasize regular text */
+span.bold-and-enlarge {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 /* Logo */
 .logo {
   color: #999;
   font-weight: normal;
   margin-bottom: 0px;
 }
-.logo .partof { font-size: 13px; }
+.logo .partof a, .logo .partof a:visited {
+  font-size: 13px;
+  color: #999;
+  text-decoration: none;
+}
+.logo .partof a:hover {
+  text-decoration: underline;
+}
 .logo .project-name a {
   color: #555;
   font-size: 30px;
@@ -137,6 +155,11 @@ a, a:visited, a:hover {
   border: 1px solid var(--base-color);
   padding-top: 16px;
   padding-bottom: 14px;
+}
+
+#hero.simple {
+  margin: 0 -50px;
+  padding: 15px 50px;
 }
 
 /* Nav */
@@ -375,7 +398,7 @@ li code, p code {
   font-size: 90%;
 }
 
-/* --- home page specific --- */
+/* --- Carvel site specific --- */
 
 #highlights p {
   color: #5a575b;
@@ -402,6 +425,27 @@ li code, p code {
 
 #install {
 	margin-bottom: 50px;
+}
+
+.list-indent ul {
+  margin-left: 30px
+}
+
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#written-by {
+  display: flex;
+  justify-content: space-between;
+}
+#written-by p {
+  margin: 0px;
+}
+
+#core-content {
+  padding: 50px 0px;
 }
 
 #suite-nav a {

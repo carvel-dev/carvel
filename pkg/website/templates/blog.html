@@ -10,9 +10,7 @@
 <div class="content">
   <div id="nav">
     <h1 class="logo">
-          <span class="project-name">
-            <a href="/">Carvel</a>
-          </span>
+      <span class="project-name"><a href="/">Carvel</a></span>
       <span class="partof"><a href="/blog">formerly k14s</a></span>
     </h1>
     <ul>
@@ -29,24 +27,94 @@
   </div>
 
   <div id="hero" class="simple">
-    <h2 class="center">Community</h2>
+    <h2 class="center">Blog</h2>
   </div>
 
   <div id="core-content">
-    <h2>Do you want to help build Carvel?</h2>
+    <div>
+      <div id="written-by">
+        <p>Written by: Helen George</p>
+        <p>Publish Date: August 20, 2020</p>
+      </div>
+      <h1>Carvel, formerly k14s, aims to simplify application deployment atop Kubernetes</h1>
 
-    <p>If you’re a newcomer, check out ytt's <a href="https://get-ytt.io#example:example-demo">Interactive
-        Playground</a> and the <a href="https://github.com/k14s/kapp/labels/good%20first%20issue">Good first
-        issue</a> label for kapp in its repository.</p>
+      <p>Now that you’ve deployed Kubernetes, how do you get apps up and running atop the container runtime? <a
+                href="https://github.com/k14s">Carvel</a> (formerly known as k14s), a collection of open-source
+        tools for working with Kubernetes, is designed to answer this question.</p>
+    </div>
 
-    <p>You can follow the work we do, be part of on-going discussions, and examine our improvement ideas on each
-      respective project's <a href="https://github.com/k14s">GitHub issues</a> page.</p>
-    <p>If you are ready to jump in and add code, tests, or help with documentation, follow the guidelines in the <a
-              href="https://github.com/k14s/ytt/blob/develop/CONTRIBUTING.md">contributing documentation</a> in
-      the respective repository.</p>
-    <p>Join <a href="https://slack.kubernetes.io">#k14s on Kubernetes Slack</a> and talk to us and over 450 other
-      community members.</p>
+    <div>
+      <h2 class="section-title">Carvel was born from frustration with existing tools</h2>
+
+      <p>Carvel is a set of tools designed to ease lifecycle management of your Kubernetes workloads. The origin
+        of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy
+        Kubernetes workloads. These tools were monolithic, error-prone, and hard to debug. Carvel promises a
+        better way, one that extracts common app configuration into a library for use by all your
+        applications.
+      </p>
+      <p>Carvel is built with UNIX philosophy in mind. We believe each tool should be optimized for a single
+        purpose, and have clear boundaries. This allows you to weave Carvel into your Kubernetes environment
+        however you want. It’s up to you to choose one element of Carvel, or the entire set of tools.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="section-title">What’s in a name?</h2>
+
+      <p>Carvel is a method of boat building where the planks of the hull are laid side-by-side without an overlap
+        to create a smooth surface and a robust frame. We chose this name because the imagery of workers using
+        the Carvel technique reminded us how our tools can be combined with UNIX pipes.</p>
+    </div>
+
+    <div class="list-indent">
+      <h2 class="section-title">A closer look at Carvel: ytt, kapp, kbld</h2>
+
+      <p>Here’s a quick summary of the tools within Carvel:</p>
+      <ul>
+        <li>
+          <p><span class="bold-and-enlarge">ytt</span> is a templating tool that understands YAML structures. It can
+            also be used for
+            overlaying configuration for Kubernetes workloads. You can try it out in our <a
+                    href="https://get-ytt.io/#example:example-demo">interactive playground.</a></p>
+        </li>
+        <li>
+          <p><span class="bold-and-enlarge">kapp</span> makes managing Kubernetes resources easier. The benefit of kapp
+            is that it
+            shows you the changes you are about to make before you apply them. This way there are no surprises
+            or unwanted changes made to your cluster. Kapp also converges a set of resources during each deploy
+            and waits for them to be ready. It allows you not to worry about the sequences of your workflow.</p>
+        </li>
+        <li>
+          <p><span class="bold-and-enlarge">kbld</span> (pronounced ‘k-build’) is a container image building
+            orchestrator. It lets you
+            build container images with different types of builders. Check out more of kbld’s features in its <a
+                    href="https://github.com/k14s/kbld">documentation</a>.</p>
+        </li>
+      </ul>
+      <p>Want to learn more? Watch <a href="https://www.youtube.com/watch?v=CSglwNTQiYg">“TGI Kubernetes”</a> featuring
+        ytt and kapp, then read the <a
+                href="https://tanzu.vmware.com/content/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment">launch
+          blog</a>.</p>
+      <p>For our part at VMware, we’re using Carvel with the <a href="https://github.com/cloudfoundry/cf-for-k8s">cf-for-k8s
+          project</a> and <a href="https://network.pivotal.io/products/tas-for-kubernetes/">the beta version of VMware
+          Application Service that runs atop Kubernetes.</a> We can’t wait to see what you can do with these tools!
+      </p>
+    </div>
+    <div class="list-indent">
+      <h2 class="section-title">Join us on Slack and GitHub </h2>
+      <p>We are excited about this new chapter of our project, and we look forward to building our community. To this
+        end, join us! We want to hear from you and learn with you. Here are several ways you can get involved:</p>
+      <ul>
+        <li><p>Join Carvel’s slack channel, ‘#k14s’ in <a href="https://slack.kubernetes.io/">Kubernetes</a> workspace
+            and connect with over 450 Carvel users.</p></li>
+        <li><a>Find us on <a href="https://github.com/k14s">GitHub</a>. Suggest how we can improve the project, the
+            docs, or share any other feedback.</p></li>
+      </ul>
+      <p>We look forward to hearing from you!</p>
+    </div>
+
   </div>
+
 
   <div id="authors">
     <h2>Carvel Team</h2>
@@ -94,6 +162,6 @@
     </div>
   </div>
 </div>
-
+</div>
 </body>
 </html>
