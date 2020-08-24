@@ -1,3 +1,4 @@
 #@data/values
 ---
-google_analytics: ""
+google_analytics: |
+  <script> const sendGoogleAnalyticsEvent = () => {} </script>
