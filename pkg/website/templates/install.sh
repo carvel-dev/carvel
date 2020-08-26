@@ -23,7 +23,7 @@ install() {
   kapp_version=v0.33.0
   kwt_version=v0.0.6
   imgpkg_version=v0.2.0
-  vendir_version=v0.9.0
+  vendir_version=v0.10.0
 
   if [[ x`uname` == xDarwin ]]; then
     binary_type=darwin-amd64
@@ -32,7 +32,7 @@ install() {
     kapp_checksum=04883a0b40f0a52843288ae5316e3fd4053dcdcd3a566b4daaa3f4b0f64e4807
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     imgpkg_checksum=e37f55e1dbd3ace7daf6ab8356c11f8104af1601f92ba96eebc57aa74c18cfa4
-    vendir_checksum=d5216373ea0f319402f516483c2d86fa4cb42fd1abd3bea08fed21773e98f5f2
+    vendir_checksum=de6da267406b90ac29ea87c831d18811681cc339115bc7b0e5f155227914f024
   else
     binary_type=linux-amd64
     ytt_checksum=456e58c70aef5cd4946d29ed106c2b2acbb4d0d5e99129e526ecb4a859a36145
@@ -40,7 +40,7 @@ install() {
     kapp_checksum=2a3328c9eca9f43fe639afb524501d9d119feeea52c8a913639cfb96e38e93d1
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
     imgpkg_checksum=57a73c4721c39f815408f486c1acfb720af82450996e2bfdf4c2c280d8a28dcc
-    vendir_checksum=5d45cac346fad415150b82c3bf60110525a907d8545ac4c1d972d4f85985b16e
+    vendir_checksum=85bce9171f2f18da51695db185b33df2d4d555495cc45429e4838edf73b89d77
   fi
 
   echo "Installing ${binary_type} binaries..."
