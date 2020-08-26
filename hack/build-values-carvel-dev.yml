@@ -18,4 +18,11 @@ google_analytics: |
       }
       gtag('event', action, eventBody);
     }
+
+    document.addEventListener('click', e => {
+      const closestAnalytics = e.target.closest('.analytics')
+      if (closestAnalytics == null) return
+      const label = e.target.innerText || closestAnalytics.innerText
+      sendGoogleAnalyticsEvent('click', e.target.closest('div[id]').id, label)
+    });
   </script>
