@@ -20,7 +20,7 @@ install() {
 
   ytt_version=v0.30.0
   kbld_version=v0.24.0
-  kapp_version=v0.33.0
+  kapp_version=v0.34.0
   kwt_version=v0.0.6
   imgpkg_version=v0.2.0
   vendir_version=v0.10.0
@@ -29,7 +29,7 @@ install() {
     binary_type=darwin-amd64
     ytt_checksum=a1a56c3292e355b9891b2c4ce7525d78f0e1ffd8630b856d300e9a7f383e707c
     kbld_checksum=480f45f62bad6af0518884f2e6234b0655fa30cc533dc9a4c336ea9376db2b16
-    kapp_checksum=04883a0b40f0a52843288ae5316e3fd4053dcdcd3a566b4daaa3f4b0f64e4807
+    kapp_checksum=61795970d69c530c134711e35fca35ef143176c9a32bf8dce9ef39b1bd0d3b75
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     imgpkg_checksum=e37f55e1dbd3ace7daf6ab8356c11f8104af1601f92ba96eebc57aa74c18cfa4
     vendir_checksum=de6da267406b90ac29ea87c831d18811681cc339115bc7b0e5f155227914f024
@@ -37,7 +37,7 @@ install() {
     binary_type=linux-amd64
     ytt_checksum=456e58c70aef5cd4946d29ed106c2b2acbb4d0d5e99129e526ecb4a859a36145
     kbld_checksum=63f06c428cacd66e4ebbd23df3f04214109bc44ee623c7c81ecb9aa35c192c65
-    kapp_checksum=2a3328c9eca9f43fe639afb524501d9d119feeea52c8a913639cfb96e38e93d1
+    kapp_checksum=e170193c40ff5dff9f9274c25048de1f50e23c69e8406df274fbb416d5862d7f
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
     imgpkg_checksum=57a73c4721c39f815408f486c1acfb720af82450996e2bfdf4c2c280d8a28dcc
     vendir_checksum=85bce9171f2f18da51695db185b33df2d4d555495cc45429e4838edf73b89d77
