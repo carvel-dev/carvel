@@ -9,6 +9,9 @@ import (
 	"time"
 )
 
+const projectSiteDomain = "carvel.dev"
+const k14sDomain = "k14s.io"
+
 type ServerOpts struct {
 	ListenAddr string
 	ErrorFunc  func(error) ([]byte, error)
@@ -24,9 +27,9 @@ func NewServer(opts ServerOpts) *Server {
 
 func (s *Server) Mux() *http.ServeMux {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", s.redirectToSubprojects(s.redirectToHTTPs(s.noCacheHandler(s.mainHandler))))
-	mux.HandleFunc("/community", s.redirectToHTTPs(s.noCacheHandler(s.communityHandler)))
-	mux.HandleFunc("/blog", s.redirectToHTTPs(s.noCacheHandler(s.blogHandler)))
+	mux.HandleFunc("/", s.redirectToSubprojects(s.redirectToProjectSite(s.redirectToHTTPs(s.noCacheHandler(s.mainHandler)))))
+	mux.HandleFunc("/community", s.redirectToProjectSite(s.redirectToHTTPs(s.noCacheHandler(s.communityHandler))))
+	mux.HandleFunc("/blog", s.redirectToProjectSite(s.redirectToHTTPs(s.noCacheHandler(s.blogHandler))))
 	mux.HandleFunc("/js/", s.redirectToHTTPs(s.noCacheHandler(s.assetHandler)))
 	mux.HandleFunc("/health", s.healthHandler)
 	mux.HandleFunc("/install.sh", s.redirectToHTTPs(s.noCacheHandler(s.install)))
@@ -118,13 +121,31 @@ func (s *Server) redirectToHTTPs(wrappedFunc func(http.ResponseWriter, *http.Req
 		wrappedFunc(w, r)
 	}
 }
+func (s *Server) redirectToProjectSite(wrappedFunc func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		clientIP, _, err := net.SplitHostPort(r.RemoteAddr)
+		url := r.URL.RequestURI()
+		if err == nil {
+			if clientIP == k14sDomain {
+				http.Redirect(w, r, "https://"+projectSiteDomain+url, http.StatusMovedPermanently)
+				return
+			}
+		}
+
+		wrappedFunc(w, r)
+	}
+}
 
 var (
 	subprojectsHostMappings = map[string]string{
-		"ytt.k14s.io":  "get-ytt.io",
-		"kbld.k14s.io": "get-kbld.io",
-		"kapp.k14s.io": "get-kapp.io",
-		"kwt.k14s.io":  "github.com/k14s/kwt",
+		"ytt.k14s.io":     "get-ytt.io",
+		"kbld.k14s.io":    "get-kbld.io",
+		"kapp.k14s.io":    "get-kapp.io",
+		"kwt.k14s.io":     "github.com/k14s/kwt",
+		"ytt.carvel.dev":  "get-ytt.io",
+		"kbld.carvel.dev": "get-kbld.io",
+		"kapp.carvel.dev": "get-kapp.io",
+		"kwt.carvel.dev":  "github.com/k14s/kwt",
 	}
 )
 
