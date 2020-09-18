@@ -123,13 +123,11 @@ func (s *Server) redirectToHTTPs(wrappedFunc func(http.ResponseWriter, *http.Req
 }
 func (s *Server) redirectToProjectSite(wrappedFunc func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		clientIP, _, err := net.SplitHostPort(r.RemoteAddr)
+		host := r.Header.Get("host")
 		url := r.URL.RequestURI()
-		if err == nil {
-			if clientIP == k14sDomain {
-				http.Redirect(w, r, "https://"+projectSiteDomain+url, http.StatusMovedPermanently)
-				return
-			}
+		if strings.Contains(host, k14sDomain) {
+			http.Redirect(w, r, "https://"+projectSiteDomain+url, http.StatusMovedPermanently)
+			return
 		}
 
 		wrappedFunc(w, r)
