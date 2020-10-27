@@ -33,6 +33,7 @@ func (s *Server) Mux() *http.ServeMux {
 	mux.HandleFunc("/js/", s.redirectToHTTPs(s.noCacheHandler(s.assetHandler)))
 	mux.HandleFunc("/health", s.healthHandler)
 	mux.HandleFunc("/install.sh", s.redirectToHTTPs(s.noCacheHandler(s.install)))
+	mux.HandleFunc("/zoom", s.redirectToHTTPs(s.noCacheHandler(s.meetingHandler)))
 	return mux
 }
 
@@ -89,6 +90,12 @@ func (s *Server) logError(w http.ResponseWriter, err error) {
 
 func (s *Server) write(w http.ResponseWriter, data []byte) {
 	w.Write(data) // not fmt.Fprintf!
+}
+
+func (s *Server) meetingHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodGet || r.Method == http.MethodHead {
+		http.Redirect(w, r, "http://community.klt.rip", http.StatusMovedPermanently)
+	}
 }
 
 func (s *Server) redirectToHTTPs(wrappedFunc func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
