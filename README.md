@@ -1,15 +1,17 @@
-# k14s.io
+# Website for [Carvel](https://carvel.dev/)
 
-[https://k14s.io](https://k14s.io) website.
+##### Prerequisites
 
-## Development
+* [Hugo](https://github.com/gohugoio/hugo)
+    * macOS: `brew install hugo`
+    * Windows: `choco install hugo-extended -confirm`
+
+#### Build
 
 ```bash
-./hack/build.sh
-
-# include goog analytics in 'k14s' command for https://carvel.dev
-# (goog analytics is _not_ included in release binaries)
-BUILD_VALUES=./hack/build-values-carvel-dev.yml ./hack/build.sh
+hugo server --disableFastRender
 ```
 
-`build.sh` depends on [ytt](https://github.com/k14s/ytt).
+#### Serve
+
+Serve site at http://localhost:1313

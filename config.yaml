@@ -1,0 +1,52 @@
+baseURL: "https://carvel.dev/"
+disablePathToLower: true
+languageCode: en-us
+DefaultContentLanguage: "en"
+title: "Carvel"
+theme: "carvel"
+frontmatter:
+  date: [":filename", ":default"]
+params:
+  products: [ytt, kbld, kapp]
+  next_meeting_date: 2020-11-05
+  ytt_versioning: false
+  ytt_search: false
+  ytt_search_index_name: index_name
+  ytt_search_api_key: api_key
+  ytt_latest: v0.30.0
+  ytt_versions:
+    - v0.30.0
+  kbld_versioning: false
+  kbld_search: false
+  kbld_search_index_name: index_name
+  kbld_search_api_key: api_key
+  kbld_latest: v0.27.0
+  kbld_versions:
+    - v0.27.0
+  kapp_versioning: false
+  kapp_search: false
+  kapp_search_index_name: index_name
+  kapp_search_api_key: api_key
+  kapp_latest: v0.34.0
+  kapp_versions:
+    - v0.34.0
+  gh_repo: https://github.com/k14s
+  slack: https://slack.kubernetes.io/
+  footer_social_links:
+    twitter_url: https://twitter.com/carvel_dev
+    github_url: https://github.com/k14s
+    slack_url: https://slack.kubernetes.io/
+
+markup:
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    hl_Lines: ""
+    lineAnchors: ""
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: false
+    style: monokai
+    tabWidth: 4

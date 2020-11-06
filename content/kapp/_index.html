@@ -1,0 +1,642 @@
+---
+title: ""
+---
+
+<div class="hero subpage kapp">
+    <div class="wrapper clearfix">
+        <div class="text-block">
+            <h2>Take control of your Kubernetes resources</h2>
+            <p>Deploy and view groups of Kubernetes resources as "applications". Apply changes safely and pgreenictably, watching resources as they converge.</p>
+            <div class="buttons">
+                <a class="button" href="https://get-kapp.io/#playground">Try in Playground</a>
+                <a class="button tertiary" href="https://github.com/k14s/kapp/releases">Download Binary</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper mobile-blue">
+    <div class="yaml-grid grid three">
+        <div class="col">
+            <div class="icon">
+                <img src="/img/structure-oriented.svg" />
+            </div>
+            <h3>Lightweight</h3>
+            <p>kapp is a CLI that does not require server-side components, elevated privileges nor any custom resources. It works well in RBAC-constrained clusters.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/modularized-config.svg" />
+            </div>
+            <h3>Explicit</h3>
+            <p>kapp calculates changes between your configuration and live cluster state (a set of create, update, and delete operations) and applies changes you approve. It reports how resources are converging to their desired state providing insight into progress of the deployment.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/deterministic.svg" />
+            </div>
+            <h3>Dependency-aware</h3>
+            <p>kapp orders certain resources (e.g. CRDs and Namespaces are installed before the resources that need them). Add your own rules to declare dependencies (e.g. a Job running DB migrations must finish before the Deployment is updated).</p>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="experimental tools">
+        <h2>Features</h2>
+        <div class="grid three">
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/intuitive.svg" />
+                </div>
+                <div class="content">
+                    <h3>Sorts and waits as needed.</h3>
+                    <p>Deploys dependencies first (like CRDs and Namespaces) and supports <a href="https://github.com/k14s/kapp/blob/develop/docs/apply-ordering.md">custom change ordering</a>. 
+                        <a href="https://github.com/k14s/kapp/blob/develop/docs/apply-waiting.md">Waits for resources</a> to "reconcile."</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/overlays.svg" />
+                </div>
+                <div class="content">
+                    <h3>Plays well with others.</h3>
+                    <p>Focuses exclusively on deployment procedure and works equally well with configuration tools such as <a href="/ytt">ytt</a>, <a href="https://github.com/kubernetes-sigs/kustomize">kustomize</a>, <a href="https://helm.sh/docs/helm/#helm-template">helm template</a>, and any other tool that can produce standard Kubernetes YAML configuration.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/yaml.svg" />
+                </div>
+                <div class="content">
+                    <h3>GitOps friendly</h3>
+                    <p>Include in your <a href="https://github.com/k14s/kapp/blob/develop/docs/gitops.md">GitOps</a> flow via CLI command or <a href="https://github.com/k14s/kapp-controller">kapp-controller</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-block">
+        <h2>Basic Usage</h2>
+        <div class="code">
+            <p class="comment"># Configurations picked up from a directory</p>
+            <p>$ <span class="green-text">kapp deploy -a my-app -f ./examples/simple-app-example/config-1.yml</span></p>
+            <p class="comment"># Can be used with helm charts, removing need for Tiller</p>
+            <p>$ <span class="green-text">kapp -y deploy -a my-chart -f</span> <(helm template my-chart --values my-vals.yml)</p>
+            <p class="comment"># ... and with kustomize</p>
+            <p>$ <span class="green-text">kapp -y deploy -a my-app -f</span> <(kustomize build ./my-app)</p>
+            <p class="comment"># ... or templated with ytt</p>
+            <p>$ <span class="green-text">kapp -y deploy -a my-app -f</span> <(ytt -f ./examples/simple-app-example/config-1.yml)</p>
+        </div>
+    </div>
+    <div class="code-block">
+        <h2>And now onto using <span class="example">kapp</span>:</h2>
+        <div class="code">
+            <p class="comment">In this example, we are installing example app from <a href="https://github.com/k14s/kapp">kapp repository</a>.</p>
+            <br>
+            <p>$ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml</p>
+            <br>
+            <p>Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
+            <br>
+            <p>Changes</p>
+            <p class="comment">Changes summary shows that all resources are new.</p>
+            <br>
+            <table>
+                <tr>
+                    <th>Namespace</th>
+                    <th>Name</th>
+                    <th>Kind</th>
+                    <th>Conds.</th>
+                    <th>Age</th>
+                    <th>Op</th>
+                    <th>Op st.</th>
+                    <th>Wait to</th>
+                    <th>Rs</th>
+                    <th>Ri</th>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>simple-app</td>
+                    <td>Deployment</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><span class="green-text">Create</span></td>
+                    <td>-</td>
+                    <td>reconcile</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app</td>
+                    <td>Service</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><span class="green-text">Create</span></td>
+                    <td>-</td>
+                    <td>reconcile</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <br>
+            <p>Op:      2 create, 0 delete, 0 update, 0 noop</p>
+            <p>Wait to: 2 reconcile, 0 delete, 0 noop</p>
+            <br>
+            <p class="comment">Let's confirm to continue, and follow deployment progress.</p>
+            <p>Continue? [yN]: y</p>
+            <br>
+            <p>2:12:59PM: ---- applying 2 changes [0/2 done] ----</p>
+            <p>2:13:00PM: create service/simple-app (v1) namespace: default</p>
+            <p>2:13:01PM: create deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:13:01PM: ---- waiting on 2 changes [0/2 done] ----</p>
+            <p>2:13:01PM: ok: reconcile service/simple-app (v1) namespace: default</p>
+            <p>2:13:01PM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:13:01PM:<span class="tab-space"></span>^ Waiting for 1 unavailable replicas</p>
+            <p>2:13:01PM:<span class="tab-space"></span>L ok: waiting on replicaset/simple-app-7f9c78ccd8 (apps/v1) namespace: default</p>
+            <p>2:13:01PM:<span class="tab-space"></span>L ongoing: waiting on pod/simple-app-7f9c78ccd8-h7wlc (v1) namespace: default</p>
+            <p>2:13:01PM:<span class="tab-space two"></span>^ Pending: ContainerCreating</p>
+            <p>2:13:01PM: ---- waiting on 1 changes [1/2 done] ----</p>
+            <p>2:13:03PM: ok: reconcile deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:13:03PM: ---- applying complete [2/2 done] ----</p>
+            <p>2:13:03PM: ---- waiting complete [2/2 done] ----</p>
+            <br>
+            <p>Succeeded</p>
+            <br>
+            <br>
+            <p class="comment">ls command shows list of all apps stored in current namespace. Apps themselves can span multiple namespaces and cluster scope.</p>
+            <p>$ kapp ls</p>
+            <br>
+            <p>Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
+            <br>
+            <p>Apps in namespace 'default'</p>
+            <br>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Namespaces</th>
+                    <th>Lcs</th>
+                    <th>Lca</th>
+                </tr>
+                <tr>
+                    <td>app1</td>
+                    <td>default</td>
+                    <td>true</td>
+                    <td>25s</td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <tr>
+                    <th>Lcs:</th>
+                    <th>Last</th>
+                    <th>Change</th>
+                    <th>Successful</th>
+                </tr>
+                <tr>
+                    <td>Lca:</td>
+                    <td>Last</td>
+                    <td>Change</td>
+                    <td>Age</td>
+                </tr>
+            </table>
+            <br>
+            <p>1 apps</p>
+            <br>
+            <p>Succeeded</p>
+            <br>
+            <br>
+            <p class="comment">Now let's update from one app configuration to another using deploy command.</p>
+            <p class="comment">Since --diff-changes is used, kapp will show detailed diff against versions of resources in the cluster.</p>
+            <p class="comment">These first two resources will be created.</p>
+            <br>
+            <p>$ kapp deploy -a app1 -f examples/simple-app-example/config-2.yml --diff-changes</p>
+            <br>
+            <p>Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
+            <br>
+            <p>@@ create service/simple-app-node (v1) namespace: default @@</p>
+            <br>
+            <p class="tab-space green-text">0 + apiVersion: v1</p>
+            <p class="tab-space green-text">1 + kind: Service</p>
+            <p class="tab-space green-text">2 + metadata:</p>
+            <p class="tab-space green-text">3 + <span class="tab-space"></span>labels:</p>
+            <p class="tab-space green-text">4 + <span class="tab-space two"></span>kapp.k14s.io/app: "1594663909283037000"</p>
+            <p class="tab-space green-text">5 + <span class="tab-space two"></span>kapp.k14s.io/association: v1.6e43c1cd2c7173a969d84f77ad6a72c2</p>
+            <p class="tab-space green-text">6 + <span class="tab-space"></span>name: simple-app-node</p>
+            <p class="tab-space green-text">7 + <span class="tab-space"></span>namespace: default</p>
+            <p class="tab-space green-text">8 + spec:</p>
+            <p class="tab-space green-text">9 + <span class="tab-space"></span>ports:</p>
+            <p class="tab-space green-text">10 + <span class="tab-space"></span>- nodePort: 31111</p>
+            <p class="tab-space green-text">11 + <span class="tab-space two"></span>port: 80</p>
+            <p class="tab-space green-text">12 + <span class="tab-space two"></span>targetPort: 80</p>
+            <p class="tab-space green-text">13 + <span class="tab-space"></span>selector:</p>
+            <p class="tab-space green-text">14 + <span class="tab-space two"></span>kapp.k14s.io/app: "1594663909283037000"</p>
+            <p class="tab-space green-text">15 + <span class="tab-space two"></span>simple-app: ""</p>
+            <p class="tab-space green-text">16 + <span class="tab-space"></span>type: NodePort</p>
+            <p class="tab-space green-text">17 +</p>
+            <br>
+            <p>@@ create configmap/simple-app (v1) namespace: default @@</p>
+            <p class="tab-space green-text">0 + apiVersion: v1</p>
+            <p class="tab-space green-text">1 + data:</p>
+            <p class="tab-space green-text">2 + <span class="tab-space"></span>hello_msg: friend</p>
+            <p class="tab-space green-text">3 + kind: ConfigMap</p>
+            <p class="tab-space green-text">4 + metadata:</p>
+            <p class="tab-space green-text">5 + <span class="tab-space"></span>labels:</p>
+            <p class="tab-space green-text">6 + <span class="tab-space two"></span>kapp.k14s.io/app: "1594663909283037000"</p>
+            <p class="tab-space green-text">7 + <span class="tab-space two"></span>kapp.k14s.io/association: v1.afcdfc989e2a0b3f3e526dc1c4176060</p>
+            <p class="tab-space green-text">8 + <span class="tab-space"></span>name: simple-app</p>
+            <p class="tab-space green-text">9 + <span class="tab-space"></span>namespace: default</p>
+            <p class="tab-space green-text">10 +</p>
+            <br>
+            <p class="comment">This resource will be updated.</p>
+            <p>@@ update deployment/simple-app (apps/v1) namespace: default @@</p>
+            <p>...</p>
+            <p class="tab-space red-text">29, 29 <span class="tab-space"></span>- name: HELLO_MSG</p>
+            <p class="tab-space red-text">30 <span class="tab-space two"></span>- value: stranger</p>
+            <p class="tab-space green-text">30 + <span class="tab-space"></span>valueFrom:</p>
+            <p class="tab-space green-text">31 + <span class="tab-space two"></span>configMapKeyRef:</p>
+            <p class="tab-space green-text">32 + <span class="tab-space three"></span>key: hello_msg</p>
+            <p class="tab-space green-text">33 + <span class="tab-space three"></span>name: simple-app</p>            
+            <p class="tab-space">31, 34 <span class="tab-space"></span>image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1f...sdfa</p>
+            <p class="tab-space">32, 35 <span class="tab-space"></span>name: simple-app</p>
+            <br>
+            <p class="comment">This resource is will be deleted.</p>
+            <p>@@ delete service/simple-app (v1) namespace: default @@</p>
+            <p class="red-text">0<span class="tab-space"></span>- apiVersion: v1</p>
+            <p class="red-text">1<span class="tab-space"></span>- kind: Service</p>
+            <p class="red-text">2<span class="tab-space"></span>- metadata:</p>
+            <p class="red-text">3<span class="tab-space"></span>-<span class="tab-space"></span>creationTimestamp: "2020-07-13T18:12:59Z"</p>
+            <p class="red-text">4<span class="tab-space"></span>-<span class="tab-space"></span>labels:</p>
+            <p class="red-text">5<span class="tab-space"></span>-<span class="tab-space two"></span>kapp.k14s.io/app: "1594663909283037000"</p>
+            <p class="red-text">6<span class="tab-space"></span>-<span class="tab-space two"></span>kapp.k14s.io/association: v1.462a95c01b2a0bdc4d5acadc4a22dd74</p>
+            <p class="red-text">7<span class="tab-space"></span>-<span class="tab-space"></span>name: simple-app</p>
+            <p class="red-text">8<span class="tab-space"></span>-<span class="tab-space"></span>namespace: default</p>
+            <p class="red-text">9<span class="tab-space"></span>-<span class="tab-space"></span>resourceVersion: "69009086"</p>
+            <p class="red-text">10<span class="tab-space"></span>-<span class="tab-space two"></span>selfLink: /api/v1/namespaces/default/services/simple-app</p>
+            <p class="red-text">11<span class="tab-space"></span>-<span class="tab-space two"></span>uid: 4e8bb148-2de4-46b3-a2e1-53dacbaaff34</p>
+            <p class="red-text">12<span class="tab-space"></span>- spec:</p>
+            <p class="red-text">13<span class="tab-space"></span>-<span class="tab-space"></span>clusterIP: 10.76.6.94</p>
+            <p class="red-text">14<span class="tab-space"></span>-<span class="tab-space"></span>ports:</p>
+            <p class="red-text">15<span class="tab-space"></span>-<span class="tab-space"></span>- port: 80</p>
+            <p class="red-text">16<span class="tab-space"></span>-<span class="tab-space two"></span>targetPort: 80</p>
+            <p class="red-text">17<span class="tab-space"></span>-<span class="tab-space"></span>selector:</p>
+            <p class="red-text">18<span class="tab-space"></span>-<span class="tab-space two"></span>kapp.k14s.io/app: "1594663909283037000"</p>
+            <p class="red-text">19<span class="tab-space"></span>-<span class="tab-space two"></span>simple-app: ""</p>
+            <p class="red-text">20<span class="tab-space"></span>- status:</p>
+            <p class="red-text">21<span class="tab-space"></span>-<span class="tab-space two"></span>loadBalancer: {}</p>
+            <p class="red-text">22<span class="tab-space"></span>-</p>
+            <br>
+            <p class="comment">Changes summary is presented before deploy will continue. There are only few changes in this example.</p>
+            <p>Changes</p>
+            <br>
+            <table>
+                <tr>
+                    <th>Namespace</th>
+                    <th>Name</th>
+                    <th>Kind</th>
+                    <th>Conds.</th>
+                    <th>Age</th>
+                    <th>Op</th>
+                    <th>Op st.</th>
+                    <th>Wait to</th>
+                    <th>Rs</th>
+                    <th>Ri</th>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>simple-app</td>
+                    <td>ConfigMap</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><span class="green-text">Create</span></td>
+                    <td>-</td>
+                    <td>reconcile</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app</td>
+                    <td>Deployment</td>
+                    <td><span class="green-text">2/2 t</span></td>
+                    <td>2m</td>
+                    <td><span class="green-text">update</span></td>
+                    <td>-</td>
+                    <td>reconcile</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app</td>
+                    <td>Service</td>
+                    <td>-</td>
+                    <td>2m</td>
+                    <td><span class="red-text">delete</span></td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-node</td>
+                    <td>Service</td>
+                    <td><span class="green-text">-</span></td>
+                    <td>-</td>
+                    <td><span class="green-text">create</span></td>
+                    <td>-</td>
+                    <td>reconcile</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <br>
+            <p>Op: <span class="tab-space three"></span>2 create, 1 delete, 1 update, 0 noop</p>
+            <p>Wait to: 3 reconcile, 1 delete, 0 noop</p>
+            <br>
+            <p class="comment">Detailed progress log shows kapp waiting for associated resources to be ready. Readiness checks are specific to resource types</p>
+            <p>Continue? [yN]:</p>
+            <br>
+            <p>2:21:15PM: ---- applying 2 changes [0/4 done] ----</p>
+            <p>2:21:15PM: delete service/simple-app (v1) namespace: default</p>
+            <p>2:21:15PM: ---- waiting on 2 changes [0/4 done] ----</p>
+            <p>2:21:15PM: ok: delete service/simple-app (v1) namespace: default</p>
+            <p>2:21:15PM: ---- applying 2 changes [2/4 done] ----</p>
+            <p>2:21:15PM: create service/simple-app-node (v1) namespace: default</p>
+            <p>2:21:17PM: ---- waiting on 2 changes [2/4 done] ----</p>
+            <p>2:21:17PM: ok: reconcile service/simple-app-node (v1) namespace: default</p>
+            <p>2:21:17PM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:21:17PM: <span class="tab-space"></span>^ Waiting for 1 unavailable replicas</p>
+            <p>2:21:17PM: <span class="tab-space"></span>L ok: waiting on replicaset/simple-app-8558f78495 (apps/v1) namespace: default</p>
+            <p>2:21:17PM: <span class="tab-space"></span>L ok: waiting on replicaset/simple-app-7f9c78ccd8 (apps/v1) namespace: default</p>
+            <p>2:21:17PM: <span class="tab-space"></span>L ok: waiting on pod/simple-app-8558f78495-zqwxt (v1) namespace: default</p>
+            <p>2:21:17PM: <span class="tab-space"></span>L ongoing: waiting on pod/simple-app-7f9c78ccd8-h7wlc (v1) namespace: default</p>
+            <p>2:21:17PM: <span class="tab-space three"></span>^ Deleting</p>
+            <p>2:21:17PM: ---- waiting on 1 changes [3/4 done] ----</p>
+            <p>2:21:18PM: ok: reconcile deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:21:18PM: ---- applying complete [4/4 done] ----</p>
+            <p>2:21:18PM: ---- waiting complete [4/4 done] ----</p>
+            <br>
+            <p>Succeeded</p>
+            <br>
+            <br>
+            <p class="comment">inspect command shows list of live objects associated with given app. --tree view optionally shows simple parent-child resource relationships.</p>
+            <p>$ kapp inspect -a app1 --tree</p>
+            <br>
+            <p>Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
+            <br>
+            <p>Resources in app 'app'</p>
+            <br>
+            <table>
+                <tr>
+                    <th>Namespace</th>
+                    <th>Name</th>
+                    <th>Kind</th>
+                    <th>Owner</th>
+                    <th>Conds.</th>
+                    <th>Rs</th>
+                    <th>Ri</th>
+                    <th>Age</th>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>simple-app</td>
+                    <td>Deployment</td>
+                    <td>kapp</td>
+                    <td><span class="green-text">2/2 t</span></td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>8m</td>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>L simple-app-7f9c78ccd8   </td>
+                    <td>ReplicaSet</td>
+                    <td>cluster</td>
+                    <td>-</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>8m</td>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>L simple-app-8558f78495</td>
+                    <td>ReplicaSet</td>
+                    <td>cluster</td>
+                    <td>-</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>28s</td>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>L.. simple-app-8558f78495-zqwxt</td>
+                    <td>Pod</td>
+                    <td>cluster</td>
+                    <td><span class="green-text">4/4 t</span></td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>28s</td>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>simple-app-node</td>
+                    <td>Service</td>
+                    <td>kapp</td>
+                    <td>-</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>28s</td>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>L simple-app-node </td>
+                    <td>Endpoints</td>
+                    <td>cluster</td>
+                    <td>-</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>28s</td>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>simple-app</td>
+                    <td>ConfigMap</td>
+                    <td>kapp</td>
+                    <td>-</td>
+                    <td><span class="green-text">ok</span></td>
+                    <td>-</td>
+                    <td>28s</td>
+                </tr>
+            </table>
+            <br>
+            <p>Rs: Reconcile state</p>
+            <p>Ri: Reconcile information</p>
+            <br>
+            <p>7 resources</p>
+            <br>
+            <p>Succeeded</p>          
+            <br>
+            <br>
+            <p class="comment">logs command starts streaming logs from all Pods associated with given app.</p>
+            <p>$ kapp logs -f -a app1</p>
+            <br>
+            <p>Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
+            <br>
+            <p># starting tailing 'simple-app-8558f78495-zqwxt > simple-app' logs</p>
+            <p>simple-app-8558f78495-zqwxt > simple-app | 2020/07/13 18:21:16 Server started</p>
+            <p>^C</p>
+            <br>
+            <br>
+            <p class="comment">delete command finds all resources in the cluster associated with given app, issues delete operation and waits for them be be deleted.</p>
+            <p>$ kapp delete -a app1</p>
+            <br>
+            <p>Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
+            <br>
+            <p>Changes</p>
+            <br>
+            <table>
+                <tr>
+                    <th>Namespace</th>
+                    <th>Name</th>
+                    <th>Kind</th>
+                    <th>Conds.</th>
+                    <th>Age</th>
+                    <th>Op</th>
+                    <th>Op st.</th>
+                    <th>Wait to</th>
+                    <th>Rs</th>
+                    <th>Ri</th>
+                </tr>
+                <tr>
+                    <td>default</td>
+                    <td>simple-app</td>
+                    <td>ConfigMap</td>
+                    <td>-</td>
+                    <td>1m</td>
+                    <td><span class="red-text">delete</span></td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app</td>
+                    <td>Deployment</td>
+                    <td><span class="green-text">2/2 t</span></td>
+                    <td>10m</td>
+                    <td><span class="red-text">delete</span></td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-7f9c78ccd8</td>
+                    <td>ReplicaSet</td>
+                    <td>-</td>
+                    <td>10m</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-8558f78495</td>
+                    <td>ReplicaSet</td>
+                    <td>-</td>
+                    <td>1m</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-8558f78495-zqwxt</td>
+                    <td>Pod</td>
+                    <td><span class="green-text">4/4 t</span></td>
+                    <td>1m</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-8558f78495-zqwxt</td>
+                    <td>PodMetrics</td>
+                    <td>-</td>
+                    <td>0s</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-node</td>
+                    <td>Endpoints</td>
+                    <td>-</td>
+                    <td>1m</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>simple-app-node</td>
+                    <td>Service</td>
+                    <td>-</td>
+                    <td>1m</td>
+                    <td><span class="red-text">delete</span></td>
+                    <td>-</td>
+                    <td>delete</td>
+                    <td>ok</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <br>
+            <p>Op:      0 create, 3 delete, 0 update, 5 noop</p>
+            <p>Wait to: 0 reconcile, 8 delete, 0 noop</p>
+            <br>
+            <p>Continue? [yN]: y</p>
+            <br>
+            <p>2:23:24PM: ---- applying 8 changes [0/8 done] ----</p>
+            <p>2:23:24PM: noop endpoints/simple-app-node (v1) namespace: default</p>
+            <p>2:23:24PM: noop replicaset/simple-app-7f9c78ccd8 (apps/v1) namespace: default</p>
+            <p>2:23:24PM: noop pod/simple-app-8558f78495-zqwxt (v1) namespace: default</p>
+            <p>2:23:24PM: noop podmetrics/simple-app-8558f78495-zqwxt (metrics.k8s.io/v1beta1) namespace: default</p>
+            <p>2:23:24PM: noop replicaset/simple-app-8558f78495 (apps/v1) namespace: default</p>
+            <p>2:23:24PM: delete deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:23:24PM: delete service/simple-app-node (v1) namespace: default</p>
+            <p>2:23:24PM: delete configmap/simple-app (v1) namespace: default</p>
+            <p>2:23:24PM: ---- waiting on 8 changes [0/8 done] ----</p>
+            <p>2:23:24PM: ongoing: delete replicaset/simple-app-7f9c78ccd8 (apps/v1) namespace: default</p>
+            <p>2:23:24PM: ok: delete endpoints/simple-app-node (v1) namespace: default</p>
+            <p>2:23:24PM: ok: delete configmap/simple-app (v1) namespace: default</p>
+            <p>2:23:24PM: ongoing: delete replicaset/simple-app-8558f78495 (apps/v1) namespace: default</p>
+            <p>2:23:24PM: ongoing: delete pod/simple-app-8558f78495-zqwxt (v1) namespace: default</p>
+            <p>2:23:24PM: ok: delete service/simple-app-node (v1) namespace: default</p>
+            <p>2:23:24PM: ok: delete deployment/simple-app (apps/v1) namespace: default</p>
+            <p>2:23:24PM: ongoing: delete podmetrics/simple-app-8558f78495-zqwxt (metrics.k8s.io/v1beta1) namespa...</p>
+            <p>2:23:24PM: ---- waiting on 4 changes [4/8 done] ----</p>
+            <p>2:23:26PM: ok: delete replicaset/simple-app-8558f78495 (apps/v1) namespace: default</p>
+            <p>2:23:26PM: ok: delete replicaset/simple-app-7f9c78ccd8 (apps/v1) namespace: default</p>
+            <p>2:23:26PM: ---- waiting on 2 changes [6/8 done] ----</p>
+            <p>2:23:27PM: ok: delete podmetrics/simple-app-8558f78495-zqwxt (metrics.k8s.io/v1beta1) namespace: d...</p>
+            <p>2:23:27PM: ok: delete pod/simple-app-8558f78495-zqwxt (v1) namespace: default</p>
+            <p>2:23:27PM: ---- applying complete [8/8 done] ----</p>
+            <p>2:23:27PM: ---- waiting complete [8/8 done] ----</p>
+            <br>
+            <p>Succeeded</p>
+        </div>
+    </div>
+</div>

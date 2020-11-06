@@ -1,0 +1,48 @@
+{{ define "main" }}
+	<main>
+        <div class="hero subpage">
+            <div class="wrapper">
+                <h2>Carvel Community</h2>
+            </div>
+        </div>
+        <div class="wrapper community">
+            <h3>Do you want to help build Carvel?</h3>
+            <div class="grid three">
+                <div class="col">
+                    <div class="icon">
+                        <img src="/img/github-image.svg" />
+                    </div>
+                    <div class="content">
+                        <h3><a href="{{ .Site.Params.gh_repo }}">Check out Github</a></h3>
+                        <p>You can follow the work we do, be part of on-going discussions, and examine our improvement ideas on each respective project's <a href="https://github.com/k14s">GitHub issues</a> page.</p>
+                        <p>If you’re a newcomer, check out the <a href="https://github.com/k14s/kapp/labels/good%20first%20issue">Good first issue</a> label in its repository.</p>
+                        <p>If you are ready to jump in and add code, tests, or help with documentation, follow the guidelines in the <a href="https://github.com/k14s/ytt/blob/develop/CONTRIBUTING.md">contributing documentation</a> in the respective repository.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="icon">
+                        <img src="/img/slack.svg" />
+                    </div>
+                    <div class="content">
+                        <h3><a href="{{ .Site.Params.slack }}">Chat with us on our Slack channel</a></h3>
+                        <p>Join <a href="https://slack.kubernetes.io/">#carvel on Kubernetes Slack</a> and talk to us and over 500 other community members.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="icon">
+                        <img src="/img/calendar.svg" />
+                    </div>
+                    <div class="content">
+                        <h3>Join the Meetings</h3>
+                        <p>Join our <a href="https://groups.google.com/g/carvel-dev">Google Group</a> to get updates on the project and invitations to community meetings.</p>
+                        <p>Join the Carvel community meetings:</p>
+                        <ul>
+                            <li>Every other Wednesday at 9am PT - <a href="http://community.klt.rip/">Zoom link</a></li>
+                            <li><a href="https://hackmd.io/F7g3RT2hR3OcIh-Iznk2hw">Meeting notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>	
+	</main>
+{{ end }}

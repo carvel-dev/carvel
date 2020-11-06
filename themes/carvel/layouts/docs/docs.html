@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  {{ partial "head-docs.html" . }}
+
+  {{ if ne .Params.version "master" }}
+    <!-- Block google from indexing versioned docs -->
+    <meta name="robots" content="noindex">
+  {{ end }}
+  {{ $fileName := "" }}
+  {{ with .File }}{{ $fileName = .LogicalName }}{{ end }}
+  {{ if eq $fileName "_index.md" }}
+    <title>{{ .Site.Title }} Docs - Overview</title>
+  {{ else }}
+    <title>{{ .Site.Title }} Docs - {{ .Title }}</title>
+  {{ end }}
+  <body id="docs">
+    {{ partial "header" . }}
+    <div class="hero">
+      <div class="wrapper">
+        <h1>{{ .Section }} Documentation</h1>
+      </div>
+    </div>
+    <div class="wrapper docs clearfix">
+      <div class="side-nav">
+        {{ .Render "versions" }}
+        {{ .Render "search" }}
+        {{ .Render "nav" }}
+      </div>
+      <div class="docs-content">
+        {{ .Render "version-warning" }}
+        <div class="documentation-container">
+          {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+          {{ if eq $.Params.toc "true" }}
+              <aside>
+              {{ .TableOfContents }}
+              </aside>
+          {{ end }}
+
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+    {{ partial "footer" . }}
+    {{ $param_search :=  (index .Site.Params (print .Section "_search")) }}
+    {{ $param_index_name :=  (index .Site.Params (print .Section "_search_index_name")) }}
+    {{ $param_api_key :=  (index .Site.Params (print .Section "_search_api_key")) }}
+    {{ if $param_search }}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+        apiKey: '{{ $param_api_key }}',
+        indexName: '{{ $param_index_name }}',
+        inputSelector: '.docsearch-input',
+        algoliaOptions: {'facetFilters': ["version:{{ .CurrentSection.Params.version }}"]},
+        debug: false // Set debug to true if you want to inspect the dropdown
+      });
+    </script>
+    {{ end }}
+  </body>
+</html>

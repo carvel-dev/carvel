@@ -1,0 +1,43 @@
+toc:
+  - title: Deploy
+    subfolderitems:
+      - page: Apps & Deployment
+        url: /apps
+      - page: Deployment Diff
+        url: /diff
+      - page: Apply a Change
+        url: /apply
+      - page: Apply Ordering
+        url: /apply-ordering
+      - page: Apply Waiting
+        url: /apply-waiting
+  - title: Setup
+    subfolderitems:
+      - page: Running with Restricted Permissions
+        urls: /rbac
+      - page: Namespace for State Storage
+        url: /state-namespace
+      - page: Extend Default Configuration
+        url: /config
+  - title: Reference
+    subfolderitems:
+      - page: Cheatsheet
+        url: /cheatsheet
+      - page: Dangerous Flags
+        url: /dangerous-flags
+  - title: Integrating With Other Tools
+    subfolderitems:
+      - page: Integrating With Other Tools
+        url: /integrating-with-other-tools
+      - page: GitOps
+        urls: /gitops
+  - title: FAQ
+    subfolderitems:
+      - page: FAQ
+        url: /faq
+      - page: Why Not Basic 3 Way Merge?
+        url: /merge-method
+  - title: Contributing
+    subfolderitems:
+      - page: Development Details
+        url: /dev

@@ -1,0 +1,49 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: Concepts
+        url: /README
+  - title: Common Use Case Guides
+    subfolderitems:
+      - page: Using Data Values
+        url: /ytt-data-values
+      - page: Injecting secrets
+        url: /injecting-secrets
+  - title: Tips and Techniques
+    subfolderitems:
+      - page: data/values vs overlays
+        url: /data-values-vs-overlays
+  - title: Reference
+    subfolderitems:
+      - page: Language
+        url: /lang
+      - page: Annotations
+        url: /lang-ref-annotation
+      - page: Libraries
+        url: /lang-ref-ytt
+      - page: Text Templating
+        url: /ytt-text-templating
+  - title: Command-line
+    subfolderitems:
+      - page: Outputs
+        url: /outputs
+      - page: File Marks
+        url: /file-marks
+      - page: Strict yaml
+        url: /strict
+  - title: FAQ
+    subfolderitems:
+      - page: Why ytt vs. x?
+        url: /ytt-vs-x
+      - page: FAQ
+        url: /faq
+  - title: Contributing
+    subfolderitems:
+      - page: Development Details
+        urls: /dev
+  - title: Other Resources
+    subfolderitems:
+      - page: Security
+        url: /security
+      - page: Know Limitations
+        url: /known-limitations

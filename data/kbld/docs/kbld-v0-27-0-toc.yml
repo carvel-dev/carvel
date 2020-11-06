@@ -1,0 +1,27 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: Common Use Cases
+        url: /README
+  - title: Usage
+    subfolderitems:
+      - page: Resolving References to Digests
+        url: /resolving
+      - page: Building from Source
+        url: /building
+      - page: Packaging & Relocating Images
+        url: /packaging
+      - page: CNAB Image Relocation
+        url: /cnab-image-relocation
+  - title: Authentication
+    subfolderitems:
+      - page: Authentication
+        url: /auth
+  - title: Configuration
+    subfolderitems:
+      - page: Configuration Parameters
+        url: /config
+  - title: Contributing
+    subfolderitems:
+      - page: Development Details
+        url: /dev
