@@ -280,6 +280,9 @@
             min-height: 83px;
             text-align: center;
         }
+        h3 {
+            text-align: center;
+        }
     }
     @include breakpoint(small) {
         .col:nth-of-type(2) {
