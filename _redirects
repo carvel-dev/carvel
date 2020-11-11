@@ -1,0 +1,8 @@
+# Redirects from first argument to second argument and uses an optional http status code
+
+# Disallow path to static install.txt page
+/install.txt / 301
+
+# Preserve backwards compatibility for '/install.sh'
+# Redirect from install.sh to install.txt because hugo won't preview shell script files
+/install.sh /install.txt 200!
