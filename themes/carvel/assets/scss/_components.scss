@@ -1,0 +1,662 @@
+@import 'variables';
+@import 'mixins';
+@import 'base';
+
+/* Homepage Hero */
+.hero {
+    background-color: $blue;
+    color: $white;
+    .text-block {
+        max-width: 550px;
+        padding: 0px 0px 10px 0px;
+        p {
+            margin-bottom: 20px;
+            color: $white;
+        }
+    }
+    &.homepage {
+        background-image: url(/img/carvel-hero.png);
+        background-size: cover;
+        .wrapper {
+            padding-bottom: 0px;
+        }
+        .text-block p {
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .pick {
+            font-size: 22px;
+            margin-bottom: .5em;
+            margin-top: 30px;
+            color: $white;
+        }
+        .grid-container {
+            .wrapper {
+                margin-top: -90px;
+                padding-top: 90px;
+            }
+            .grid.three {
+                padding-bottom: 60px;
+                .card {
+                    position: relative;
+                    padding: 30px 20px;
+                    background-color: $white;
+                    text-align: center;
+                    .image {
+                        min-height: 80px;
+                        min-height: 80px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    h3 {
+                        color: $darkgrey;
+                        font-size: 22px;
+                    }
+                    p {
+                        color: $grey;
+                        font-family: $metropolis-light;
+                    }
+                }
+            }
+        }
+    }
+    @include breakpoint(small) {
+        .text-block {
+            max-width: unset;
+            margin-right: 0px;
+        }
+        .button {
+            display: block;
+            text-align: center;
+        }
+        &.homepage {
+            background-image: none;
+            .grid-container {
+                background-image: url(/img/mobile-blue-wave.png);
+                background-size: cover;
+                margin-top: -20px;
+                padding-top:  25px;
+            }
+        }
+    }
+}
+
+.introduction {
+    .grid.two {
+        column-gap: 140px;
+        padding: 35px 20px;
+        p {
+            margin: 0px;
+            &.strong {
+                color: $black;
+            }
+        }
+    }
+    @include breakpoint(small) {
+        padding: 0px 20px;
+        .col:first-of-type {
+            padding-bottom: 50px;
+        }
+    }
+}
+
+.tools {
+    .grid.three .col {
+        border: 1px solid $lightgrey;
+        padding: 25px;
+        column-gap: 20px;
+        h3 {
+            font-size: 22px;
+            margin: 0px;
+            a {
+                font-weight: 300;
+                font-size: 22px;
+                font-family: $metropolis-regular;
+            }
+        }
+        p {
+            margin-top: 10px;
+        }
+    }
+    &.wrapper {
+        padding-bottom: 0px;
+    }
+}
+
+.code-block {
+    .example {
+        background-color: #F2F2F2;
+    }
+    .code {
+        background-color: #000;
+        padding: 40px 30px;
+        margin-bottom: 30px;
+        .tab-space {
+            padding-left: 10px;
+            &.two {
+                padding-left: 20px;
+            }
+            &.three {
+                padding-left: 30px;
+            }
+            &.four {
+                padding-left: 40px;
+            }
+            &.five {
+                padding-left: 50px;
+            }
+        }
+        p {
+            margin: 0px;
+            color: $white;
+            font-size: 14px;
+            font-weight: 600;
+            &.header {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            &.comment {
+                color: $grey;
+            }
+            &.instructions {
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+            &.green-text {
+                color: $green;
+            }
+            &.red-text {
+                color: #ef4f4f;
+            }
+        }
+        table {
+            color: #fff;
+            th, td {
+                text-align: left;
+                padding: 0px 10px;
+                font-size: 14px;
+                &:first-of-type {
+                    padding-left: 0px;
+                }
+                .red-text {
+                    color: #ef4f4f;
+                }
+            }
+        }
+        @include breakpoint(small) {
+            overflow-x: scroll;
+        }
+    }
+}
+
+.team {
+    background-color: $brightblue;
+    h2, p {
+        color: $white;
+    }
+    a {
+        color: $white;
+        font-weight: 300;
+        text-decoration: underline;
+    }
+    .grid.three {
+        row-gap: 40px;
+        margin-top: 40px;
+    }
+    .bio {
+        display: grid;  
+        grid-template-columns: 120px 1fr;
+        column-gap: 20px;
+        .info {
+            align-self: center;
+            p {
+                margin: 0px;
+                &.name {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                &.position {
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}
+
+.hero.subpage {
+    padding-bottom: 100px;
+    .buttons {
+        margin-top: 70px;
+        .button.tertiary {
+            margin-left: 30px;
+        }
+    }
+    .text-block {
+        float: left;
+    }
+    .image {
+        float: right;
+        margin-right: -200px;
+    }
+    &.ytt {
+        background-image: url(/img/ytt-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $brightblue;
+        }
+    }
+    &.kbld {
+        background-image: url(/img/kbld-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $teal;
+        }
+    }
+    &.kapp {
+        background-image: url(/img/kapp-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $teal;
+        }
+    }
+    @include breakpoint(small) {
+        .buttons {
+            margin-top: 0px;
+        }
+        .buttons .button.tertiary {
+            margin: 10px 0 0 0;
+        }
+        .image {
+            display: none;
+        }
+    }
+}
+.mobile-blue {
+    @include breakpoint(small) {
+        background-color: $brightblue;
+        padding-bottom: 40px;
+    }
+}
+.mobile-teal {
+    @include breakpoint(small) {
+        background-color: $teal;
+        padding-bottom: 40px;
+    }
+}
+.yaml-grid {
+    padding: 0px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, .2);
+    margin-top: -100px;
+    background-color: $white;
+    .col {
+        padding: 30px;
+        .icon {
+            min-height: 83px;
+            text-align: center;
+        }
+        h3 {
+            text-align: center;
+        }
+    }
+    @include breakpoint(small) {
+        .col:nth-of-type(2) {
+            padding: 0px 30px;
+        }
+    }
+}
+
+.experimental {
+    .grid.three .col {
+        padding: 0px;
+        h3 {
+            font-family: $metropolis-regular;
+            color: $blue;
+        }
+    }
+    .icon {
+        background-color: $brightblue;
+        padding: 25px;
+        min-height: 95px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .content {
+        padding: 25px;
+        .example {
+            background-color: $lightgrey;
+        }
+    }
+}
+
+.getting-started {
+    background-color: $lightgrey;
+    color: #111;
+    p {
+        color: #111;
+    }
+    .left-side {
+        width: 50%;
+        float: left;
+    }
+    .right-side {
+        width: 25%;
+        float: right;
+    }
+    h2 {
+        font-size: 30px;
+        margin-bottom: 0px;
+    }
+    a {
+        display: block;
+        max-width: 240px;
+        text-align: center;
+        padding: 10px;
+        min-width: unset;
+    }
+    .button {
+        margin-top: 50px;
+        border: 1px solid $blue;
+    }
+    @include breakpoint(small) {
+        .wrapper {
+            padding-bottom: 40px;
+        }
+        .left-side {
+            width: 100%;
+            float: none;
+        }
+        .right-side {
+            width: 100%;
+            float: none;
+        }
+        .button {
+            display: block;
+            text-align: center;
+            max-width: unset;
+            margin-top: 20px;
+        }
+    }
+}
+
+#docs {
+    background-color: unset;
+    .hero {
+        padding: 40px 0px 100px 0px;
+        background-color: #00C1D5;
+    }
+}
+.docs {
+    background-color: #fff;
+    margin-top: -90px;
+    padding: 50px 30px 50px 30px;
+    h1 {
+        color: #000;
+    }
+    .side-nav {
+        width: 25%;
+        float: left;
+        position: relative;
+        .dropdown {
+            font-size: 14px;
+            font-family: $metropolis-medium;
+            margin-bottom: 10px;
+            button {
+                background-image: url(/img/down-arrow.svg);
+                background-repeat: no-repeat;
+                background-position: right center;
+                display: inline;
+                padding: 0px 15px 0 0;
+                border: none;
+                color: $black;
+                font-size: 14px;
+                font-family: $metropolis-medium;
+                margin-bottom: 10px;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        .dropdown-menu {
+            position: absolute;
+            border: 1px solid $grey;
+            border-radius: 5px;
+            top: 30px;
+            left: 0px;
+            background-color: $white;
+            padding: 10px 20px;
+            min-width: 100px;
+            display: none;
+            a {
+                display: block;
+                margin: 7px 0px;
+            }
+            &.dropdown-menu-visible {
+                display: block;
+            }
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 40px;
+            padding: .375rem .75rem;
+            font-size: 1.125rem;
+            line-height: 1.5;
+            color: $grey;
+            background-color: #fff;
+            border: 1px solid #cecece;
+            background-image: url(/img/search-icon.svg);
+            background-repeat: no-repeat;
+            background-position: 95% center;
+            &:focus {
+                outline: none;
+            }
+            &::-webkit-search-cancel-button {
+                -webkit-appearance: none;
+            }
+        }
+        .ds-dataset-1 {
+            padding: 5px;
+        }
+        .ds-dropdown-menu {
+            background-color: #fff;
+            border: 1px solid #cecece;
+        }
+        h3 {
+            font-size: 14px;
+            font-family: $metropolis-medium;
+        }
+        ul {
+            padding-left: 0px;
+            margin-bottom: 35px;
+            list-style-type: none;
+            li {
+                margin-bottom: 10px;
+                a {
+                    color: $grey;
+                    font-size: 14px;
+                    font-weight: 300;
+                    &.active {
+                        color: $docsblue;
+                    }
+                }
+                &.heading {
+                    color: $black;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .docs-content {
+        width: 72%;
+        float: right;
+        h3 {
+            font-size: 22px;
+        }
+        h4 {
+            font-size: 16px;
+        }
+        a {
+            color: $docsblue;
+            font-family: $metropolis-regular;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            li {
+                list-style-type: unset;
+                display: list-item;
+                margin-bottom: 10px;
+                color: $grey;
+                line-height: 1.6em;
+                list-style-image: url(/img/arrow.svg);
+                a {
+                    font-size: 14px;
+                    font-weight: 300;
+                    color: $docsblue;
+                }
+                ul {
+                    margin-top: 10px;
+                }
+            }
+        }
+        code {
+            background-color: $white;
+            color: $grey;
+            border: 2px solid #EFEFEF;
+            padding: 2px 8px;
+            .c1 {
+                color: $blue;
+                font-style: italic;
+            }
+            .se {
+                color: #ff0000;
+            }
+        }
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            code {
+                display: block;
+                border: 15px solid #EFEFEF;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+        }
+        img {
+            max-width: 100%;
+        }
+    }
+    @include breakpoint(small) {
+        .side-nav {
+            width: 100%;
+            .algolia-autocomplete {
+                width: 100%;
+            }
+        }
+        .docs-content {
+            width: 100%;
+        }
+    }
+}
+.blog {
+    padding-bottom: 50px;
+    .col {
+        border: 1px solid $lightgrey;
+        img {
+            width: 100%;
+        }
+        .content {
+            padding: 0px 20px;
+        }
+    }
+    &.landing {
+        background-color: #fff;
+        margin-top: -90px;
+        .pagination {
+            margin: 30px auto 50px auto;
+            ul {
+                padding: 0px;
+                text-align: center;
+                li {
+                    list-style-type: none;
+                    display: inline;
+                    padding: 0px;
+                    font-size: 12px;
+                    a {
+                        padding: 5px 10px;
+                        &.active {
+                            background-color: $lightgrey;
+                            border-radius: 50%;
+                        }
+                    }
+                    &.left-arrow {
+                        margin-right: 15px;
+                    }
+                    &.right-arrow {
+                        margin-left: 15px;
+                    }
+                    &:last-of-type {
+                        padding-right: 0px;
+                    }
+                }
+            }
+        }
+    }
+    .blog-post {
+        background-color: #fff;
+        margin: -110px 0px 0px -30px;
+        padding: 30px 90px 30px 30px;
+        .author {
+            color: $blue;
+            margin: 0px;
+        }
+        .date {
+            color: $black;
+            margin: 0px;
+            font-weight: 600;
+        }
+        .header, h4 {
+            color: $black;
+            font-weight: 600;
+        }
+    }
+}
+
+.community {
+    background-color: #fff;
+    margin-top: -90px;
+    padding: 30px 30px 50px 30px;
+    .grid {
+        .col {
+            border: 1px solid #F2F2F2;
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 140px;
+            }
+            .content {
+                padding: 0px 20px 20px 20px;
+                h3 {
+                    margin-top: 0px;
+                    text-align: center;
+                }
+                ul {
+                    padding-left: 20px;
+                    li {
+                        text-align: left;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

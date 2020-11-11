@@ -1,0 +1,139 @@
+---
+title: ""
+---
+
+<div class="hero subpage">
+    <div class="wrapper clearfix">
+        <div class="text-block">
+            <h2>Declaratively state a directory’s contents</h2>
+            <p>Sync any number of data sources into a consistent structure by writing a YAML definition. Share the definition or generated lockfile and ensure that your whole team is working under the same expectations.</p>
+            <div class="buttons">
+                <a class="button" href="#examples">See Examples</a>
+                <a class="button secondary" href="https://github.com/k14s/vendir/releases">Download Binary</a>
+            </div>
+        </div>
+        <div class="image"><img src="/img/ytt-boxes.png" /></div>
+    </div>
+</div>
+<div class="wrapper mobile-blue">
+    <div class="yaml-grid grid three">
+        <div class="col">
+            <div class="icon">
+                <img src="/img/structure-oriented.svg" />
+            </div>
+            <h3>Declarative</h3>
+            <p>Provide the desired final structure of the directory and let vendir handle how to get there. 
+                No more manually cloning repositories,checking multiple sources for updates, or trying 
+                to remember CURL flags while fetching content over HTTP.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/modularized-config.svg" />
+            </div>
+            <h3>Purpose-built</h3>
+            <p>Like the rest of the Carvel suite, vendir was made to accomplish its task and do no more. 
+                Sync your files then use them however you like without restrictive permissions or wrestling your tools for ownership.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/deterministic.svg" />
+            </div>
+            <h3>Repeatable</h3>
+            <p>Ensure that the same files will be collected across all invocations by syncing from the generated lockfile, 
+                with tags and URLs replaced by resolved SHAs, and digests.</p>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="experimental tools">
+        <h2>Features</h2>
+        <div class="grid three">
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/intuitive.svg" />
+                </div>
+                <div class="content">
+                    <h3>Support Various Sources</h3>
+                    <p>Specify the source of a managed directory from a git repository at a 
+                        given revision, a docker image, a helm chart, or many others
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/overlays.svg" />
+                </div>
+                <div class="content">
+                    <h3>Take Portions of a Source</h3>
+                    <p>Retain only what you need and leave the rest, keeping your directory bloat-free 
+                        regardless of upstream changes, with additional rules for common files (e.g. a licensing file)</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/yaml.svg" />
+                </div>
+                <div class="content">
+                    <h3>Leave Subdirectories Untouched</h3>
+                    <p>vendir allows you to mark paths as manually managed, leaving your files safely 
+                        unmodified while reaping the benefits of a synced folder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-block" id="examples">
+        <h2>Basic Usage</h2>
+        <div class="code">
+            <p class="comment"># create a vendir YAML file to describe the desired structure</p>
+            <p>$ <span class="green-text"></span>cat vendir.yml</p>
+            <p>---</p>
+            <p>apiVersion: vendir.k14s.io/v1alpha1</p>
+            <p>kind: Config</p>
+            <p>directories:</p>
+            <p>- path: cf-for-k8s</p>
+            <p><span class="tab-space"></span>contents:</p>
+            <p><span class="tab-space"></span>- path: networking</p>
+            <p><span class="tab-space two"></span>git:</p>
+            <p><span class="tab-space three"></span>url: https://github.com/cloudfoundry/cf-k8s-networking</p>
+            <p><span class="tab-space three"></span>ref: origin/develop</p>
+            <p><span class="tab-space"></span>- path: capi</p>
+            <p><span class="tab-space two"></span>git:</p>
+            <p><span class="tab-space three"></span>url: https://github.com/cloudfoundry/capi-k8s-release</p>
+            <p><span class="tab-space three"></span>ref: v0.4.0</p>
+            <p><span class="tab-space"></span>- path: nginx</p>
+            <p><span class="tab-space two"></span>contents:</p>
+            <p><span class="tab-space two"></span>- path: .</p>
+            <p><span class="tab-space three"></span>image:</p>
+            <p><span class="tab-space four"></span>url: index.docker.io/nginx</p>
+            <p class="comment"># sync files as specified in the vendir.yml file and save a lockfile</p>
+            <p>$ <span class="green-text">vendir sync</span></p>
+            <p>$ <span class="green-text">ls</span></p>
+            <p>Vendir.yml  vendor.lock.yml  cf-for-k8s/  nginx/</p>
+            <p>$ <span class="green-text">ls cf-for-k8s/</span></p>
+            <p>capi/  networking/</p>
+            <p>$ <span class="green-text">ls nginx/</span></p>
+            <p>$ <span class="green-text">cat vendir.lock.yml</span></p>
+            <p>apiVersion: vendir.k14s.io/v1alpha1</p>
+            <p>directories:</p>
+            <p>- contents:</p>
+            <p><span class="tab-space"></span>- git:</p>
+            <p><span class="tab-space three"></span>commitTitle: 'ci: use cf-for-k8s as cf-for-k8s-ci...'</p>
+            <p><span class="tab-space three"></span>sha: 12665ef174bab13bdae4ed700eb58f1be22ae841</p>
+            <p><span class="tab-space two"></span>path: networking</p>
+            <p><span class="tab-space"></span>- git:</p>
+            <p><span class="tab-space three"></span>commitTitle: images.yml updated by CI...</p>
+            <p><span class="tab-space three"></span>sha: 28a84a6a27735ded301f9cbc0aca30ad5c9e7be8</p>
+            <p><span class="tab-space two"></span>path: capi</p>
+            <p><span class="tab-space"></span>path: cf-for-k8s</p>
+            <p>- contents:</p>
+            <p><span class="tab-space"></span>- image:</p>
+            <p><span class="tab-space two"></span>url: index.docker.io/library/nginx@sha256:4949aa7259aa6f827450207db5ad94cabaa9248277c6d736d5e1975d200c7e43</p>
+            <p><span class="tab-space two"></span>path: .</p>
+            <p><span class="tab-space"></span>path: nginx</p>
+            <p>kind: LockConfig</p>
+            <p class="comment"># sync with a lockfile, using the resolved SHAs and full URL</p>
+            <p>$ <span class="green-text">vendir sync -l</span></p>
+            <p>$ <span class="green-text">ls</span></p>
+        </div>
+    </div>
+</div>

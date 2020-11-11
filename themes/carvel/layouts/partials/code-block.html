@@ -1,0 +1,29 @@
+<div class="wrapper code-block">
+    <h2>Install</h2>
+    <div class="code">
+        <p class="header">Via script (macOS or Linux)</p>
+        <p>$ wget -O- https://k14s.io/install.sh | bash</p>
+        <p class="comment"># or with curl...</p>
+        <p>$ curl -L https://k14s.io/install.sh | bash</p>
+    </div>
+    <div class="code">
+        <p class="header">Via Homebrew (macOS or Linux)</p>
+        <p class="instructions">$Based on <a href="https://github.com/k14s/homebrew-tap">github.com/k14s/homebrew-tap</a>.</p>
+        <p>$ brew tap k14s/tap</p>
+        <p>$ brew install ytt kbld kapp imgpkg kwt vendir</p>
+    </div>
+    <div class="code">
+        <p class="header">Specific version from a GitHub release</p>
+        <p class="instructions">To download, click on one of the assets in a chosen GitHub release, for example for 'ytt-darwin-amd64'.</p>
+        <p class="comment"># Compare binary checksum against what's specified in the release notes</p>
+        <p class="comment"># (if checksums do not match, binary was not successfully downloaded)</p>
+        <p>$ shasum -a 256 ~/Downloads/ytt-darwin-amd64</p>
+        <p>08b25d21675fdc77d4281c9bb74b5b36710cc091f30552830604459512f5744c   /Users/pivotal/Downloads/ytt-darwin-amd64</p>
+        <p class="comment"># Move binary next to your other executables</p>
+        <p>$ mv ~/Downloads/ytt-darwin-amd64 /usr/local/bin/ytt</p>
+        <p class="comment"># Make binary executable</p>
+        <p>$ chmod +x /usr/local/bin/ytt</p>
+        <p class="comment"># Check its version</p>
+        <p>$ ytt version</p>
+    </div>
+</div>
