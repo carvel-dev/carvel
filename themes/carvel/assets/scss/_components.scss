@@ -244,12 +244,24 @@
     }
     &.ytt {
         background-image: url(/img/ytt-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $brightblue;
+        }
     }
     &.kbld {
         background-image: url(/img/kbld-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $teal;
+        }
     }
     &.kapp {
         background-image: url(/img/kapp-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $teal;
+        }
     }
     @include breakpoint(small) {
         .buttons {
@@ -265,7 +277,13 @@
 }
 .mobile-blue {
     @include breakpoint(small) {
-        background-color: $blue;
+        background-color: $brightblue;
+        padding-bottom: 40px;
+    }
+}
+.mobile-teal {
+    @include breakpoint(small) {
+        background-color: $teal;
         padding-bottom: 40px;
     }
 }
@@ -300,7 +318,7 @@
         }
     }
     .icon {
-        background-image: linear-gradient($blue, $brightblue);
+        background-color: $brightblue;
         padding: 25px;
         min-height: 95px;
         display: flex;
