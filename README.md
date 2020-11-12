@@ -19,7 +19,7 @@ Serve site at http://localhost:1313
 or
 
 #### Serve the site using Netlify dev
-We use Netlify to redirect some pages of the site via the `_redirects` file, you can preview these redirects locally using netlify dev.
+We use Netlify to redirect some pages of the site via the `_redirects` file. You can preview these redirects locally using netlify dev.
 * Install netlify dev
     * `npm install netlify-cli -g`
 * Serve the site at http://localhost:8888
