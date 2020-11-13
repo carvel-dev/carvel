@@ -2,13 +2,24 @@
 title: ""
 ---
 
+<head>
+  <title class="title">ytt - YAML Templating Tool Playground</title>
+
+  <script src="js/deps.js"></script>
+  <link rel="stylesheet" href="js/deps.css"></link>
+
+  <script src="js/app.js"></script>
+  <link rel="stylesheet" href="js/app.css"></link>
+
+  <!-- google analytics -->
+</head>
 <div class="hero subpage ytt">
     <div class="wrapper clearfix">
         <div class="text-block">
             <h2>ytt: All your YAML shaping in one tool</h2>
             <p>Template and patch as needed to easily make your configuration reusable and extensible. Works with your own and third-party YAML configuration.</p>
             <div class="buttons">
-                <a class="button" href="https://get-ytt.io/#playground">Try in Playground</a>
+                <a class="button" href="#playground">Try in Playground</a>
                 <a class="button tertiary" href="https://github.com/k14s/ytt/releases">Download Binary</a>
             </div>
         </div>
@@ -86,4 +97,44 @@ title: ""
             <p>$ <span class="green-text">ytt -f playground/basics/example-demo/ -f values-staging.yml -f overlay-env-1.yml | ...</span></p>
         </div>
     </div>
+</div>
+<div class="content">
+  <div class="playground-wrapper">
+    <div id="playground" style="display: none;">
+      <div class="dropdown">
+        <h2>Interactive Playground
+          <span class="button-container"></span>
+        </h2>
+        <div class="example-sets"></div>
+        <p>Edit files on the left, and see template results on the right.
+          Alternatively, click through above examples to see different features.
+          We do not store or use content entered into playground.</p>
+        <form id="show-gist">
+          <p>Alternatively enter <a href="https://gist.github.com/">GitHub Gist</a> URL here <input/> press Enter.</p>
+        </form>
+      </div>
+
+      <div class="playground-inner">
+        <div class="blocker"></div>
+
+        <div class="left">
+          <div class="controls">
+            <button type="button" class="add-config button">+ Add File</button>
+            <button type="button" class="run button" title="Run (Shift+Enter)">&#8627; Run</button>
+            <button type="button" class="expand button">Full Screen</button>
+          </div>
+
+          <form class="config-form">
+            <div class="config-boxes"></div>
+          </form>
+        </div>
+
+        <div class="right">
+          <div class="output"></div>
+        </div>
+      </div>
+    </div>
+
+    <noscript>Page includes interactive editor with ability to render templates and see their results.</noscript>
+  </div>
 </div>
