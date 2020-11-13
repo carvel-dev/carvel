@@ -26,3 +26,6 @@ To view a limited view of the site without path redirects use hugo:
 hugo server --disableFastRender
 ```
 View the site at http://localhost:1313
+
+### Test content
+this will be removed
