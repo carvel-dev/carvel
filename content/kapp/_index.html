@@ -9,7 +9,7 @@ title: ""
             <p>Deploy and view groups of Kubernetes resources as "applications". Apply changes safely and pgreenictably, watching resources as they converge.</p>
             <div class="buttons">
                 <a class="button" href="https://get-kapp.io/#playground">Try in Playground</a>
-                <a class="button tertiary" href="https://github.com/k14s/kapp/releases">Download Binary</a>
+                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-kapp/releases">Download Binary</a>
             </div>
         </div>
     </div>
@@ -49,8 +49,8 @@ title: ""
                 </div>
                 <div class="content">
                     <h3>Sorts and waits as needed.</h3>
-                    <p>Deploys dependencies first (like CRDs and Namespaces) and supports <a href="https://github.com/k14s/kapp/blob/develop/docs/apply-ordering.md">custom change ordering</a>. 
-                        <a href="https://github.com/k14s/kapp/blob/develop/docs/apply-waiting.md">Waits for resources</a> to "reconcile."</p>
+                    <p>Deploys dependencies first (like CRDs and Namespaces) and supports <a href="https://github.com/vmware-tanzu/carvel-kapp/blob/develop/docs/apply-ordering.md">custom change ordering</a>. 
+                        <a href="https://github.com/vmware-tanzu/carvel-kapp/blob/develop/docs/apply-waiting.md">Waits for resources</a> to "reconcile."</p>
                 </div>
             </div>
             <div class="col">
@@ -68,7 +68,7 @@ title: ""
                 </div>
                 <div class="content">
                     <h3>GitOps friendly</h3>
-                    <p>Include in your <a href="https://github.com/k14s/kapp/blob/develop/docs/gitops.md">GitOps</a> flow via CLI command or <a href="https://github.com/k14s/kapp-controller">kapp-controller</a></p>
+                    <p>Include in your <a href="https://github.com/vmware-tanzu/carvel-kapp/blob/develop/docs/gitops.md">GitOps</a> flow via CLI command or <a href="https://github.com/vmware-tanzu/carvel-kapp-controller">kapp-controller</a></p>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@ title: ""
     <div class="code-block">
         <h2>And now onto using <span class="example">kapp</span>:</h2>
         <div class="code">
-            <p class="comment">In this example, we are installing example app from <a href="https://github.com/k14s/kapp">kapp repository</a>.</p>
+            <p class="comment">In this example, we are installing example app from <a href="https://github.com/vmware-tanzu/carvel-kapp">kapp repository</a>.</p>
             <br>
             <p>$ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml</p>
             <br>
