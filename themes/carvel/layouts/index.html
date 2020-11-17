@@ -1,7 +1,7 @@
 {{ define "main" }}
 	<main>
 		{{ partial "hero.html" . }}
-		<div class="bg-grey introduction">
+		<div class="bg-grey introduction" id="whole-suite">
 			<div class="wrapper grid two">
 				<div class="col">
 					<p class="strong">Carvel Community Meeting - {{ dateFormat "Jan 2, 2006" .Site.Params.next_meeting_date }}</p>
