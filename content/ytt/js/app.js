@@ -108,7 +108,7 @@ function NewTemplates(parentEl, templatesOpts) {
 
     $.ajax({
       type: "POST",
-      url: "http://localhost:8080/template",
+      url: "https://get-ytt.io/template",
       contentType:"application/json; charset=utf-8",
       dataType: "json",
       data: JSON.stringify({files: files}),
@@ -181,7 +181,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
   function load(id, opts){
     blocker.on();
 
-    $.get('http://localhost:8080/examples/' + id, function(data) {
+    $.get('http://get-ytt.io/examples/' + id, function(data) {
       var content = JSON.parse(data);
 
       if (opts.preDoneCallback) opts.preDoneCallback(id);
@@ -200,7 +200,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     });
   }
 
-  $.get('http://localhost:8080/examples', function(data) {
+  $.get('http://get-ytt.io/examples', function(data) {
     var exampleSets = JSON.parse(data);
 
     exampleSets.forEach(exampleSet => {
