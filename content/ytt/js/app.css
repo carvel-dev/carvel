@@ -61,7 +61,7 @@ body {
 }
 
 /* Playground Links */
-#playground a, a:visited, a:hover {
+#playground .a, .a:visited, .a:hover {
   color: #0091DA;
   text-decoration: underline;
 }
