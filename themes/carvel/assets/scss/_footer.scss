@@ -38,6 +38,22 @@ footer {
         float: right;
         margin-top: 5px;
     }
+    .bottom-links {
+        margin: 10px 0px 30px 0px;
+        float: right;
+        p {
+            font-size: 12px;
+        }
+        a {
+            font-size: 12px;
+            font-family: $metropolis-light;
+        }
+        img {
+            max-width: 75px;
+            vertical-align: middle;
+            margin-left: 30px;
+        }
+    }
     @include breakpoint(medium) {
         .footer-links .left-links .copywrite {
             display: block;
@@ -63,6 +79,15 @@ footer {
                     display: block;
                     margin-top:20px;
                 }
+            }
+        }
+        .bottom-links {
+            margin: 10px 0px 20px 0px;
+            float: none;
+            img {
+                margin-left: 0px;
+                display: block;
+                margin-top: 10px;
             }
         }
     }

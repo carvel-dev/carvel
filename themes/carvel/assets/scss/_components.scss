@@ -12,6 +12,7 @@
         p {
             margin-bottom: 20px;
             color: $white;
+            font-size: 18px;
         }
     }
     &.homepage {
@@ -90,6 +91,7 @@
         padding: 35px 20px;
         p {
             margin: 0px;
+            font-size: 16px;
             &.strong {
                 color: $black;
             }
@@ -104,6 +106,9 @@
 }
 
 .tools {
+    h2 {
+        font-size: 36px;
+    }
     .grid.three .col {
         border: 1px solid $lightgrey;
         padding: 25px;
@@ -119,6 +124,7 @@
         }
         p {
             margin-top: 10px;
+            font-size: 16px;
         }
     }
     &.wrapper {
@@ -127,6 +133,9 @@
 }
 
 .code-block {
+    h2 {
+        font-size: 36px;
+    }
     .example {
         background-color: #F2F2F2;
     }
@@ -196,6 +205,12 @@
     background-color: $brightblue;
     h2, p {
         color: $white;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    p {
+        font-size: 16px;
     }
     a {
         color: $white;
@@ -524,6 +539,16 @@
                 }
             }
         }
+        ol {
+            padding-left: 20px;
+            li {
+                list-style-type: decimal;
+                display: list-item;
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: $grey;
+            }
+        }
         code {
             background-color: $white;
             color: $grey;
@@ -580,6 +605,9 @@
     &.landing {
         background-color: #fff;
         margin-top: -90px;
+        h3 a {
+            font-size: 16px;
+        }
         .pagination {
             margin: 30px auto 50px auto;
             ul {
@@ -627,6 +655,61 @@
             color: $black;
             font-weight: 600;
         }
+        a {
+            font-size: 14px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            li {
+                list-style-type: unset;
+                display: list-item;
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: $grey;
+                line-height: 1.6em;
+                list-style-image: url(/img/arrow.svg);
+            }
+        }
+        ol {
+            padding-left: 20px;
+            li {
+                list-style-type: decimal;
+                display: list-item;
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: $grey;
+            }
+        }
+        code {
+            background-color: $white;
+            color: $grey;
+            border: 2px solid #EFEFEF;
+            padding: 2px 8px;
+            .c1 {
+                color: $blue;
+                font-style: italic;
+            }
+            .se {
+                color: #ff0000;
+            }
+        }
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            code {
+                display: block;
+                border: 15px solid #EFEFEF;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+        }
+        img {
+            max-width: 100%;
+        }
     }
 }
 
@@ -652,8 +735,10 @@
                 ul {
                     padding-left: 20px;
                     li {
-                        text-align: left;
                         margin-bottom: 10px;
+                        color: $grey;
+                        line-height: 1.6em;
+                        list-style-image: url(/img/arrow.svg);
                     }
                 }
             }

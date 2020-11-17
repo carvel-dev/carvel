@@ -30,13 +30,13 @@ params:
   kapp_latest: v0.34.0
   kapp_versions:
     - v0.34.0
-  gh_repo: https://github.com/k14s
-  slack: https://slack.kubernetes.io/
+  gh_repo: https://github.com/vmware-tanzu/carvel
+  slack: https://kubernetes.slack.com/archives/CH8KCCKA5
   footer_social_links:
     twitter_url: https://twitter.com/carvel_dev
-    github_url: https://github.com/k14s
-    slack_url: https://slack.kubernetes.io/
-
+    github_url: https://github.com/vmware-tanzu/carvel
+    slack_url: https://kubernetes.slack.com/archives/CH8KCCKA5
+  vm_logo: vm-logo.png
 markup:
   highlight:
     anchorLineNos: false

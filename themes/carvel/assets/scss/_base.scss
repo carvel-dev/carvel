@@ -42,16 +42,25 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 h1 {
-    color: #fff;
+    font-size: 36px;
 }
 h2 {
-    font-size: 36px;
+    font-size: 28px;
+}
+h3 {
+    font-size: 22px;
+}
+h4 {
+    font-size: 18px;
 }
 p {
     line-height: 1.5em;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 14px;
     color: $grey;
+}
+.strong {
+    font-family: $metropolis-medium;
 }
 a {
     font-size: 16px;
