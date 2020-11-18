@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 ## Config
 
 You can configure kbld by adding configuration resources (they follow Kubernetes resource format, but are removed from kbld output). Configuration resources may be specified multiple times.

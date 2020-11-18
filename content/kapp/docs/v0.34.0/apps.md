@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 ## Apps (Applications)
 
 kapp considers a set of resources with the same label as an application. These resources could span any number of namespaces or could be cluster-wide (e.g. CRDs).

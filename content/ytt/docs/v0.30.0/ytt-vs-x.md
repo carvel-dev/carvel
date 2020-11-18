@@ -1,6 +1,5 @@
 ---
-title: "ytt vs x"
-layout: docs
+title: ytt vs x
 ---
 
 ## ytt vs x

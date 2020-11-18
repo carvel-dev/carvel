@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 ## Dangerous Flags
 
 There are several flags in `kapp deploy/delete/etc.` commands that might be helpful in rare cases, but can cause problems if used improperly. These are their stories: 

@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 ## Config
 
 kapp supports custom `Config` resource to specify its own configuration. It's expected to be included with your other Kubernetes configuration. Config resource is never applied to the cluster, though it follows general Kubernetes resource format. Multiple config resources are allowed.

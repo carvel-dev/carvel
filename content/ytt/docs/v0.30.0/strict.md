@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 ## Strict YAML subset
 
 ytt includes strict YAML subset mode that tries to remove any kind of ambiguity in user's intent when parsing YAML.

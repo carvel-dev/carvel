@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 ## Apply
 
 Once change set is calculated (see [Diff](diff.md) section for details), kapp asks for user confirmation (unless `--yes` flag is specified) to proceed with changes.

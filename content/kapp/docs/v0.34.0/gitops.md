@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 ## Using kapp with GitOps workflow
 
 kapp provides a set of commands to make GitOps workflow very easy. Assuming that you have a CI environment or some other place where `kapp` can run based on a trigger (e.g. for every Git repo change) or continiously (e.g. every 5 mins), you can use following command:

@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 ## State namespace
 
 To show list of deployed applications (via `kapp ls`), kapp manages metadata `ConfigMap` for each saved application. Each metadata `ConfigMap` contains generated label used to label all application resources. Additionally kapp creates `ConfigMap` per each deploy to record deployment history (seen via `kapp app-change list -a app1`).

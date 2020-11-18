@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 ## Running kapp under restricted permissions
 
 In a multi-tenant Kubernetes cluster, user's actions may be limited to one or more namespaces via `Role` and `RoleBinding` configuration.
