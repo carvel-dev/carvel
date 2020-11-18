@@ -12,7 +12,7 @@ tags: ['Helen George', 'Article']
 ## Carvel, formerly k14s, aims to simplify application deployment atop Kubernetes
 
 Now that you’ve deployed Kubernetes, how do you get apps up and running atop the container runtime?
-[Carvel](https://github.com/vmware-tanzu/carvel.dev) (formerly known as k14s), a collection of open-source
+[Carvel](https://github.com/vmware-tanzu/carvel) (formerly known as k14s), a collection of open-source
 tools for working with Kubernetes, is designed to answer this question.
 
 ### Carvel was born from frustration with existing tools
