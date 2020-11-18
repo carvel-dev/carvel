@@ -2,7 +2,7 @@ toc:
   - title: Introduction
     subfolderitems:
       - page: Concepts
-        url: /README
+        url: /
   - title: Common Use Case Guides
     subfolderitems:
       - page: Using Data Values
@@ -40,7 +40,7 @@ toc:
   - title: Contributing
     subfolderitems:
       - page: Development Details
-        urls: /dev
+        url: /dev
   - title: Other Resources
     subfolderitems:
       - page: Security

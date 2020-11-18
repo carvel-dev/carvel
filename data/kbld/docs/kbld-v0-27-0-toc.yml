@@ -2,7 +2,7 @@ toc:
   - title: Introduction
     subfolderitems:
       - page: Common Use Cases
-        url: /README
+        url: /
   - title: Usage
     subfolderitems:
       - page: Resolving References to Digests
