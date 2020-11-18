@@ -136,8 +136,22 @@
     h2 {
         font-size: 36px;
     }
+    a {
+        font-size: 14px;
+    }
     .example {
         background-color: #F2F2F2;
+    }
+    pre {
+        padding: 40px 30px 20px;
+        margin-bottom: 30px;
+        ::-webkit-scrollbar {
+            //background: transparent;
+        }
+        code {
+            display: block;
+            overflow-x: auto;
+        }
     }
     .code {
         background-color: #000;
@@ -518,6 +532,7 @@
         a {
             color: $docsblue;
             font-family: $metropolis-regular;
+            font-size: 14px;
         }
         ul {
             list-style-type: disc;
@@ -550,29 +565,19 @@
             }
         }
         code {
-            background-color: $white;
-            color: $grey;
             border: 2px solid #EFEFEF;
             padding: 2px 8px;
-            .c1 {
-                color: $blue;
-                font-style: italic;
-            }
-            .se {
-                color: #ff0000;
-            }
         }
         pre {
-            white-space: pre-wrap;
-            white-space: -moz-pre-wrap;
-            white-space: -pre-wrap;
-            white-space: -o-pre-wrap;
-            word-wrap: break-word;
+            ::-webkit-scrollbar {
+                background: transparent;
+            }
             code {
                 display: block;
                 border: 15px solid #EFEFEF;
                 padding: 15px;
                 margin-bottom: 30px;
+                overflow-x: auto;
             }
         }
         img {

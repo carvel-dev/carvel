@@ -47,6 +47,6 @@ markup:
     lineNoStart: 1
     lineNos: false
     lineNumbersInTable: true
-    noClasses: false
-    style: monokai
+    noClasses: true
+    style: native
     tabWidth: 4
