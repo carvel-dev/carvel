@@ -181,7 +181,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
   function load(id, opts){
     blocker.on();
 
-    $.get('http://get-ytt.io/examples/' + id, function(data) {
+    $.get('https://get-ytt.io/examples/' + id, function(data) {
       var content = JSON.parse(data);
 
       if (opts.preDoneCallback) opts.preDoneCallback(id);
@@ -200,7 +200,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     });
   }
 
-  $.get('http://get-ytt.io/examples', function(data) {
+  $.get('https://get-ytt.io/examples', function(data) {
     var exampleSets = JSON.parse(data);
 
     exampleSets.forEach(exampleSet => {
