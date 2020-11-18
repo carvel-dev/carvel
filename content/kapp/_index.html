@@ -8,7 +8,7 @@ title: ""
             <h1>kapp: Take control of your Kubernetes resources</h1>
             <p>Deploy and view groups of Kubernetes resources as "applications". Apply changes safely and pgreenictably, watching resources as they converge.</p>
             <div class="buttons">
-                <a class="button" href="https://get-kapp.io/#playground">Try in Playground</a>
+                <a class="button" href="#playground">Try in Playground</a>
                 <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-kapp/releases">Download Binary</a>
             </div>
         </div>
@@ -85,11 +85,11 @@ $ kapp -y deploy -a my-app -f <(kustomize build ./my-app)
 # ... or templated with ytt
 $ kapp -y deploy -a my-app -f <(ytt -f ./examples/simple-app-example/config-1.yml){{< / highlight >}}
     </div>
-    <div class="code-block">
+    <div class="code-block" id="playground">
         <h2>Playground and Example Workflow</h2>
         <p>You can follow along in Katacoda Kubernetes playground while going through below workflow. To set up playground:</p>
         <ol>
-            <li>Open Katacoda Playground</li>
+            <li><a href="https://www.katacoda.com/courses/kubernetes/playground">Open Katacoda Playground</a></li>
             <li>then, click "Start scenario" button</li>
             <li>focus in "Terminal Host 1" prompt</li>
             <li>and install kapp in playground before continuing with the workflow</li>
