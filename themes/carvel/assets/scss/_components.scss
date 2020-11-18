@@ -143,11 +143,8 @@
         background-color: #F2F2F2;
     }
     pre {
-        padding: 40px 30px 20px;
+        padding: 40px 30px 35px;
         margin-bottom: 30px;
-        ::-webkit-scrollbar {
-            //background: transparent;
-        }
         code {
             display: block;
             overflow-x: auto;
@@ -569,9 +566,6 @@
             padding: 2px 8px;
         }
         pre {
-            ::-webkit-scrollbar {
-                background: transparent;
-            }
             code {
                 display: block;
                 border: 15px solid #EFEFEF;
@@ -722,6 +716,9 @@
     background-color: #fff;
     margin-top: -90px;
     padding: 30px 30px 50px 30px;
+    a {
+        font-size: 14px;
+    }
     .grid {
         .col {
             border: 1px solid #F2F2F2;

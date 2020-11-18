@@ -91,8 +91,7 @@ $ helm template my-chart --values my-vals.yml | kbld -f - | kubectl apply -f -
 # ... and with kustomize
 $ kustomize build ./some-app | kbld -f - | kubectl apply -f -
 # ... or templated with ytt and deployed with kapp
-$ ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -
-        {{< / highlight >}}
+$ ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -{{< / highlight >}}
     </div>
     <div class="code-block">
         <h3>Examples</h3>
@@ -119,8 +118,7 @@ spec:
             - name: nginx
                 image: nginx:1.17
                 ports:
-                - containerPort: 80
-        {{< / highlight >}}
+                - containerPort: 80{{< / highlight >}}
     </div>
     <div class="code-block">
         <p>Output:</p>
@@ -152,8 +150,7 @@ spec:
             - name: nginx
                 image: index.docker.io/library/nginx@sha256:2539d4344...
                 ports:
-                - containerPort: 80
-        {{< / highlight >}}
+                - containerPort: 80{{< / highlight >}}
     </div>
 
 
@@ -198,8 +195,7 @@ apiVersion: kbld.k14s.io/v1alpha1
 kind: ImageDestinations
 destinations:
 - image: app1
-    newImage: docker.io/hk/simple-app
-        {{< / highlight >}}
+    newImage: docker.io/hk/simple-app{{< / highlight >}}
     </div>
     <div class="code-block">
         <p>Output:</p>
@@ -234,7 +230,6 @@ spec:
             - name: app1
                 image: index.docker.io/hk/simple-app@sha256:e932e46fd...
                 ports:
-                - containerPort: 80
-        {{< / highlight >}}
+                - containerPort: 80{{< / highlight >}}
     </div>
 </div>

@@ -83,8 +83,7 @@ $ kapp -y deploy -a my-chart -f <(helm template my-chart --values my-vals.yml)
 # ... and with kustomize
 $ kapp -y deploy -a my-app -f <(kustomize build ./my-app)
 # ... or templated with ytt
-$ kapp -y deploy -a my-app -f <(ytt -f ./examples/simple-app-example/config-1.yml)
-        {{< / highlight >}}
+$ kapp -y deploy -a my-app -f <(ytt -f ./examples/simple-app-example/config-1.yml){{< / highlight >}}
     </div>
     <div class="code-block">
         <h2>Playground and Example Workflow</h2>
@@ -98,8 +97,7 @@ $ kapp -y deploy -a my-app -f <(ytt -f ./examples/simple-app-example/config-1.ym
         {{< highlight bash "" >}}
 $ wget -O- https://get-kapp.io/install-katacoda.sh | bash
 $ cd kapp/
-$ kapp version
-        {{< / highlight >}}
+$ kapp version{{< / highlight >}}
         <p>And now onto using <span class="example">kapp</span>:</p>
         <p>In this example, we are installing example app from <a href="https://github.com/vmware-tanzu/carvel-kapp">kapp repository</a>.</p>
         {{< highlight bash "" >}}
@@ -121,8 +119,7 @@ default    simple-app  Deployment  -       -    create  -       reconcile  -   -
 ^          simple-app  Service     -       -    create  -       reconcile  -   -
 
 Op:      2 create, 0 delete, 0 update, 0 noop
-Wait to: 2 reconcile, 0 delete, 0 noop
-        {{< / highlight >}}
+Wait to: 2 reconcile, 0 delete, 0 noop{{< / highlight >}}
         <p class="comment">Changes summary shows that all resources are new.</p>
         {{< highlight bash "" >}}
 2:12:59PM: ---- applying 2 changes [0/2 done] ----
@@ -140,8 +137,7 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 2:13:03PM: ---- applying complete [2/2 done] ----
 2:13:03PM: ---- waiting complete [2/2 done] ----
 
-Succeeded
-        {{< / highlight >}}
+Succeeded{{< / highlight >}}
         <p class="comment">ls command shows list of all apps stored in current namespace. Apps themselves can span multiple namespaces and cluster scope.</p>
         {{< highlight bash "" >}}
 $ kapp ls
@@ -158,8 +154,7 @@ Lca: Last Change Age
 
 1 apps
 
-Succeeded
-        {{< / highlight >}}
+Succeeded{{< / highlight >}}
         <p class="comment">Now let's update from one app configuration to another using <code>deploy</code> command.
             <br><br>
             Since <code>--diff-changes</code> is used, 
@@ -204,8 +199,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     7 +     kapp.k14s.io/association: v1.afcdfc989e2a0b3f3e526dc1c4176060
     8 +   name: simple-app
     9 +   namespace: default
-    10 +
-    {{< / highlight >}}
+    10 +{{< / highlight >}}
     <p class="comment">This resource will be updated.</p>
     {{< highlight bash "" >}}
 @@ update deployment/simple-app (apps/v1) namespace: default @@
@@ -217,8 +211,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     32 +               key: hello_msg
     33 +               name: simple-app
 31, 34           image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1f...
-32, 35           name: simple-app
-    {{< / highlight >}}
+32, 35           name: simple-app{{< / highlight >}}
     <p class="comment">This resource is will be deleted.</p>
     {{< highlight bash "" >}}
 @@ delete service/simple-app (v1) namespace: default @@
@@ -244,8 +237,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     19     -     simple-app: ""
     20     - status:
     21     -   loadBalancer: {}
-    22     -
-    {{< / highlight >}}
+    22     -{{< / highlight >}}
     <p class="comment">Changes summary is presented before deploy will continue. There are only few changes in this example.</p>
     {{< highlight bash "" >}}
 Changes
@@ -257,8 +249,7 @@ default    simple-app       ConfigMap   -       -    create  -       reconcile  
 ^          simple-app-node  Service     -       -    create  -       reconcile  -   -
 
 Op:      2 create, 1 delete, 1 update, 0 noop
-Wait to: 3 reconcile, 1 delete, 0 noop
-    {{< / highlight >}}
+Wait to: 3 reconcile, 1 delete, 0 noop{{< / highlight >}}
     <p class="comment">Detailed progress log shows kapp waiting for associated resources to be ready. Readiness checks are specific to resource types.</p>
     {{< highlight bash "" >}}
 Continue? [yN]:
@@ -286,8 +277,7 @@ Continue? [yN]:
 2:21:18PM: ---- applying complete [4/4 done] ----
 2:21:18PM: ---- waiting complete [4/4 done] ----
 
-Succeeded
-    {{< / highlight >}}
+Succeeded{{< / highlight >}}
     <p class="comment">inspect command shows list of live objects associated with given app. --tree view optionally shows simple parent-child resource relationships.</p>
     {{< highlight bash "" >}}
 $ kapp inspect -a app1 --tree
@@ -310,8 +300,7 @@ Ri: Reconcile information
 
 7 resources
 
-Succeeded
-        {{< / highlight >}}
+Succeeded{{< / highlight >}}
         <p class="comment">logs command starts streaming logs from all Pods associated with given app.</p>
         {{< highlight bash "" >}}
 $ kapp logs -f -a app1
@@ -320,8 +309,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
 
 # starting tailing 'simple-app-8558f78495-zqwxt &gt; simple-app' logs
 simple-app-8558f78495-zqwxt &gt; simple-app | 2020/07/13 18:21:16 Server started
-^C
-        {{< / highlight >}}
+^C{{< / highlight >}}
         <p class="comment">delete command finds all resources in the cluster associated with given app, issues delete operation and waits for them be be deleted.</p>
         {{< highlight bash "" >}}
 $ kapp delete -a app1
@@ -372,7 +360,6 @@ Continue? [yN]: y
 2:23:27PM: ---- applying complete [8/8 done] ----
 2:23:27PM: ---- waiting complete [8/8 done] ----
 
-Succeeded
-        {{< / highlight >}}
+Succeeded{{< / highlight >}}
     </div>
 </div>
