@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Apps & Deployments
 ---
 
-## Apps (Applications)
+## Overview
 
 kapp considers a set of resources with the same label as an application. These resources could span any number of namespaces or could be cluster-wide (e.g. CRDs).
 
@@ -13,7 +13,7 @@ kapp has two methods of finding resources:
 
 First approach is most common as kapp generates a unique label for each tracked application and associates that with an application name.
 
-### List
+## List
 
 Applications can be listed via `ls` command:
 
@@ -21,7 +21,7 @@ Applications can be listed via `ls` command:
 $ kapp ls
 ```
 
-### Deploy
+## Deploy
 
 To create or update an application use `deploy` command:
 
@@ -31,7 +31,7 @@ $ kapp deploy -a my-name -f my-app-config/
 
 Deploy command consists of two stages: [resource "diff" stage](diff.md), and [resource "apply" stage](apply.md).
 
-### Delete
+## Delete
 
 To delete an application use `delete` command:
 

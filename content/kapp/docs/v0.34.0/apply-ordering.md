@@ -1,8 +1,8 @@
 ---
-toc: false
+title: Apply Ordering
 ---
 
-### Apply ordering
+## Overview
 
 kapp includes builtin rules to make sure certain changes are applied in particular order:
 
@@ -28,7 +28,7 @@ Additionally kapp allows to customize order of changes via following resource an
 - `kapp.k14s.io/change-rule: "upsert after upserting apps.big.co/db-migrations"`
 - `kapp.k14s.io/change-rule: "delete before upserting apps.big.co/service"`
 
-#### Example
+## Example
 
 Following example shows how to run `job/migrations`, start and wait for `deployment/app`, and finally `job/app-health-check`.
 

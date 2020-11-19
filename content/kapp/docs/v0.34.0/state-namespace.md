@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Namespace for State Storage
 ---
 
-## State namespace
+## Overview
 
 To show list of deployed applications (via `kapp ls`), kapp manages metadata `ConfigMap` for each saved application. Each metadata `ConfigMap` contains generated label used to label all application resources. Additionally kapp creates `ConfigMap` per each deploy to record deployment history (seen via `kapp app-change list -a app1`).
 
@@ -45,7 +45,7 @@ There are currently two approaches to deciding which namespace to use for storin
 
 Note: It's currently not possible to have kapp place app `ConfigMap` resource into `Namespace` that kapp creates for that application.
 
-### App Changes
+## App Changes
 
 As mentioned above, app changes (stored as `ConfigMap`) are stored in state namespace. App changes do not store any information necessary for kapp to operate, but rather act as informational records. There is currently no cap on how many app changes are kept per app.
 

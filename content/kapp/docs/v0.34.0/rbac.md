@@ -1,5 +1,5 @@
 ---
-toc: false
+title: Permissions
 ---
 
 ## Running kapp under restricted permissions

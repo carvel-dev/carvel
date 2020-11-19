@@ -1,15 +1,14 @@
 ---
-title: Overview
+title: Cheatsheet
 ---
 
-## Cheatsheet
 
-### List
+## List
 
 - `kapp ls -A`
   - List all app in the cluster (across all namespaces)
 
-### Deploy
+## Deploy
 
 - `kapp deploy -a app1 -f config/ -c`
   - Deploy app named `app1` with configuration from `config/`
@@ -32,7 +31,7 @@ title: Overview
 - `kapp deploy -a app1 -f config/ --into-ns app1-ns`
   - Rewrite all resources to specify `app1-ns` namespace
 
-### Inspect
+## Inspect
 
 - `kapp inspect -a app1`
   - Show summary of all resources in app `app1`
@@ -61,12 +60,12 @@ title: Overview
 - `kapp tools list-labels --values --tty=false | grep kapp.k14s.io/app`
   - Shows app labels that are still present in the cluster (could be combined with delete command below)
 
-### Delete
+## Delete
 
 - `kapp delete -a 'label:kapp.k14s.io/app=1578599579922603000'`
   - Delete resources under particular label (in this example deleting resources associated with some app)
 
-### Misc
+## Misc
 
 - `kapp deploy -a label:kapp.k14s.io/is-app-change= --filter-age 500h+ --dangerous-allow-empty-list-of-resources --apply-ignored`
   - Delete all app changes older than 500h (v0.12.0+)
