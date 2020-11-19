@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Deployment Diff
 ---
 
-## Diff
+## Overview
 
 kapp compares resources specified in files against resources that exist in Kubernetes API. Once change set is calculated, it provides an option to apply it (see [Apply](apply.md) section for further details).
 
@@ -10,7 +10,7 @@ There are four different types of operations: `create`, `update`, `delete`, `noo
 
 There are three different types of waiting: `reconcile` (waits until resource has converged to its desired state; see [apply waiting](apply-waiting.md) for waiting semantics), `delete` (waits until resource is gone), `noop` (shown as empty). Seen in `Wait to` column of diff summary table.
 
-### Diff strategies
+## Diff strategies
 
 There are two diff strategies used by kapp:
 
@@ -22,7 +22,7 @@ Strategy is selected for each resource individually. You can control which strat
 
 Related: [rebase rules](config.md).
 
-### Versioned Resources
+## Versioned Resources
 
 In some cases it's useful to represent an update to a resource as an entirely new resource. Common example is a workflow to update ConfigMap referenced by a Deployment. Deployments do not restart their Pods when ConfigMap changes making it tricky for wide variety of applications for pick up ConfigMap changes. kapp provides a solution for such scenarios, by offering a way to create uniquely named resources based on an original resource.
 
@@ -34,16 +34,16 @@ You can control number of kept resource versions via `kapp.k14s.io/num-versions=
 
 Try deploying [redis-with-configmap example](../examples/gitops/redis-with-configmap) and changing `ConfigMap` in a next deploy.
 
-### Controlling diff via resource annotations
+## Controlling diff via resource annotations
 
-#### kapp.k14s.io/disable-original
+### kapp.k14s.io/disable-original
 
 `kapp.k14s.io/disable-original` annotation controls whether to record provided resource copy (rarely wanted)
 
 Possible values ``. In some cases it's not possible or wanted to record applied resource copy into its annotation `kapp.k14s.io/original`. One such case might be when resource is extremely lengthy (e.g. long ConfigMap or CustomResourceDefinition) and will exceed annotation value max length of 262144 bytes.
 
 ---
-### Controlling diff via deploy flags
+## Controlling diff via deploy flags
 
 Diff summary shows quick information about what's being changed:
 

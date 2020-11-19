@@ -1,4 +1,8 @@
-### YAMLFragments
+---
+title: YAMLFragments
+---
+
+## Overview
 
 YAMLFragment is a type of value that is defined directly in YAML (instead of plain Starlark). For example, function `val()` returns a value of type `yamlfragment`.
 
@@ -19,7 +23,7 @@ YAMLFragment may contain:
 
 Given various contents it wraps, YAMLFragment currently exposes limited ways of accessing its contents directly. Following accessors are available in v0.26.0+.
 
-#### YAML Document Set
+## YAML Document Set
 
 ```yaml
 #@ def docs():
@@ -44,7 +48,7 @@ for val in docs():
 end
 ```
 
-#### YAML Array
+## YAML Array
 
 ```yaml
 #@ def vals():
@@ -65,7 +69,7 @@ for val in vals():
 end
 ```
 
-#### YAML Map
+## YAML Map
 
 ```yaml
 #@ def vals():

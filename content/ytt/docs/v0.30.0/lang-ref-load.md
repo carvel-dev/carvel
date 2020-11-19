@@ -1,12 +1,14 @@
-### Load Statement
+---
+title: Load Statements
+---
 
-#### Terminology
+## Terminology
 
 - `module`: single file; can export variables, functions, or be templated => some type of result e.g. yaml structure, or string, or None)
 - `package`: single directory; contains modules
 - `library`: collection of packages
 
-#### Usage
+## Usage
 
 Load statement allows to load functions from other modules (such as ones from [builtin `ytt` library](lang-ref-ytt.md)).
 
@@ -62,7 +64,7 @@ result: #@ mod.testfunc()
 other_result: #@ mod.otherfunc()
 ```
 
-#### _ytt_lib directory
+## _ytt_lib directory
 
 `_ytt_lib` directory allows to keep private dependencies from consumers of libraries.
 
@@ -79,7 +81,7 @@ _ytt_lib/big-corp/_ytt_lib/big-corp/common/services.lib.yml
 - `app1.yml` _cannot_ load `big-corp/_ytt_lib/big-corp/common/services.lib.yml` as it is a private dependency of anything inside `_ytt_lib/big-corp/` directory (e.g. `sre.lib.yml`)
 
 hence making it possible for `big-corp/sre.lib.yml` module to keep its `big-corp/common` library dependency private.
-#### Files
+## Files
 
 To make files available to `load` statement they have to be given to ytt CLI via `--file` (`-f`) option. The argument of that option can be a path to either of:
 
@@ -105,7 +107,7 @@ sub-dir/_ytt_lib/weird-lib/funcs.lib.yml
   - `more-helpers.lib.yml` (not `sub-dir/more-helpers.lib.yml`)
   - `@weird-lib:funcs.lib.yml`
 
-#### Examples
+## Examples
 
 - [Load](https://carvel.dev/ytt/#example:example-load)
 - [Load ytt library](https://carvel.dev/ytt/#example:example-load-ytt-library)

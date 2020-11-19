@@ -1,14 +1,14 @@
 ---
-title: Overview
+title: Config
 ---
 
-## Config
+## Overview
 
 kapp supports custom `Config` resource to specify its own configuration. It's expected to be included with your other Kubernetes configuration. Config resource is never applied to the cluster, though it follows general Kubernetes resource format. Multiple config resources are allowed.
 
 kapp comes with __built-in configuration__ (see it via `kapp deploy-config`) that includes rules for common resources.
 
-### Format
+## Format
 
 ```yaml
 apiVersion: kapp.k14s.io/v1alpha1
@@ -60,11 +60,11 @@ diffMaskRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Secret}
 ```
 
-#### minimumRequiredVersion
+### minimumRequiredVersion
 
 `minimumRequiredVersion` forces kapp to exit with a validation error if kapp's version is below minimum required version. Available in v0.23.0+.
 
-#### rebaseRules
+### rebaseRules
 
 `rebaseRules` specify origin of field values. Kubernetes cluster generates (or defaults) some field values, hence these values will need to be merged in future to avoid flagging them during diffing. Common example is `v1/Service`'s `spec.clusterIP` field is automatically populated if it's not set. See [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md) examples.
 
@@ -94,15 +94,15 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-#### ownershipLabelRules
+### ownershipLabelRules
 
 `ownershipLabelRules` specify locations for inserting kapp generated labels. These labels allow kapp to track which resources belong to which application. For resources that describe creation of other resources (e.g. `Deployment` or `StatefulSet`), configuration may need to specify where to insert labels for child resources that will be created. `kapp.k14s.io/disable-default-ownership-label-rules: ""` (value must be empty) annotation can be be used to exclude an individual resource from default onwership label rules.
 
-#### labelScopingRules
+### labelScopingRules
 
 `labelScopingRules` specify locations for inserting kapp generated labels that scope resources to resources within current application. `kapp.k14s.io/disable-default-label-scoping-rules: ""` (as of v0.33.0+, or use `kapp.k14s.io/disable-label-scoping: ""` in earlier versions) annotation can be used to exclude an individual resource from label scoping.
 
-#### waitRules
+### waitRules
 
 Available in v0.29.0+.
 
@@ -136,40 +136,40 @@ waitRules:
   - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
 ```
 
-#### templateRules
+### templateRules
 
 `templateRules` specify how versioned resources affect other resources. In above example, versioned config maps are said to affect deployments. [Read more about versioned resources](diff.md#versioned-resources).
 
-#### additionalLabels
+### additionalLabels
 
 `additionalLabels` specify additional labels to apply to all resources for custom uses by the user (added based on `ownershipLabelRules`).
 
-#### diffAgainstLastAppliedFieldExclusionRules
+### diffAgainstLastAppliedFieldExclusionRules
 
 `diffAgainstLastAppliedFieldExclusionRules` specify which fields should be removed before diff-ing against last applied resource. These rules are useful for fields are "owned" by the cluster/controllers, and are only later updated. For example `Deployment` resource has an annotation that gets set after a little bit of time after resource is created/updated (not during resource admission). It's typically not necessary to use this configuration.
 
-#### diffMaskRules
+### diffMaskRules
 
 `diffMaskRules` specify which field values should be masked in diff. By default `v1/Secret`'s `data` fields are masked. Currently only applied to `deploy` command.
 
-#### changeGroupBindings
+### changeGroupBindings
 
 Available in v0.25.0+.
 
 `changeGroupBindings` bind specified change group to resources matched by resource matchers. This is an alternative to using `kapp.k14s.io/change-group` annotation to add change group to resources. See `kapp deploy-config` for default bindings.
 
-#### changeRuleBindings
+### changeRuleBindings
 
 Available in v0.25.0+.
 
 `changeRuleBindings` bind specified change rules to resources matched by resource matchers. This is an alternative to using `kapp.k14s.io/change-rule` annotation to add change rules to resources. See `kapp deploy-config` for default bindings.
 
 ---
-### Resource matchers
+## Resource matchers
 
 Resource matchers (as used by `rebaseRules` and `ownershipLabelRules`):
 
-#### allMatcher
+### allMatcher
 
 Matches all resources
 
@@ -177,7 +177,7 @@ Matches all resources
 allMatcher: {}
 ```
 
-#### anyMatcher
+### anyMatcher
 
 Matches resources that match one of matchers
 
@@ -188,7 +188,7 @@ anyMatcher:
   - apiVersionKindMatcher: {apiVersion: extensions/v1alpha1, kind: Deployment}
 ```
 
-#### notMatcher
+### notMatcher
 
 Matches any resource that does not match given matcher
 
@@ -198,7 +198,7 @@ notMatcher:
     apiVersionKindMatcher: {apiVersion: apps/v1, kind: Deployment}
 ```
 
-#### andMatcher
+### andMatcher
 
 Matches any resource that matches all given matchers
 
@@ -209,25 +209,25 @@ andMatcher:
   - hasNamespaceMatcher: {}
 ```
 
-#### apiGroupKindMatcher
+### apiGroupKindMatcher
 
 ```yaml
 apiVersionKindMatcher: {apiGroup: apps, kind: Deployment}
 ```
 
-#### apiVersionKindMatcher
+### apiVersionKindMatcher
 
 ```yaml
 apiVersionKindMatcher: {apiVersion: apps/v1, kind: Deployment}
 ```
 
-#### kindNamespaceNameMatcher
+### kindNamespaceNameMatcher
 
 ```yaml
 kindNamespaceNameMatcher: {kind: Deployment, namespace: mysql, name: mysql}
 ```
 
-#### hasAnnotationMatcher
+### hasAnnotationMatcher
 
 Matches resources that have particular annotation
 
@@ -237,7 +237,7 @@ hasAnnotationMatcher:
   - kapp.k14s.io/change-group
 ```
 
-#### hasNamespaceMatcher
+### hasNamespaceMatcher
 
 Matches any resource that has a non-empty namespace
 
@@ -252,7 +252,7 @@ hasNamespaceMatcher:
   names: [app1, app2]
 ```
 
-#### customResourceMatcher
+### customResourceMatcher
 
 Matches any resource that is not part of builtin k8s API groups (e.g. apps, batch, etc.). It's likely that over time some builtin k8s resources would not be matched.
 
@@ -260,7 +260,7 @@ Matches any resource that is not part of builtin k8s API groups (e.g. apps, batc
 customResourceMatcher: {}
 ```
 
-#### emptyFieldMatcher
+### emptyFieldMatcher
 
 Available in v0.34.0+.
 
@@ -272,7 +272,7 @@ emptyFieldMatcher:
 ```
 
 ---
-### Paths
+## Paths
 
 Path specifies location within a resource (as used `rebaseRules` and `ownershipLabelRules`):
 
@@ -289,7 +289,7 @@ Path specifies location within a resource (as used `rebaseRules` and `ownershipL
 ```
 
 ---
-### Config wrapped in ConfigMap
+## Config wrapped in ConfigMap
 
 Available of v0.34.0+.
 

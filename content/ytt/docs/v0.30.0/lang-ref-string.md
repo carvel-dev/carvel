@@ -1,4 +1,6 @@
-### Strings
+---
+title: Strings
+---
 
 ```yaml
 name1: #@ name + "-deployment"

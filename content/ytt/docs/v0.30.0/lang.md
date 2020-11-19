@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Language
 ---
 
-## Language
+## Overview
 
 Templating language used in `ytt` is a slightly modified version of [Starlark](https://github.com/google/starlark-go/blob/master/doc/spec.md). Following modifications were made:
 

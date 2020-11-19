@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Building
 ---
 
 ## Building images from source
@@ -96,7 +96,7 @@ Note that because we are using Docker daemon for local images and are not pushin
 
 **Hint**: [Minikube](https://kubernetes.io/docs/setup/minikube/) comes with Docker daemon inside its VM. You can expose by running `eval $(minikube docker-env)` before executing kbld.
 
-### Pushing images
+## Pushing images
 
 As long as building tool has proper push access (run `docker login` for Docker), kbld can push out built images to specified repositories. Just add following configuration:
 

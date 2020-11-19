@@ -1,4 +1,8 @@
-# ytt Overlays Overview
+---
+title: Overlays
+---
+
+## What are they?
 
 Sometimes it makes more sense to patch some YAML rather than template it.
 
@@ -60,7 +64,7 @@ $ ytt -f config.yml -f add-content.yml
 > - pen
 > ```
 
-### Next Steps
+## Next Steps
 
 - [Overlay example](https://carvel.dev/ytt/#example:example-overlay-files) in the ytt Playground to try it out, yourself.
 - [ytt Library: Overlay module](lang-ref-ytt-overlay.md) for reference of all overlay annotations and functions.

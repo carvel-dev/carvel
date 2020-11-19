@@ -1,4 +1,6 @@
-### For loop
+---
+title: For loop
+---
 
 Refer to [Starlark for loop specification](https://github.com/google/starlark-go/blob/master/doc/spec.md#for-loops) for details.
 

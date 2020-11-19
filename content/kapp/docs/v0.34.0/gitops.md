@@ -1,5 +1,5 @@
 ---
-toc: false
+title: GitOps
 ---
 
 ## Using kapp with GitOps workflow

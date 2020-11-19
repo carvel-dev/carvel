@@ -1,18 +1,18 @@
 ---
-toc: false
+title: Dangerous Flags
 ---
 
-## Dangerous Flags
+## Overview
 
 There are several flags in `kapp deploy/delete/etc.` commands that might be helpful in rare cases, but can cause problems if used improperly. These are their stories: 
 
-### `--dangerous-allow-empty-list-of-resources`
+## `--dangerous-allow-empty-list-of-resources`
 
 This flag allows `kapp deploy` to accept empty set of new resources. Given that kapp deploy converges set of resources, when empty set is provided, kapp will delete all existing resources.
 
 This commonly happens unintentionally. When configuration is piped into kapp (e.g. `ytt -f config/ | kapp deploy -f- ...`) and resource producing command fails (ytt in this example), kapp will not receive any resources by the time is closes. Since providing empty set of resources intentionally is pretty rare, this functionality is behind a flag.
 
-### `--dangerous-override-ownership-of-existing-resources`
+## `--dangerous-override-ownership-of-existing-resources`
 
 This flag allows `kapp deploy` to take ownership of resources that are already associated with another application (i.e. already has `kapp.k14s.io/app` label with a different value).
 
@@ -22,7 +22,7 @@ This flag may be useful in cases when multiple applications (managed by kapp) ne
 
 Note that by default if resource is given to kapp and it already exists in the cluster, and is not owned by another application, kapp will label it to belong to deploying app.
 
-### `--dangerous-ignore-failing-api-services`
+## `--dangerous-ignore-failing-api-services`
 
 In some cases users may encounter that they have misbehaving `APIServices` within they cluster. Since `APIServices` affect how one finds existing resources within a cluster, by default kapp will show error similar to below and stop:
 

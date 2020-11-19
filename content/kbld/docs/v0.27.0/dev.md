@@ -1,8 +1,6 @@
 ---
-title: Overview
+title: Development
 ---
-
-# Development
 
 ## Prerequisites
 

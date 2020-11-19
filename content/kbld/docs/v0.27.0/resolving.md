@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Resolving
 ---
 
 ## Resolving image references to digests

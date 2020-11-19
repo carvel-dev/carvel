@@ -1,10 +1,8 @@
 ---
-title: Overview
+title: Authentication
 ---
 
-## Authentication
-
-### Via Docker config
+## Via Docker config
 
 Even though `kbld` commands use registry APIs directly, by default it uses credentials stored in `~/.docker/config.json` which are typically generated via `docker login` command.
 
@@ -25,7 +23,7 @@ Example generated `~/.docker/config.json`:
 
 where `dXNlcjpwYXNzd29yZA==` is `base64("username:password")`.
 
-### Via Environment Variables
+## Via Environment Variables
 
 As of v0.23.0+, kbld can also use following environment variables:
 
@@ -37,7 +35,7 @@ Since you may need to provide multiple registry credentials, above environment v
 
 Currently credentials provided via environment variables do not apply when building images with Docker. Continue using `docker login` to authenticate Docker daemon.
 
-### gcr.io
+## gcr.io
 
 - Create service account with "Storage Admin" for push access
   - See [Permissions and Roles](https://cloud.google.com/container-registry/docs/access-control#permissions_and_roles)
@@ -45,7 +43,7 @@ Currently credentials provided via environment variables do not apply when build
   - See [Advanced authentication](https://cloud.google.com/container-registry/docs/advanced-authentication#json_key_file)
 - Run `cat /tmp/key | docker login -u _json_key --password-stdin https://gcr.io` to authenticate
 
-### AWS ECR
+## AWS ECR
 
 - Create ECR repository
 - Create IAM user with ECR policy that allows to read/write
@@ -84,6 +82,6 @@ Example ECR policy from https://docs.aws.amazon.com/AmazonECR/latest/userguide/e
 }
 ```
 
-### Harbor
+## Harbor
 
 You may have to provide `--registry-ca-cert-path` flag with a path to a CA certificate file for Harbor Registry API.

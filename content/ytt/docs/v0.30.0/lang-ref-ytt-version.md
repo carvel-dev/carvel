@@ -1,4 +1,6 @@
-### ytt Library: Version module
+---
+title: Version module
+---
 
 Available in v0.26.0+
 

@@ -1,8 +1,6 @@
 ---
-toc: false
+title: Known Limitations
 ---
-
-## Known Limitations
 
 - All YAML comments are expected to be qualified (i.e. must start with `#@ ` or `#! `) by default. Current reason for this is ytt is trying to be cautious and disallow non-qualified comments (`# `) since users may unintentionally write templating directives but forget to use `@` after `#`. This default behaviour may change in future.
 

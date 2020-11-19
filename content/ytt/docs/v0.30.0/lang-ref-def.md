@@ -1,4 +1,6 @@
-### Functions
+---
+title: Functions
+---
 
 Refer to [Starlark function specification](https://github.com/google/starlark-go/blob/master/doc/spec.md#functions) for details about various types of function arguments. Note that ytt's Starlark use requires functions to be closed with an `end`.
 

@@ -1,12 +1,12 @@
 ---
-title: Overview
+title: Config
 ---
 
-## Config
+## Overview
 
 You can configure kbld by adding configuration resources (they follow Kubernetes resource format, but are removed from kbld output). Configuration resources may be specified multiple times.
 
-### Sources
+## Sources
 
 Sources resource configures kbld to execute image building operation based on specified path.
 
@@ -21,7 +21,7 @@ sources:
   path: src/
 ```
 
-#### Docker
+### Docker
 
 ```yaml
 ---
@@ -46,7 +46,7 @@ sources:
 - `docker.build.file` (string): Name of the Dockerfile (default is Dockerfile)
 - `docker.build.rawOptions` ([]string): Refer to https://docs.docker.com/engine/reference/commandline/build/ for all available options
 
-#### Pack
+### Pack
 
 ```yaml
 ---
@@ -65,7 +65,7 @@ sources:
 - `pack.build.clearCache` (bool): Clear cache before building image (default is false)
 - `pack.build.rawOptions` ([]string): Refer to `pack build -h` for all available flags
 
-### ImageDestinations
+## ImageDestinations
 
 ImageDestinations resource configures kbld to push built images to specified location.
 
@@ -94,7 +94,7 @@ destinations:
   - latest-staging
 ```
 
-### ImageOverrides
+## ImageOverrides
 
 ImageOverrides resource configures kbld to rewrite image location before trying to build it or resolve it.
 
@@ -121,7 +121,7 @@ overrides:
 
 For preresolved images, kbld will not connect to registry to obtain any metadata.
 
-### ImageKeys
+## ImageKeys
 
 (Deprecated as of v0.18.0+, use `searchRules` within `Config` kind to specify custom image reference matching rules.)
 
@@ -135,7 +135,7 @@ keys:
 - sidecarImage
 ```
 
-### Config
+## Config
 
 ```yaml
 ---
@@ -165,7 +165,7 @@ searchRules:
     - `yaml` (optional) parses YAML and identifies image refs by specified search rules
       - `searchRules` ... (recursive)
 
-#### Example for `updateStrategy` that parses YAML
+### Example for `updateStrategy` that parses YAML
 
 ```yaml
 kind: ConfigMap
@@ -189,7 +189,7 @@ searchRules:
           name: image
 ```
 
-### Matching images
+## Matching images
 
 Available as of 0.15.0+
 

@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Injecting Secrets
 ---
 
-## Injecting Secrets
+## Overview
 
 **This document is work in progress.**
 
@@ -26,7 +26,7 @@ One common question that's asked is why not to extend ytt to allow it to shell o
 There might be other ways to inject secrets into ytt that are not listed here.
 
 ---
-### Via command line args
+## Via command line args
 
 ```bash
 ytt -f . --data-value username=user --data-value password=pass
@@ -37,7 +37,7 @@ Cons:
 - depending on a computing environment secret values are visible in a process tree (as part of full command line) **which typically is considered unwanted**
 
 ---
-### Via environment variables
+## Via environment variables
 
 ```bash
 export CFG_secrets__username=user
@@ -50,7 +50,7 @@ Cons:
 - depending on a computing environment secret values are visible in process metadata (e.g. typically accessible to root user under `/proc/<pid>/environ`)
 
 ---
-### Via secret references, before templating
+## Via secret references, before templating
 
 Given following two files:
 
@@ -85,7 +85,7 @@ Pros:
 - actual secret values are available to templates, hence, can be inserted in the middle of a string or base64 encoded (as sometimes required by k8s)
 
 ---
-### Via encrypted secrets, before templating
+## Via encrypted secrets, before templating
 
 Similar to above "Via secret references, before templating" approach, instead of storing secret references in `secrets` file one can store encrypted secret values in `secrets` next to other configuration. Various tools like [sops](https://github.com/mozilla/sops) make encrypting configuration files fairly easy:
 
@@ -103,7 +103,7 @@ Cons:
 - depending on organization requirements even encrypted secrets may not be allowed to be stored next to other configuration
 
 ---
-### Via secret references, after templating
+## Via secret references, after templating
 
 Given following two files:
 
@@ -142,7 +142,7 @@ Cons:
 - secret resolution tools will not understand if secret reference was encoded (for example with `base64` encoding as wanted sometimes by k8s)
 
 ---
-### Via encrypted resources, later decrypted inside the k8s cluster
+## Via encrypted resources, later decrypted inside the k8s cluster
 
 This approach is Kubernetes specific.
 
