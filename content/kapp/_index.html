@@ -100,14 +100,8 @@ $ cd kapp/
 $ kapp version{{< / highlight >}}
         <p>And now onto using <span class="example">kapp</span>:</p>
         <p>In this example, we are installing example app from <a href="https://github.com/vmware-tanzu/carvel-kapp">kapp repository</a>.</p>
+        <p class="comment">Changes summary shows that all resources are new.</p>
         {{< highlight bash "" >}}
-$ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml
-
-Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)</p>
-
-Changes
-# Changes summary shows that all resources are new.
-
 $ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
@@ -119,9 +113,7 @@ default    simple-app  Deployment  -       -    create  -       reconcile  -   -
 ^          simple-app  Service     -       -    create  -       reconcile  -   -
 
 Op:      2 create, 0 delete, 0 update, 0 noop
-Wait to: 2 reconcile, 0 delete, 0 noop{{< / highlight >}}
-        <p class="comment">Changes summary shows that all resources are new.</p>
-        {{< highlight bash "" >}}
+Wait to: 2 reconcile, 0 delete, 0 noop
 2:12:59PM: ---- applying 2 changes [0/2 done] ----
 2:13:00PM: create service/simple-app (v1) namespace: default
 2:13:01PM: create deployment/simple-app (apps/v1) namespace: default
@@ -163,6 +155,10 @@ Succeeded{{< / highlight >}}
             <br><br>
             These first two resources will be created.
         </p>
+        <p class="comment">This resource will be updated.</p>
+        <p class="comment">This resource is will be deleted.</p>
+        <p class="comment">Changes summary is presented before deploy will continue. There are only few changes in this example.</p>
+        <p class="comment">Detailed progress log shows kapp waiting for associated resources to be ready. Readiness checks are specific to resource types.</p>
         {{< highlight bash "" >}}
 $ kapp deploy -a app1 -f examples/simple-app-example/config-2.yml --diff-changes
 
@@ -199,9 +195,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     7 +     kapp.k14s.io/association: v1.afcdfc989e2a0b3f3e526dc1c4176060
     8 +   name: simple-app
     9 +   namespace: default
-    10 +{{< / highlight >}}
-    <p class="comment">This resource will be updated.</p>
-    {{< highlight bash "" >}}
+    10 +
 @@ update deployment/simple-app (apps/v1) namespace: default @@
 ...
 29, 29           - name: HELLO_MSG
@@ -211,9 +205,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     32 +               key: hello_msg
     33 +               name: simple-app
 31, 34           image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1f...
-32, 35           name: simple-app{{< / highlight >}}
-    <p class="comment">This resource is will be deleted.</p>
-    {{< highlight bash "" >}}
+32, 35           name: simple-app
 @@ delete service/simple-app (v1) namespace: default @@
     0     - apiVersion: v1
     1     - kind: Service
@@ -237,9 +229,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     19     -     simple-app: ""
     20     - status:
     21     -   loadBalancer: {}
-    22     -{{< / highlight >}}
-    <p class="comment">Changes summary is presented before deploy will continue. There are only few changes in this example.</p>
-    {{< highlight bash "" >}}
+    22     -
 Changes
 
 Namespace  Name             Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri
@@ -249,9 +239,7 @@ default    simple-app       ConfigMap   -       -    create  -       reconcile  
 ^          simple-app-node  Service     -       -    create  -       reconcile  -   -
 
 Op:      2 create, 1 delete, 1 update, 0 noop
-Wait to: 3 reconcile, 1 delete, 0 noop{{< / highlight >}}
-    <p class="comment">Detailed progress log shows kapp waiting for associated resources to be ready. Readiness checks are specific to resource types.</p>
-    {{< highlight bash "" >}}
+Wait to: 3 reconcile, 1 delete, 0 noop
 Continue? [yN]:
 
 2:21:15PM: ---- applying 2 changes [0/4 done] ----
