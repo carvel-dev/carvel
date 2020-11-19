@@ -14,7 +14,7 @@ toc:
   - title: Setup
     subfolderitems:
       - page: Running with Restricted Permissions
-        urls: /rbac
+        url: /rbac
       - page: Namespace for State Storage
         url: /state-namespace
       - page: Extend Default Configuration
@@ -30,7 +30,7 @@ toc:
       - page: Integrating With Other Tools
         url: /integrating-with-other-tools
       - page: GitOps
-        urls: /gitops
+        url: /gitops
   - title: FAQ
     subfolderitems:
       - page: FAQ

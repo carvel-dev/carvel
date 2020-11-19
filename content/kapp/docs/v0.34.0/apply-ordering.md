@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 ### Apply ordering
 
 kapp includes builtin rules to make sure certain changes are applied in particular order:

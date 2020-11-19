@@ -12,6 +12,7 @@
         p {
             margin-bottom: 20px;
             color: $white;
+            font-size: 18px;
         }
     }
     &.homepage {
@@ -90,6 +91,7 @@
         padding: 35px 20px;
         p {
             margin: 0px;
+            font-size: 16px;
             &.strong {
                 color: $black;
             }
@@ -104,6 +106,9 @@
 }
 
 .tools {
+    h2 {
+        font-size: 36px;
+    }
     .grid.three .col {
         border: 1px solid $lightgrey;
         padding: 25px;
@@ -119,6 +124,7 @@
         }
         p {
             margin-top: 10px;
+            font-size: 16px;
         }
     }
     &.wrapper {
@@ -127,8 +133,22 @@
 }
 
 .code-block {
+    h2 {
+        font-size: 36px;
+    }
+    a {
+        font-size: 14px;
+    }
     .example {
         background-color: #F2F2F2;
+    }
+    pre {
+        padding: 40px 30px 35px;
+        margin-bottom: 30px;
+        code {
+            display: block;
+            overflow-x: auto;
+        }
     }
     .code {
         background-color: #000;
@@ -196,6 +216,12 @@
     background-color: $brightblue;
     h2, p {
         color: $white;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    p {
+        font-size: 16px;
     }
     a {
         color: $white;
@@ -503,6 +529,7 @@
         a {
             color: $docsblue;
             font-family: $metropolis-regular;
+            font-size: 14px;
         }
         ul {
             list-style-type: disc;
@@ -524,30 +551,27 @@
                 }
             }
         }
-        code {
-            background-color: $white;
-            color: $grey;
-            border: 2px solid #EFEFEF;
-            padding: 2px 8px;
-            .c1 {
-                color: $blue;
-                font-style: italic;
-            }
-            .se {
-                color: #ff0000;
+        ol {
+            padding-left: 20px;
+            li {
+                list-style-type: decimal;
+                display: list-item;
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: $grey;
             }
         }
+        code {
+            border: 2px solid #EFEFEF;
+            padding: 2px 8px;
+        }
         pre {
-            white-space: pre-wrap;
-            white-space: -moz-pre-wrap;
-            white-space: -pre-wrap;
-            white-space: -o-pre-wrap;
-            word-wrap: break-word;
             code {
                 display: block;
                 border: 15px solid #EFEFEF;
                 padding: 15px;
                 margin-bottom: 30px;
+                overflow-x: auto;
             }
         }
         img {
@@ -580,6 +604,9 @@
     &.landing {
         background-color: #fff;
         margin-top: -90px;
+        h3 a {
+            font-size: 16px;
+        }
         .pagination {
             margin: 30px auto 50px auto;
             ul {
@@ -627,6 +654,61 @@
             color: $black;
             font-weight: 600;
         }
+        a {
+            font-size: 14px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            li {
+                list-style-type: unset;
+                display: list-item;
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: $grey;
+                line-height: 1.6em;
+                list-style-image: url(/img/arrow.svg);
+            }
+        }
+        ol {
+            padding-left: 20px;
+            li {
+                list-style-type: decimal;
+                display: list-item;
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: $grey;
+            }
+        }
+        code {
+            background-color: $white;
+            color: $grey;
+            border: 2px solid #EFEFEF;
+            padding: 2px 8px;
+            .c1 {
+                color: $blue;
+                font-style: italic;
+            }
+            .se {
+                color: #ff0000;
+            }
+        }
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            code {
+                display: block;
+                border: 15px solid #EFEFEF;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+        }
+        img {
+            max-width: 100%;
+        }
     }
 }
 
@@ -634,6 +716,9 @@
     background-color: #fff;
     margin-top: -90px;
     padding: 30px 30px 50px 30px;
+    a {
+        font-size: 14px;
+    }
     .grid {
         .col {
             border: 1px solid #F2F2F2;

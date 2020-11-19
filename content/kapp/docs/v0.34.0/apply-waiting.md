@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 ### Apply Waiting
 
 kapp includes builtin rules on how to wait for the following resource types:

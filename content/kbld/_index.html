@@ -5,7 +5,7 @@ title: ""
 <div class="hero subpage kbld">
     <div class="wrapper clearfix">
         <div class="text-block">
-            <h2>kbld: Image solver for your configuration</h2>
+            <h1>kbld: Image solver for your configuration</h1>
             <p>kbld seamlessly incorporates image building, pushing, and resolution into your development and deployment workflows. Result is configuration with immutable image references.</p>
             <div class="buttons">
                 <a class="button" href="#examples">See Examples</a>
@@ -83,78 +83,74 @@ title: ""
     </div>
     <div class="code-block" id="examples">
         <h2>Basic Usage</h2>
-        <div class="code">
-            <p class="header">Basic Usage</p>
-            <p class="comment"># Configurations picked up from a directory</p>
-            <p>$ <span class="green-text">kbld -f examples/cassandra/ | kubectl apply -f -</span></p>
-            <p class="comment"># Can be used with helm charts</p>
-            <p>$ <span class="green-text">helm template my-chart --values my-vals.yml | kbld -f - | kubectl apply -f -</span></p>
-            <p class="comment"># ... and with kustomize</p>
-            <p>$ <span class="green-text">kustomize build ./some-app | kbld -f - | kubectl apply -f -</span></p>
-            <p class="comment"># ... or templated with ytt and deployed with kapp</p>
-            <p>$ <span class="green-text">ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -</span></p>
-        </div>
+        {{< highlight bash "" >}}
+# Configurations picked up from a directory
+$ kbld -f examples/cassandra/ | kubectl apply -f -
+# Can be used with helm charts
+$ helm template my-chart --values my-vals.yml | kbld -f - | kubectl apply -f -
+# ... and with kustomize
+$ kustomize build ./some-app | kbld -f - | kubectl apply -f -
+# ... or templated with ytt and deployed with kapp
+$ ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -{{< / highlight >}}
     </div>
     <div class="code-block">
         <h3>Examples</h3>
         <p>Resolves name-tag pair reference (<span class="example">nginx:1.17</span>) into digest reference (<span class="example">index.docker.io/library/nginx@sha256:2539d4344...</span>)</p>
         <p>Input:</p>
-        <div class="code">
-            <p>apiVersion: apps/v1</p>
-            <p>kind: Deployment</p>
-            <p>metadata:</p>
-            <p><span class="tab-space"></span>name: nginx-deployment</p>
-            <p><span class="tab-space"></span>labels:</p>
-            <p><span class="tab-space two"></span>app: nginx</p>
-            <p>spec:</p>
-            <p><span class="tab-space"></span>replicas: 3</p>
-            <p><span class="tab-space"></span>selector:</p>
-            <p><span class="tab-space two"></span>matchLabels:</p>
-            <p><span class="tab-space three"></span>app: nginx</p>
-            <p><span class="tab-space"></span>template:</p>
-            <p><span class="tab-space two"></span>metadata:</p>
-            <p><span class="tab-space three"></span>labels:</p>
-            <p><span class="tab-space four"></span>app: nginx</p>
-            <p><span class="tab-space two"></span>spec:</p>
-            <p><span class="tab-space three"></span>containers:</p>
-            <p><span class="tab-space three"></span>- name: nginx</p>
-            <p><span class="tab-space four"></span><span class="green-text">image: nginx:1.17</span></p>
-            <p><span class="tab-space four"></span>ports:</p>
-            <p><span class="tab-space four"></span>- containerPort: 80</p>
-        </div>
+        {{< highlight bash "" >}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+    labels:
+        app: nginx
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: nginx
+    template:
+        metadata:
+            labels:
+                app: nginx
+        spec:
+            containers:
+            - name: nginx
+                image: nginx:1.17
+                ports:
+                - containerPort: 80{{< / highlight >}}
     </div>
     <div class="code-block">
         <p>Output:</p>
-        <div class="code">
-            <p>apiVersion: apps/v1</p>
-            <p>kind: Deployment</p>
-            <p>metadata:</p>
-            <p><span class="tab-space one"></span>name: nginx-deployment</p>
-            <p><span class="tab-space one"></span>labels:</p>
-            <p><span class="tab-space two"></span>app: nginx</p>
-            <p><span class="tab-space one"></span>annotations:</p>
-            <p><span class="tab-space two"></span><span class="green-text">kbld.k14s.io/images: |</span></p>
-            <p><span class="tab-space three"></span><span class="green-text">- Metas:</span></p>
-            <p><span class="tab-space four"></span><span class="green-text">- Tag: 1.17</span></p>
-            <p><span class="tab-space five"></span><span class="green-text">Type: resolved</span></p>
-            <p><span class="tab-space five"></span><span class="green-text">URL: nginx:1.17</span></p>
-            <p><span class="tab-space four"></span><span class="green-text">URL: index.docker.io/library/nginx@sha256:2539d4344...</span></p>
-            <p>spec:</p>
-            <p><span class="tab-space"></span>replicas: 3</p>
-            <p><span class="tab-space "></span>selector:</p>
-            <p><span class="tab-space two"></span>matchLabels:</p>
-            <p><span class="tab-space three"></span>app: nginx</p>
-            <p><span class="tab-space"></span>template:</p>
-            <p><span class="tab-space two"></span>metadata:</p>
-            <p><span class="tab-space three"></span>labels:</p>
-            <p><span class="tab-space four"></span>app: nginx</p>
-            <p><span class="tab-space two"></span>spec:</p>
-            <p><span class="tab-space three"></span>containers:</p>
-            <p><span class="tab-space three"></span>- name: nginx</p>
-            <p class="green-text"><span class="tab-space four"></span><span class="green-text">image: index.docker.io/library/nginx@sha256:2539d4344...</span></p>
-            <p><span class="tab-space four"></span>ports:</p>
-            <p><span class="tab-space four"></span>- containerPort: 80</p>
-        </div>
+        {{< highlight bash "" >}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+    labels:
+        app: nginx
+    annotations:
+        kbld.k14s.io/images: |
+            - Metas:
+                - Tag: 1.17
+                    Type: resolved
+                    URL: nginx:1.17
+                URL: index.docker.io/library/nginx@sha256:2539d4344...
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: nginx
+    template:
+        metadata:
+            labels:
+                app: nginx
+        spec:
+            containers:
+            - name: nginx
+                image: index.docker.io/library/nginx@sha256:2539d4344...
+                ports:
+                - containerPort: 80{{< / highlight >}}
     </div>
 
 
@@ -162,80 +158,78 @@ title: ""
         <h3>Examples</h3>
         <p>Builds app from local directory (configured via <span class="example">Sources</span>), pushes image as <span class="example">docker.io/hk/simple-app</span> (configured via <span class="example">ImageDestinations</span>), and finally resolves it to a digest reference <span class="example">index.docker.io/hk/simple-app@sha256:e932e46fd...<span class="example"></span>.</p>
         <p>Input:</p>
-        <div class="code">
-            <p>apiVersion: apps/v1</p>
-            <p>kind: Deployment</p>
-            <p>metadata:</p>
-            <p><span class="tab-space"></span>name: app1-deployment</p>
-            <p><span class="tab-space"></span>labels:</p>
-            <p><span class="tab-space two"></span>app: app1</p>
-            <p>spec:</p>
-            <p><span class="tab-space"></span>replicas: 3</p>
-            <p><span class="tab-space"></span>selector:</p>
-            <p><span class="tab-space two"></span>matchLabels:</p>
-            <p><span class="tab-space three"></span>app: app1</p>
-            <p><span class="tab-space"></span>template:</p>
-            <p><span class="tab-space two"></span>metadata:</p>
-            <p><span class="tab-space three"></span>labels:</p>
-            <p><span class="tab-space four"></span>app: app1</p>
-            <p><span class="tab-space two"></span>spec:</p>
-            <p><span class="tab-space three"></span>containers:</p>
-            <p><span class="tab-space three"></span>- name: app1</p>
-            <p><span class="tab-space four"></span><span class="green-text">image: app1</span></p>
-            <p><span class="tab-space four"></span>ports:</p>
-            <p><span class="tab-space four"></span>- containerPort: 80</p>
-            <br>
-            <p class="comment">#! where to find app1 source</p>
-            <p><span class="green-text">---</span></p>
-            <p><span class="green-text">api Version: kbld.k14s.io/v1alpha1</span></p>
-            <p><span class="green-text">kind: Sources</span></p>
-            <p><span class="green-text">sources:</span></p>
-            <p><span class="green-text">- image: app1</span></p>
-            <p><span class="tab-space"></span><span class="green-text">path: .</span></p>
-            <br>
-            <p class="comment">#! where to push app1 image</p>
-            <p><span class="green-text">---</span></p>
-            <p><span class="green-text">apiVersion: kbld.k14s.io/v1alpha1</span></p>
-            <p><span class="green-text">kind: ImageDestinations</span></p>
-            <p><span class="green-text">destinations:</span></p>
-            <p><span class="green-text">- image: app1</span></p>
-            <p><span class="tab-space"></span><span class="green-text">newImage: docker.io/hk/simple-app</span></p>
-        </div>
+        {{< highlight bash "" >}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app1-deployment
+    labels:
+        app: app1
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: app1
+    template:
+        metadata:
+            labels:
+                app: app1
+        spec:
+            containers:
+            - name: app1
+                image: app1
+                ports:
+                - containerPort: 80
+
+#! where to find app1 source
+---
+api Version: kbld.k14s.io/v1alpha1
+kind: Sources
+sources:
+- image: app1
+    path: .
+
+#! where to push app1 image
+---
+apiVersion: kbld.k14s.io/v1alpha1
+kind: ImageDestinations
+destinations:
+- image: app1
+    newImage: docker.io/hk/simple-app{{< / highlight >}}
     </div>
     <div class="code-block">
         <p>Output:</p>
-        <div class="code">
-            <p>apiVersion: apps/v1</p>
-            <p>kind: Deployment</p>
-            <p>metadata:</p>
-            <p><span class="tab-space"></span>name: app1-deployment</p>
-            <p><span class="tab-space"></span>labels:</p>
-            <p><span class="tab-space two"></span>app: app1</p>
-            <p><span class="tab-space"></span>annotations:</p>
-            <p><span class="tab-space two"></span><span class="green-text">kbld.k14s.io/images: |</span></p>
-            <p><span class="tab-space three"></span><span class="green-text">- Metas:</span></p>
-            <p><span class="tab-space four"></span><span class="green-text">- Path: /Users/pivotal/workspace/simple-app</span></p>
-            <p><span class="tab-space five"></span><span class="green-text">Type: local</span></p>
-            <p><span class="tab-space four"></span><span class="green-text">- Dirty: false</span></p>
-            <p><span class="tab-space five"></span><span class="green-text">RemoteURL: git@github.com:k14s/super-secret-simple-app</span></p>
-            <p><span class="tab-space five"></span><span class="green-text">SHA: e877718521f7ccea0ab0844db0f86fe123a8d8ef</span></p>
-            <p><span class="tab-space five"></span><span class="green-text">Type: git</span></p>
-            <p><span class="tab-space four"></span><span class="green-text">URL: index.docker.io/hk/simple-app@sha256:e932e46fd...</span></p>
-            <p>spec:</p>
-            <p><span class="tab-space"></span>replicas: 3</p>
-            <p><span class="tab-space"></span>selector:</p>
-            <p><span class="tab-space two"></span>matchLabels:</p>
-            <p><span class="tab-space three"></span>app: app1</p>
-            <p><span class="tab-space"></span>template:</p>
-            <p><span class="tab-space two"></span>metadata:</p>
-            <p><span class="tab-space three"></span>labels:</p>
-            <p><span class="tab-space four"></span>app: app1</p>
-            <p><span class="tab-space two"></span>spec:</p>
-            <p><span class="tab-space three"></span>containers:</p>
-            <p><span class="tab-space three"></span>- name: app1</p>
-            <p><span class="tab-space four"></span><span class="green-text">image: index.docker.io/hk/simple-app@sha256:e932e46fd...</span></p>
-            <p><span class="tab-space four"></span>ports:</p>
-            <p><span class="tab-space four"></span>- containerPort: 80</p>
-        </div>
+        {{< highlight bash "" >}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app1-deployment
+    labels:
+        app: app1
+    annotations:
+        kbld.k14s.io/images: |
+            - Metas:
+                - Path: /Users/pivotal/workspace/simple-app
+                    Type: local
+                - Dirty: false
+                    RemoteURL: git@github.com:k14s/super-secret-simple-app
+                    SHA: e877718521f7ccea0ab0844db0f86fe123a8d8ef
+                    Type: git
+                URL: index.docker.io/hk/simple-app@sha256:e932e46fd...
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: app1
+    template:
+        metadata:
+            labels:
+                app: app1
+        spec:
+            containers:
+            - name: app1
+                image: index.docker.io/hk/simple-app@sha256:e932e46fd...
+                ports:
+                - containerPort: 80{{< / highlight >}}
     </div>
 </div>

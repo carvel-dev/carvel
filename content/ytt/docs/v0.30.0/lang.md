@@ -1,6 +1,5 @@
 ---
-title: "language"
-layout: docs
+title: Overview
 ---
 
 ## Language
