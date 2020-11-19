@@ -5,13 +5,13 @@ toc:
         url: /
   - title: Usage
     subfolderitems:
-      - page: Resolving References to Digests
+      - page: Resolving
         url: /resolving
-      - page: Building from Source
+      - page: Building
         url: /building
-      - page: Packaging & Relocating Images
+      - page: Packaging & Relocation
         url: /packaging
-      - page: CNAB Image Relocation
+      - page: CNAB Image Maps
         url: /cnab-image-relocation
   - title: Authentication
     subfolderitems:
@@ -19,7 +19,7 @@ toc:
         url: /auth
   - title: Configuration
     subfolderitems:
-      - page: Configuration Parameters
+      - page: Config
         url: /config
   - title: Contributing
     subfolderitems:

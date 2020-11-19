@@ -1,8 +1,6 @@
 ---
-toc: false
+title: CNAB Image Maps
 ---
-
-## CNAB image relocation mapping
 
 CNAB spec mentions [Image Relocation](https://github.com/deislabs/cnab-spec/blob/master/103-bundle-runtime.md#image-relocation) as part of bundle runtime.
 

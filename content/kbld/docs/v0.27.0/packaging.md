@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Packaging and Relocation
 ---
 
-## Packaging/relocating images
+## Overview
 
 kbld provides a way to relocate (i.e. copy) images between multiple registries. Two approaches are available:
 
@@ -20,7 +20,7 @@ There are two approaches to do this:
 - With lock file (recommended)
 - Directly against configuration
 
-### With lock file
+## With lock file
 
 For example, to package referenced images into a single tarball:
 
@@ -94,7 +94,7 @@ To import packaged images from a tarball:
     ```
 
 ---
-### Directly against configuration
+## Directly against configuration
 
 For example, to package referenced images into a single tarball:
 
@@ -159,25 +159,25 @@ To import packaged images from a tarball:
     ```
 
 ---
-### Authentication
+## Authentication
 
 See general authentication steps in [Authentication doc](auth.md).
 
-### Using with gcr.io
+## Using with gcr.io
 
 - Run `kbld unpkg -f /tmp/resolved-manifest --input /tmp/packaged-images.tar --repository gcr.io/{project-id}/app1` to import images (e.g. project id is `dkalinin`)
 
-### Using with AWS ECR
+## Using with AWS ECR
 
 **Note**: AWS ECR does not support manifest list media types from Docker Registry v2 API. Manifest lists are used for images that are built against multiple architectures and platforms and are referenced through a single digest or tag. Most user-built images do not use manifest lists (as it's a single image); however, common Docker Hub library images are represented by manifest lists and will fail upon import into AWS ECR. You will see following error: `Writing image index: Retried 5 times: uploading manifest2: UNSUPPORTED: Invalid parameter at 'imageTag' failed to satisfy constraint: 'must satisfy regular expression '[a-zA-Z0-9-_.]+'`. Related [AWS feature request](https://forums.aws.amazon.com/thread.jspa?threadID=292294)).
 
 - Run `kbld unpkg -f /tmp/resolved-manifest --input /tmp/packaged-images.tar --repository {uri}` to import images (e.g. uri is `823869848626.dkr.ecr.us-east-1.amazonaws.com/k14s/kbld-test`)
 
-### Using with Harbor
+## Using with Harbor
 
 You may have to provide `--registry-ca-cert-path` flag with a path to a CA certificate file for Harbor Registry API.
 
-### Notes
+## Notes
 
 - Produced tarball does not have duplicate image layers, as they are named by their digest (see `tar tvf /tmp/packaged-images.tar`).
 - If digest reference points to an image index, all children (images and other image indexes) will be included in the export. Saving only a portion of contents would of course change the digest.
