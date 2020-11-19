@@ -2,7 +2,7 @@
 
 ### How do I template some text?
 
-[Here is an example](https://get-ytt.io/#example:example-text-template) describing some ways text templating can be done.
+[Here is an example](https://carvel.dev/ytt/#example:example-text-template) describing some ways text templating can be done.
 
 ## Data Values
 
@@ -62,7 +62,7 @@ Additional resources: [overlay remove docs](lang-ref-ytt-overlay.md#overlayremov
 
 The default merging behaviour for arrays is to overwrite them, as there isn't any default matching criteria (unlike maps which use their keys). To add an item, either provide that matching annotation (eg. `#@overlay/match by="field_name"`), or use the `#@overlay/append` annotation to add to the end of the list. Note that the append annotation must be applied to each item you want to insert.
 
-Additional resources: [overlay append docs](lang-ref-ytt-overlay.md#overlayappend), [example gist on playground](https://get-ytt.io/#gist:https://gist.github.com/pivotaljohn/8c7f48e183158ce12107f576eeab937c), [replace-list gist](https://get-ytt.io/#gist:https://gist.github.com/pivotaljohn/2b3a9b3367137079195971e1409d539e), [edit-list gist](https://get-ytt.io/#gist:https://gist.github.com/pivotaljohn/217e8232dc080bb764bfd064ffa9c115)
+Additional resources: [overlay append docs](lang-ref-ytt-overlay.md#overlayappend), [example gist on playground](https://carvel.dev/ytt/#gist:https://gist.github.com/pivotaljohn/8c7f48e183158ce12107f576eeab937c), [replace-list gist](https://carvel.dev/ytt/#gist:https://gist.github.com/pivotaljohn/2b3a9b3367137079195971e1409d539e), [edit-list gist](https://carvel.dev/ytt/#gist:https://gist.github.com/pivotaljohn/217e8232dc080bb764bfd064ffa9c115)
 
 ### Why am I getting an exception when trying to append to an array?
 
@@ -74,11 +74,11 @@ An `#@overlay/replace` annotation with a lambda `via`. For example, to replace t
 ```yaml
 #@overlay/replace via=lambda a,b: {"better_name": a["bad_name"]}
 ```
-See [this gist](https://get-ytt.io/#gist:https://gist.github.com/gcheadle-vmware/3c41645a80201caaeefa878e84fff958) for the full example.
+See [this gist](https://carvel.dev/ytt/#gist:https://gist.github.com/gcheadle-vmware/3c41645a80201caaeefa878e84fff958) for the full example.
 
 ### How do I add or replace a value in a dictionary?
 
-A `#@ template.replace()` annotation can be used for these purposes. See [this example](https://get-ytt.io/#example:example-replace). You can also use overlays to edit a dictionary, an example can be found on [this gist playground](https://get-ytt.io/#gist:https://gist.github.com/gcheadle-vmware/af8aeb3120386e58922c816d76f47ab6).
+A `#@ template.replace()` annotation can be used for these purposes. See [this example](https://carvel.dev/ytt/#example:example-replace). You can also use overlays to edit a dictionary, an example can be found on [this gist playground](https://carvel.dev/ytt/#gist:https://gist.github.com/gcheadle-vmware/af8aeb3120386e58922c816d76f47ab6).
 
 ### How do I match a field.name that starts with a string?
 
@@ -93,11 +93,11 @@ To match a dictionary from a list of dictionaries if the `foo` key is present, y
 
 ### How do I modify only part of a multi-line string?
 
-An `#@overlay/replace` annotation with a lambda `via` function can modify part of a string. See this [modify-string gist](https://get-ytt.io/#gist:https://gist.github.com/cppforlife/7633c2ed0560e5c8005e05c8448a74d2) for an example.
+An `#@overlay/replace` annotation with a lambda `via` function can modify part of a string. See this [modify-string gist](https://carvel.dev/ytt/#gist:https://gist.github.com/cppforlife/7633c2ed0560e5c8005e05c8448a74d2) for an example.
 
 ### How can I match a regex pattern in the subset matcher?
 
-The subset matcher does not directly support regex patterns. Instead, a custom matcher can be written. See this [playground gist](https://get-ytt.io/#gist:https://gist.github.com/ewrenn8/3409e44252f93497a9b447900f3fb5b7) for an example.
+The subset matcher does not directly support regex patterns. Instead, a custom matcher can be written. See this [playground gist](https://carvel.dev/ytt/#gist:https://gist.github.com/ewrenn8/3409e44252f93497a9b447900f3fb5b7) for an example.
 
 ---
 

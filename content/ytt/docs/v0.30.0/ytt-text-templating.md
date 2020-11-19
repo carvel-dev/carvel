@@ -46,4 +46,4 @@ key:
   nested_key_(@= val1 @): "middle (@= val2 @) after"
 ```
 
-See [Text template example](https://get-ytt.io/#example:example-text-template) in online playground.
+See [Text template example](https://carvel.dev/ytt/#example:example-text-template) in online playground.

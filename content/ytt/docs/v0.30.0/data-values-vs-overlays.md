@@ -198,7 +198,7 @@ This example demonstrates a number of overlay capabilities:
 1. Extending and updating data values via `prod-values.yml`
 
 Use the [ytt playground to play with this
-example](https://get-ytt.io/#gist:https://gist.github.com/aaronshurley/b6868b76e25fcb24aedde42f522734af).
+example](https://carvel.dev/ytt/#gist:https://gist.github.com/aaronshurley/b6868b76e25fcb24aedde42f522734af).
 
 Pros:
 - Has more functionality
@@ -212,5 +212,5 @@ Cons:
 # If you want to learn more...
 
 Check out the [Getting Started
-tutorial](https://get-ytt.io/#example:example-hello-world) on the ytt website
+tutorial](https://carvel.dev/ytt/#example:example-hello-world) on the ytt website
 for a detailed introduction to ytt.

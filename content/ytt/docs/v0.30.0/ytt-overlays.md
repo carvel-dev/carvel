@@ -62,6 +62,6 @@ $ ytt -f config.yml -f add-content.yml
 
 ### Next Steps
 
-- [Overlay example](https://get-ytt.io/#example:example-overlay-files) in the ytt Playground to try it out, yourself.
+- [Overlay example](https://carvel.dev/ytt/#example:example-overlay-files) in the ytt Playground to try it out, yourself.
 - [ytt Library: Overlay module](lang-ref-ytt-overlay.md) for reference of all overlay annotations and functions.
 - [Data Values vs Overlays](data-values-vs-overlays.md) for when to use one mechanism over the other.
