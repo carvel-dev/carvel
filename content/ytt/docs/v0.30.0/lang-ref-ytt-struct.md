@@ -1,4 +1,8 @@
-### ytt Library: struct module
+---
+title: Struct module
+---
+
+## Overview
 
 The `@ytt:struct` module provides functions for constructing and deconstructing [`struct`](lang-ref-structs.md) values.
 
@@ -8,15 +12,7 @@ To use these functions, include the `@ytt:struct` module:
 load("@ytt:struct", "struct")
 ```
 
-The functions exported by this module are:
-- [struct.decode()](#structdecode)
-- [struct.encode()](#structencode)
-- [struct.make()](#structmake)
-- [struct.make_and_bind()](#structmake_and_bind)
-
-__
-
-#### struct.decode()
+## struct.decode()
 Deconstructs a given value into plain/Starlark values, recursively.
 
 ```python
@@ -46,7 +42,7 @@ bar["a"]  # <== [1, 2, 3, {"c": 456}]
 
 __
 
-#### struct.encode()
+## struct.encode()
 
 Makes a `struct` of a given value, recursively. 
 
@@ -102,7 +98,7 @@ urls = struct.encode({"valid_port": _valid_port, "encode": _url_encode, ...})
 ```
 __
 
-#### struct.make()
+## struct.make()
 
 Instantiates a `struct` based on the key/value pairs provided.
 
@@ -165,7 +161,7 @@ See also: [`struct.encode()`](#structencode) to convert all `dict` values to `st
 
 __
 
-#### struct.make_and_bind()
+## struct.make_and_bind()
 
 Binds one or more function(s) to a `struct`, making them method(s) on that struct.
 This allows `struct`s to carry both data and behavior related to that data.

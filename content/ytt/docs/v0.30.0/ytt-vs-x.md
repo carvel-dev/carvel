@@ -2,16 +2,15 @@
 title: ytt vs x
 ---
 
-## ytt vs x
 
-### ytt vs Go text/template (and other text templating tools)
+## ytt vs Go text/template (and other text templating tools)
 
 - [Go's text/template](https://golang.org/pkg/text/template/)
 - [Jinja](http://jinja.pocoo.org/)
 
 Most generic templating tools do not understand content that they are templating and consider it just plain text. ytt operates on YAML structures, hence typical escaping and formatting problems common to text templating tools are eliminated. Additionally, ytt provides a very easy way to make structures reusable in a much more readable way that's possible with some text templating tools.
 
-### ytt vs jsonnet
+## ytt vs jsonnet
 
 - [Jsonnet](https://jsonnet.org/)
 
@@ -19,13 +18,13 @@ ytt conceptually is very close to [jsonnet](https://jsonnet.org/). Both operate 
 
 We also believe that transitioning from plain YAML to templated YAML with `ytt` is very easy and natural.
 
-### ytt vs Dhall
+## ytt vs Dhall
 
 - [Dhall](https://dhall-lang.org/)
 
 Dhall language is a configuration language that can output YAML, and JSON. One of its strong points is ability to provide scripting environment that is "hermetically sealed" and safe, even against malicious templates. `ytt` also embraces same goal (and builds upon the great work of Starlark community) by exposing small API in the template context. For example, there is no way to make network calls, read from file system, _or currently, even get time_.
 
-### ytt vs Kustomize (and CF BOSH ops files)
+## ytt vs Kustomize (and CF BOSH ops files)
 
 - [Kustomize](https://kubernetes.io/blog/2018/05/29/introducing-kustomize-template-free-configuration-customization-for-kubernetes/)
 - [CF BOSH's ops files](https://bosh.io/docs/cli-ops-files)
@@ -45,14 +44,14 @@ Here are a few more detailed differences:
 - `ytt` allows you to define variables.
 - `ytt` has facilties to inject data into overlays from a variety of inputs including command line arguments, environment variables, and files.
 
-### ytt vs Orchestration Tools (Pulumi / HELM)
+## ytt vs Orchestration Tools (Pulumi / HELM)
 
 - [Pulumi](https://www.pulumi.com/)
 - [HELM](https://helm.sh/)
 
 Orchestration tools like Pulumi, and HELM, have combined configuration management and workflow management into the same tool. There are advantages and disadvantages to that. `ytt` is designed specifically to only focus on configuration management. Though, YAML output can be used with HELM, Pulumi, or other tools.
 
-### ytt vs plain Ruby/Python/etc
+## ytt vs plain Ruby/Python/etc
 
 Key advantages for `ytt`:
 

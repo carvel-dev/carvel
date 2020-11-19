@@ -1,13 +1,5 @@
-# ytt Library: Overlay module
-
-## Contents
-
-- [Overview](#overview)
-- [Overlays as files](#overlays-as-files) — the primary way overlays are used: declaratively
-- [Programmatic access](#programmatic-access) — applying overlays in a more precise way: programmatically
-- [`@overlay` Annotations](#overlay-annotations) — how to declare overlays
-- [Functions](#functions) — the contents of the `@ytt:overlay` module
-
+---
+title: Overlay module
 ---
 
 ## Overview

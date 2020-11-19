@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Development Details
 ---
 
 ## Building
@@ -36,7 +36,7 @@ For those interested in extending and improving `ytt`, below is a quick referenc
 - [pkg/yttlibrary](https://github.com/k14s/ytt/tree/develop/pkg/yttlibrary) is bundled `@ytt` library
   - you can also make your own libraries as exemplified by [k14s/k8s-lib](https://github.com/k14s/k8s-lib)
 
-### Tests
+## Tests
 
 - `./hack/test-unit.sh` executes various basic validation tests
   - Notable test locations:

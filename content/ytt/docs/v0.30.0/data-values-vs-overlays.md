@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: "Data Values vs Overlays"
 ---
 
-# Data Values vs Overlays
+## Overview
 
 As folks get started with `ytt`, a common question that arises is, “when should
 I use data values versus overlays?” While these features do address a similar

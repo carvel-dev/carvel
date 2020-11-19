@@ -1,4 +1,6 @@
-### Lists
+---
+title: Lists
+---
 
 ```yaml
 #@ nums = [123, 374, 490]

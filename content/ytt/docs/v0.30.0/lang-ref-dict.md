@@ -1,4 +1,6 @@
-### Dictionaries
+---
+title: Dictionaries
+---
 
 ```yaml
 #@ color = {"red": 123, "yellow": 100, "blue": "245"}

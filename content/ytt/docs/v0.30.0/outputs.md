@@ -1,8 +1,6 @@
 ---
-toc: false
+title: Outputs
 ---
-
-## Outputs
 
 ytt supports three different output destinations:
 

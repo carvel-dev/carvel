@@ -109,5 +109,5 @@ example on the playground
 
 ### Contributing
 
-- [Contributing Guidelines](../CONTRIBUTING.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
 - [Development details](dev.md) — overview of the `ytt` codebase

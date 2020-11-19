@@ -1,10 +1,6 @@
 ---
-title: Overview
+title: Built-in ytt Library
 ---
-
-# ytt Library
-
-Following modules are included with `ytt`.
 
 ## General modules
 

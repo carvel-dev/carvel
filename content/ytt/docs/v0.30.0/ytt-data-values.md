@@ -1,20 +1,13 @@
 ---
-title: Overview
+title: ytt @data/values
 ---
 
-## ytt @data/values
+## Overview
 
 The standard way to externalize configuration values is to declare them as "Data Values"
 and then reference those values in templates.
 
-- [Declaring and Using Data Values](#declaring-and-using-data-values)
-- [Splitting data values into multiple files](#splitting-data-values-into-multiple-files)
-- [Overriding data values via command line flags](#overriding-data-values-via-command-line-flags)
-- [Library data values](#library-data-values)
-  - [Setting via files](#library-setting-via-files)
-  - [Setting via command line flags](#library-setting-via-cmd)
-
-### Declaring and Using Data Values
+## Declaring and Using Data Values
 
 A Data Values file is a YAML document annotated with `@data/values`.
 
@@ -65,7 +58,7 @@ Note:
     ```
 - `data.values` is a [`struct`](lang-ref-structs.md).
  
-### Splitting data values into multiple files
+## Splitting data values into multiple files
 
 Available in v0.13.0.
 
@@ -117,7 +110,7 @@ fifth: new-val5
 
 See [Multiple data values example](https://carvel.dev/ytt/#example:example-multiple-data-values) in the online playground.
 
-### Overriding data values via command line flags
+## Overriding data values via command line flags
 
 (As of v0.17.0+ `--data-value` parses value as string by default. Use `--data-value-yaml` to get previous behaviour.)
 
@@ -154,13 +147,13 @@ ytt -f . \
 ```
 
 ---
-### Library data values
+## Library data values
 
 Available in v0.28.0+
 
 Each library may specify data values which will be evaluated separately from the root level library.
 
-#### <a id='library-setting-via-files'/> Setting via files
+### Setting library values via files
 
 To override library data values, add `@library/ref` annotation to data values YAML document, like so:
 
@@ -179,7 +172,7 @@ key3: val3
 
 The `@data/values` annotation also supports a keyword argument `after_library_module`. If this keyword argument is specified, given data values will take precedence over data values passed to the `.with_data_values(...)` function when evaluating via the [library module](./lang-ref-ytt-library.md).
 
-#### <a id='library-setting-via-cmd'/> Setting via command line flags
+### Setting library values via command line flags
 
 Data value flags support attaching values to libraries for use during [library module](./lang-ref-ytt-library.md) evaluation:
 

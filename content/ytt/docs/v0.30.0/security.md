@@ -1,12 +1,12 @@
 ---
-title: Overview
+title: Security
 ---
 
-## Security
+## Vulnerability Disclosure
 
 If you believe you have found a security issue in `ytt`, please responsibly disclose by contacting us at `dkalinin@pivotal.io`.
 
-### Attack Vectors
+## Attack Vectors
 
 This section is a work-in-progress...
 

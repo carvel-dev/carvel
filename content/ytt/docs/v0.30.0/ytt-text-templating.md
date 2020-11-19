@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Text Templating
 ---
 
-## Text Templating
+## Overview
 
 ytt supports text templating within YAML strings and `.txt` files.
 
@@ -16,7 +16,7 @@ Examples:
 - `before (@ 123 @) middle (@= "tpl" @) after` produces `before  middle tpl after`
 - `before    (@- 123 -@)   middle   (@-= "tpl" -@)   after` produces `beforemiddletplafter`
 
-### Inside YAML strings
+## Inside YAML strings
 
 `+` operand or [`string·format(...)`](lang-ref-string.md) method provide a good way to build strings:
 

@@ -1,8 +1,12 @@
-### ytt Library: Library annotations
+---
+title: Library Module
+---
+
+## Library annotations
 
 Available in v0.28.0+
 
-- `#@library/ref`: Attaches a yaml document to the specified library to be used during evalutaion via the library module (only supported for [data value documents](./ytt-data-values.md#library-setting-via-files))
+- `#@library/ref`: Attaches a yaml document to the specified library to be used during evalutaion via the library module (only supported for [data value documents](ytt-data-values.md#setting-library-values-via-files))
 
 ```yaml
 #@library/ref "@app"
@@ -11,9 +15,9 @@ Available in v0.28.0+
 name: "app1"
 ```
 
-Note: data values may also be attached to libraries via [command line flags](ytt-data-values.md#library-setting-via-cmd)
+Note: data values may also be attached to libraries via [command line flags](ytt-data-values.md#setting-library-values-via-command-line-flags)
 
-### ytt Library: Library module
+## Library module
 
 Library module `@ytt:library` provides a way to programmatically get result of templates included in a library. Libraries are found within `_ytt_lib` subdirectory.
 
@@ -70,6 +74,6 @@ Available in v0.28.0+
 app_values = app1_with_vals.data_values()
 ```
 
-#### Examples
+### Examples
 
 See [ytt-library-module example](../examples/playground/example-ytt-library-module).

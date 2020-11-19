@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: Strict YAML
 ---
 
-## Strict YAML subset
+## Overview
 
 ytt includes strict YAML subset mode that tries to remove any kind of ambiguity in user's intent when parsing YAML.
 
@@ -16,7 +16,7 @@ Unlike full YAML, strict subset:
 - requires strings with colon to be explicitly quoted
 - requires strings with triple-dash (document start) to be explicitly quoted
 
-### Example
+## Example
 
 Non-strict:
 

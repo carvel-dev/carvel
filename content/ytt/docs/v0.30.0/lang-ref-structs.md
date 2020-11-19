@@ -1,4 +1,6 @@
-### Structs
+---
+title: Structs
+---
 
 Structs are well-defined data objects, comprised of key/value pairs known as "attributes". They are a way to store and refer to data of a known structure.
 
