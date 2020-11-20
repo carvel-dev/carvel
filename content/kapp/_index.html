@@ -99,8 +99,8 @@ $ wget -O- https://get-kapp.io/install-katacoda.sh | bash
 $ cd kapp/
 $ kapp version{{< / highlight >}}
         <p>And now onto using <span class="example">kapp</span>:</p>
-        <p>In this example, we are installing example app from <a href="https://github.com/vmware-tanzu/carvel-kapp">kapp repository</a>.</p>
-        <p class="comment">Changes summary shows that all resources are new.</p>
+        <p>In this example, we are installing an example app from the <a href="https://github.com/vmware-tanzu/carvel-kapp">kapp repository</a>.</p>
+        <p class="comment">Note that in the changes summary we see that all the resources to be deployed are new.</p>
         {{< highlight bash "" >}}
 $ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml
 
@@ -130,7 +130,7 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 2:13:03PM: ---- waiting complete [2/2 done] ----
 
 Succeeded{{< / highlight >}}
-        <p class="comment">ls command shows list of all apps stored in current namespace. Apps themselves can span multiple namespaces and cluster scope.</p>
+        <p class="comment">The ls command shows a list of all apps stored in the current namespace. Apps themselves can span multiple namespaces and cluster scope.</p>
         {{< highlight bash "" >}}
 $ kapp ls
 
@@ -147,18 +147,17 @@ Lca: Last Change Age
 1 apps
 
 Succeeded{{< / highlight >}}
-        <p class="comment">Now let's update from one app configuration to another using <code>deploy</code> command.
-            <br><br>
-            Since <code>--diff-changes</code> is used, 
-            <code>kapp</code> will show detailed diff against
-            versions of resources in the cluster.
-            <br><br>
-            These first two resources will be created.
+        <p class="comment">Now let's update from one app configuration to another using the <code>deploy</code> command.
+            <br></>
+            <br></>
+            In this example, since <code>--diff-changes</code> is used, <code>kapp</code> will show a detailed diff against
+            versions of the resources that exist in the cluster. The first two resource diffs indicate they are brand new and will be created.
+            The next resource in the diff will be updated according to the changes shown. Finally, the last resource diff shows it will be deleted
+            <br></>
+            <br></>
+            As above, the deploy will then display a list of changes before continuing. Once the user has chosen to continue, we see a series
+            of progress logs and finally a success message.
         </p>
-        <p class="comment">This resource will be updated.</p>
-        <p class="comment">This resource is will be deleted.</p>
-        <p class="comment">Changes summary is presented before deploy will continue. There are only few changes in this example.</p>
-        <p class="comment">Detailed progress log shows kapp waiting for associated resources to be ready. Readiness checks are specific to resource types.</p>
         {{< highlight bash "" >}}
 $ kapp deploy -a app1 -f examples/simple-app-example/config-2.yml --diff-changes
 
@@ -266,7 +265,7 @@ Continue? [yN]:
 2:21:18PM: ---- waiting complete [4/4 done] ----
 
 Succeeded{{< / highlight >}}
-    <p class="comment">inspect command shows list of live objects associated with given app. --tree view optionally shows simple parent-child resource relationships.</p>
+    <p class="comment">The inspect command can be used to view a list of live objects associated with given app. --tree view optionally shows simple parent-child resource relationships.</p>
     {{< highlight bash "" >}}
 $ kapp inspect -a app1 --tree
 
@@ -289,7 +288,7 @@ Ri: Reconcile information
 7 resources
 
 Succeeded{{< / highlight >}}
-        <p class="comment">logs command starts streaming logs from all Pods associated with given app.</p>
+        <p class="comment">The logs command starts streaming logs from all Pods associated with the given app.</p>
         {{< highlight bash "" >}}
 $ kapp logs -f -a app1
 
@@ -298,7 +297,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
 # starting tailing 'simple-app-8558f78495-zqwxt &gt; simple-app' logs
 simple-app-8558f78495-zqwxt &gt; simple-app | 2020/07/13 18:21:16 Server started
 ^C{{< / highlight >}}
-        <p class="comment">delete command finds all resources in the cluster associated with given app, issues delete operation and waits for them be be deleted.</p>
+        <p class="comment">The delete command finds all resources in the cluster associated with the given app, issues delete operation, and waits for them be be deleted.</p>
         {{< highlight bash "" >}}
 $ kapp delete -a app1
 
