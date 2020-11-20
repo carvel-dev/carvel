@@ -1,4 +1,8 @@
 toc:
+  - title: Introduction
+    subfolderitems:
+      - page: Overview
+        url: /
   - title: Deploy
     subfolderitems:
       - page: Apps & Deployment
@@ -13,11 +17,11 @@ toc:
         url: /apply-waiting
   - title: Setup
     subfolderitems:
-      - page: Running with Restricted Permissions
+      - page: Permissions
         url: /rbac
       - page: Namespace for State Storage
         url: /state-namespace
-      - page: Extend Default Configuration
+      - page: Configuration
         url: /config
   - title: Reference
     subfolderitems:

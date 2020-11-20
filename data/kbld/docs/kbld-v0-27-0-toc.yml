@@ -1,7 +1,7 @@
 toc:
   - title: Introduction
     subfolderitems:
-      - page: Common Use Cases
+      - page: Overview
         url: /
   - title: Usage
     subfolderitems:
@@ -11,7 +11,7 @@ toc:
         url: /building
       - page: Packaging & Relocation
         url: /packaging
-      - page: CNAB Image Maps
+      - page: CNAB Image Mappings
         url: /cnab-image-relocation
   - title: Authentication
     subfolderitems:
