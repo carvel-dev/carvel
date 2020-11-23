@@ -101,7 +101,7 @@ $ kapp version{{< / highlight >}}
         <p>And now onto using <span class="example">kapp</span>:</p>
         <p>In this example, we are installing an example app from the <a href="https://github.com/vmware-tanzu/carvel-kapp">kapp repository</a>.</p>
         <p class="comment">Note that in the changes summary we see that all the resources to be deployed are new.</p>
-        {{< highlight bash "" >}}
+        {{< highlight text "" >}}
 $ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
@@ -131,7 +131,7 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 
 Succeeded{{< / highlight >}}
         <p class="comment">The ls command shows a list of all apps stored in the current namespace. Apps themselves can span multiple namespaces and cluster scope.</p>
-        {{< highlight bash "" >}}
+        {{< highlight text "" >}}
 $ kapp ls
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
@@ -158,7 +158,7 @@ Succeeded{{< / highlight >}}
             As above, the deploy will then display a list of changes before continuing. Once the user has chosen to continue, we see a series
             of progress logs and finally a success message.
         </p>
-        {{< highlight bash "" >}}
+        {{< highlight text "" >}}
 $ kapp deploy -a app1 -f examples/simple-app-example/config-2.yml --diff-changes
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
@@ -182,7 +182,6 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
     15 +     simple-app: ""
     16 +   type: NodePort
     17 +
-
 @@ create configmap/simple-app (v1) namespace: default @@
     0 + apiVersion: v1
     1 + data:
@@ -266,7 +265,7 @@ Continue? [yN]:
 
 Succeeded{{< / highlight >}}
     <p class="comment">The inspect command can be used to view a list of live objects associated with given app. --tree view optionally shows simple parent-child resource relationships.</p>
-    {{< highlight bash "" >}}
+    {{< highlight text "" >}}
 $ kapp inspect -a app1 --tree
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
@@ -289,7 +288,7 @@ Ri: Reconcile information
 
 Succeeded{{< / highlight >}}
         <p class="comment">The logs command starts streaming logs from all Pods associated with the given app.</p>
-        {{< highlight bash "" >}}
+        {{< highlight text "" >}}
 $ kapp logs -f -a app1
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
@@ -298,7 +297,7 @@ Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
 simple-app-8558f78495-zqwxt &gt; simple-app | 2020/07/13 18:21:16 Server started
 ^C{{< / highlight >}}
         <p class="comment">The delete command finds all resources in the cluster associated with the given app, issues delete operation, and waits for them be be deleted.</p>
-        {{< highlight bash "" >}}
+        {{< highlight text "" >}}
 $ kapp delete -a app1
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-pool-1-d01bcd06-bgie, 4+)
