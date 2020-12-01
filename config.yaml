@@ -1,4 +1,5 @@
-baseURL: "https://carvel.dev/"
+---
+baseURL: "/"  # this should be updated to https://carvel.dev once it's deployed
 disablePathToLower: true
 languageCode: en-us
 DefaultContentLanguage: "en"
