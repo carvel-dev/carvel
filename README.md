@@ -15,3 +15,6 @@ hugo server --disableFastRender
 #### Serve
 
 Serve site at http://localhost:1313
+
+#### Hugo Resources
+    * [Directory Structure Explained](https://gohugo.io/getting-started/directory-structure/)

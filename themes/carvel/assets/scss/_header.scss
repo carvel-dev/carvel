@@ -34,6 +34,15 @@ header {
             font-family: $metropolis-medium;
         }
     }
+    a:hover {
+        color: $grey;
+        font-weight: 300;
+        font-family: $metropolis-light;
+        &.active {
+            font-family: $metropolis-medium;
+        }
+        text-decoration: underline;
+    }
     li {
         list-style-type: none;
         display: inline;

@@ -257,8 +257,13 @@
     padding-bottom: 100px;
     .buttons {
         margin-top: 70px;
+        .button:hover {
+          color: $white;
+          text-decoration: underline;
+        }
         .button.tertiary {
             margin-left: 30px;
+            background-color: unset;
         }
     }
     .text-block {
@@ -503,7 +508,7 @@
             li {
                 margin-bottom: 10px;
                 a {
-                    color: $grey;
+                    color: $docsblue;
                     font-size: 14px;
                     font-weight: 300;
                     &.active {
@@ -535,12 +540,11 @@
             list-style-type: disc;
             padding-left: 20px;
             li {
-                list-style-type: unset;
+                list-style-type: disc;
                 display: list-item;
                 margin-bottom: 10px;
                 color: $grey;
                 line-height: 1.6em;
-                list-style-image: url(/img/arrow.svg);
                 a {
                     font-size: 14px;
                     font-weight: 300;

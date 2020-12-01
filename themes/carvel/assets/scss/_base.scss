@@ -90,6 +90,11 @@ button {
         color: $white;
     }
 }
+.button:hover {
+  color: $white;
+  background-color: $brightblue;
+  text-decoration: underline;
+}
 .strong {
     font-family: $metropolis-medium;
 }
