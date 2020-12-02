@@ -15,6 +15,9 @@
             font-size: 18px;
         }
     }
+    h1 {
+        color: $white;
+    }
     &.homepage {
         background-image: url(/img/carvel-hero.png);
         background-size: cover;
@@ -135,9 +138,6 @@
 .code-block {
     h2 {
         font-size: 36px;
-    }
-    a {
-        font-size: 14px;
     }
     .example {
         background-color: #F2F2F2;
@@ -721,9 +721,6 @@
     background-color: #fff;
     margin-top: -90px;
     padding: 30px 30px 50px 30px;
-    a {
-        font-size: 14px;
-    }
     .grid {
         .col {
             border: 1px solid #F2F2F2;
