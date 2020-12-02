@@ -1,20 +1,30 @@
-# Website for [Carvel](https://carvel.dev/)
+# Website for [carvel.dev](https://carvel.dev/)
 
-##### Prerequisites
+---
+## Local Development
 
-* [Hugo](https://github.com/gohugoio/hugo)
-    * macOS: `brew install hugo`
-    * Windows: `choco install hugo-extended -confirm`
+### Prerequisites
 
-#### Build
+* Install [Hugo](https://github.com/gohugoio/hugo)
+    - (Note "hugo extended" is required since this site uses SCSS)
+    - Prebuilt binaries: https://github.com/gohugoio/hugo/releases
+    - macOS: `brew install hugo`
+    - Windows: `choco install hugo-extended -confirm`
+
+### Run locally
 
 ```bash
-hugo server --disableFastRender
+./hack/run.sh
 ```
 
-#### Serve
+### Serve
 
-Serve site at http://localhost:1313
+Serve site at [http://localhost:1313]()
 
-#### Hugo Resources
-    * [Directory Structure Explained](https://gohugo.io/getting-started/directory-structure/)
+### Directories
+
+- `themes/carvel/assets/` includes SCSS and images
+- `content/` includes content for tool docs
+- `data/` includes configuration for docs TOCs 
+
+More details: [Directory Structure Explained](https://gohugo.io/getting-started/directory-structure/)
