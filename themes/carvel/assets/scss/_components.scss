@@ -508,12 +508,8 @@
             li {
                 margin-bottom: 10px;
                 a {
-                    color: $docsblue;
                     font-size: 14px;
                     font-weight: 300;
-                    &.active {
-                        color: $docsblue;
-                    }
                 }
                 &.heading {
                     color: $black;
@@ -532,7 +528,6 @@
             font-size: 16px;
         }
         a {
-            color: $docsblue;
             font-family: $metropolis-regular;
         }
         ul {
