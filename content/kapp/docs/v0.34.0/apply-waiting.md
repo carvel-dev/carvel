@@ -22,8 +22,8 @@ If resource is not affected by the above rules, its waiting behaviour depends on
 
 ## Controlling waiting via resource annotations
 
-- `kapp.k14s.io/disable-wait` annotation controls whether waiting will happen at all. Possible values: ``.
-- `kapp.k14s.io/disable-associated-resources-wait` annotation controls whether associated resources impact resource's waiting state. Possible values: ``.
+- `kapp.k14s.io/disable-wait` annotation controls whether waiting will happen at all. Possible values: "".
+- `kapp.k14s.io/disable-associated-resources-wait` annotation controls whether associated resources impact resource's waiting state. Possible values: "".
 
 ## apps/v1/Deployment resource
 

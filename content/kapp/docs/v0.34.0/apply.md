@@ -24,15 +24,19 @@ Related: [ownership label rules](config.md) and [label scoping rules](config.md)
 
 `kapp.k14s.io/create-strategy` annotation controls create behaviour (rarely necessary)
 
-Possible values `` (default), `fallback-on-update`. In some cases creation of a resource may conflict with that resource being created in the cluster by other means (often automated). An example of that is creation of default ServiceAccount by kapp racing with Kubernetes service accounts controller doing the same thing. By specifying `fallback-on-update` value, kapp will catch resource creation conflicts and apply resource as an update.
+Possible values: "" (default), `fallback-on-update`.
+
+In some cases creation of a resource may conflict with that resource being created in the cluster by other means (often automated). An example of that is creation of default ServiceAccount by kapp racing with Kubernetes service accounts controller doing the same thing. By specifying `fallback-on-update` value, kapp will catch resource creation conflicts and apply resource as an update.
 
 ### kapp.k14s.io/update-strategy
 
 `kapp.k14s.io/update-strategy` annotation controls update behaviour
 
-Possible values: `` (default), `fallback-on-replace`, `always-replace`, `skip`. In some cases entire resources or subset resource fields are immutable which forces kapp users to specify how to apply wanted update.
+Possible values: "" (default), `fallback-on-replace`, `always-replace`, `skip`.
 
-- `` means to issue plain update call
+In some cases entire resources or subset resource fields are immutable which forces kapp users to specify how to apply wanted update.
+
+- "" means to issue plain update call
 - `fallback-on-replace` causes kapp to fallback to resource replacement if update call results in `Invalid` error. Note that if resource is replaced (= delete + create), it may be negatively affected (loss of persistent data, loss of availability, etc.). For example, if Deployment or DaemonSet is first deleted and then created then associated Pods will be recreated as well, but all at the same time (even if rolling update is enabled), which likely causes an availability gap.
 - `always-replace` causes kapp to always delete and then create resource (See note above as well.)
 - `skip` causes kapp to not apply update (it will show up in a diff next time). Available in v0.33.0+.
@@ -41,31 +45,44 @@ Possible values: `` (default), `fallback-on-replace`, `always-replace`, `skip`. 
 
 `kapp.k14s.io/delete-strategy` annotation controls deletion behaviour
 
-Possible values: `` (default), `orphan`. By default resource is deleted, however; choosing `orphan` value will make kapp forget about this resource. Note that if this resource is owned by a different resource that's being deleted, it might still get deleted. Orphaned resources are labeled with `kapp.k14s.io/orphaned` label. As of v0.31.0+, resource is also disassociated from owning app so that it can be owned by future apps.
+Possible values: "" (default), `orphan`.
+
+By default resource is deleted, however; choosing `orphan` value will make kapp forget about this resource. Note that if this resource is owned by a different resource that's being deleted, it might still get deleted. Orphaned resources are labeled with `kapp.k14s.io/orphaned` label. As of v0.31.0+, resource is also disassociated from owning app so that it can be owned by future apps.
 
 ### kapp.k14s.io/owned-for-deletion
 
 `kapp.k14s.io/owned-for-deletion` annotation controls resource deletion during `kapp delete` command
 
-Possible values: ``. By default non-kapp owned resources are not explicitly deleted by kapp, but expected to be deleted by the cluster (for example Endpoints resource for each Service). In some cases it's desired to annotate non-kapp owned resource so that it does get explicitly deleted, possibly because cluster does not plan to delete it (e.g. PVCs created by StatefulSet are not deleted by StatefulSet controller; [https://github.com/k14s/kapp/issues/36](https://github.com/k14s/kapp/issues/36)).
+Possible values: "".
+
+By default non-kapp owned resources are not explicitly deleted by kapp, but expected to be deleted by the cluster (for example Endpoints resource for each Service). In some cases it's desired to annotate non-kapp owned resource so that it does get explicitly deleted, possibly because cluster does not plan to delete it (e.g. PVCs created by StatefulSet are not deleted by StatefulSet controller; [https://github.com/k14s/kapp/issues/36](https://github.com/k14s/kapp/issues/36)).
 
 ### kapp.k14s.io/nonce
 
 `kapp.k14s.io/nonce` annotation allows to inject unique ID
 
-Possible values: `` (default). Annotation value will be replaced with a unique ID on each deploy. This allows to force resource update as value changes every time.
+Possible values: "" (default).
+
+Annotation value will be replaced with a unique ID on each deploy. This allows to force resource update as value changes every time.
 
 ### kapp.k14s.io/deploy-logs
 
 `kapp.k14s.io/deploy-logs` annotation indicates which Pods' log output to show during deploy
 
-Possible values: `` (default; equivalent to `for-new`), `for-new` (only newly created Pods are tailed), `for-existing` (only existing Pods are tailed), `for-new-or-existing` (both newly created and existing Pods are tailed). Especially useful when added to Jobs. For example, see [examples/resource-ordering/sync-check.yml](../examples/resource-ordering/sync-check.yml)
+Possible values:
+
+- "" (default; equivalent to `for-new`)
+- `for-new` (only newly created Pods are tailed)
+- `for-existing` (only existing Pods are tailed)
+- `for-new-or-existing` (both newly created and existing Pods are tailed)
+
+Especially useful when added to Jobs. For example, see [examples/resource-ordering/sync-check.yml](../examples/resource-ordering/sync-check.yml)
 
 ### kapp.k14s.io/deploy-logs-container-names
 
-`kapp.k14s.io/deploy-logs-container-names` annotation indicates which Containers' log output to show during deploy
+`kapp.k14s.io/deploy-logs-container-names` annotation indicates which containers' log output to show during deploy
 
-Possible values: `` (default), 'containerName1', 'containerName1,containerName2'
+Possible values: "" (default), `containerName1`, `containerName1,containerName2`
 
 ---
 ## Controlling apply via deploy flags
