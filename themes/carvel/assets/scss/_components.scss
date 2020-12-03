@@ -425,6 +425,7 @@
         width: 25%;
         float: left;
         position: relative;
+        border-right: 1px solid $lightgrey;
         .dropdown {
             font-size: 14px;
             font-family: $metropolis-medium;
@@ -491,15 +492,16 @@
             border: 1px solid #cecece;
         }
         h3 {
-            font-size: 14px;
+            font-size: 18px;
             font-family: $metropolis-medium;
+            margin-bottom: 10px;
         }
         ul {
             padding-left: 0px;
+            margin-top: 0;
             margin-bottom: 35px;
             list-style-type: none;
             li {
-                margin-bottom: 10px;
                 a {
                     font-size: 14px;
                     font-weight: 300;
