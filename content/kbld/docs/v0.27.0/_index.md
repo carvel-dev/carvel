@@ -22,6 +22,10 @@ Features:
 
 See [building and deploying simple Go application to Kubernetes example](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes#step-3-building-container-images-locally) that uses kbld.
 
+## Why digest references?
+
+Docker images can be referenced by their name (`nginx`), name-tag pair (`nginx:1.14`), or a digest (`nginx@sha256:c398dc3f2...`). One can avoid potential deployment inconsistencies by using digest references as they are immutable, and therefore always points to an exact image. kbld helps Kubernetes users convert image references to their digest form to make sure exact image is used during deploys.
+
 ## Blog posts
 
 - [Introducing k14s (Kubernetes Tools): Simple and Composable Tools for Application Deployment](https://content.pivotal.io/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment)
