@@ -525,7 +525,6 @@
     .docs-content {
         width: 72%;
         float: right;
-        font-size: 14px;
         h3 {
             font-size: 22px;
         }
@@ -535,7 +534,6 @@
         a {
             color: $docsblue;
             font-family: $metropolis-regular;
-            font-size: 14px;
         }
         ul {
             list-style-type: disc;
@@ -544,13 +542,6 @@
                 list-style-type: disc;
                 display: list-item;
                 margin-bottom: 10px;
-                color: $grey;
-                line-height: 1.6em;
-                a {
-                    font-size: 14px;
-                    font-weight: 300;
-                    color: $docsblue;
-                }
                 ul {
                     margin-top: 10px;
                 }
@@ -562,8 +553,6 @@
                 list-style-type: decimal;
                 display: list-item;
                 margin-bottom: 10px;
-                font-size: 14px;
-                color: $grey;
             }
         }
         code {
@@ -595,6 +584,7 @@
         }
     }
 }
+
 .blog {
     padding-bottom: 50px;
     .col {
@@ -669,9 +659,6 @@
                 list-style-type: unset;
                 display: list-item;
                 margin-bottom: 10px;
-                font-size: 14px;
-                color: $grey;
-                line-height: 1.6em;
                 list-style-image: url(/img/arrow.svg);
             }
         }
@@ -681,8 +668,6 @@
                 list-style-type: decimal;
                 display: list-item;
                 margin-bottom: 10px;
-                font-size: 14px;
-                color: $grey;
             }
         }
         code {
@@ -740,8 +725,6 @@
                     padding-left: 20px;
                     li {
                         margin-bottom: 10px;
-                        color: $grey;
-                        line-height: 1.6em;
                         list-style-image: url(/img/arrow.svg);
                     }
                 }
