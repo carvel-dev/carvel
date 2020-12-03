@@ -20,21 +20,8 @@ Features:
   - maintaining exactly same digests, hence guaranteeing exactly same content
 - Not specific to Kubernetes, but works really well with Kubernetes configuration files  
 
-![](kbld-screenshot.png)
-
 See [building and deploying simple Go application to Kubernetes example](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes#step-3-building-container-images-locally) that uses kbld.
 
-## Docs
+## Blog posts
 
-- [Resolving image references to digests](resolving.md)
-- [Building images from source](building.md)
-- [Packaging/relocating images for distribution](packaging.md)
-- [Registry authentication](auth.md)
-- [Configuration](config.md)
-- [CNAB image relocation mapping](cnab-image-relocation.md)
-- Blog posts
-  - [Introducing k14s (Kubernetes Tools): Simple and Composable Tools for Application Deployment](https://content.pivotal.io/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment)
-
-### Misc
-
-- [Development details](dev.md)
+- [Introducing k14s (Kubernetes Tools): Simple and Composable Tools for Application Deployment](https://content.pivotal.io/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment)
