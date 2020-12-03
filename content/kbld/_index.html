@@ -97,7 +97,7 @@ $ ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -{{< / highlight
     </div>
     <div class="code-block">
         <h3>Examples</h3>
-        <p>Resolves name-tag pair reference (<span class="example">nginx:1.17</span>) into digest reference (<span class="example">index.docker.io/library/nginx@sha256:2539d4344...</span>)</p>
+        <p>Resolves name-tag pair reference (<code>nginx:1.17</code>) into digest reference (<code>index.docker.io/library/nginx@sha256:2539d4344...</code>)</p>
         <p>Input:</p>
         {{< highlight yaml "" >}}
 apiVersion: apps/v1
@@ -157,7 +157,7 @@ spec:
 {{< / highlight >}}
     </div>
     <div class="code-block">
-        <p>Builds app from local directory (configured via <span class="example">Sources</span>), pushes image as <span class="example">docker.io/hk/simple-app</span> (configured via <span class="example">ImageDestinations</span>), and finally resolves it to a digest reference <span class="example">index.docker.io/hk/simple-app@sha256:e932e46fd...<span class="example"></span>.</p>
+        <p>Builds app from local directory (configured via <code>Sources</code>), pushes image as <code>docker.io/hk/simple-app</code> (configured via <code>ImageDestinations</code>), and finally resolves it to a digest reference <code>index.docker.io/hk/simple-app@sha256:e932e46fd...</code>.</p>
         <p>Input:</p>
         {{< highlight yaml "" >}}
 apiVersion: apps/v1

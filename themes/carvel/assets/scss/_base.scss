@@ -123,3 +123,21 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
+code {
+    background: #efefef;
+    padding: 2px 4px;
+    font-size: 85%;
+}
+pre {
+    code {
+        display: block;
+        padding: 15px;
+        margin-bottom: 30px;
+        overflow-x: auto;
+        &.language-bash, &.language-bash-plain {
+            background: #202020;
+            color: #d0d0d0;
+        }
+    }
+}
