@@ -54,3 +54,54 @@ For those interested in extending and improving kbld, below is a quick reference
 - [pkg/kbld/search](https://github.com/k14s/kbld/tree/develop/pkg/kbld/search) implements YAML node searcher that finds image URLs
 - [test/e2e](https://github.com/k14s/kbld/tree/develop/test/e2e) includes e2e tests that can run against Docker registry.
 - [pkg/kbld/website](https://github.com/k14s/kbld/tree/develop/pkg/kbld/website) has HTML and JS assets used by `kbld website` command and ultimately https://get-kbld.io.
+
+## How to set up an insecure-only registry
+It is occasionally necessary to test against insecure-only registries in order to ensure the commands can run against http endpoints.
+Here's how we set one up on Google's Kubernetes Engine:
+
+
+* Create a GKE cluster through the web GUI
+* Install gcloud - https://cloud.google.com/kubernetes-engine/docs/quickstart#local-shell
+* Target your cluster `gcloud container clusters get-credentials <cluster-name>`
+* Create the registry deployment file, reg.yml
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry
+  labels:
+    app: registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      containers:
+      - name: registry
+        image: registry
+        ports:
+        - containerPort: 8080
+        env:
+        - name: REGISTRY_PORT
+          value: "8080"
+```
+
+* Apply the deployment with `kubectl apply -f reg.yml`
+
+* Expose it on port 5000 with
+`kubectl expose deployment registry --name=registry --type=LoadBalancer --port 80 --target-port 5000 -oyaml`
+
+* Wait until it gets an external IP (~30 seconds)
+
+To verify that the registry is up and running:\
+In [GKE](https://console.cloud.google.com/), navigate to Kubernetes Engine, then 'Services & Ingress'\
+Confirm that there is an 'External load balancer' named 'registry' with an 'External Endpoint' and a link that returns a 200.\
+At the bottom of the details view (click on registry), see that port forwarding is set up with a 'target port' of 5000.
+
+That's all!  We should now be able to run regular commands against it:
+`kbld relocate -f test/e2e/assets/simple-app -r <External IP>:80/<Name> --registry-insecure`
