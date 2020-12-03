@@ -1,5 +1,5 @@
 ---
-title: Deployment Diff
+title: Diff stage
 ---
 
 ## Overview
@@ -34,6 +34,7 @@ You can control number of kept resource versions via `kapp.k14s.io/num-versions=
 
 Try deploying [redis-with-configmap example](../examples/gitops/redis-with-configmap) and changing `ConfigMap` in a next deploy.
 
+---
 ## Controlling diff via resource annotations
 
 ### kapp.k14s.io/disable-original

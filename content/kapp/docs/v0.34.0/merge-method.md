@@ -1,6 +1,8 @@
 ---
-title: "Merge Method: Why not basic 3 way merge?"
+title: "Resource Merge Method"
 ---
+
+## Why not basic 3 way merge?
 
 kapp explicitly decided to _not_ do basic 3 way merge, and instead allow the user to specify how to resolve "conflicts". Here is our thinking:
 

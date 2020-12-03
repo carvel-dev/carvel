@@ -1,35 +1,33 @@
 toc:
   - title: Introduction
     subfolderitems:
-      - page: Overview
+      - page: About kapp
         url: /
-  - title: Deploy
-    subfolderitems:
-      - page: Apps & Deployment
+      - page: Applications
         url: /apps
-      - page: Deployment Diff
+  - title: Deploy command
+    subfolderitems:
+      - page: Diff stage
         url: /diff
-      - page: Apply a Change
+      - page: Apply stage
         url: /apply
       - page: Apply Ordering
         url: /apply-ordering
       - page: Apply Waiting
         url: /apply-waiting
-  - title: Setup
+  - title: Reference
     subfolderitems:
+      - page: Configuration
+        url: /config
       - page: Permissions
         url: /rbac
       - page: Namespace for State Storage
         url: /state-namespace
-      - page: Configuration
-        url: /config
-  - title: Reference
-    subfolderitems:
       - page: Cheatsheet
         url: /cheatsheet
       - page: Dangerous Flags
         url: /dangerous-flags
-  - title: Integrating With Other Tools
+  - title: Integrations
     subfolderitems:
       - page: Integrating With Other Tools
         url: /integrating-with-other-tools
@@ -39,9 +37,9 @@ toc:
     subfolderitems:
       - page: FAQ
         url: /faq
-      - page: Why Not Basic 3 Way Merge?
+      - page: Resource Merge Method
         url: /merge-method
   - title: Contributing
     subfolderitems:
-      - page: Development Details
+      - page: Development
         url: /dev

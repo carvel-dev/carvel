@@ -1,5 +1,5 @@
 ---
-title: Apply
+title: Apply stage
 ---
 
 ## Overview

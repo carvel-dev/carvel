@@ -1,5 +1,5 @@
 ---
-title: Apps & Deployments
+title: Applications
 ---
 
 ## Overview
