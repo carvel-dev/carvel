@@ -1,21 +1,18 @@
 ---
-title: "Introducing Carvel"
+title: "Carvel, formerly k14s, aims to simplify application deployment atop Kubernetes"
 slug: introduction-to-carvel-blog-post
 date: 2020-08-20
 author: Helen George
-excerpt: "Carvel, formerly k14s, aims to simplify application deployment atop Kubernetes"
+excerpt: "Now that you've deployed Kubernetes, how do you get apps up and running atop the container runtime?..."
 image: /img/logo.svg
 tags: ['Helen George', 'Article']
 ---
 
-
-## Carvel, formerly k14s, aims to simplify application deployment atop Kubernetes
-
-Now that you’ve deployed Kubernetes, how do you get apps up and running atop the container runtime?
-[Carvel](https://github.com/vmware-tanzu/carvel) (formerly known as k14s), a collection of open-source
+Now that you've deployed Kubernetes, how do you get apps up and running atop the container runtime?
+[Carvel](https://carve.dev) (formerly known as k14s), a collection of open-source
 tools for working with Kubernetes, is designed to answer this question.
 
-### Carvel was born from frustration with existing tools
+## Carvel was born from frustration with existing tools
 
 Carvel is a set of tools designed to ease lifecycle management of your Kubernetes workloads. The origin
 of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy
@@ -25,17 +22,17 @@ applications.
 
 Carvel is built with UNIX philosophy in mind. We believe each tool should be optimized for a single
 purpose, and have clear boundaries. This allows you to weave Carvel into your Kubernetes environment
-however you want. It’s up to you to choose one element of Carvel, or the entire set of tools.
+however you want. It's up to you to choose one element of Carvel, or the entire set of tools.
 
-### What’s in a name?
+## What's in a name?
 
 Carvel is a method of boat building where the planks of the hull are laid side-by-side without an overlap
 to create a smooth surface and a robust frame. We chose this name because the imagery of workers using
 the Carvel technique reminded us how our tools can be combined with UNIX pipes.
 
-### A closer look at Carvel: ytt, kapp, kbld
+## A closer look at Carvel: ytt, kapp, kbld
 
-Here’s a quick summary of the tools within Carvel:
+Here's a quick summary of the tools within Carvel:
 * **ytt** is a templating tool that understands YAML structures. It can
 also be used for overlaying configuration for Kubernetes workloads. You can try it out in our [interactive playground.](/ytt/#example:example-demo)
 
@@ -45,28 +42,24 @@ shows you the changes you are about to make before you apply them. This way ther
 or unwanted changes made to your cluster. Kapp also converges a set of resources during each deploy
 and waits for them to be ready. It allows you not to worry about the sequences of your workflow.
 
-* **kbld** (pronounced ‘k-build’) is a container image building
+* **kbld** (pronounced 'k-build') is a container image building
 orchestrator. It lets you
-build container images with different types of builders. Check out more of kbld’s features in its 
+build container images with different types of builders. Check out more of kbld's features in its 
 [documentation](/kbld/docs/v0.27.0).
 
 Want to learn more? Watch “[TGI Kubernetes](https://www.youtube.com/watch?v=CSglwNTQiYg)” featuring
 ytt and kapp, then read the [launch blog](https://tanzu.vmware.com/content/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment).
 
-For our part at VMware, we’re using Carvel with the [cf-for-k8s project](https://github.com/cloudfoundry/cf-for-k8s)
+For our part at VMware, we're using Carvel with the [cf-for-k8s project](https://github.com/cloudfoundry/cf-for-k8s)
 and [the beta version of VMware Application Service that runs atop Kubernetes](https://network.pivotal.io/products/tas-for-kubernetes/).
-We can’t wait to see what you can do with these tools!
+We can't wait to see what you can do with these tools!
 
-### Join us on Slack and GitHub
-We are excited about this new chapter of our project, and we look forward to building our community. To this
-end, join us! We want to hear from you and learn with you. Here are several ways you can get involved:
+## Join us on Slack and GitHub
 
-* Join Carvel’s slack channel, ‘#carvel’ in [Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace
-and connect with over 450 Carvel users.
+We are excited about this new chapter of our project, and we look forward to building our community. To this end, join us! We want to hear from you and learn with you. Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 500+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu). Suggest how we can improve the project, the
 docs, or share any other feedback.
 
 We look forward to hearing from you!
-
-
-
