@@ -6,7 +6,7 @@ title: File Marks
 
 ytt allows to control certain metadata about files via `--file-mark` flag.
 
-```
+```bash
 $ ytt ... --file-mark <path>:<mark>=<value>
 ```
 
@@ -30,6 +30,7 @@ ytt -f . \
   --output-directory ../../tmp/
 ```
 
+---
 ## Available Marks
 
 ### path
@@ -48,8 +49,6 @@ Example:
 
 renames `generated.go.txt` to `gen.go.txt`
 
-__
-
 ### exclude
 
 Exclude file from any kind of processing. 
@@ -57,8 +56,6 @@ Exclude file from any kind of processing.
 ```
 --file-mark '<path>:exclude=true'
 ```
-
-__
 
 ### type
 
@@ -87,8 +84,6 @@ Example:
 indicates that `config.yml` is _not_ a `yaml-template`, but is `data`. This file will _not_
 be included in the output, but can be loaded using [`data.read()`](lang-ref-ytt.md#data).
 
-__
-
 ### for-output
 
 Marks a file that is not part of output by default, to be included.
@@ -104,8 +99,6 @@ Example
 
 By default, `.lib.yml` files are not included in the rendered output (they are loaded
 by other templates).  With this file mark, `config.lib.yml` _is_ included in the output.
-
-__
 
 ### exclusive-for-output
 

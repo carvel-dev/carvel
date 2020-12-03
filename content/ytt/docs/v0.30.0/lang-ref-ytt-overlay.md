@@ -75,7 +75,6 @@ metadata:
 
 See also: [Overlay files example](https://carvel.dev/ytt/#example:example-overlay-files) in online playground.
 
-__
 ### Overlay order
 
 (as of v0.13.0)
@@ -88,7 +87,6 @@ Overlays are applied, in sequence, by:
     - e.g. in `aaa/z.yml xxx/c.yml d.yml`, will be applied in following order `aaa/z.yml d.yml xxx/c.yml`
 1. top-to-bottom order for overlay YAML documents within a single file
 
-__
 ### Next Steps
 
 Familiarize yourself with the [overlay annotations](#overlay-annotations).
@@ -149,7 +147,7 @@ result:
       key7: val7
       key8: new-val8
 ```
-__
+
 ### Next Steps
 
 Familiarize yourself with the two kinds of overlay annotations:
@@ -164,7 +162,6 @@ There are two groups of overlay annotations:
 - [Matching Annotations](#matching-annotations)
 - [Action Annotations](#action-annotations)
 
-
 ### Matching Annotations
 
 These annotations are used to select which structure(s) will be modified:
@@ -172,7 +169,6 @@ These annotations are used to select which structure(s) will be modified:
 - [@overlay/match](#overlaymatch)
 - [@overlay/match-child-defaults](#overlaymatch-child-defaults)
 
-__
 #### @overlay/match
 
 Specifies which nodes on the "left" to modify.
@@ -228,7 +224,6 @@ Specifies which nodes on the "left" to modify.
 **History:**
 - v0.28.0+ — added `when` keyword argument.
 
-__
 ##### Custom Overlay Matcher Functions
 
 The matcher functions from `@ytt:overlay` cover many use-cases. From time-to-time, more precise matching is required.
@@ -257,8 +252,6 @@ Returns `True` when `right` is "a member of" `left`
 
 (see also: [Starlark Spec: Membership tests](https://github.com/google/starlark-go/blob/master/doc/spec.md#membership-tests) for more details)
 
-__
-
 _Example 2: Precise string matching_
 
 `left` contains a key of the same name as the value of `right`:
@@ -269,9 +262,6 @@ See also:
 - [Language: String](lang-ref-string.md) for more built-in functions on strings.
 - [@ytt:regexp Library](lang-ref-ytt.md#regexp) for regular expression matching.
 
-
-
-__
 #### @overlay/match-child-defaults
 
 Sets default values for `expects`, `missing_ok`, or `when` for the children of the annotated node.
@@ -313,14 +303,13 @@ metadata:
 The following annotations describe how to modify the matched "left" node.
 
 They are:
-  - [`@overlay/merge`](#overlaymerge) — (default) combine left and right nodes
-  - [`@overlay/remove`](#overlayremove) — delete nodes from left
-  - [`@overlay/replace`](#overlayreplace) — replace the left node
-  - [`@overlay/insert`](#overlayinsert) — insert right node into left
-  - [`@overlay/append`](#overlayappend) — add right node at end of collection on left
-  - [`@overlay/assert`](#overlayassert) — declare an invariant on the left node
+- [`@overlay/merge`](#overlaymerge) — (default) combine left and right nodes
+- [`@overlay/remove`](#overlayremove) — delete nodes from left
+- [`@overlay/replace`](#overlayreplace) — replace the left node
+- [`@overlay/insert`](#overlayinsert) — insert right node into left
+- [`@overlay/append`](#overlayappend) — add right node at end of collection on left
+- [`@overlay/assert`](#overlayassert) — declare an invariant on the left node
 
-__
 #### @overlay/merge
 
 Merge the value of "right" node with the corresponding "left" node.
@@ -334,8 +323,6 @@ _(this annotation has no parameters.)_
 
 **Note:** This is the default action; for each node in an overlay, either the action is explicitly specified or it is `merge`.
 
-
-__
 #### @overlay/remove
 
 Deletes the matched "left" node.
@@ -347,8 +334,6 @@ Deletes the matched "left" node.
 ```
 _(this annotation has no parameters.)_
 
-
-__
 #### @overlay/replace
 
 Substitutes matched "left" node with the value of the "right" node (or by that of a provided function).
@@ -375,7 +360,6 @@ Replaces the corresponding "left" with the value `"v1"`
 #@overlay/replace
 apiVersion: v1
 ```
-__
 
 _Example 2: Edit string value_ 
 
@@ -385,20 +369,19 @@ _Example 2: Edit string value_
 
 See also:
 - `ytt` modules that export functions useful for manipulating values:
-    - [base64 module](lang-ref-ytt.md#base64)
-    - [json module](lang-ref-ytt.md#json)
-    - [md5 module](lang-ref-ytt.md#md5)
-    - [sha256 module](lang-ref-ytt.md#sha256)
-    - [url module](lang-ref-ytt.md#url)
-    - [yaml module](lang-ref-ytt.md#yaml)
+  - [base64 module](lang-ref-ytt.md#base64)
+  - [json module](lang-ref-ytt.md#json)
+  - [md5 module](lang-ref-ytt.md#md5)
+  - [sha256 module](lang-ref-ytt.md#sha256)
+  - [url module](lang-ref-ytt.md#url)
+  - [yaml module](lang-ref-ytt.md#yaml)
 - [Language: String](lang-ref-string.md) for built-in string functions.
 - Other Starlark language features that manipulate values:
-    - [string interpolation](https://github.com/google/starlark-go/blob/master/doc/spec.md#string-interpolation)
-    - [conditional expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#conditional-expressions)
-    - [index expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#index-expressions)
-    - [slice expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#slice-expressions)
+  - [string interpolation](https://github.com/google/starlark-go/blob/master/doc/spec.md#string-interpolation)
+  - [conditional expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#conditional-expressions)
+  - [index expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#index-expressions)
+  - [slice expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#slice-expressions)
 
-__
 #### @overlay/insert
 
 Inserts "right" node before/after the matched "left" node.
@@ -411,8 +394,6 @@ Inserts "right" node before/after the matched "left" node.
 - **`before=`**`Bool` whether to insert the "right" node immediately in front of the matched "left" node.
 - **`after=`**`Bool` whether to insert the "right" node immediately following the matched "left" node.
 
-
-__
 #### @overlay/append
 
 Inserts the "right" node after the last "left" node.
@@ -426,7 +407,6 @@ _(this annotation has no parameters.)_
 
 **Note:** This action implies an `@overlay/match` selecting the last node. Any other `@overlay/match` annotation is ignored. 
 
-__
 #### @overlay/assert
 
 Checks assertion that value of "left" matched node equals that of the annotated "right" node (_or_ a provided predicate).
@@ -460,8 +440,6 @@ Fails the execution if `left` not between 0 and 1000, exclusively.
 #@overlay/assert via=lambda left, right: left > 0 and left < 1000
 ```
 
-__
-
 _Example 2: Well-formedness check_
 
 Fails the execution if `left` contains anything other than lowercase letters or numbers.
@@ -470,21 +448,18 @@ Fails the execution if `left` contains anything other than lowercase letters or 
 #@overlay/assert via=lambda left, right: regexp.match("[a-z0-9]+", left)
 ```
 
-__
-
 See also:
 - `ytt` hashing functions from:
-    - [md5 module](lang-ref-ytt.md#md5)
-    - [sha256 module](lang-ref-ytt.md#sha256)
+  - [md5 module](lang-ref-ytt.md#md5)
+  - [sha256 module](lang-ref-ytt.md#sha256)
 - Boolean expression operators and built-in functions, including:
-    - [`in`](https://github.com/google/starlark-go/blob/master/doc/spec.md#membership-tests) (aka "membership test")
-    - [`and` and `or`](https://github.com/google/starlark-go/blob/master/doc/spec.md#or-and-and)
-    - [`any()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#any) or [`all()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#all)
-    - [`hasattr()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#hasattr)
-    - [`len()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#len)
-    - [`type()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#type)
+  - [`in`](https://github.com/google/starlark-go/blob/master/doc/spec.md#membership-tests) (aka "membership test")
+  - [`and` and `or`](https://github.com/google/starlark-go/blob/master/doc/spec.md#or-and-and)
+  - [`any()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#any) or [`all()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#all)
+  - [`hasattr()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#hasattr)
+  - [`len()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#len)
+  - [`type()`](https://github.com/google/starlark-go/blob/master/doc/spec.md#type)
 - [Language: String](lang-ref-string.md) functions
-
 
 ---
 ## Functions
@@ -507,7 +482,6 @@ The functions exported by this module are:
 - [overlay.or_op()](#overlayor_op)
 - [overlay.not_op()](#overlaynot_op)
 
-__
 ### overlay.apply()
 
 Executes the supplied overlays on top of the given structure.
@@ -532,7 +506,6 @@ overlay.apply(left(), one(), two())
 
 See also: [Overlay example](https://carvel.dev/ytt/#example:example-overlay) in the ytt Playground.
 
-__
 ### overlay.map_key()
 
 An [Overlay matcher function](#overlaymatch) that matches when the collection (i.e. Map or Array) in the "left" contains a map item with the key of `name` and value equal to the corresponding map item from the "right."
@@ -560,7 +533,6 @@ clients:
 #@overlay/match by=overlay.map_key("id")
 - id: 2
 ```
-__
 
 _Example 2: Over a Map_
 
@@ -584,8 +556,6 @@ clients:
 ```
 (note: the key name `_` is arbitrary and ignored).
 
-
-__
 ### overlay.index()
 
 An [Overlay matcher function](#overlaymatch) that matches the array item at the given index
@@ -602,7 +572,6 @@ overlay.index(i)
 - item10
 ```
 
-__
 ### overlay.all()
 
 An [Overlay matcher function](#overlaymatch) that matches all contained nodes from the "left", unconditionally.
@@ -646,7 +615,6 @@ items:
 ```
 (note: the key name `_` is arbitrary and ignored) 
 
-__
 ### overlay.subset()
 
 An [Overlay matcher function](#overlaymatch) that matches when the "left" node's structure and value equals the given `target`.
@@ -669,8 +637,6 @@ To match, scalar values must be equal.
 ```
 (if a partial match is required, consider writing a [Custom Overlay Matcher function](#custom-overlay-matcher-functions))
 
-__
-
 _Example 2: Dict (aka "map")_
 
 To match, dictionary literals must match the structure and value of `left`.
@@ -679,7 +645,6 @@ To match, dictionary literals must match the structure and value of `left`.
 #@overlay/match by=overlay.subset({"kind": "Deployment"})
 #@overlay/match by=overlay.subset("metadata":{"name": "istio-system"})
 ```
-__
 
 _Example 3: YAML Fragment_
 
@@ -695,7 +660,6 @@ metadata:
 #@overlay/match by=overlay.subset(resource("Deployment", "istio-system"))
 ```  
 
-__
 ### overlay.and_op()
 
 (as of v0.26.0+)
@@ -716,7 +680,6 @@ overlay.and_op(matcher1, matcher2, ...)
 #@overlay/match by=overlay.and_op(not_sa, inside_ns),expects="1+"
 ```
 
-__
 ### overlay.or_op()
 
 (as of v0.26.0+)
@@ -737,7 +700,6 @@ overlay.or_op(matcher1, matcher2, ...)
 #@overlay/match by=overlay.or_op(config_maps, secrets)
 ```
 
-__
 ### overlay.not_op()
 
 (as of v0.26.0+)

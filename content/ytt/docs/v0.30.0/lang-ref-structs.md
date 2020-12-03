@@ -2,11 +2,11 @@
 title: Structs
 ---
 
+## Overview
+
 Structs are well-defined data objects, comprised of key/value pairs known as "attributes". They are a way to store and refer to data of a known structure.
 
-The most commonly used `struct` is `data.values`, supplied by the [`@ytt:data`](ytt-data-values.md) module.
-
-For example, a data values defined by:
+The most commonly used `struct` is `data.values`, supplied by the [`@ytt:data`](ytt-data-values.md) module. For example, a data values defined by:
 
 ```yaml
 #@data/values
@@ -26,18 +26,8 @@ persistence:
   db_url: #@ data.values.db_conn.host
 ```
 
-_([ytt @data/values](ytt-data-values.md) describes this process in more detail.)_
-
-__
-
-Described below:
-- [Attributes](#attributes) — how to refer to a datum within a `struct`
-- [Build-in Functions](#built-in-functions) — functions that support using a `struct`
-- [Creating `struct`s](#creating-structs) — support for creating your own `struct`s
-
 ---
-
-#### Attributes
+## Attributes
 
 Attributes are a key/value pair, where the key is a `string` and the value can be of any type.
 
@@ -58,9 +48,8 @@ db_url: #@ data.values.bd_conn              # <== struct has no .bd_conn field o
 db_host: #@ data.values["db_conn"]["hast"]  # <== key "hast" not in struct
 ```
 
-__
-
-#### Built-in Functions
+---
+## Built-in Functions
 
 The following built-ins can be useful with `struct` values:
 
@@ -95,9 +84,8 @@ The following built-ins can be useful with `struct` values:
     end
     ```
 
-__
-
-#### Creating `struct`s
+---
+## Creating structs
 
 `struct` instances can be made using the `@ytt:struct` module.
 
