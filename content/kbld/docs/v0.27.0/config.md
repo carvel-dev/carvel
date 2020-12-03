@@ -1,12 +1,12 @@
 ---
-title: Config
+title: Configuration
 ---
 
 ## Overview
 
 You can configure kbld by adding configuration resources (they follow Kubernetes resource format, but are removed from kbld output). Configuration resources may be specified multiple times.
 
-## Config
+## Schema
 
 ```yaml
 ---
@@ -45,6 +45,7 @@ overrides:
 - `destinations` (optional; array) allows to specify one or more destination where images should be pushed
   - `image` (optional) image matcher
   - `newImage` (optional) image destination (e.g. docker.io/dkalinin/app-demo)
+  - `tags` (optional; array of strings) tags to apply to pushed images (e.g. `[latest, tag2]`) (v0.26.0+)
 - `searchRules` (optional; array) allows to specify one or more matchers for finding image references. Key and value matchers could be specified together or separately. If key and value matchers are specified together, both matchers must succeed. This functionality supersedes `ImageKeys` kind. 
   - `keyMatcher` (optional) key matcher
     - `name` (optional; string) specifies key name (e.g. `sidecarImage`)

@@ -1,27 +1,25 @@
 toc:
   - title: Introduction
     subfolderitems:
-      - page: Overview
+      - page: About kbld
         url: /
   - title: Usage
     subfolderitems:
-      - page: Resolving
+      - page: Resolving images
         url: /resolving
-      - page: Building
+      - page: Building images
         url: /building
       - page: Packaging & Relocation
         url: /packaging
       - page: CNAB Image Mappings
         url: /cnab-image-relocation
-  - title: Authentication
+  - title: Reference
     subfolderitems:
+      - page: Configuration
+        url: /config
       - page: Authentication
         url: /auth
-  - title: Configuration
-    subfolderitems:
-      - page: Config
-        url: /config
   - title: Contributing
     subfolderitems:
-      - page: Development Details
+      - page: Development
         url: /dev

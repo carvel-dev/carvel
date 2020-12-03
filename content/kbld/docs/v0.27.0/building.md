@@ -1,5 +1,5 @@
 ---
-title: Building
+title: Building images
 ---
 
 ## Building images from source
