@@ -61,6 +61,11 @@ a {
     color: $blue;
     font-family: $metropolis-medium;
 }
+hr {
+    margin: 30px 0;
+    border-width: 1px 0 0;
+    border-color: $lightgrey;
+}
 a:hover {
     text-decoration: underline;
 }
