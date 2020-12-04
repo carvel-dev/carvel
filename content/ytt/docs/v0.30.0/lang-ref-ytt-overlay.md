@@ -162,14 +162,15 @@ There are two groups of overlay annotations:
 - [Matching Annotations](#matching-annotations)
 - [Action Annotations](#action-annotations)
 
-### Matching Annotations
+---
+## Matching Annotations
 
 These annotations are used to select which structure(s) will be modified:
 
 - [@overlay/match](#overlaymatch)
 - [@overlay/match-child-defaults](#overlaymatch-child-defaults)
 
-#### @overlay/match
+### @overlay/match
 
 Specifies which nodes on the "left" to modify.
 
@@ -224,7 +225,7 @@ Specifies which nodes on the "left" to modify.
 **History:**
 - v0.28.0+ — added `when` keyword argument.
 
-##### Custom Overlay Matcher Functions
+#### Custom Overlay Matcher Functions
 
 The matcher functions from `@ytt:overlay` cover many use-cases. From time-to-time, more precise matching is required.
 
@@ -262,7 +263,7 @@ See also:
 - [Language: String](lang-ref-string.md) for more built-in functions on strings.
 - [@ytt:regexp Library](lang-ref-ytt.md#regexp) for regular expression matching.
 
-#### @overlay/match-child-defaults
+### @overlay/match-child-defaults
 
 Sets default values for `expects`, `missing_ok`, or `when` for the children of the annotated node.
 Does not set these values for the annotated node, itself.
@@ -298,7 +299,7 @@ metadata:
 ```
 
 ---
-### Action Annotations
+## Action Annotations
 
 The following annotations describe how to modify the matched "left" node.
 
@@ -310,7 +311,7 @@ They are:
 - [`@overlay/append`](#overlayappend) — add right node at end of collection on left
 - [`@overlay/assert`](#overlayassert) — declare an invariant on the left node
 
-#### @overlay/merge
+### @overlay/merge
 
 Merge the value of "right" node with the corresponding "left" node.
 
@@ -323,7 +324,7 @@ _(this annotation has no parameters.)_
 
 **Note:** This is the default action; for each node in an overlay, either the action is explicitly specified or it is `merge`.
 
-#### @overlay/remove
+### @overlay/remove
 
 Deletes the matched "left" node.
 
@@ -334,7 +335,7 @@ Deletes the matched "left" node.
 ```
 _(this annotation has no parameters.)_
 
-#### @overlay/replace
+### @overlay/replace
 
 Substitutes matched "left" node with the value of the "right" node (or by that of a provided function).
 
@@ -382,7 +383,7 @@ See also:
   - [index expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#index-expressions)
   - [slice expressions](https://github.com/google/starlark-go/blob/master/doc/spec.md#slice-expressions)
 
-#### @overlay/insert
+### @overlay/insert
 
 Inserts "right" node before/after the matched "left" node.
 
@@ -394,7 +395,7 @@ Inserts "right" node before/after the matched "left" node.
 - **`before=`**`Bool` whether to insert the "right" node immediately in front of the matched "left" node.
 - **`after=`**`Bool` whether to insert the "right" node immediately following the matched "left" node.
 
-#### @overlay/append
+### @overlay/append
 
 Inserts the "right" node after the last "left" node.
 
@@ -407,7 +408,7 @@ _(this annotation has no parameters.)_
 
 **Note:** This action implies an `@overlay/match` selecting the last node. Any other `@overlay/match` annotation is ignored. 
 
-#### @overlay/assert
+### @overlay/assert
 
 Checks assertion that value of "left" matched node equals that of the annotated "right" node (_or_ a provided predicate).
 
