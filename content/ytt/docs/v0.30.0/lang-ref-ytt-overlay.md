@@ -643,7 +643,7 @@ To match, dictionary literals must match the structure and value of `left`.
 
 ```yaml
 #@overlay/match by=overlay.subset({"kind": "Deployment"})
-#@overlay/match by=overlay.subset("metadata":{"name": "istio-system"})
+#@overlay/match by=overlay.subset({"metadata": {"name": "istio-system"}})
 ```
 
 _Example 3: YAML Fragment_
