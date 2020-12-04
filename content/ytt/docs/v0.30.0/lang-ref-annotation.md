@@ -31,13 +31,6 @@ array:
 - #@ value
 ```
 
-- `@data/values` (no args) specifies values accessible via `data.values` from `@ytt:data` package (see [ytt @data/values](ytt-data-values.md) for more details.)
-
-## Text templating annotations
-
-- `@text/trim-left` trims space to the left of code node
-- `@text/trim-right` trims space to the right of code node
-
 ## YAML templating annotations
 
 - `@yaml/map-key-override` (no args)
@@ -46,6 +39,15 @@ array:
 - `@yaml/text-templated-strings` (no args)
   - necessary to indicate that node contents (including map key and map value) should be text templated (ie `(@` indicates start of text templating) (see [text templating](ytt-text-templating.md) for more details.)
 
-## Overlay annotations
+## Text templating annotations
 
-See [@ytt:overlay Library](lang-ref-ytt-overlay.md) for list of annotations.
+- `@text/trim-left` trims space to the left of code node
+- `@text/trim-right` trims space to the right of code node
+
+## Data module annotations
+
+- `@data/values` (no args) specifies values accessible via `data.values` from `@ytt:data` package (see [ytt @data/values](ytt-data-values.md) for more details)
+
+## Overlay module annotations
+
+See [Overlay module](lang-ref-ytt-overlay.md) for list of annotations.

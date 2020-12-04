@@ -3,16 +3,14 @@ toc:
     subfolderitems:
       - page: About ytt
         url: /
-  - title: Common Use Case Guides
+  - title: Techniques
     subfolderitems:
-      - page: Using Data Values
+      - page: Using data values
         url: /ytt-data-values
+      - page: Data values vs overlays
+        url: /data-values-vs-overlays
       - page: Injecting secrets
         url: /injecting-secrets
-  - title: Tips and Techniques
-    subfolderitems:
-      - page: data/values vs overlays
-        url: /data-values-vs-overlays
   - title: Reference
     subfolderitems:
       - page: Language
@@ -69,8 +67,6 @@ toc:
         url: /faq
       - page: Why ytt vs. x?
         url: /ytt-vs-x
-  - title: Other Resources
-    subfolderitems:
       - page: Security
         url: /security
       - page: Know Limitations
