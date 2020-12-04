@@ -5,7 +5,7 @@
 				<h1>Blog</h1>
 			</div>
 		</div>
-		<div class="wrapper blog landing">
+		<div class="wrapper dedicated-page blog landing">
 			<div class="grid three">
 				{{ range (.Paginator 9).Pages.ByDate }}
 					{{ partial "blog-post-card.html" . }}

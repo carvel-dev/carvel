@@ -15,31 +15,33 @@
   {{ end }}
   <body id="docs">
     {{ partial "header" . }}
-    <div class="hero">
-      <div class="wrapper">
-        <h1>{{ .Section }} Documentation</h1>
-      </div>
-    </div>
-    <div class="wrapper docs clearfix">
-      <div class="side-nav">
-        {{ .Render "versions" }}
-        {{ .Render "search" }}
-        {{ .Render "nav" }}
-      </div>
-      <div class="docs-content">
-        {{ .Render "version-warning" }}
-        <div class="documentation-container">
-          {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
-          {{ if eq $.Params.toc "true" }}
-              <aside>
-              {{ .TableOfContents }}
-              </aside>
-          {{ end }}
-
-          {{ .Content }}
+    <main>
+      <div class="hero subpage">
+        <div class="wrapper">
+          <h1>{{ .Section }} Documentation</h1>
         </div>
       </div>
-    </div>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          {{ .Render "versions" }}
+          {{ .Render "search" }}
+          {{ .Render "nav" }}
+        </div>
+        <div class="docs-content">
+          {{ .Render "version-warning" }}
+          <div class="documentation-container">
+            {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+            {{ if eq $.Params.toc "true" }}
+                <aside>
+                {{ .TableOfContents }}
+                </aside>
+            {{ end }}
+
+            {{ .Content }}
+          </div>
+        </div>
+      </div>
+    </main>
     {{ partial "footer" . }}
     {{ $param_search :=  (index .Site.Params (print .Section "_search")) }}
     {{ $param_index_name :=  (index .Site.Params (print .Section "_search_index_name")) }}

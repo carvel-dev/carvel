@@ -410,14 +410,10 @@
 #docs {
     background-color: unset;
     .hero {
-        padding: 40px 0px 100px 0px;
         background-color: #00C1D5;
     }
 }
 .docs {
-    background-color: #fff;
-    margin-top: -100px;
-    padding: 50px 30px 50px 30px;
     h1 {
         color: #000;
     }
@@ -562,8 +558,6 @@
 }
 
 .blog {
-    padding-bottom: 50px;
-    padding: 50px 30px 50px 30px;
     .col {
         border: 1px solid $lightgrey;
         img {
@@ -574,8 +568,6 @@
         }
     }
     &.landing {
-        background-color: #fff;
-        margin-top: -100px;
         h3 a {
             font-size: 16px;
         }
@@ -610,9 +602,6 @@
         }
     }
     .blog-post {
-        background-color: #fff;
-        margin: -110px 0px 0px -30px;
-        padding: 30px 90px 30px 30px;
         .header, h4 {
             color: $black;
             font-weight: 600;
@@ -668,9 +657,6 @@
 }
 
 .community {
-    background-color: #fff;
-    margin-top: -100px;
-    padding: 30px 30px 50px 30px;
     .grid {
         .col {
             border: 1px solid #F2F2F2;
@@ -696,4 +682,10 @@
             }
         }
     }
+}
+
+.dedicated-page {
+    background-color: #fff;
+    margin-top: -100px;
+    padding: 30px 30px 50px 30px;
 }
