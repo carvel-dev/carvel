@@ -1,5 +1,5 @@
 ---
-title: Annotaions
+title: Annotations
 ---
 
 ## Format
