@@ -118,7 +118,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.17
+        image: nginx:1.17 # <-- tag reference
         ports:
         - containerPort: 80
 {{< / highlight >}}
@@ -149,11 +149,11 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: index.docker.io/library/nginx@sha256:2539d4344...
+        image: index.docker.io/library/nginx@sha256:2539d4344... # <-- resolved to digest form
         ports:
         - containerPort: 80
 {{< / highlight >}}
-        <p>Builds app from local directory (configured via <code>Sources</code>), pushes image as <code>docker.io/hk/simple-app</code> (configured via <code>ImageDestinations</code>), and finally resolves it to a digest reference <code>index.docker.io/hk/simple-app@sha256:e932e46fd...</code>.</p>
+        <p>Builds app from local directory (configured via Config's <code>sources</code>), pushes image as <code>docker.io/hk/simple-app</code> (configured via Config's <code>destinations</code>), and finally resolves it to a digest reference <code>index.docker.io/hk/simple-app@sha256:e932e46fd...</code>.</p>
         <p>Input:</p>
         {{< highlight yaml "" >}}
 apiVersion: apps/v1
@@ -177,22 +177,15 @@ spec:
         image: app1
         ports:
         - containerPort: 80
-
-#! where to find app1 source
 ---
 api Version: kbld.k14s.io/v1alpha1
-kind: Sources
+kind: Config
 sources:
 - image: app1
-  path: .
-
-#! where to push app1 image
----
-apiVersion: kbld.k14s.io/v1alpha1
-kind: ImageDestinations
+  path: . # <-- where to find app1 source
 destinations:
 - image: app1
-  newImage: docker.io/hk/simple-app
+  newImage: docker.io/hk/simple-app # <-- where to push app1 image
 {{< / highlight >}}
         <p>Output:</p>
         {{< highlight yaml "" >}}
@@ -203,6 +196,7 @@ metadata:
   labels:
     app: app1
   annotations:
+    # informational metadata about how image was built
     kbld.k14s.io/images: |
       - Metas:
         - Path: /Users/pivotal/workspace/simple-app
@@ -224,7 +218,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: index.docker.io/hk/simple-app@sha256:e932e46fd...
+        image: index.docker.io/hk/simple-app@sha256:e932e46fd... # <-- built and pushed image
         ports:
         - containerPort: 80
 {{< / highlight >}}
