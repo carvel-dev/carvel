@@ -59,7 +59,7 @@ title: ""
                 <div class="content">
                     <h3>Intuitive templating</h3>
                     <p>Makes template code look familiar by including a sandboxed Pythonic language.<br>
-                        <code>e.g. "-listen=:" + str(data.values.port).</code>
+                        e.g. <code>"-listen=:" + str(port)</code>
                     </p>
                 </div>
             </div>
@@ -78,14 +78,13 @@ title: ""
                 </div>
                 <div class="content">
                     <h3>Any YAML</h3>
-                    <p>Template any YAML content, including, Kubernetes configuration, Concourse pipelines, AWS CloudFormation configurations, etc.</p>
+                    <p>Template any YAML content, including, Kubernetes configuration, Concourse pipelines, Docker Compose files, etc.</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="code-block">
         <h2>Basic Usage</h2>
-        <h3>Via script (macOS or Linux)</h3>
         {{< highlight bash "" >}}
 # Configurations picked up from a directory
 $ ytt -f playground/basics/example-demo/ | kubectl apply -f-

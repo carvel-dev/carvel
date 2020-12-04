@@ -122,8 +122,6 @@ spec:
         ports:
         - containerPort: 80
 {{< / highlight >}}
-    </div>
-    <div class="code-block">
         <p>Output:</p>
         {{< highlight yaml "" >}}
 apiVersion: apps/v1
@@ -155,8 +153,6 @@ spec:
         ports:
         - containerPort: 80
 {{< / highlight >}}
-    </div>
-    <div class="code-block">
         <p>Builds app from local directory (configured via <code>Sources</code>), pushes image as <code>docker.io/hk/simple-app</code> (configured via <code>ImageDestinations</code>), and finally resolves it to a digest reference <code>index.docker.io/hk/simple-app@sha256:e932e46fd...</code>.</p>
         <p>Input:</p>
         {{< highlight yaml "" >}}
@@ -196,9 +192,8 @@ apiVersion: kbld.k14s.io/v1alpha1
 kind: ImageDestinations
 destinations:
 - image: app1
-  newImage: docker.io/hk/simple-app{{< / highlight >}}
-    </div>
-    <div class="code-block">
+  newImage: docker.io/hk/simple-app
+{{< / highlight >}}
         <p>Output:</p>
         {{< highlight yaml "" >}}
 apiVersion: apps/v1
