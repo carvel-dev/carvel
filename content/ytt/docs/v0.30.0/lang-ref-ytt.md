@@ -129,3 +129,8 @@ See [Overlay specific docs](lang-ref-ytt-overlay.md).
 ## Library module
 
 See [Library specific docs](lang-ref-ytt-library.md).
+
+---
+## Template module
+
+See [Template specific docs](lang-ref-ytt-template.md).
