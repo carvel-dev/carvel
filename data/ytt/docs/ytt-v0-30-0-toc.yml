@@ -31,6 +31,8 @@ toc:
         url: /lang-ref-ytt-library
       - page: Version module
         url: /lang-ref-ytt-version
+      - page: Template module
+        url: /lang-ref-ytt-template
   - title: Language
     subfolderitems:
       - page: General
