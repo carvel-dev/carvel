@@ -33,7 +33,7 @@ template.replace(node)
 
 labels:
   another-label: true
-  key-will-disapear: #@ template.replace({"key2": "value2"})
+  _: #@ template.replace({"key2": "value2"})
 ```
 results in:
 ```yaml
@@ -42,7 +42,7 @@ labels:
   key2: value2
 ```
 
-Notice that the argument to the `replace` function entirely replaces the `key-will-disapear` map item.
+Notice that the argument to the function entirely replaces the `_` map item.
 
 ##### Use a function instead of providing the item(s) inline
 ```yaml
@@ -54,7 +54,7 @@ Notice that the argument to the `replace` function entirely replaces the `key-wi
 
 labels:
   another-label: true
-  _: #@ template.replace(my_labels())
+  key-will-disappear: #@ template.replace(my_labels())
 ```
 results in:
 ```yaml
@@ -63,7 +63,7 @@ labels:
   key2: value2
 ```
 
-Notice that the argument to the function entirely replaces the `_` map item.
+Notice that the argument to the `replace` function entirely replaces the `key-will-disappear` map item.
 
 So, regardless of the node's key or value, `template.replace` will overwrite it with the argument provided.
 
