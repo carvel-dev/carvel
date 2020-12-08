@@ -10,7 +10,7 @@ header {
     .wrapper {
         padding: 10px 20px;
     }
-    .desktop-links {
+    .desktop-links, .mobile-links {
         float: right;
         margin: 15px 0px 0px 0px;
         padding-left: 0px;
@@ -97,21 +97,22 @@ header {
                 outline: none;
             }
         }
-        ul {
-            padding-left: 0px;
-            li {
-                display: block;
-                margin: 20px 0px;
-            }
-        }
         .mobile-menu {
             position: absolute;
+            z-index: 1000;
             background-color: #fff;
             width: 100%;
             top: 70px;
             left: 0px;
             padding-bottom: 20px;
             display: none;
+            ul {
+                padding-left: 0px;
+                li {
+                    display: block;
+                    margin: 20px 0px;
+                }
+            }
             .header-links {
                 margin: 0px 20px;
             }
@@ -131,5 +132,18 @@ header {
                 }
             }
         }
+        .mobile-links {
+            display: block;
+        }
+    }
+
+    &.in-subproject {
+        background: $lightgrey;
+        .mobile-menu {
+            background-color: $lightgrey;
+        }
+    }
+    .text-logo {
+        font-size: 33px;
     }
 }

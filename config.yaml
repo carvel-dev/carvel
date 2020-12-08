@@ -9,6 +9,18 @@ frontmatter:
   date: [":filename", ":default"]
 params:
   products: [ytt, kbld, kapp]
+  ytt:
+    root_link: /ytt/
+    latest_docs_link: /ytt/docs/v0.30.0/
+    github_url: https://github.com/vmware-tanzu/carvel-ytt
+  kbld:
+    root_link: /kbld/
+    latest_docs_link: /kbld/docs/v0.27.0/
+    github_url: https://github.com/vmware-tanzu/carvel-kbld
+  kapp:
+    root_link: /kapp/
+    latest_docs_link: /kapp/docs/v0.34.0/
+    github_url: https://github.com/vmware-tanzu/carvel-kapp
   next_meeting_date: 2020-11-05
   ytt_versioning: false
   ytt_search: false
