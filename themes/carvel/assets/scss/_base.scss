@@ -146,6 +146,10 @@ pre {
         &.language-bash, &.language-bash-plain {
             background: #202020;
             color: #d0d0d0;
+            // Cannot see dark letters on dark bg
+            span[style*="color:#000"] {
+                color: #d0d0d0 !important;
+            }
         }
     }
 }
