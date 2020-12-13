@@ -83,7 +83,7 @@ title: ""
             </div>
         </div>
     </div>
-    <div class="code-block" id="examples">
+    <div class="text-content" id="examples">
         <h2>Basic Usage</h2>
         {{< highlight bash "" >}}
 # Configurations picked up from a directory
@@ -94,8 +94,6 @@ $ helm template my-chart --values my-vals.yml | kbld -f - | kubectl apply -f -
 $ kustomize build ./some-app | kbld -f - | kubectl apply -f -
 # ... or templated with ytt and deployed with kapp
 $ ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -{{< / highlight >}}
-    </div>
-    <div class="code-block">
         <h3>Examples</h3>
         <p>Resolves name-tag pair reference (<code>nginx:1.17</code>) into digest reference (<code>index.docker.io/library/nginx@sha256:2539d4344...</code>)</p>
         <p>Input:</p>

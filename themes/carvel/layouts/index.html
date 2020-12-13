@@ -15,8 +15,33 @@
 				</div>
 			</div>
 		</div>
+
 		{{ partial "tools.html" . }}
-		{{ partial "code-block.html" . }}
+
+		<div class="wrapper text-content">
+		    <h2 id="install">Install</h2>
+		    <h3>Via script (macOS or Linux)</h3>
+		    {{ highlight `$ wget -O- https://carvel.dev/install.sh | bash
+# or with curl...
+$ curl -L https://carvel.dev/install.sh | bash` "bash" "" }}
+		    <h3>Via Homebrew (macOS or Linux)</h3>
+		    <p>Based on <a href="https://github.com/vmware-tanzu/homebrew-carvel">github.com/vmware-tanzu/homebrew-carvel</a>.</p>
+		    {{ highlight `$ brew tap vmware-tanzu/carvel
+$ brew install ytt kbld kapp imgpkg kwt vendir` "bash" "" }}
+		    <h3>Specific version from a GitHub release</h3>
+		    <p>To download, click on one of the assets in a chosen GitHub release, for example for 'ytt-darwin-amd64'.</p>
+		    {{ highlight `# Compare binary checksum against what's specified in the release notes
+# (if checksums do not match, binary was not successfully downloaded)
+$ shasum -a 256 ~/Downloads/ytt-darwin-amd64
+08b25d21675fdc77d4281c9bb74b5b36710cc091f30552830604459512f5744c   /Users/pivotal/Downloads/ytt-darwin-amd64
+# Move binary next to your other executables
+$ mv ~/Downloads/ytt-darwin-amd64 /usr/local/bin/ytt
+# Make binary executable
+$ chmod +x /usr/local/bin/ytt
+# Check its version
+$ ytt version` "bash" "" }}
+		</div>
+
 		{{ partial "carvel-team.html" . }}
 	</main>
 {{ end }}
