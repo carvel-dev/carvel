@@ -143,7 +143,17 @@ header {
             background-color: $lightgrey;
         }
     }
-    .text-logo {
-        font-size: 33px;
+    &.subproject-specific {
+        .text-logo {
+            float: left;
+            font-size: 33px;
+        }
+        .desktop-links,
+        .mobile-links {
+            float: left;
+            margin-left: 30px;
+            padding-left: 30px;
+            border-left: 1px solid $lightgrey;
+        }
     }
 }
