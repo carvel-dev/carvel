@@ -14,14 +14,18 @@
 				</p>
 				{{ .Content }}
 			</div>
-			<h2>Related Content</h2>
-			<div class="grid three">
-				{{ $related := (where (.Site.RegularPages.Related .) "Type" "posts") | first 3 }}
-				{{ with $related }}
-					{{ range . }}
-						{{ partial "blog-post-card.html" . }}
+		</div>
+		<div class="related-content" style="display: none;">
+			<div class="wrapper">
+				<h2>Related Content</h2>
+				<div class="grid three">
+					{{ $related := (where (.Site.RegularPages.Related .) "Type" "posts") | first 3 }}
+					{{ with $related }}
+						{{ range . }}
+							{{ partial "blog-post-card.html" . }}
+						{{ end }}
 					{{ end }}
-				{{ end }}
+				</div>
 			</div>
 		</div>
 	</main>
