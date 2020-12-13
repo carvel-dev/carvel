@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  {{ partial "head-docs.html" . }}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  {{ if ne .Params.version "master" }}
-    <!-- Block google from indexing versioned docs -->
-    <meta name="robots" content="noindex">
-  {{ end }}
-  {{ $fileName := "" }}
-  {{ with .File }}{{ $fileName = .LogicalName }}{{ end }}
-  {{ if eq $fileName "_index.md" }}
-    <title>{{ .Site.Title }} Docs - Overview</title>
-  {{ else }}
-    <title>{{ .Site.Title }} Docs - {{ .Title }}</title>
-  {{ end }}
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed" "enableSourceMap" true "includePaths" (slice "node_modules/myscss")) }}
+    {{ $style := resources.Get "scss/site.scss" | resources.ToCSS $options }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
+    <script src="{{ "js/main.js" | relURL }}" type="text/javascript"></script>
+
+    {{ if ne .Params.version "master" }}
+      <!-- Block google from indexing versioned docs -->
+      <meta name="robots" content="noindex">
+    {{ end }}
+    {{ $fileName := "" }}
+    {{ with .File }}{{ $fileName = .LogicalName }}{{ end }}
+    {{ if eq $fileName "_index.md" }}
+      <title>{{ .Site.Title }} Docs - Overview</title>
+    {{ else }}
+      <title>{{ .Site.Title }} Docs - {{ .Title }}</title>
+    {{ end }}
+  </head>
+
   <body id="docs">
     {{ partial "header" . }}
     <main>

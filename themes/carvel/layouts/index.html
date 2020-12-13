@@ -1,6 +1,65 @@
 {{ define "main" }}
 	<main>
-		{{ partial "hero.html" . }}
+		<div class="hero homepage">
+			<div class="wrapper">
+				<div class="text-block">
+					<h1>Build on Kubernetes with confidence</h1>
+					<p>Carvel provides a set of reliable, single-purpose, composable tools that aid in your application building, configuration, and deployment to Kubernetes.</p>
+					<a class="button" href="#whole-suite">Use the whole suite</a>
+				</div>
+				<p class="pick">Or pick the tools you need:</p>
+			</div>
+			<div class="grid-container">
+				<div class="wrapper">
+					<div class="grid three">
+						<a class="card" href="/ytt">
+							<div class="image">
+								<img src="/img/ytt.svg" />
+							</div>
+							<h3>ytt</h3>
+							<p>Template and overlay Kubernetes configuration via YAML structures, not text documents. No more counting spaces, or manual quoting.</p>
+						</a>
+						<a class="card" href="/kbld">
+							<div class="image">
+								<img src="/img/kbld.svg" />
+							</div>
+							<h3>kbld</h3>
+							<p>Build or reference container images in Kubernetes configuration in an immutable way.​</p>
+						</a>
+						<a class="card" href="/kapp">
+							<div class="image">
+								<img src="/img/kapp.svg" />
+							</div>
+							<h3>kapp</h3>
+							<p>Install, upgrade, and delete multiple Kubernetes resources as one "application". Be confident your application is fully reconciled.</p>
+						</a>
+						<a class="card" href="https://github.com/vmware-tanzu/carvel-imgpkg">
+							<div class="image">
+								<img src="/img/imgpkg.svg" />
+							</div>
+							<h3>imgpkg</h3>
+							<p>Bundle and relocate application configuration (with images) via Docker registries. Be assured app contents are immutable.</p>
+						</a>
+						<a class="card" href="https://github.com/vmware-tanzu/carvel-kapp-controller">
+							<div class="image">
+								<img src="/img/kapp-controller.svg" />
+							</div>
+							<h3>kapp-controller</h3>
+							<p>Capture application deployment workflow declaratively via App CRD. Reliable GitOps experience powered by kapp.</p>
+						</a>
+						<a class="card" href="https://github.com/vmware-tanzu/carvel-vendir">
+							<div class="image">
+								<img src="/img/vendir.svg" />
+							</div>
+							<h3>vendir</h3>
+							<p>Declaratively state what files should be in a directory.</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="bg-grey introduction" id="whole-suite">
 			<div class="wrapper grid two">
 				<div class="col">
@@ -16,7 +75,23 @@
 			</div>
 		</div>
 
-		{{ partial "tools.html" . }}
+		<div class="wrapper tools">
+		    <h2>Experimental Tools</h2>
+		    <div class="grid three">
+		        <div class="col">
+		            <h3><a href="https://github.com/vmware-tanzu/carvel-kwt">kwt</a></h3>
+		            <p>Expose Kubernetes overlay network to your machine. No more port mapping, or starting multiple proxies.</p>
+		        </div>
+		        <div class="col">
+		            <h3><a href="https://github.com/vmware-tanzu/terraform-provider-carvel">terraform-provider-carvel</a></h3>
+		            <p>Use ytt, kbld, and/or kapp in your Terraform module.</p>
+		        </div>
+		        <div class="col">
+		            <h3><a href="https://github.com/vmware-tanzu/carvel-secretgen-controller">secretgen-controller</a></h3>
+		            <p>Controller to generate various types of Secrets in-cluster.</p>
+		        </div>
+		    </div>
+		</div>
 
 		<div class="wrapper text-content">
 		    <h2 id="install">Install</h2>
@@ -42,6 +117,98 @@ $ chmod +x /usr/local/bin/ytt
 $ ytt version` "bash" "" }}
 		</div>
 
-		{{ partial "carvel-team.html" . }}
+		<div class="team">
+		    <div class="wrapper">
+		        <h2>Contributing</h2>
+		        <p>Carvel is released as open source software and provides community support through our <a href="https://github.com/vmware-tanzu">GitHub projects page</a>. If you encounter an issue or have a question, feel free to reach out on the GitHub issues page for individual tools.</p>
+		        <p>The Carvel project team welcomes contributions from the community, please see the <a href="https://github.com/vmware-tanzu/carvel-ytt/blob/develop/CONTRIBUTING.md">contributing documentation</a> for more details.</p>
+		        <div class="grid three">
+		            <div class="bio">
+		                <div class="image"><img src="/img/dmitriy-kalinin.png" /></div>
+		                <div class="info">
+		                    <p class="name">Dmitriy Kalinin</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/eli-wrenn.png" /></div>
+		                <div class="info">
+		                    <p class="name">Eli Wrenn</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/john-ryan.png" /></div>
+		                <div class="info">
+		                    <p class="name">John Ryan</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/cari-dean.png" /></div>
+		                <div class="info">
+		                    <p class="name">Cari Lynn Dean</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/garrett-cheadle.png" /></div>
+		                <div class="info">
+		                    <p class="name">Garrett Cheadle</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/steven-locke.png" /></div>
+		                <div class="info">
+		                    <p class="name">Steven Locke</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/aaron-hurley.png" /></div>
+		                <div class="info">
+		                    <p class="name">Aaron Hurley</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/daniel-helfand.png" /></div>
+		                <div class="info">
+		                    <p class="name">Daniel Helfand</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/dennis-leon.png" /></div>
+		                <div class="info">
+		                    <p class="name">Dennis Leon</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/joao-pereira.png" /></div>
+		                <div class="info">
+		                    <p class="name">Joao Pereira</p>
+		                    <p class="position">Engineer</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/helen-george.png" /></div>
+		                <div class="info">
+		                    <p class="name">Helen George</p>
+		                    <p class="position">Product Manager</p>
+		                </div>
+		            </div>
+		            <div class="bio">
+		                <div class="image"><img src="/img/vibhas-kumar.png" /></div>
+		                <div class="info">
+		                    <p class="name">Vibhas Kumar</p>
+		                    <p class="position">Product Manager</p>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
 	</main>
 {{ end }}
