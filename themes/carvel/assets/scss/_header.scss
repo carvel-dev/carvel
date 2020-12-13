@@ -62,7 +62,7 @@ header {
     }
     @include breakpoint(medium) {
         .desktop-links li {
-            padding-right: 10px;
+            //padding-right: 10px;
         }
     }
     @include breakpoint(small) {
