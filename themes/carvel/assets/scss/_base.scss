@@ -151,5 +151,11 @@ pre {
                 color: #d0d0d0 !important;
             }
         }
+        &.language-yaml {
+            // A bit harder to read italicized text
+            span[style*="font-style:italic"] {
+                font-style: normal !important;
+            }
+        }
     }
 }
