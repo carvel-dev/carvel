@@ -9,7 +9,7 @@ tags: ['Helen George', 'Article']
 ---
 
 Now that you've deployed Kubernetes, how do you get apps up and running atop the container runtime?
-[Carvel](https://carve.dev) (formerly known as k14s), a collection of open-source
+[Carvel](/) (formerly known as k14s), a collection of open-source
 tools for working with Kubernetes, is designed to answer this question.
 
 ## Carvel was born from frustration with existing tools
