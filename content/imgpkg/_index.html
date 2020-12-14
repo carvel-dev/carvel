@@ -1,65 +1,66 @@
 ---
-title: ""
+title: "imgpkg"
 ---
 
-<div class="hero subpage">
+<div class="hero subpage imgpkg">
     <div class="wrapper clearfix">
         <div class="text-block">
-            <h2>Bundle your bits with guaranteed immutability</h2>
-            <p>Package, distribute, and relocate your container images and their dependent configuration files as if they were a single OCI image: a bundle. Consume bundles with confidence that their contents are unchanged after relocation.</p>
+            <h1>Bundle your bits with guaranteed immutability</h1>
+            <p>Package, distribute, and relocate your Kubernetes configuration and dependent OCI images as one OCI artifact: <em>a bundle</em>. Consume bundles with confidence that their contents are unchanged after relocation.</p>
             <div class="buttons">
                 <a class="button" href="#examples">See Examples</a>
-                <a class="button secondary" href="https://github.com/vmware-tanzu/carvel-imgpkg/releases">Download Binary</a>
+                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-imgpkg/releases">Download Binary</a>
             </div>
         </div>
-        <div class="image"><img src="/img/ytt-boxes.png" /></div>
     </div>
 </div>
+
 <div class="wrapper mobile-blue">
     <div class="yaml-grid grid three">
+        <div class="col">
+            <div class="icon">
+                <img src="/img/deterministic.svg" />
+            </div>
+            <h3>Unified distribution</h3>
+            <p>A bundle captures your configuration files and a list of references to images on which they depend. Copying your bundle will copy your configuration files along with the referenced images to your destination registry. imgpkg treats the whole thing as one.</p>
+        </div>
         <div class="col">
             <div class="icon">
                 <img src="/img/structure-oriented.svg" />
             </div>
             <h3>OCI Registry-compliant</h3>
-            <p>Imgpkg packages your files into images using OCI image specifications, allowing 
-                the image to be pushed to any registry (like Docker, Harbor, ECR, GCR, …).
-            </p>
+            <p>imgpkg packages your files into OCI images per OCI image specification, allowing the image to be pushed to any registry (e.g. DockerHub, Harbor, ECR, GCR, etc.).</p>
         </div>
         <div class="col">
             <div class="icon">
                 <img src="/img/modularized-config.svg" />
             </div>
             <h3>Immutable references</h3>
-            <p>Images are identified with a unique SHA256 digest based on the file contents. 
-                Imgpkg uses that digest to ensure that the relocated files are identical to those originally pushed.
-                </p>
-        </div>
-        <div class="col">
-            <div class="icon">
-                <img src="/img/deterministic.svg" />
-            </div>
-            <h3>Unified distribution</h3>
-            <p>A bundle captures your configuration files and a list of references to images on which they depend. 
-                Copying your bundle will relocate your configuration files along with the referenced images to your destination 
-                (i.e. repository, tarball). Imgpkg treats the whole thing as one.
-                </p>
+            <p>Bundles are identified with a unique <code>sha256</code> digest based on the file contents. imgpkg uses that digest to ensure that the copied contents are identical to those originally pushed.</p>
         </div>
     </div>
 </div>
+
 <div class="wrapper">
     <div class="experimental tools">
         <h2>Features</h2>
         <div class="grid three">
             <div class="col">
                 <div class="icon">
+                    <img src="/img/yaml.svg" />
+                </div>
+                <div class="content">
+                    <h3>Content agnostic</h3>
+                    <p>imgpkg makes no assumptions about the contents of bundles. It can manage all kinds of container+configuration files: Kubernetes deployments, Machine Learning models, etc.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
                     <img src="/img/intuitive.svg" />
                 </div>
                 <div class="content">
                     <h3>Air-gapped environments</h3>
-                    <p>Copy a bundle into a compressed tarball for offline relocation, 
-                        then push to a private registry for true air-gapped file transfers.
-                    </p>
+                    <p>Copy a bundle directly to another registry or into a compressed tarball for offline relocation, then push to a private registry for true air-gapped file transfers.</p>
                 </div>
             </div>
             <div class="col">
@@ -67,33 +68,27 @@ title: ""
                     <img src="/img/overlays.svg" />
                 </div>
                 <div class="content">
-                    <h3>Lock file in/output</h3>
+                    <h3>Lock file input/output</h3>
                     <p>Produces a lock file that can later ensure exactly the same image versions (with digests) are used.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="icon">
-                    <img src="/img/yaml.svg" />
-                </div>
-                <div class="content">
-                    <h3>Content agnostic</h3>
-                    <p>Imgpkg makes no assumptions about the contents of bundles. It can manage all kinds 
-                        of container+configuration files: Kubernetes deployments, Machine Learning models, etc.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div id="examples">
+    <div class="text-content" id="examples">
         <h2>Basic Usage</h2>
-        <div class="code">
-            <p class="header"># Create a bundle — in a registry — with configuration and image references</p>
-            <p>$ <span class="green-text">imgpkg push --file=bundle-dir/ --bundle=example/bundle-repo-name</span></p>
-            <p class="comment"># Copy a bundle (w/ dependency images) to another registry</p>
-            <p>$ <span class="green-text">imgpkg copy --bundle=example/bundle-repo-name \ --to-repo=internal-registry/bundle-repo-name</span></p>
-            <p class="comment"># Download bundle into a tarball for air-gapped relocation</p>
-            <p>$ <span class="green-text">imgpkg copy --bundle=internal-registry/bundle-repo-name \ --to-tar=/Volumes/secure-thumb/bundle.tar</span></p>
-            <p class="comment"># Pull a (relocated) bundle to local machine</p>
-            <p>$ <span class="green-text">imgpkg pull --bundle=internal-registry/bundle-repo-name \ --output=/tmp/bundle-dir</span></p>
-        </div>
+        {{< highlight bash "" >}}
+# Create a bundle in a registry with configuration and image references
+$ imgpkg push -b index.docker.io/username/my-bundle:v1.0.0 -f config/
+
+# Pull bundle from registry and interact with its content
+$ imgpkg pull -b index.docker.io/username/my-bundle:v1.0.0 -o /tmp/my-bundle
+
+# Copy a bundle (w/ dependent images) to another registry directly
+$ imgpkg copy -b index.docker.io/username/my-bundle:v1.0.0 --to-repo=registry.corp.com/apps/my-bundle
+
+# Copy a bundle (w/ dependent images) to local tarball and then to another registry
+$ imgpkg copy -b index.docker.io/username/my-bundle:v1.0.0 --to-tar=/tmp/my-bundle.tar
+$ imgpkg copy -b /tmp/my-bundle.tar --to-repo=registry.corp.com/apps/my-bundle
+{{< / highlight >}}
     </div>
 </div>
