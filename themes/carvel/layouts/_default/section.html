@@ -1,9 +1,24 @@
 {{ define "main" }}
 	<main>
-		{{ .Content }}		
-		{{ partial "getting-started" . }}
+		{{ .Content }}
+
+		{{ $subproject := (index (split .RelPermalink "/") 1) }}
+		{{ $inSubproject := (in .Site.Params.products $subproject) }}
+
+		{{ if $inSubproject }}
+			{{ $param_latest :=  (index .Site.Params (print .Section "_latest")) }}
+			{{ $latest_url := replace .Params.url .CurrentSection.Params.version $param_latest | relURL }}
+			<div class="getting-started">
+				<div class="wrapper clearfix">
+					<div class="left-side">
+						<h2>Getting started</h2>
+						<p>To help you get started, see the documentation.</p>
+					</div>
+					<div class="right-side">
+						<a href="/{{ .Section }}/docs/{{ $latest_url }}" class="button">Get started</a>
+					</div>
+				</div>
+			</div>
+		{{ end }}
 	</main>
 {{ end }}
-
-
-

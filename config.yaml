@@ -43,9 +43,7 @@ params:
   kapp_latest: v0.34.0
   kapp_versions:
     - v0.34.0
-  gh_repo: https://github.com/vmware-tanzu/carvel
-  slack: https://kubernetes.slack.com/archives/CH8KCCKA5
-  footer_social_links:
+  links:
     twitter_url: https://twitter.com/carvel_dev
     github_url: https://github.com/vmware-tanzu/carvel
     slack_url: https://kubernetes.slack.com/archives/CH8KCCKA5
