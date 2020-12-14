@@ -58,8 +58,8 @@ We can't wait to see what you can do with these tools!
 
 We are excited about this new chapter of our project, and we look forward to building our community. To this end, join us! We want to hear from you and learn with you. Here are several ways you can get involved:
 
-* Join Carvel's slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 500+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace and connect with over 500+ Carvel users.
+* Find us on [GitHub]({{% named_link_url "github_url" %}}). Suggest how we can improve the project, the
 docs, or share any other feedback.
 
 We look forward to hearing from you!
