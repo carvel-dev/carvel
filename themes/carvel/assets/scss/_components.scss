@@ -215,6 +215,13 @@
             background-color: $teal;
         }
     }
+    &.vendir {
+        background-image: url(/img/kbld-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $teal;
+        }
+    }
     @include breakpoint(small) {
         .buttons {
             margin-top: 0px;

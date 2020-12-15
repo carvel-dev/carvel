@@ -1,20 +1,20 @@
 ---
-title: ""
+title: "vendir"
 ---
 
-<div class="hero subpage">
+<div class="hero subpage vendir">
     <div class="wrapper clearfix">
         <div class="text-block">
-            <h2>Declaratively state a directory’s contents</h2>
+            <h1>Declaratively state directory's contents</h1>
             <p>Sync any number of data sources into a consistent structure by writing a YAML definition. Share the definition or generated lockfile and ensure that your whole team is working under the same expectations.</p>
             <div class="buttons">
                 <a class="button" href="#examples">See Examples</a>
-                <a class="button secondary" href="https://github.com/vmware-tanzu/carvel-vendir/releases">Download Binary</a>
+                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-vendir/releases">Download Binary</a>
             </div>
         </div>
-        <div class="image"><img src="/img/ytt-boxes.png" /></div>
     </div>
 </div>
+
 <div class="wrapper mobile-blue">
     <div class="yaml-grid grid three">
         <div class="col">
@@ -44,6 +44,7 @@ title: ""
         </div>
     </div>
 </div>
+
 <div class="wrapper">
     <div class="experimental tools">
         <h2>Features</h2>
@@ -81,59 +82,77 @@ title: ""
             </div>
         </div>
     </div>
-    <div id="examples">
+    <div class="text-content" id="examples">
         <h2>Basic Usage</h2>
-        <div class="code">
-            <p class="comment"># create a vendir YAML file to describe the desired structure</p>
-            <p>$ <span class="green-text"></span>cat vendir.yml</p>
-            <p>---</p>
-            <p>apiVersion: vendir.k14s.io/v1alpha1</p>
-            <p>kind: Config</p>
-            <p>directories:</p>
-            <p>- path: cf-for-k8s</p>
-            <p><span class="tab-space"></span>contents:</p>
-            <p><span class="tab-space"></span>- path: networking</p>
-            <p><span class="tab-space two"></span>git:</p>
-            <p><span class="tab-space three"></span>url: https://github.com/cloudfoundry/cf-k8s-networking</p>
-            <p><span class="tab-space three"></span>ref: origin/develop</p>
-            <p><span class="tab-space"></span>- path: capi</p>
-            <p><span class="tab-space two"></span>git:</p>
-            <p><span class="tab-space three"></span>url: https://github.com/cloudfoundry/capi-k8s-release</p>
-            <p><span class="tab-space three"></span>ref: v0.4.0</p>
-            <p><span class="tab-space"></span>- path: nginx</p>
-            <p><span class="tab-space two"></span>contents:</p>
-            <p><span class="tab-space two"></span>- path: .</p>
-            <p><span class="tab-space three"></span>image:</p>
-            <p><span class="tab-space four"></span>url: index.docker.io/nginx</p>
-            <p class="comment"># sync files as specified in the vendir.yml file and save a lockfile</p>
-            <p>$ <span class="green-text">vendir sync</span></p>
-            <p>$ <span class="green-text">ls</span></p>
-            <p>Vendir.yml  vendor.lock.yml  cf-for-k8s/  nginx/</p>
-            <p>$ <span class="green-text">ls cf-for-k8s/</span></p>
-            <p>capi/  networking/</p>
-            <p>$ <span class="green-text">ls nginx/</span></p>
-            <p>$ <span class="green-text">cat vendir.lock.yml</span></p>
-            <p>apiVersion: vendir.k14s.io/v1alpha1</p>
-            <p>directories:</p>
-            <p>- contents:</p>
-            <p><span class="tab-space"></span>- git:</p>
-            <p><span class="tab-space three"></span>commitTitle: 'ci: use cf-for-k8s as cf-for-k8s-ci...'</p>
-            <p><span class="tab-space three"></span>sha: 12665ef174bab13bdae4ed700eb58f1be22ae841</p>
-            <p><span class="tab-space two"></span>path: networking</p>
-            <p><span class="tab-space"></span>- git:</p>
-            <p><span class="tab-space three"></span>commitTitle: images.yml updated by CI...</p>
-            <p><span class="tab-space three"></span>sha: 28a84a6a27735ded301f9cbc0aca30ad5c9e7be8</p>
-            <p><span class="tab-space two"></span>path: capi</p>
-            <p><span class="tab-space"></span>path: cf-for-k8s</p>
-            <p>- contents:</p>
-            <p><span class="tab-space"></span>- image:</p>
-            <p><span class="tab-space two"></span>url: index.docker.io/library/nginx@sha256:4949aa7259aa6f827450207db5ad94cabaa9248277c6d736d5e1975d200c7e43</p>
-            <p><span class="tab-space two"></span>path: .</p>
-            <p><span class="tab-space"></span>path: nginx</p>
-            <p>kind: LockConfig</p>
-            <p class="comment"># sync with a lockfile, using the resolved SHAs and full URL</p>
-            <p>$ <span class="green-text">vendir sync -l</span></p>
-            <p>$ <span class="green-text">ls</span></p>
-        </div>
+        <p>Create <code>vendir.yml</code> (as shown below) in the root of your project and populate it with configuration describing what to fetch. In this example we want vendir to "own" <code>config/_ytt_lib</code> directory and download <code>app</code> ytt library into <code>config/_ytt_lib/app</code> directory.</p>
+        {{< highlight yaml "" >}}
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: config/_ytt_lib
+  contents:
+  - path: app
+    git:
+      url: https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes
+      ref: origin/develop
+    newRootPath: app
+{{< / highlight >}}
+        <p>Execute <code>vendir sync</code> command to download specified assets.</p>
+        {{< highlight bash "" >}}
+$ vendir sync
+Fetching: config/_ytt_lib + app (git from https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes@origin/develop)
+
+  --> git init
+  Initialized empty Git repository in /tmp/build/ary23/foo/.vendir-tmp/incoming/git/.git/
+  --> git config credential.helper store --file /tmp/build/ary23/foo/.vendir-tmp/incoming/git-auth/.git-credentials
+  --> git remote add origin https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes
+  --> git fetch origin
+  From https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes
+   * [new branch]      develop    -> origin/develop
+  --> git -c advice.detachedHead=false checkout origin/develop
+  HEAD is now at 916fba7... adding action for marking issues as stale and closing stale issues
+  --> git submodule update --init --recursive
+  --> git rev-parse HEAD
+  916fba7952afcfabf6ef2ac218c605364f395f1d
+  --> git describe --tags 916fba7952afcfabf6ef2ac218c605364f395f1d
+  fatal: No names found, cannot describe anything.
+  --> git log -n 1 --pretty=%B 916fba7952afcfabf6ef2ac218c605364f395f1d
+  adding action for marking issues as stale and closing stale issues
+
+  Signed-off-by: Joao Pereira <joaod@vmware.com>
+
+
+Lock config
+
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: adding action for marking issues as stale and closing stale issues...
+      sha: 916fba7952afcfabf6ef2ac218c605364f395f1d
+    path: app
+  path: config/_ytt_lib
+kind: LockConfig
+
+Succeeded
+{{< / highlight >}}
+        <p>Let's examine what vendir placed into our directory.</p>
+        {{< highlight bash "" >}}
+$ tree .
+.
+|-- config
+|   `-- _ytt_lib
+|       `-- app
+|           |-- deployment.yml
+|           |-- hpa.yml
+|           |-- ingress.yml
+|           |-- refs.lib.yml
+|           |-- service.yml
+|           `-- values.yml
+|-- vendir.lock.yml
+`-- vendir.yml
+
+3 directories, 8 files
+{{< / highlight >}}
     </div>
 </div>
