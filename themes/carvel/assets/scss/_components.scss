@@ -458,40 +458,6 @@
             padding: 0px 20px;
         }
     }
-    &.landing {
-        h3 a {
-            font-size: 16px;
-        }
-        .pagination {
-            margin: 30px auto 50px auto;
-            ul {
-                padding: 0px;
-                text-align: center;
-                li {
-                    list-style-type: none;
-                    display: inline;
-                    padding: 0px;
-                    font-size: 12px;
-                    a {
-                        padding: 5px 10px;
-                        &.active {
-                            background-color: $lightgrey;
-                            border-radius: 50%;
-                        }
-                    }
-                    &.left-arrow {
-                        margin-right: 15px;
-                    }
-                    &.right-arrow {
-                        margin-left: 15px;
-                    }
-                    &:last-of-type {
-                        padding-right: 0px;
-                    }
-                }
-            }
-        }
-    }
 }
 
 .community {

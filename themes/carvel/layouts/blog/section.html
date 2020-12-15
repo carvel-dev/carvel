@@ -6,13 +6,12 @@
 				<h1>Blog</h1>
 			</div>
 		</div>
-		<div class="wrapper dedicated-page blog landing">
+		<div class="wrapper dedicated-page blog">
 			<div class="grid three">
-				{{ range (.Paginator 9).Pages.ByDate }}
+				{{ range .Pages.ByDate }}
 					{{ partial "_blog-post-card.html" . }}
 				{{ end }}
 			</div>
-			{{ partial "_pagination.html" . }}
 		</div>
 	</main>
 {{ end }}
