@@ -5,7 +5,7 @@ date: 2020-12-13
 author: Dmitriy Kalinin
 excerpt: "ytt, kbld, and kapp when used together offer a powerful way to create, customize, iterate on, and deploy cloud native applications..."
 image: /img/logo.svg
-tags: ['Dmitriy Kalinin', 'Article']
+tags: ['Dmitriy Kalinin']
 ---
 
 > TL;DR: [ytt](/ytt), [kbld](/kbld), [kapp](/kapp) tools when used together offer a powerful way to create, customize, iterate on, and deploy cloud native applications. These tools are designed to be used in various workflows such as local development, and production deployment. Each tool is designed to be single-purpose and composable, resulting in easier ways of integrating them into existing or new projects, and with other tools.

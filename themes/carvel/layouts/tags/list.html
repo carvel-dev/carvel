@@ -1,4 +1,5 @@
 {{ define "main" }}
+    {{"<!-- tags/list.html -->" | safeHTML }}
     <main>
         <div class="hero subpage">
             <div class="wrapper">
@@ -8,7 +9,7 @@
         <div class="wrapper dedicated-page blog">
             <div class="grid three">
                 {{ range .Pages.ByDate }}
-					{{ partial "blog-post-card.html" . }}
+					{{ partial "_blog-post-card.html" . }}
 				{{ end }}
             </div>
         </div>

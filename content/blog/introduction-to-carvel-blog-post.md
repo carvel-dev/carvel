@@ -5,7 +5,7 @@ date: 2020-08-20
 author: Helen George
 excerpt: "Now that you've deployed Kubernetes, how do you get apps up and running atop the container runtime?..."
 image: /img/logo.svg
-tags: ['Helen George', 'Article']
+tags: ['Helen George']
 ---
 
 Now that you've deployed Kubernetes, how do you get apps up and running atop the container runtime?

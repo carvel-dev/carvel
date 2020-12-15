@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{"<!-- docs/baseof.html -->" | safeHTML }}
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -25,16 +26,16 @@
   </head>
 
   <body id="docs">
-    {{ partial "header" . }}
+    {{ partial "_header" . }}
     <main>
       <div class="wrapper dedicated-page docs clearfix">
         <div class="side-nav">
-          {{ .Render "versions" }}
-          {{ .Render "search" }}
-          {{ .Render "nav" }}
+          {{ .Render "_versions" }}
+          {{ .Render "_search" }}
+          {{ .Render "_nav" }}
         </div>
         <div class="docs-content text-content">
-          {{ .Render "version-warning" }}
+          {{ .Render "_version-warning" }}
           <div class="documentation-container">
             {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
             {{ if eq $.Params.toc "true" }}
@@ -48,7 +49,7 @@
         </div>
       </div>
     </main>
-    {{ partial "footer" . }}
+    {{ partial "_footer" . }}
     {{ $param_search :=  (index .Site.Params (print .Section "_search")) }}
     {{ $param_index_name :=  (index .Site.Params (print .Section "_search_index_name")) }}
     {{ $param_api_key :=  (index .Site.Params (print .Section "_search_api_key")) }}

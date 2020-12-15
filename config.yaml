@@ -61,3 +61,5 @@ markup:
     noClasses: true
     style: github
     tabWidth: 4
+permalinks:
+  tags: "/blog/tags/:slug"

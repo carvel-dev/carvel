@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{"<!-- _default/baseof.html -->" | safeHTML }}
 <html lang="{{ .Site.LanguageCode | default "en-us" }}">
 <head>
 	<meta charset="UTF-8">
@@ -17,8 +18,8 @@
 	{{- end }}
 </head>
 <body>
-	{{ partial "header" . }}
+	{{ partial "_header" . }}
 	{{ block "main" . }}{{ end }}
-	{{ partial "footer" . }}
+	{{ partial "_footer" . }}
 </body>
 </html>
