@@ -8,7 +8,7 @@ theme: "carvel"
 frontmatter:
   date: [":filename", ":default"]
 params:
-  products: [ytt, kbld, kapp, imgpkg, vendir]
+  products: [ytt, kbld, kapp, imgpkg, vendir, kapp-controller]
   ytt:
     root_link: /ytt/
     latest_docs_link: /ytt/docs/v0.30.0/
@@ -29,6 +29,10 @@ params:
     root_link: /vendir/
     latest_docs_link: /vendir/docs/v0.14.0/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
+  kapp-controller:
+    root_link: /kapp-controller/
+    latest_docs_link: /kapp-controller/docs/v0.x.0/
+    github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
   next_meeting_date: 2020-11-05
   ytt_versioning: false
   ytt_search: false
@@ -65,6 +69,13 @@ params:
   vendir_latest: v0.14.0
   vendir_versions:
     - v0.14.0
+  kapp-controller_versioning: false
+  kapp-controller_search: false
+  kapp-controller_search_index_name: index_name
+  kapp-controller_search_api_key: api_key
+  kapp-controller_latest: v0.x.0
+  kapp-controller_versions:
+    - v0.x.0
   links:
     twitter_url: https://twitter.com/carvel_dev
     github_url: https://github.com/vmware-tanzu/carvel

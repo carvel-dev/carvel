@@ -215,6 +215,13 @@
             background-color: $teal;
         }
     }
+    &.kapp-controller {
+        background-image: url(/img/kapp-background.png);
+        @include breakpoint(small) {
+            background-image: none;
+            background-color: $teal;
+        }
+    }
     &.vendir {
         background-image: url(/img/kbld-background.png);
         @include breakpoint(small) {

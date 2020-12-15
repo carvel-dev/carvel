@@ -1,45 +1,50 @@
 ---
-title: ""
+title: "kapp-controller"
 ---
 
-<div class="hero subpage">
+<div class="hero subpage kapp-controller">
     <div class="wrapper clearfix">
         <div class="text-block">
-            <h2>Kapp Controller - need content</h2>
-            <p></p>
+            <h1>Lightweight continuous delivery to Kubernetes</h1>
+            <p>TODO Sync any number of data sources into a consistent structure by writing a YAML definition. Share the definition or generated lockfile and ensure that your whole team is working under the same expectations.</p>
             <div class="buttons">
-                <a class="button" href="#">Try in Playground</a>
-                <a class="button secondary" href="#">Download Binary</a>
+                <a class="button" href="#examples">See Examples</a>
+                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-kapp-controller/releases">Install</a>
             </div>
         </div>
-        <div class="image"><img src="/img/ytt-boxes.png" /></div>
     </div>
 </div>
+
 <div class="wrapper mobile-blue">
     <div class="yaml-grid grid three">
         <div class="col">
             <div class="icon">
                 <img src="/img/structure-oriented.svg" />
             </div>
-            <h3>Header 1</h3>
-            <p>Paragraph 1</p>
+            <h3>Declarative</h3>
+            <p>TODO Provide the desired final structure of the directory and let vendir handle how to get there. 
+                No more manually cloning repositories,checking multiple sources for updates, or trying 
+                to remember CURL flags while fetching content over HTTP.</p>
         </div>
         <div class="col">
             <div class="icon">
                 <img src="/img/modularized-config.svg" />
             </div>
-            <h3>Header 2</h3>
-            <p>Paragraph 2</p>
+            <h3>Purpose-built</h3>
+            <p>TODO Like the rest of the Carvel suite, vendir was made to accomplish its task and do no more. 
+                Sync your files then use them however you like without restrictive permissions or wrestling your tools for ownership.</p>
         </div>
         <div class="col">
             <div class="icon">
                 <img src="/img/deterministic.svg" />
             </div>
-            <h3>Header 3</h3>
-            <p>Paragraph 3</p>
+            <h3>Repeatable</h3>
+            <p>TODO Ensure that the same files will be collected across all invocations by syncing from the generated lockfile, 
+                with tags and URLs replaced by resolved SHAs, and digests.</p>
         </div>
     </div>
 </div>
+
 <div class="wrapper">
     <div class="experimental tools">
         <h2>Features</h2>
@@ -49,8 +54,10 @@ title: ""
                     <img src="/img/intuitive.svg" />
                 </div>
                 <div class="content">
-                    <h3>Header</h3>
-                    <p>Paragraph</p>
+                    <h3>Support Various Sources</h3>
+                    <p>TODO Specify the source of a managed directory from a git repository at a 
+                        given revision, a docker image, a helm chart, or many others
+                    </p>
                 </div>
             </div>
             <div class="col">
@@ -58,8 +65,9 @@ title: ""
                     <img src="/img/overlays.svg" />
                 </div>
                 <div class="content">
-                    <h3>Header</h3>
-                    <p>Paragraph</p>
+                    <h3>Take Portions of a Source</h3>
+                    <p>TODO Retain only what you need and leave the rest, keeping your directory bloat-free 
+                        regardless of upstream changes, with additional rules for common files (e.g. a licensing file)</p>
                 </div>
             </div>
             <div class="col">
@@ -67,22 +75,128 @@ title: ""
                     <img src="/img/yaml.svg" />
                 </div>
                 <div class="content">
-                    <h3>Header</h3>
-                    <p>Paragraph</p>
+                    <h3>Leave Subdirectories Untouched</h3>
+                    <p>TODO vendir allows you to mark paths as manually managed, leaving your files safely 
+                        unmodified while reaping the benefits of a synced folder</p>
                 </div>
             </div>
         </div>
     </div>
-    <div>
+    <div class="text-content" id="examples">
         <h2>Basic Usage</h2>
-        <div class="code">
-            <p class="header">Via script</p>
-            <p class="comment">Comment</p>
-            <p>$ <span class="green-text">Green text</span></p>
-            <p class="comment">Comment</p>
-            <p>$ <span class="green-text">Green text</span></p>
-            <p>Text</p>
-            <p>$ <span class="green-text">Green text</span></p>
-        </div>
+        <p>Describe in <code>simple-app.yml</code> how to fetch, template, and deploy your application:</p>
+        {{< highlight yaml "" >}}
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: simple-app
+  namespace: default
+spec:
+  serviceAccountName: default-ns-sa
+  fetch:
+  - git:
+      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
+      ref: origin/develop
+      subPath: config-step-1-minimal
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+{{< / highlight >}}
+        <p>Let's apply configuration to your cluster and see it get reconciled.</p>
+        {{< highlight bash "" >}}
+$ kubect apply -f simple-app.yml
+
+$ kubectl get app
+NAME         DESCRIPTION           SINCE-DEPLOY   AGE
+simple-app   Reconcile succeeded   6s             28s
+{{< / highlight >}}
+        <p>Also take a look at more detailed information about deployed app via <code>kubectl get app simple-app -oyaml</code>.</p>
+        {{< highlight yaml "" >}}
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: simple-app
+  namespace: default
+  creationTimestamp: "2020-12-15T00:51:48Z"
+  generation: 1
+  resourceVersion: "37396"
+  uid: dbbb639d-1f58-4a1e-ade6-39bc22ee6d82
+  finalizers:
+  - finalizers.kapp-ctrl.k14s.io/delete
+spec:
+  serviceAccountName: default-ns-sa
+  fetch:
+  - git:
+      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
+      ref: origin/develop
+      subPath: config-step-1-minimal
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+status:
+  observedGeneration: 1
+  conditions:
+  - status: "True"
+    type: ReconcileSucceeded
+  friendlyDescription: Reconcile succeeded
+  fetch:
+    exitCode: 0
+    startedAt: "2020-12-15T00:52:10Z"
+    updatedAt: "2020-12-15T00:52:10Z"
+  template:
+    exitCode: 0
+    updatedAt: "2020-12-15T00:52:10Z"
+  deploy:
+    exitCode: 0
+    finished: true
+    startedAt: "2020-12-15T00:52:10Z"
+    stdout: |-
+      Target cluster 'https://10.96.0.1:443'
+      Changes
+      Namespace  Name        Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri
+      default    simple-app  Deployment  -       -    create  -       reconcile  -   -
+      ^          simple-app  Service     -       -    create  -       reconcile  -   -
+      Op:      2 create, 0 delete, 0 update, 0 noop
+      Wait to: 2 reconcile, 0 delete, 0 noop
+      12:52:10AM: ---- applying 2 changes [0/2 done] ----
+      12:52:10AM: create service/simple-app (v1) namespace: default
+      12:52:12AM: create deployment/simple-app (apps/v1) namespace: default
+      12:52:12AM: ---- waiting on 2 changes [0/2 done] ----
+      12:52:12AM: ok: reconcile service/simple-app (v1) namespace: default
+      12:52:12AM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
+      12:52:12AM:  ^ Waiting for generation 2 to be observed
+      12:52:12AM:  L ok: waiting on replicaset/simple-app-69f4586488 (apps/v1) namespace: default
+      12:52:12AM:  L ongoing: waiting on pod/simple-app-69f4586488-9qrx2 (v1) namespace: default
+      12:52:12AM:     ^ Pending: ContainerCreating
+      12:52:12AM: ---- waiting on 1 changes [1/2 done] ----
+      12:52:12AM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
+      12:52:12AM:  ^ Waiting for 1 unavailable replicas
+      12:52:12AM:  L ok: waiting on replicaset/simple-app-69f4586488 (apps/v1) namespace: default
+      12:52:12AM:  L ongoing: waiting on pod/simple-app-69f4586488-9qrx2 (v1) namespace: default
+      12:52:12AM:     ^ Pending: ContainerCreating
+      12:52:13AM: ok: reconcile deployment/simple-app (apps/v1) namespace: default
+      12:52:13AM: ---- applying complete [2/2 done] ----
+      12:52:13AM: ---- waiting complete [2/2 done] ----
+      Succeeded
+    updatedAt: "2020-12-15T00:52:13Z"
+  inspect:
+    exitCode: 0
+    stdout: |-
+      Target cluster 'https://10.96.0.1:443'
+      Resources in app 'simple-app-ctrl'
+      Namespace  Name                         Kind        Owner    Conds.  Rs  Ri  Age
+      default    simple-app                   Deployment  kapp     2/2 t   ok  -   3s
+      ^          simple-app                   Endpoints   cluster  -       ok  -   3s
+      ^          simple-app                   Service     kapp     -       ok  -   3s
+      ^          simple-app-69f4586488        ReplicaSet  cluster  -       ok  -   3s
+      ^          simple-app-69f4586488-9qrx2  Pod         cluster  4/4 t   ok  -   3s
+      Rs: Reconcile state
+      Ri: Reconcile information
+      5 resources
+      Succeeded
+    updatedAt: "2020-12-15T00:52:13Z"
+{{< / highlight >}}
     </div>
 </div>
