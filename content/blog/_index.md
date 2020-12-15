@@ -1,4 +1,4 @@
 ---
-title: "Carvel - Blog"
+title: "Blog"
 outputs: ["HTML", "RSS"]
 ---
