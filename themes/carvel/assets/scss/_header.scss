@@ -148,6 +148,14 @@ header {
             float: left;
             font-size: 33px;
         }
+        @include breakpoint(small) {
+            .text-logo {
+                max-width: 170px;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
         .desktop-links,
         .mobile-links {
             float: left;
