@@ -526,6 +526,9 @@
     background-color: #fff;
     margin-top: -100px;
     padding: 30px 30px 50px 30px;
+    &.docs {
+        margin-top: 0;
+    }
 }
 
 /* Examples: documentation content, blog post */
