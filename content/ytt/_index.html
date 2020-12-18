@@ -94,16 +94,13 @@ $ ytt -f playground/basics/example-demo/ -f values-staging.yml -f overlay-env-1.
 <div id="playground" class="content" style="display: none;">
   <div class="playground-wrapper">
       <div class="dropdown">
-        <h2>Interactive Playground
-          <span class="button-container"></span>
-        </h2>
-        <div class="example-sets"></div>
-        <p>Edit files on the left, and see template results on the right.
-          Alternatively, click through above examples to see different features.
-          We do not store or use content entered into playground.</p>
+        <h2>Interactive Playground</h2>
+        <p>Edit files on the left, and see template results on the right. Alternatively, click through above examples to see different features. We do not store or use content entered into playground.</p>
         <form id="show-gist">
           <p>Alternatively enter <a href="https://gist.github.com/">GitHub Gist</a> URL here <input/> press Enter.</p>
         </form>
+        <p><span class="button-container"></span></p>
+        <div class="example-sets"></div>
       </div>
 
       <div class="playground-inner">
@@ -112,7 +109,7 @@ $ ytt -f playground/basics/example-demo/ -f values-staging.yml -f overlay-env-1.
         <div class="left">
           <div class="controls">
             <button type="button" class="add-config button">+ Add File</button>
-            <button type="button" class="run button" title="Run (Shift+Enter)">&#8627; Run</button>
+            <button type="button" class="run button" title="Run (Shift+Enter)">=&gt; Run</button>
             <button type="button" class="expand button">Full Screen</button>
           </div>
 
