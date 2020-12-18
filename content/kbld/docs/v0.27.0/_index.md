@@ -20,7 +20,7 @@ Features:
   - maintaining exactly same digests, hence guaranteeing exactly same content
 - Not specific to Kubernetes, but works really well with Kubernetes configuration files  
 
-See [building and deploying simple Go application to Kubernetes example](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes#step-3-building-container-images-locally) that uses kbld.
+See [building and deploying simple Go application to Kubernetes example](/blog/deploying-apps-with-ytt-kbld-kapp/#building-container-images-locally) that uses kbld.
 
 ## Why digest references?
 
@@ -28,4 +28,4 @@ Docker images can be referenced by their name (`nginx`), name-tag pair (`nginx:1
 
 ## Blog posts
 
-- [Introducing k14s (Kubernetes Tools): Simple and Composable Tools for Application Deployment](https://content.pivotal.io/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment)
+- [Deploying Kubernetes Applications with ytt, kbld, and kapp](/blog/deploying-apps-with-ytt-kbld-kapp)
