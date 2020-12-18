@@ -111,6 +111,13 @@ header {
                 li {
                     display: block;
                     margin: 20px 0px;
+                    ul {
+                        padding-left: 20px;
+                        margin: 20px 0;
+                        li {
+                            margin: 10px 0;
+                        }
+                    }
                 }
             }
             .header-links {
@@ -163,5 +170,31 @@ header {
             padding-left: 30px;
             border-left: 1px solid $lightgrey;
         }
+    }
+}
+
+.subprojects-in-primary-nav {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    ul {
+        display: none;
+        position: absolute;
+        background-color: white;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        padding: 0;
+        left: 0;
+        li {
+            display: block;
+            padding: 10px 15px;
+            width: 150px;
+        }
+    }
+}
+.subprojects-in-primary-nav:hover {
+    ul {
+        display: block;
     }
 }
