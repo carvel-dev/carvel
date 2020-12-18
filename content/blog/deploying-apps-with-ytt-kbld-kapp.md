@@ -173,7 +173,7 @@ $ kubectl port-forward svc/simple-app 8080:80
 
 One downside to the kubectl command above: it has to be restarted if the application pod is recreated.
 
-Alternatively, you can use k14s' kwt tool which exposes cluster IP subnets and cluster DNS to your machine. This way, you can access the application without requiring any restarts.
+Alternatively, you can use Carvek's [kwt](https://github.com/vmware-tanzu/carvel-kwt) tool which exposes cluster IP subnets and cluster DNS to your machine. This way, you can access the application without requiring any restarts.
 
 With kwt installed, run the following command
 
@@ -257,7 +257,7 @@ Managing application configuration is a hard problem. As an application matures,
 
 This problem is typically solved in two ways: templating or patching. ytt supports both approaches. In this section we'll see how ytt allows to template YAML configuration, and in the next section, we'll see how it can patch YAML configuration via overlays.
 
-Unlike many other tools used for templating, ytt takes a different approach to working with YAML files. Instead of interpreting YAML configuration as plain text, it works with YAML structures such as maps, lists, YAML documents, scalars, etc. By doing so ytt is able to eliminate a lot of problems that plague other tools (character escaping, ambiguity, etc.). Additionally ytt provides Python-like language (Starlark) that executes in a hermetic environment making it friendly, yet more deterministic compared to just using general purpose languages directly or non-familiar custom templating languages. Take a look at ytt: (TODO) The YAML Templating Tool that simplifies complex configuration management for a more detailed introduction.
+Unlike many [other tools used for templating](/ytt/docs/v0.30.0/ytt-vs-x/), ytt takes a different approach to working with YAML files. Instead of interpreting YAML configuration as plain text, it works with YAML structures such as maps, lists, YAML documents, scalars, etc. By doing so ytt is able to eliminate a lot of problems that plague other tools (character escaping, ambiguity, etc.). Additionally ytt provides Python-like language ([Starlark](https://github.com/bazelbuild/starlark)) that executes in a hermetic environment making it friendly, yet more deterministic compared to just using general purpose languages directly or non-familiar custom templating languages. Take a look at [ytt](/ytt).
 
 To tie it all together, let's take a look at [`config-step-2-template/config.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2-template/config.yml). You'll immediately notice that YAML comments (`#@ ...`) store templating metadata within a YAML file, for example:
 
@@ -325,7 +325,7 @@ Check out [ytt overview w/ interactive playground](/ytt) and [ytt docs](/ytt/doc
 ---
 ## Patching application configuration
 
-ytt also offers another way to customize application configuration. Instead of relying on configuration authors (e.g. here authors of carvel-simple-app-on-kubernetes) to expose a set of configuration knobs, configuration consumers (e.g. here users that deploy carvel-simple-app-on-kubernetes) can use the ytt overlay feature to patch YAML documents with arbitrary changes.
+ytt also offers another way to customize application configuration. Instead of relying on configuration authors (e.g. here authors of carvel-simple-app-on-kubernetes) to expose a set of configuration knobs, configuration consumers (e.g. here users that deploy carvel-simple-app-on-kubernetes) can use the [ytt overlay feature](/ytt/docs/v0.30.0/lang-ref-ytt-overlay/) to patch YAML documents with arbitrary changes.
 
 For example, our simple app configuration templates do not make Deployment's `spec.replicas` configurable as a data value to control how may Pods are running. Instead of asking authors of simple app to expose a new data value, we can create an overlay file [`config-step-2a-overlays/custom-scale.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2a-overlays/custom-scale.yml) that changes `spec.replicas` to a new value. Here is how it looks:
 
@@ -397,7 +397,7 @@ Check out [ytt's Overlay module docs](/ytt/docs/v0.30.0/lang-ref-ytt-overlay/).
 ---
 ## Building container images locally
 
-Kubernetes embraced use of container images to package source code and its dependencies. One way to deliver updated application is to rebuild a container when changing source code. kbld is a small tool that provides a simple way to insert container image building into deployment workflow. kbld looks for images within application configuration (currently it looks for image keys), checks if there is an associated source code, if so builds these images via Docker (could be pluggable with other builders), and finally captures built image digests and updates configuration with new references.
+Kubernetes embraced use of container images to package source code and its dependencies. One way to deliver updated application is to rebuild a container when changing source code. [kbld](/kbld) is a small tool that provides a simple way to insert container image building into deployment workflow. kbld looks for images within application configuration (currently it looks for image keys), checks if there is an associated source code, if so builds these images via Docker (could be pluggable with other builders), and finally captures built image digests and updates configuration with new references.
 
 Before running kbld, let's change [`app.go`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/app.go) by uncommenting `fmt.Fprintf(w, "<p>local change</p>")` to make a small change in our application.
 
