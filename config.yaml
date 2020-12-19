@@ -57,11 +57,11 @@ params:
     version_latest: latest
     versions:
       - latest
-  vendir:
-    name: vendir
-    root_link: https://github.com/vmware-tanzu/carvel-vendir # not enabled yet: /vendir/
-    latest_docs_link: /vendir/docs/latest/
-    github_url: https://github.com/vmware-tanzu/carvel-vendir
+  kapp-controller:
+    name: kapp-controller
+    root_link: https://github.com/vmware-tanzu/carvel-kapp-controller # not enabled yet: /kapp-controller/
+    latest_docs_link: /kapp-controller/docs/latest/
+    github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
     search: false
     search_index_name: index_name
     search_api_key: api_key
@@ -69,11 +69,11 @@ params:
     version_latest: latest
     versions:
       - latest
-  kapp-controller:
-    name: kapp-controller
-    root_link: https://github.com/vmware-tanzu/carvel-kapp-controller # not enabled yet: /kapp-controller/
-    latest_docs_link: /kapp-controller/docs/latest/
-    github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
+  vendir:
+    name: vendir
+    root_link: https://github.com/vmware-tanzu/carvel-vendir # not enabled yet: /vendir/
+    latest_docs_link: /vendir/docs/latest/
+    github_url: https://github.com/vmware-tanzu/carvel-vendir
     search: false
     search_index_name: index_name
     search_api_key: api_key
