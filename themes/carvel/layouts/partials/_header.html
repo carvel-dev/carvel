@@ -1,5 +1,4 @@
-{{ $subproject := (index (split .RelPermalink "/") 1) }}
-{{ $inSubproject := (in .Site.Params.products $subproject) }}
+{{ $inSubproject := (in .Site.Params.products .Section) }}
 
 <header {{ if $inSubproject }}class="in-subproject"{{ end }}>
 	<div class="wrapper">
@@ -11,7 +10,7 @@
 				<ul>
 					{{ range .Site.Params.products }}
 					{{ $info := (index $.Site.Params .) }}
-					<li><a href="{{ $info.root_link }}" {{ if (eq $.RelPermalink $info.root_link) }}class="active"{{ end }}>{{ . }}</a></li>
+					<li><a href="{{ $info.root_link }}" {{ if (eq $.RelPermalink $info.root_link) }}class="active"{{ end }}>{{ $info.name }}</a></li>
 					{{ end }}
 				</ul>
 			</li>
@@ -31,7 +30,7 @@
 					<ul>
 						{{ range .Site.Params.products }}
 						{{ $info := (index $.Site.Params .) }}
-						<li><a href="{{ $info.root_link }}" {{ if (eq $.RelPermalink $info.root_link) }}class="active"{{ end }}>{{ . }}</a></li>
+						<li><a href="{{ $info.root_link }}" {{ if (eq $.RelPermalink $info.root_link) }}class="active"{{ end }}>{{ $info.name }}</a></li>
 						{{ end }}
 					</ul>
 				</li>
@@ -47,12 +46,12 @@
 </header>
 
 {{ if $inSubproject }}
-{{ $info := (index .Site.Params $subproject) }}
+{{ $info := (index .Site.Params .Section) }}
 <header class="subproject-specific">
 	<div class="wrapper">
-		<a href="{{ $info.root_link }}" class="text-logo">{{ $subproject }}</a>
+		<a href="{{ $info.root_link }}" class="text-logo">{{ $info.name }}</a>
 		<ul class="desktop-links">
-			<li><a href="{{ $info.root_link }}" {{ if (eq .RelPermalink $info.root_link) }}class="active"{{ end }}>{{ $subproject }} Overview</a></li>
+			<li><a href="{{ $info.root_link }}" {{ if (eq .RelPermalink $info.root_link) }}class="active"{{ end }}>{{ $info.name }} Overview</a></li>
 			<li><a href="{{ $info.latest_docs_link }}" {{ if (eq  .RelPermalink $info.latest_docs_link) }}class="active"{{ end }}>Documentation</a></li>
 			<li><a href="{{ $info.github_url }}"><img src="/img/github.svg" />GitHub</a></li>
 		</ul>

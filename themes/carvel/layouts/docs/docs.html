@@ -44,19 +44,19 @@
       </div>
     </main>
     {{ partial "_footer" . }}
-    {{ $param_search :=  (index .Site.Params (print .Section "_search")) }}
-    {{ $param_index_name :=  (index .Site.Params (print .Section "_search_index_name")) }}
-    {{ $param_api_key :=  (index .Site.Params (print .Section "_search_api_key")) }}
-    {{ if $param_search }}
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-    <script type="text/javascript"> docsearch({
-        apiKey: '{{ $param_api_key }}',
-        indexName: '{{ $param_index_name }}',
-        inputSelector: '.docsearch-input',
-        algoliaOptions: {'facetFilters': ["version:{{ .CurrentSection.Params.version }}"]},
-        debug: false // Set debug to true if you want to inspect the dropdown
-      });
-    </script>
+
+    {{ $subprojectInfo := (index .Site.Params .Section) }}
+    {{ if $subprojectInfo.search }}
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '{{ $subprojectInfo.search_api_key }}',
+          indexName: '{{ $subprojectInfo.search_index_name }}',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["version:{{ .CurrentSection.Params.version }}"]},
+          debug: false // Set debug to true if you want to inspect the dropdown
+        });
+      </script>
     {{ end }}
   </body>
 </html>
