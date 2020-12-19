@@ -9,12 +9,10 @@
 			<li class="subprojects-in-primary-nav">
 				<a href="/" onclick="return false;">Projects ▼</a>
 				<ul>
-					<li><a href="/ytt">ytt</a></li>
-					<li><a href="/kbld">kbld</a></li>
-					<li><a href="/kapp">kapp</a></li>
-					<li><a href="/imgpkg">imgpkg</a></li>
-					<li><a href="/kapp-controller">kapp-controller</a></li>
-					<li><a href="/vendir">vendir</a></li>
+					{{ range .Site.Params.products }}
+					{{ $info := (index $.Site.Params .) }}
+					<li><a href="{{ $info.root_link }}" {{ if (eq $.RelPermalink $info.root_link) }}class="active"{{ end }}>{{ . }}</a></li>
+					{{ end }}
 				</ul>
 			</li>
 			<li><a href="/community/" {{ if (eq .RelPermalink "/community/") }}class="active"{{ end }}>Community</a></li>
@@ -31,12 +29,10 @@
 				<li>
 					<a href="/">Projects</a>
 					<ul>
-						<li><a href="/ytt">ytt</a></li>
-						<li><a href="/kbld">kbld</a></li>
-						<li><a href="/kapp">kapp</a></li>
-						<li><a href="/imgpkg">imgpkg</a></li>
-						<li><a href="/kapp-controller">kapp-controller</a></li>
-						<li><a href="/vendir">vendir</a></li>
+						{{ range .Site.Params.products }}
+						{{ $info := (index $.Site.Params .) }}
+						<li><a href="{{ $info.root_link }}" {{ if (eq $.RelPermalink $info.root_link) }}class="active"{{ end }}>{{ . }}</a></li>
+						{{ end }}
 					</ul>
 				</li>
 				<li><a href="/community/" {{ if (eq .RelPermalink "/community/") }}class="active"{{ end }}>Community</a></li>
