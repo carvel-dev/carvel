@@ -47,7 +47,7 @@ params:
       - v0.34.0
   imgpkg:
     name: imgpkg
-    root_link: /imgpkg/
+    root_link: https://github.com/vmware-tanzu/carvel-imgpkg # not enabled yet: /imgpkg/
     latest_docs_link: /imgpkg/docs/v0.x.0/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
     search: false
@@ -59,7 +59,7 @@ params:
       - v0.x.0
   vendir:
     name: vendir
-    root_link: /vendir/
+    root_link: https://github.com/vmware-tanzu/carvel-vendir # not enabled yet: /vendir/
     latest_docs_link: /vendir/docs/v0.14.0/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
     search: false
@@ -71,7 +71,7 @@ params:
       - v0.14.0
   kapp-controller:
     name: kapp-controller
-    root_link: /kapp-controller/
+    root_link: https://github.com/vmware-tanzu/carvel-kapp-controller # not enabled yet: /kapp-controller/
     latest_docs_link: /kapp-controller/docs/v0.x.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
     search: false
