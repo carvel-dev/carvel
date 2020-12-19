@@ -1,9 +1,11 @@
 {{ $subprojectInfo :=  (index .Site.Params .Section) }}
-{{ if ne .CurrentSection.Params.version $subprojectInfo.version_latest }}
-  <div class="alert alert-primary" role="alert">
-    <p>
-      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-      Documentation for version {{ .CurrentSection.Params.version }} is no longer actively maintained. The version you are currently viewing is a static snapshot. For up-to-date documentation, see the <a href="{{ $subprojectInfo.latest_docs_url }}">latest version</a>.
-    </p>
-  </div>
+{{ if $subprojectInfo }}
+	{{ if ne .CurrentSection.Params.version $subprojectInfo.version_latest }}
+	  <div class="alert alert-primary" role="alert">
+	    <p>
+	      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+	      Documentation for version {{ .CurrentSection.Params.version }} is no longer actively maintained. The version you are currently viewing is a static snapshot. For up-to-date documentation, see the <a href="{{ $subprojectInfo.latest_docs_url }}">latest version</a>.
+	    </p>
+	  </div>
+	{{ end }}
 {{ end }}

@@ -1,0 +1,7 @@
+toc:
+  - title: Shared Docs
+    subfolderitems:
+      - page: Contributing
+        url: /contributing
+      - page: Code of Conduct
+        url: /code-of-conduct
