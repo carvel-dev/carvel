@@ -2,7 +2,7 @@
 title: "About kbld"
 toc: "false"
 cascade:
-  version: v0.27.0
+  version: latest
   toc: "true"
   type: docs
   layout: docs

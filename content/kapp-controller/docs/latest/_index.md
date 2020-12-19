@@ -2,7 +2,7 @@
 title: "About kapp-controller"
 toc: "false"
 cascade:
-  version: v0.x.0
+  version: latest
   toc: "true"
   type: docs
   layout: docs
