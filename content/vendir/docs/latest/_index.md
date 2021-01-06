@@ -8,7 +8,7 @@ cascade:
   layout: docs
 ---
 
-vendir allows to declaratively state what should be in a directory. It was designed to easily manage libraries for [ytt](https://get-ytt.io); however, it is a generic tool and does not care how files within managed directories are used.
+vendir allows to declaratively state what should be in a directory. It was designed to easily manage libraries for [ytt](https://carvel.dev/kbld/); however, it is a generic tool and does not care how files within managed directories are used.
 
 Supported sources for fetching:
 

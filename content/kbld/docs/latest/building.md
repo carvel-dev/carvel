@@ -4,7 +4,7 @@ title: Building images
 
 ## Building images from source
 
-kbld can be used to orchestrate build tools such as [Docker](https://docs.docker.com/engine/reference/commandline/cli/) and [pack](https://github.com/buildpack/pack) to build images from source and record resulting image reference in a YAML file. This is especially convenient during local development when working with one or more changing applications.
+kbld can be used to orchestrate build tools such as [Docker](https://docs.docker.com/engine/reference/commandline/cli/) and [pack](https://github.com/buildpacks/pack) to build images from source and record resulting image reference in a YAML file. This is especially convenient during local development when working with one or more changing applications.
 
 ```yaml
 ---

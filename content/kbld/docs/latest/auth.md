@@ -54,7 +54,7 @@ Currently credentials provided via environment variables do not apply when build
 - Run `eval $(aws ecr get-login --no-include-email)` to authenticate
   - See [get-login command](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html)
 
-Example ECR policy from https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html:
+Example ECR policy from https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html
 
 ```json
 {

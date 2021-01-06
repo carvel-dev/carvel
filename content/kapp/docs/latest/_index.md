@@ -16,7 +16,7 @@ Features:
 
 - Works with standard Kubernetes YAMLs
 - Focuses exclusively on deployment workflow, not packaging or templating
-  - but plays well with tools (such as [ytt](https://get-ytt.io)) that produce Kubernetes configuration
+  - but plays well with tools (such as [ytt](https://carvel.dev/ytt)) that produce Kubernetes configuration
 - Converges application resources (creates, updates and/or deletes resources) in each deploy
   - based on comparison between provided files and live objects in the cluster
 - Separates calculation of changes ([diff stage](diff.md)) from application of changes ([apply stage](apply.md))

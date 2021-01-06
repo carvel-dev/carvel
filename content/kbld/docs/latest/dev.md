@@ -5,7 +5,7 @@ title: Development
 ## Prerequisites
 
 - [minikube](https://minikube.sigs.k8s.io/docs/)
-- [ytt](https://github.com/k14s/ytt)
+- [ytt](https://github.com/vmware-tanzu/carvel-ytt)
 - [pack 0.8.1](https://github.com/buildpacks/pack)
 
 ## Run Unit tests
@@ -42,18 +42,17 @@ BUILD_VALUES=./hack/build-values-get-kbld-io.yml ./hack/build.sh
 
 For those interested in extending and improving kbld, below is a quick reference on the structure of the source code:
 
-- [.github/workflows/test-gh.yml](https://github.com/k14s/kbld/blob/develop/.github/workflows/test-gh.yml) is a Github Action that runs build and unit tests when commits are pushed
-- [hack](https://github.com/k14s/kbld/tree/develop/hack) has build and test scripts
-- [cmd/kbld](https://github.com/k14s/kbld/blob/develop/cmd/kbld) is the entry package for main kbld binary
-- [cmd/kbld-lambda-website](https://github.com/k14s/kbld/blob/develop/cmd/kbld-lambda-website) is the entry package for AWS Lambda compatible binary that wraps `kbld website` command
-- [pkg/kbld/cmd](https://github.com/k14s/kbld/tree/develop/pkg/kbld/cmd) includes all kbld CLI commands (kbld.go is root command)
-- [pkg/kbld/config](https://github.com/k14s/kbld/tree/develop/pkg/kbld/config) describes kbld configuration resources such as Config, Sources, etc.
-- [pkg/kbld/resources](https://github.com/k14s/kbld/tree/develop/pkg/kbld/resources) allows to parse YAML files into Resource objects 
-- [pkg/kbld/image](https://github.com/k14s/kbld/tree/develop/pkg/kbld/image) contains set of classes that know how to "transform" image URLs (build it, resolve it to digest, tag it)
-- [pkg/kbld/registry](https://github.com/k14s/kbld/tree/develop/pkg/kbld/registry) provides a simplified registry API client
-- [pkg/kbld/search](https://github.com/k14s/kbld/tree/develop/pkg/kbld/search) implements YAML node searcher that finds image URLs
-- [test/e2e](https://github.com/k14s/kbld/tree/develop/test/e2e) includes e2e tests that can run against Docker registry.
-- [pkg/kbld/website](https://github.com/k14s/kbld/tree/develop/pkg/kbld/website) has HTML and JS assets used by `kbld website` command and ultimately https://get-kbld.io.
+- [.github/workflows/test-gh.yml](https://github.com/vmware-tanzu/carvel-kbld/blob/develop/.github/workflows/test-gh.yml) is a Github Action that runs build and unit tests when commits are pushed
+- [hack](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/hack) has build and test scripts
+- [cmd/kbld](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/cmd/kbld) is the entry package for main kbld binary
+- [cmd/kbld-lambda-website](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/cmd/kbld-lambda-website) is the entry package for AWS Lambda compatible binary that wraps `kbld website` command
+- [pkg/kbld/cmd](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/pkg/kbld/cmd) includes all kbld CLI commands (kbld.go is root command)
+- [pkg/kbld/config](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/pkg/kbld/config) describes kbld configuration resources such as Config, Sources, etc.
+- [pkg/kbld/resources](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/pkg/kbld/resources) allows to parse YAML files into Resource objects 
+- [pkg/kbld/image](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/pkg/kbld/image) contains set of classes that know how to "transform" image URLs (build it, resolve it to digest, tag it)
+- [pkg/kbld/registry](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/pkg/kbld/registry) provides a simplified registry API client
+- [pkg/kbld/search](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/pkg/kbld/search) implements YAML node searcher that finds image URLs
+- [test/e2e](https://github.com/vmware-tanzu/carvel-kbld/tree/develop/test/e2e) includes e2e tests that can run against Docker registry.
 
 ## How to set up an insecure-only registry
 It is occasionally necessary to test against insecure-only registries in order to ensure the commands can run against http endpoints.
