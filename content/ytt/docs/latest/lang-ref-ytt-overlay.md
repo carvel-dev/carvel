@@ -73,7 +73,7 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 ```
 
-See also: [Overlay files example](https://carvel.dev/ytt/#example:example-overlay-files) in online playground.
+See also: [Overlay files example](/ytt/#example:example-overlay-files) in online playground.
 
 ### Overlay order
 
@@ -505,7 +505,7 @@ overlay.apply(left(), right())
 overlay.apply(left(), one(), two())
 ```
 
-See also: [Overlay example](https://carvel.dev/ytt/#example:example-overlay) in the ytt Playground.
+See also: [Overlay example](/ytt/#example:example-overlay) in the ytt Playground.
 
 ### overlay.map_key()
 

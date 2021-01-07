@@ -109,6 +109,6 @@ sub-dir/_ytt_lib/weird-lib/funcs.lib.yml
 
 ## Examples
 
-- [Load](https://carvel.dev/ytt/#example:example-load)
-- [Load ytt library](https://carvel.dev/ytt/#example:example-load-ytt-library)
-- [Load custom library](https://carvel.dev/ytt/#example:example-load-custom-library)
+- [Load](/ytt/#example:example-load)
+- [Load ytt library](/ytt/#example:example-load-ytt-library)
+- [Load custom library](/ytt/#example:example-load-custom-library)

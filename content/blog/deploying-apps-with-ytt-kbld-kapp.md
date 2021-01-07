@@ -160,7 +160,7 @@ simple-app-7fbc6b7c9b-g92t7 > simple-app | 2020/12/14 01:17:48 Server started
 
 `inspect` and `logs` commands demonstrate why it's convenient to view resources in "bulk" (via a label). For example, logs command will tail any existing or new Pod that is part of simple-app application, even after we make changes and redeploy.
 
-Check out [kapp overview](/kapp) and [kapp docs](/kapp/docs/v0.34.0/) for further details.
+Check out [kapp overview](/kapp) and [kapp docs](/kapp/docs/latest/) for further details.
 
 ---
 ## Accessing the deployed application
@@ -320,12 +320,12 @@ Succeeded
 
 We covered one simple way to use ytt to help you manage application configuration. Please take a look at examples in [ytt interactive playground](/ytt/#playground) to learn more about other ytt features which may help you manage YAML configuration more effectively.
 
-Check out [ytt overview w/ interactive playground](/ytt) and [ytt docs](/ytt/docs/v0.30.0) for further details.
+Check out [ytt overview w/ interactive playground](/ytt) and [ytt docs](/ytt/docs/latest) for further details.
 
 ---
 ## Patching application configuration
 
-ytt also offers another way to customize application configuration. Instead of relying on configuration authors (e.g. here authors of carvel-simple-app-on-kubernetes) to expose a set of configuration knobs, configuration consumers (e.g. here users that deploy carvel-simple-app-on-kubernetes) can use the [ytt overlay feature](/ytt/docs/v0.30.0/lang-ref-ytt-overlay/) to patch YAML documents with arbitrary changes.
+ytt also offers another way to customize application configuration. Instead of relying on configuration authors (e.g. here authors of carvel-simple-app-on-kubernetes) to expose a set of configuration knobs, configuration consumers (e.g. here users that deploy carvel-simple-app-on-kubernetes) can use the [ytt overlay feature](/ytt/docs/latest/lang-ref-ytt-overlay/) to patch YAML documents with arbitrary changes.
 
 For example, our simple app configuration templates do not make Deployment's `spec.replicas` configurable as a data value to control how may Pods are running. Instead of asking authors of simple app to expose a new data value, we can create an overlay file [`config-step-2a-overlays/custom-scale.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2a-overlays/custom-scale.yml) that changes `spec.replicas` to a new value. Here is how it looks:
 
@@ -572,7 +572,7 @@ Resource  deployment/simple-app (apps/v1) namespace: default
 Succeeded
 ```
 
-Check out [kbld overview](/kbld) and [kbld docs](/kapp/docs/v0.27.0/) for further details.
+Check out [kbld overview](/kbld) and [kbld docs](/kapp/docs/latest/) for further details.
 
 ---
 ## Building and pushing container images to a registry

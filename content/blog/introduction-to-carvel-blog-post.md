@@ -45,7 +45,7 @@ and waits for them to be ready. It allows you not to worry about the sequences o
 * **kbld** (pronounced 'k-build') is a container image building
 orchestrator. It lets you
 build container images with different types of builders. Check out more of kbld's features in its 
-[documentation](/kbld/docs/v0.27.0).
+[documentation](/kbld/docs/latest).
 
 Want to learn more? Watch “[TGI Kubernetes](https://www.youtube.com/watch?v=CSglwNTQiYg)” featuring
 ytt and kapp, then read the [launch blog](https://tanzu.vmware.com/content/blog/introducing-k14s-kubernetes-tools-simple-and-composable-tools-for-application-deployment).

@@ -62,7 +62,7 @@ Sometimes Kubernetes API server will convert submitted field values into their c
 ...
 ```
 
-Consider using [ytt](https://carvel.dev/ytt) and [its overlay feature](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) to change values if you do not control source configuration.
+Consider using [ytt](/ytt) and [its overlay feature](/ytt/docs/latest/lang-ref-ytt-overlay/) to change values if you do not control source configuration.
 
 ---
 ## Changes detected after resource is modified server-side

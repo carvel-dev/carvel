@@ -6,7 +6,7 @@ title: Integrating with Other Tools
 
 ## ytt and kbld
 
-We recommend to use kapp with [ytt](https://carvel.dev/ytt) and [kbld](https://carvel.dev/kbld) to cover your configuration templating and image building needs. Typical workflow may look like this:
+We recommend to use kapp with [ytt](/ytt) and [kbld](/kbld) to cover your configuration templating and image building needs. Typical workflow may look like this:
 
 ```bash
 ytt -f config/ | kbld -f - | kapp deploy -a app1 -f- -c -y

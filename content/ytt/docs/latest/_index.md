@@ -18,7 +18,7 @@ A comparison to similar tools can be found in the [ytt vs X doc](ytt-vs-x.md).
 (also annotated YAML files) and rendering those templates with the given values. 
 
 For more:
-* see it in action in the [load data files](https://carvel.dev/ytt/#example:example-load-data-values) 
+* see it in action in the [load data files](/ytt/#example:example-load-data-values) 
 example on the playground
 * check out the [data values reference docs](ytt-data-values.md)
 
@@ -28,7 +28,7 @@ example on the playground
 edits. This allows for configuring values beyond what was exposed as data values. 
 
 For more:
-* navigate to the [overlay files](https://carvel.dev/ytt/#example:example-overlay-files)
+* navigate to the [overlay files](/ytt/#example:example-overlay-files)
 example on the playground
 * take a look at the [ytt Overlays overview](ytt-overlays.md)
 

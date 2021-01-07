@@ -48,7 +48,7 @@ If you would like to deploy the results of this scenario to your Kubernetes clus
           kbld.carvel.dev/id: docker.io/dkalinin/k8s-simple-app
     ```
 
-    This allows us to record the exact image that will be used by our Kubernetes configuration. We expect that `.imgpkg/images.yml` would be created either manually, or in an automated way. Our recommendation is to use [kbld](https://carvel.dev/kbld/) to generate `.imgpkg/images.yml`:
+    This allows us to record the exact image that will be used by our Kubernetes configuration. We expect that `.imgpkg/images.yml` would be created either manually, or in an automated way. Our recommendation is to use [kbld](/kbld) to generate `.imgpkg/images.yml`:
 
     ```bash-plain
     $ cd examples/basic-bundle/
