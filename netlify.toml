@@ -28,3 +28,9 @@ HUGO_VERSION = "0.78.0"
 
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
+
+[[redirects]]
+  from = "https://get-kapp.io/*"
+  to = "https://carvel.dev/kapp"
+  status = 302
+  force = true
