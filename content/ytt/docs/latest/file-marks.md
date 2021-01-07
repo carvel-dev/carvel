@@ -27,7 +27,7 @@ ytt -f . \
   --file-mark 'alt-example**/*:type=data' \
   --file-mark 'example**/*:type=data' \
   --file-mark 'generated.go.txt:exclusive-for-output=true' \
-  --output-directory ../../tmp/
+  --output-files ../../tmp/
 ```
 
 ---
