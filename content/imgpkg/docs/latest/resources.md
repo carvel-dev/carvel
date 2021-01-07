@@ -64,7 +64,7 @@ An ImagesLock configuration is used to track a collection of image references.
 
 Bundle's `.imgpkg/images.yml` contains ImagesLock configuration. That's how bundle knows which OCI images it references. When copying a bundle `imgpkg` uses this configuration to know which images to copy.
 
-It can be conveniently generated with [kbld](get-kbld.io):
+It can be conveniently generated with [kbld](https://carvel.dev/kbld/):
 
 ```bash-plain
 $ kbld -f config.yml --imgpkg-lock-output .imgpkg/images.yml
@@ -86,7 +86,7 @@ spec:
 - `spec` (struct)
   - `images` (array of images): 0+ images
     - `image` (string; required) digest reference to OCI image (tag references are not allowed)
-    - `annotations` (map[string]string; optional) arbitrary additional data about image reference. Expected to be used by tools that create or read ImagesLock configuration. Example: [kbld](get-kbld.io) uses annotations to store an identifier that can later tell it which location(s) within a Kubernetes configuration to update with the digest reference.
+    - `annotations` (map[string]string; optional) arbitrary additional data about image reference. Expected to be used by tools that create or read ImagesLock configuration. Example: [kbld](https://carvel.dev/kbld/) uses annotations to store an identifier that can later tell it which location(s) within a Kubernetes configuration to update with the digest reference.
 
 Advanced non-bundle use: See [copying via lock files](commands.md#copying-via-lock-files).
 

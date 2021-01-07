@@ -76,7 +76,7 @@ Sources configure kbld to execute image building operation based on specified pa
 Currently supported builders:
 
 - `docker`: [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/) (default)
-- `pack`: Pack CLI (https://github.com/buildpack/pack)
+- `pack`: Pack CLI (https://github.com/buildpacks/pack)
 - `kubectlBuildkit`: [BuildKit CLI for kubectl](https://github.com/vmware-tanzu/buildkit-cli-for-kubectl)
 
 ### Docker

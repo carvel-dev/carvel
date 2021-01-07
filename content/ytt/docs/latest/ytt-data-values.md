@@ -108,7 +108,7 @@ third: new-val3
 fifth: new-val5
 ```
 
-See [Multiple data values example](https://carvel.dev/ytt/#example:example-multiple-data-values) in the online playground.
+See [Multiple data values example](/ytt/#example:example-multiple-data-values) in the online playground.
 
 ## Overriding data values via command line flags
 

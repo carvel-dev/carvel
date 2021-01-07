@@ -67,4 +67,4 @@ Notice that the argument to the `replace` function entirely replaces the `key-wi
 
 So, regardless of the node's key or value, `template.replace` will overwrite it with the argument provided.
 
-See also: [Replace example](https://carvel.dev/ytt/#example:example-replace) in the ytt Playground.
+See also: [Replace example](/ytt/#example:example-replace) in the ytt Playground.

@@ -32,7 +32,7 @@ To make resource versioned, add `kapp.k14s.io/versioned` annotation with an empt
 
 You can control number of kept resource versions via `kapp.k14s.io/num-versions=int` annotation.
 
-Try deploying [redis-with-configmap example](../examples/gitops/redis-with-configmap) and changing `ConfigMap` in a next deploy.
+Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/carvel-kapp/tree/develop/examples/gitops/redis-with-configmap) and changing `ConfigMap` in a next deploy.
 
 ---
 ## Controlling diff via resource annotations

@@ -11,7 +11,7 @@ You want to create an immutable artifact containing Kubernetes configuration and
 To complete this workflow you will need access to an OCI registry like Docker Hub, and optionally, 
 a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using [Kind](https://kind.sigs.k8s.io/docs/user/local-registry/))
 
-If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](https://get-kbld.io/) and kubectl.
+If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](https://carvel.dev/kbld/) and kubectl.
 
 ## Step 1: Creating the bundle
 
@@ -48,7 +48,7 @@ If you would like to deploy the results of this scenario to your Kubernetes clus
           kbld.carvel.dev/id: docker.io/dkalinin/k8s-simple-app
     ```
 
-    This allows us to record the exact image that will be used by our Kubernetes configuration. We expect that `.imgpkg/images.yml` would be created either manually, or in an automated way. Our recommendation is to use [kbld](get-kbld.io) to generate `.imgpkg/images.yml`:
+    This allows us to record the exact image that will be used by our Kubernetes configuration. We expect that `.imgpkg/images.yml` would be created either manually, or in an automated way. Our recommendation is to use [kbld](/kbld) to generate `.imgpkg/images.yml`:
 
     ```bash-plain
     $ cd examples/basic-bundle/
@@ -129,7 +129,7 @@ Now that we have pushed a bundle to a registry, other users can pull it.
 
 1. Now that we have have pulled bundle contents to a local directory, we can deploy Kubernetes configuration:
 
-    Before we apply Kubernetes configuration, let's use [kbld](get-kbld.io) to ensure that Kubernetes configuration uses exact image reference from `.imgpkg/images.yml`. (You can of course use other tools to take advantage of data stored in `.imgpkg/images.yml`).
+    Before we apply Kubernetes configuration, let's use [kbld](https://carvel.dev/kbld/) to ensure that Kubernetes configuration uses exact image reference from `.imgpkg/images.yml`. (You can of course use other tools to take advantage of data stored in `.imgpkg/images.yml`).
 
     ```bash-plain
     $ cd /tmp/simple-app-bundle/
