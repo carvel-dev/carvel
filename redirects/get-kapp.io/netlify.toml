@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://carvel.dev/kapp"
+  status = 302
+  force = true
