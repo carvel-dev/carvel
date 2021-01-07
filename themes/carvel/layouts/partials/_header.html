@@ -6,7 +6,7 @@
 		<ul class="desktop-links">
 			<li><a href="/" {{ if (eq .RelPermalink "/") }}class="active"{{ end }}>Home</a></li>
 			<li class="subprojects-in-primary-nav">
-				<a href="/" onclick="return false;">Projects ▼</a>
+				<a href="/" onclick="return false;">Projects</a>
 				<ul>
 					{{ range .Site.Params.products }}
 					{{ $info := (index $.Site.Params .) }}
