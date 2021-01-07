@@ -76,7 +76,7 @@ Possible values:
 - `for-existing` (only existing Pods are tailed)
 - `for-new-or-existing` (both newly created and existing Pods are tailed)
 
-Especially useful when added to Jobs. For example, see [examples/resource-ordering/sync-check.yml](../examples/resource-ordering/sync-check.yml)
+Especially useful when added to Jobs. For example, see [examples/resource-ordering/sync-check.yml](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/examples/resource-ordering/sync-check.yml)
 
 ### kapp.k14s.io/deploy-logs-container-names
 

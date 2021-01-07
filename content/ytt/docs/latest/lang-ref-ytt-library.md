@@ -76,4 +76,4 @@ app_values = app1_with_vals.data_values()
 
 ### Examples
 
-See [ytt-library-module example](../examples/playground/example-ytt-library-module).
+See [ytt-library-module example](https://carvel.dev/ytt/#example:example-ytt-library-module).
