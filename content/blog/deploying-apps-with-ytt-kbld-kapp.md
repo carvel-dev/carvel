@@ -257,7 +257,7 @@ Managing application configuration is a hard problem. As an application matures,
 
 This problem is typically solved in two ways: templating or patching. ytt supports both approaches. In this section we'll see how ytt allows to template YAML configuration, and in the next section, we'll see how it can patch YAML configuration via overlays.
 
-Unlike many [other tools used for templating](/ytt/docs/v0.30.0/ytt-vs-x/), ytt takes a different approach to working with YAML files. Instead of interpreting YAML configuration as plain text, it works with YAML structures such as maps, lists, YAML documents, scalars, etc. By doing so ytt is able to eliminate a lot of problems that plague other tools (character escaping, ambiguity, etc.). Additionally ytt provides Python-like language ([Starlark](https://github.com/bazelbuild/starlark)) that executes in a hermetic environment making it friendly, yet more deterministic compared to just using general purpose languages directly or non-familiar custom templating languages. Take a look at [ytt](/ytt).
+Unlike many [other tools used for templating](/ytt/docs/latest/ytt-vs-x/), ytt takes a different approach to working with YAML files. Instead of interpreting YAML configuration as plain text, it works with YAML structures such as maps, lists, YAML documents, scalars, etc. By doing so ytt is able to eliminate a lot of problems that plague other tools (character escaping, ambiguity, etc.). Additionally ytt provides Python-like language ([Starlark](https://github.com/bazelbuild/starlark)) that executes in a hermetic environment making it friendly, yet more deterministic compared to just using general purpose languages directly or non-familiar custom templating languages. Take a look at [ytt](/ytt).
 
 To tie it all together, let's take a look at [`config-step-2-template/config.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2-template/config.yml). You'll immediately notice that YAML comments (`#@ ...`) store templating metadata within a YAML file, for example:
 
@@ -392,7 +392,7 @@ Continue? [yN]: y
 Succeeded
 ```
 
-Check out [ytt's Overlay module docs](/ytt/docs/v0.30.0/lang-ref-ytt-overlay/).
+Check out [ytt's Overlay module docs](/ytt/docs/latest/lang-ref-ytt-overlay/).
 
 ---
 ## Building container images locally
