@@ -87,7 +87,7 @@ spec:
     # uses git to clone repository
     - git:
         # http or ssh urls are supported (required)
-        url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
+        url: https://github.com/k14s/k8s-simple-app-example
         # branch, tag, commit; origin is the name of the remote (required)
         ref: origin/develop
         # secret with auth details. allowed keys: ssh-privatekey, ssh-knownhosts, username, password (optional)

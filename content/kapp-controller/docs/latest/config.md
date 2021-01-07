@@ -15,7 +15,7 @@ spec:
   serviceAccountName: default
   fetch:
   - git:
-      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
+      url: https://github.com/k14s/k8s-simple-app-example
       ref: origin/develop
       subPath: config-step-2-template
   template:
@@ -84,8 +84,8 @@ Allowed secret keys:
 Transform set of files.
 
 - `helmTemplate`: uses `helm template` command to render chart
-- `ytt`: uses [ytt](https://carvel.dev/ytt/) to rended templates
-- `kbld`: uses [kbld](https://carvel.dev/kbld/) to resolve image URLs to include digests
+- `ytt`: uses [ytt](/ytt) to rended templates
+- `kbld`: uses [kbld](/kbld) to resolve image URLs to include digests
 - `kustomize`: (not implemented yet) uses kustomize to render configuration
 - `jsonnnet`: (not implemented yet) renders jsonnet files
 - `sops`: uses [sops](https://github.com/mozilla/sops) to decrypt secrets. [More details](sops.md). Available in v0.11.0+.
@@ -130,7 +130,7 @@ spec:
 
 Deploys resources.
 
-- `kapp`: uses [kapp](https://get-kapp.io) to deploy resources
+- `kapp`: uses [kapp](/kapp) to deploy resources
 
 ```yaml
 spec:

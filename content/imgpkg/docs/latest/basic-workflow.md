@@ -11,19 +11,19 @@ You want to create an immutable artifact containing Kubernetes configuration and
 To complete this workflow you will need access to an OCI registry like Docker Hub, and optionally, 
 a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using [Kind](https://kind.sigs.k8s.io/docs/user/local-registry/))
 
-If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](https://carvel.dev/kbld/) and kubectl.
+If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](/kbld) and kubectl.
 
 ## Step 1: Creating the bundle
 
 1. Prepare bundle contents
 
-    The [examples/basic-step-1/](../examples/basic-step-1) directory has a `config.yml` file, which contains a very simple Kubernetes application. Your application may have as many configuration files as necessary in various formats such as plain YAML, ytt templates, Helm templates, etc.
+    The [examples/basic-step-1/](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-1) directory has a `config.yml` file, which contains a very simple Kubernetes application. Your application may have as many configuration files as necessary in various formats such as plain YAML, ytt templates, Helm templates, etc.
 
     In our example `config.yml` includes an image reference to `docker.io/dkalinin/k8s-simple-app`. This reference does not point to an exact image (via digest) meaning that it may change over time. To ensure we get precisely the bits we expect, we will lock it down to an exact image next.
 
 1. Add `.imgpkg/` directory
 
-    [examples/basic-step-2](../examples/basic-step-2) shows what a `.imgpkg/` directory may look like. It contains:
+    [examples/basic-step-2](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-2) shows what a `.imgpkg/` directory may look like. It contains:
 
     - **optional** [bundle.yml](resources.md#bundle-metadata): a file which records informational metadata
     - **required** [images.yml](resources.md#imageslock): a file which records image references used by the configuration
@@ -129,7 +129,7 @@ Now that we have pushed a bundle to a registry, other users can pull it.
 
 1. Now that we have have pulled bundle contents to a local directory, we can deploy Kubernetes configuration:
 
-    Before we apply Kubernetes configuration, let's use [kbld](https://carvel.dev/kbld/) to ensure that Kubernetes configuration uses exact image reference from `.imgpkg/images.yml`. (You can of course use other tools to take advantage of data stored in `.imgpkg/images.yml`).
+    Before we apply Kubernetes configuration, let's use [kbld](/kbld) to ensure that Kubernetes configuration uses exact image reference from `.imgpkg/images.yml`. (You can of course use other tools to take advantage of data stored in `.imgpkg/images.yml`).
 
     ```bash-plain
     $ cd /tmp/simple-app-bundle/
