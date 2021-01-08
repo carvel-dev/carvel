@@ -4,7 +4,7 @@ title: Walkthrough
 
 The goal of this walkthrough is to demonstrate how to install a simple example application, an HTTP server, on Kubernetes with kapp-controller. We will use `examples/simple-app-git` directory as our YAML configuration. 
 
-You can use `kubectl` (or another tool) to deploy the YAML examples below. We've chosen [kapp](https://get-kapp.io).
+You can use `kubectl` (or another tool) to deploy the YAML examples below. We've chosen [kapp](/kapp).
 
 - Start by [installing](install.md) kapp-controller onto your cluster
 

@@ -2,7 +2,7 @@
 title: Development & Deploy
 ---
 
-Install ytt, kbld, kapp beforehand (https://k14s.io).
+Install ytt, kbld, kapp beforehand (https://carvel.dev).
 
 ```
 ./hack/build.sh # to build locally

@@ -2,7 +2,7 @@
 title: CNAB Image Maps
 ---
 
-CNAB spec mentions [Image Relocation](https://github.com/cnabio/cnab-spec/blob/master/103-bundle-runtime.md) as part of bundle runtime.
+CNAB spec mentions [Image Relocation](https://github.com/cnabio/cnab-spec/blob/master/103-bundle-runtime.md#image-relocation) as part of bundle runtime.
 
 kbld supports applying `relocation-mapping.json` on top of YAML configuration via `kbld --image-map-file /cnab/app/relocation-mapping.json ...`. For example:
 

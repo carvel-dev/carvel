@@ -38,7 +38,6 @@ Features:
 
 ## Talks
 
-- [sig-apps presentation (starts at 7:26)](https://www.youtube.com/watch?v=lYrt1cF6IoE&feature=youtu.be&t=446)
 - [ytt and kapp @ TGI Kubernetes 079](https://www.youtube.com/watch?v=CSglwNTQiYg) with Joe Beda
 - [Managing Applications in Production: Helm vs ytt & kapp @ Kubecon 2020](https://www.youtube.com/watch?v=WJw1MDFMVuk)
 - [Introduction to Carvel @ Rawkode Live](https://www.youtube.com/watch?v=LBCmMTofNxw)

@@ -13,7 +13,7 @@ This scenario _also_ applies when trying to ensure that all images are consolida
 To complete this workflow you will need access to an OCI registry like Docker Hub, and optionally, 
 a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using [Kind](https://kind.sigs.k8s.io/docs/user/local-registry/))
 
-If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](https://carvel.dev/kbld/) and kubectl.
+If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](/kbld) and kubectl.
 
 ---
 ## Step 1: Finding bundle in source registry

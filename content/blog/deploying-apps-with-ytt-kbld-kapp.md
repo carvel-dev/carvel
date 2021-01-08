@@ -572,7 +572,7 @@ Resource  deployment/simple-app (apps/v1) namespace: default
 Succeeded
 ```
 
-Check out [kbld overview](/kbld) and [kbld docs](/kapp/docs/latest/) for further details.
+Check out [kbld overview](/kbld) and [kbld docs](/kbld/docs/latest/) for further details.
 
 ---
 ## Building and pushing container images to a registry
