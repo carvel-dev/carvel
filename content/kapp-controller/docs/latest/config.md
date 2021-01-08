@@ -1,5 +1,5 @@
 ---
-title: Config
+title: App Config
 ---
 
 ## Example

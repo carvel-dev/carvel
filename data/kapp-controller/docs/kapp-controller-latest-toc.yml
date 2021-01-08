@@ -13,6 +13,10 @@ toc:
         url: /app-spec
       - page: Configuration
         url: /config
+      - page: Controller Configuration
+        url: /controller-config
+      - page: Controller Startup
+        url: /startup
       - page: Security Model
         url: /security-model
       - page: Dangerous Flags
