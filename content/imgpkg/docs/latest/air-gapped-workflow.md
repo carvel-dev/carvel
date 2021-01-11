@@ -95,7 +95,7 @@ You have two options how to transfer bundle from one registry to another:
 1. Import the bundle from your tarball to the destination registry:
 
     ```bash-plain
-    $ imgpkg copy --from-tar /tmp/my-image.tar --to-repo registry.corp.com/apps/simple-app-bundle
+    $ imgpkg copy --tar /tmp/my-image.tar --to-repo registry.corp.com/apps/simple-app-bundle
 
     copy | importing 2 images...
     copy | importing index.docker.io/user1/simple-app-bundle@sha256:70225df0a05137ac385c95eb69f89ded3e7ef3a0c34db43d7274fd9eba3705bb -> registry.corp.com/apps/simple-app-bundle@sha256:70225df0a05137ac385c95eb69f89ded3e7ef3a0c34db43d7274fd9eba3705bb...
@@ -107,7 +107,7 @@ You have two options how to transfer bundle from one registry to another:
     The bundle, and all images referenced in the bundle, are copied to the destination registry.
 
     Flags used in the command:
-      * `--from-tar` indicates the path to a tar file containing the assets to be copied to a registry
+      * `--tar` indicates the path to a tar file containing the assets to be copied to a registry
       * `--to-repo` indicates destination bundle location in the registry
 
 ---

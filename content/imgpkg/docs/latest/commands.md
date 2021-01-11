@@ -68,7 +68,7 @@ Alternatively `copy` can copy a bundle between registries which are not both acc
 ```bash-plain
 $ imgpkg copy -b index.docker.io/k8slt/sample-bundle --to-tar=/Volumes/secure-thumb/bundle.tar
 # ... take thumb driver to a different location ...
-$ imgpkg copy --from-tar=/Volumes/secure-thumb/bundle.tar --to-repo registry.corp.com/user2/sample-bundle-name
+$ imgpkg copy --tar=/Volumes/secure-thumb/bundle.tar --to-repo registry.corp.com/user2/sample-bundle-name
 ```
 
 In either case, the bundle image and all dependent images are copied to the destination location `registry.corp.com/user2/sample-bundle-name`.
