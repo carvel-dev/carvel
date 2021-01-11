@@ -71,7 +71,7 @@ params:
       - latest
   vendir:
     name: vendir
-    root_link: https://github.com/vmware-tanzu/carvel-vendir # not enabled yet: /vendir/
+    root_link: /vendir/
     latest_docs_link: /vendir/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
     search: false
