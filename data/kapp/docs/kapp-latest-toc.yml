@@ -39,7 +39,3 @@ toc:
         url: /faq
       - page: Resource Merge Method
         url: /merge-method
-  - title: Contributing
-    subfolderitems:
-      - page: Development
-        url: /dev

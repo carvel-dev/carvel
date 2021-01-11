@@ -19,7 +19,3 @@ toc:
         url: /config
       - page: Authentication
         url: /auth
-  - title: Contributing
-    subfolderitems:
-      - page: Development
-        url: /dev

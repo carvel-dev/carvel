@@ -73,9 +73,3 @@ toc:
         url: /security
       - page: Know Limitations
         url: /known-limitations
-  - title: Contributing
-    subfolderitems:
-      - page: Contributing
-        url: /CONTRIBUTING
-      - page: Development Details
-        url: /dev
