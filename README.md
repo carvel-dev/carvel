@@ -23,7 +23,8 @@ Serve site at [http://localhost:1313]()
 
 ### Directories
 
-- `themes/carvel/assets/` includes SCSS and images
+- `themes/carvel/assets/` includes SCSS
+- `themes/carvel/static/img/` includes images
 - `content/` includes content for tool docs
 - `data/` includes configuration for docs TOCs 
 

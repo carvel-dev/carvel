@@ -209,21 +209,21 @@
         }
     }
     &.imgpkg {
-        background-image: url(/img/kbld-background.png);
+        background-image: url(/img/imgpkg-background.jpg);
         @include breakpoint(small) {
             background-image: none;
             background-color: $teal;
         }
     }
     &.kapp-controller {
-        background-image: url(/img/kapp-background.png);
+        background-image: url(/img/kapp-controller-background.png);
         @include breakpoint(small) {
             background-image: none;
             background-color: $teal;
         }
     }
     &.vendir {
-        background-image: url(/img/kbld-background.png);
+        background-image: url(/img/vendir-background.png);
         @include breakpoint(small) {
             background-image: none;
             background-color: $teal;
