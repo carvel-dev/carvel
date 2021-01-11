@@ -138,11 +138,10 @@ You have two options how to transfer bundle from one registry to another:
     $ cat /tmp/bundle/.imgpkg/images.yml
     apiVersion: imgpkg.carvel.dev/v1alpha1
     kind: ImagesLock
-    spec:
-      images:
-      - image: registry.corp.com/apps/simple-app-bundle@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
-        annotations:
-          kbld.carvel.dev/id: docker.io/dkalinin/k8s-simple-app
+    images:
+    - image: registry.corp.com/apps/simple-app-bundle@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+      annotations:
+        kbld.carvel.dev/id: docker.io/dkalinin/k8s-simple-app
     ```
 
 ---

@@ -41,11 +41,10 @@ If you would like to deploy the results of this scenario to your Kubernetes clus
     ```yaml
     apiVersion: imgpkg.carvel.dev/v1alpha1
     kind: ImagesLock
-    spec:
-      images:
-      - image: index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
-        annotations:
-          kbld.carvel.dev/id: docker.io/dkalinin/k8s-simple-app
+    images:
+    - image: index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+      annotations:
+        kbld.carvel.dev/id: docker.io/dkalinin/k8s-simple-app
     ```
 
     This allows us to record the exact image that will be used by our Kubernetes configuration. We expect that `.imgpkg/images.yml` would be created either manually, or in an automated way. Our recommendation is to use [kbld](/kbld) to generate `.imgpkg/images.yml`:

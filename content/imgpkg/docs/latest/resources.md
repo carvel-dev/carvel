@@ -75,18 +75,16 @@ Example:
 ```yaml
 apiVersion: imgpkg.carvel.dev/v1alpha1
 kind: ImagesLock
-spec:
-  images:
-  - image: docker.io/user1/my-app@sha256:42462d0cb227497976754bb67348bdd7471c7bd159819d6bd63fdf479eb7eb19
-    annotaions:
-      kbld.carvel.dev/id: "my-app:v1"
-  - image: gcr.io/projectX/controller@sha256:6ecba6f14373a449f8d54fa4286f57fb8ef37c4ffa637969551f2fda52672206
+images:
+- image: docker.io/user1/my-app@sha256:42462d0cb227497976754bb67348bdd7471c7bd159819d6bd63fdf479eb7eb19
+  annotations:
+    kbld.carvel.dev/id: "my-app:v1"
+- image: gcr.io/projectX/controller@sha256:6ecba6f14373a449f8d54fa4286f57fb8ef37c4ffa637969551f2fda52672206
 ```
 
-- `spec` (struct)
-  - `images` (array of images): 0+ images
-    - `image` (string; required) digest reference to OCI image (tag references are not allowed)
-    - `annotations` (map[string]string; optional) arbitrary additional data about image reference. Expected to be used by tools that create or read ImagesLock configuration. Example: [kbld](/kbld) uses annotations to store an identifier that can later tell it which location(s) within a Kubernetes configuration to update with the digest reference.
+- `images` (array of images): 0+ images
+  - `image` (string; required) digest reference to OCI image (tag references are not allowed)
+  - `annotations` (map[string]string; optional) arbitrary additional data about image reference. Expected to be used by tools that create or read ImagesLock configuration. Example: [kbld](/kbld) uses annotations to store an identifier that can later tell it which location(s) within a Kubernetes configuration to update with the digest reference.
 
 Advanced non-bundle use: See [copying via lock files](commands.md#copying-via-lock-files).
 
@@ -104,8 +102,7 @@ $ cat /tmp/lock.yml
 
 apiVersion: imgpkg.carvel.dev/v1alpha1
 kind: BundleLock
-spec:
-  image:
-    url: docker.io/my-app@sha256:b12026c7a0a6a1756a82a2a74ac759e9a7036523faca0e33dbddebc214e097df
-    tag: v1.0
+bundle:
+  image: docker.io/my-app@sha256:b12026c7a0a6a1756a82a2a74ac759e9a7036523faca0e33dbddebc214e097df
+  tag: v1.0
 ```
