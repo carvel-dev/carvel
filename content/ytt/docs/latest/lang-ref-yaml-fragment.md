@@ -97,7 +97,7 @@ for key in vals():
 end
 ```
 
-- convert to a dictinoary
+- convert to a dictionary
 ```python
 dict(**vals()) # returns {"key1": "val1", "key2": yamlfragment({"subkey": "val2"})}
 ```
