@@ -47,7 +47,7 @@ params:
       - latest
   imgpkg:
     name: imgpkg
-    root_link: https://github.com/vmware-tanzu/carvel-imgpkg # not enabled yet: /imgpkg/
+    root_link: /imgpkg/
     latest_docs_link: /imgpkg/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
     search: false
