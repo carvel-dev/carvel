@@ -86,7 +86,7 @@ images:
   - `image` (string; required) digest reference to OCI image (tag references are not allowed)
   - `annotations` (map[string]string; optional) arbitrary additional data about image reference. Expected to be used by tools that create or read ImagesLock configuration. Example: [kbld](/kbld) uses annotations to store an identifier that can later tell it which location(s) within a Kubernetes configuration to update with the digest reference.
 
-Advanced non-bundle use: See [copying via lock files](commands.md#copying-via-lock-files).
+Advanced non-bundle use: See [copying via lock files](commands.md#copying-via-lock-file).
 
 ---
 ## BundleLock configuration
