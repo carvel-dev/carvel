@@ -121,7 +121,7 @@ Now that we have pushed a bundle to a registry, other users can pull it.
 
     If imgpkg had been able to find all images that were referenced in the [ImagesLock configuration](resources.md#imageslock-configuration) in the registry where bundle is located, then it would update `.imgpkg/images.yml` file to point to the registry-local locations.
 
-    See what happens to the lock file if you run the same pull command after [copying](air-gapped-workflow.md) the bundle to another registry!
+    See what happens to the lock file if you run the same pull command after [copying](air-gapped-workflow.md#option-1-from-a-location-connected-to-both-registries) the bundle to another registry!
 
 ---
 ## Step 4: Use pulled bundle contents

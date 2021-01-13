@@ -13,7 +13,7 @@ A bundle is an OCI image that holds 0+ arbitrary files _and_ 0+ references to de
 
 Referenced images are stored within the [`.imgpkg` directory](#imgpkg-directory) at the root level of the bundle image. 
 
-![Bundle diagram](images/bundle-diagram.png)
+![Bundle diagram](/images/imgpkg/bundle-diagram.png)
 
 Implementation note: A bundle OCI image has the `dev.carvel.imgpkg.bundle` [label](https://docs.docker.com/config/labels-custom-metadata/) set.
 

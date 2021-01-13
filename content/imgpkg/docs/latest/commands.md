@@ -18,7 +18,7 @@ Use the `-b`/`--bundle` flag to specify the destination of the push. If the spec
 
 The `-f` flag can be used multiple times to add different files or directories to the bundle.
 
-### Generating a [BundleLock](resources.md#bundlelock)
+### Generating a BundleLock
 
 `push` command can output a [`BundleLock` configuration](resources.md#bundlelock-configuration) for users that would like a deterministic reference to a pushed bundle. For example, running:
 
