@@ -88,7 +88,7 @@ $ imgpkg copy -b index.docker.io/username/my-bundle:v1.0.0 --to-repo=registry.co
 
 # Copy a bundle (w/ dependent images) to local tarball and then to another registry
 $ imgpkg copy -b index.docker.io/username/my-bundle:v1.0.0 --to-tar=/tmp/my-bundle.tar
-$ imgpkg copy -b /tmp/my-bundle.tar --to-repo=registry.corp.com/apps/my-bundle
+$ imgpkg copy --tar /tmp/my-bundle.tar --to-repo=registry.corp.com/apps/my-bundle
 {{< / highlight >}}
     </div>
 </div>
