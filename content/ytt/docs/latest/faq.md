@@ -101,7 +101,7 @@ The subset matcher does not directly support regex patterns. Instead, a custom m
 
 ---
 
-## Why can't I write standard yaml comments (#)? Why doesn't ytt support the yaml merge operator (<<:)? Why is my anchor reference null despite my anchor's successful template?
+## Why can't I write standard yaml comments (#)? Why is my anchor reference null despite my anchor's successful template?
 
 These are [known limitations](known-limitations.md) of ytt.
 
