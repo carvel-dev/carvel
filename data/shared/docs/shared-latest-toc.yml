@@ -5,3 +5,5 @@ toc:
         url: /contributing
       - page: Code of Conduct
         url: /code-of-conduct
+      - page: Security Policy
+        url: /security-policy
