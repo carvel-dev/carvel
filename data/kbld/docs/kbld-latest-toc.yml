@@ -19,3 +19,7 @@ toc:
         url: /config
       - page: Authentication
         url: /auth
+  - title: FAQ
+    subfolderitems:
+      - page: Security
+        url: /security

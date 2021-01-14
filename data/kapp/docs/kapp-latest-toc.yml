@@ -39,3 +39,5 @@ toc:
         url: /faq
       - page: Resource Merge Method
         url: /merge-method
+      - page: Security
+        url: /security

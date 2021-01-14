@@ -15,3 +15,7 @@ toc:
         url: /versions
       - page: Github Release
         url: /github-release
+  - title: FAQ
+    subfolderitems:
+      - page: Security
+        url: /security

@@ -25,3 +25,7 @@ toc:
     subfolderitems:
       - page: Mozilla's sops
         url: /sops
+  - title: FAQ
+    subfolderitems:
+      - page: Security
+        url: /security

@@ -4,7 +4,7 @@ title: Security
 
 ## Vulnerability Disclosure
 
-If you believe you have found a security issue in `ytt`, please responsibly disclose by contacting us at `dkalinin@pivotal.io`.
+If you believe you have found a security issue in `ytt`, please privately and responsibly disclose it by following the directions in our [security policy](/shared/docs/latest/security-policy).
 
 ## Attack Vectors
 
