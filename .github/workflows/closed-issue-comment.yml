@@ -1,0 +1,14 @@
+name: Closed issue comment labeling
+on:
+  issue_comment:
+    types: ['created']
+
+jobs:
+  add-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://k8slt/github-labeler-action@sha256:69b376b059806729c25c7d1f6cb0c88e1547eae6f57451414d108915bf4ddffd
+        if: github.event.issue.state == 'closed' && github.event.issue.closed_at != github.event.comment.created_at
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          add-labels: "carvel-triage"
