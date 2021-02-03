@@ -81,6 +81,22 @@ In either case, the bundle image and all dependent images are copied to the dest
 $ imgpkg copy --lock bundle.lock.yml --to-repo registry.corp.com/user2/sample-bundle-name --lock-output /tmp/new-bundle.lock.yml
 ```
 
+### Non-Distributable or Foreign Layers
+
+Some images contain layers which should not be uploaded when copying, such as a proprietary base image.
+Instead, to comply with license requirements, it is expected to get them directly from the source registry.
+These layers are interchangeably known as
+[Non-Distributable](https://github.com/opencontainers/image-spec/blob/79b036d80240ae530a8de15e1d21c7ab9292c693/layer.md#non-distributable-layers)
+(by the OCI) or
+[Foreign](https://docs.docker.com/registry/spec/manifest-v2-2/) (by Docker) and denoted in the layer's MediaType.
+
+By default, imgpkg will not relocate any layers marked as non-distributable.
+
+This can cause issues when dealing with [air-gapped environments](air-gapped-workflow.md) as they may be unable to reach the external registries.
+To allow this use case, imgpkg supports the `--include-non-distributable` flag to copy all layers, even those marked as non-distributable.
+
+Note that usage of this flag shall not preclude your obligation to comply with the terms of the image license(s).
+
 ---
 ## Tag
 
