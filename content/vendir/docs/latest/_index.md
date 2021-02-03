@@ -15,6 +15,7 @@ Supported sources for fetching:
 - git
 - http
 - image (image from OCI registry)
+- imgpkgBundle (bundle from OCI registry)
 - githubRelease
 - helmChart
 - directory

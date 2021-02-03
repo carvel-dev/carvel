@@ -69,6 +69,16 @@ directories:
         # (required)
         name: my-image-auth
 
+    # fetches imgpkg bundle from an image registry (optional; v0.16.0+)
+    imgpkgBundle:
+      # could be plain, tagged or digest reference (required)
+      image: gcr.io/repo/bundle:v1.0.0
+      # specifies name of a secret with registry auth details;
+      # secret may include 'username', 'password' and/or 'token' keys (optional)
+      secretRef:
+        # (required)
+        name: my-image-auth
+
     # fetches assets from a github release (optional)
     githubRelease:
       # slug for repository (org/repo) (required)

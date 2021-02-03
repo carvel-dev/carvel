@@ -44,6 +44,11 @@ directories:
       # fully resolve image URL with digest
       url: index.docker.io/dkalinin/consul-helm@sha256:d1cdbd46561a144332f0744302d45f27583fc0d75002cba473d840f46630c9f7
 
+    # present if imgpkgBundle (v0.16.0+)
+    imgpkgBundle:
+      # fully resolve image URL with digest
+      image: index.docker.io/dkalinin/consul-helm@sha256:d1cdbd46561a144332f0744302d45f27583fc0d75002cba473d840f46630c9f7
+
     # present if inline (v0.11.0+)
     inline: {}
 
