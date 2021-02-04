@@ -316,3 +316,5 @@ data:
             emptyFieldMatcher:
               path: [aggregationRule]
 ```
+
+NOTE: `kapp` is _only_ affected by a `Config` (whether wrapped in a `ConfigMap` or not) when supplied as a direct input (i.e. as a `-f` argument). Any `ConfigMap` containing a `Config` is already present in the target cluster has _no affect whatsoever_ on `kapp`'s behavior.
