@@ -12,7 +12,7 @@ You can use `kubectl` (or another tool) to deploy the YAML examples below. We've
   resource within the `default` namespace. This will be used by App CR below.
 
   ```bash-plain
-  $ kapp deploy -a default-ns-rbac -f https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/rbac/default-ns.yml
+  $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
   ```
 
 - Install [examples/simple-app-git/1.yml](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/simple-app-git/1.yml) App CR. It specifies how to fetch, template, and deploy our example application.
