@@ -38,7 +38,7 @@
 				<li><a href="/blog/" {{ if or (eq .Page.Section "blog") (eq .Page.Section "tags") }}class="active"{{ end }}>Blog</a></li>
 			</ul>
 			<div class="social">
-				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="{{ .Site.Params.links.github_url }}"><img src="/img/github.svg" />GitHub</a>
 				<a href="{{ .Site.Params.links.slack_url }}"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
 			</div>
 		</div>
