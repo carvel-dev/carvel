@@ -83,7 +83,7 @@ params:
       - latest
   links:
     twitter_url: https://twitter.com/carvel_dev
-    github_url: https://github.com/vmware-tanzu/carvel
+    github_url: https://github.com/vmware-tanzu/carvel.dev
     slack_url: https://kubernetes.slack.com/archives/CH8KCCKA5
 markup:
   highlight:
