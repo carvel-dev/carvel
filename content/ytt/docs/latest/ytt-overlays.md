@@ -33,9 +33,10 @@ Given a sample target YAML file:
 > #@overlay/match by=overlay.all, expects="1+"
 > ---
 > contents:
-> #@overlay/append
 > - pen
 > ```
+
+(as of v0.32.0+) the default overlay operation for array items is append. Past versions use [`#@overlay/append`](lang-ref-ytt-overlay.md#@overlay/append)
 
 _read as..._
 1. _"match all YAML documents, expecting to match _at least_ one;"_
