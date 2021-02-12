@@ -168,7 +168,7 @@ spec:
         - name: to-be-removed
 ```
 
-`add-container.yml` (as of v0.32.0+) the default overlay operation for array items is append. Past versions use [`#@overlay/append`](lang-ref-ytt-overlay.md#@overlay/append)
+`add-container.yml`
 ```yaml
 #@ load("@ytt:overlay", "overlay")
 
@@ -183,6 +183,7 @@ spec:
           ports:
           - containerPort: #@ data.values.appended_container_port
 ```
+Prior to v0.32.0 append array items with [`#@overlay/append`](lang-ref-ytt-overlay.md#@overlay/append)
 
 `prod-values.yml`
 ```yaml
