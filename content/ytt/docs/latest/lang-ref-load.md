@@ -15,7 +15,7 @@ Load statement allows to load functions from other modules (such as ones from [b
 - [load](https://github.com/google/starlark-go/blob/master/doc/spec.md#load-statements)
 ```python
 load("@ytt:overlay", "overlay")                # load overlay module from builtin ytt library
-load("@ytt:overlay", "overlay"=ov)             # load overlay symbol under a different alias
+load("@ytt:overlay", ov="overlay")             # load overlay symbol under a different alias
 load("helpers.star", "func1", "func2")         # load func1, func2 from Starlark file
 load("helpers.lib.yml", "func1", "func2")      # load func1, func2 from YAML file
 load("helpers.lib.txt", "func1", "func2")      # load func1, func2 from text file
