@@ -42,6 +42,7 @@ overrides:
   - `docker` (optional; default) use Docker to build source. [Details](#docker).
   - `pack` (optional) use pack CLI to build source. [Details](#pack).
   - `kubectlBuildkit` (optional) use Buildkit CLI for kubectl to build source. [Details](#buildkit-cli-for-kubectl).
+  - `ko` (optional) use `ko` to build source. [Details](#ko).
 - `destinations` (optional; array) allows to specify one or more destination where images should be pushed
   - `image` (optional) image matcher
   - `newImage` (optional) image destination (e.g. docker.io/dkalinin/app-demo)
@@ -78,6 +79,7 @@ Currently supported builders:
 - `docker`: [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/) (default)
 - `pack`: Pack CLI (https://github.com/buildpacks/pack)
 - `kubectlBuildkit`: [BuildKit CLI for kubectl](https://github.com/vmware-tanzu/buildkit-cli-for-kubectl)
+- `ko`: [ko CLI](https://github.com/google/ko)
 
 ### Docker
 
@@ -157,6 +159,26 @@ kubectl create secret docker-registry buildkit --docker-server=https://index.doc
 ```
 
 See project site for details: [buildkit-cli-for-kubectl](https://github.com/vmware-tanzu/buildkit-cli-for-kubectl).
+
+### ko
+
+Available as of v0.28.0+
+
+```yaml
+---
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+  - image: image1
+    path: ./cmd/kbld
+    ko:
+      build:
+        rawOptions: ["--disable-optimizations"]
+```
+
+- `ko.build.rawOptions` ([]string): Refer to `ko publish -h` for all available options.
+
+  By default `kbld` provides the `--local` flag
 
 ---
 ## Destinations
