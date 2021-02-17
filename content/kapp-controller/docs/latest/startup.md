@@ -2,6 +2,8 @@
 Title: Kapp Controller Startup
 ---
 
+(v0.14.0+)
+
 The startup of kapp controller consists of two processes:
 controllerinit and controller.
 
