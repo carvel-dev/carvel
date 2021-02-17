@@ -21,6 +21,10 @@ toc:
         url: /security-model
       - page: Dangerous Flags
         url: /dangerous-flags
+      - page: Packaging
+        url: /packaging
+      - page: Packaging Workflows
+        url: /packaging-workflows
   - title: Template steps
     subfolderitems:
       - page: Mozilla's sops
