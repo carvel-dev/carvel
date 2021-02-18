@@ -169,11 +169,11 @@ Available as of v0.28.0+
 apiVersion: kbld.k14s.io/v1alpha1
 kind: Config
 sources:
-  - image: image1
-    path: ./cmd/kbld
-    ko:
-      build:
-        rawOptions: ["--disable-optimizations"]
+- image: image1
+  path: ./cmd/kbld
+  ko:
+    build:
+      rawOptions: ["--disable-optimizations"]
 ```
 
 - `ko.build.rawOptions` ([]string): Refer to `ko publish -h` for all available options.
