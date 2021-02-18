@@ -170,9 +170,9 @@ apiVersion: kbld.k14s.io/v1alpha1
 kind: Config
 sources:
 - image: image1
-  path: ./cmd/kbld
+  path: ./src/
   ko:
-    build:
+    build: # all options shown; none are required
       rawOptions: ["--disable-optimizations"]
 ```
 
