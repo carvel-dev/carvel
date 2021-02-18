@@ -16,7 +16,7 @@ All created resources are labeled with several labels:
 
 Every time application is deployed, new application change record is saved. They can be viewed via `kapp app-change ls -a app-name`.
 
-Related: [ownership label rules](config.md) and [label scoping rules](config.md).
+Related: [ownership label rules](config.md#ownershiplabelrules) and [label scoping rules](config.md#labelscopingrules).
 
 ## Controlling apply via resource annotations
 
