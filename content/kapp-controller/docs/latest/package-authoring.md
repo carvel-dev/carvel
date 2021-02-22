@@ -4,16 +4,20 @@ title: Package Authoring
 
 Before jumping in, we recommend reading through the docs about the new [packaging
 APIs](packaging.md) to familiarize yourself with the YAML configuration used in these
-workflows.
-
-These workflows also assume some of the other Carvel tools are installed on your
-system, namely `kapp`, `imgpkg`, and `kbld`. For more info on how to install
-these, see our [install section on the homepage](/#whole-suite)
+workflows. 
 
 This workflow walks through an example that will help a user transform a stack
 of plain Kubernetes manifests in to a Package within a PackageRepository. This will
 allow them to distribute their apps in a way that is easily installable by any
 consumers running a kapp-controller in their cluster.
+
+## Prerequisites
+
+To go through the examles below, the following prerequisites are assumed:
+* You will need to [install the alpha release](install-alpha.md) of kapp-controller on a Kubernetes cluster.
+* These workflows also assume some of the other Carvel tools are installed on your
+system, namely `kapp`, `imgpkg`, and `kbld`. For more info on how to install
+these, see our [install section on the homepage](/#whole-suite).
 
 ## Creating a package
 

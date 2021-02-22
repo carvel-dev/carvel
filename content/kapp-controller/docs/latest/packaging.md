@@ -15,13 +15,9 @@ InstalledPackage, which are described further in their respective sections.
 As this is still an alpha feature, we would love any and all feedback regarding these
 APIs or any documentation relating to them! (Ping us on Slack)
 
-## Install alpha release of kapp-controller
+## Install
 
-Run:
-
-```bash
-$ kapp deploy -a kc -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/dev-packaging/alpha-releases/v0.17.0-alpha.1.yml
-```
+See the documentation on [installing the alpha release of kapp-controller](install-alpha.md).
 
 ## Terminology
 

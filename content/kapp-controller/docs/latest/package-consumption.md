@@ -9,6 +9,11 @@ workflows.
 This workflow walks through the example contained in
 the [`packaging-demo`](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/examples/packaging-demo).
 
+## Prerequisites
+
+* You will need to [install the alpha release](install-alpha.md) on a Kubernetes cluster to go through the examples.
+* The instructions below assume [`kapp`](/#whole-suite) and `kubectl` are installed.
+
 ## Adding package repository
 
 kapp-controller needs to know which packages are available to install. One way to let it know about available packages is by registering a package repository. To do this, we need a PackageRepository CR:

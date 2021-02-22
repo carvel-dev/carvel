@@ -29,6 +29,8 @@ toc:
     subfolderitems:
       - page: Terminology & APIs
         url: /packaging
+      - page: Install
+        url: /install-alpha
       - page: Authoring packages
         url: /package-authoring
       - page: Consuming packages
