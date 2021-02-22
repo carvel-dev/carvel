@@ -2,6 +2,8 @@
 title: Package Consumption
 ---
 
+Available in v0.17.0-alpha.1+
+
 Before jumping in, we recommend reading through the docs about the new [packaging
 apis](packaging.md) to familiarize yourself with the YAML configuration used in these
 workflows.
