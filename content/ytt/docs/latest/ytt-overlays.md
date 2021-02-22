@@ -36,7 +36,7 @@ Given a sample target YAML file:
 > - pen
 > ```
 
-Prior to v0.32.0 append array items with [`#@overlay/append`](lang-ref-ytt-overlay.md#@overlay/append)
+Prior to v0.32.0 append array items with [`#@overlay/append`](lang-ref-ytt-overlay.md#overlayappend)
 
 _read as..._
 1. _"match all YAML documents, expecting to match _at least_ one;"_
