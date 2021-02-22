@@ -408,6 +408,9 @@ _(this annotation has no parameters.)_
 
 **Note:** This action implies an `@overlay/match` selecting the last node. Any other `@overlay/match` annotation is ignored. 
 
+**History:**
+- v0.32.0 — append is the default array operation
+
 ### @overlay/assert
 
 Checks assertion that value of "left" matched node equals that of the annotated "right" node (_or_ a provided predicate).
