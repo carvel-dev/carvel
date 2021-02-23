@@ -102,7 +102,8 @@ $ kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg
 For more on using kbld to populate the `.imgpkg` directory with an ImageLock, and why it is useful,
 see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration)
 
-Once these files have been added, our package contents bundle is ready to be pushed:
+Once these files have been added, our package contents bundle is ready to be pushed as shown below 
+(**NOTE:** replace `registry.corp.com/packages/` if working through example):
 
 ```bash
 $ imgpkg push -b registry.corp.com/packages/simple-app:1.0.0 -f package-contents/
@@ -142,6 +143,7 @@ spec:
     spec:
       fetch:
       - imgpkgBundle:
+          # replace image registry and repo with one you are using
           image: registry.corp.com/packages/simple-app:1.0.0
       template:
       - ytt:
@@ -155,7 +157,9 @@ spec:
       - kapp: {}
 ```
 
-Lets store this in a file named `simple-app.corp.com.1.0.0.yml`.
+Lets store this in a file named `simple-app.corp.com.1.0.0.yml`. Remember to replace 
+`registry.corp.com/packages/` in the YAML above with your registry and repository if 
+following along. 
 
 ---
 ### Testing your package
@@ -203,4 +207,5 @@ With the metadata files present, we can push our repo image to whatever OCI regi
 $ imgpkg push -i registry.corp.com/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
 ```
 
-Package repository is pushed! Follow [Adding package repository](package-consumption.md#installing-a-package) step from Package consumption workflow to see how to let kapp-controller know about this repository.
+The package repository is pushed. Follow the [Adding package repository](package-consumption.md#adding-package-repository) step from the 
+package consumption workflow to see an example of adding and using a PackageRepository with kapp-controller.
