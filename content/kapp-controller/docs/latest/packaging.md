@@ -2,7 +2,7 @@
 title: Packaging
 ---
 
-Available in v0.17.0-alpha.1+
+Available in [v0.17.0-alpha.1+](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/alpha-releases)
 
 **Disclaimer:** These APIs are still very much in an alpha stage, so changes
 will almost certainly be made and no backwards compatibility is guaranteed
