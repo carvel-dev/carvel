@@ -7,8 +7,6 @@ toc:
     subfolderitems:
       - page: Using data values
         url: /ytt-data-values
-      - page: Using overlays
-        url: /ytt-overlays
       - page: Data values vs overlays
         url: /data-values-vs-overlays
       - page: Injecting secrets
