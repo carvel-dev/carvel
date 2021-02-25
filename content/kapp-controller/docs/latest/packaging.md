@@ -49,7 +49,7 @@ to template and install those manifests.
 **Note:** for this alpha release, dependency management is not handled by kapp-controller
 
 ```yaml
-apiVersion: packages.carvel.dev/v1alpha1
+apiVersion: package.carvel.dev/v1alpha1
 kind: Package
 metadata:
   # Resource name. Should not be referenced by InstalledPackage.
