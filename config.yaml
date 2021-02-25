@@ -14,9 +14,10 @@ params:
     root_link: /ytt/
     latest_docs_link: /ytt/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-ytt
-    search: false
-    search_index_name: index_name
-    search_api_key: api_key
+    search: true
+    search_index_name: carvel
+    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+    search_tag: ytt
     versioning: false
     version_latest: latest
     versions:
@@ -26,9 +27,10 @@ params:
     root_link: /kbld/
     latest_docs_link: /kbld/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kbld
-    search: false
-    search_index_name: index_name
-    search_api_key: api_key
+    search: true
+    search_index_name: carvel
+    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+    search_tag: kbld
     versioning: false
     version_latest: latest
     versions:
@@ -38,9 +40,10 @@ params:
     root_link: /kapp/
     latest_docs_link: /kapp/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
-    search: false
-    search_index_name: index_name
-    search_api_key: api_key
+    search: true
+    search_index_name: carvel
+    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+    search_tag: kapp
     versioning: false
     version_latest: latest
     versions:
@@ -50,9 +53,10 @@ params:
     root_link: /imgpkg/
     latest_docs_link: /imgpkg/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
-    search: false
-    search_index_name: index_name
-    search_api_key: api_key
+    search: true
+    search_index_name: carvel
+    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+    search_tag: imgpkg
     versioning: false
     version_latest: latest
     versions:
@@ -62,9 +66,10 @@ params:
     root_link: https://github.com/vmware-tanzu/carvel-kapp-controller # not enabled yet: /kapp-controller/
     latest_docs_link: /kapp-controller/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
-    search: false
-    search_index_name: index_name
-    search_api_key: api_key
+    search: true
+    search_index_name: carvel
+    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+    search_tag: kapp-controller
     versioning: false
     version_latest: latest
     versions:
@@ -74,9 +79,10 @@ params:
     root_link: /vendir/
     latest_docs_link: /vendir/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
-    search: false
-    search_index_name: index_name
-    search_api_key: api_key
+    search: true
+    search_index_name: carvel
+    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+    search_tag: vendir
     versioning: false
     version_latest: latest
     versions:

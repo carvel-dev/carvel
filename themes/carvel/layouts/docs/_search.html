@@ -1,5 +1,5 @@
-{{ $param_search :=  (index .Site.Params (print .Section "_search")) }}
-{{ if $param_search }}
+{{ $subprojectInfo := (index .Site.Params .Section) }}
+    {{ if $subprojectInfo.search }}
     <form class="d-flex align-items-center">
         <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
         <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
