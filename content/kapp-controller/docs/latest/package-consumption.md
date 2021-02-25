@@ -2,12 +2,19 @@
 title: Package Consumption
 ---
 
+Available in [v0.17.0-alpha.1+](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/alpha-releases)
+
 Before jumping in, we recommend reading through the docs about the new [packaging
 apis](packaging.md) to familiarize yourself with the YAML configuration used in these
 workflows.
 
 This workflow walks through the example contained in
 the [`packaging-demo`](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/examples/packaging-demo).
+
+## Prerequisites
+
+* You will need to [install the alpha release](install-alpha.md) on a Kubernetes cluster to go through the examples.
+* The instructions below assume [`kapp`](/kapp) and `kubectl` are installed.
 
 ## Adding package repository
 
@@ -18,15 +25,15 @@ kapp-controller needs to know which packages are available to install. One way t
 apiVersion: install.package.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
-  name: basic.test.carvel.dev
+  name: simple-package-repository
 spec:
   fetch:
     image:
-      url: k8slt/kctrl-pkg-repo:v1.0.0
+      url: k8slt/corp-com-pkg-repo:1.0.0
 ```
 
 This CR will allow kapp-controller to install any of the packages found within
-the imgpkg bundle `k8slt/kctrl-pkg-repo:v1.0.0`, which is stored in a OCI registry. Save this PackageRepository to
+the image `k8slt/kctrl-pkg-repo:v1.0.0`, which is stored in a OCI registry. Save this PackageRepository to
 a file named repo.yml and then apply it to the cluster using kapp:
 
 ```bash
@@ -37,10 +44,10 @@ Once the deploy has finished, we are able to list the packages and see which one
 
 ```bash
 $ kubectl get packages
-NAME                              PUBLIC-NAME            VERSION      AGE
-pkg.test.carvel.dev.1.0.0         pkg.test.carvel.dev   1.0.0        7s
-pkg.test.carvel.dev.2.0.0         pkg.test.carvel.dev   2.0.0        7s
-pkg.test.carvel.dev.3.0.0-rc.1    pkg.test.carvel.dev   3.0.0-rc.1   7s
+NAME                             PUBLIC-NAME           VERSION      AGE
+simple-app.corp.com.1.0.0        simple-app.corp.com   1.0.0        20s
+simple-app.corp.com.2.0.0        simple-app.corp.com   2.0.0        20s
+simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com   3.0.0-rc.1   20s
 ```
 
 If we want, we can inspect these packages further to get more info about what they're installing:
@@ -56,12 +63,12 @@ This will show us the package yaml, which will look something like this:
 apiVersion: package.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: pkg.test.carvel.dev.1.0.0
+  name: simple-app.corp.com.1.0.0
 spec:
-  publicName: pkg.test.carvel.dev
+  publicName: simple-app.corp.com
   version: 1.0.0
-  displayName: "Test Package in repo"
-  description: "Package used for testing"
+  displayName: "simple-app v1.0.0"
+  description: "Package for simple-app version 1.0.0"
   template:
     spec:
       fetch:
@@ -99,7 +106,7 @@ metadata:
 spec:
   serviceAccountName: default-ns-sa
   packageRef:
-    publicName: pkg.test.carvel.dev
+    publicName: simple-app.corp.com
     version: 1.0.0
   values:
   - secretRef:
@@ -162,8 +169,8 @@ And we see that our hello_msg value is used.
 
 ## Uninstalling a package
 
-To uninstall a package simply delete InstalledPackage CR
+To uninstall a package, simply delete the InstalledPackage CR:
 
 ```bash
-$ kubectl delete installedpackage pkg-demo
+$ kapp delete -a pkg-demo
 ```

@@ -2,18 +2,24 @@
 title: Package Authoring
 ---
 
+Available in [v0.17.0-alpha.1+](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/alpha-releases)
+
 Before jumping in, we recommend reading through the docs about the new [packaging
 APIs](packaging.md) to familiarize yourself with the YAML configuration used in these
-workflows.
-
-These workflows also assume some of the other Carvel tools are installed on your
-system, namely `kapp`, `imgpkg`, and `kbld`. For more info on how to install
-these, see our [install section on the homepage](/#whole-suite)
+workflows. 
 
 This workflow walks through an example that will help a user transform a stack
 of plain Kubernetes manifests in to a Package within a PackageRepository. This will
 allow them to distribute their apps in a way that is easily installable by any
 consumers running a kapp-controller in their cluster.
+
+## Prerequisites
+
+To go through the examles below, the following prerequisites are assumed:
+* You will need to [install the alpha release](install-alpha.md) of kapp-controller on a Kubernetes cluster.
+* These workflows also assume some of the other Carvel tools are installed on your
+system, namely `kapp`, `imgpkg`, and `kbld`. For more info on how to install
+these, see our [install section on the homepage](/#whole-suite).
 
 ## Creating a package
 
@@ -96,7 +102,8 @@ $ kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg
 For more on using kbld to populate the `.imgpkg` directory with an ImageLock, and why it is useful,
 see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration)
 
-Once these files have been added, our package contents bundle is ready to be pushed:
+Once these files have been added, our package contents bundle is ready to be pushed as shown below 
+(**NOTE:** replace `registry.corp.com/packages/` if working through example):
 
 ```bash
 $ imgpkg push -b registry.corp.com/packages/simple-app:1.0.0 -f package-contents/
@@ -136,6 +143,7 @@ spec:
     spec:
       fetch:
       - imgpkgBundle:
+          # replace image registry and repo with one you are using
           image: registry.corp.com/packages/simple-app:1.0.0
       template:
       - ytt:
@@ -149,7 +157,9 @@ spec:
       - kapp: {}
 ```
 
-Lets store this in a file named `simple-app.corp.com.1.0.0.yml`.
+Lets store this in a file named `simple-app.corp.com.1.0.0.yml`. Remember to replace 
+`registry.corp.com/packages/` in the YAML above with your registry and repository if 
+following along. 
 
 ---
 ### Testing your package
@@ -197,4 +207,5 @@ With the metadata files present, we can push our repo image to whatever OCI regi
 $ imgpkg push -i registry.corp.com/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
 ```
 
-Package repository is pushed! Follow [Adding package repository](package-consumption.md#installing-a-package) step from Package consumption workflow to see how to let kapp-controller know about this repository.
+The package repository is pushed. Follow the [Adding package repository](package-consumption.md#adding-package-repository) step from the 
+package consumption workflow to see an example of adding and using a PackageRepository with kapp-controller.
