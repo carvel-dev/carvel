@@ -70,8 +70,8 @@ spec:
           name: secret-name
         # grab only portion of image (optional)
         subPath: inside-dir/dir2
-        
-    # pulls imgpkg bundle from Docker/OCI registry
+
+    # pulls imgpkg bundle from Docker/OCI registry (v0.17.0+)
     - imgpkgBundle:
         # Docker image url; unqualified, tagged, or
         # digest references supported (required)
