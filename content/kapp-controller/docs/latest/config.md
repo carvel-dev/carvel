@@ -29,6 +29,7 @@ spec:
 Fetches set of files from various sources. Multiple sources can be used (for example, `helmChart` and `inline`).
 
 - `inline`: specify one or more files within resource
+- `imgpkgBundle`: download [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle) from registry (available in v0.17.0+)
 - `image`: download Docker image from registry
 - `http`: download file at URL
 - `git`: clone Git repository
@@ -57,6 +58,20 @@ spec:
 ```
 
 Note, following sections describes contents of Secret resources referenced by various fetch strategies. kapp-controller does not check for `type` value of Secret resource.
+
+### `image` authentication
+
+Allowed secret keys:
+
+- `username` and `password`
+- `token`: Alternative to username/password authentication
+
+### `imgpkgBundle` authentication
+
+Allowed secret keys:
+
+- `username` and `password`
+- `token`: Alternative to username/password authentication
 
 ### `git` authentication
 
