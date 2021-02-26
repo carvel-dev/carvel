@@ -77,7 +77,8 @@ spec:
           - config/
       - kbld:
           paths:
-          - -
+          # - must be quoted when included with paths
+          - "-"
           - .imgpkg/images.yml
       deploy:
       - kapp: {}
