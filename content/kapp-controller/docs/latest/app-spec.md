@@ -152,14 +152,17 @@ spec:
                 directoryPath: dir
         # lists paths to provide to ytt explicitly (optional)
         paths:
+        # - must be quoted when included with paths
+        - "-"
         - dir/common
         - dir/nested/app
 
     # use kbld to resolve image references to use digests
     - kbld:
         # lists paths to use explicitly (optional; v0.13.0+)
+        # - must be quoted when included with paths
         paths:
-        - -
+        - "-"
         - .imgpkg/images.yml
 
     # use helm template command to render helm chart
