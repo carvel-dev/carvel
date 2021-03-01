@@ -69,7 +69,7 @@ More details: [Directory Structure Explained](https://gohugo.io/getting-started/
 
 ### Join the Community and Make Carvel Better
 Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community.
-Please join us during our online community meetings. Details can be found on our [Carvel website](https://carvel.dev/community/).
+Please join us during our online community meetings and office hours. Details can be found on our [Carvel website](https://carvel.dev/community/).
 
 You can chat with us on Kubernetes Slack in the [#carvel channel](https://kubernetes.slack.com/archives/CH8KCCKA5) and follow us on Twitter at [@carvel_dev](https://twitter.com/carvel_dev).
 
