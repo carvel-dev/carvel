@@ -2,6 +2,10 @@
 title: Packaging and Relocation
 ---
 
+### Deprecation
+This functionality was deprecated in `kbld` starting from version v0.30.0 and will be removed soon.
+These features are now available on [imgpkg](https://carvel.dev/imgpkg).
+
 ## Overview
 
 kbld provides a way to relocate (i.e. copy) images between multiple registries. Two approaches are available:
