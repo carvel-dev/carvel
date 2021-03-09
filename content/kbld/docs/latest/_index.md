@@ -16,8 +16,6 @@ Features:
 - Works with local Docker daemon and remote registries, for development and production cases
 - Records metadata about image sources in annotation on Kubernetes resources (see examples below)
 - Resolves image references to their digest (immutable) form
-- Provides a way to transport set of images in a single tarball between registries
-  - maintaining exactly same digests, hence guaranteeing exactly same content
 - Not specific to Kubernetes, but works really well with Kubernetes configuration files  
 
 See [building and deploying simple Go application to Kubernetes example](/blog/deploying-apps-with-ytt-kbld-kapp/#building-container-images-locally) that uses kbld.
