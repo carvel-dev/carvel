@@ -167,7 +167,7 @@ following along.
 Now that we have our Package CR defined, we can test it on the cluster. We will momentarily act as a package consumer. First, we need to make our package available on the cluster, so let's apply the Package CR we just created directly to the cluster:
 
 ```
-$ kapp deploy -a package -f simple-app.corp.com.v1.0.0.yml
+$ kapp deploy -a package -f simple-app.corp.com.1.0.0.yml
 ```
 
 Typically Package CR is made available to the cluster from a package repository, however, in this case it's useful to apply it to the cluster directly since we might need to change it a few times to get things right.
