@@ -103,9 +103,24 @@ The subset matcher does not directly support regex patterns. Instead, a custom m
 
 ---
 
-## Why can't I write standard yaml comments (#)? Why is my anchor reference null despite my anchor's successful template?
+## Why is `ytt` complaining about "Unknown comment syntax"; can't I write standard YAML comments (#)? 
 
-These are [known limitations](known-limitations.md) of ytt.
+You can, but it is discouraged to avoid tricky errors that can go unchecked.
+
+The recommended approach is when writing `ytt` templated files, use `ytt` comments:
+
+```
+#! this is a ytt comment; it's like she-bang!
+```
+
+If for some reason you need to disable this "linting" check (e.g. you're gradually migrating an existing YAML file to become a `ytt` template and it's onerous to convert all those comments at once), include the `--ignore-unknown-comments` flag.
+
+For a detailed explanation of how `ytt` detects and processes YAML files, see [File Marks > type detection for YAML files](file-marks.md#type-detection-for-yaml-files).
+
+
+## Why is my anchor reference null despite my anchor's successful template?
+
+This is a [known limitation](known-limitations.md) of ytt.
 
 ## Can I generate random strings with ytt?
 No. A design goal of ytt is determinism, which keeps randomness out of scope.

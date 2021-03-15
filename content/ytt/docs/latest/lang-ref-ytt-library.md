@@ -41,6 +41,7 @@ url_func() # result of url function
   - Keyword arguments:
     - `alias=<string>` (no default) can be used to specify unique name for this library instantiation.
     - `ignore_unknown_comments=<bool>` (default False) equivalent to `ytt --ignore-unknown-comments`. Available v0.31.0+
+      - see [File Marks > type detection for YAML files](file-marks.md#type-detection-for-yaml-files) for more details.
     - `implicit_map_key_overrides=<bool>` (default False) equivalent to `ytt --implicit-map-key-overrides`. Available v0.31.0+
     - `strict=<bool>` (default False) equivalent to `ytt --strict`. Available v0.31.0+
 
