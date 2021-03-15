@@ -66,14 +66,22 @@ diffMaskRules:
 
 ### rebaseRules
 
-`rebaseRules` specify origin of field values. Kubernetes cluster generates (or defaults) some field values, hence these values will need to be merged in future to avoid flagging them during diffing. Common example is `v1/Service`'s `spec.clusterIP` field is automatically populated if it's not set. See [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md) examples.
+`rebaseRules` specify origin of field values. 
+
+kapp rebase rules explicitly define how to merge resources during an update. To read more about why rebase rules are necessary, see [Resource Merge Method](merge-method.md).
+For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md).
 
 - `rebaseRules` (array) list of rebase rules
-  - `path` (array) specifies location within a resource to rebase. Mutually exclusive with `paths`. Example: `[spec, clusterIP]`
-  - `paths` (array of paths) specifies multiple locations within a resource to rebase. This is a convenience for specifying multiple rebase rules with only different paths. Mutually exclusive with `path`. Available in v0.27.0+.
-  - `sources` (array of strings) specifies source preference from where to copy value from. Allowed values: `new` or `existing`. Example: `[new, existing]`
+  - `path` (array of strings) specifies location within a resource to rebase. Mutually exclusive with `paths`. Example: `[spec, clusterIP]`
+  - `paths` (array of `path`) specifies multiple locations within a resource to rebase. This is a convenience for specifying multiple rebase rules with only different paths. Mutually exclusive with `path`. Available in v0.27.0+.
+  - `type` (string) specifies strategy to modify field values. Allowed values: `copy` or `remove`. `copy` will update the field value; `remove` will delete the field.
+  - `sources` (array of `new` or `existing`) specifies a preference order for the source of the referenced field value being rebased. `new` refers to an updated resource from user input, where `existing` refers to a resource already in the cluster. If the field value being rebased is not found in any of the sources provided, kapp will error. Only used with `type: copy`. \
+    Examples:
+     - `[existing, new]` – If field value is present in the `existing` resource on cluster, use that value, otherwise use the value in the `new` user input.
+     - `[existing]` – Only look for field values in resources already on cluster, corresponding value you provide in new resource will be overwritten.
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
-
+  
+Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
 ```yaml
 rebaseRules:
 - path: [spec, clusterIP]
@@ -83,6 +91,7 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
+Rebase rule to `copy` the `clusterIP` and `healthCheckNodePort` field values from the `existing` resource on cluster, to `Service`/`v1` resources:
 ```yaml
 rebaseRules:
 - paths:
