@@ -127,3 +127,27 @@ Copied here for convenience from [Starlark specification](https://github.com/goo
 ```python
 "Hello, World!".upper()  # "HELLO, WORLD!"
 ```
+
+* [Multiline strings](https://github.com/google/starlark-go/blob/master/doc/spec.md#string-literals)
+  
+  Since ytt uses a modified version of Starlark that is not whitespace sensitive, to keep indentation in muli-line strings we recommend using a [`yamlfragment`](lang-ref-yaml-fragment.md).
+  For example, to get the string from this [function](lang-ref-def.md) that returns a `yamlfragment`, index it by the key name.
+```yaml
+#@ def preserve_indents():
+my_string: | 
+ one
+ two
+        three
+     four
+#@ end
+
+multiline_string: #@ preserve_indents()["my_string"]
+```
+Results in
+```yaml
+multiline_string: |
+  one
+  two
+         three
+      four
+```
