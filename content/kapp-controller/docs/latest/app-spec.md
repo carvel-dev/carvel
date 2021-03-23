@@ -156,6 +156,13 @@ spec:
         - "-"
         - dir/common
         - dir/nested/app
+        # control metadata about input files passed to ytt (optional; v0.18.0+)
+        # see https://carvel.dev/ytt/docs/latest/file-marks/ for more details
+        fileMarks:
+        - file-content:type=yaml-plain
+        - dir/common/bom**/*:type=text-plain
+        - dir/nested/app/file.txt:exclude=true
+        - dir/common/generated.go.txt:path=gen.go.txt
 
     # use kbld to resolve image references to use digests
     - kbld:
