@@ -128,10 +128,12 @@ Copied here for convenience from [Starlark specification](https://github.com/goo
 "Hello, World!".upper()  # "HELLO, WORLD!"
 ```
 
-* [Multiline strings](https://github.com/google/starlark-go/blob/master/doc/spec.md#string-literals)
+* [multiline string literal](https://github.com/google/starlark-go/blob/master/doc/spec.md#string-literals)
+  may spread over multiple source lines. It is denoted using three quotation marks at start and end. Within it, unescaped newlines and quotation marks (or even pairs of quotation marks) have their literal meaning, but three quotation marks end the literal.
   
-  Since ytt uses a modified version of Starlark that is not whitespace sensitive, to keep indentation in muli-line strings we recommend using a [`yamlfragment`](lang-ref-yaml-fragment.md).
-  For example, to get the string from this [function](lang-ref-def.md) that returns a `yamlfragment`, index it by the key name.
+  ytt uses a slightly modified version of Starlark that does not preserve indentation in muli-line strings. There is an [issue](https://github.com/vmware-tanzu/carvel-ytt/issues/327) to capture this, and as a workaround we recommend using a [`yamlfragment`](lang-ref-yaml-fragment.md) described below.
+  
+  To get the string value from this [function](lang-ref-def.md) index it by the key name.
 ```yaml
 #@ def preserve_indents():
 my_string: | 
@@ -143,7 +145,7 @@ my_string: |
 
 multiline_string: #@ preserve_indents()["my_string"]
 ```
-Results in
+Which results in:
 ```yaml
 multiline_string: |
   one

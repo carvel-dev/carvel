@@ -11,4 +11,4 @@ title: Known Limitations
     second: *content
     ```
     `second` key-value pair will _not_ contain 123 since YAML anchors are resolved before ytt evaluates templating directives.
-- Starlark mutliline strings do not preserve whitespace. Reason for this is because ytt uses a modified version of Starlark that is not whitespace sensitive in order to circumvent detecting errors in indentation during parsing. More information on why [here](lang.md).
+- Starlark multiline strings lose indentation because of ytt's modifications to Starlark. There is a workaround described [here](lang-ref-string.md).
