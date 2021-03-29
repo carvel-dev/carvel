@@ -167,7 +167,7 @@ Available in v0.25.0+.
 ---
 ## Resource matchers
 
-Resource matchers (as used by `rebaseRules` and `ownershipLabelRules`):
+Resource matchers (as used by `rebaseRules`, `ownershipLabelRules`, `labelScopingRules`, `templateRules`, `diffAgainstLastAppliedFieldExclusionRules`, and `diffMaskRules`):
 
 ### allMatcher
 
