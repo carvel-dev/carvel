@@ -19,6 +19,11 @@ spec:
   # cancels current and future reconciliations (optional; default=false)
   canceled: true
 
+  # Deletion requests for the App will result in the App CR being
+  # deleted, but its associated resources will not be deleted 
+  # (optional; default=false; v0.18.0+)
+  noopDelete: true
+
   # specifies that app should be deployed authenticated via
   # given service account, found in this namespace (optional; v0.6.0+)
   serviceAccountName: sa-name
