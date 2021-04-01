@@ -52,6 +52,21 @@ When pulling a bundle, imgpkg ensures that the referenced images are updated to 
 $ imgpkg pull --lock bundle.lock.yml -o my-bundle/
 ```
 
+### Pulling nested bundles
+
+If pulling a bundle that references another bundle (via it's ImagesLock file), in order to *also* pull down the contents of every nested bundle, use the `--recursive` flag.  
+
+```bash-plain
+$ imgpkg pull --recursive -b bundle-with-nested-bundles
+```
+
+Contents of *every* nested bundles are written to the 'parent' bundle's `.imgpkg/bundles` directory, namespaced by the bundle's sha256.
+
+For e.g. pulling a bundle with a nested bundle having sha of `123` would result in:
+```
+parent-bundle-path/.imgpkg/bundles/sha256-123/<nested bundle 123 contents written here>
+```
+
 ---
 ## Copy
 
