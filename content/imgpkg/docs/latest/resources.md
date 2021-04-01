@@ -9,7 +9,7 @@ An OCI image is an artifact that lives within an OCI registry (such as DockerHub
 ---
 ## Bundle
 
-A bundle is an OCI image that holds 0+ arbitrary files _and_ 0+ references to dependent OCI images (which *may* also be bundles). By tracking dependent images, imgpkg can copy bundles across registries.
+A bundle is an OCI image that holds 0+ arbitrary files _and_ 0+ references to dependent OCI images (which *may* also be [bundles](#nested-bundle)). By tracking dependent images, imgpkg can copy bundles across registries.
 
 Referenced images are stored within the [`.imgpkg` directory](#imgpkg-directory) at the root level of the bundle image. 
 
@@ -118,9 +118,4 @@ Having a bundle 'reference' another bundle is no different from referencing any 
 
 One key difference between nested bundles and other OCI images, is the directory structure when `imgpkg pull` writes the nested bundle's content to disk.
 
-Specifically, the contents of a nested bundle are written in `.imgpkg/bundles`. 
-
-For e.g. pulling a bundle with a nested bundle having sha of `123` would result in its contents written in the following directory structure:
-```
-parent-bundle-path/.imgpkg/bundles/sha256-123/<contents of nested bundle go here>
-```
+For further details refer to [pulling a nested bundle.](commands.md#pulling-nested-bundles)
