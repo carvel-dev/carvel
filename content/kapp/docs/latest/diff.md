@@ -20,7 +20,7 @@ There are two diff strategies used by kapp:
 
 Strategy is selected for each resource individually. You can control which strategy is used for all resources via `--diff-against-last-applied=bool` flag.
 
-Related: [rebase rules](config.md).
+Related: [rebase rules](config.md/#rebaserules).
 
 ## Versioned Resources
 
