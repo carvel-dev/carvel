@@ -29,18 +29,42 @@ You can explicitly specify credentials via command flags or associated environme
 
 - `--registry-username` (or `$IMGPKG_USERNAME`)
 - `--registry-password` (or `$IMGPKG_PASSWORD`)
-- `--registry-token` (or `$IMGPKG_TOKEN`): used as an alternative to username/password combination
+- `--registry-token` (or `$IMGPKG_TOKEN`): to specify the access token to be used in the Authorization Header as a [Bearer Token](https://docs.docker.com/registry/spec/auth/token/#using-the-bearer-token).
 - `--registry-anon` (or `$IMGPKG_ANON=true`): used for anonymous access (commonly for pulling)
 
 ## Via Environment Variables
 
-As of v0.4.0+, `imgpkg` can also use following environment variables:
+As of v0.7.0+, `imgpkg` can also use following environment variables:
 
 - `IMGPKG_REGISTRY_HOSTNAME` to specify registry hostname (e.g. gcr.io, docker.io)
 - `IMGPKG_REGISTRY_USERNAME` to specify registry username
 - `IMGPKG_REGISTRY_PASSWORD` to specify registry password
+- `IMGPKG_REGISTRY_IDENTITY_TOKEN` to authenticate the user and get an access token for the registry via an [oauth2 refresh token grant type](https://docs.docker.com/registry/spec/auth/oauth/).
+- `IMGPKG_REGISTRY_REGISTRY_TOKEN` to specify the access token to be used in the Authorization Header as a [Bearer Token](https://docs.docker.com/registry/spec/auth/token/#using-the-bearer-token).
 
-Since you may need to provide multiple registry credentials, the environment variables above may be specified multiple times with a suffix of 1+ alphanumeric characters, e.g. `IMGPKG_REGISTRY_HOSTNAME_0`. Be sure to use the same suffix for hostname, username and password!
+Since you may need to provide multiple registry credentials, the environment variables above may be specified multiple times with a suffix of 1+ alphanumeric characters, 
+
+e.g. If you had 2 registries you wish to provide authentication credentials for, you would require 2 sets of env variables.
+
+For Registry #1:
+
+```
+IMGPKG_REGISTRY_HOSTNAME_0=hostname.for.registry.1
+IMGPKG_REGISTRY_USERNAME_0=username
+IMGPKG_REGISTRY_PASSWORD_0=password
+```
+
+For Registry #2:
+
+```
+IMGPKG_REGISTRY_HOSTNAME_1=hostname.for.registry.2
+IMGPKG_REGISTRY_IDENTITY_TOKEN_1=token
+```
+
+When imgpkg interacts with `hostname.for.registry.1`, it will use the env variables with the suffix `_0`. And when interacting with `hostname.for.registry.2`, it will use the env variables with the suffix `_1`
+
+
+Note: Credentials provided via an env variable for a specific registry will take precedence over Command Flags.
 
 ## gcr.io
 
