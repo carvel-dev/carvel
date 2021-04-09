@@ -1,11 +1,11 @@
 ---
-title: "kapp boxes and lines/ kapp high level development overview"
+title: "High level walkthrough of the kapp deploy command"
 slug: kapp-boxes-and-lines-blog-post
 date: 2021-04-08
 author: Garrett Cheadle and Nanci Lancaster
-excerpt: "a high level overview of the kapp deploy command"
+excerpt: "Interested in learning about or contributing to kapp? Take a look into how kapp deploys a simple application to kubernetes ..."
 image: /img/logo.svg
-tags: ['Garrett Cheadle', 'Nanci Lancaster']
+tags: ['Garrett Cheadle', 'Nanci Lancaster', 'Garrett Cheadle and Nanci Lancaster']
 ---
 
 What is [kapp](/kapp)? Kapp is a deployment CLI within the Carvel tool suite for Kubernetes that helps manage resources in bulk.
@@ -19,10 +19,10 @@ In this demo, Garrett Cheadle, a Carvel maintainer, covers a high level overview
 
 ![Setup](/images/blog/setup.png)
 
-The first step in this stage will be initiated by the user. The user will run a `kapp deploy` command with a target [kapp application](https://carvel.dev/kapp/docs/latest/apps/#overview) designated by the `-a` and some configuration included with the `-f` flag: kapp deploy -a my-app -f config.yml.
+The first step in this stage will be initiated by the user. The user will run a `kapp deploy` command with a target [kapp application](/kapp/docs/latest/apps.md#overview) designated by the `-a` and some configuration included with the `-f` flag: kapp deploy -a my-app -f config.yml.
 
 ```bash-plain
-> cat -b config-step-1-minimal/config.yml
+> cat config.yml
 ---
 apiVersion: v1
 kind: Service
@@ -58,7 +58,7 @@ spec:
 	     value: stranger
 
 
-❯ kapp deploy -a simple-app -f config-step-1-minimal
+❯ kapp deploy -a simple-app -f config.yml
 Target cluster 'https://127.0.0.1:49955' (nodes: kind-control-plane)
 
 Changes
@@ -147,7 +147,7 @@ Lca: Last Change Age
 1 apps
 
 Succeeded
-❯ kapp deploy -a simple-app -f config-step-1-minimal
+❯ kapp deploy -a simple-app -f config.yml
 Target cluster 'https://127.0.0.1:49955' (nodes: kind-control-plane)
 
 Changes
@@ -219,7 +219,7 @@ We want to hear from you and learn with you. Here are several ways you can get i
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace and connect with over 500+ Carvel users.
 * Find us on [GitHub]({{% named_link_url "github_url" %}}). Suggest how we can improve the project, the
-docs, or share any other feedback.
+  docs, or share any other feedback.
 * Attend our Community Meetings, happening every Monday at 11:30am PT / 2:30pm ET and Offices Hours, happening every 2nd and 4th Thursday of each month, 11:30am PT / 2:30pm ET. Check out the [Community page](https://carvel.netlify.app/community/) for full details on how to attend.
 
 We look forward to hearing from you!
