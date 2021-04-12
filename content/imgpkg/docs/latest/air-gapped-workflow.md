@@ -30,7 +30,7 @@ If you are trying to bundle your own or third-part software, you will need to cr
 
 You have two options how to transfer bundle from one registry to another:
 
-- Option 1: From a common location connected to both registries. This option is more effecient because only changed image layers will be transfered between registries.
+- Option 1: From a common location connected to both registries. This option is more efficient because only changed image layers will be transfered between registries.
 - Option 2: With intermediate tarball. This option works best when registries have no common network access.
 
 ### Option 1: From a location connected to both registries
