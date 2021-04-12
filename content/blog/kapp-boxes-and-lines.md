@@ -3,7 +3,7 @@ title: "High level walkthrough of the kapp deploy command"
 slug: kapp-boxes-and-lines-blog-post
 date: 2021-04-08
 author: Garrett Cheadle and Nanci Lancaster
-excerpt: "Interested in learning about or contributing to kapp? Take a look into how kapp deploys a simple application to kubernetes ..."
+excerpt: "Interested in learning about or contributing to kapp? Take a behind the scenes look into how kapp deploys a simple application to kubernetes..."
 image: /img/logo.svg
 tags: ['Garrett Cheadle', 'Nanci Lancaster', 'Garrett Cheadle and Nanci Lancaster']
 ---
@@ -11,6 +11,8 @@ tags: ['Garrett Cheadle', 'Nanci Lancaster', 'Garrett Cheadle and Nanci Lancaste
 What is [kapp](/kapp)? Kapp is a deployment CLI within the Carvel tool suite for Kubernetes that helps manage resources in bulk.
 
 In this demo, Garrett Cheadle, a Carvel maintainer, covers a high level overview of the kapp deploy command, which is a fairly complete, common kapp workflow. The process can be separated in four stages: Setup, Change Calculations, Pre-apply Checks, and Apply.
+
+**Note: This post talks about the internal workflow that kapp follows during a deploy command.** 
 
 ![Full diagram](/images/blog/full-boxes-and-lines.png)
 
