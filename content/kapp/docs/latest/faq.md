@@ -2,6 +2,15 @@
 title: FAQ
 ---
 
+## Migrating from `kubectl apply` to kapp
+
+Switching from `kubectl apply` to `kapp deploy` will allow kapp to adopt resources mentioned in a given config. 
+However, kapp will try to insert a few of its labels in bodies of some resources, like Deployments, which may fail due to those resources having immutable fields that kapp tries to update (spec.selector on Deployments). 
+
+To prevent this failure, add the [`kapp.k14s.io/disable-default-label-scoping-rules: ""` annotation](config.md#labelscopingrules) as a [kapp configuration](config.md) to prevent kapp from touching the immutable fields when adopting a resource.
+
+Additional Resources: [GitHub Issue](https://github.com/vmware-tanzu/carvel-kapp/issues/204), [Slack Thread](https://kubernetes.slack.com/archives/CH8KCCKA5/p1606079730457700)
+
 ## `Error: Asking for confirmation: EOF`
 
 This probably means you have piped configuration into kapp and did not specify `--yes` (`-y`) flag to continue. It's necessary because kapp can no longer ask for confirmation via stdin. Feel free to re-run the command with `--diff-changes` (`-c`) to make sure pending changes are correct. Instead of using a pipe you can also use an anonymous fifo keeping stdin free for the confirmation prompt, e.g. `kapp deploy -a app1 -f <(ytt -f config/)`
