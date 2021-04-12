@@ -60,7 +60,7 @@ If pulling a bundle that references another bundle (via it's ImagesLock file), i
 $ imgpkg pull --recursive -b bundle-with-nested-bundles
 ```
 
-Contents of *every* nested bundles are written to the 'parent' bundle's `.imgpkg/bundles` directory, namespaced by the bundle's sha256.
+Contents of *every* nested bundle are written to the 'parent' bundle's `.imgpkg/bundles` directory, namespaced by the bundle's sha256.
 
 For e.g. pulling a bundle with a nested bundle having sha of `123` would result in:
 ```
