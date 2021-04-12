@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - kapp-controller - Packaging</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="https://github.com/vmware-tanzu/carvel-kapp-controller" class="text-logo">kapp-controller</a>
+		<ul class="desktop-links">
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller Overview</a></li>
+			<li><a href="/kapp-controller/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/kapp-controller/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/" >About kapp-controller</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/install/" >Install</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/walkthrough/" >Walkthrough</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/app-spec/" >App CR Spec</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/config/" >Configuration</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/controller-config/" >Controller Configuration</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/startup/" >Controller Startup</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/security-model/" >Security Model</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/dangerous-flags/" >Dangerous Flags</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Template steps</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/sops/" >Mozilla&#39;s sops</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Packaging (alpha)</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/packaging/" class="active">Terminology &amp; APIs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/install-alpha/" >Install</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/package-authoring/" >Authoring packages</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/package-consumption/" >Consuming packages</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Packaging</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#terminology">Terminology</a>
+      <ul>
+        <li><a href="#package">Package</a></li>
+        <li><a href="#package-repositories">Package Repositories</a></li>
+      </ul>
+    </li>
+    <li><a href="#crds">CRDs</a>
+      <ul>
+        <li><a href="#package-cr">Package CR</a></li>
+        <li><a href="#packagerepository-cr">PackageRepository CR</a></li>
+        <li><a href="#installedpackage-cr">InstalledPackage CR</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <p>Available in <a href="https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/alpha-releases" target="_blank">v0.17.0-alpha.1+</a></p>
+<p><strong>Disclaimer:</strong> These APIs are still very much in an alpha stage, so changes
+will almost certainly be made and no backwards compatibility is guaranteed
+between alpha versions.</p>
+<p>The new alpha release of kapp-controller adds new APIs to
+bring common package management workflows to a Kubernetes cluster.
+This is done using three new CRs: PackageRepository, Package, and
+InstalledPackage, which are described further in their respective sections.
+As this is still an alpha feature, we would love any and all feedback regarding these
+APIs or any documentation relating to them! (Ping us on Slack)</p>
+<h2 id="install">Install <a href="#install" class="section-link">¶</a></h2><p>See the documentation on <a href="/kapp-controller/docs/latest/install-alpha/">installing the alpha release of kapp-controller</a>.</p>
+<h2 id="terminology">Terminology <a href="#terminology" class="section-link">¶</a></h2><p>To ensure understanding of the newly introduced CRDs and their uses,
+establishing a shared vocabulary of some terms commonly used
+in package management may be necessary.</p>
+<h3 id="package">Package <a href="#package" class="section-link">¶</a></h3><p>A single package is a combination of configuration metadata and OCI images that ultimately inform the package manager what software it holds and how to install it into a Kubernetes cluster. For example, an nginx-ingress package would instruct the package manager where to download the nginx container image, how to configure associated Deployment, and install it into a cluster.</p>
+<h3 id="package-repositories">Package Repositories <a href="#package-repositories" class="section-link">¶</a></h3><p>A package repository is a collection of packages that are grouped together.
+By informing the package manager of the location of a package repository, the
+user gives the package manager the ability to install any of the packages the
+repository contains.</p>
+<hr>
+<h2 id="crds">CRDs <a href="#crds" class="section-link">¶</a></h2><h3 id="package-cr">Package CR <a href="#package-cr" class="section-link">¶</a></h3><p>In kapp-controller, a package is represented by the Package CR. The Package CR
+contains versioned metadata which tells kapp-controller where to find the
+kubernetes manifests which make up the package&rsquo;s underlying workload and how
+to template and install those manifests.</p>
+<p><strong>Note:</strong> for this alpha release, dependency management is not handled by kapp-controller</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>package.carvel.dev/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Package<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Resource name. Should not be referenced by InstalledPackage.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Should only be populated to comply with Kubernetes resource schema.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># spec.publicName/spec.version fields are primary identifiers</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># used in references from InstalledPackage</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>fluent-bit.vmware.com.1.5.3<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Package is a cluster scoped resource, so no namespace</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Name of the package; Referenced by InstalledPackage (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">publicName</span>:<span style="color:#bbb"> </span>fluent-bit.vmware.com<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Package version; Referenced by InstalledPackage;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Must be valid semver (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">version</span>:<span style="color:#bbb"> </span><span style="color:#099">1.5.3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># App template used to create the underlying App CR.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># See &#39;App CR Spec&#39; docs for more info</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">fetch</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#000080">imgpkgBundle</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#000080">image</span>:<span style="color:#bbb"> </span>registry.tkg.vmware.run/tkg-fluent-bit@sha256:...<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#000080">ytt</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#000080">paths</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- config/<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#000080">kbld</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#000080">paths</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#998;font-style:italic"># - must be quoted when included with paths</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- <span style="color:#d14">&#34;-&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- .imgpkg/images.yml<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">deploy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#000080">kapp</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span></code></pre></div><h3 id="packagerepository-cr">PackageRepository CR <a href="#packagerepository-cr" class="section-link">¶</a></h3><p>This CR is used to point kapp-controller to a package repository (which contains Package CRs). Once a PackageRepository has been added to the cluster, kapp-controller will automatically make all packages within the store available for installation on the cluster.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>install.package.carvel.dev/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>PackageRepository<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Any user-chosen name that describes package repository</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>basic.vmware.com<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># PackageRepository is a cluster scoped resource, so no namespace</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Must have only one directive.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">fetch</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># TODO support imgpkgBundle</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># pulls image containing packages from Docker/OCI registry</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">image</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># Image url; unqualified, tagged, or</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># digest references supported (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">url</span>:<span style="color:#bbb"> </span>host.com/username/image:v0.1.0<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># secret with auth details (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>secret-name<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># grab only portion of image (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">subPath</span>:<span style="color:#bbb"> </span>inside-dir/dir2<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># uses http library to fetch file containing packages</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">http</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># http and https url are supported;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># plain file, tgz and tar types are supported (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">url</span>:<span style="color:#bbb"> </span>https://host.com/archive.tgz<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># checksum to verify after download (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">sha256</span>:<span style="color:#bbb"> </span>0a12cdef83...<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># secret to provide auth details (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>secret-name<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># grab only portion of download (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">subPath</span>:<span style="color:#bbb"> </span>inside-dir/dir2<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># uses git to clone repository containing package list</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">git</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># http or ssh urls are supported (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">url</span>:<span style="color:#bbb"> </span>https://github.com/k14s/k8s-simple-app-example<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># branch, tag, commit; origin is the name of the remote (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">ref</span>:<span style="color:#bbb"> </span>origin/develop<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># secret with auth details. allowed keys: ssh-privatekey, ssh-knownhosts, username, password (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># (if ssh-knownhosts is not specified, git will not perform strict host checking)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>secret-name<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># grab only portion of repository (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">subPath</span>:<span style="color:#bbb"> </span>config-step-2-template<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># skip lfs download (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">lfsSkipSmudge</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span></code></pre></div><h3 id="installedpackage-cr">InstalledPackage CR <a href="#installedpackage-cr" class="section-link">¶</a></h3><p>This CR is used to install a particular package which ultimately results in installation of package resources onto a cluster. It must reference one of the Package CRs.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>install.package.carvel.dev/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>InstalledPackage<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>fluent-bit<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">namespace</span>:<span style="color:#bbb"> </span>my-ns<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># specifies service account that will be used to install underlying package contents</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">serviceAccountName</span>:<span style="color:#bbb"> </span>fluent-bit-sa<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">packageRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># Public name of the package to install. (required)</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">publicName</span>:<span style="color:#bbb"> </span>fluent-bit<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># Specifies a specific version of a package to install (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># Either version or versionSelection is required.</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">version</span>:<span style="color:#bbb"> </span><span style="color:#099">1.5.3</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># Selects version of a package based on constraints provided (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># Either version or versionSelection is required.</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">versionSelection</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># Constraint to limit acceptable versions of a package;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># Latest version satisying the contraint is chosen;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># Newly available, acceptable later versions are picked up and installed automatically. (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">constraint</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;&gt;v1.5.3&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#998;font-style:italic"># Include prereleases when selecting version. (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">	    </span><span style="color:#000080">prereleases</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Values to be included in package&#39;s templating step</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># (currently only included in the first templating step) (optional)</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">values</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>fluent-bit-values<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic"># Populated by the controller</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">status</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">packageRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># Kubernetes resource name of the package chosen against the constraints</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>fluent-bit.tkg.vmware.com.v1.5.3<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># Derived from the underlying App&#39;s Status</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">conditions</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">type</span>:<span style="color:#bbb"> </span>ValuesSchemaCheckFailed<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">type</span>:<span style="color:#bbb"> </span>ReconcileSucceeded<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">type</span>:<span style="color:#bbb"> </span>ReconcileFailed<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">type</span>:<span style="color:#bbb"> </span>Reconciling<span style="color:#bbb">
+</span></code></pre></div><p><strong>Note:</strong> In this alpha release, values will only be included in the first
+templating step of the package, though we intend to improve this experience in
+later alpha releases.</p>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:kapp-controller"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

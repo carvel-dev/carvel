@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - imgpkg - Basic Workflow</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/imgpkg/" class="text-logo">imgpkg</a>
+		<ul class="desktop-links">
+			<li><a href="/imgpkg/" >imgpkg Overview</a></li>
+			<li><a href="/imgpkg/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-imgpkg"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/imgpkg/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-imgpkg"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/" >About imgpkg</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Workflows</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/basic-workflow/" class="active">Basic workflow</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/air-gapped-workflow/" >Air-gapped workflow</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/auth/" >Authentication</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/resources/" >Resources</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/commands/" >Commands</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/working-directly-with-images/" >Working directly with images</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/imgpkg/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Basic Workflow</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scenario">Scenario</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#step-1-creating-the-bundle">Step 1: Creating the bundle</a></li>
+    <li><a href="#step-2-pushing-the-bundle-to-a-registry">Step 2: Pushing the bundle to a registry</a></li>
+    <li><a href="#step-3-pulling-the-bundle-to-registry">Step 3: Pulling the bundle to registry</a></li>
+    <li><a href="#step-4-use-pulled-bundle-contents">Step 4: Use pulled bundle contents</a></li>
+    <li><a href="#next-steps">Next steps</a></li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="scenario">Scenario <a href="#scenario" class="section-link">¶</a></h2><p>You want to create an immutable artifact containing Kubernetes configuration and images used in that configuration. Later, you want to grab that artifact and deploy it to Kubernetes.</p>
+<h2 id="prerequisites">Prerequisites <a href="#prerequisites" class="section-link">¶</a></h2><p>To complete this workflow you will need access to an OCI registry like Docker Hub, and optionally,
+a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using <a href="https://kind.sigs.k8s.io/docs/user/local-registry/" target="_blank">Kind</a>)</p>
+<p>If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need <a href="/kbld/"><code>kbld</code></a> and kubectl.</p>
+<h2 id="step-1-creating-the-bundle">Step 1: Creating the bundle <a href="#step-1-creating-the-bundle" class="section-link">¶</a></h2><ol>
+<li>
+<p>Prepare bundle contents</p>
+<p>The <a href="https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-1" target="_blank">examples/basic-step-1/</a> directory has a <code>config.yml</code> file, which contains a very simple Kubernetes application. Your application may have as many configuration files as necessary in various formats such as plain YAML, ytt templates, Helm templates, etc.</p>
+<p>In our example <code>config.yml</code> includes an image reference to <code>docker.io/dkalinin/k8s-simple-app</code>. This reference does not point to an exact image (via digest) meaning that it may change over time. To ensure we get precisely the bits we expect, we will lock it down to an exact image next.</p>
+</li>
+<li>
+<p>Add <code>.imgpkg/</code> directory</p>
+<p><a href="https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-2" target="_blank">examples/basic-step-2</a> shows what a <code>.imgpkg/</code> directory may look like. It contains:</p>
+<ul>
+<li><strong>optional</strong> <a href="/imgpkg/docs/latest/resources/#bundle-metadata">bundle.yml</a>: a file which records informational metadata</li>
+<li><strong>required</strong> <a href="/imgpkg/docs/latest/resources/#imageslock">images.yml</a>: a file which records image references used by the configuration</li>
+</ul>
+<pre><code class="language-bash-plain" data-lang="bash-plain">examples/basic-step-2
+├── .imgpkg
+│   ├── bundle.yml
+│   └── images.yml
+└── config.yml
+</code></pre><p>Note that <code>.imgpkg/images.yml</code> contains a list of images, each with fully resolved digest reference (e.g <code>index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4...</code>) and a little bit of additional metadata (e.g. <code>annotations</code> section). See <a href="/imgpkg/docs/latest/resources/#imageslock-configuration">ImagesLock configuration</a> for details.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>imgpkg.carvel.dev/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>ImagesLock<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">images</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">kbld.carvel.dev/id</span>:<span style="color:#bbb"> </span>docker.io/dkalinin/k8s-simple-app<span style="color:#bbb">
+</span></code></pre></div><p>This allows us to record the exact image that will be used by our Kubernetes configuration. We expect that <code>.imgpkg/images.yml</code> would be created either manually, or in an automated way. Our recommendation is to use <a href="/kbld/">kbld</a> to generate <code>.imgpkg/images.yml</code>:</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ cd examples/basic-bundle/
+
+$ kbld -f config.yml --imgpkg-lock-output .imgpkg/images.yml
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="step-2-pushing-the-bundle-to-a-registry">Step 2: Pushing the bundle to a registry <a href="#step-2-pushing-the-bundle-to-a-registry" class="section-link">¶</a></h2><ol>
+<li>
+<p><a href="/imgpkg/docs/latest/auth/">Authenticate with a registry</a> where we will push our bundle</p>
+</li>
+<li>
+<p>Push the bundle to the registry</p>
+<p>You can push the bundle with our specified contents to an OCI registry using the following command:</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ imgpkg push -b index.docker.io/user1/simple-app-bundle:v1.0.0 -f examples/basic-step-2
+
+dir: .
+dir: .imgpkg
+file: .imgpkg/bundle.yml
+file: .imgpkg/images.yml
+file: config.yml
+Pushed 'index.docker.io/user1/simple-app-bundle@sha256:ec3f870e958e404476b9ec67f28c598fa8f00f819b8ae05ee80d51bac9f35f5d'
+
+Succeeded
+</code></pre><p>Flags used in the command:</p>
+<ul>
+<li><code>-b</code> (<code>--bundle</code>) refers to a location for a bundle within an OCI registry</li>
+<li><code>-f</code> (<code>--file</code>) indicates directory contents to include</li>
+</ul>
+</li>
+<li>
+<p>The pushed bundle is now available at <code>index.docker.io/user1/simple-app-bundle:v1.0.0</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="step-3-pulling-the-bundle-to-registry">Step 3: Pulling the bundle to registry <a href="#step-3-pulling-the-bundle-to-registry" class="section-link">¶</a></h2><p>Now that we have pushed a bundle to a registry, other users can pull it.</p>
+<ol>
+<li>
+<p><a href="/imgpkg/docs/latest/auth/">Authenticate with the registry</a> from which we&rsquo;ll pull our bundle</p>
+</li>
+<li>
+<p>Download the bundle by running the following command:</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ imgpkg pull -b index.docker.io/user1/simple-app-bundle:v1.0.0 -o  /tmp/simple-app-bundle
+
+Pulling image 'index.docker.io/user1/simple-app-bundle@sha256:ec3f870e958e404476b9ec67f28c598fa8f00f819b8ae05ee80d51bac9f35f5d'
+Extracting layer 'sha256:7906b9650be657359ead106e354f2728e16c8f317e1d87f72b05b5c5ec3d89cc' (1/1)
+Locating image lock file images...
+One or more images not found in bundle repo; skipping lock file update
+
+Succeeded
+</code></pre><p>Flags used in the command:</p>
+<ul>
+<li><code>-b</code> (<code>--bundle</code>) refers to a location for a bundle within an OCI registry</li>
+<li><code>-o</code> (<code>--output</code>) indicates the destination directory on your local machine where the bundle contents will be placed</li>
+</ul>
+<p>Bundle contents will be extracted into <code>/tmp/simple-app-bundle</code> directory:</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">/tmp/simple-app-bundle
+├── .imgpkg
+│   ├── bundle.yml
+│   └── images.yml
+└── config.yml
+</code></pre><p><strong>Note:</strong> The message <code>One or more images not found in bundle repo; skipping lock file update</code> is expected, and indicates that <code>/tmp/simple-app-bundle/.imgpkg/images.yml</code> (ImagesLock configuration) was not modified.</p>
+<p>If imgpkg had been able to find all images that were referenced in the <a href="/imgpkg/docs/latest/resources/#imageslock-configuration">ImagesLock configuration</a> in the registry where bundle is located, then it would update <code>.imgpkg/images.yml</code> file to point to the registry-local locations.</p>
+<p>See what happens to the lock file if you run the same pull command after <a href="/imgpkg/docs/latest/air-gapped-workflow/#option-1-from-a-location-connected-to-both-registries">copying</a> the bundle to another registry!</p>
+</li>
+</ol>
+<hr>
+<h2 id="step-4-use-pulled-bundle-contents">Step 4: Use pulled bundle contents <a href="#step-4-use-pulled-bundle-contents" class="section-link">¶</a></h2><ol>
+<li>
+<p>Now that we have have pulled bundle contents to a local directory, we can deploy Kubernetes configuration:</p>
+<p>Before we apply Kubernetes configuration, let&rsquo;s use <a href="/kbld/">kbld</a> to ensure that Kubernetes configuration uses exact image reference from <code>.imgpkg/images.yml</code>. (You can of course use other tools to take advantage of data stored in <code>.imgpkg/images.yml</code>).</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ cd /tmp/simple-app-bundle/
+
+$ kbld -f ./config.yml -f .imgpkg/images.yml | kubectl apply -f-
+
+resolve | final: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0 -&gt; index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+resolve | final: index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0 -&gt; index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+
+service/simple-app configured
+deployment/simple-app configured
+</code></pre><p>kbld found <code>docker.io/dkalinin/k8s-simple-app</code> in Kubernetes configuration and replaced it with <code>index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0</code> before forwarding configuration to kubectl.</p>
+</li>
+</ol>
+<h2 id="next-steps">Next steps <a href="#next-steps" class="section-link">¶</a></h2><p>In this workflow we saw how to publish and download a bundle to distribute a Kubernetes application. Next, follow the <a href="/imgpkg/docs/latest/air-gapped-workflow/">Air-gapped workflow</a> to see how we can use the <code>imgpkg copy</code> command to copy a bundle between registries.</p>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:imgpkg"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

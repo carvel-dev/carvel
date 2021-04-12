@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Carvel</title>
+    <link>/blog/</link>
+    <description>Recent content in Blog on Carvel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>High level walkthrough of the kapp deploy command</title>
+      <link>/blog/kapp-boxes-and-lines-blog-post/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/kapp-boxes-and-lines-blog-post/</guid>
+      <description>What is kapp? Kapp is a deployment CLI within the Carvel tool suite for Kubernetes that helps manage resources in bulk.
+In this demo, Garrett Cheadle, a Carvel maintainer, covers a high level overview of the kapp deploy command, which is a fairly complete, common kapp workflow. The process can be separated in four stages: Setup, Change Calculations, Pre-apply Checks, and Apply.
+  Stage 1: Setup ¶  The first step in this stage will be initiated by the user.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Kubernetes Applications with ytt, kbld, and kapp</title>
+      <link>/blog/deploying-apps-with-ytt-kbld-kapp/</link>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/deploying-apps-with-ytt-kbld-kapp/</guid>
+      <description>TL;DR: ytt, kbld, kapp tools when used together offer a powerful way to create, customize, iterate on, and deploy cloud native applications. These tools are designed to be used in various workflows such as local development, and production deployment. Each tool is designed to be single-purpose and composable, resulting in easier ways of integrating them into existing or new projects, and with other tools.
+ In this blog post we will focus on local application development workflow; however, tools introduced here work also well for other workflows, for example, for production GitOps deployments or manual application deploys.</description>
+    </item>
+    
+    <item>
+      <title>Carvel, formerly k14s, aims to simplify application deployment atop Kubernetes</title>
+      <link>/blog/introduction-to-carvel-blog-post/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/introduction-to-carvel-blog-post/</guid>
+      <description>Now that you&amp;rsquo;ve deployed Kubernetes, how do you get apps up and running atop the container runtime? Carvel (formerly known as k14s), a collection of open-source tools for working with Kubernetes, is designed to answer this question.
+Carvel was born from frustration with existing tools ¶Carvel is a set of tools designed to ease lifecycle management of your Kubernetes workloads. The origin of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy Kubernetes workloads.</description>
+    </item>
+    
+  </channel>
+</rss>

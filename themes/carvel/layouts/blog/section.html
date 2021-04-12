@@ -8,7 +8,7 @@
 		</div>
 		<div class="wrapper dedicated-page blog">
 			<div class="grid three">
-				{{ range .Pages.ByDate }}
+				{{ range .Pages.ByDate.Reverse }}
 					{{ partial "_blog-post-card.html" . }}
 				{{ end }}
 			</div>

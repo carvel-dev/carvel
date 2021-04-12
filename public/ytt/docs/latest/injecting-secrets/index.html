@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - ytt - Injecting Secrets</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/ytt/" class="text-logo">ytt</a>
+		<ul class="desktop-links">
+			<li><a href="/ytt/" >ytt Overview</a></li>
+			<li><a href="/ytt/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/ytt/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/" >About ytt</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Techniques</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-data-values/" >Using data values</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/data-values-vs-overlays/" >Data values vs overlays</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/injecting-secrets/" class="active">Injecting secrets</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >Language</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-annotation/" >Annotations</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-text-templating/" >Text Templating</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Built-in @ytt library</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt/" >All modules</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-struct/" >Struct module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-overlay/" >Overlay module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-library/" >Library module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-version/" >Version module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-template/" >Template module</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Language</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >General</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-string/" >String</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-list/" >List</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-dict/" >Dictionary</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-structs/" >Struct</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-yaml-fragment/" >YAML Fragment</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-if/" >If conditional</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-for/" >For loop</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-def/" >Function</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-load/" >Load</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>CLI configuration</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/outputs/" >Outputs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/file-marks/" >File Marks</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/strict/" >Strict yaml</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/faq/" >FAQ</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-vs-x/" >Why ytt vs. x?</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/known-limitations/" >Known Limitations</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Injecting Secrets</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#via-command-line-args">Via command line args</a></li>
+    <li><a href="#via-environment-variables">Via environment variables</a></li>
+    <li><a href="#via-secret-references-before-templating">Via secret references, before templating</a></li>
+    <li><a href="#via-encrypted-secrets-before-templating">Via encrypted secrets, before templating</a></li>
+    <li><a href="#via-secret-references-after-templating">Via secret references, after templating</a></li>
+    <li><a href="#via-encrypted-resources-later-decrypted-inside-the-k8s-cluster">Via encrypted resources, later decrypted inside the k8s cluster</a></li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="overview">Overview <a href="#overview" class="section-link">¶</a></h2><p><strong>This document is work in progress.</strong></p>
+<p>Unlike most configuration, many organizations disallow storing of plain secret values next to other code/configuration.</p>
+<p>This document:</p>
+<ul>
+<li>presents several common approaches used to make secrets available to your templates</li>
+<li>does <em>not</em> cover injection of secrets directly into an application at runtime (overall may be the best approach)</li>
+<li>does <em>not</em> recommend one approach over another (though it does state pros and cons)</li>
+<li>does <em>not</em> talk about where resulting templates are forwarded</li>
+</ul>
+<p>One common question that&rsquo;s asked is why not to extend ytt to allow it to shell out to other programs or why not include builtin library that can fetch secrets from outside (e.g. imagine having builtin <code>vault</code> function). We are <em>not</em> planning to support either of these features because we want to maintain strong sandbox boundary between templating language and ytt&rsquo;s external environment. Our expectation is that if ytt user wants to provide specific data to templates, it should be injected into ytt rather than templates (or ytt itself) fetching it. We believe this is a good security posture and as a side effect makes templates more portable (some users may store secrets in Vault and some other in Lastpass).</p>
+<ul>
+<li><a href="#via-command-line-args">Via command line args</a></li>
+<li><a href="#via-environment-variables">Via environment variables</a></li>
+<li><a href="#via-secret-references-before-templating">Via secret references, before templating</a></li>
+<li><a href="#via-encrypted-secrets-before-templating">Via encrypted secrets, before templating</a></li>
+<li><a href="#via-secret-references-after-templating">Via secret references, after templating</a></li>
+<li><a href="#via-encrypted-resources-later-decrypted-inside-the-k8s-cluster">Via encrypted resources, later decrypted inside the k8s cluster</a></li>
+</ul>
+<p>There might be other ways to inject secrets into ytt that are not listed here.</p>
+<hr>
+<h2 id="via-command-line-args">Via command line args <a href="#via-command-line-args" class="section-link">¶</a></h2><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ytt -f . --data-value <span style="color:#008080">username</span><span style="color:#000;font-weight:bold">=</span>user --data-value <span style="color:#008080">password</span><span style="color:#000;font-weight:bold">=</span>pass
+</code></pre></div><p>Cons:</p>
+<ul>
+<li>depending on a computing environment secret values are visible in a process tree (as part of full command line) <strong>which typically is considered unwanted</strong></li>
+</ul>
+<hr>
+<h2 id="via-environment-variables">Via environment variables <a href="#via-environment-variables" class="section-link">¶</a></h2><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">export</span> <span style="color:#008080">CFG_secrets__username</span><span style="color:#000;font-weight:bold">=</span>user
+<span style="color:#0086b3">export</span> <span style="color:#008080">CFG_secrets__password</span><span style="color:#000;font-weight:bold">=</span>pass
+ytt -f . --data-values-env CFG
+</code></pre></div><p>Cons:</p>
+<ul>
+<li>depending on a computing environment secret values are visible in process metadata (e.g. typically accessible to root user under <code>/proc/&lt;pid&gt;/environ</code>)</li>
+</ul>
+<hr>
+<h2 id="via-secret-references-before-templating">Via secret references, before templating <a href="#via-secret-references-before-templating" class="section-link">¶</a></h2><p>Given following two files:</p>
+<p><code>config.yml</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;@ytt:data&#34;, &#34;data&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">users</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">username</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ data.values.username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">password</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ data.values.password</span><span style="color:#bbb">
+</span></code></pre></div><p><code>secrets</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">username</span>:<span style="color:#bbb"> </span>(( vault &#34;secret/my/credentials/admin:username&#34; ))<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">password</span>:<span style="color:#bbb"> </span>(( vault &#34;secret/my/credentials/admin:password&#34; ))<span style="color:#bbb">
+</span></code></pre></div><p>(Note that <code>secrets</code> file does not have <code>yaml</code> extension to make ytt exclude it from template result. Alternatively <code>--file-mark</code> flag can be used to exclude that file.)</p>
+<p>One can compose ytt with external tooling that knows how to resolve referenced values. For example, <a href="https://starkandwayne.com/blog/simple-secure-credentials-into-yaml-with-vault-and-spruce/" target="_blank">spruce</a> can resolve secret references and then forward that information onto ytt:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">echo</span> -e <span style="color:#d14">&#34;#@data/values\n---\n</span><span style="color:#000;font-weight:bold">$(</span>spruce merge ./secrets<span style="color:#000;font-weight:bold">)</span><span style="color:#d14">&#34;</span> | ytt -f . -f -
+</code></pre></div><p>Pros:</p>
+<ul>
+<li>able to commit mapping of data values to secrets in your preferred secret storage (in this example Vault)</li>
+<li>actual secret values are available to templates, hence, can be inserted in the middle of a string or base64 encoded (as sometimes required by k8s)</li>
+</ul>
+<hr>
+<h2 id="via-encrypted-secrets-before-templating">Via encrypted secrets, before templating <a href="#via-encrypted-secrets-before-templating" class="section-link">¶</a></h2><p>Similar to above &ldquo;Via secret references, before templating&rdquo; approach, instead of storing secret references in <code>secrets</code> file one can store encrypted secret values in <code>secrets</code> next to other configuration. Various tools like <a href="https://github.com/mozilla/sops" target="_blank">sops</a> make encrypting configuration files fairly easy:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">echo</span> -e <span style="color:#d14">&#34;#@data/values\n---\n</span><span style="color:#000;font-weight:bold">$(</span>sops -d ./secrets<span style="color:#000;font-weight:bold">)</span><span style="color:#d14">&#34;</span> | ytt -f . -f -
+</code></pre></div><p>Pros:</p>
+<ul>
+<li>provides a way to version (backup, etc) secrets next to other configuration</li>
+<li>actual secret values are available to templates, hence, can be inserted in the middle of a string or base64 encoded (as sometimes required by k8s)</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>depending on organization requirements even encrypted secrets may not be allowed to be stored next to other configuration</li>
+</ul>
+<hr>
+<h2 id="via-secret-references-after-templating">Via secret references, after templating <a href="#via-secret-references-after-templating" class="section-link">¶</a></h2><p>Given following two files:</p>
+<p><code>config.yml</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;@ytt:data&#34;, &#34;data&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">users</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">username</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ data.values.username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">password</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ data.values.password</span><span style="color:#bbb">
+</span></code></pre></div><p><code>values.yml</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@data/values</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">username</span>:<span style="color:#bbb"> </span>(( vault &#34;secret/my/credentials/admin:username&#34; ))<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">password</span>:<span style="color:#bbb"> </span>(( vault &#34;secret/my/credentials/admin:password&#34; ))<span style="color:#bbb">
+</span></code></pre></div><p>One can compose ytt with external tooling that knows how to resolve referenced values. Such tools typically look for a particular patterned map or array items. One such tool is <a href="https://starkandwayne.com/blog/simple-secure-credentials-into-yaml-with-vault-and-spruce/" target="_blank">spruce</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ytt -f . | spruce merge -
+</code></pre></div><p>Pros:</p>
+<ul>
+<li>provides a way to commit mapping of data values and their associated secret locations (e.g. <code>username</code> comes from <code>vault</code> under <code>secret/my/credentials/admin:username</code>)</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>secret resolution tools may not be able to find secret references inside strings (e.g. <code>http://(( ... )):(( ... ))@website</code>)</li>
+<li>secret resolution tools will not understand if secret reference was encoded (for example with <code>base64</code> encoding as wanted sometimes by k8s)</li>
+</ul>
+<hr>
+<h2 id="via-encrypted-resources-later-decrypted-inside-the-k8s-cluster">Via encrypted resources, later decrypted inside the k8s cluster <a href="#via-encrypted-resources-later-decrypted-inside-the-k8s-cluster" class="section-link">¶</a></h2><p>This approach is Kubernetes specific.</p>
+<p><a href="https://github.com/bitnami-labs/sealed-secrets" target="_blank">Bitnami&rsquo;s <code>sealed-secrets</code> project</a> provides a way to encrypt secrets hence allowing to commit them next to your other configuration. With this approach, secret values are not accessible to templates directly; however, they can be referenced by k8s resources (for example via <code>secretRef</code> in <code>Pod</code> spec). At the time of the deploy of such resources, sealed secrets controller will create appropriate <code>Secret</code> objects with decrypted secret values.</p>
+<p>Pros:</p>
+<ul>
+<li>provides a way to version (backup, etc) secrets next to other configuration</li>
+<li>no way to access decrypted secret values in templates directly (though, this may not be necessary in many cases)</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Kubernetes specific</li>
+<li>depending on organization requirements even encrypted secrets may not be allowed to be stored next to other configuration</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:ytt"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - ytt - Overlay module</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/ytt/" class="text-logo">ytt</a>
+		<ul class="desktop-links">
+			<li><a href="/ytt/" >ytt Overview</a></li>
+			<li><a href="/ytt/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/ytt/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/" >About ytt</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Techniques</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-data-values/" >Using data values</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/data-values-vs-overlays/" >Data values vs overlays</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/injecting-secrets/" >Injecting secrets</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >Language</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-annotation/" >Annotations</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-text-templating/" >Text Templating</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Built-in @ytt library</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt/" >All modules</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-struct/" >Struct module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-overlay/" class="active">Overlay module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-library/" >Library module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-version/" >Version module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-template/" >Template module</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Language</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >General</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-string/" >String</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-list/" >List</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-dict/" >Dictionary</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-structs/" >Struct</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-yaml-fragment/" >YAML Fragment</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-if/" >If conditional</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-for/" >For loop</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-def/" >Function</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-load/" >Load</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>CLI configuration</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/outputs/" >Outputs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/file-marks/" >File Marks</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/strict/" >Strict yaml</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/faq/" >FAQ</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-vs-x/" >Why ytt vs. x?</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/known-limitations/" >Known Limitations</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Overlay module</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#overlays-as-files">Overlays as files</a>
+      <ul>
+        <li><a href="#overlay-order">Overlay order</a></li>
+        <li><a href="#next-steps">Next Steps</a></li>
+      </ul>
+    </li>
+    <li><a href="#programmatic-access">Programmatic access</a>
+      <ul>
+        <li><a href="#next-steps-1">Next Steps</a></li>
+      </ul>
+    </li>
+    <li><a href="#overlay-annotations"><code>@overlay</code> Annotations</a></li>
+    <li><a href="#matching-annotations">Matching Annotations</a>
+      <ul>
+        <li><a href="#overlaymatch">@overlay/match</a></li>
+        <li><a href="#overlaymatch-child-defaults">@overlay/match-child-defaults</a></li>
+      </ul>
+    </li>
+    <li><a href="#action-annotations">Action Annotations</a>
+      <ul>
+        <li><a href="#overlaymerge">@overlay/merge</a></li>
+        <li><a href="#overlayremove">@overlay/remove</a></li>
+        <li><a href="#overlayreplace">@overlay/replace</a></li>
+        <li><a href="#overlayinsert">@overlay/insert</a></li>
+        <li><a href="#overlayappend">@overlay/append</a></li>
+        <li><a href="#overlayassert">@overlay/assert</a></li>
+      </ul>
+    </li>
+    <li><a href="#functions">Functions</a>
+      <ul>
+        <li><a href="#overlayapply">overlay.apply()</a></li>
+        <li><a href="#overlaymap_key">overlay.map_key()</a></li>
+        <li><a href="#overlayindex">overlay.index()</a></li>
+        <li><a href="#overlayall">overlay.all()</a></li>
+        <li><a href="#overlaysubset">overlay.subset()</a></li>
+        <li><a href="#overlayand_op">overlay.and_op()</a></li>
+        <li><a href="#overlayor_op">overlay.or_op()</a></li>
+        <li><a href="#overlaynot_op">overlay.not_op()</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="overview">Overview <a href="#overview" class="section-link">¶</a></h2><p><code>ytt</code>&rsquo;s Overlay feature provides a way to combine YAML structures together with the help of annotations.</p>
+<p>There are two (2) structures involved in an overlay operation:</p>
+<ul>
+<li>the &ldquo;left&rdquo; — the YAML document(s) (and/or contained maps and arrays) being modified, and</li>
+<li>the &ldquo;right&rdquo; — the YAML document (and/or contained maps and arrays) that is the overlay, describing the modification.</li>
+</ul>
+<p>Each modification is composed of:</p>
+<ul>
+<li>a matcher (via an <a href="#matching-annotations"><code>@overlay/(match)</code></a> annotation), identifying which node(s) on the &ldquo;left&rdquo; are the target(s) of the edit, and</li>
+<li>an action (via an <a href="#action-annotations"><code>@overlay/(action)</code></a> annotation), describing the edit.</li>
+</ul>
+<p>Once written, an overlay can be applied in one of two ways:</p>
+<ul>
+<li>on all rendered templates, <a href="#overlays-as-files">declaratively, via YAML documents annotated with <code>@overlay/match</code></a>; this is the most common approach.</li>
+<li>on selected documents, <a href="#programmatic-access">programmatically, via <code>overlay.apply()</code></a>.</li>
+</ul>
+<hr>
+<h2 id="overlays-as-files">Overlays as files <a href="#overlays-as-files" class="section-link">¶</a></h2><p>As <code>ytt</code> scans input files, it pulls aside any YAML Document that is annotated with <code>@overlay/match</code>, and considers it an overlay.</p>
+<p>After YAML templates are rendered, the collection of identified overlays are applied. Each overlay executes, one-at-a-time over the entire set of the rendered YAML documents.</p>
+<p>Order matters: modifications from earlier overlays are seen by later overlays. Overlays are applied in the order detailed in <a href="#overlay-order">Overlay order</a>, below.</p>
+<p>In the example below, the last YAML document is an overlay (it has the <code>@overlay/match</code> annotation).
+That overlay matcher&rsquo;s selects the first YAML document <em>only</em>: it&rsquo;s the only one that has a <code>metadata.name</code> of <code>example-ingress</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;@ytt:overlay&#34;, &#34;overlay&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Ingress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>example-ingress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">ingress.kubernetes.io/rewrite-target</span>:<span style="color:#bbb"> </span>/<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Ingress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>another-example-ingress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">ingress.kubernetes.io/rewrite-target</span>:<span style="color:#bbb"> </span>/<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset({&#34;metadata&#34;:{&#34;name&#34;:&#34;example-ingress&#34;}})</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic">#@overlay/remove</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">ingress.kubernetes.io/rewrite-target</span>:<span style="color:#bbb">
+</span></code></pre></div><p>yields:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Ingress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>example-ingress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Ingress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>another-example-ingress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">ingress.kubernetes.io/rewrite-target</span>:<span style="color:#bbb"> </span>/<span style="color:#bbb">
+</span></code></pre></div><p>See also: <a href="/ytt/#example:example-overlay-files">Overlay files example</a> in online playground.</p>
+<h3 id="overlay-order">Overlay order <a href="#overlay-order" class="section-link">¶</a></h3><p>(as of v0.13.0)</p>
+<p>Overlays are applied, in sequence, by:</p>
+<ol>
+<li>left-to-right for file flags
+<ul>
+<li>e.g. in <code>-f overlay1.yml -f overlay2.yml</code>, <code>overlay1.yml</code> will be applied first</li>
+</ul>
+</li>
+<li>if file flag is set to a directory, files are alphanumerically sorted
+<ul>
+<li>e.g. in <code>aaa/z.yml xxx/c.yml d.yml</code>, will be applied in following order <code>aaa/z.yml d.yml xxx/c.yml</code></li>
+</ul>
+</li>
+<li>top-to-bottom order for overlay YAML documents within a single file</li>
+</ol>
+<h3 id="next-steps">Next Steps <a href="#next-steps" class="section-link">¶</a></h3><p>Familiarize yourself with the <a href="#overlay-annotations">overlay annotations</a>.</p>
+<hr>
+<h2 id="programmatic-access">Programmatic access <a href="#programmatic-access" class="section-link">¶</a></h2><p>Overlays need not apply to the entire set of rendered YAML documents (as is the case with <a href="#overlays-as-files">the declarative approach</a>).</p>
+<p>Instead, the declared modifications can be captured in a function and applied to a specific set of documents via <a href="#overlayapply"><code>overlay.apply()</code></a> in Starlark code.</p>
+<p>In this example we have <code>left()</code> function that returns target structure and <code>right()</code> that returns the overlay, specifying the modifications.</p>
+<p><code>overlay.apply(...)</code> will execute the execute the overlay and return a new structure.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;@ytt:overlay&#34;, &#34;overlay&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ def left():</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">key1</span>:<span style="color:#bbb"> </span>val1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">key2</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">key3</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key4</span>:<span style="color:#bbb"> </span>val4<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">key5</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>item1<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key6</span>:<span style="color:#bbb"> </span>val6<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>item2<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key7</span>:<span style="color:#bbb"> </span>val7<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ end</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ def right():</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/remove</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">key1</span>:<span style="color:#bbb"> </span>val1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">key2</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">key3</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key4</span>:<span style="color:#bbb"> </span>val4<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">key5</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic">#@overlay/match by=&#34;name&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>item2<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic">#@overlay/match missing_ok=True</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key8</span>:<span style="color:#bbb"> </span>new-val8<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ end</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">result</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ overlay.apply(left(), right())</span><span style="color:#bbb">
+</span></code></pre></div><p>yields:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">result</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">key2</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key3</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">key4</span>:<span style="color:#bbb"> </span>val4<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">key5</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>item1<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">key6</span>:<span style="color:#bbb"> </span>val6<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>item2<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">key7</span>:<span style="color:#bbb"> </span>val7<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">key8</span>:<span style="color:#bbb"> </span>new-val8<span style="color:#bbb">
+</span></code></pre></div><h3 id="next-steps-1">Next Steps <a href="#next-steps-1" class="section-link">¶</a></h3><p>Familiarize yourself with the two kinds of overlay annotations:</p>
+<ul>
+<li>matchers (via an <a href="#matching-annotations"><code>@overlay/(match)</code></a> annotation), and</li>
+<li>actions (via an <a href="#action-annotations"><code>@overlay/(action)</code></a> annotation).</li>
+</ul>
+<hr>
+<h2 id="overlay-annotations"><code>@overlay</code> Annotations <a href="#overlay-annotations" class="section-link">¶</a></h2><p>There are two groups of overlay annotations:</p>
+<ul>
+<li><a href="#matching-annotations">Matching Annotations</a></li>
+<li><a href="#action-annotations">Action Annotations</a></li>
+</ul>
+<hr>
+<h2 id="matching-annotations">Matching Annotations <a href="#matching-annotations" class="section-link">¶</a></h2><p>These annotations are used to select which structure(s) will be modified:</p>
+<ul>
+<li><a href="#overlaymatch">@overlay/match</a></li>
+<li><a href="#overlaymatch-child-defaults">@overlay/match-child-defaults</a></li>
+</ul>
+<h3 id="overlaymatch">@overlay/match <a href="#overlaymatch" class="section-link">¶</a></h3><p>Specifies which nodes on the &ldquo;left&rdquo; to modify.</p>
+<p><strong>Valid on:</strong> Document, Map Item, Array Item.</p>
+<pre><code>@overlay/match [by=Function|String, expects=Int|String|List|Function, missing_ok=Bool, when=Int|String|List]
+</code></pre><ul>
+<li><strong><code>by=</code></strong><code>Function|String</code> — criteria for matching nodes on the &ldquo;left&rdquo;
+<ul>
+<li><code>Function</code> — predicate of whether a given node is a match
+<ul>
+<li>provided matcher functions (supplied by the <code>@ytt:overlay</code> module):
+<ul>
+<li><a href="#overlayall"><code>overlay.all()</code></a></li>
+<li><a href="#overlaysubset"><code>overlay.subset()</code></a></li>
+<li><a href="#overlayindex"><code>overlay.index()</code></a></li>
+<li><a href="#overlaymap_key"><code>overlay.map_key()</code></a></li>
+</ul>
+</li>
+<li><a href="#custom-overlay-matcher-functions">Custom matcher function</a> can also be used</li>
+</ul>
+</li>
+<li><code>String</code> — short-hand for <a href="#overlaymap_key"><code>overlay.map_key()</code></a> with the same argument</li>
+<li>Defaults (depends on the type of the annotated node):
+<ul>
+<li>document or array item: none (i.e. <code>by</code> is required)</li>
+<li>map item: key equality (i.e. <a href="#overlaymap_key"><code>overlay.map_key()</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>expects=</code></strong><code>Int|String|List|Function</code> — (optional) expected number of nodes to be found in the &ldquo;left.&rdquo; If not satisfied, raises an error.
+<ul>
+<li><code>Int</code> — must match this number, exactly</li>
+<li><code>String</code> (e.g. <code>&quot;1+&quot;</code>) — must match <em>at least</em> the number</li>
+<li><code>Function(found):Bool</code> — predicate of whether the expected number of matches were found
+<ul>
+<li><code>found</code> (<code>Int</code>) — number of actual matches</li>
+</ul>
+</li>
+<li><code>List[Int|String|Function]</code> — must match one of the given criteria</li>
+<li>Default: <code>1</code> (<code>Int</code>) (i.e. expecting to match exactly one (1) node on the &ldquo;left&rdquo;).</li>
+</ul>
+</li>
+<li><strong><code>missing_ok=</code></strong><code>Bool</code> (optional) shorthand syntax for <code>expects=&quot;0+&quot;</code></li>
+<li><strong><code>when=</code></strong><code>Int|String|List</code> (optional) criteria for when the overlay should apply. If the criteria is met, the overlay applies; otherwise, nothing happens.
+<ul>
+<li><code>Int</code> — must equal this number, exactly</li>
+<li><code>String</code> (e.g. <code>&quot;1+&quot;</code>) — must match <em>at least</em> the number</li>
+<li><code>List[Int|String]</code> — must match one of the given criteria</li>
+</ul>
+</li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><code>expects</code>, <code>missing_ok</code>, and <code>when</code> are mutually-exclusive parameters.</li>
+<li>take care when <code>expects</code> includes zero (0); matching none is indistinguishable from a mistakenly written match (e.g. a misspelling of a key name)</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>#@overlay/match by=&quot;id&quot;</code>: expects to find one (1) node on the &ldquo;left&rdquo; that has the key <code>id</code> and value matching the same-named item on the &ldquo;right.&rdquo;</li>
+<li><code>#@overlay/match by=</code><a href="#overlaymap_key"><code>overlay.map_key(&quot;name&quot;)</code></a>: (same as above)</li>
+<li><code>#@overlay/match by=</code><a href="#overlayall"><code>overlay.all</code></a><code>,expects=&quot;0+&quot;</code>: has no effective matching expectations</li>
+<li><code>#@overlay/match missing_ok=True</code>: expects to find 0 or 1 matching nodes on the &ldquo;left&rdquo;</li>
+<li><code>#@overlay/match expects=2</code>: expects to find exactly two (2) matching nodes on the &ldquo;left&rdquo;</li>
+<li><code>#@overlay/match expects=&quot;2+&quot;</code>: expects to find two (2) or more matching nodes on the &ldquo;left&rdquo;</li>
+<li><code>#@overlay/match expects=[0,1,4]</code>: expects to find 0, 1 or 4 matching nodes on the &ldquo;left&rdquo;</li>
+<li><code>#@overlay/match expects=lambda x: return x &lt; 10</code>: expects 9 or fewer matching nodes on the &ldquo;left&rdquo;</li>
+<li><code>#@overlay/match when=2</code>: applies changes only if two (2) nodes are found on the &ldquo;left&rdquo; and will not error otherwise</li>
+<li><code>#@overlay/match when=2+</code>: applies changes only if two (2) or more nodes are found on the &ldquo;left&rdquo; and will not error otherwise</li>
+<li><code>#@overlay/match when=[0,1,4]</code>: applies changes only if there were exactly 0, 1 or 4 nodes found on the &ldquo;left&rdquo; and will not error otherwise</li>
+</ul>
+<p><strong>History:</strong></p>
+<ul>
+<li>v0.28.0+ — added <code>when</code> keyword argument.</li>
+</ul>
+<h4 id="custom-overlay-matcher-functions">Custom Overlay Matcher Functions <a href="#custom-overlay-matcher-functions" class="section-link">¶</a></h4><p>The matcher functions from <code>@ytt:overlay</code> cover many use-cases. From time-to-time, more precise matching is required.</p>
+<p>A matcher function has the following signature:</p>
+<p><code>Function(index,left,right):Boolean</code></p>
+<ul>
+<li><code>index</code> (<code>Int</code>) — the potential match&rsquo;s position in the list of all potential matches (zero-based)</li>
+<li><code>left</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> or scalar) — the potential match/target node</li>
+<li><code>right</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> or scalar) — the value of the annotated node in the overlay</li>
+<li>returns <code>True</code> if <code>left</code> should be considered a match; <code>False</code> otherwise.</li>
+</ul>
+<p>Most custom matchers can be written as a Lambda expression.</p>
+<p>Lambda expressions start with the keyword <code>lambda</code>, followed by a parameter list, then a <code>:</code>, and a single expression that is the body of the function.</p>
+<p><strong>Examples:</strong></p>
+<p><em>Example 1: Key presence or partial string match</em></p>
+<p><code>left</code> contains <code>right</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">lambda</span> index, left, right: right <span style="color:#000;font-weight:bold">in</span> left
+</code></pre></div><p>Returns <code>True</code> when <code>right</code> is &ldquo;a member of&rdquo; <code>left</code></p>
+<p>(see also: <a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#membership-tests" target="_blank">Starlark Spec: Membership tests</a> for more details)</p>
+<p><em>Example 2: Precise string matching</em></p>
+<p><code>left</code> contains a key of the same name as the value of <code>right</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">lambda</span> index, left, right: left[<span style="color:#d14">&#34;metadata&#34;</span>][<span style="color:#d14">&#34;name&#34;</span>]<span style="color:#000;font-weight:bold">.</span>endswith(<span style="color:#d14">&#34;server&#34;</span>)
+</code></pre></div><p>See also:</p>
+<ul>
+<li><a href="/ytt/docs/latest/lang-ref-string/">Language: String</a> for more built-in functions on strings.</li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#regexp">@ytt:regexp Library</a> for regular expression matching.</li>
+</ul>
+<h3 id="overlaymatch-child-defaults">@overlay/match-child-defaults <a href="#overlaymatch-child-defaults" class="section-link">¶</a></h3><p>Sets default values for <code>expects</code>, <code>missing_ok</code>, or <code>when</code> for the children of the annotated node.
+Does not set these values for the annotated node, itself.</p>
+<p>Commonly used to avoid repeating <code>@overlay/match missing_ok=True</code> on each child node in maps.</p>
+<p><strong>Valid on:</strong> Document, Map Item, Array Item.</p>
+<pre><code>@overlay/match-child-defaults [expects=Int|String|List|Function, missing_ok=Bool, when=Int|String|List]
+</code></pre><p><em>(see <a href="#overlaymatch">@overlay/match</a> for parameter specifications.)</em></p>
+<p><strong>Examples:</strong></p>
+<p>Without the <code>#@overlay/match-child-defaults</code>, <em>each</em> of the four new annotation would have needed an <code>@overlay/match missing_ok=True</code> to apply successfully:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">ingress.kubernetes.io/rewrite-target</span>:<span style="color:#bbb"> </span>/<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.all</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic">#@overlay/match-child-defaults missing_ok=True</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">nginx.ingress.kubernetes.io/limit-rps</span>:<span style="color:#bbb"> </span><span style="color:#099">2000</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">nginx.ingress.kubernetes.io/enable-access-log</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;true&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">nginx.ingress.kubernetes.io/canary</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;true&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">nginx.ingress.kubernetes.io/client-body-buffer-size</span>:<span style="color:#bbb"> </span>1M<span style="color:#bbb">
+</span></code></pre></div><hr>
+<h2 id="action-annotations">Action Annotations <a href="#action-annotations" class="section-link">¶</a></h2><p>The following annotations describe how to modify the matched &ldquo;left&rdquo; node.</p>
+<p>They are:</p>
+<ul>
+<li><a href="#overlaymerge"><code>@overlay/merge</code></a> — (default) combine left and right nodes</li>
+<li><a href="#overlayremove"><code>@overlay/remove</code></a> — delete nodes from left</li>
+<li><a href="#overlayreplace"><code>@overlay/replace</code></a> — replace the left node</li>
+<li><a href="#overlayinsert"><code>@overlay/insert</code></a> — insert right node into left</li>
+<li><a href="#overlayappend"><code>@overlay/append</code></a> — add right node at end of collection on left</li>
+<li><a href="#overlayassert"><code>@overlay/assert</code></a> — declare an invariant on the left node</li>
+</ul>
+<h3 id="overlaymerge">@overlay/merge <a href="#overlaymerge" class="section-link">¶</a></h3><p>Merge the value of &ldquo;right&rdquo; node with the corresponding &ldquo;left&rdquo; node.</p>
+<p><strong>Valid on:</strong> Map Item, Array Item.</p>
+<pre><code>@overlay/merge
+</code></pre><p><em>(this annotation has no parameters.)</em></p>
+<p><strong>Note:</strong> This is the default action; for each node in an overlay, either the action is explicitly specified or it is <code>merge</code>.</p>
+<h3 id="overlayremove">@overlay/remove <a href="#overlayremove" class="section-link">¶</a></h3><p>Deletes the matched &ldquo;left&rdquo; node.</p>
+<p><strong>Valid on:</strong> Document, Map Item, Array Item.</p>
+<pre><code>@overlay/remove
+</code></pre><p><em>(this annotation has no parameters.)</em></p>
+<h3 id="overlayreplace">@overlay/replace <a href="#overlayreplace" class="section-link">¶</a></h3><p>Substitutes matched &ldquo;left&rdquo; node with the value of the &ldquo;right&rdquo; node (or by that of a provided function).</p>
+<p><strong>Valid on:</strong> Document, Map Item, Array Item.</p>
+<pre><code>@overlay/replace [via=Function]
+</code></pre><ul>
+<li><strong><code>via=</code></strong><code>Function(left, right): (any)</code> <em>(optional)</em> determines the value to substitute in. If omitted, the value is <code>right</code>.
+<ul>
+<li><code>left</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> or scalar) — the matched node&rsquo;s value</li>
+<li><code>right</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> or scalar) — the value of the annotated node</li>
+</ul>
+</li>
+</ul>
+<p><strong>History:</strong></p>
+<ul>
+<li>v0.26.0 — works with <a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> values.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<p><em>Example 1: Use value from &ldquo;right&rdquo;</em></p>
+<p>Replaces the corresponding &ldquo;left&rdquo; with the value <code>&quot;v1&quot;</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/replace</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span></code></pre></div><p><em>Example 2: Edit string value</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/replace via=lambda left, right: &#34;prefix-&#34;+left</span><span style="color:#bbb">
+</span></code></pre></div><p>See also:</p>
+<ul>
+<li><code>ytt</code> modules that export functions useful for manipulating values:
+<ul>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#base64">base64 module</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#json">json module</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#md5">md5 module</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#sha256">sha256 module</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#url">url module</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#yaml">yaml module</a></li>
+</ul>
+</li>
+<li><a href="/ytt/docs/latest/lang-ref-string/">Language: String</a> for built-in string functions.</li>
+<li>Other Starlark language features that manipulate values:
+<ul>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#string-interpolation" target="_blank">string interpolation</a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#conditional-expressions" target="_blank">conditional expressions</a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#index-expressions" target="_blank">index expressions</a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#slice-expressions" target="_blank">slice expressions</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="overlayinsert">@overlay/insert <a href="#overlayinsert" class="section-link">¶</a></h3><p>Inserts &ldquo;right&rdquo; node before/after the matched &ldquo;left&rdquo; node.</p>
+<p><strong>Valid on:</strong> Document, Array Item.</p>
+<pre><code>@overlay/insert [before=Bool, after=Bool]
+</code></pre><ul>
+<li><strong><code>before=</code></strong><code>Bool</code> whether to insert the &ldquo;right&rdquo; node immediately in front of the matched &ldquo;left&rdquo; node.</li>
+<li><strong><code>after=</code></strong><code>Bool</code> whether to insert the &ldquo;right&rdquo; node immediately following the matched &ldquo;left&rdquo; node.</li>
+</ul>
+<h3 id="overlayappend">@overlay/append <a href="#overlayappend" class="section-link">¶</a></h3><p>Inserts the &ldquo;right&rdquo; node after the last &ldquo;left&rdquo; node.</p>
+<p><strong>Valid on:</strong> Document, Array Item.</p>
+<pre><code>@overlay/append
+</code></pre><p><em>(this annotation has no parameters.)</em></p>
+<p><strong>Note:</strong> This action implies an <code>@overlay/match</code> selecting the last node. Any other <code>@overlay/match</code> annotation is ignored.</p>
+<h3 id="overlayassert">@overlay/assert <a href="#overlayassert" class="section-link">¶</a></h3><p>Checks assertion that value of &ldquo;left&rdquo; matched node equals that of the annotated &ldquo;right&rdquo; node (<em>or</em> a provided predicate).</p>
+<p><strong>Valid on:</strong> Document, Map Item, Array Item.</p>
+<pre><code>@overlay/assert [via=Function]
+</code></pre><ul>
+<li>Default: checks that the value of the matched &ldquo;left&rdquo; node equals the value of the annotated &ldquo;right&rdquo; node.</li>
+<li><strong><code>via</code></strong><code>=Function(left, right):(Bool|Tuple(Bool|String)|None)</code> <em>(optional)</em> predicate indicating whether &ldquo;left&rdquo; passes the check
+<ul>
+<li><code>left</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> or scalar) — the matched node&rsquo;s value</li>
+<li><code>right</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> or scalar) — the value of the annotated node</li>
+<li>Return types:
+<ul>
+<li><code>Bool</code> — if <code>False</code>, the assertion fails; otherwise, nothing happens.</li>
+<li><code>Tuple(Bool|String)</code> — if <code>False</code>, the assertion fails and specified string is appended to the resulting error message; otherwise nothing happens.</li>
+<li><code>None</code> — the assertion assumes to succeed. In these situations, the function makes use of the <a href="/ytt/docs/latest/lang-ref-ytt/#assert"><code>@ytt:assert</code></a> module to effect the assertion.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>History:</strong></p>
+<ul>
+<li>v0.26.0 — works with <a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> values.</li>
+<li>v0.24.0 — introduced</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<p><em>Example 1: Range check</em></p>
+<p>Fails the execution if <code>left</code> not between 0 and 1000, exclusively.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/assert via=lambda left, right: left &gt; 0 and left &lt; 1000</span><span style="color:#bbb">
+</span></code></pre></div><p><em>Example 2: Well-formedness check</em></p>
+<p>Fails the execution if <code>left</code> contains anything other than lowercase letters or numbers.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/assert via=lambda left, right: regexp.match(&#34;[a-z0-9]+&#34;, left)</span><span style="color:#bbb">
+</span></code></pre></div><p>See also:</p>
+<ul>
+<li><code>ytt</code> hashing functions from:
+<ul>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#md5">md5 module</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-ytt/#sha256">sha256 module</a></li>
+</ul>
+</li>
+<li>Boolean expression operators and built-in functions, including:
+<ul>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#membership-tests" target="_blank"><code>in</code></a> (aka &ldquo;membership test&rdquo;)</li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#or-and-and" target="_blank"><code>and</code> and <code>or</code></a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#any" target="_blank"><code>any()</code></a> or <a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#all" target="_blank"><code>all()</code></a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#hasattr" target="_blank"><code>hasattr()</code></a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#len" target="_blank"><code>len()</code></a></li>
+<li><a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#type" target="_blank"><code>type()</code></a></li>
+</ul>
+</li>
+<li><a href="/ytt/docs/latest/lang-ref-string/">Language: String</a> functions</li>
+</ul>
+<hr>
+<h2 id="functions">Functions <a href="#functions" class="section-link">¶</a></h2><p>The <code>@ytt:overlay</code> module provides several functions that support overlay use.</p>
+<p>To use these functions, include the <code>@ytt:overlay</code> module:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#@ load(&#34;@ytt:overlay&#34;, &#34;overlay&#34;)</span>
+</code></pre></div><p>The functions exported by this module are:</p>
+<ul>
+<li><a href="#overlayapply">overlay.apply()</a></li>
+<li><a href="#overlaymap_key">overlay.map_key()</a></li>
+<li><a href="#overlayindex">overlay.index()</a></li>
+<li><a href="#overlayall">overlay.all()</a></li>
+<li><a href="#overlaysubset">overlay.subset()</a></li>
+<li><a href="#overlayand_op">overlay.and_op()</a></li>
+<li><a href="#overlayor_op">overlay.or_op()</a></li>
+<li><a href="#overlaynot_op">overlay.not_op()</a></li>
+</ul>
+<h3 id="overlayapply">overlay.apply() <a href="#overlayapply" class="section-link">¶</a></h3><p>Executes the supplied overlays on top of the given structure.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>apply(left, right1[, rightN<span style="color:#000;font-weight:bold">...</span>])
+</code></pre></div><ul>
+<li><code>left</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a>) — the target of the overlays</li>
+<li><code>right1</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> annotated with <a href="#action-annotations"><code>@overlay/(action)</code></a>) — the (first) overlay to apply on <code>left</code>.</li>
+<li><code>rightN</code> (<a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a> annotated with <a href="#action-annotations"><code>@overlay/(action)</code></a>) — the Nth overlay to apply on the result so far (which reflects the changes made by prior overlays)</li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>For details on how to use <code>apply()</code>, see <a href="#programmatic-access">Programmatic access</a>.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>apply(left(), right())
+overlay<span style="color:#000;font-weight:bold">.</span>apply(left(), one(), two())
+</code></pre></div><p>See also: <a href="/ytt/#example:example-overlay">Overlay example</a> in the ytt Playground.</p>
+<h3 id="overlaymap_key">overlay.map_key() <a href="#overlaymap_key" class="section-link">¶</a></h3><p>An <a href="#overlaymatch">Overlay matcher function</a> that matches when the collection (i.e. Map or Array) in the &ldquo;left&rdquo; contains a map item with the key of <code>name</code> and value equal to the corresponding map item from the &ldquo;right.&rdquo;</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>map_key(name)
+</code></pre></div><ul>
+<li><code>name</code> (<code>String</code>) — the key of the contained map item on which to match</li>
+</ul>
+<p><strong>Note:</strong> this matcher requires that <em>all</em> items in the target collection have a map item with the key <code>name</code>; if this requirement cannot be guaranteed, consider using <a href="#overlaysubset"><code>overlay.subset()</code></a>, instead.</p>
+<p><strong>Examples:</strong></p>
+<p><em>Example 1: Over an Array</em></p>
+<p>With &ldquo;left&rdquo; similar to:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">clients</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">id</span>:<span style="color:#bbb"> </span><span style="color:#099">1</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">id</span>:<span style="color:#bbb"> </span><span style="color:#099">2</span><span style="color:#bbb">
+</span></code></pre></div><p>the following matches on the second array item:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">clients</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.map_key(&#34;id&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">id</span>:<span style="color:#bbb"> </span><span style="color:#099">2</span><span style="color:#bbb">
+</span></code></pre></div><p><em>Example 2: Over a Map</em></p>
+<p>(as of v0.26.0+)</p>
+<p>With &ldquo;left&rdquo; similar to:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">clients</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">clientA</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">id</span>:<span style="color:#bbb"> </span><span style="color:#099">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">clientB</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">id</span>:<span style="color:#bbb"> </span><span style="color:#099">2</span><span style="color:#bbb">
+</span></code></pre></div><p>the following matches on the second map item:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">clients</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.map_key(&#34;id&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">_</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">id</span>:<span style="color:#bbb"> </span><span style="color:#099">2</span><span style="color:#bbb">
+</span></code></pre></div><p>(note: the key name <code>_</code> is arbitrary and ignored).</p>
+<h3 id="overlayindex">overlay.index() <a href="#overlayindex" class="section-link">¶</a></h3><p>An <a href="#overlaymatch">Overlay matcher function</a> that matches the array item at the given index</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>index(i)
+</code></pre></div><ul>
+<li><code>i</code> (<code>Int</code>) — the ordinal of the item in the array on the &ldquo;left&rdquo; to match (zero-based index)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/match by=overlay.index(0)</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>- item10<span style="color:#bbb">
+</span></code></pre></div><h3 id="overlayall">overlay.all() <a href="#overlayall" class="section-link">¶</a></h3><p>An <a href="#overlaymatch">Overlay matcher function</a> that matches all contained nodes from the &ldquo;left&rdquo;, unconditionally.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>all()
+</code></pre></div><p><em>(this function has no parameters.)</em></p>
+<p><strong>Examples:</strong></p>
+<p><em>Example 1: Documents</em></p>
+<p>Matches each and every document:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/match by=overlay.all</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#000080">annotations</span>:<span style="color:#bbb"> </span>...<span style="color:#bbb">
+</span></code></pre></div><p><em>Example 2: Array Items</em></p>
+<p>Matches each and every item in the array contained in <code>items</code> on the &ldquo;left&rdquo;:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">items</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.all</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>- item10<span style="color:#bbb">
+</span></code></pre></div><p><em>Example 3: Map Items</em></p>
+<p>(as of v0.26.0+)</p>
+<p>Matches each and every item in the map contained in <code>items</code> on the &ldquo;left&rdquo;:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">items</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.all</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">_</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>item10<span style="color:#bbb">
+</span></code></pre></div><p>(note: the key name <code>_</code> is arbitrary and ignored)</p>
+<h3 id="overlaysubset">overlay.subset() <a href="#overlaysubset" class="section-link">¶</a></h3><p>An <a href="#overlaymatch">Overlay matcher function</a> that matches when the &ldquo;left&rdquo; node&rsquo;s structure and value equals the given <code>target</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>subset(target)
+</code></pre></div><ul>
+<li><code>target</code> (<code>any</code>) — value that the &ldquo;left&rdquo; node must equal.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p><em>Example 1: Scalar</em></p>
+<p>To match, scalar values must be equal.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset(1)</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset(&#34;Entire string must match&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset(True)</span><span style="color:#bbb">
+</span></code></pre></div><p>(if a partial match is required, consider writing a <a href="#custom-overlay-matcher-functions">Custom Overlay Matcher function</a>)</p>
+<p><em>Example 2: Dict (aka &ldquo;map&rdquo;)</em></p>
+<p>To match, dictionary literals must match the structure and value of <code>left</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset({&#34;kind&#34;: &#34;Deployment&#34;})</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset({&#34;metadata&#34;: {&#34;name&#34;: &#34;istio-system&#34;}})</span><span style="color:#bbb">
+</span></code></pre></div><p><em>Example 3: YAML Fragment</em></p>
+<p>To match, <a href="/ytt/docs/latest/lang-ref-yaml-fragment/"><code>yamlfragment</code></a>&rsquo;s must match structure and value of <code>left</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ def resource(kind, name):</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ kind</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ name</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ end</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.subset(resource(&#34;Deployment&#34;, &#34;istio-system&#34;))</span><span style="color:#bbb">
+</span></code></pre></div><h3 id="overlayand_op">overlay.and_op() <a href="#overlayand_op" class="section-link">¶</a></h3><p>(as of v0.26.0+)</p>
+<p>An <a href="#overlaymatch">Overlay matcher function</a> that matches when all given matchers return <code>True</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>and_op(matcher1, matcher2, <span style="color:#000;font-weight:bold">...</span>)
+</code></pre></div><ul>
+<li><code>matcher1</code>, <code>matcher2</code>, &hellip; — one or more other <a href="#overlaymatch">Overlay matcher function</a>s.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ not_sa = overlay.not_op(overlay.subset({&#34;kind&#34;: &#34;ServiceAccount&#34;}))</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ inside_ns = overlay.subset({&#34;metadata&#34;: {&#34;namespace&#34;: &#34;some-ns&#34;}})</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.and_op(not_sa, inside_ns),expects=&#34;1+&#34;</span><span style="color:#bbb">
+</span></code></pre></div><h3 id="overlayor_op">overlay.or_op() <a href="#overlayor_op" class="section-link">¶</a></h3><p>(as of v0.26.0+)</p>
+<p>An <a href="#overlaymatch">Overlay matcher function</a> that matches when at least one of the given matchers return <code>True</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">overlay<span style="color:#000;font-weight:bold">.</span>or_op(matcher1, matcher2, <span style="color:#000;font-weight:bold">...</span>)
+</code></pre></div><ul>
+<li><code>matcher1</code>, <code>matcher2</code>, &hellip; — one or more other <a href="#overlaymatch">Overlay matcher function</a>s.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ config_maps = overlay.subset({&#34;kind&#34;: &#34;ConfigMap&#34;})</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ secrets = overlay.subset({&#34;kind&#34;: &#34;Secret&#34;})</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@overlay/match by=overlay.or_op(config_maps, secrets)</span><span style="color:#bbb">
+</span></code></pre></div><h3 id="overlaynot_op">overlay.not_op() <a href="#overlaynot_op" class="section-link">¶</a></h3><p>(as of v0.26.0+)</p>
+<p>An <a href="#overlaymatch">Overlay matcher function</a> that matches when the given matcher does not.</p>
+<pre><code class="language-pythons" data-lang="pythons">not_op(matcher)
+</code></pre><ul>
+<li><code>matcher</code> — another <a href="#overlaymatch">Overlay matcher function</a>.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/match by=overlay.not_op(overlay.subset({&#34;metadata&#34;: {&#34;namespace&#34;: &#34;app&#34;}}))</span><span style="color:#bbb">
+</span></code></pre></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:ytt"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

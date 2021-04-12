@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About imgpkg on Carvel</title>
+    <link>/imgpkg/docs/latest/</link>
+    <description>Recent content in About imgpkg on Carvel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/imgpkg/docs/latest/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Air-gapped Workflow</title>
+      <link>/imgpkg/docs/latest/air-gapped-workflow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/air-gapped-workflow/</guid>
+      <description>Scenario ¶You want to ensure Kubernetes application does not rely on images from external registries when deployed.
+This scenario also applies when trying to ensure that all images are consolidated into a single registry, even if that registry is not air-gapped.
+Prerequisites ¶To complete this workflow you will need access to an OCI registry like Docker Hub, and optionally, a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using Kind)</description>
+    </item>
+    
+    <item>
+      <title>Authentication</title>
+      <link>/imgpkg/docs/latest/auth/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/auth/</guid>
+      <description>Via Docker config ¶Even though imgpkg commands use registry APIs directly, by default it uses credentials stored in ~/.docker/config.json which are typically generated via a docker login command.
+Example generated ~/.docker/config.json:
+{ &amp;#34;auths&amp;#34;: { &amp;#34;https://index.docker.io/v1/&amp;#34;: { &amp;#34;auth&amp;#34;: &amp;#34;dXNlcjpwYXNzd29yZA==&amp;#34; }, }, &amp;#34;HttpHeaders&amp;#34;: { &amp;#34;User-Agent&amp;#34;: &amp;#34;Docker-Client/18.09.6 (darwin)&amp;#34; } } where dXNlcjpwYXNzd29yZA== is base64(&amp;quot;username:password&amp;quot;).
+Via Command Flags ¶You can explicitly specify credentials via command flags or associated environment variables. See imgpkg push -h for further details.</description>
+    </item>
+    
+    <item>
+      <title>Basic Workflow</title>
+      <link>/imgpkg/docs/latest/basic-workflow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/basic-workflow/</guid>
+      <description>Scenario ¶You want to create an immutable artifact containing Kubernetes configuration and images used in that configuration. Later, you want to grab that artifact and deploy it to Kubernetes.
+Prerequisites ¶To complete this workflow you will need access to an OCI registry like Docker Hub, and optionally, a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using Kind)
+If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need kbld and kubectl.</description>
+    </item>
+    
+    <item>
+      <title>Commands</title>
+      <link>/imgpkg/docs/latest/commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/commands/</guid>
+      <description>Push ¶Overview ¶push command allows users to create a bundle in the registry from files and/or directories on their local file systems. For example,
+$ imgpkg push -b index.docker.io/k8slt/sample-bundle -f my-bundle/ will push a bundle contents containing in the my-bundle/ directory to index.docker.io/k8slt/sample-bundle.
+Use the -b/--bundle flag to specify the destination of the push. If the specified destination does not include a tag, the artifact will be pushed with the default tag :latest.</description>
+    </item>
+    
+    <item>
+      <title>Resources</title>
+      <link>/imgpkg/docs/latest/resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/resources/</guid>
+      <description>Image ¶An OCI image is an artifact that lives within an OCI registry (such as DockerHub). It can contain an arbitrary number of files.
+ Bundle ¶A bundle is an OCI image that holds 0+ arbitrary files and 0+ references to dependent OCI images (which may also be bundles). By tracking dependent images, imgpkg can copy bundles across registries.
+Referenced images are stored within the .imgpkg directory at the root level of the bundle image.</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>/imgpkg/docs/latest/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/security/</guid>
+      <description>Vulnerability Disclosure ¶If you believe you have found a security issue in imgpkg, please privately and responsibly disclose it by following the directions in our security policy.</description>
+    </item>
+    
+    <item>
+      <title>Working directly with images</title>
+      <link>/imgpkg/docs/latest/working-directly-with-images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/imgpkg/docs/latest/working-directly-with-images/</guid>
+      <description>In rare cases imgpkg&amp;rsquo;s bundle concept is not wanted (or necessary). imgpkg provides a --image flag for push, pull and copy commands. When the --image flag is used, there is no need for a .imgpkg directory to store metadata.
+For most use cases, we suggest using the bundle concept and --bundle flag.</description>
+    </item>
+    
+  </channel>
+</rss>
