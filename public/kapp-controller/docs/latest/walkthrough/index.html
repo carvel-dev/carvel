@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - kapp-controller - Walkthrough</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="https://github.com/vmware-tanzu/carvel-kapp-controller" class="text-logo">kapp-controller</a>
+		<ul class="desktop-links">
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller Overview</a></li>
+			<li><a href="/kapp-controller/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/kapp-controller/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/" >About kapp-controller</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/install/" >Install</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/walkthrough/" class="active">Walkthrough</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/app-spec/" >App CR Spec</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/config/" >Configuration</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/controller-config/" >Controller Configuration</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/startup/" >Controller Startup</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/security-model/" >Security Model</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/dangerous-flags/" >Dangerous Flags</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Template steps</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/sops/" >Mozilla&#39;s sops</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Packaging (alpha)</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/packaging/" >Terminology &amp; APIs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/install-alpha/" >Install</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/package-authoring/" >Authoring packages</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/package-consumption/" >Consuming packages</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp-controller/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Walkthrough</h1>
+            
+                <aside>
+                <nav id="TableOfContents"></nav>
+                </aside>
+            
+
+            <p>The goal of this walkthrough is to demonstrate how to install a simple example application, an HTTP server, on Kubernetes with kapp-controller. We will use <code>examples/simple-app-git</code> directory as our YAML configuration.</p>
+<p>You can use <code>kubectl</code> (or another tool) to deploy the YAML examples below. We&rsquo;ve chosen <a href="/kapp/">kapp</a>.</p>
+<ul>
+<li>
+<p>Start by <a href="/kapp-controller/docs/latest/install/">installing</a> kapp-controller onto your cluster</p>
+</li>
+<li>
+<p>Install <a href="https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/rbac/default-ns.yml" target="_blank">examples/default-ns-rbac.yml</a>. It creates <code>default-ns-sa</code> service account that allows to change any
+resource within the <code>default</code> namespace. This will be used by App CR below.</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+</code></pre></li>
+<li>
+<p>Install <a href="https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/simple-app-git/1.yml" target="_blank">examples/simple-app-git/1.yml</a> App CR. It specifies how to fetch, template, and deploy our example application.</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ kapp deploy -a simple-app -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/1.yml
+# or... kubectl apply -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/1.yml
+
+Changes
+
+Namespace  Name        Kind  Conds.  Age  Op      Wait to    Rs  Ri
+default    simple-app  App   -       -    create  reconcile  -   -
+
+Op:      1 create, 0 delete, 0 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+Continue? [yN]: y
+
+5:20:27PM: ---- applying 1 changes [0/1 done] ----
+5:20:27PM: create app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:20:27PM: ---- waiting on 1 changes [0/1 done] ----
+5:20:27PM: ongoing: reconcile app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:20:33PM: ok: reconcile app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:20:33PM: ---- applying complete [1/1 done] ----
+5:20:33PM: ---- waiting complete [1/1 done] ----
+
+Succeeded
+</code></pre></li>
+<li>
+<p>Check out <code>kubectl get app</code> output to see that app is deployed.</p>
+</li>
+<li>
+<p>Additionally, let&rsquo;s check status of our App CR. It shows the overall status of the application, including the latest deploy output (<code>status.deploy.stdout</code>) and latest inspect output (<code>status.inspect.stdout</code>). Based on the inspect output we can see that our app included a <code>Deployment</code> and a <code>Service</code>.</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ kapp inspect -a simple-app --status
+# or... kubectl get app simple-app -oyaml
+
+Resources in app 'simple-app'
+
+Namespace  default
+Name       simple-app
+Kind       App
+Status     conditions:
+           - status: &quot;True&quot;
+             type: ReconcileSucceeded
+           deploy:
+             exitCode: 0
+             finished: true
+             startedAt: &quot;2019-12-02T22:20:28Z&quot;
+             stdout: |-
+               Changes
+               Namespace  Name        Kind        Conds.  Age  Op      Wait to    Rs  Ri
+               default    simple-app  Deployment  -       -    create  reconcile  -   -
+               ^          simple-app  Service     -       -    create  reconcile  -   -
+               Op:      2 create, 0 delete, 0 update, 0 noop
+               Wait to: 2 reconcile, 0 delete, 0 noop
+               10:20:28PM: ---- applying 2 changes [0/2 done] ----
+               10:20:28PM: create service/simple-app (v1) namespace: default
+               10:20:28PM: create deployment/simple-app (apps/v1) namespace: default
+               10:20:29PM: ---- waiting on 2 changes [0/2 done] ----
+               10:20:29PM: ok: reconcile service/simple-app (v1) namespace: default
+               10:20:29PM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
+               10:20:29PM:  ^ Waiting for 1 unavailable replicas
+               10:20:29PM:  L ok: waiting on replicaset/simple-app-6fb57f844b (apps/v1) namespace: default
+               10:20:29PM:  L ongoing: waiting on pod/simple-app-6fb57f844b-jk7d8 (v1) namespace: default
+               10:20:29PM:     ^ Pending: ContainerCreating
+               10:20:29PM: ---- waiting on 1 changes [1/2 done] ----
+               10:20:31PM: ok: reconcile deployment/simple-app (apps/v1) namespace: default
+               10:20:31PM: ---- applying complete [2/2 done] ----
+               10:20:31PM: ---- waiting complete [2/2 done] ----
+               Succeeded
+             updatedAt: &quot;2019-12-02T22:20:31Z&quot;
+           fetch:
+             exitCode: 0
+             startedAt: &quot;2019-12-02T22:20:27Z&quot;
+             updatedAt: &quot;2019-12-02T22:20:27Z&quot;
+           inspect:
+             exitCode: 0
+             stdout: |-
+               Resources in app 'simple-app-ctrl'
+               Namespace  Name                              Kind        Owner    Conds.  Rs  Ri  Age
+               default    simple-app                        Deployment  kapp     2/2 t   ok  -   4s
+               default     L simple-app-6fb57f844b          ReplicaSet  cluster  -       ok  -   4s
+               default     L.. simple-app-6fb57f844b-jk7d8  Pod         cluster  4/4 t   ok  -   4s
+               default    simple-app                        Service     kapp     -       ok  -   4s
+               default     L simple-app                     Endpoints   cluster  -       ok  -   4s
+               Rs: Reconcile state
+               Ri: Reconcile information
+               5 resources
+               Succeeded
+             updatedAt: &quot;2019-12-02T22:20:32Z&quot;
+           observedGeneration: 2
+           template:
+             exitCode: 0
+             updatedAt: &quot;2019-12-02T22:20:28Z&quot;
+
+1 resources
+
+Succeeded
+</code></pre></li>
+<li>
+<p>Update simple-app App CR to reconfigure simple-app. In this example we are changing data values for ytt templates.</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ kapp deploy -a simple-app -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml -c
+# or... kubectl apply -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml
+
+--- update app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+  ...
+ 23, 23     template:
+ 24     -   - ytt: {}
+     24 +   - ytt:
+     25 +       inline:
+     26 +         pathsFrom:
+     27 +         - secretRef:
+     28 +             name: simple-app-values
+ 25, 29   status:
+ 26, 30     conditions:
+--- create secret/simple-app-values (v1) namespace: default
+      0 + apiVersion: v1
+      1 + kind: Secret
+      2 + metadata:
+      3 +   labels:
+      4 +     kapp.k14s.io/app: &quot;1575325198404867000&quot;
+      5 +     kapp.k14s.io/association: v1.7a671029ad7db07aa797301eac59e9ad
+      6 +   name: simple-app-values
+      7 +   namespace: default
+      8 + stringData:
+      9 +   values2.yml: |
+     10 +     #@data/values
+     11 +     ---
+     12 +     hello_msg: updated
+     13 +
+
+Changes
+
+Namespace  Name               Kind    Conds.  Age  Op      Wait to    Rs  Ri
+default    simple-app         App     1/1 t   2m   update  reconcile  ok  -
+^          simple-app-values  Secret  -       -    create  reconcile  -   -
+
+Op:      1 create, 0 delete, 1 update, 0 noop
+Wait to: 2 reconcile, 0 delete, 0 noop
+
+Continue? [yN]: y
+
+5:23:13PM: ---- applying 2 changes [0/2 done] ----
+5:23:13PM: update app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:23:13PM: create secret/simple-app-values (v1) namespace: default
+5:23:14PM: ---- waiting on 2 changes [0/2 done] ----
+5:23:14PM: ongoing: reconcile app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:23:14PM: ok: reconcile secret/simple-app-values (v1) namespace: default
+5:23:14PM: ---- waiting on 1 changes [1/2 done] ----
+5:23:17PM: ok: reconcile app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:23:17PM: ---- applying complete [2/2 done] ----
+5:23:17PM: ---- waiting complete [2/2 done] ----
+
+Succeeded
+</code></pre></li>
+<li>
+<p>Delete simple-app App CR</p>
+<pre><code class="language-bash-plain" data-lang="bash-plain">$ kapp delete -a simple-app
+# or... kubectl delete -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml
+
+Changes
+
+Namespace  Name               Kind    Conds.  Age  Op      Wait to  Rs  Ri
+default    simple-app         App     1/1 t   6m   delete  delete   ok  -
+^          simple-app-values  Secret  -       3m   delete  delete   ok  -
+
+Op:      0 create, 2 delete, 0 update, 0 noop
+Wait to: 0 reconcile, 2 delete, 0 noop
+
+Continue? [yN]: y
+
+5:26:25PM: ---- applying 2 changes [0/2 done] ----
+5:26:25PM: delete secret/simple-app-values (v1) namespace: default
+5:26:25PM: delete app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:26:26PM: ---- waiting on 2 changes [0/2 done] ----
+5:26:26PM: ok: delete secret/simple-app-values (v1) namespace: default
+5:26:26PM: ongoing: delete app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:26:26PM: ---- waiting on 1 changes [1/2 done] ----
+5:26:30PM: ok: delete app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
+5:26:30PM: ---- applying complete [2/2 done] ----
+5:26:30PM: ---- waiting complete [2/2 done] ----
+
+Succeeded
+</code></pre></li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:kapp-controller"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

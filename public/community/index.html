@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- _default/baseof.html -->
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Carvel - Community</title>
+	
+	
+	
+	
+	<link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+	<link rel="icon" type="image/png" href="/img/favicon.png">
+	<script src="/js/main.js" type="text/javascript"></script>
+	<link rel="alternate" type="application/rss+xml" href="/community/index.xml" title="Carvel">
+</head>
+<body>
+	
+
+<header >
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" class="active">Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" class="active">Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+	
+	<!-- _default/section.html -->
+	<main>
+		
+<div class="hero subpage">
+    <div class="wrapper">
+        <h1>Help us build Carvel</h1>
+    </div>
+</div>
+
+<div class="wrapper dedicated-page community">
+    <div class="grid three">
+        <div class="col">
+            <div class="icon">
+                <img src="/img/github-image.svg" />
+            </div>
+            <div class="content">
+                <h3><a href="https://github.com/vmware-tanzu/carvel.dev">Check out Github</a></h3>
+                <p>You can follow the work we do, be part of on-going discussions, and examine our improvement ideas on each respective project's GitHub issues page.</p>
+                <p>If you're a newcomer, check out the <code>good first issue</code> label in each repository, take <a href="https://github.com/vmware-tanzu/carvel-kapp/labels/good%20first%20issue">kapp</a> for example.</p>
+                <p>If you are ready to jump in and add code, tests, or help with documentation, follow the guidelines in the <a href="/shared/docs/latest/contributing/">contributing documentation</a> in the respective repository.</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/slack.svg" />
+            </div>
+            <div class="content">
+                <h3><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">Join our Slack channel</a></h3>
+                <p>Join <a href="https://kubernetes.slack.com/archives/CH8KCCKA5">#carvel on Kubernetes Slack</a> and talk to us and over 500 other community members.</p>
+                <p>We love discussing various Kubernetes workflows, patterns, helping with design and issues. May be your question leads to the creation off a next Carvel tool.</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/calendar.svg" />
+            </div>
+            <div class="content">
+                <h3>Community Meetings and Office Hours</h3>
+                <p>Carvel Community Meetings are held every Monday at 11:30AM PT / 2:30PM ET</p>
+                <p>Join our <a href="https://groups.google.com/g/carvel-dev">Google Group</a> to get updates on the project and invitations to community meetings.</p>
+                <ul>
+                    <li><a href="http://community.klt.rip/">Meeting Zoom Link</a></li>
+                    <li>See previous community meetings on our <a href="https://www.youtube.com/playlist?list=PL7bmigfV0EqS1ZxRR1cRd8eqdwQij9Lsa">YouTube Playlist</a></li>
+                    <li><a href="https://hackmd.io/F7g3RT2hR3OcIh-Iznk2hw">Meeting notes</a></li>
+                </ul>
+                <p>Carvel Office Hours are held every 2nd and 4th Thursday at 11:30AM PT / 2:30PM ET</p>
+                <p>Have a question about using any of the tools in Carvel and would like to chat with the maintainers face to face? Attend the office hours for more in-depth assistance.</p>
+                <ul>
+                    <li><a href="http://community.klt.rip/">Meeting Zoom Link</a></li>
+                    <li><a href="https://hackmd.io/5Bh2IXwTShSrA0YdBY4AGg">Meeting notes</a></li>
+            </div>
+        </div>
+    </div>
+</div>	
+
+
+		
+	</main>
+
+	<footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

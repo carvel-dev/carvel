@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - kbld - Configuration</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/kbld/" class="text-logo">kbld</a>
+		<ul class="desktop-links">
+			<li><a href="/kbld/" >kbld Overview</a></li>
+			<li><a href="/kbld/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kbld"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/kbld/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kbld"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/" >About kbld</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Usage</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/resolving/" >Resolving images</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/building/" >Building images</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/packaging/" >Packaging &amp; Relocation</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/cnab-image-relocation/" >CNAB Image Mappings</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/config/" class="active">Configuration</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/auth/" >Authentication</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kbld/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Configuration</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#schema">Schema</a></li>
+    <li><a href="#sources">Sources</a>
+      <ul>
+        <li><a href="#docker">Docker</a></li>
+        <li><a href="#pack">Pack</a></li>
+        <li><a href="#buildkit-cli-for-kubectl">BuildKit CLI for kubectl</a></li>
+        <li><a href="#ko">ko</a></li>
+      </ul>
+    </li>
+    <li><a href="#destinations">Destinations</a>
+      <ul>
+        <li><a href="#imagedestinations">ImageDestinations</a></li>
+      </ul>
+    </li>
+    <li><a href="#overrides">Overrides</a>
+      <ul>
+        <li><a href="#imageoverrides">ImageOverrides</a></li>
+        <li><a href="#example-for-updatestrategy-that-parses-yaml">Example for <code>updateStrategy</code> that parses YAML</a></li>
+      </ul>
+    </li>
+    <li><a href="#matching-images">Matching images</a></li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="overview">Overview <a href="#overview" class="section-link">¶</a></h2><p>You can configure kbld by adding configuration resources (they follow Kubernetes resource format, but are removed from kbld output). Configuration resources may be specified multiple times.</p>
+<h2 id="schema">Schema <a href="#schema" class="section-link">¶</a></h2><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">minimumRequiredVersion</span>:<span style="color:#bbb"> </span><span style="color:#099">0.15.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">sources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>adservice<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">path</span>:<span style="color:#bbb"> </span>src/<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">destinations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>adservice<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/dkalinin/microservices-demo-adservice<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">searchRules</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">keyMatcher</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>sidecarImage<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">valueMatcher</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">image</span>:<span style="color:#bbb"> </span>exact-image<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">imageRepo</span>:<span style="color:#bbb"> </span>gcr.io/some/repo<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">overrides</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/library/nginx:1.14.2<span style="color:#bbb">
+</span></code></pre></div><ul>
+<li><code>minimumRequiredVersion</code> (optional) specify minimume required version of kbld needed to work with this configuration</li>
+<li><code>sources</code> (optional; array) allows to specify how to build certain images. See details in sections below.
+<ul>
+<li><code>image</code> (required; string) image matcher</li>
+<li><code>path</code> (required; string) path to source location</li>
+<li><code>docker</code> (optional; default) use Docker to build source. <a href="#docker">Details</a>.</li>
+<li><code>pack</code> (optional) use pack CLI to build source. <a href="#pack">Details</a>.</li>
+<li><code>kubectlBuildkit</code> (optional) use Buildkit CLI for kubectl to build source. <a href="#buildkit-cli-for-kubectl">Details</a>.</li>
+<li><code>ko</code> (optional) use <code>ko</code> to build source. <a href="#ko">Details</a>.</li>
+</ul>
+</li>
+<li><code>destinations</code> (optional; array) allows to specify one or more destination where images should be pushed
+<ul>
+<li><code>image</code> (optional) image matcher</li>
+<li><code>newImage</code> (optional) image destination (e.g. docker.io/dkalinin/app-demo)</li>
+<li><code>tags</code> (optional; array of strings) tags to apply to pushed images (e.g. <code>[latest, tag2]</code>) (v0.26.0+)</li>
+</ul>
+</li>
+<li><code>searchRules</code> (optional; array) allows to specify one or more matchers for finding image references. Key and value matchers could be specified together or separately. If key and value matchers are specified together, both matchers must succeed. This functionality supersedes <code>ImageKeys</code> kind.
+<ul>
+<li><code>keyMatcher</code> (optional) key matcher
+<ul>
+<li><code>name</code> (optional; string) specifies key name (e.g. <code>sidecarImage</code>)</li>
+<li><code>path</code> (optional; array) specifies key path from the root of the YAML document (e.g. <code>[data, sidecarImage]</code>, <code>[spec, images, {allIndexes: true}]</code>)</li>
+</ul>
+</li>
+<li><code>valueMatcher</code> (optional) value matcher
+<ul>
+<li><code>image</code> (optional; string) matches values exactly</li>
+<li><code>imageRepo</code> (optional; string) matches values that follow image reference format (<code>[registry]repo[:tag]\[@sha256:...]</code>) and expects <code>repo</code> portion to match (e.g. <code>gcr.io/project/app</code>)</li>
+</ul>
+</li>
+<li><code>updateStrategy</code> (optional) strategy for finding and updating image references within value (v0.21.0+)
+<ul>
+<li><code>none</code> (optional) excludes value from processing (v0.22.0+)</li>
+<li><code>entireString</code> (optional; default) uses entire value as an image ref</li>
+<li><code>json</code> (optional) parses JSON and identifies image refs by specified search rules
+<ul>
+<li><code>searchRules</code> &hellip; (recursive)</li>
+</ul>
+</li>
+<li><code>yaml</code> (optional) parses YAML and identifies image refs by specified search rules
+<ul>
+<li><code>searchRules</code> &hellip; (recursive)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>overrides</code> (optional; array) configures kbld to rewrite image location before trying to build image or resolve it to a digest.
+<ul>
+<li><code>image</code> (optional) image matcher</li>
+<li><code>newImage</code> (optional) could be image without tag/digest, image tag ref, or image digest ref</li>
+<li><code>preresolved</code> (optional; bool) specifies if <code>newImage</code> should be used as is</li>
+<li><code>tagSelection</code> (optional; VersionSelection) specifies how to resolve tag for <code>newImage</code>. <code>newImage</code> in this case is expected to not specify tag or digest (e.g. <code>gcr.io/my-corp/app</code>) without a tag. <a href="https://carvel.dev/vendir/docs/latest/versions/#versionselection-type" target="_blank">See <code>VersionSelection</code> type details</a>. Available as of v0.28.0+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="sources">Sources <a href="#sources" class="section-link">¶</a></h2><p>Sources configure kbld to execute image building operation based on specified path.</p>
+<p>(Note: We recommend using <code>Config</code> kind with <code>sources</code> key instead of <code>Sources</code> kind. <code>sources</code> key in both kind <code>Config</code> and <code>Sources</code> has same functionality.)</p>
+<p>Currently supported builders:</p>
+<ul>
+<li><code>docker</code>: <a href="https://docs.docker.com/engine/reference/commandline/cli/" target="_blank">Docker CLI</a> (default)</li>
+<li><code>pack</code>: <a href="https://github.com/buildpacks/pack" target="_blank">Pack CLI</a></li>
+<li><code>kubectlBuildkit</code>: <a href="https://github.com/vmware-tanzu/buildkit-cli-for-kubectl" target="_blank">BuildKit CLI for kubectl</a></li>
+<li><code>ko</code>: <a href="https://github.com/google/ko" target="_blank">ko CLI</a></li>
+</ul>
+<h3 id="docker">Docker <a href="#docker" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">sources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>image1<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">path</span>:<span style="color:#bbb"> </span>src/<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">docker</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># all options shown; none are required</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">build</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">target</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;some-target&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">pull</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">noCache</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">file</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;hack/Dockefile.dev&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">rawOptions</span>:<span style="color:#bbb"> </span>[<span style="color:#d14">&#34;--squash&#34;</span>]<span style="color:#bbb">
+</span></code></pre></div><ul>
+<li><code>docker.build.target</code> (string): Set the target build stage to build (no default)</li>
+<li><code>docker.build.pull</code> (bool): Always attempt to pull a newer version of the image (default is false)</li>
+<li><code>docker.build.noCache</code> (bool): Do not use cache when building the image (default is false)</li>
+<li><code>docker.build.file</code> (string): Name of the Dockerfile (default is Dockerfile)</li>
+<li><code>docker.build.rawOptions</code> ([]string): Refer to <a href="https://docs.docker.com/engine/reference/commandline/build/">https://docs.docker.com/engine/reference/commandline/build/</a> for all available options</li>
+</ul>
+<h3 id="pack">Pack <a href="#pack" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">sources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>image1<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">path</span>:<span style="color:#bbb"> </span>src/<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">pack</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">build</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">builder</span>:<span style="color:#bbb"> </span>cloudfoundry/cnb:bionic<span style="color:#bbb">
+</span></code></pre></div><ul>
+<li><code>pack.build.builder</code> (string): Set builder image (required)</li>
+<li><code>pack.build.buildpacks</code> ([]string): Set list of buildpacks to be used (no default)</li>
+<li><code>pack.build.clearCache</code> (bool): Clear cache before building image (default is false)</li>
+<li><code>pack.build.rawOptions</code> ([]string): Refer to <code>pack build -h</code> for all available flags</li>
+</ul>
+<h3 id="buildkit-cli-for-kubectl">BuildKit CLI for kubectl <a href="#buildkit-cli-for-kubectl" class="section-link">¶</a></h3><p>Available as of v0.28.0+</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">sources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>image1<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">path</span>:<span style="color:#bbb"> </span>src/<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">kubectlBuildkit</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic"># all options shown; none are required</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">build</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">target</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;some-target&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">pull</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">noCache</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">file</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;hack/Dockefile.dev&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">rawOptions</span>:<span style="color:#bbb"> </span>[<span style="color:#d14">&#34;--platform=...&#34;</span>]<span style="color:#bbb">
+</span></code></pre></div><ul>
+<li><code>kubectlBuildkit.build.target</code> (string): Set the target build stage to build (no default)</li>
+<li><code>kubectlBuildkit.build.pull</code> (bool): Always attempt to pull a newer version of the image (default is false)</li>
+<li><code>kubectlBuildkit.build.noCache</code> (bool): Do not use cache when building the image (default is false)</li>
+<li><code>kubectlBuildkit.build.file</code> (string): Name of the Dockerfile (default is Dockerfile)</li>
+<li><code>kubectlBuildkit.build.rawOptions</code> ([]string): Refer to <code>kubectl buildkit build -h</code> for all available options</li>
+</ul>
+<p>To provide registry credentials to the builder, create a Kubernetes docker secret:</p>
+<pre><code>kubectl create secret docker-registry buildkit --docker-server=https://index.docker.io/v1/ --docker-username=my-user --docker-password=my-password
+</code></pre><p>See project site for details: <a href="https://github.com/vmware-tanzu/buildkit-cli-for-kubectl" target="_blank">buildkit-cli-for-kubectl</a>.</p>
+<h3 id="ko">ko <a href="#ko" class="section-link">¶</a></h3><p>Available as of v0.28.0+</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">sources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>image1<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">path</span>:<span style="color:#bbb"> </span>./src/<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">ko</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">build</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic"># all options shown; none are required</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">rawOptions</span>:<span style="color:#bbb"> </span>[<span style="color:#d14">&#34;--disable-optimizations&#34;</span>]<span style="color:#bbb">
+</span></code></pre></div><ul>
+<li>
+<p><code>ko.build.rawOptions</code> ([]string): Refer to <code>ko publish -h</code> for all available options.</p>
+<p>By default <code>kbld</code> provides the <code>--local</code> flag</p>
+</li>
+</ul>
+<hr>
+<h2 id="destinations">Destinations <a href="#destinations" class="section-link">¶</a></h2><p>Destinations configure kbld to push built images to specified location.</p>
+<p>Currently images are pushed via Docker daemon for both Docker and pack built images (since pack also uses Docker daemon).</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">destinations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>adservice<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/dkalinin/microservices-demo-adservice<span style="color:#bbb">
+</span></code></pre></div><p>As of v0.26.0+, additional tags could be specified to be associated with pushed image (applied via registry API):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">destinations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>adservice<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/dkalinin/microservices-demo-adservice<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">tags</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- v0.10.3<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- latest-staging<span style="color:#bbb">
+</span></code></pre></div><h3 id="imagedestinations">ImageDestinations <a href="#imagedestinations" class="section-link">¶</a></h3><p>We recommend using <code>Config</code> kind with <code>destinations</code> key instead of <code>ImageDestinations</code> kind. <code>destinations</code> key in both kind <code>Config</code> and <code>ImageDestinations</code> has same functionality.</p>
+<hr>
+<h2 id="overrides">Overrides <a href="#overrides" class="section-link">¶</a></h2><p>Overrides configure kbld to rewrite image location before trying to build it or resolve it to a digest.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">overrides</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>unknown<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/library/nginx:1.14.2<span style="color:#bbb">
+</span></code></pre></div><p>It can also hold <code>preresolved</code> new image, so no building or resolution happens (for preresolved images, kbld will not connect to registry to obtain any metadata):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">overrides</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>unknown<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/library/nginx:1.14.2<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">preresolved</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span></code></pre></div><p><code>tagSelection</code> can be used for dynamic selection of a tag based on various strategies. Currently only <code>semver</code> strategy is available.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">overrides</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">image</span>:<span style="color:#bbb"> </span>unknown<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">newImage</span>:<span style="color:#bbb"> </span>docker.io/library/nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">tagSelection</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">semver</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">constraints</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;&lt;1.15.0&#34;</span><span style="color:#bbb">
+</span></code></pre></div><h3 id="imageoverrides">ImageOverrides <a href="#imageoverrides" class="section-link">¶</a></h3><p>We recommend using <code>Config</code> kind with <code>overrides</code> key instead of <code>ImageOverrides</code> kind. <code>overrides</code> key in both kind <code>Config</code> and <code>ImageOverrides</code> has same functionality.</p>
+<hr>
+<h3 id="example-for-updatestrategy-that-parses-yaml">Example for <code>updateStrategy</code> that parses YAML <a href="#example-for-updatestrategy-that-parses-yaml" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">data.yml</span>:<span style="color:#bbb"> </span>|<span style="color:#d14">
+</span><span style="color:#d14">    name: nginx
+</span><span style="color:#d14">    image: nginx # &lt;-- below config finds and updates this image</span><span style="color:#bbb">    
+</span><span style="color:#bbb"></span><span style="color:#555">---</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kbld.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">minimumRequiredVersion</span>:<span style="color:#bbb"> </span><span style="color:#099">0.15.0</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">searchRules</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#000080">keyMatcher</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>data.yml<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">updateStrategy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">yaml</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">searchRules</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#000080">keyMatcher</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>image<span style="color:#bbb">
+</span></code></pre></div><hr>
+<h2 id="matching-images">Matching images <a href="#matching-images" class="section-link">¶</a></h2><p>Available as of 0.15.0+</p>
+<p><code>Sources</code>, <code>ImageDestinations</code>, and <code>ImageOverrides</code> have ability to match images in following ways:</p>
+<ul>
+<li>via <code>image</code> to match exact content
+<ul>
+<li>e.g. <code>image: image1</code> which would only match <code>image1</code></li>
+</ul>
+</li>
+<li>via <code>imageRepo</code> to match only by registry+repo combination
+<ul>
+<li>e.g. <code>imageRepo: gcr.io/org/app1</code> which would match <code>gcr.io/org/app1:latest</code> or <code>gcr.io/org/app1@sha256:...</code> or just <code>gcr.io/org/app1</code></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:kbld"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

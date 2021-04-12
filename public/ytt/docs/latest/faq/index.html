@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - ytt - FAQ</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/ytt/" class="text-logo">ytt</a>
+		<ul class="desktop-links">
+			<li><a href="/ytt/" >ytt Overview</a></li>
+			<li><a href="/ytt/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/ytt/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/" >About ytt</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Techniques</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-data-values/" >Using data values</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/data-values-vs-overlays/" >Data values vs overlays</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/injecting-secrets/" >Injecting secrets</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >Language</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-annotation/" >Annotations</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-text-templating/" >Text Templating</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Built-in @ytt library</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt/" >All modules</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-struct/" >Struct module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-overlay/" >Overlay module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-library/" >Library module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-version/" >Version module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-template/" >Template module</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Language</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >General</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-string/" >String</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-list/" >List</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-dict/" >Dictionary</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-structs/" >Struct</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-yaml-fragment/" >YAML Fragment</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-if/" >If conditional</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-for/" >For loop</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-def/" >Function</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-load/" >Load</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>CLI configuration</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/outputs/" >Outputs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/file-marks/" >File Marks</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/strict/" >Strict yaml</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/faq/" class="active">FAQ</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-vs-x/" >Why ytt vs. x?</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/known-limitations/" >Known Limitations</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>FAQ</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-do-i-template-some-text">How do I template some text?</a></li>
+    <li><a href="#data-values">Data Values</a></li>
+    <li><a href="#is-it-possible-to-add-a-new-key-to-my-values-via-the---data-value-command-line-argument">Is it possible to add a new key to my values via the <code>--data-value</code> command line argument?</a></li>
+    <li><a href="#how-do-i-load-json-for-use-as-a-data-value">How do I load json for use as a data value?</a></li>
+    <li><a href="#how-do-i-check-if-a-key-is-set">How do I check if a key is set?</a></li>
+    <li><a href="#how-do-i-provide-a-default-for-a-data-value-when-it-may-not-be-defined">How do I provide a default for a data value when it may not be defined?</a></li>
+    <li><a href="#how-do-i-error-if-a-data-value-is-not-provided">How do I error if a data value is not provided?</a></li>
+    <li><a href="#overlays">Overlays</a></li>
+    <li><a href="#how-do-i-remove-a-document-subset">How do I remove a document subset?</a></li>
+    <li><a href="#how-do-i-add-items-to-an-existing-array">How do I add items to an existing array?  </a></li>
+    <li><a href="#why-am-i-getting-an-exception-when-trying-to-append-to-an-array">Why am I getting an exception when trying to append to an array?</a></li>
+    <li><a href="#how-do-i-rename-a-key-without-changing-the-value">How do I rename a key without changing the value?</a></li>
+    <li><a href="#how-do-i-add-or-replace-a-value-in-a-dictionary">How do I add or replace a value in a dictionary?</a></li>
+    <li><a href="#how-do-i-match-a-fieldname-that-starts-with-a-string">How do I match a field.name that starts with a string?</a></li>
+    <li><a href="#how-do-i-match-a-struct-based-on-the-presence-of-a-key">How do I match a struct based on the presence of a key?</a></li>
+    <li><a href="#how-do-i-modify-only-part-of-a-multi-line-string">How do I modify only part of a multi-line string?</a></li>
+    <li><a href="#how-can-i-match-a-regex-pattern-in-the-subset-matcher">How can I match a regex pattern in the subset matcher?</a></li>
+    <li><a href="#why-cant-i-write-standard-yaml-comments--why-is-my-anchor-reference-null-despite-my-anchors-successful-template">Why can&rsquo;t I write standard yaml comments (#)? Why is my anchor reference null despite my anchor&rsquo;s successful template?</a></li>
+    <li><a href="#can-i-generate-random-strings-with-ytt">Can I generate random strings with ytt?</a></li>
+    <li><a href="#can-i-load-multiple-functions-without-having-to-name-each-one">Can I load multiple functions without having to name each one?</a></li>
+    <li><a href="#how-do-i-inject-secrets">How do I inject secrets?</a></li>
+    <li><a href="#how-do-i-template-values-within-text">How do I template values within text?</a></li>
+    <li><a href="#what-templating-language-does-ytt-use">What templating language does ytt use?</a></li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="how-do-i-template-some-text">How do I template some text? <a href="#how-do-i-template-some-text" class="section-link">¶</a></h2><p><a href="/ytt/#example:example-text-template">Here is an example</a> describing some ways text templating can be done.</p>
+<h2 id="data-values">Data Values <a href="#data-values" class="section-link">¶</a></h2><p><a href="/ytt/docs/latest/ytt-data-values/">Data values doc</a></p>
+<h2 id="is-it-possible-to-add-a-new-key-to-my-values-via-the---data-value-command-line-argument">Is it possible to add a new key to my values via the <code>--data-value</code> command line argument? <a href="#is-it-possible-to-add-a-new-key-to-my-values-via-the---data-value-command-line-argument" class="section-link">¶</a></h2><p>No. As with all data values, those passed through <code>--data-value</code> must be overrides, not new values. Instead, overlays are the intended way to provide new keys.
+See the <a href="/ytt/docs/latest/data-values-vs-overlays/">data values vs overlays doc</a> for more information.</p>
+<h2 id="how-do-i-load-json-for-use-as-a-data-value">How do I load json for use as a data value? <a href="#how-do-i-load-json-for-use-as-a-data-value" class="section-link">¶</a></h2><p>An important note here is that json is valid yaml. yaml syntax is a superset of json syntax.<br>
+ytt can naturally parse json by passing it through <code>--data-value-yaml</code>, or json can be loaded by passing the file as a <code>--data-value-file</code>.</p>
+<p>Additional resources: <a href="https://gist.github.com/pivotaljohn/debe4596df5b4158c7c09f6f1841dd47" target="_blank">json is valid yaml</a>, <a href="https://gist.github.com/pivotaljohn/d3468c3239f79fea7e232751757e779a" target="_blank">loading by file</a></p>
+<h2 id="how-do-i-check-if-a-key-is-set">How do I check if a key is set? <a href="#how-do-i-check-if-a-key-is-set" class="section-link">¶</a></h2><p>You can check for the existence of a key by using <code>hasattr</code>.<br>
+For example, to check if struct <code>foo</code> has attribute <code>bar</code>, use <code>hasattr(foo, &quot;bar&quot;)</code>.</p>
+<h2 id="how-do-i-provide-a-default-for-a-data-value-when-it-may-not-be-defined">How do I provide a default for a data value when it may not be defined? <a href="#how-do-i-provide-a-default-for-a-data-value-when-it-may-not-be-defined" class="section-link">¶</a></h2><p>When a value may be null, you can use <code>or</code> to specify a default.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ data.values.foo or &#34;bar&#34;</span><span style="color:#bbb">
+</span></code></pre></div><h2 id="how-do-i-error-if-a-data-value-is-not-provided">How do I error if a data value is not provided? <a href="#how-do-i-error-if-a-data-value-is-not-provided" class="section-link">¶</a></h2><p>ytt library&rsquo;s <code>assert</code> package is useful for such situations. It can be used like so:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">password</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ data.values.env.mysql_password if data.values.env.mysql_password else assert.fail(&#34;missing env.mysql_password&#34;)</span><span style="color:#bbb">
+</span></code></pre></div><p>or even more compactly,</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">password</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ data.values.env.mysql_password or assert.fail(&#34;missing env.mysql_password&#34;)</span><span style="color:#bbb">
+</span></code></pre></div><p>Note that empty strings are falsy in Starlark.</p>
+<hr>
+<h2 id="overlays">Overlays <a href="#overlays" class="section-link">¶</a></h2><p><a href="/ytt/docs/latest/lang-ref-ytt-overlay/">Overlays doc</a></p>
+<h2 id="how-do-i-remove-a-document-subset">How do I remove a document subset? <a href="#how-do-i-remove-a-document-subset" class="section-link">¶</a></h2><p><code>#@overlay/remove</code> in conjunction with <code>#@overlay/match by=overlay.subset()</code> annotations are useful for removing a subset of a document.</p>
+<p>Additional resources: <a href="/ytt/docs/latest/lang-ref-ytt-overlay/#overlayremove">overlay remove docs</a>, <a href="/ytt/docs/latest/lang-ref-ytt-overlay/#overlaysubset">overlay subset docs</a></p>
+<h2 id="how-do-i-add-items-to-an-existing-array">How do I add items to an existing array?   <a href="#how-do-i-add-items-to-an-existing-array" class="section-link">¶</a></h2><p>The default merging behaviour for arrays is to overwrite them, as there isn&rsquo;t any default matching criteria (unlike maps which use their keys). To add an item, either provide that matching annotation (eg. <code>#@overlay/match by=&quot;field_name&quot;</code>), or use the <code>#@overlay/append</code> annotation to add to the end of the list. Note that the append annotation must be applied to each item you want to insert.</p>
+<p>Additional resources: <a href="/ytt/docs/latest/lang-ref-ytt-overlay/#overlayappend">overlay append docs</a>, <a href="/ytt/#gist:https://gist.github.com/pivotaljohn/8c7f48e183158ce12107f576eeab937c">example gist on playground</a>, <a href="/ytt/#gist:https://gist.github.com/pivotaljohn/2b3a9b3367137079195971e1409d539e">replace-list gist</a>, <a href="/ytt/#gist:https://gist.github.com/pivotaljohn/217e8232dc080bb764bfd064ffa9c115">edit-list gist</a></p>
+<h2 id="why-am-i-getting-an-exception-when-trying-to-append-to-an-array">Why am I getting an exception when trying to append to an array? <a href="#why-am-i-getting-an-exception-when-trying-to-append-to-an-array" class="section-link">¶</a></h2><p>A common append issue is incorrectly setting the <code>#@overlay/match missing_ok=True</code> annotation on the key which gets replaced by new key-values. Instead, it should be applied to each child (made convenient with the <code>#@overlay/match-child-defaults missing_ok=True</code> annotation). See this <a href="https://gist.github.com/cppforlife/bf42f2d3d23dacf07affcd4150370cb9" target="_blank">illustrative gist</a> for an example.</p>
+<h2 id="how-do-i-rename-a-key-without-changing-the-value">How do I rename a key without changing the value? <a href="#how-do-i-rename-a-key-without-changing-the-value" class="section-link">¶</a></h2><p>An <code>#@overlay/replace</code> annotation with a lambda <code>via</code>. For example, to replace the key <code>bad_name</code> with <code>better_name</code> while retaining the value, you can use:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@overlay/replace via=lambda a,b: {&#34;better_name&#34;: a[&#34;bad_name&#34;]}</span><span style="color:#bbb">
+</span></code></pre></div><p>See <a href="/ytt/#gist:https://gist.github.com/gcheadle-vmware/3c41645a80201caaeefa878e84fff958">this gist</a> for the full example.</p>
+<h2 id="how-do-i-add-or-replace-a-value-in-a-dictionary">How do I add or replace a value in a dictionary? <a href="#how-do-i-add-or-replace-a-value-in-a-dictionary" class="section-link">¶</a></h2><p>A <code>#@ template.replace()</code> annotation can be used for these purposes. See <a href="/ytt/#example:example-replace">this example</a>. You can also use overlays to edit a dictionary, an example can be found on <a href="/ytt/#gist:https://gist.github.com/gcheadle-vmware/af8aeb3120386e58922c816d76f47ab6">this gist playground</a>.</p>
+<h2 id="how-do-i-match-a-fieldname-that-starts-with-a-string">How do I match a field.name that starts with a string? <a href="#how-do-i-match-a-fieldname-that-starts-with-a-string" class="section-link">¶</a></h2><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">overlay/match by=lambda a,_</span>:<span style="color:#bbb"> </span>a[&#34;field&#34;][&#34;name&#34;].startswith(&#34;string&#34;)<span style="color:#bbb">
+</span></code></pre></div><h2 id="how-do-i-match-a-struct-based-on-the-presence-of-a-key">How do I match a struct based on the presence of a key? <a href="#how-do-i-match-a-struct-based-on-the-presence-of-a-key" class="section-link">¶</a></h2><p>To match a dictionary from a list of dictionaries if the <code>foo</code> key is present, you can use
+<code>#@overlay/match by=lambda idx,old,new: &quot;foo&quot; in old, expects=&quot;1+&quot;</code>.</p>
+<h2 id="how-do-i-modify-only-part-of-a-multi-line-string">How do I modify only part of a multi-line string? <a href="#how-do-i-modify-only-part-of-a-multi-line-string" class="section-link">¶</a></h2><p>An <code>#@overlay/replace</code> annotation with a lambda <code>via</code> function can modify part of a string. See this <a href="/ytt/#gist:https://gist.github.com/cppforlife/7633c2ed0560e5c8005e05c8448a74d2">modify-string gist</a> for an example.</p>
+<h2 id="how-can-i-match-a-regex-pattern-in-the-subset-matcher">How can I match a regex pattern in the subset matcher? <a href="#how-can-i-match-a-regex-pattern-in-the-subset-matcher" class="section-link">¶</a></h2><p>The subset matcher does not directly support regex patterns. Instead, a custom matcher can be written. See this <a href="/ytt/#gist:https://gist.github.com/ewrenn8/3409e44252f93497a9b447900f3fb5b7">playground gist</a> for an example.</p>
+<hr>
+<h2 id="why-cant-i-write-standard-yaml-comments--why-is-my-anchor-reference-null-despite-my-anchors-successful-template">Why can&rsquo;t I write standard yaml comments (#)? Why is my anchor reference null despite my anchor&rsquo;s successful template? <a href="#why-cant-i-write-standard-yaml-comments--why-is-my-anchor-reference-null-despite-my-anchors-successful-template" class="section-link">¶</a></h2><p>These are <a href="/ytt/docs/latest/known-limitations/">known limitations</a> of ytt.</p>
+<h2 id="can-i-generate-random-strings-with-ytt">Can I generate random strings with ytt? <a href="#can-i-generate-random-strings-with-ytt" class="section-link">¶</a></h2><p>No. A design goal of ytt is determinism, which keeps randomness out of scope.</p>
+<p>If you want to generate secrets, see the <a href="/ytt/docs/latest/injecting-secrets/">injecting secrets doc</a> or the <a href="https://github.com/vmware-tanzu/carvel-secretgen-controller" target="_blank">kubernetes secretgen-controller</a></p>
+<h2 id="can-i-load-multiple-functions-without-having-to-name-each-one">Can I load multiple functions without having to name each one? <a href="#can-i-load-multiple-functions-without-having-to-name-each-one" class="section-link">¶</a></h2><p>Yes! Functions can be stored in a struct which can be imported all together. You can then call individual functions from within that struct. Note that because Starlark does not provide forward references, you must declare the struct that collects the functions to export at the end of the file.</p>
+<p>Storing functions in struct:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;@ytt:struct&#34;, &#34;struct&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ mod = struct.make(func1=func1, func2=func2)</span><span style="color:#bbb">
+</span></code></pre></div><p>Loading and calling functions in template:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;helpers.lib.yml&#34;, &#34;mod&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">something</span>:<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">#@ mod.func1()</span><span style="color:#bbb">
+</span></code></pre></div><p>Additional resources: <a href="/ytt/docs/latest/lang-ref-load/">Load Statement doc</a></p>
+<h2 id="how-do-i-inject-secrets">How do I inject secrets? <a href="#how-do-i-inject-secrets" class="section-link">¶</a></h2><p>See the <a href="/ytt/docs/latest/injecting-secrets/">injecting secrets doc</a>.</p>
+<h2 id="how-do-i-template-values-within-text">How do I template values within text? <a href="#how-do-i-template-values-within-text" class="section-link">¶</a></h2><p>See the <a href="/ytt/docs/latest/ytt-text-templating/">text templating doc</a>.</p>
+<h2 id="what-templating-language-does-ytt-use">What templating language does ytt use? <a href="#what-templating-language-does-ytt-use" class="section-link">¶</a></h2><p>ytt uses a fork of <a href="https://github.com/bazelbuild/starlark" target="_blank">Starlark</a>, with a few changes. See the <a href="/ytt/docs/latest/lang/#Language">Language reference</a> for more information.</p>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:ytt"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

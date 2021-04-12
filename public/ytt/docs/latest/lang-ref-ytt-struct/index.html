@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - ytt - Struct module</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/ytt/" class="text-logo">ytt</a>
+		<ul class="desktop-links">
+			<li><a href="/ytt/" >ytt Overview</a></li>
+			<li><a href="/ytt/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/ytt/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/" >About ytt</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Techniques</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-data-values/" >Using data values</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/data-values-vs-overlays/" >Data values vs overlays</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/injecting-secrets/" >Injecting secrets</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >Language</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-annotation/" >Annotations</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-text-templating/" >Text Templating</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Built-in @ytt library</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt/" >All modules</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-struct/" class="active">Struct module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-overlay/" >Overlay module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-library/" >Library module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-version/" >Version module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-template/" >Template module</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Language</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" >General</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-string/" >String</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-list/" >List</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-dict/" >Dictionary</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-structs/" >Struct</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-yaml-fragment/" >YAML Fragment</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-if/" >If conditional</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-for/" >For loop</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-def/" >Function</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-load/" >Load</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>CLI configuration</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/outputs/" >Outputs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/file-marks/" >File Marks</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/strict/" >Strict yaml</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/faq/" >FAQ</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-vs-x/" >Why ytt vs. x?</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/known-limitations/" >Known Limitations</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Struct module</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#structdecode">struct.decode()</a>
+      <ul>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#structencode">struct.encode()</a>
+      <ul>
+        <li><a href="#example-1-data-structure-from-a-dictionary">Example 1: Data structure from a dictionary</a></li>
+        <li><a href="#example-2-collection-of-functions">Example 2: Collection of functions</a></li>
+      </ul>
+    </li>
+    <li><a href="#structmake">struct.make()</a>
+      <ul>
+        <li><a href="#example-1-scalar-values">Example 1: Scalar values</a></li>
+        <li><a href="#example-2-data-structures">Example 2: Data structures</a></li>
+        <li><a href="#example-3-nested-structs">Example 3: Nested structs</a></li>
+      </ul>
+    </li>
+    <li><a href="#structmake_and_bind">struct.make_and_bind()</a>
+      <ul>
+        <li><a href="#example-1-binding-a-function-value">Example 1: Binding a function value</a></li>
+        <li><a href="#example-2-binding-a-lambda-expression">Example 2: Binding a lambda expression</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="overview">Overview <a href="#overview" class="section-link">¶</a></h2><p>The <code>@ytt:struct</code> module provides functions for constructing and deconstructing <a href="/ytt/docs/latest/lang-ref-structs/"><code>struct</code></a> values.</p>
+<p>To use these functions, include the <code>@ytt:struct</code> module:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+</code></pre></div><hr>
+<h2 id="structdecode">struct.decode() <a href="#structdecode" class="section-link">¶</a></h2><p>Deconstructs a given value into plain/Starlark values, recursively.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">struct<span style="color:#000;font-weight:bold">.</span>decode(struct_val)
+</code></pre></div><ul>
+<li><code>struct_val</code> (<a href="/ytt/docs/latest/lang-ref-structs/"><code>struct</code></a>) — the value to decompose.
+<ul>
+<li><code>struct</code> values are converted into <code>dict</code> values where each attribute in the <code>struct</code> becomes a
+key on the <code>dict</code>.</li>
+<li>if the value of an attribute is a <code>struct</code>, it is likewise converted to a <code>dict</code>.</li>
+<li>all other values are copied, as is.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example">Example <a href="#example" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+foo <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>encode({<span style="color:#d14">&#34;a&#34;</span>: [<span style="color:#099">1</span>,<span style="color:#099">2</span>,<span style="color:#099">3</span>,{<span style="color:#d14">&#34;c&#34;</span>:<span style="color:#099">456</span>}], <span style="color:#d14">&#34;b&#34;</span>: <span style="color:#d14">&#34;str&#34;</span>})
+bar <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>decode(foo)
+
+bar[<span style="color:#d14">&#34;a&#34;</span>]  <span style="color:#998;font-style:italic"># &lt;== [1, 2, 3, {&#34;c&#34;: 456}]</span>
+</code></pre></div><hr>
+<h2 id="structencode">struct.encode() <a href="#structencode" class="section-link">¶</a></h2><p>Makes a <code>struct</code> of a given value, recursively.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">struct<span style="color:#000;font-weight:bold">.</span>encode(value)
+</code></pre></div><ul>
+<li><code>value</code> (<a href="/ytt/docs/latest/lang-ref-dict/"><code>dict</code></a> | <a href="/ytt/docs/latest/lang-ref-list/"><code>list</code></a> | scalar) — the value to encode.
+<ul>
+<li><code>dict</code> values are converted into <code>struct</code>s where each key in the <code>dict</code> becomes an attribute on the <code>struct</code>.
+Keys of the items in <code>dict</code> values must be strings.</li>
+<li>if a <code>dict</code> or <code>list</code> contains a value that is a <code>dict</code>, it is likewise converted to a <code>struct</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><code>encode()</code> cannot encode functions nor <a href="/ytt/docs/latest/lang-ref-yaml-fragment/">YAML Fragments</a>. If you wish to make a struct that
+contains attributes that hold these types, consider <a href="#structmake"><code>make()</code></a>.</li>
+</ul>
+<h3 id="example-1-data-structure-from-a-dictionary">Example 1: Data structure from a dictionary <a href="#example-1-data-structure-from-a-dictionary" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+d <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>encode({<span style="color:#d14">&#34;a&#34;</span>: [<span style="color:#099">1</span>,<span style="color:#099">2</span>,<span style="color:#099">3</span>,{<span style="color:#d14">&#34;c&#34;</span>:<span style="color:#099">456</span>}], <span style="color:#d14">&#34;b&#34;</span>: <span style="color:#d14">&#34;str&#34;</span>})
+d<span style="color:#000;font-weight:bold">.</span>a        <span style="color:#998;font-style:italic"># &lt;== [1, 2, 3, c: (struct...)]</span>
+d<span style="color:#000;font-weight:bold">.</span>a[<span style="color:#099">3</span>]<span style="color:#000;font-weight:bold">.</span>c   <span style="color:#998;font-style:italic"># &lt;== 456</span>
+bar[<span style="color:#d14">&#34;b&#34;</span>]   <span style="color:#998;font-style:italic"># &lt;== &#34;str&#34;</span>
+</code></pre></div><h3 id="example-2-collection-of-functions">Example 2: Collection of functions <a href="#example-2-collection-of-functions" class="section-link">¶</a></h3><p>&ldquo;Export&rdquo; a set of functions from a library file.</p>
+<p><code>urls.star</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">_valid_port</span>(port):
+<span style="color:#000;font-weight:bold">...</span>
+end
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">_url_encode</span>(url):
+<span style="color:#000;font-weight:bold">...</span>
+end
+
+urls <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>encode({<span style="color:#d14">&#34;valid_port&#34;</span>: _valid_port, <span style="color:#d14">&#34;encode&#34;</span>: _url_encode, <span style="color:#000;font-weight:bold">...</span>})
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#998;font-style:italic">#@ load(&#34;urls.star&#34;, &#34;urls&#34;)</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">#@ if/end urls.valid_port(...):</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#555">...</span><span style="color:#bbb">
+</span></code></pre></div><hr>
+<h2 id="structmake">struct.make() <a href="#structmake" class="section-link">¶</a></h2><p>Instantiates a <code>struct</code> based on the key/value pairs provided.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">struct<span style="color:#000;font-weight:bold">.</span>make(key1<span style="color:#000;font-weight:bold">=</span>value1, key2<span style="color:#000;font-weight:bold">=</span>value2, <span style="color:#000;font-weight:bold">...</span>)
+</code></pre></div><ul>
+<li><code>keyN</code> (keyword argument name) — becomes the name of the Nth attribute in the constructed
+<code>struct</code>.</li>
+<li><code>=valueN</code>(<code>any</code>) — becomes the value of the Nth attribute in the constructed <code>struct</code>.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><code>make()</code> does not modify <code>values</code> in any way (e.g. if <code>valueN</code> is a dictionary, it is
+<em>not</em> converted into a <code>struct</code>). To recursively build a hierarchy of <code>struct</code>s from <code>dict</code>,
+<code>list</code>, and scalars, see <a href="#structencode"><code>struct.encode()</code></a>.</li>
+</ul>
+<h3 id="example-1-scalar-values">Example 1: Scalar values <a href="#example-1-scalar-values" class="section-link">¶</a></h3><p>For visually pleasing collections of fields</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+consts <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make(version<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;0.39.0&#34;</span>, service_name<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;prometheus&#34;</span>)
+
+consts<span style="color:#000;font-weight:bold">.</span>version      <span style="color:#998;font-style:italic"># &lt;== &#34;0.39.0&#34;</span>
+consts<span style="color:#000;font-weight:bold">.</span>service_name <span style="color:#998;font-style:italic"># &lt;== &#34;prometheus&#34;</span>
+</code></pre></div><h3 id="example-2-data-structures">Example 2: Data structures <a href="#example-2-data-structures" class="section-link">¶</a></h3><p>Dictionaries values remain instances of <code>dict</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+consts <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make(service<span style="color:#000;font-weight:bold">=</span>{<span style="color:#d14">&#34;version&#34;</span>: <span style="color:#d14">&#34;0.39.0&#34;</span>, <span style="color:#d14">&#34;name&#34;</span>: <span style="color:#d14">&#34;prometheus&#34;</span>})
+
+consts<span style="color:#000;font-weight:bold">.</span>service[<span style="color:#d14">&#34;version&#34;</span>]  <span style="color:#998;font-style:italic"># &lt;== &#34;0.39.0&#34;</span>
+consts<span style="color:#000;font-weight:bold">.</span>service[<span style="color:#d14">&#34;name&#34;</span>]     <span style="color:#998;font-style:italic"># &lt;== &#34;prometheus&#34;</span>
+<span style="color:#998;font-style:italic"># const.service.version    # Error! &#34;dict has no .version field or method&#34;</span>
+</code></pre></div><h3 id="example-3-nested-structs">Example 3: Nested structs <a href="#example-3-nested-structs" class="section-link">¶</a></h3><p>Nested invocations of <code>make()</code> to retain dot expression access.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+consts <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make(service<span style="color:#000;font-weight:bold">=</span>struct<span style="color:#000;font-weight:bold">.</span>make(version<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;0.39.0&#34;</span>, name<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;prometheus&#34;</span>})
+
+consts<span style="color:#000;font-weight:bold">.</span>service<span style="color:#000;font-weight:bold">.</span>version  <span style="color:#998;font-style:italic"># &lt;== &#34;0.39.0&#34;</span>
+consts<span style="color:#000;font-weight:bold">.</span>service<span style="color:#000;font-weight:bold">.</span>name     <span style="color:#998;font-style:italic"># &lt;== &#34;prometheus&#34;</span>
+</code></pre></div><p>See also: <a href="#structencode"><code>struct.encode()</code></a> to convert all <code>dict</code> values to <code>struct</code>s, recursively.</p>
+<hr>
+<h2 id="structmake_and_bind">struct.make_and_bind() <a href="#structmake_and_bind" class="section-link">¶</a></h2><p>Binds one or more function(s) to a <code>struct</code>, making them method(s) on that struct.
+This allows <code>struct</code>s to carry both data and behavior related to that data.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">struct<span style="color:#000;font-weight:bold">.</span>make_and_bind(receiver, method_name1<span style="color:#000;font-weight:bold">=</span>function1, <span style="color:#000;font-weight:bold">...</span>)
+</code></pre></div><ul>
+<li><code>receiver</code> (<a href="/ytt/docs/latest/lang-ref-structs/"><code>struct</code></a>) — &ldquo;object&rdquo; to attach the function(s) to.</li>
+<li><code>method_nameN</code> (keyword argument name) — the name that callers will specify to invoke the method.</li>
+<li><code>functionN</code> (<a href="/ytt/docs/latest/lang-ref-def/"><code>function</code></a>) — the function value (either the name of a <code>function</code> or a <code>lambda</code> expression)
+that will be bound to <code>receiver</code> by the name <code>method_nameN</code>.
+<ul>
+<li>the first parameter of <code>functionN</code> is <code>receiver</code>, implicitly.</li>
+<li>the remaining parameters of <code>functionN</code> become the parameters of <code>receiver.method_nameN()</code></li>
+</ul>
+</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Binding is useful for cases where a commonly desired value is a calculation of two or more
+values on <code>receiver</code>.</li>
+</ul>
+<h3 id="example-1-binding-a-function-value">Example 1: Binding a function value <a href="#example-1-binding-a-function-value" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+conn <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make(hostname<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;svc.example.com&#34;</span>, default_port<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1022</span>, protocol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;https&#34;</span>)
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">_url</span>(<span style="color:#999">self</span>, port<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
+  port <span style="color:#000;font-weight:bold">=</span> port <span style="color:#000;font-weight:bold">or</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>default_port
+  <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34;{}://{}:{}&#34;</span><span style="color:#000;font-weight:bold">.</span>format(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>protocol, <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>hostname, port)
+end
+
+conn <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make_and_bind(conn, url<span style="color:#000;font-weight:bold">=</span>_url)
+
+conn<span style="color:#000;font-weight:bold">.</span>url()      <span style="color:#998;font-style:italic"># ==&gt; https://svc.example.com:1022</span>
+conn<span style="color:#000;font-weight:bold">.</span>url(<span style="color:#099">8080</span>)  <span style="color:#998;font-style:italic"># ==&gt; https://svc.example.com:8080</span>
+</code></pre></div><h3 id="example-2-binding-a-lambda-expression">Example 2: Binding a lambda expression <a href="#example-2-binding-a-lambda-expression" class="section-link">¶</a></h3><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">load(<span style="color:#d14">&#34;@ytt:struct&#34;</span>, <span style="color:#d14">&#34;struct&#34;</span>)
+
+_conn_data <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make(hostname<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;svc.example.com&#34;</span>, default_port<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1022</span>, protocol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;https&#34;</span>)
+
+conn <span style="color:#000;font-weight:bold">=</span> struct<span style="color:#000;font-weight:bold">.</span>make_and_bind(_conn_data, url<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">lambda</span> <span style="color:#999">self</span>, port<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>: <span style="color:#d14">&#34;{}://{}:{}&#34;</span><span style="color:#000;font-weight:bold">.</span>format(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>protocol, <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>hostname, port <span style="color:#000;font-weight:bold">or</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>default_port))
+
+conn<span style="color:#000;font-weight:bold">.</span>url()      <span style="color:#998;font-style:italic"># ==&gt; https://svc.example.com:1022</span>
+conn<span style="color:#000;font-weight:bold">.</span>url(<span style="color:#099">8080</span>)  <span style="color:#998;font-style:italic"># ==&gt; https://svc.example.com:8080</span>
+</code></pre></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:ytt"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

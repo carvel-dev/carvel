@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!-- _default/baseof.html -->
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Carvel - kapp-controller</title>
+	
+	
+	
+	
+	<link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+	<link rel="icon" type="image/png" href="/img/favicon.png">
+	<script src="/js/main.js" type="text/javascript"></script>
+	<link rel="alternate" type="application/rss+xml" href="/kapp-controller/index.xml" title="Carvel">
+</head>
+<body>
+	
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="https://github.com/vmware-tanzu/carvel-kapp-controller" class="text-logo">kapp-controller</a>
+		<ul class="desktop-links">
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller Overview</a></li>
+			<li><a href="/kapp-controller/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/kapp-controller/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+	
+	<!-- _default/section.html -->
+	<main>
+		
+<div class="hero subpage kapp-controller">
+    <div class="wrapper clearfix">
+        <div class="text-block">
+            <h1>Lightweight continuous delivery to Kubernetes</h1>
+            <p>TODO Sync any number of data sources into a consistent structure by writing a YAML definition. Share the definition or generated lockfile and ensure that your whole team is working under the same expectations.</p>
+            <div class="buttons">
+                <a class="button" href="#examples">See Examples</a>
+                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-kapp-controller/releases">Install</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper mobile-blue">
+    <div class="yaml-grid grid three">
+        <div class="col">
+            <div class="icon">
+                <img src="/img/structure-oriented.svg" />
+            </div>
+            <h3>Declarative</h3>
+            <p>TODO Provide the desired final structure of the directory and let vendir handle how to get there. 
+                No more manually cloning repositories,checking multiple sources for updates, or trying 
+                to remember CURL flags while fetching content over HTTP.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/modularized-config.svg" />
+            </div>
+            <h3>Purpose-built</h3>
+            <p>TODO Like the rest of the Carvel suite, vendir was made to accomplish its task and do no more. 
+                Sync your files then use them however you like without restrictive permissions or wrestling your tools for ownership.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/deterministic.svg" />
+            </div>
+            <h3>Repeatable</h3>
+            <p>TODO Ensure that the same files will be collected across all invocations by syncing from the generated lockfile, 
+                with tags and URLs replaced by resolved SHAs, and digests.</p>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="experimental tools">
+        <h2>Features</h2>
+        <div class="grid three">
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/intuitive.svg" />
+                </div>
+                <div class="content">
+                    <h3>Support Various Sources</h3>
+                    <p>TODO Specify the source of a managed directory from a git repository at a 
+                        given revision, a docker image, a helm chart, or many others
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/overlays.svg" />
+                </div>
+                <div class="content">
+                    <h3>Take Portions of a Source</h3>
+                    <p>TODO Retain only what you need and leave the rest, keeping your directory bloat-free 
+                        regardless of upstream changes, with additional rules for common files (e.g. a licensing file)</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/yaml.svg" />
+                </div>
+                <div class="content">
+                    <h3>Leave Subdirectories Untouched</h3>
+                    <p>TODO vendir allows you to mark paths as manually managed, leaving your files safely 
+                        unmodified while reaping the benefits of a synced folder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-content" id="examples">
+        <h2>Basic Usage</h2>
+        <p>Describe in <code>simple-app.yml</code> how to fetch, template, and deploy your application:</p>
+        <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kappctrl.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>App<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>simple-app<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">namespace</span>:<span style="color:#bbb"> </span>default<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">serviceAccountName</span>:<span style="color:#bbb"> </span>default-ns-sa<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">fetch</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">git</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">url</span>:<span style="color:#bbb"> </span>https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">ref</span>:<span style="color:#bbb"> </span>origin/develop<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">subPath</span>:<span style="color:#bbb"> </span>config-step-1-minimal<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">ytt</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">deploy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">kapp</span>:<span style="color:#bbb"> </span>{}</code></pre></div>
+        <p>Let's apply configuration to your cluster and see it get reconciled.</p>
+        <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubect apply -f simple-app.yml
+
+$ kubectl get app
+NAME         DESCRIPTION           SINCE-DEPLOY   AGE
+simple-app   Reconcile succeeded   6s             28s</code></pre></div>
+        <p>Also take a look at more detailed information about deployed app via <code>kubectl get app simple-app -oyaml</code>.</p>
+        <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000080">apiVersion</span>:<span style="color:#bbb"> </span>kappctrl.k14s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">kind</span>:<span style="color:#bbb"> </span>App<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>simple-app<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">namespace</span>:<span style="color:#bbb"> </span>default<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">creationTimestamp</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:51:48Z&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">generation</span>:<span style="color:#bbb"> </span><span style="color:#099">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">resourceVersion</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;37396&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">uid</span>:<span style="color:#bbb"> </span>dbbb639d-1f58-4a1e-ade6-39bc22ee6d82<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">finalizers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- finalizers.kapp-ctrl.k14s.io/delete<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">serviceAccountName</span>:<span style="color:#bbb"> </span>default-ns-sa<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">fetch</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">git</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">url</span>:<span style="color:#bbb"> </span>https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">ref</span>:<span style="color:#bbb"> </span>origin/develop<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#000080">subPath</span>:<span style="color:#bbb"> </span>config-step-1-minimal<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">ytt</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">deploy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">kapp</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#000080">status</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">observedGeneration</span>:<span style="color:#bbb"> </span><span style="color:#099">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">conditions</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#000080">status</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;True&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">type</span>:<span style="color:#bbb"> </span>ReconcileSucceeded<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">friendlyDescription</span>:<span style="color:#bbb"> </span>Reconcile succeeded<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">fetch</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">exitCode</span>:<span style="color:#bbb"> </span><span style="color:#099">0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">startedAt</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:52:10Z&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">updatedAt</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:52:10Z&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">exitCode</span>:<span style="color:#bbb"> </span><span style="color:#099">0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">updatedAt</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:52:10Z&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">deploy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">exitCode</span>:<span style="color:#bbb"> </span><span style="color:#099">0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">finished</span>:<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">startedAt</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:52:10Z&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">stdout</span>:<span style="color:#bbb"> </span>|-<span style="color:#d14">
+</span><span style="color:#d14">      Target cluster &#39;https://10.96.0.1:443&#39;
+</span><span style="color:#d14">      Changes
+</span><span style="color:#d14">      Namespace  Name        Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri
+</span><span style="color:#d14">      default    simple-app  Deployment  -       -    create  -       reconcile  -   -
+</span><span style="color:#d14">      ^          simple-app  Service     -       -    create  -       reconcile  -   -
+</span><span style="color:#d14">      Op:      2 create, 0 delete, 0 update, 0 noop
+</span><span style="color:#d14">      Wait to: 2 reconcile, 0 delete, 0 noop
+</span><span style="color:#d14">      12:52:10AM: ---- applying 2 changes [0/2 done] ----
+</span><span style="color:#d14">      12:52:10AM: create service/simple-app (v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM: create deployment/simple-app (apps/v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM: ---- waiting on 2 changes [0/2 done] ----
+</span><span style="color:#d14">      12:52:12AM: ok: reconcile service/simple-app (v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM:  ^ Waiting for generation 2 to be observed
+</span><span style="color:#d14">      12:52:12AM:  L ok: waiting on replicaset/simple-app-69f4586488 (apps/v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM:  L ongoing: waiting on pod/simple-app-69f4586488-9qrx2 (v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM:     ^ Pending: ContainerCreating
+</span><span style="color:#d14">      12:52:12AM: ---- waiting on 1 changes [1/2 done] ----
+</span><span style="color:#d14">      12:52:12AM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM:  ^ Waiting for 1 unavailable replicas
+</span><span style="color:#d14">      12:52:12AM:  L ok: waiting on replicaset/simple-app-69f4586488 (apps/v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM:  L ongoing: waiting on pod/simple-app-69f4586488-9qrx2 (v1) namespace: default
+</span><span style="color:#d14">      12:52:12AM:     ^ Pending: ContainerCreating
+</span><span style="color:#d14">      12:52:13AM: ok: reconcile deployment/simple-app (apps/v1) namespace: default
+</span><span style="color:#d14">      12:52:13AM: ---- applying complete [2/2 done] ----
+</span><span style="color:#d14">      12:52:13AM: ---- waiting complete [2/2 done] ----
+</span><span style="color:#d14">      Succeeded</span><span style="color:#bbb">      
+</span><span style="color:#bbb">    </span><span style="color:#000080">updatedAt</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:52:13Z&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#000080">inspect</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">exitCode</span>:<span style="color:#bbb"> </span><span style="color:#099">0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#000080">stdout</span>:<span style="color:#bbb"> </span>|-<span style="color:#d14">
+</span><span style="color:#d14">      Target cluster &#39;https://10.96.0.1:443&#39;
+</span><span style="color:#d14">      Resources in app &#39;simple-app-ctrl&#39;
+</span><span style="color:#d14">      Namespace  Name                         Kind        Owner    Conds.  Rs  Ri  Age
+</span><span style="color:#d14">      default    simple-app                   Deployment  kapp     2/2 t   ok  -   3s
+</span><span style="color:#d14">      ^          simple-app                   Endpoints   cluster  -       ok  -   3s
+</span><span style="color:#d14">      ^          simple-app                   Service     kapp     -       ok  -   3s
+</span><span style="color:#d14">      ^          simple-app-69f4586488        ReplicaSet  cluster  -       ok  -   3s
+</span><span style="color:#d14">      ^          simple-app-69f4586488-9qrx2  Pod         cluster  4/4 t   ok  -   3s
+</span><span style="color:#d14">      Rs: Reconcile state
+</span><span style="color:#d14">      Ri: Reconcile information
+</span><span style="color:#d14">      5 resources
+</span><span style="color:#d14">      Succeeded</span><span style="color:#bbb">      
+</span><span style="color:#bbb">    </span><span style="color:#000080">updatedAt</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;2020-12-15T00:52:13Z&#34;</span></code></pre></div>
+    </div>
+</div>
+
+
+		
+			<div class="getting-started">
+				<div class="wrapper clearfix">
+					<div class="left-side">
+						<h2>Getting started</h2>
+						<p>To help you get started, see the documentation.</p>
+					</div>
+					<div class="right-side">
+						<a href="/kapp-controller/docs/latest/" class="button">Get started</a>
+					</div>
+				</div>
+			</div>
+		
+	</main>
+
+	<footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

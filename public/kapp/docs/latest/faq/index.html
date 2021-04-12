@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - kapp - FAQ</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/kapp/" class="text-logo">kapp</a>
+		<ul class="desktop-links">
+			<li><a href="/kapp/" >kapp Overview</a></li>
+			<li><a href="/kapp/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/kapp/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-kapp"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/" >About kapp</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/apps/" >Applications</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Deploy command</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/diff/" >Diff stage</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/apply/" >Apply stage</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/apply-ordering/" >Apply Ordering</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/apply-waiting/" >Apply Waiting</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/config/" >Configuration</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/rbac/" >Permissions</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/state-namespace/" >Namespace for State Storage</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/cheatsheet/" >Cheatsheet</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/dangerous-flags/" >Dangerous Flags</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Integrations</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/integrating-with-other-tools/" >Integrating With Other Tools</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/gitops/" >GitOps</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/faq/" class="active">FAQ</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/merge-method/" >Resource Merge Method</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/kapp/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>FAQ</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#migrating-from-kubectl-apply-to-kapp">Migrating from <code>kubectl apply</code> to kapp</a></li>
+    <li><a href="#error-asking-for-confirmation-eof"><code>Error: Asking for confirmation: EOF</code></a></li>
+    <li><a href="#where-to-store-app-resources-ie-in-which-namespace">Where to store app resources (i.e. in which namespace)?</a></li>
+    <li><a href="#-field-is-immutable-error"><code>... Field is immutable</code> error</a></li>
+    <li><a href="#jobbatch-is-invalid--specselector-required-value-error"><code>Job.batch is invalid: ... spec.selector: Required value</code> error</a></li>
+    <li><a href="#updating-deployments-when-configmap-changes">Updating Deployments when ConfigMap changes</a></li>
+    <li><a href="#quick-way-to-find-common-kapp-command-variations">Quick way to find common kapp command variations</a></li>
+    <li><a href="#limit-number-of-replicasets-for-deployments">Limit number of ReplicaSets for Deployments</a></li>
+    <li><a href="#changes-detected-immediately-after-successful-deploy">Changes detected immediately after successful deploy</a></li>
+    <li><a href="#changes-detected-after-resource-is-modified-server-side">Changes detected after resource is modified server-side</a></li>
+    <li><a href="#colors-are-not-showing-up-in-my-ci-build-in-my-terminal-etc">Colors are not showing up in my CI build, in my terminal, etc.</a></li>
+    <li><a href="#how-can-i-version-apps-deployed-by-kapp">How can I version apps deployed by kapp?</a></li>
+    <li><a href="#resource--is-associated-with-a-different-label-value"><code>Resource ... is associated with a different label value</code></a></li>
+    <li><a href="#why-does-kapp-hang-when-trying-to-delete-a-resource">Why does kapp hang when trying to delete a resource?</a></li>
+    <li><a href="#how-does-kapp-handle-merging">How does kapp handle merging?</a></li>
+    <li><a href="#can-i-force-an-update-for-a-change-that-does-not-produce-a-diff">Can I force an update for a change that does not produce a diff?</a></li>
+    <li><a href="#how-can-i-remove-decorative-headings-from-kapp-inspect-output">How can I remove decorative headings from kapp inspect output?</a></li>
+    <li><a href="#how-can-i-get-kapp-to-skip-waiting-on-some-resources">How can I get kapp to skip waiting on some resources?</a></li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="migrating-from-kubectl-apply-to-kapp">Migrating from <code>kubectl apply</code> to kapp <a href="#migrating-from-kubectl-apply-to-kapp" class="section-link">¶</a></h2><p>Switching from <code>kubectl apply</code> to <code>kapp deploy</code> will allow kapp to adopt resources mentioned in a given config.
+However, kapp will try to insert a few of its labels in bodies of some resources, like Deployments, which may fail due to those resources having immutable fields that kapp tries to update (spec.selector on Deployments).</p>
+<p>To prevent this failure, add the <a href="/kapp/docs/latest/config/#labelscopingrules"><code>kapp.k14s.io/disable-default-label-scoping-rules: &quot;&quot;</code> annotation</a> as a <a href="/kapp/docs/latest/config/">kapp configuration</a> to prevent kapp from touching the immutable fields when adopting a resource.</p>
+<p>Additional Resources: <a href="https://github.com/vmware-tanzu/carvel-kapp/issues/204" target="_blank">GitHub Issue</a>, <a href="https://kubernetes.slack.com/archives/CH8KCCKA5/p1606079730457700" target="_blank">Slack Thread</a></p>
+<h2 id="error-asking-for-confirmation-eof"><code>Error: Asking for confirmation: EOF</code> <a href="#error-asking-for-confirmation-eof" class="section-link">¶</a></h2><p>This probably means you have piped configuration into kapp and did not specify <code>--yes</code> (<code>-y</code>) flag to continue. It&rsquo;s necessary because kapp can no longer ask for confirmation via stdin. Feel free to re-run the command with <code>--diff-changes</code> (<code>-c</code>) to make sure pending changes are correct. Instead of using a pipe you can also use an anonymous fifo keeping stdin free for the confirmation prompt, e.g. <code>kapp deploy -a app1 -f &lt;(ytt -f config/)</code></p>
+<hr>
+<h2 id="where-to-store-app-resources-ie-in-which-namespace">Where to store app resources (i.e. in which namespace)? <a href="#where-to-store-app-resources-ie-in-which-namespace" class="section-link">¶</a></h2><p>See <a href="/kapp/docs/latest/state-namespace/">state namespace</a> doc page.</p>
+<hr>
+<h2 id="-field-is-immutable-error"><code>... Field is immutable</code> error <a href="#-field-is-immutable-error" class="section-link">¶</a></h2><blockquote>
+<p>After changing the labels/selectors in one of my templates, I&rsquo;m getting the <code>MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable (reason: Invalid)</code> errors on deployment resource. Is there a way to tell kapp to force the change?</p>
+</blockquote>
+<p><a href="https://kubernetes.slack.com/archives/CH8KCCKA5/p1565600090224400" target="_blank">via slack</a></p>
+<p>Some fields on a resource are immutable. kapp provides a <code>kapp.k14s.io/update-strategy</code> annotation that controls how kapp will update resource. One of the strategies is <code>fallback-on-replace</code> which will have kapp recreate an object (delete, wait, then create) if initial update results in <code>Invalid</code> error. See <a href="/kapp/docs/latest/apply/#controlling-apply-via-resource-annotations">Controlling apply via resource annotations</a> for details.</p>
+<hr>
+<h2 id="jobbatch-is-invalid--specselector-required-value-error"><code>Job.batch is invalid: ... spec.selector: Required value</code> error <a href="#jobbatch-is-invalid--specselector-required-value-error" class="section-link">¶</a></h2><p><code>batch.Job</code> resource is augmented by the Job controller with unique labels upon its creation. When using kapp to subsequently update existing Job resource, API server will return <code>Invalid</code> error since given configuration does not include <code>spec.selector</code>, and <code>job-name</code> and <code>controller-uid</code> labels. kapp&rsquo;s <a href="/kapp/docs/latest/config/#rebaserules">rebase rules</a> can be used to copy over necessary configuration from server side copy; however, since Job resource is mostly immutable, we recommend to use <a href="/kapp/docs/latest/apply/#kappk14sioupdate-strategy"><code>kapp.k14s.io/update-strategy</code> annotation</a> set to <code>fallback-on-replace</code> to recreate Job resource with any updates.</p>
+<hr>
+<h2 id="updating-deployments-when-configmap-changes">Updating Deployments when ConfigMap changes <a href="#updating-deployments-when-configmap-changes" class="section-link">¶</a></h2><blockquote>
+<p>Can kapp force update on ConfigMaps in Deployments/DaemonSets? Just noticed that it didn&rsquo;t do that and I somehow expected it to.</p>
+</blockquote>
+<p><a href="https://kubernetes.slack.com/archives/CH8KCCKA5/p1565624685226400" target="_blank">via slack</a></p>
+<p>kapp has a feature called <a href="/kapp/docs/latest/diff/#versioned-resources">versioned resources</a> that allows kapp to create uniquely named resources instead of updating resources with changes. Resources referencing versioned resources are forced to be updated with new names, and therefore are changed, thus solving a problem of how to propagate changes safely.</p>
+<hr>
+<h2 id="quick-way-to-find-common-kapp-command-variations">Quick way to find common kapp command variations <a href="#quick-way-to-find-common-kapp-command-variations" class="section-link">¶</a></h2><p>See <a href="/kapp/docs/latest/cheatsheet/">cheatsheet</a>.</p>
+<hr>
+<h2 id="limit-number-of-replicasets-for-deployments">Limit number of ReplicaSets for Deployments <a href="#limit-number-of-replicasets-for-deployments" class="section-link">¶</a></h2><blockquote>
+<p>Everytime I do a new deploy w/ kapp I see a new replicaset, along with all of the previous ones.</p>
+</blockquote>
+<p><a href="https://kubernetes.slack.com/archives/CH8KCCKA5/p1565887856281400" target="_blank">via slack</a></p>
+<p><code>Deployment</code> resource has a field <code>.spec.revisionHistoryLimit</code> that controls how many previous <code>ReplicaSets</code> to keep. See <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#clean-up-policy" target="_blank">Deployment&rsquo;s clean up polciy</a> for more details.</p>
+<hr>
+<h2 id="changes-detected-immediately-after-successful-deploy">Changes detected immediately after successful deploy <a href="#changes-detected-immediately-after-successful-deploy" class="section-link">¶</a></h2><p>Sometimes Kubernetes API server will convert submitted field values into their canonical form server-side. This will be detected by kapp as a change during a next deploy. To avoid such changes in future, you will have to change your provided field values to what API server considers as canonical.</p>
+<pre><code>...
+186     -  cpu: &quot;2&quot;
+187     -  memory: 1Gi
+    170 +  cpu: 2000m
+    171 +  memory: 1024Mi
+...
+</code></pre><p>Consider using <a href="/ytt/">ytt</a> and <a href="/ytt/docs/latest/lang-ref-ytt-overlay/">its overlay feature</a> to change values if you do not control source configuration.</p>
+<hr>
+<h2 id="changes-detected-after-resource-is-modified-server-side">Changes detected after resource is modified server-side <a href="#changes-detected-after-resource-is-modified-server-side" class="section-link">¶</a></h2><p>There might be cases where other system actors (various controllers) may modify resource outside of kapp. Common example is Deployment&rsquo;s <code>spec.replicas</code> field is modified by Horizontal Pod Autoscaler controller. To let kapp know of such external behaviour use custom <code>rebaseRules</code> configuration (see <a href="/kapp/docs/latest/hpa-deployment-rebase/">HPA and Deployment rebase</a> for details).</p>
+<hr>
+<h2 id="colors-are-not-showing-up-in-my-ci-build-in-my-terminal-etc">Colors are not showing up in my CI build, in my terminal, etc. <a href="#colors-are-not-showing-up-in-my-ci-build-in-my-terminal-etc" class="section-link">¶</a></h2><p>Try setting <code>FORCE_COLOR=1</code> environment variable to force enabling color output. Available in v0.23.0+.</p>
+<hr>
+<h2 id="how-can-i-version-apps-deployed-by-kapp">How can I version apps deployed by kapp? <a href="#how-can-i-version-apps-deployed-by-kapp" class="section-link">¶</a></h2><p>kapp itself does not provide any notion of versioning, since it&rsquo;s just a tool to reconcile config. We recommend to include a ConfigMap in your deployment with application metadata e.g. git commit, release notes, etc.</p>
+<hr>
+<h2 id="resource--is-associated-with-a-different-label-value"><code>Resource ... is associated with a different label value</code> <a href="#resource--is-associated-with-a-different-label-value" class="section-link">¶</a></h2><p>Resource ownership is tracked by app labels. kapp expects that each resource is owned by exactly one app.</p>
+<p>If you are receiving this error and are using correct app name, it might be that you are targeting wrong namespace where app is located. Use <code>--namespace</code> to set correct namespace.</p>
+<p>Additional resources: <a href="/kapp/docs/latest/state-namespace/">State Namespace</a>, <a href="https://kubernetes.slack.com/archives/CH8KCCKA5/p1589264289257000" target="_blank">Slack Thread</a></p>
+<hr>
+<h2 id="why-does-kapp-hang-when-trying-to-delete-a-resource">Why does kapp hang when trying to delete a resource? <a href="#why-does-kapp-hang-when-trying-to-delete-a-resource" class="section-link">¶</a></h2><p>By default, kapp won&rsquo;t delete resources it didn&rsquo;t create. You can see which resources are owned by kapp in output of <code>kapp inspect -a app-name</code> in its <code>Owner</code> column. You can force kapp to apply this ignored change using <code>--apply-ignored</code> <a href="/kapp/docs/latest/apply/#controlling-apply-via-deploy-flags">flag</a>. Alternatively if you are able to set <a href="/kapp/docs/latest/apply/#kappk14sioowned-for-deletion">kapp.k14s.io/owned-for-deletion</a> annotation on resource that will be created, kapp will take that as a request to &ldquo;own it&rdquo; for deletion. This comes in handy for example with PVCs created by StatefulSet.</p>
+<hr>
+<h2 id="how-does-kapp-handle-merging">How does kapp handle merging? <a href="#how-does-kapp-handle-merging" class="section-link">¶</a></h2><p>kapp explicitly decided against <em>basic</em> 3 way merge, instead allowing the user to specify how to resolve conflicts via rebase rules.</p>
+<p>Resources: <a href="/kapp/docs/latest/merge-method/">merge method</a>, <a href="/kapp/docs/latest/config/#rebaserules">rebase rules</a></p>
+<hr>
+<h2 id="can-i-force-an-update-for-a-change-that-does-not-produce-a-diff">Can I force an update for a change that does not produce a diff? <a href="#can-i-force-an-update-for-a-change-that-does-not-produce-a-diff" class="section-link">¶</a></h2><p>If kapp does not detect changes, it won&rsquo;t perform an update. To force changes every time you can set <a href="/kapp/docs/latest/apply/#kappk14siononce"><code>kapp.k14s.io/nonce</code></a> annotation. That way, every time you deploy the resource will appear to have changes.</p>
+<hr>
+<h2 id="how-can-i-remove-decorative-headings-from-kapp-inspect-output">How can I remove decorative headings from kapp inspect output? <a href="#how-can-i-remove-decorative-headings-from-kapp-inspect-output" class="section-link">¶</a></h2><p>Use <code>--tty=false</code> flag which will disable decorative output. Example: <code>kapp inspect --raw --tty=false</code>.</p>
+<p>Additional resources: <a href="https://github.com/vmware-tanzu/carvel-kapp/blob/3f3e207d7198cdedd6985761ecb0d9616a84e305/pkg/kapp/cmd/ui_flags.go#L20" target="_blank">tty flag in kapp code</a></p>
+<hr>
+<h2 id="how-can-i-get-kapp-to-skip-waiting-on-some-resources">How can I get kapp to skip waiting on some resources? <a href="#how-can-i-get-kapp-to-skip-waiting-on-some-resources" class="section-link">¶</a></h2><p>kapp allows to control waiting behavior per resource via <a href="/kapp/docs/latest/apply-waiting/#controlling-waiting-via-resource-annotations">resource annotations</a>. When used, the resource will be applied to the cluster, but will not wait to reconcile.</p>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:kapp"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>

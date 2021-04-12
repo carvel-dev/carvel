@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!-- _default/baseof.html -->
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Carvel - Carvel - ytt</title>
+	
+	
+	
+	
+	<link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+	<link rel="icon" type="image/png" href="/img/favicon.png">
+	<script src="/js/main.js" type="text/javascript"></script>
+	<link rel="alternate" type="application/rss+xml" href="/ytt/index.xml" title="Carvel">
+</head>
+<body>
+	
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" class="active">ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" class="active">ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/ytt/" class="text-logo">ytt</a>
+		<ul class="desktop-links">
+			<li><a href="/ytt/" class="active">ytt Overview</a></li>
+			<li><a href="/ytt/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/ytt/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+	
+	<!-- _default/section.html -->
+	<main>
+		
+<script src="js/deps.js"></script>
+<link rel="stylesheet" href="js/deps.css"></link>
+
+<script src="js/app.js"></script>
+<link rel="stylesheet" href="js/app.css"></link>
+
+<div class="hero subpage ytt">
+    <div class="wrapper clearfix">
+        <div class="text-block">
+            <h1>All your YAML shaping in one tool</h1>
+            <p>Template and patch as needed to easily make your configuration reusable and extensible. Works with your own and third-party YAML configuration.</p>
+            <div class="buttons">
+                <a class="button" href="#playground">Try in Playground</a>
+                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-ytt/releases">Download Binary</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper mobile-blue">
+    <div class="yaml-grid grid three">
+        <div class="col">
+            <div class="icon">
+                <img src="/img/structure-oriented.svg" />
+            </div>
+            <h3>Structure-oriented</h3>
+            <p>ytt templates are plain YAML documents made from nodes such as maps and arrays. ytt allows you to set values and attach statements (such as if and for loops) on those nodes. This eliminates text insertion concerns like manual escaping and allows for easy structure reuse, thus, increasing readability.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/modularized-config.svg" />
+            </div>
+            <h3>Modularized Config</h3>
+            <p>Weave ytt templating into your own configuration, externalize values to variables, extract repeated snippets to functions, and make whole sections conditional. Patch on top of any configuration using ytt overlays. Express precise structural edits and invariant declaratively.</p>
+        </div>
+        <div class="col">
+            <div class="icon">
+                <img src="/img/deterministic.svg" />
+            </div>
+            <h3>Deterministic</h3>
+            <p>ytt execution environment is hermetic and side-effect free, with no access to filesystem, network, time, randomness, or the operating system interfaces. This guarantees that templates produce identical output with the same inputs. Your configuration changes only when you change it.</p>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="experimental tools">
+        <h2>Features</h2>
+        <div class="grid three">
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/intuitive.svg" />
+                </div>
+                <div class="content">
+                    <h3>Intuitive templating</h3>
+                    <p>Makes template code look familiar by including a sandboxed Pythonic language.<br>
+                        e.g. <code>"-listen=:" + str(port)</code>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/overlays.svg" />
+                </div>
+                <div class="content">
+                    <h3>Overlays</h3>
+                    <p>Patch YAML structures via the builtin <code>overlay</code> package.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="icon">
+                    <img src="/img/yaml.svg" />
+                </div>
+                <div class="content">
+                    <h3>Any YAML</h3>
+                    <p>Template any YAML content, including, Kubernetes configuration, Concourse pipelines, Docker Compose files, etc.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>Basic Usage</h2>
+        <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic"># Configurations picked up from a directory</span>
+$ ytt -f playground/basics/example-demo/ | kubectl apply -f-
+<span style="color:#998;font-style:italic"># Input customized on command line or file configuration</span>
+$ ytt -f playground/basics/example-demo/ --data-value-yaml service.enabled<span style="color:#000;font-weight:bold">=</span><span style="color:#0086b3">false</span> | ...
+<span style="color:#998;font-style:italic"># Give as many configuration files as needed</span>
+$ ytt -f playground/basics/example-demo/ -f values-staging.yml -f overlay-env-1.yml | ...</code></pre></div>
+    </div>
+</div>
+<div id="playground" class="content" style="display: none;">
+  <div class="playground-wrapper">
+      <div class="dropdown">
+        <h2>Interactive Playground</h2>
+        <p>See ytt in action using the interactive playground. If you are new to ytt, there are a few examples organized by topics so that you can familiarize yourself with ytt's key features. If you are a more advanced user and in need of a quick way to validate how ytt will render your files, add your files and edit them on the left. You can then see the template results on the right.</p>
+        <form id="show-gist">
+          <p>Alternatively you can enter <a href="https://gist.github.com/">GitHub Gist</a> URL here <input/> press Enter to see the template results.</p>
+        </form>
+        <p><span class="button-container"></span></p>
+        <div class="example-sets"></div>
+      </div>
+
+      <div class="playground-inner">
+        <div class="blocker"></div>
+
+        <div class="left">
+          <div class="controls">
+            <button type="button" class="add-config button">+ Add File</button>
+            <button type="button" class="run button" title="Run (Shift+Enter)">=&gt; Run</button>
+            <button type="button" class="expand button">Full Screen</button>
+          </div>
+
+          <form class="config-form">
+            <div class="config-boxes"></div>
+          </form>
+        </div>
+
+        <div class="right">
+          <div class="output"></div>
+        </div>
+      </div>
+
+    <noscript>Page includes interactive editor with ability to render templates and see their results.</noscript>
+  </div>
+</div>
+
+
+		
+			<div class="getting-started">
+				<div class="wrapper clearfix">
+					<div class="left-side">
+						<h2>Getting started</h2>
+						<p>To help you get started, see the documentation.</p>
+					</div>
+					<div class="right-side">
+						<a href="/ytt/docs/latest/" class="button">Get started</a>
+					</div>
+				</div>
+			</div>
+		
+	</main>
+
+	<footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

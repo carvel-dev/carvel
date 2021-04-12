@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About ytt on Carvel</title>
+    <link>/ytt/docs/latest/</link>
+    <description>Recent content in About ytt on Carvel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/ytt/docs/latest/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Annotations</title>
+      <link>/ytt/docs/latest/lang-ref-annotation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-annotation/</guid>
+      <description>Format ¶@ann1-name [ann-arg1, ann-arg2, ..., keyword-ann-arg1=val1]   content between brackets is optional.
+  annotation names are typically namespaced, for example, overlay/merge is an annotation within an overlay namespace. Annotation namespaces are there for general organization, they are not associated with loaded packages (from load keyword).
+  annotation arguments (positional and keyword) is just plain code
+  Shared templating annotations ¶ @template/code [code] or just @ [code] (on its own line) represents plain code line  #@ a = calculate(100)key:value @template/value [code] or just @ [code] (at the end of line) represents a value associated structure  key:#@ valuearray:- #@ valueYAML templating annotations ¶  @yaml/map-key-override (no args)</description>
+    </item>
+    
+    <item>
+      <title>Built-in ytt Library</title>
+      <link>/ytt/docs/latest/lang-ref-ytt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-ytt/</guid>
+      <description>General modules ¶struct ¶See @ytt:struct module docs.
+assert ¶load(&amp;#34;@ytt:assert&amp;#34;, &amp;#34;assert&amp;#34;) assert.fail(&amp;#34;expected value foo, but was {}&amp;#34;.format(value)) # stops execution x = data.values.env.mysql_password or assert.fail(&amp;#34;missing env.mysql_password&amp;#34;) data ¶See ytt @data/values for more details
+load(&amp;#34;@ytt:data&amp;#34;, &amp;#34;data&amp;#34;) data.values # struct that has input values # relative to current package data.list() # [&amp;#34;template.yml&amp;#34;, &amp;#34;data/data.txt&amp;#34;] data.read(&amp;#34;data/data.txt&amp;#34;) # &amp;#34;data-txt contents&amp;#34; # relative to library root (available in v0.27.1+) data.list(&amp;#34;/&amp;#34;) # list files  data.list(&amp;#34;/data/data.txt&amp;#34;) # read file regexp ¶load(&amp;#34;@ytt:regexp&amp;#34;, &amp;#34;regexp&amp;#34;) regexp.</description>
+    </item>
+    
+    <item>
+      <title>Data Values vs Overlays</title>
+      <link>/ytt/docs/latest/data-values-vs-overlays/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/data-values-vs-overlays/</guid>
+      <description>Overview ¶As folks get started with ytt, a common question that arises is, “when should I use data values versus overlays?” While these features do address a similar problem space, we recommend using one feature versus the other depending on the use case. We will detail our guidance below.
+Data Values ¶Data values provide a way to inject input data into a template. If you think about a ytt template as a function, then data values are the varying parameters.</description>
+    </item>
+    
+    <item>
+      <title>Dictionaries</title>
+      <link>/ytt/docs/latest/lang-ref-dict/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-dict/</guid>
+      <description>#@ color = {&amp;#34;red&amp;#34;: 123, &amp;#34;yellow&amp;#34;: 100, &amp;#34;blue&amp;#34;: &amp;#34;245&amp;#34;}red:#@ color[&amp;#34;red&amp;#34;]Copied here for convenience from Starlark specification.
+ dict·clear (D.clear())  x = {&amp;#34;one&amp;#34;: 1, &amp;#34;two&amp;#34;: 2} x.clear() # None print(x) # {}  dict·get (D.get(key[, default]))  x = {&amp;#34;one&amp;#34;: 1, &amp;#34;two&amp;#34;: 2} x.get(&amp;#34;one&amp;#34;) # 1 x.get(&amp;#34;three&amp;#34;) # None x.get(&amp;#34;three&amp;#34;, 0) # 0  dict·items (D.items())  x = {&amp;#34;one&amp;#34;: 1, &amp;#34;two&amp;#34;: 2} x.items() # [(&amp;#34;one&amp;#34;, 1), (&amp;#34;two&amp;#34;, 2)]  dict·keys (D.</description>
+    </item>
+    
+    <item>
+      <title>FAQ</title>
+      <link>/ytt/docs/latest/faq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/faq/</guid>
+      <description>How do I template some text? ¶Here is an example describing some ways text templating can be done.
+Data Values ¶Data values doc
+Is it possible to add a new key to my values via the --data-value command line argument? ¶No. As with all data values, those passed through --data-value must be overrides, not new values. Instead, overlays are the intended way to provide new keys. See the data values vs overlays doc for more information.</description>
+    </item>
+    
+    <item>
+      <title>File Marks</title>
+      <link>/ytt/docs/latest/file-marks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/file-marks/</guid>
+      <description>Overview ¶ytt allows to control certain metadata about files via --file-mark flag.
+$ ytt ... --file-mark &amp;lt;path&amp;gt;:&amp;lt;mark&amp;gt;=&amp;lt;value&amp;gt; where:
+ path — location to the file(s) being marked  exact path (use --files-inspect to see paths as seen by ytt) path with * to match files in a directory path with **/* to match files and directories recursively   mark — metadata to modify on the file(s) selected by path value — the value for the mark  Note that this flag can be specified multiple times.</description>
+    </item>
+    
+    <item>
+      <title>For loop</title>
+      <link>/ytt/docs/latest/lang-ref-for/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-for/</guid>
+      <description>Refer to Starlark for loop specification for details.
+ iterating with values  array:#@ for i in range(0,3):- #@ i- #@ i+1#@ end iterating with index  array:#@ arr = [1,5,{&amp;#34;key&amp;#34;:&amp;#34;val&amp;#34;}]#@ for i in range(len(arr)):- val:#@ arr[i]index:#@ i#@ end  use of continue/break  array:#@ for i in range(0,3):#@ if i == 1:#@ continue#@ end- #@ i- #@ i+1#@ end</description>
+    </item>
+    
+    <item>
+      <title>Functions</title>
+      <link>/ytt/docs/latest/lang-ref-def/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-def/</guid>
+      <description>Refer to Starlark function specification for details about various types of function arguments. Note that ytt&amp;rsquo;s Starlark use requires functions to be closed with an end.
+ function definition within YAML  Labels returns map with two keys: test1, and test2:
+#@ def my_labels():test1:123test2:124#@ endAbove is almost equivalent to (differnce is that return type in one case is a YAML fragment and in another it&amp;rsquo;s a dict):
+#@ def my_labels():#@ return {&amp;#34;test1&amp;#34;: 123, &amp;#34;test2&amp;#34;: 124}#@ end function definition within Starlark (.</description>
+    </item>
+    
+    <item>
+      <title>If Statements</title>
+      <link>/ytt/docs/latest/lang-ref-if/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-if/</guid>
+      <description>Refer to Starlark if statement specification for details.
+ if  #@ if True:test1:123test2:124#@ end if (negative)  #@ if not True:test1:123#@ end single-node if  #@ if/end True:test1:123 if-else conditional  #@ if True:test1:123#@ else:test2:124#@ end if-elif-else conditional  #@ if True:test2:123#@ elif False:test2:124#@ else:test2:125#@ end single line if  #@ passwd = &amp;#34;...&amp;#34;test1:#@ passwd if passwd else assert.fail(&amp;#34;password must be set&amp;#34;) implicit if  #@ passwd = &amp;#34;...&amp;#34;test1:#@ passwd or assert.</description>
+    </item>
+    
+    <item>
+      <title>Injecting Secrets</title>
+      <link>/ytt/docs/latest/injecting-secrets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/injecting-secrets/</guid>
+      <description>Overview ¶This document is work in progress.
+Unlike most configuration, many organizations disallow storing of plain secret values next to other code/configuration.
+This document:
+ presents several common approaches used to make secrets available to your templates does not cover injection of secrets directly into an application at runtime (overall may be the best approach) does not recommend one approach over another (though it does state pros and cons) does not talk about where resulting templates are forwarded  One common question that&amp;rsquo;s asked is why not to extend ytt to allow it to shell out to other programs or why not include builtin library that can fetch secrets from outside (e.</description>
+    </item>
+    
+    <item>
+      <title>Known Limitations</title>
+      <link>/ytt/docs/latest/known-limitations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/known-limitations/</guid>
+      <description>All YAML comments are expected to be qualified (i.e. must start with #@  or #! ) by default. Current reason for this is ytt is trying to be cautious and disallow non-qualified comments (# ) since users may unintentionally write templating directives but forget to use @ after #. This default behaviour may change in future.
+  YAML anchors and templating directive for the same YAML node are not supported.</description>
+    </item>
+    
+    <item>
+      <title>Language</title>
+      <link>/ytt/docs/latest/lang/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang/</guid>
+      <description>Overview ¶Templating language used in ytt is a slightly modified version of Starlark. Following modifications were made:
+ requires end keyword for block closing  hence no longer whitespace sensitive (except new line breaks)   does not allow use of pass keyword  See full Starlark specification for detailed reference.
+Types ¶ NoneType: None (equivalent to null in other languages) Bool: True or False Integer: 1 Float: 1.1 String: &amp;quot;string&amp;quot; List: [1, 2, {&amp;quot;a&amp;quot;:3}] Tuple: (1, 2, &amp;quot;a&amp;quot;) Dictionary: {&amp;quot;a&amp;quot;: 1, &amp;quot;b&amp;quot;: &amp;quot;b&amp;quot;} Struct: struct.</description>
+    </item>
+    
+    <item>
+      <title>Library Module</title>
+      <link>/ytt/docs/latest/lang-ref-ytt-library/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-ytt-library/</guid>
+      <description>Library annotations ¶Available in v0.28.0+
+ #@library/ref: Attaches a yaml document to the specified library to be used during evalutaion via the library module (only supported for data value documents)  #@library/ref &amp;#34;@app&amp;#34;#@data/values---name:&amp;#34;app1&amp;#34;Note: data values may also be attached to libraries via command line flags
+Library module ¶Library module @ytt:library provides a way to programmatically get result of templates included in a library. Libraries are found within _ytt_lib subdirectory.
+ load(&amp;quot;@ytt:library&amp;quot;, &amp;quot;library&amp;quot;)  # build library instance app1 = library.</description>
+    </item>
+    
+    <item>
+      <title>Lists</title>
+      <link>/ytt/docs/latest/lang-ref-list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-list/</guid>
+      <description>#@ nums = [123, 374, 490]first:#@ nums[0]Copied here for convenience from Starlark specification.
+ list·append (L.append(x))  x = [] x.append(1) # None x.append(2) # None x.append(3) # None x # [1, 2, 3]  list·clear (L.clear())  x = [1, 2, 3] x.clear() # None x # []  list·extend (L.extend(x))  x = [] x.extend([1, 2, 3]) # None x.extend([&amp;#34;foo&amp;#34;]) # None x # [1, 2, 3, &amp;#34;foo&amp;#34;]  list·index (L.</description>
+    </item>
+    
+    <item>
+      <title>Load Statements</title>
+      <link>/ytt/docs/latest/lang-ref-load/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-load/</guid>
+      <description>Terminology ¶ module: single file; can export variables, functions, or be templated =&amp;gt; some type of result e.g. yaml structure, or string, or None) package: single directory; contains modules library: collection of packages  Usage ¶Load statement allows to load functions from other modules (such as ones from builtin ytt library).
+ load  load(&amp;#34;@ytt:overlay&amp;#34;, &amp;#34;overlay&amp;#34;) # load overlay module from builtin ytt library load(&amp;#34;@ytt:overlay&amp;#34;, ov=&amp;#34;overlay&amp;#34;) # load overlay symbol under a different alias load(&amp;#34;helpers.</description>
+    </item>
+    
+    <item>
+      <title>Outputs</title>
+      <link>/ytt/docs/latest/outputs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/outputs/</guid>
+      <description>ytt supports three different output destinations:
+ stdout, which is default  All YAML documents are combined into one document set. Non-YAML files are not printed anywhere.   output files, controlled via --output-files flag (v0.28.0+)  Output files will be added to given directory, preserving file names.  Example: ytt -f config.yml --output-files tmp/.     output directory, controlled via --dangerous-emptied-output-directory flag  Given directory will be emptied out beforehand and output files will be added preserving file names.</description>
+    </item>
+    
+    <item>
+      <title>Overlay module</title>
+      <link>/ytt/docs/latest/lang-ref-ytt-overlay/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-ytt-overlay/</guid>
+      <description>Overview ¶ytt&amp;rsquo;s Overlay feature provides a way to combine YAML structures together with the help of annotations.
+There are two (2) structures involved in an overlay operation:
+ the &amp;ldquo;left&amp;rdquo; — the YAML document(s) (and/or contained maps and arrays) being modified, and the &amp;ldquo;right&amp;rdquo; — the YAML document (and/or contained maps and arrays) that is the overlay, describing the modification.  Each modification is composed of:
+ a matcher (via an @overlay/(match) annotation), identifying which node(s) on the &amp;ldquo;left&amp;rdquo; are the target(s) of the edit, and an action (via an @overlay/(action) annotation), describing the edit.</description>
+    </item>
+    
+    <item>
+      <title>Overlays</title>
+      <link>/ytt/docs/latest/ytt-overlays/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/ytt-overlays/</guid>
+      <description>What are they? ¶Sometimes it makes more sense to patch some YAML rather than template it.
+For example, when:
+ the file should not be edited directly (e.g. from a third party); the edit will apply to most or all documents; or the specific variable is less commonly configured.  Given a sample target YAML file:
+ config.yml
+---id:1contents:- apple---id:2contents:- pineapple &amp;hellip; this overlay &amp;hellip;
+ add-content.yml
+#@ load(&amp;#34;@ytt:overlay&amp;#34;, &amp;#34;overlay&amp;#34;)#@overlay/match by=overlay.</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>/ytt/docs/latest/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/security/</guid>
+      <description>Vulnerability Disclosure ¶If you believe you have found a security issue in ytt, please privately and responsibly disclose it by following the directions in our security policy.
+Attack Vectors ¶This section is a work-in-progress&amp;hellip;
+  malicious template input
+ input tries to exhaust cpu/mem/disk resources  A: how does it affect go-yaml? &amp;hellip; https://en.wikipedia.org/wiki/Billion_laughs_attack   input tries to use YAML tagging to initialize custom objects (std yaml concern)  A: TBD      malicious template code</description>
+    </item>
+    
+    <item>
+      <title>Strict YAML</title>
+      <link>/ytt/docs/latest/strict/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/strict/</guid>
+      <description>Overview ¶ytt includes strict YAML subset mode that tries to remove any kind of ambiguity in user&amp;rsquo;s intent when parsing YAML.
+Unlike full YAML, strict subset:
+ only supports specifying nulls as &amp;quot;&amp;quot; or null only supports specifying bools as false or true only support basic int and float declarations  prefix, suffix, octal notation, etc are not supported   requires strings with whitespace to be explicitly quoted requires strings with colon to be explicitly quoted requires strings with triple-dash (document start) to be explicitly quoted  Example ¶Non-strict:</description>
+    </item>
+    
+    <item>
+      <title>Strings</title>
+      <link>/ytt/docs/latest/lang-ref-string/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-string/</guid>
+      <description>name1:#@ name + &amp;#34;-deployment&amp;#34;name2:#@ &amp;#34;{}-deployment&amp;#34;.format(&amp;#34;name&amp;#34;)Copied here for convenience from Starlark specification.
+ string·elem_ords string·capitalize (S.capitalize())  &amp;#34;hello, world!&amp;#34;.capitalize() # &amp;#34;Hello, world!&amp;#34;`  string·codepoint_ords string·count (S.count(sub[, start[, end]]))  &amp;#34;hello, world!&amp;#34;.count(&amp;#34;o&amp;#34;) # 2 &amp;#34;hello, world!&amp;#34;.count(&amp;#34;o&amp;#34;, 7, 12) # 1 (in &amp;#34;world&amp;#34;)  string·endswith (S.endswith(suffix[, start[, end]]))  &amp;#34;filename.star&amp;#34;.endswith(&amp;#34;.star&amp;#34;) # True &amp;#39;foo.cc&amp;#39;.endswith((&amp;#39;.cc&amp;#39;, &amp;#39;.h&amp;#39;)) # True  string·find (S.find(sub[, start[, end]]))  &amp;#34;bonbon&amp;#34;.find(&amp;#34;on&amp;#34;) # 1 &amp;#34;bonbon&amp;#34;.find(&amp;#34;on&amp;#34;, 2) # 4 &amp;#34;bonbon&amp;#34;.find(&amp;#34;on&amp;#34;, 2, 5) # -1  string·format (S.</description>
+    </item>
+    
+    <item>
+      <title>Struct module</title>
+      <link>/ytt/docs/latest/lang-ref-ytt-struct/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-ytt-struct/</guid>
+      <description>Overview ¶The @ytt:struct module provides functions for constructing and deconstructing struct values.
+To use these functions, include the @ytt:struct module:
+load(&amp;#34;@ytt:struct&amp;#34;, &amp;#34;struct&amp;#34;)  struct.decode() ¶Deconstructs a given value into plain/Starlark values, recursively.
+struct.decode(struct_val)  struct_val (struct) — the value to decompose.  struct values are converted into dict values where each attribute in the struct becomes a key on the dict. if the value of an attribute is a struct, it is likewise converted to a dict.</description>
+    </item>
+    
+    <item>
+      <title>Structs</title>
+      <link>/ytt/docs/latest/lang-ref-structs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-structs/</guid>
+      <description>Overview ¶Structs are well-defined data objects, comprised of key/value pairs known as &amp;ldquo;attributes&amp;rdquo;. They are a way to store and refer to data of a known structure.
+The most commonly used struct is data.values, supplied by the @ytt:data module. For example, a data values defined by:
+#@data/values---db_conn:host:acme.example.comis automatically processed into a struct (named values): the keys in the @data/values file are defined one-for-one as attributes on the struct.
+Those attribues can be referenced by name:</description>
+    </item>
+    
+    <item>
+      <title>Template Module</title>
+      <link>/ytt/docs/latest/lang-ref-ytt-template/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-ytt-template/</guid>
+      <description>@template Functions ¶The @ytt:template module provides a function that can be used to update templates.
+To use these functions, include the @ytt:template module:
+#@ load(&amp;#34;@ytt:template&amp;#34;, &amp;#34;template&amp;#34;) The functions exported by this module are:
+ template.replace()  template.replace() ¶Replaces the existing yaml node with the yaml node(s) provided or returned from a function call, of the same type. Underscore (_) is the conventional replacement key, though any key can be used.</description>
+    </item>
+    
+    <item>
+      <title>Text Templating</title>
+      <link>/ytt/docs/latest/ytt-text-templating/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/ytt-text-templating/</guid>
+      <description>Overview ¶ytt supports text templating within YAML strings and .txt files.
+Text templating is controlled via (@ and @) directives. These directives can be combined with following markers:
+ = to output result; result must be of type string - to trim space either to the left (if next to opening directive) or right (if next to closing directive)  Examples:
+ before (@ 123 @) middle (@= &amp;quot;tpl&amp;quot; @) after produces before middle tpl after before (@- 123 -@) middle (@-= &amp;quot;tpl&amp;quot; -@) after produces beforemiddletplafter  Inside YAML strings ¶+ operand or string·format(.</description>
+    </item>
+    
+    <item>
+      <title>Version module</title>
+      <link>/ytt/docs/latest/lang-ref-ytt-version/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-ytt-version/</guid>
+      <description>Available in v0.26.0+
+Version module provides a way to assert on minimum ytt binary version in your configuration. It could be placed into a conditional or just at the top level within *.star, *.yml or any other template file.
+Example configuration directory may look like this:
+ config/  0-min-version.star: contents below deployment.yml other.yml    # filename starts with &amp;#39;0-&amp;#39; to make sure this file gets # processed first, consequently forcing version check run first load(&amp;#34;@ytt:version&amp;#34;, &amp;#34;version&amp;#34;) version.</description>
+    </item>
+    
+    <item>
+      <title>YAMLFragments</title>
+      <link>/ytt/docs/latest/lang-ref-yaml-fragment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/lang-ref-yaml-fragment/</guid>
+      <description>Overview ¶YAMLFragment is a type of value that is defined directly in YAML (instead of plain Starlark). For example, function val() returns a value of type yamlfragment.
+#@ def vals():key1:val1key2:subkey:val2#@ endYAMLFragment may contain:
+ YAML document set (array of YAML documents) YAML array YAML map null  Given various contents it wraps, YAMLFragment currently exposes limited ways of accessing its contents directly. Following accessors are available in v0.26.0+.
+YAML Document Set ¶#@ def docs():---doc1---doc2---doc3#@ end access contents of a document at particular index  docs()[1] # returns &amp;#34;doc2&amp;#34;  loop over each document, setting val to its contents  for val in docs(): val # .</description>
+    </item>
+    
+    <item>
+      <title>ytt @data/values</title>
+      <link>/ytt/docs/latest/ytt-data-values/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/ytt-data-values/</guid>
+      <description>Overview ¶The standard way to externalize configuration values is to declare them as &amp;ldquo;Data Values&amp;rdquo; and then reference those values in templates.
+Declaring and Using Data Values ¶A Data Values file is a YAML document annotated with @data/values.
+#@data/values---key1:val1key2:nested:val2key3:val3key4:ytt processes all Data Values files prior to rendering templates.
+Templates can access those processed values via the @ytt:data module:
+#@ load(&amp;#34;@ytt:data&amp;#34;, &amp;#34;data&amp;#34;)first:#@ data.values.key1second:#@ data.values.key2.nestedthird:#@ data.values.key3fourth:#@ data.values.key4Resulting in
+first:val1second:val2third:val3fourth:nullNote:
+ Data Values keys must be strings.</description>
+    </item>
+    
+    <item>
+      <title>ytt vs x</title>
+      <link>/ytt/docs/latest/ytt-vs-x/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ytt/docs/latest/ytt-vs-x/</guid>
+      <description>ytt vs Go text/template (and other text templating tools) ¶ Go&amp;rsquo;s text/template Jinja  Most generic templating tools do not understand content that they are templating and consider it just plain text. ytt operates on YAML structures, hence typical escaping and formatting problems common to text templating tools are eliminated. Additionally, ytt provides a very easy way to make structures reusable in a much more readable way that&amp;rsquo;s possible with some text templating tools.</description>
+    </item>
+    
+  </channel>
+</rss>

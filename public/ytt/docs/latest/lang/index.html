@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!-- docs/baseof.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" integrity="" media="screen">
+    <script src="/js/main.js" type="text/javascript"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+  
+    
+      
+      <meta name="robots" content="noindex">
+    
+    <title>Carvel - ytt - Language</title>
+  </head>
+
+  <body id="docs">
+    
+
+<header class="in-subproject">
+	<div class="wrapper">
+		<a href="/"><img class="image" src="/img/logo.svg" alt="Carvel Logo" /></a>
+		<ul class="desktop-links">
+			<li><a href="/" >Home</a></li>
+			<li class="subprojects-in-primary-nav">
+				<a href="/" onclick="return false;">Projects</a>
+				<ul>
+					
+					
+					<li><a href="/ytt/" >ytt</a></li>
+					
+					
+					<li><a href="/kbld/" >kbld</a></li>
+					
+					
+					<li><a href="/kapp/" >kapp</a></li>
+					
+					
+					<li><a href="/imgpkg/" >imgpkg</a></li>
+					
+					
+					<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+					
+					
+					<li><a href="/vendir/" >vendir</a></li>
+					
+				</ul>
+			</li>
+			<li><a href="/community/" >Community</a></li>
+			<li><a href="/blog/" >Blog</a></li>
+			<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a></li>
+		</ul>
+		<button type="button" class="mobile" onclick="mobileNavToggle()">
+			<img class="collapsed-icon" src="/img/hamburger.svg" alt="Mobile nav icon">
+			<img class="expanded-icon" src="/img/close.svg" alt="Mobile nav icon">
+		</button>
+		<div id="mobile-menu" class="mobile-menu mobile">
+			<ul class="header-links">
+				<li><a href="/" >Home</a></li>
+				<li>
+					<a href="/">Projects</a>
+					<ul>
+						
+						
+						<li><a href="/ytt/" >ytt</a></li>
+						
+						
+						<li><a href="/kbld/" >kbld</a></li>
+						
+						
+						<li><a href="/kapp/" >kapp</a></li>
+						
+						
+						<li><a href="/imgpkg/" >imgpkg</a></li>
+						
+						
+						<li><a href="https://github.com/vmware-tanzu/carvel-kapp-controller" >kapp-controller</a></li>
+						
+						
+						<li><a href="/vendir/" >vendir</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="/community/" >Community</a></li>
+				<li><a href="/blog/" >Blog</a></li>
+			</ul>
+			<div class="social">
+				<a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />GitHub</a>
+				<a href="https://kubernetes.slack.com/archives/CH8KCCKA5"><img src="/img/slack.png" />#carvel in Kubernetes Slack</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<header class="subproject-specific">
+	<div class="wrapper">
+		<a href="/ytt/" class="text-logo">ytt</a>
+		<ul class="desktop-links">
+			<li><a href="/ytt/" >ytt Overview</a></li>
+			<li><a href="/ytt/docs/latest/" >Documentation</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+		<ul class="mobile-links mobile">
+			<li><a href="/ytt/docs/latest/" >Docs</a></li>
+			<li><a href="https://github.com/vmware-tanzu/carvel-ytt"><img src="/img/github.svg" />GitHub</a></li>
+		</ul>
+	</div>
+</header>
+
+
+    <main>
+      <div class="wrapper dedicated-page docs clearfix">
+        <div class="side-nav">
+          
+<div class="dropdown">
+    
+        <span>latest</span>
+    
+</div>
+
+          
+    
+    <form class="d-flex align-items-center">
+        <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
+        <input type="search" class="form-control docsearch-input" id="search-input" placeholder="Search..."
+                aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0"
+                dir="auto" style="position: relative; vertical-align: top;">
+        </span>
+    </form>
+
+          <nav class="navigation">
+  
+  
+  
+  
+    
+    
+    
+    
+
+    
+      <h3>Introduction</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/" >About ytt</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Techniques</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-data-values/" >Using data values</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/data-values-vs-overlays/" >Data values vs overlays</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/injecting-secrets/" >Injecting secrets</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Reference</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" class="active">Language</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-annotation/" >Annotations</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-text-templating/" >Text Templating</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Built-in @ytt library</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt/" >All modules</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-struct/" >Struct module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-overlay/" >Overlay module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-library/" >Library module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-version/" >Version module</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-ytt-template/" >Template module</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>Language</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang/" class="active">General</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-string/" >String</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-list/" >List</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-dict/" >Dictionary</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-structs/" >Struct</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-yaml-fragment/" >YAML Fragment</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-if/" >If conditional</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-for/" >For loop</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-def/" >Function</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/lang-ref-load/" >Load</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>CLI configuration</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/outputs/" >Outputs</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/file-marks/" >File Marks</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/strict/" >Strict yaml</a>
+            
+          </li>
+        
+      </ul>
+    
+      <h3>FAQ</h3>
+      <ul>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/faq/" >FAQ</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/ytt-vs-x/" >Why ytt vs. x?</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/security/" >Security</a>
+            
+          </li>
+        
+          <li>
+            
+              
+              <a href="/ytt/docs/latest/known-limitations/" >Known Limitations</a>
+            
+          </li>
+        
+      </ul>
+    
+  
+</nav>
+
+        </div>
+        <div class="docs-content text-content">
+          
+
+	
+
+
+          <div class="documentation-container">
+            <h1>Language</h1>
+            
+                <aside>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#types">Types</a></li>
+    <li><a href="#control-flow">Control flow</a></li>
+  </ul>
+</nav>
+                </aside>
+            
+
+            <h2 id="overview">Overview <a href="#overview" class="section-link">¶</a></h2><p>Templating language used in <code>ytt</code> is a slightly modified version of <a href="https://github.com/google/starlark-go/blob/master/doc/spec.md" target="_blank">Starlark</a>. Following modifications were made:</p>
+<ul>
+<li>requires <code>end</code> keyword for block closing
+<ul>
+<li>hence no longer whitespace sensitive (except new line breaks)</li>
+</ul>
+</li>
+<li>does not allow use of <code>pass</code> keyword</li>
+</ul>
+<p>See <a href="https://github.com/google/starlark-go/blob/master/doc/spec.md#contents" target="_blank">full Starlark specification</a> for detailed reference.</p>
+<h2 id="types">Types <a href="#types" class="section-link">¶</a></h2><ul>
+<li>NoneType: <code>None</code> (equivalent to null in other languages)</li>
+<li>Bool: <code>True</code> or <code>False</code></li>
+<li>Integer: <code>1</code></li>
+<li>Float: <code>1.1</code></li>
+<li><a href="/ytt/docs/latest/lang-ref-string/">String</a>: <code>&quot;string&quot;</code></li>
+<li><a href="/ytt/docs/latest/lang-ref-list/">List</a>: <code>[1, 2, {&quot;a&quot;:3}]</code></li>
+<li>Tuple: <code>(1, 2, &quot;a&quot;)</code></li>
+<li><a href="/ytt/docs/latest/lang-ref-dict/">Dictionary</a>: <code>{&quot;a&quot;: 1, &quot;b&quot;: &quot;b&quot;}</code></li>
+<li><a href="/ytt/docs/latest/lang-ref-structs/">Struct</a>: <code>struct.make(field1=123, field2=&quot;val2&quot;)</code></li>
+<li><a href="/ytt/docs/latest/lang-ref-yaml-fragment/">YAML fragment</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-annotation/">Annotation</a>: <code>@name arg1,arg2,keyword_arg3=123</code></li>
+</ul>
+<h2 id="control-flow">Control flow <a href="#control-flow" class="section-link">¶</a></h2><ul>
+<li><a href="/ytt/docs/latest/lang-ref-if/">If conditional</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-for/">For loop</a></li>
+<li><a href="/ytt/docs/latest/lang-ref-def/">Function</a></li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+	<div class="wrapper footer-links">
+		<div class="clearfix">
+			<ul class="left-links">
+				<li><a href="https://twitter.com/carvel_dev"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="https://github.com/vmware-tanzu/carvel.dev"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="https://kubernetes.slack.com/archives/CH8KCCKA5">
+					<img src="/img/slack.png" />
+					<span class="desktop">#carvel in Kubernetes Slack</span>
+					<span class="mobile">Slack</span>
+				</a></li>
+			</ul>
+			<div class="right-links">
+				<a href="/"> <img src="/img/logo.svg" /></a>
+			</div>
+		</div>
+		<div class="bottom-links">
+			<p class="copywrite">&copy; 2021 Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+		</div>
+	</div>
+</footer>
+
+    
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+      <script type="text/javascript">
+        docsearch({
+          apiKey: '582b1408d7a3fe145c0f84f48ca03755',
+          indexName: 'carvel',
+          inputSelector: '.docsearch-input',
+          algoliaOptions: {'facetFilters': ["tags:ytt"], hitsPerPage: 9},
+          debug: false 
+        });
+      </script>
+    
+  </body>
+</html>
