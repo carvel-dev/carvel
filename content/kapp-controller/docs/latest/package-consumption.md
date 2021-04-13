@@ -53,7 +53,7 @@ simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com   3.0.0-rc.1   20s
 If we want, we can inspect these packages further to get more info about what they're installing:
 
 ```bash
-$ kubectl get package pkg.test.carvel.dev.1.0.0 -o yaml
+$ kubectl get package simple-app.corp.com.1.0.0 -o yaml
 ```
 
 This will show us the package yaml, which will look something like this:
