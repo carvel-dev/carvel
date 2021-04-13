@@ -32,9 +32,34 @@ spec:
       image: k8slt/corp-com-pkg-repo:1.0.0
 ```
 
-This CR will allow kapp-controller to install any of the packages found within
-the `k8slt/kctrl-pkg-repo:v1.0.0` imgpkg bundle, which is stored in a OCI registry. Save this PackageRepository to
-a file named repo.yml and then apply it to the cluster using kapp:
+If the registry containing the repository is private, a secret ref will
+need to be added to the fetch stage. For example,
+
+```yaml
+---
+apiVersion: install.package.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: simple-package-repository
+spec:
+  fetch:
+    image:
+      url: k8slt/corp-com-pkg-repo:1.0.0
+      secretRef:
+        name: my-registry-creds
+```
+This secret will need to be located in the kapp-controller namespace and be of
+the format described in the [fetch docs](config.md#image-authentication).
+
+**Note:** This is a temporary authentication model and will change in the
+future.
+
+This PackageRepository CR will allow kapp-controller to install any of the
+packages found within the `k8slt/kctrl-pkg-repo:v1.0.0` imgpkg bundle, which is
+stored in an OCI registry. Save this PackageRepository to a file named repo.yml
+and then apply it to the cluster using kapp:
+
+
 
 ```bash
 $ kapp deploy -a repo -f repo.yml
