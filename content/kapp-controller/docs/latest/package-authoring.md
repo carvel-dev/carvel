@@ -92,6 +92,8 @@ $ mv <path to config.yml> package-contents/config/config.yml
 $ mv <path to values.yml> package-contents/config/values.yml
 ```
 
+([Package bundle format](packaging.md#package-bundle-format) describes purpose of each directory and general recommendations.)
+
 Once we have configuration figured out let's use `kbld` to record which container images are used:
 
 ```bash
@@ -99,7 +101,7 @@ $ mkdir -p package-contents/.imgpkg
 $ kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg/images.yml
 ```
 
-For more on using kbld to populate the `.imgpkg` directory with an ImageLock, and why it is useful,
+For more on using kbld to populate the `.imgpkg` directory with an ImagesLock, and why it is useful,
 see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration)
 
 Once these files have been added, our package contents bundle is ready to be pushed as shown below 
@@ -179,20 +181,24 @@ Follow [Installing a package](package-consumption.md#installing-a-package) step 
 ---
 ### Creating a Package Repository
 
-A package repository is a collection of packages (more specifically collection of Package CRs). Currently our recommended way to make a package repository is by making it an OCI image. (Note that we are actively working on making it possible for package repository to be an imgpkg bundle instead of a plain image. Stay tuned.)
+A [package repository bundle](packaging.md#package-repository-bundle-format) is a collection of packages (more specifically collection of Package CRs). Currently our recommended way to make a package repository is by making it an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle).
 
-The filesystem structure for package repository image should look like this:
+The filesystem structure for package repository bundle looks like this:
 
 ```bash
-my-pkg-repo
-└── packages
+my-pkg-repo/
+└── .imgpkg/
+    └── images.yml
+└── packages/
     └── simple-app.corp.com.1.0.0.yml
 ```
+
+([Package Repository bundle format](packaging.md#package-repository-bundle-format) describes purpose of each directory and general recommendations.)
 
 Lets start by creating the needed directories:
 
 ```bash
-$ mkdir -p my-pkg-repo/packages
+$ mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages
 ```
 
 Once the directories are created, we can copy our Package CR YAML in to the bundle's `packages` directory:
@@ -201,11 +207,16 @@ Once the directories are created, we can copy our Package CR YAML in to the bund
 cp simple-app.corp.com.1.0.0.yml my-pkg-repo/packages
 ```
 
-With the metadata files present, we can push our repo image to whatever OCI registry we plan to distribute it from:
+Next, let's use `kbld` to record which package bundles are used:
 
 ```bash
-$ imgpkg push -i registry.corp.com/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
+$ kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.yml
 ```
 
-The package repository is pushed. Follow the [Adding package repository](package-consumption.md#adding-package-repository) step from the 
-package consumption workflow to see an example of adding and using a PackageRepository with kapp-controller.
+With the metadata files present, we can push our bundle to whatever OCI registry we plan to distribute it from:
+
+```bash
+$ imgpkg push -b registry.corp.com/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
+```
+
+The package repository is pushed. Follow the [Adding package repository](package-consumption.md#adding-package-repository) step from the package consumption workflow to see an example of adding and using a PackageRepository with kapp-controller.

@@ -28,12 +28,12 @@ metadata:
   name: simple-package-repository
 spec:
   fetch:
-    image:
-      url: k8slt/corp-com-pkg-repo:1.0.0
+    imgpkgBundle:
+      image: k8slt/corp-com-pkg-repo:1.0.0
 ```
 
 This CR will allow kapp-controller to install any of the packages found within
-the image `k8slt/kctrl-pkg-repo:v1.0.0`, which is stored in a OCI registry. Save this PackageRepository to
+the `k8slt/kctrl-pkg-repo:v1.0.0` imgpkg bundle, which is stored in a OCI registry. Save this PackageRepository to
 a file named repo.yml and then apply it to the cluster using kapp:
 
 ```bash
