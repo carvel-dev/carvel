@@ -63,4 +63,8 @@ data:
   # A comma delimited list of domain names which kapp controller should
   # bypass the proxy for when making requests (optional)
   noProxy: "github.com,docker.io"
+
+  # A comma delimited list of domain names for which kapp controller, when
+  # fetching images or imgpkgBundles, will skip TLS verification. (optional)
+  dangerousSkipTLSVerify: "private-registry.com,insecure-registry.com"
 ```
