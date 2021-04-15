@@ -22,7 +22,7 @@ install() {
   kbld_version=v0.29.0
   kapp_version=v0.36.0
   kwt_version=v0.0.6
-  imgpkg_version=v0.6.0
+  imgpkg_version=v0.6.1
   vendir_version=v0.16.0
 
   if [[ `uname` == Darwin ]]; then
@@ -31,7 +31,7 @@ install() {
     kbld_checksum=3754fa1ba3a26368aef32769bfb084dd62e52be9c5af0b65e574729e92d21cbc
     kapp_checksum=1076da52c7291a7b9c7c0169b59fa18ef5248dee1e060676f8f5af325826d508
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
-    imgpkg_checksum=6346be7afa7258e9f32e1b7641c8b7c3e645ba0ff79b01a8a258229b517ae188
+    imgpkg_checksum=832e7425272f67fbabc51633eae6612927e9ddf317d752cf21d3f9dd09163138
     vendir_checksum=3e6af7ae5cd89579f6d153af6b6a4c0ab1cfcac22f5014b983d1d942feb8bab0
   else
     binary_type=linux-amd64
@@ -39,7 +39,7 @@ install() {
     kbld_checksum=28492a398854e8fec7dd9537243b07af7f43e6598e1e4557312f5481f6840499
     kapp_checksum=22fe308f1d9ebbb829a6ea10ca80d9468ff4b9aa911b0c33788fe67d04ccb383
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
-    imgpkg_checksum=b0d29d28a28db5632ce48cd9ea414ae1d3c9da382c96c72abb9961587ffb657f
+    imgpkg_checksum=67a368333528bedbe0b951e045186e7be62a1dd7600b7f32e9f662079ad34f0c
     vendir_checksum=05cede475c2b947772a9fe552380927054d48158959c530122a150a93bf542dd
   fi
 
