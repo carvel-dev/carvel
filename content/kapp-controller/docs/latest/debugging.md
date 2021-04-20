@@ -48,7 +48,7 @@ $ kubectl get pkgr/repo -o=jsonpath={.status.usefulErrorMessage}
 
 ### Debugging App CRs
 
-Failures can arise from from fetch, template, deploy, or delete steps for an App CR. These 
+Failures can arise from fetch, template, deploy, or delete steps for an App CR. These 
 failures correspond to issues with runtime information declared in the App CR's spec. 
 
 Errors are reported as stderr from associated tools used in kapp-controller (i.e. vendir, imgpkg, kbld, ytt, kapp, and helm) 
@@ -75,24 +75,23 @@ This `usefulErrorMessage` field can be found by running `kubectl get apps/simple
 The kubectl command will return the stderr output from the App status to help you further understand the reason for the App failure.
 
 The `usefulErrorMessage` can be helpful in pointing out where errors occurred from inputs in the App spec and also 
-pinpoint the resource that caused a deployment failure. However, Apps will not surface errors of resources it is 
+pinpoint the resource that caused a deployment failure. However, Apps will not surface errors of resources they are 
 deploying to Kubernetes and further debugging of resources deployed by an App may be needed.
 
 ### Debugging InstalledPackage CRs
 
-Failures for InstalledPackages can be directly viewed via the InstalledPackage's status via the `usefulErrorMessage` property of
-the status. This `usefulErrorMessage` property comes from an App CR that is created as a result of creating an InstalledPackage. More 
-information on interpretting the error message from `usefulErrorMessage` can be found under the [Debugging App CRs](#debugging-app-crs). 
+Failures for InstalledPackages can be viewed directly via the `usefulErrorMessage` property of the InstalledPackage's status. 
+This `usefulErrorMessage` property comes from an App CR that is created as a result of creating an InstalledPackage. More 
+information on interpreting the error message from `usefulErrorMessage` can be found under the [Debugging App CRs](#debugging-app-crs). 
 The underlying App CR will have the same name as the InstalledPackage that you create.
 
 In addition to understanding the error from the underlying App CR, it can also be useful the inspect the Package definition to 
 see if there are issues for the Package being deployed by the InstalledPackage.
 
-The name of the Package should be a combination of the Package's `publicName` and `version`. You can view the Package details 
-by taking the `.spec.packageRef.publicName` and `.spec.packageRef.version` values from the InstalledPackage and run the following:
+You can view the Package details by running the following command:
 
 ```
-$ kubectl describe package/publicName.version
+$ kubectl describe packageName
 ```
 
 You can then view the `.template.spec` of the Package to see if there are any issues with the inputs of the Package. These inputs 
@@ -100,14 +99,16 @@ are eventually used to create the App for the InstalledPackage and can lead to f
 
 ### Debugging PackageRepository CRs
 
-Failures for PackageRepositories can be directly viewed via a PackageRepository's status via the `usefulErrorMessage` property of
-the status. This `usefulErrorMessage` property comes from an App CR that is created as a result of creating a PackageRepository. More 
-information on interpretting the error message from `usefulErrorMessage` can be found under the [Debugging App CRs](#debugging-app-crs).
-The underlying App CR will have the same name as the PackageRepository that you create.
+The primary responsibility of the PackageRepository is to fetch the configuration for all of its Packages, which are typically 
+pulled from an OCI registry as an [imgpkgBundle](/imgpkg/docs/latest/resources/#bundle). Failures for PackageRepositories most 
+often happen from fetching the PackageRepository contents (i.e. the `.spec.fetch` portion of the PackageRepository spec).
 
-Failures for PackageRepositories most often happen from fetching the PackageRepository contents (i.e. the `.spec.fetch` portion of 
-the PackageRepository spec). The primary responsibility of the PackageRepository is to fetch the configuration for all of its Packages, 
-which are typically pulled from an OCI registry as an [imgpkgBundle](/imgpkg/docs/latest/resources/#bundle).
+Failures for PackageRepositories can be viewed directly via the `usefulErrorMessage` property of the PackageRepository's status. 
+This `usefulErrorMessage` property comes from an App CR that is created as a result of creating a PackageRepository. This App is 
+currently always created in the `kapp-controller` namespace, but this may change in the futrue. More information on interpreting 
+the error message from `usefulErrorMessage` can be found under the [Debugging App CRs](#debugging-app-crs). The underlying App CR 
+will have the same name as the PackageRepository that you create.
 
 Common problems encountered with PackageRepositories may be needing authentication for a registry where an image or imgpkg bundle is 
-stored and proper formatting of Package resources.
+stored (read more [here](package-consumption/#adding-package-repository) on PackageRepositories authenticating to a private registry) 
+and proper formatting of Package resources.
