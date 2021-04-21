@@ -178,12 +178,12 @@ spec:
   template:
     spec:
       containers:
-        #@overlay/append
         - name: appended-container
           image: image:1.2.3
           ports:
           - containerPort: #@ data.values.appended_container_port
 ```
+Prior to v0.32.0 append array items with [`#@overlay/append`](lang-ref-ytt-overlay.md#overlayappend)
 
 `prod-values.yml`
 ```yaml

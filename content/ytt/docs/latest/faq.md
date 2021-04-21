@@ -60,7 +60,9 @@ Additional resources: [overlay remove docs](lang-ref-ytt-overlay.md#overlayremov
 
 ## How do I add items to an existing array?  
 
-The default merging behaviour for arrays is to overwrite them, as there isn't any default matching criteria (unlike maps which use their keys). To add an item, either provide that matching annotation (eg. `#@overlay/match by="field_name"`), or use the `#@overlay/append` annotation to add to the end of the list. Note that the append annotation must be applied to each item you want to insert.
+Using v0.32.0 or later, the default behavior of overlays is to append array items. Simply put your array item in an overlay. 
+
+Prior to v0.32.0, To add an item, either provide the matching annotation (eg. `#@overlay/match by="field_name"`), or use the `#@overlay/append` annotation to add to the end of the list. Note that the append annotation must be applied to each item you want to insert.
 
 Additional resources: [overlay append docs](lang-ref-ytt-overlay.md#overlayappend), [example gist on playground](/ytt/#gist:https://gist.github.com/pivotaljohn/8c7f48e183158ce12107f576eeab937c), [replace-list gist](/ytt/#gist:https://gist.github.com/pivotaljohn/2b3a9b3367137079195971e1409d539e), [edit-list gist](/ytt/#gist:https://gist.github.com/pivotaljohn/217e8232dc080bb764bfd064ffa9c115)
 
