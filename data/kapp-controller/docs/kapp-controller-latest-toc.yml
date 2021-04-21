@@ -35,6 +35,8 @@ toc:
         url: /package-authoring
       - page: Consuming packages
         url: /package-consumption
+      - page: Air-gapped workflow
+        url: /air-gapped-workflow
   - title: FAQ
     subfolderitems:
       - page: Security
