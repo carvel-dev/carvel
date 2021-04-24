@@ -3,6 +3,8 @@ toc:
     subfolderitems:
       - page: About ytt
         url: /
+      - page: How it Works
+        url: /how-it-works
   - title: Techniques
     subfolderitems:
       - page: Using data values
