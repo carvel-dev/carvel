@@ -231,8 +231,10 @@ The matcher functions from `@ytt:overlay` cover many use-cases. From time-to-tim
 
 A matcher function has the following signature:
 
-`Function(index,left,right):Boolean`
-   - `index` (`Int`) — the potential match's position in the list of all potential matches (zero-based)
+`Function(indexOrKey,left,right):Boolean`
+   - `indexOrKey`
+     - when `left` is an array item: (`Int`) — the potential match's _zero-based index_ in the list that is the left-side
+     - when `left` is a map item: (`any`) — the potential match's _key_ in the map that is the left-side
    - `left` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the potential match/target node
    - `right` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the value of the annotated node in the overlay
    - returns `True` if `left` should be considered a match; `False` otherwise.
