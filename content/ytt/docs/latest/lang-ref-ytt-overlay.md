@@ -249,7 +249,7 @@ _Example 1: Key presence or partial string match_
 
 `left` contains `right`:
 ```python
-lambda index, left, right: right in left
+lambda indexOrKey, left, right: right in left
 ```
 Returns `True` when `right` is "a member of" `left`
 
@@ -259,11 +259,19 @@ _Example 2: Precise string matching_
 
 `left` contains a key of the same name as the value of `right`:
 ```python
-lambda index, left, right: left["metadata"]["name"].endswith("server")
+lambda indexOrKey, left, right: left["metadata"]["name"].endswith("server")
 ```
 See also:
 - [Language: String](lang-ref-string.md) for more built-in functions on strings.
 - [@ytt:regexp Library](lang-ref-ytt.md#regexp) for regular expression matching.
+
+_Example 3: Match on both key and value_
+
+Is the map item with key/value of: `type: LoadBalancer`.
+
+```python
+lambda indexOrKey, left, right: indexOrKey == "type" and left == "LoadBalancer"
+```
 
 ### @overlay/match-child-defaults
 
