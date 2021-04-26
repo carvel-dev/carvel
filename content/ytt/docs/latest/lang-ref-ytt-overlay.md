@@ -231,8 +231,10 @@ The matcher functions from `@ytt:overlay` cover many use-cases. From time-to-tim
 
 A matcher function has the following signature:
 
-`Function(index,left,right):Boolean`
-   - `index` (`Int`) — the potential match's position in the list of all potential matches (zero-based)
+`Function(indexOrKey,left,right):Boolean`
+   - `indexOrKey`
+     - when `left` is an array item: (`Int`) — the potential match's _zero-based index_ in the list that is the left-side
+     - when `left` is a map item: (`any`) — the potential match's _key_ in the map that is the left-side
    - `left` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the potential match/target node
    - `right` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the value of the annotated node in the overlay
    - returns `True` if `left` should be considered a match; `False` otherwise.
@@ -247,7 +249,7 @@ _Example 1: Key presence or partial string match_
 
 `left` contains `right`:
 ```python
-lambda index, left, right: right in left
+lambda indexOrKey, left, right: right in left
 ```
 Returns `True` when `right` is "a member of" `left`
 
@@ -257,11 +259,19 @@ _Example 2: Precise string matching_
 
 `left` contains a key of the same name as the value of `right`:
 ```python
-lambda index, left, right: left["metadata"]["name"].endswith("server")
+lambda indexOrKey, left, right: left["metadata"]["name"].endswith("server")
 ```
 See also:
 - [Language: String](lang-ref-string.md) for more built-in functions on strings.
 - [@ytt:regexp Library](lang-ref-ytt.md#regexp) for regular expression matching.
+
+_Example 3: Match on both key and value_
+
+Is the map item with key/value of: `type: LoadBalancer`.
+
+```python
+lambda indexOrKey, left, right: indexOrKey == "type" and left == "LoadBalancer"
+```
 
 ### @overlay/match-child-defaults
 
