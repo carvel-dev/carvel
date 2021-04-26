@@ -64,6 +64,38 @@ spec:
   # Package version; Referenced by InstalledPackage;
   # Must be valid semver (required)
   version: 1.5.3
+  # Human friendly name of the package (optional; string)
+  displayName: "Fluent Bit"
+  # Long description of the package (optional; string; alpha.7+)
+  longDescription: "Fluent bit is an open source..."
+  # Short desription of the package (optional; string; alpha.7+)
+  shortDescription: "Log processing and forwarding"
+  # Base64 encoded icon (optional; string; alpha.7+)
+  iconSVGBase64: YXNmZGdlcmdlcg==
+  # Name of the entity distributing the package (optional; string; alpha.7+)
+  providerName: VMware
+  # List of maintainer info for the package.
+  # Currently only supports the name key. (optional; array of maintner info; alpha.7+)
+  maintainers:
+  - name: "Person 1"
+  - name: "Person 2"
+  # Version release notes (optional; string; alpha.7+)
+  releaseNotes: "Fixed some bugs"
+  # Classifiers of the package (optional; Array of strings; alpha.7+)
+  categories:
+  - "logging"
+  - "daemon-set"
+  # Description of the support available for the package (optional; string; alpha.7+)
+  supportDescription: "..."
+  # System requirements needed to install the package.
+  # Note: these requirements will not be verified by kapp-controller on
+  # installation. (optional; string; alpha.7+)
+  capacityRequirementsDescription: "RAM: 10GB"
+  # Description of the license that applies to the package software
+  # (optional; Array of strings; alpha.7+)
+  licenses:
+  - "Apache 2.0"
+  - "MIT"
   # App template used to create the underlying App CR.
   # See 'App CR Spec' docs for more info
   template:
