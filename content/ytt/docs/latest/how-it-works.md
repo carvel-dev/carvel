@@ -22,7 +22,7 @@ it looks something like this:
 Where:
 - each file can have one or more YAML documents in them (separated by `---`). \
   _(from here on out, we'll refer to YAML documents as just "documents".)_
-- within a document, there are (usually) annotations and/or code. `ytt` refers to these kinds of documents as "templates".
+- within a document, when there are annotations and/or code, `ytt` refers to these as "templates".
 - when a template is annotated with [`@data/values`](ytt-data-values.md#declaring-and-using-data-values), we call them "Data Values":
   ```yaml
   #@data/values
@@ -35,7 +35,8 @@ Where:
   ---
   ...
   ``` 
-- the remaining templates (i.e. those without an annotation at the top of the document) are the primary objects of the pipeline; here we will call them simply "the Templates". The result of the Templates is the output of the pipeline.
+    TODO:  (make explicit that it's the _document_ not just any node in it).
+- the remaining templates (i.e. those without an annotation at the top of the document) are the primary objects of the pipeline; here we will call them simply "the Templates". The result of evaluating the Templates is the output of the pipeline.
 
 In the description, below,
 - "template" is any document with annotations/code, and 
@@ -45,16 +46,16 @@ In the description, below,
 
 ### Step 1: Calculate Data Values
 
-First, determine the data that will be injected in the other templates. In `ytt`, these are called "data values".
+First,
 
-1. from all input files, pluck all the "Data Values" templates and evaluate them into documents;
-1. using the first evaluated Data Value document as the base, overlay each subsequent document, [in order](ytt-data-values.md#splitting-data-values-into-multiple-files) — merging all of them into a single YAML Document: the "final Data Values".
+1. from all input files, pluck all the "Data Values" templates and evaluate them. This results in a set of documents;
+1. take the first document as a base. Then, merge each subsequent document, [in order](ytt-data-values.md#splitting-data-values-into-multiple-files). The result is a single YAML Document: the "final Data Values".
 
-Explicitly: the data values are fully calculated before `ytt` proceeds to the next step.
+All the data values are fully calculated before `ytt` proceeds to the next step.
 
 ### Step 2: Evaluate Templates
 
-Next, evaluate the remaining templates: execution the code in each.
+Next,
 
 1. evaluate the remaining templates
     - templates access _the_ Data Values via the [`@ytt:data` module](lang-ref-ytt.md#data)`)
