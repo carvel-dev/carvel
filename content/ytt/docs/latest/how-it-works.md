@@ -58,10 +58,9 @@ All the data values are fully calculated before `ytt` proceeds to the next step.
 Next,
 
 1. evaluate the remaining templates
-    - templates access _the_ Data Values via the [`@ytt:data` module](lang-ref-ytt.md#data)`)
-    - `@overlay/...` annotations are retained and deferred to the next step
-    - all other expressions are evaluated, resulting in a intermediate YAML document
-1. the full result is the "Evaluated Document Set" — the set of YAML documents implied by the templates, held in memory.
+    - templates access the final Data Values via the [`@ytt:data` module](lang-ref-ytt.md#data)`)
+    - `@overlay/...` annotations are deferred to the next step; all Starlark expressions and other annotations are evaluated, resulting in an intermediate YAML document
+1. the full result is the "Evaluated Document Set", held in memory.
 
 By the end of this step, all templates have been evaluated.
 
