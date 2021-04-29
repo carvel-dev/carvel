@@ -66,12 +66,16 @@ Allowed secret keys:
 - `username` and `password`
 - `token`: Alternative to username/password authentication
 
+Also supports [dockerconfigjson secret type](https://kubernetes.io/docs/concepts/configuration/secret/#docker-config-secrets) (v0.19.0+)
+
 ### `imgpkgBundle` authentication
 
 Allowed secret keys:
 
 - `username` and `password`
 - `token`: Alternative to username/password authentication
+
+Also supports [dockerconfigjson secret type](https://kubernetes.io/docs/concepts/configuration/secret/#docker-config-secrets) (v0.19.0+)
 
 ### `git` authentication
 
@@ -92,6 +96,8 @@ Allowed secret keys:
 Allowed secret keys:
 
 - `username` and `password`
+
+Also supports [dockerconfigjson secret type](https://kubernetes.io/docs/concepts/configuration/secret/#docker-config-secrets) (v0.19.0+)
 
 ---
 ## spec.template
