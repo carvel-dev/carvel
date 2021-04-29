@@ -16,7 +16,7 @@ a Kubernetes cluster. (If you would like to use a local registry and Kubernetes 
 If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need [`kbld`](/kbld) and kubectl.
 
 If any of your bundles contain [non-distributable layers](commands.md#non-distributable-or-foreign-layers) you will need to include
-the `--include-non-distributable` flag to each copy command in the examples provided.
+the `--include-non-distributable-layers` flag to each copy command in the examples provided.
 
 ---
 ## Step 1: Finding bundle in source registry

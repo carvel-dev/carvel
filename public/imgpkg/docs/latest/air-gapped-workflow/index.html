@@ -264,7 +264,7 @@
 a Kubernetes cluster. (If you would like to use a local registry and Kubernetes cluster, try using <a href="https://kind.sigs.k8s.io/docs/user/local-registry/" target="_blank">Kind</a>)</p>
 <p>If you would like to deploy the results of this scenario to your Kubernetes cluster, you will additionally need <a href="/kbld/"><code>kbld</code></a> and kubectl.</p>
 <p>If any of your bundles contain <a href="/imgpkg/docs/latest/commands/#non-distributable-or-foreign-layers">non-distributable layers</a> you will need to include
-the <code>--include-non-distributable</code> flag to each copy command in the examples provided.</p>
+the <code>--include-non-distributable-layers</code> flag to each copy command in the examples provided.</p>
 <hr>
 <h2 id="step-1-finding-bundle-in-source-registry">Step 1: Finding bundle in source registry <a href="#step-1-finding-bundle-in-source-registry" class="section-link">¶</a></h2><p>If you have already pushed a bundle to the registry, continue to the next step.</p>
 <p>If you are trying to bundle your own or third-part software, you will need to create a bundle. Refer to basic workflow&rsquo;s <a href="/imgpkg/docs/latest/basic-workflow/#step-1-creating-the-bundle">&ldquo;Step 1: Creating the bundle&rdquo; and &ldquo;Step 2: Pushing the bundle to registry&rdquo;</a>.</p>

@@ -108,7 +108,7 @@ These layers are interchangeably known as
 By default, imgpkg will not relocate any layers marked as non-distributable.
 
 This can cause issues when dealing with [air-gapped environments](air-gapped-workflow.md) as they may be unable to reach the external registries.
-To allow this use case, imgpkg supports the `--include-non-distributable` flag to copy all layers, even those marked as non-distributable.
+To allow this use case, imgpkg supports the `--include-non-distributable-layers` flag to copy all layers, even those marked as non-distributable.
 
 Note that usage of this flag shall not preclude your obligation to comply with the terms of the image license(s).
 

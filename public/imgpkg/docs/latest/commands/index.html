@@ -307,7 +307,7 @@ These layers are interchangeably known as
 <a href="https://docs.docker.com/registry/spec/manifest-v2-2/" target="_blank">Foreign</a> (by Docker) and denoted in the layer&rsquo;s MediaType.</p>
 <p>By default, imgpkg will not relocate any layers marked as non-distributable.</p>
 <p>This can cause issues when dealing with <a href="/imgpkg/docs/latest/air-gapped-workflow/">air-gapped environments</a> as they may be unable to reach the external registries.
-To allow this use case, imgpkg supports the <code>--include-non-distributable</code> flag to copy all layers, even those marked as non-distributable.</p>
+To allow this use case, imgpkg supports the <code>--include-non-distributable-layers</code> flag to copy all layers, even those marked as non-distributable.</p>
 <p>Note that usage of this flag shall not preclude your obligation to comply with the terms of the image license(s).</p>
 <hr>
 <h2 id="tag">Tag <a href="#tag" class="section-link">¶</a></h2><p><code>imgpkg tag</code> supports a <code>list</code> subcommand that allows users to list the image tags pushed to registries. The command features an <code>--image</code>/<code>-i</code> option that allows a user to specify an image name.</p>
