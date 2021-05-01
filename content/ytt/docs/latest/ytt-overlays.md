@@ -2,6 +2,12 @@
 title: Overlays
 ---
 
+## Overview
+
+The way to describe patch-like edits in `ytt` is via "Overlays".
+
+_(For a high-level overview of `ytt`, see [How it works](how-it-works.md).)_
+
 ## What are they?
 
 Sometimes it makes more sense to patch some YAML rather than template it.

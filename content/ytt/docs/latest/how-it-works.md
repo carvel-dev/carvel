@@ -4,11 +4,11 @@ title: "How it works"
 
 ## Overview
 
-Having a picture of how your inputs are processed in `ytt` can be helpful.
+Let's look at how `ytt` works. At a high level, it's a pipeline in four steps.
 
 ## The Pipeline
 
-When you invoke `ytt`, 
+When you invoke `ytt` ...
 
 ```console
 $ ytt -f (input files)
@@ -19,63 +19,117 @@ it looks something like this:
 ![ytt pipeline overview](/images/ytt/ytt-pipeline-overview.jpg)
 <!-- source: https://miro.com/app/board/o9J_lIfcKZY=/?moveToWidget=3074457357774380591&cot=14 --> 
 
-Where:
-- each file can have one or more YAML documents in them (separated by `---`). \
+where ...
+- each "input file" can have one or more YAML documents in them (separated by `---`). \
   _(from here on out, we'll refer to YAML documents as just "documents".)_
-- within a document, when there are annotations and/or code, `ytt` refers to these as "templates".
-- when a template is annotated with [`@data/values`](ytt-data-values.md#declaring-and-using-data-values), we call them "Data Values":
+- if a document contains one or more `ytt` annotations (i.e. lines that start with `#@`), it's called a "template".
+  ```yaml
+  # No annotations to be seen; just a plain old YAML document, here.
+  ---
+  foo: 14
+  bar:
+  - Hello, Alice
+  - Hello, Bob
+  - Hello, world
+  ```
+  vs.
+  ```yaml
+  #! This is a ytt template.
+  
+  ---
+  foo: 14
+  bar:
+  #@ for/end name in ["Alice", "Bob", "world"]:
+  - #@ "Hello, " + name
+  ```
+- when a template starts with the [`@data/values`](ytt-data-values.md#declaring-and-using-data-values) annotation, it's called a "Data Values":
   ```yaml
   #@data/values
   ---
+  instances: 8
   ...
   ```
-- when a template is annotated with [`@overlay/match...`](lang-ref-ytt-overlay.md#overlays-as-files), we refer to those as "Overlays":
+- when a template _starts_ with the [`@overlay/match...`](lang-ref-ytt-overlay.md#overlays-as-files) annotation (i.e. above the `---`), it's referred to as an "overlay":
   ```yaml
-  #@overlay/match by=...
+  #@overlay/match by=overlay.all
   ---
+  metadata:
+    #@overlay/match missing_ok=True
+    namespace: staging
   ...
   ``` 
-    TODO:  (make explicit that it's the _document_ not just any node in it).
-- the remaining templates (i.e. those without an annotation at the top of the document) are the primary objects of the pipeline; here we will call them simply "the Templates". The result of evaluating the Templates is the output of the pipeline.
+  _(the details here are unimportant, just know this is an example of an overlay)_
+  
+- the remaining templates (i.e. _without_ either of those annotations at the top of the document) are known as "the Templates" (capital 'T'). These are the files that, when evaluated, results in the output of the pipeline: the desired YAML files you expect to come out.
+  ```yaml
+  #@ load("@ytt:data", "data")
+  
+  ---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: my-app
+  spec:
+    replicas: #@ data.values.instances
+  ... 
+  ```
+  _(again, the details don't matter, yet; just know this is a "Template")_
 
-In the description, below,
-- "template" is any document with annotations/code, and 
-- "the Templates" are the set of templates that just happen to _not_ have any special annotation at the top.
-
-`ytt` processes these various flavors of templates in four (4) steps:
+Now that we have a sense of each kind of input file, let's explore what happens at each step in the pipeline.
 
 ### Step 1: Calculate Data Values
 
 First,
 
-1. from all input files, pluck all the "Data Values" templates and evaluate them. This results in a set of documents;
-1. take the first document as a base. Then, merge each subsequent document, [in order](ytt-data-values.md#splitting-data-values-into-multiple-files). The result is a single YAML Document: the "final Data Values".
+1. from the input files, grab all the "Data Values" templates;
+1. evaluate those templates, yielding a list of documents;
+1. merge those documents, [in order](ytt-data-values.md#splitting-data-values-into-multiple-files). That is, start with the first document and then overlay the second one onto it; then overlay the third document on top of _that_, and so on...
 
-All the data values are fully calculated before `ytt` proceeds to the next step.
+The result of all this is the final set of values that will be available to other templates: the "final Data Values", [above](#the-pipeline).
 
 ### Step 2: Evaluate Templates
 
-Next,
-
-1. evaluate the remaining templates
-    - templates access the final Data Values via the [`@ytt:data` module](lang-ref-ytt.md#data)`)
-    - `@overlay/...` annotations are deferred to the next step; all Starlark expressions and other annotations are evaluated, resulting in an intermediate YAML document
-1. the full result is the "Evaluated Document Set", held in memory.
-
-By the end of this step, all templates have been evaluated.
+Next, evaluate the remaining templates:
+1.  "evaluate" means executing all of the Starlark code: loops are run, conditionals decided, expressions evaluated.
+1.  one notable exception are the overlay annotations (i.e. those that start with `@overlay/...`), these are deferred until the next step.
+1.  a template accesses input variables (i.e. the Data Values calculated in the previous step) via the [`@ytt:data` module](lang-ref-ytt.md#data);
+    
+The result of all this evaluation is a set of YAML documents, customized by the inputs (shown as "Evaluated DocSet" in the diagram, [above](#the-pipeline)).
 
 ### Step 3: Apply Overlays
 
-The penultimate step is to apply "Overlays" onto the evaluated "Templates"
+Next...
 
 1. split the "Evaluated Document Set" into two groups:
     - "Overlay Documents" — documents annotated with [`@overlay/match...`](lang-ref-ytt-overlay.md#overlays-as-files)
-    - "Template Documents" — the remaining documents
-1. apply each Overlay on top of the "Template Documents", [in order](lang-ref-ytt-overlay.md#overlay-order).
-1. the result is the "Output Document Set" — the finalized set of YAML documents, in memory.
+    - "Template Documents" — the remaining documents (remember, these are what will ultimately be the output of this pipeline)
+1. apply each "Overlay Document" on top of the set of "Template Documents".\
+   You can think of each overlay as like a SQL `update` command:
+   - the value of it's `by` argument is like a `where` clause that selects over the whole collection of "Template Documents". For example, 
+     ```yaml
+     #@overlay/match by=overlay.subset({"kind": "Deployment"}), ...
+     ---
+     ```
+      selects all of the documents which contain a key `"kind"` whose value is `"Deployment"`
+   - for each of the documents selected, apply the overlay on top of it. This is like a series of `set` clauses, each updating a portion of the document. For example,
+     ```yaml
+     #@overlay/match by=overlay.subset({"kind": "Deployment"}), ...
+     ---
+     #@overlay/match-child-defaults missing_ok=True
+     metadata:
+       labels:
+         app: frontend
+     ```
+     sets each "Deployment"'s `metadata.labels.app` to be `"frontend"`.
+1. repeat that process for each "Overlay Document", [in order](lang-ref-ytt-overlay.md#overlay-order).
+   
+The result is (shown as "Output DocSet" in the diagram, [above](#the-pipeline)) — the finalized set of YAML documents, in memory. Which leaves one last step...
 
 ### Step 4: Print
-- iterate over the "Output Document Set", rendering each file's set of YAML Documents.
+
+This is simply iterating over the "Output Document Set", rendering each YAML Document ("Output Files", [above](#the-pipeline)).
+
+The result is sent to standard out (suitable for piping into other tools). If desired the output can be sent instead to disk using the [`--output...` flags](outputs.md).
 
 ## Further Reading
 

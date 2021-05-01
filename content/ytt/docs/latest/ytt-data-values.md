@@ -7,6 +7,8 @@ title: ytt @data/values
 The standard way to externalize configuration values is to declare them as "Data Values"
 and then reference those values in templates.
 
+_(For a high-level overview of `ytt`, see [How it works](how-it-works.md).)_
+
 ## Declaring and Using Data Values
 
 A Data Values file is a YAML document annotated with `@data/values`.

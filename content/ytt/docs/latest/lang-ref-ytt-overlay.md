@@ -75,6 +75,8 @@ metadata:
 
 See also: [Overlay files example](/ytt/#example:example-overlay-files) in online playground.
 
+_(For a high-level overview of `ytt`, see [How it works](how-it-works.md).)_
+
 ### Overlay order
 
 (as of v0.13.0)
