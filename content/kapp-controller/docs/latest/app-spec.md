@@ -120,6 +120,9 @@ spec:
         version: "0.1.0"
         # (optional)
         repository:
+          # repository url;
+          # scheme of oci:// will fetch experimental helm oci chart (v0.19.0+)
+          # (required)
           url: https://...
           # (optional)
           secretRef:
