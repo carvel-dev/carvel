@@ -64,7 +64,8 @@ directories:
       # image URL; could be plain, tagged or digest reference (required)
       url: gcr.io/repo/image:v1.0.0
       # specifies name of a secret with registry auth details;
-      # secret may include 'username', 'password' and/or 'token' keys (optional)
+      # secret may include 'username', 'password' and/or 'token' keys;
+      # as of v0.19.0+, dockerconfigjson secrets are also supported (optional)
       secretRef:
         # (required)
         name: my-image-auth
@@ -76,7 +77,8 @@ directories:
       # could be plain, tagged or digest reference (required)
       image: gcr.io/repo/bundle:v1.0.0
       # specifies name of a secret with registry auth details;
-      # secret may include 'username', 'password' and/or 'token' keys (optional)
+      # secret may include 'username', 'password' and/or 'token' keys;
+      # as of v0.19.0+, dockerconfigjson secrets are also supported (optional)
       secretRef:
         # (required)
         name: my-image-auth
@@ -122,10 +124,12 @@ directories:
       version: "1.2.1"
       # specifies Helm repository to fetch from (optional)
       repository:
-        # repository url (required)
+        # repository url; supports exprimental oci helm fetch via
+        # oci:// scheme (required)
         url: https://...
         # specifies name of a secret with helm repo auth details;
-        # secret may include 'username', 'password' (optional)
+        # secret may include 'username', 'password'; as of v0.19.0,
+        # dockerconfigjson secrets are also supported (optional)
         secretRef:
           # (required)
           name: my-helm-auth
