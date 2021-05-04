@@ -63,7 +63,7 @@ params:
       - latest
   kapp-controller:
     name: kapp-controller
-    root_link: https://github.com/vmware-tanzu/carvel-kapp-controller # not enabled yet: /kapp-controller/
+    root_link: /kapp-controller/
     latest_docs_link: /kapp-controller/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
     search: true

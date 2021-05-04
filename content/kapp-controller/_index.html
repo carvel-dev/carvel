@@ -6,7 +6,7 @@ title: "kapp-controller"
     <div class="wrapper clearfix">
         <div class="text-block">
             <h1>Lightweight continuous delivery to Kubernetes</h1>
-            <p>TODO Sync any number of data sources into a consistent structure by writing a YAML definition. Share the definition or generated lockfile and ensure that your whole team is working under the same expectations.</p>
+            <p>Codify your application deployment in a first-class Kubernetes resource &mdash; App CR. Have Kubernetes fetch application configuration from various sources, template and customize it, and see it converge continiously.</p>
             <div class="buttons">
                 <a class="button" href="#examples">See Examples</a>
                 <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-kapp-controller/releases">Install</a>
@@ -21,67 +21,27 @@ title: "kapp-controller"
             <div class="icon">
                 <img src="/img/structure-oriented.svg" />
             </div>
-            <h3>Declarative</h3>
-            <p>TODO Provide the desired final structure of the directory and let vendir handle how to get there. 
-                No more manually cloning repositories,checking multiple sources for updates, or trying 
-                to remember CURL flags while fetching content over HTTP.</p>
+            <h3>Consistent</h3>
+            <p>App CR provides a common consistent API for configuring and deploying your applications regardless if it is a Helm chart, plain YAML configuration, ytt templates, etc.</p>
         </div>
         <div class="col">
             <div class="icon">
                 <img src="/img/modularized-config.svg" />
             </div>
-            <h3>Purpose-built</h3>
-            <p>TODO Like the rest of the Carvel suite, vendir was made to accomplish its task and do no more. 
-                Sync your files then use them however you like without restrictive permissions or wrestling your tools for ownership.</p>
+            <h3>Composable</h3>
+            <p>Take advantage of different tools for each stage -- fetch, template and deploy. For example, fetch Helm templates from a Git repository, use Helm to template them, make modifications with ytt overlays, and finally deploy with kapp.</p>
         </div>
         <div class="col">
             <div class="icon">
                 <img src="/img/deterministic.svg" />
             </div>
-            <h3>Repeatable</h3>
-            <p>TODO Ensure that the same files will be collected across all invocations by syncing from the generated lockfile, 
-                with tags and URLs replaced by resolved SHAs, and digests.</p>
+            <h3>Lightweight</h3>
+            <p>kapp-controller delegates all the heavy lifting to existing configuration management and deployment tools. In doing so, kapp-controller itself is kept very simple, and therefore provides a high degree of reliability.</p>
         </div>
     </div>
 </div>
 
 <div class="wrapper">
-    <div class="experimental tools">
-        <h2>Features</h2>
-        <div class="grid three">
-            <div class="col">
-                <div class="icon">
-                    <img src="/img/intuitive.svg" />
-                </div>
-                <div class="content">
-                    <h3>Support Various Sources</h3>
-                    <p>TODO Specify the source of a managed directory from a git repository at a 
-                        given revision, a docker image, a helm chart, or many others
-                    </p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="icon">
-                    <img src="/img/overlays.svg" />
-                </div>
-                <div class="content">
-                    <h3>Take Portions of a Source</h3>
-                    <p>TODO Retain only what you need and leave the rest, keeping your directory bloat-free 
-                        regardless of upstream changes, with additional rules for common files (e.g. a licensing file)</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="icon">
-                    <img src="/img/yaml.svg" />
-                </div>
-                <div class="content">
-                    <h3>Leave Subdirectories Untouched</h3>
-                    <p>TODO vendir allows you to mark paths as manually managed, leaving your files safely 
-                        unmodified while reaping the benefits of a synced folder</p>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="text-content" id="examples">
         <h2>Basic Usage</h2>
         <p>Describe in <code>simple-app.yml</code> how to fetch, template, and deploy your application:</p>
