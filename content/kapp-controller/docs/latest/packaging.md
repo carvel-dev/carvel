@@ -96,6 +96,8 @@ spec:
   licenses:
   - "Apache 2.0"
   - "MIT"
+  # Timestamp of release (iso8601 formatted string; optional)
+  releasedAt: 2021-05-05T18:57:06Z
   # App template used to create the underlying App CR.
   # See 'App CR Spec' docs for more info
   template:
