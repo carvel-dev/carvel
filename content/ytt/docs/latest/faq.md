@@ -106,13 +106,15 @@ ytt wraps two concepts in its comment syntax:
 1. Annotations on a node
 1. Directives for ytt
 
-Annotations do not have a space, and they refer to a given node in the tree. These comments attach metadata to the annotated node, which can be used during templating.\
-For example, in order to insert a node via an [overlay](#ytt-overlays.md), we would annotate that node with `#@overlay/insert`.\
-To mark a document as containing [data values](#ytt-data-values.md), we annotate the document start marker with `#@data/values`.
+Annotations do not have a space, and they refer to a given node in the tree. These comments attach metadata to the annotated node, which can be used during templating.
+Some examples of annotations are:
+- When inserting a node via an [overlay](#ytt-overlays.md), we would annotate that node with `#@overlay/insert`.
+- When we want to mark a document as containing [data values](#ytt-data-values.md), we annotate the document start marker with `#@data/values`.
 
-Directives, on the other hand, do include a space, and are used to _direct_ ytt to execute the arguments.\
-For example, in order to [load](#lang-ref-load.md) a library, we add the `#@ load` directive to the doc, unattached to any particular node.\
-To begin and end a [for loop](#lang-ref-for.md) or [conditional](lang-ref-if.md), we use the `#@ for`, `#@ if`, and `#@ end` directives.
+Directives, on the other hand, do include a space, and are used to _direct_ ytt to execute the arguments.
+Some examples of directives are:
+- [Loading](#lang-ref-load.md) a library, we add the `#@ load` directive to the doc, unattached to any particular node.
+- To begin and end a [for loop](#lang-ref-for.md) or [conditional](lang-ref-if.md), we use the `#@ for`, `#@ if`, and `#@ end` directives.
 
 For further exploration, investigate what happens when you move an annotation comment and compare it with moving a directive comment!
 
