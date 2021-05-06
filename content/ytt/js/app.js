@@ -240,6 +240,8 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     })
     
     $('button[name="' + exampleSets[0].id + '"]', parentEl).click();
+    $('button[name="' + exampleSets[1].id + '"]', parentEl).click();
+    $('button[name="' + exampleSets[2].id + '"]', parentEl).click();
   });
 
   return {
