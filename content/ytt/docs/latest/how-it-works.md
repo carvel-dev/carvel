@@ -4,7 +4,7 @@ title: "How it works"
 
 ## Overview
 
-Let's look at how `ytt` works. At a high level, it's a pipeline in four steps.
+Let's get an idea of how `ytt` works by looking at the high-level concepts and flow.
 
 ## The Pipeline
 
@@ -14,7 +14,7 @@ When you invoke `ytt` ...
 $ ytt -f (input files)
 ```
 
-it looks something like this:
+... you can think of it as a pipeline in four stages, looking something like this:
 
 ![ytt pipeline overview](/images/ytt/ytt-pipeline-overview.jpg)
 <!-- source: https://miro.com/app/board/o9J_lIfcKZY=/?moveToWidget=3074457357774380591&cot=14 --> 
