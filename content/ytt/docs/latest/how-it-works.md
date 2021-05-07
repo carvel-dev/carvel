@@ -11,7 +11,7 @@ Let's get an idea of how `ytt` works by looking at the high-level concepts and f
 When you invoke `ytt` ...
 
 ```console
-$ ytt -f (input files)
+$ ytt -f values/ -f config/
 ```
 
 ... you can think of it as a pipeline in four stages, looking something like this:
@@ -125,11 +125,11 @@ Next...
    
 The result is (shown as "Output DocSet" in the diagram, [above](#the-pipeline)) — the finalized set of YAML documents, in memory. Which leaves one last step...
 
-### Step 4: Print
+### Step 4: Serialize
 
 This is simply iterating over the "Output Document Set", rendering each YAML Document ("Output Files", [above](#the-pipeline)).
 
-The result is sent to standard out (suitable for piping into other tools). If desired the output can be sent instead to disk using the [`--output...` flags](outputs.md).
+The result is sent to standard out (suitable for piping into other tools). If desired, the output can be sent instead to disk using the [`--output...` flags](outputs.md).
 
 ## Further Reading
 
