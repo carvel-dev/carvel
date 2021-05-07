@@ -227,18 +227,20 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
       var examples = exampleSet.examples
       for (var i = 0; i < examples.length; i++) {
         $("ol#" + exampleSet.id, parentEl).append(
-            '<li><a class="item" href="#" data-example-id="' +
+            '<li><a class="item" id="item-' + examples[i].id + '" href="#" data-example-id="' +
             examples[i].id + '">' + examples[i].display_name + '</a></li>');
       }
 
       $('.dropdown-content .item', parentEl).click(function (e) {
         var example = $(this).data("example-id");
+        $('.item.active').removeClass('active');
+        $('.item#item-' + example).toggleClass("active");
         load(example, {scrollIntoView: true});
         exampleLocation.set(example);
         return false;
       });
     })
-    
+
     $('button[name="' + exampleSets[0].id + '"]', parentEl).click();
     $('button[name="' + exampleSets[1].id + '"]', parentEl).click();
     $('button[name="' + exampleSets[2].id + '"]', parentEl).click();
@@ -409,6 +411,7 @@ $(document).ready(function() {
     gist.load(gistLocation.get(), {
       scrollIntoView: true,
       preDoneCallback: function(exampleId) {
+        $('.item.active').removeClass('active');
         $("#playground").show();
       }
     });
@@ -417,6 +420,8 @@ $(document).ready(function() {
       scrollIntoView: exampleLocation.isSet(),
       preDoneCallback: function(exampleId) {
         $("#playground").show();
+        $('.item.active').removeClass('active');
+        $('.item#item-' + exampleId).toggleClass("active");
         googAnalytics.recordExampleClick(exampleId);
       }
     });

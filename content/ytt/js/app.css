@@ -124,6 +124,14 @@
   margin: 0 0 40px 40px;
 }
 
+.item {
+  background: #ffffff;
+}
+.item.active {
+  font-weight: bolder;
+  background: #DAC2FE;
+}
+
 /* Playground */
 #playground .playground-inner {
   position: relative;
