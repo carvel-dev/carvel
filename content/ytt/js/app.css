@@ -105,6 +105,7 @@
 
 .example-set.expanded {
   display: block;
+  background: #fffff4;
 }
 
 .example-set-name {
@@ -125,7 +126,7 @@
 }
 
 .item {
-  background: #ffffff;
+  background: none;
 }
 .item.active {
   font-weight: bolder;

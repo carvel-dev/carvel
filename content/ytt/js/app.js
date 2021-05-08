@@ -204,10 +204,17 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     var exampleSets = JSON.parse(data);
 
     exampleSets.forEach(exampleSet => {
-
+      
       $(".button-container").append(
-          '<button type="button" class="button example-set-button" name="' + exampleSet.id + '">' +
-           exampleSet.display_name + '</button>'
+          '<p>' +
+            '<button type="button" class="button example-set-button" name="' + exampleSet.id + '">' +
+             exampleSet.display_name + '</button>' +
+            '<div class="example-set" id="example-set-' + exampleSet.id + '">' +
+              '<h3 class="example-set-name">' + exampleSet.display_name + '</h3>' +
+              '<p class="example-set-description">' + exampleSet.description + '</p>' +
+              '<ol class="dropdown-content" id="' + exampleSet.id + '"></ol>' +
+            '</div>' +
+          '</p>'
       );
 
       $('button[name="' + exampleSet.id + '"]', parentEl).click(function () {
@@ -215,14 +222,6 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
         $('.example-set-button[name="' + exampleSet.id + '"]').toggleClass("expanded");
         return false;
       });
-
-      $(".example-sets").append(
-          '<div class="example-set" id="example-set-' + exampleSet.id + '">' +
-            '<h3 class="example-set-name">' + exampleSet.display_name + '</h3>' +
-            '<p class="example-set-description">' + exampleSet.description + '</p>' +
-            '<ol class="dropdown-content" id="' + exampleSet.id + '"></ol>' +
-          '</div>'
-      );
 
       var examples = exampleSet.examples
       for (var i = 0; i < examples.length; i++) {
