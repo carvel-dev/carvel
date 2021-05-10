@@ -21,6 +21,8 @@ toc:
         url: /security-model
       - page: Dangerous Flags
         url: /dangerous-flags
+      - page: Debugging
+        url: /debugging
   - title: Template steps
     subfolderitems:
       - page: Mozilla's sops
