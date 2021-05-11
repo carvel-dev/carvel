@@ -65,6 +65,13 @@ url.query_param_value_decode("part+part") # "part part"
 
 url.query_params_encode({"x":["1"],"y":["2","3"],"z":[""]}) # "x=1&y=2&y=3&z="
 url.query_params_decode("x=1&y=2&y=3;z")                    # {"x":["1"],"y":["2","3"],"z":[""]}
+
+u = url.parse("http://alice:secret@example.com")
+u.string()                 # "http://alice:secret@example.com"
+u.user.name                # "alice"
+u.user.password            # "secret"
+u.user.string()            # "alice:secret"
+u.without_user().string()  # "http://example.com"
 ```
 
 ### version
