@@ -32,12 +32,18 @@ For more:
 example on the playground
 * take a look at the [ytt Overlays overview](ytt-overlays.md)
 
-## Blog posts
+## Go Deeper
+
+- For a more detailed look, see [How it Works](how-it-works.md).
+
+## Further Reading
+
+### Blog posts
 
 - [ytt: The YAML Templating Tool that simplifies complex configuration management](https://developer.ibm.com/blogs/yaml-templating-tool-to-simplify-complex-configuration-management/)
 - [Deploying Kubernetes Applications with ytt, kbld, and kapp](/blog/deploying-apps-with-ytt-kbld-kapp)
 
-## Talks
+### Talks
 
 - [Introducing the YAML Templating Tool (ytt)](https://www.youtube.com/watch?v=KbB5tI_g3bo) on IBM Developer podcast
 - [YTT and Kapp @ TGI Kubernetes 079](https://www.youtube.com/watch?v=CSglwNTQiYg) with Joe Beda
