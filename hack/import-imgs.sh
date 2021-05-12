@@ -36,7 +36,7 @@ do
   if [[ ! -d "${dest_dirs}" ]]; then
     ( set -x; mkdir -p "${dest_dirs}" )
   fi
-  ( set -x; cp "$src_path" "$dest_path" )
+  ( set -x; mv "$src_path" "$dest_path" )
 done
 
 
