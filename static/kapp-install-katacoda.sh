@@ -11,7 +11,7 @@ install() {
 	# Start Kubernetes on Katacoda
 	launch.sh
 
-	wget -O- https://carvel.dev/install.sh | bash
+	wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel.dev/develop/static/install.sh | bash
 
 	git clone https://github.com/vmware-tanzu/carvel-kapp
 	echo "Cloned github.com/vmware-tanzu/carvel-kapp for examples"
