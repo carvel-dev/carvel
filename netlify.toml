@@ -52,3 +52,9 @@ HUGO_ENABLEGITINFO = "true"
   to = "https://carvel.dev/kbld"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/install.sh"
+  to = "https://raw.githubusercontent.com/vmware-tanzu/carvel.dev/develop/static/install.sh"
+  status = 302
+  force = true
