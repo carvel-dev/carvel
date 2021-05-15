@@ -184,6 +184,9 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     $.get('https://get-ytt.io/examples/' + id, function(data) {
       var content = JSON.parse(data);
 
+      $('.item.active').removeClass('active');
+      $('.item#item-' + id).addClass("active");
+
       if (opts.preDoneCallback) opts.preDoneCallback(id);
 
       var files = [];
@@ -210,7 +213,6 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
             '<button type="button" class="button example-set-button" name="' + exampleSet.id + '">' +
              exampleSet.display_name + '</button>' +
             '<div class="example-set" id="example-set-' + exampleSet.id + '">' +
-              '<h3 class="example-set-name">' + exampleSet.display_name + '</h3>' +
               '<p class="example-set-description">' + exampleSet.description + '</p>' +
               '<ol class="dropdown-content" id="' + exampleSet.id + '"></ol>' +
             '</div>' +
@@ -227,22 +229,25 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
       for (var i = 0; i < examples.length; i++) {
         $("ol#" + exampleSet.id, parentEl).append(
             '<li><a class="item" id="item-' + examples[i].id + '" href="#" data-example-id="' +
-            examples[i].id + '">' + examples[i].display_name + '</a></li>');
+            examples[i].id + '" data-group-id="' + exampleSet.id + '">' + examples[i].display_name +
+            '</a></li>');
       }
 
       $('.dropdown-content .item', parentEl).click(function (e) {
         var example = $(this).data("example-id");
-        $('.item.active').removeClass('active');
-        $('.item#item-' + example).toggleClass("active");
         load(example, {scrollIntoView: true});
         exampleLocation.set(example);
         return false;
       });
     })
-
-    $('button[name="' + exampleSets[0].id + '"]', parentEl).click();
-    $('button[name="' + exampleSets[1].id + '"]', parentEl).click();
-    $('button[name="' + exampleSets[2].id + '"]', parentEl).click();
+    var activeID = window.location.hash.replace("#example:", "", 1)
+    if (activeID && activeID != "#playground") {
+      var group = $('.item#item-' + activeID).data("group-id")
+      $('.item#item-' + activeID).addClass("active");
+      $('button[name="' + group + '"]', parentEl).click();
+    } else {
+      $('button[name="' + exampleSets[0].id + '"]', parentEl).click();
+    }
   });
 
   return {
@@ -253,7 +258,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
 function NewGist(parentEl, templates, gistLocation, blocker) {
   function load(id, opts){
     blocker.on();
-
+    $('.item.active').removeClass('active');
     $.get('https://api.github.com/gists/' + id, function(data) {
       if (opts.preDoneCallback) opts.preDoneCallback(id);
 
@@ -410,7 +415,6 @@ $(document).ready(function() {
     gist.load(gistLocation.get(), {
       scrollIntoView: true,
       preDoneCallback: function(exampleId) {
-        $('.item.active').removeClass('active');
         $("#playground").show();
       }
     });
@@ -419,8 +423,6 @@ $(document).ready(function() {
       scrollIntoView: exampleLocation.isSet(),
       preDoneCallback: function(exampleId) {
         $("#playground").show();
-        $('.item.active').removeClass('active');
-        $('.item#item-' + exampleId).toggleClass("active");
         googAnalytics.recordExampleClick(exampleId);
       }
     });
