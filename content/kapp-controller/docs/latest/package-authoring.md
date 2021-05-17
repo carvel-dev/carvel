@@ -104,7 +104,7 @@ $ kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg
 For more on using kbld to populate the `.imgpkg` directory with an ImagesLock, and why it is useful,
 see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration)
 
-Once these files have been added, our package contents bundle is ready to be pushed as shown below 
+Once these files have been added, our package contents bundle is ready to be pushed as shown below
 (**NOTE:** replace `registry.corp.com/packages/` if working through example):
 
 ```bash
@@ -117,71 +117,106 @@ Pushed 'registry.corp.com/packages/simple-app@sha256:e6255cc...'
 Succeeded
 ```
 
-### Creating the Package CR
+### Creating the CRs
 
-Final step in creating a package is to make a [Package CR](packaging.md#package-cr) that stores metadata such as name, description, how to install, etc. For this example, we will choose `simple-app.corp.com` as a name for our package with a semantic version `1.0.0`.
-
-Once the package metadata is filled in, we will need to complete the template section. This is an App template, so take a look at the [app-spec](app-spec.md) section to learn more about what each of the template sections are for. For this example, we have chosen a basic setup that will fetch the imgpkg bundle we created in the previous section, run the templates stored inside through ytt, apply kbld transformations, and then deploy the resulting manifests with kapp.
-
-The result should end up looking something like this:
+To finish creating a package, we need to create two CRs. The first CR is the
+Package CR, which will contain high level information and descriptions about our
+package. For example,
 
 ```yaml
 apiVersion: package.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  # Kubernetes name is not used for anything specific but is still required.
-  # Use ${spec.publicName}.#{spec.version} as a convetion
+  # This will be the name of our package
+  name: simple-app.corp.com
+spec:
+  displayName: "Simple App"
+  longDescription: "Simple app consisting of a k8s deployment and service"
+  shortDescription: "Simple app for demoing"
+  categories:
+  - demo
+```
+
+Before moving on, save this yaml snippet to a file named
+`package.yml`.
+
+Lastly, we need to create a PackageVersion CR. This CR is exactly what the name
+implies: versioned metadata used to install packaged sofwtare that fits the
+description provided in the Package CR we just created. An example
+PackageVersion CR follows.
+
+```yaml
+---
+apiVersion: package.carvel.dev/v1alpha1
+kind: PackageVersion
+metadata:
   name: simple-app.corp.com.1.0.0
 spec:
-  # publicName will be used by consumers of this package.
-  # publicName should be unique across all packages, hence we
-  # recommend to use fully qualified name similar to what
-  # would be used as a name for a CRD.
-  publicName: simple-app.corp.com
-  # version will be used by consumers of this package.
-  # must be a valid semantic version string.
-  version: "1.0.0"
+  packageName: simple-app.corp.com
+  version: 1.0.0
+  releaseNotes: |
+    Initial release of the simple app package
   template:
     spec:
       fetch:
       - imgpkgBundle:
-          # replace image registry and repo with one you are using
           image: registry.corp.com/packages/simple-app:1.0.0
       template:
       - ytt:
           paths:
-          - config/
+          - "config.yml"
+          - "values.yml"
       - kbld:
           paths:
           - "-"
-          - .imgpkg/images.yml
+          - ".imgpkg/images.yml"
       deploy:
       - kapp: {}
 ```
+This PackageVersion contains some metadata fields specific to the verison, such
+as releaseNotes, but the main component of it is the template section, which
+informs kapp-controller of the actions required to install the packaged
+software. This section is an App template, so take a look at the
+[app-spec](app-spec.md) section to learn more about what each of the template
+sections are for. For this example, we have chosen a basic setup that will fetch
+the imgpkg bundle we created in the previous section, run the templates stored
+inside through ytt, apply kbld transformations, and then deploy the resulting
+manifests with kapp.
 
-Lets store this in a file named `simple-app.corp.com.1.0.0.yml`. Remember to replace 
-`registry.corp.com/packages/` in the YAML above with your registry and repository if 
-following along. 
+Lets store this in a file named `1.0.0.yml`. Remember to replace
+`registry.corp.com/packages/` in the YAML above with your registry and repository if
+following along.
 
 ---
 ### Testing your package
 
-Now that we have our Package CR defined, we can test it on the cluster. We will momentarily act as a package consumer. First, we need to make our package available on the cluster, so let's apply the Package CR we just created directly to the cluster:
+Now that we have our Package CR defined, we can test it on the cluster. We will
+momentarily act as a package consumer. First, we need to make our package
+available on the cluster, so let's apply the Package CR we just created directly
+to the cluster:
 
 ```
-$ kapp deploy -a package -f simple-app.corp.com.1.0.0.yml
+$ kapp deploy -a package -f simple-app.corp.com.yml -f simple-app.corp.com.1.0.0.yml
 ```
 
-Typically Package CR is made available to the cluster from a package repository, however, in this case it's useful to apply it to the cluster directly since we might need to change it a few times to get things right.
+Typically Package CR is made available to the cluster from a package repository,
+however, in this case it's useful to apply it to the cluster directly since we
+might need to change it a few times to get things right.
 
-Follow [Installing a package](package-consumption.md#installing-a-package) step from Package consumption workflow to verify that your package can be successfully installed.
+Follow [Installing a package](package-consumption.md#installing-a-package) step
+from Package consumption workflow to verify that your package can be
+successfully installed.
 
-(TODO add more info about InstalledPackage status and associated App CR.)
+While iterating on your package, it may be useful to check out the [debugging
+docs](debugging.md) for help troubleshooting the package or the underlying app.
 
 ---
 ### Creating a Package Repository
 
-A [package repository bundle](packaging.md#package-repository-bundle-format) is a collection of packages (more specifically collection of Package CRs). Currently our recommended way to make a package repository is by making it an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle).
+A [package repository bundle](packaging.md#package-repository-bundle-format) is
+a collection of packages (more specifically collection of Package CRs).
+Currently our recommended way to make a package repository is by making it an
+[imgpkg bundle](/imgpkg/docs/latest/resources/#bundle).
 
 The filesystem structure for package repository bundle looks like this:
 
@@ -190,21 +225,27 @@ my-pkg-repo/
 └── .imgpkg/
     └── images.yml
 └── packages/
-    └── simple-app.corp.com.1.0.0.yml
+    └── simple-app.corp.com
+        └── package.yml
+        └── 1.0.0.yml
 ```
 
-([Package Repository bundle format](packaging.md#package-repository-bundle-format) describes purpose of each directory and general recommendations.)
+([Package Repository bundle
+format](packaging.md#package-repository-bundle-format) describes purpose of each
+directory and general recommendations.)
 
 Lets start by creating the needed directories:
 
 ```bash
-$ mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages
+$ mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages/simple-app.corp.com
 ```
 
-Once the directories are created, we can copy our Package CR YAML in to the bundle's `packages` directory:
+Once the directories are created, we can copy our CR YAMLs from the previous
+step in to the proper `packages` subdirectory, in this case `simple-app.corp.com`:
 
 ```bash
-cp simple-app.corp.com.1.0.0.yml my-pkg-repo/packages
+$ cp 1.0.0.yml my-pkg-repo/packages/simple-app.corp.com
+$ cp package.yml my-pkg-repo/packages/simple-app.corp.com
 ```
 
 Next, let's use `kbld` to record which package bundles are used:
@@ -213,10 +254,14 @@ Next, let's use `kbld` to record which package bundles are used:
 $ kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.yml
 ```
 
-With the metadata files present, we can push our bundle to whatever OCI registry we plan to distribute it from:
+With the metadata files present, we can push our bundle to whatever OCI registry
+we plan to distribute it from:
 
 ```bash
 $ imgpkg push -b registry.corp.com/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
 ```
 
-The package repository is pushed. Follow the [Adding package repository](package-consumption.md#adding-package-repository) step from the package consumption workflow to see an example of adding and using a PackageRepository with kapp-controller.
+The package repository is pushed. Follow the [Adding package
+repository](package-consumption.md#adding-package-repository) step from the
+package consumption workflow to see an example of adding and using a
+PackageRepository with kapp-controller.
