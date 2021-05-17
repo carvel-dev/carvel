@@ -6,11 +6,11 @@ be used for experimenting with the packaging APIs as there will be possible brea
 To install with `kapp`:
 
 ```bash
-$ kapp deploy -a kc -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/alpha-releases/v0.19.0-alpha.7.yml
+$ kapp deploy -a kc -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/alpha-releases/v0.19.0-alpha.8.yml
 ```
 
 To install with `kubectl`:
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/alpha-releases/v0.19.0-alpha.7.yml
+$ kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/alpha-releases/v0.19.0-alpha.8.yml
 ```
