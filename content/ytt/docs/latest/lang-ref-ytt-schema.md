@@ -4,52 +4,13 @@ title: Schema module
 
 ## Overview
 
-`ytt`'s Schema feature provides a way to verify YAML structures and values with the help of annotations.
-Schema currently allows you to provide default data values, and verify that each data value file provided is compatible with the schema.
+`ytt`'s Schema feature provides a way to verify data value YAML structures and values with the help of annotations.
+A schema allows you to provide default data values, and verify that each data value file provided is type checked and validated against the schema and guaranteed to be proper.
 
-The schema definition spells out the set of nodes that must make up that kind of YAML document. Documents that are type checked and validated against the schema are guaranteed to be proper.
-
-For example, in the case of Data Values, the schema guarantees to templates that all values exist and are of the correct type. The aleviates templates from doing existence and type checks, themselves.
-
-There are two features to verify a document is compatible with a schema:
-- type checking — comparing the shape of a YAML structure against its schema’s types.
-- validation — determining whether the values contained in a YAML structure are acceptable.
----
-## Supported Types
-
-While YAML provides for an extendable range of types, the `ytt` Schema supports a specific set.
-
-### Scalar Types
-
-- `bool` — `true`, `false` (and when not strict, `yes`, `no`, `Y`, `N`, etc.)
-- `float` — e.g. `0.4`
-- `int` — e.g. `42`
-- `null` — `null`, `~`, and when value is omitted.
-- `string` — e.g. `""`, `"ConfigMap"`, `"0xbeadcafe"`
-
-
-### Algebraic Types
-
-- `any` — any valid YAML value is permitted.
-
-### Collection Types
-
-A collection type is the pair of itself (either `map` or `array`) and its contained type.
-
-#### Array type
-
-`array<type>` — a YAML sequence, each item must be of the specified `type`.
-
-Examples:
-- `array<string>` — a sequence of strings (and only strings)
-- `array<map<...>>` — a sequence containing only map instances of the same shape.
-
-#### Map type
-
-`map <keyA:typeA, keyB:typeB, ...>` — a YAML mapping that must contain exactly one item of each given key, whose value must be of the type specified.
+Using a schema guarantees to templates that all data values exist and are of the correct type. The alleviates templates from doing existence and type checks, themselves.
 
 ---
-## Defining Schema (implicitly)
+## Defining Schema
 Configuration Authors establish a Schema by capturing the structure in a YAML document with `#@schema/match` at the top:
 ```yaml
 #@schema/match data_values=True
@@ -65,11 +26,52 @@ Notes:
 - the first file containing a Schema document establishes the "base". Subsequent files containing Schema documents are overlayed onto the "base" in the order they appear (identically to how Data Values files are processed).
 
 ---
-### Inferring Types
+## Supported Types
+
+While YAML provides for an extendable range of types, the `ytt` Schema supports a specific set.
+
+### Scalar and Explicit types
+
+- `bool` — `true`, `false` (and when not strict, `yes`, `no`, `Y`, `N`, etc.)
+- `float` — e.g. `0.4`
+- `int` — e.g. `42`
+- `null` — `null`, `~`, and when value is omitted.
+- `string` — e.g. `""`, `"ConfigMap"`, `"0xbeadcafe"`
+- `any` — any valid YAML value is permitted. Must be set [explicitly](#@schema/type).
+
+### Array type
+
+A YAML sequence, each item must be of the specified `type`.
+
+_Example: Array of strings_
+```yaml
+- ""
+``` 
+Each array item must contain only a string
+
+_Example: Array of maps_
+```yaml
+- key1: value1
+  key2: value2
+```
+An array must contain only map instances of the same shape.
+
+### Map type
+
+A YAML mapping that must contain exactly one item of each given key, whose value must be of the type specified.
+
+_Example: Map with string value_
+```yaml
+key1: ""
+```
+A map with `key1` must have a string value.
+
+---
+## Inferring Types
 
 Structure in Schema is largely expressed by example rather than by description. Types are — by default — inferred based on the values given. The Configuration Author can override these defaults using the [`@schema/type`](#schematype) annotation.
 
-```yaml=
+```yaml
 #@schema/match data_values=True
 ---
 system_domain: ""
@@ -107,13 +109,13 @@ where:
         - `secretRef` — containing a map with one key:
             - `name` — containing a string
 
-### Inferring Default Values
+## Inferring Default Values
 
-The exact values that the Configuration Author specifies in Schema are the defaults (with one natable exception — arrays — which are detailed below). This ensures that all nodes are initialized with values, ideally with reasonable defaults.
+The exact values that the Configuration Author specifies in Schema are the defaults (with one notable exception — arrays — which are [detailed below](#inferringdefaultsforarrays)). This ensures that all nodes are initialized with values, with reasonable defaults.
 
-Configuration Consumers can enjoy specifying only those values which vary from the default, reducing risk of errors and generally making configuration easier to maintain.
+Configuration Consumers should specify only those values which vary from the default, reducing risk of errors and generally making configuration easier to maintain.
 
-#### Inferring Defaults for Scalars
+### Inferring Defaults for Scalars
 
 When a scalar value is specified, it is simply the default.  From the example, above:
 
@@ -121,7 +123,7 @@ When a scalar value is specified, it is simply the default.  From the example, a
 - `load_balancer.enable` is true by default.
 - `databases[].adapter` is `"postgres"`, by default.
 
-#### Inferring Defaults for Mappings
+### Inferring Defaults for Mappings
 
 The set of items of a map are its default: any item missing will be automatically inserted with _its_ defaults.
 
@@ -144,7 +146,7 @@ load_balancer:
   static_ip: ""
 ```
 
-#### Inferring Defaults for Arrays
+### Inferring Defaults for Arrays
 
 The default value for all arrays is an empty array. Arrays are the only type for which defaults are **not** inferred.
 
@@ -169,7 +171,7 @@ databases:
 - {}
 ```
 
-The resulting Data Values (i.e. that supplied to templates), would be:
+The resulting Data Values (i.e. that are supplied to templates), would be:
 
 ```yaml=
 databases:
@@ -196,8 +198,7 @@ databases:
     name: ""
 ```
 
-
-## Part 5: Defining Schema (explicitly)
+## Defining Schema Explicitly
 
 Configuration Authors may override inferred typing and defaults through annotations.
 
@@ -222,27 +223,20 @@ Extends the type of the node to include "null" _and_ to be "null" by default.
 @schema/nullable
 ```
 
-Notes:
-- Assumption: it is common for the Configuration Author to wish to specify that no matter the type, a value is both nullable and null, by default.
-
-_Example 1: Null string_
-
-```yaml
-#@schema/nullable
-name: ""
-```
 
 where `name` can hold a string, but also be null. `name` is `null` by default.
 
-__
-
-_Example 2: Null map_
+_Example: Nullable map and string_ 
 
 ```yaml
 #@schema/nullable
 aws:
   username: ""
   password: ""
+
+#@schema/nullable
+name: ""
 ```
 
-where `aws` is null by default. When set `aws` will be a map with the two items.
+where `aws` and `name` are null by default. When set in a data value file `aws` will be a map with the two items, and `name` will be a string.
+
