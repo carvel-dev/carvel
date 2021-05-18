@@ -200,7 +200,7 @@ Specifies which nodes on the "left" to modify.
       - `found` (`Int`) — number of actual matches
    - `List[Int|String|Function]` — must match one of the given criteria
    - Default: `1` (`Int`) (i.e. expecting to match exactly one (1) node on the "left").
-- **`missing_ok=`**`Bool` (optional) shorthand syntax for `expects="0+"`
+- **`missing_ok=`**`Bool` (optional) shorthand syntax for `expects=[0,1]`
 - **`when=`**`Int|String|List` (optional) criteria for when the overlay should apply. If the criteria is met, the overlay applies; otherwise, nothing happens.
    - `Int` — must equal this number, exactly
    - `String` (e.g. `"1+"`) — must match _at least_ the number
