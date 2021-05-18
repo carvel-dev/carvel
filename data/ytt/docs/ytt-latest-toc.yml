@@ -37,6 +37,8 @@ toc:
         url: /lang-ref-ytt-version
       - page: Template module
         url: /lang-ref-ytt-template
+      - page: Schema module
+        url: /lang-ref-ytt-schema
   - title: Language
     subfolderitems:
       - page: General
