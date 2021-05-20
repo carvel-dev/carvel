@@ -6,7 +6,7 @@ title: ytt @schema/match
 
 `ytt` schemas are currently in the **experimental** phase. To use schema features, include `--enable-experiment-schema`.
 
-Configuration authors use Schema to verify data value YAML structures and their values and define default data value configuration.
+Configuration Authors use Schema to declare data values; specifying the type and default value for each.
 
 Using a schema guarantees to templates that all data values exist and are of the correct type. This alleviates templates from doing existence and type checks themselves.
 
