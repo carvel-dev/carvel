@@ -10,11 +10,6 @@ Configuration Authors use Schema to declare data values; specifying the type and
 
 Using a schema guarantees to templates that all data values exist and are of the correct type. This alleviates templates from doing existence and type checks themselves.
 
-Common use cases:
-
-1. Set default values
-1. Provide visibility to valid values that could be updated by the consumer 
-1. Provide visibility to valid types and YAML structure that could be updated by the consumer
 
 Consider this simple example schema provided by the _configuration author_:
 
