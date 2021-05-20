@@ -1,5 +1,5 @@
 ---
-title: ytt @schema/match
+title: Using Schema
 ---
 
 ## Overview
