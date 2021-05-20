@@ -26,7 +26,7 @@ Consider this simple example schema provided by the _configuration author_:
 >   enabled: true
 >   external_ip: ""
 > ```
-A configuration _consumer_ may add their own customized data values. The data values used are limited to only the values in the schema above, and if supplied, `load_balancer.enabled` must be a `bool`, and `load_balancer.external_ip` must be a `string`.
+A Configuration _Consumer_ may customize these by providing their own data values. If supplied, `load_balancer.enabled` must be a `bool`, and `load_balancer.external_ip` must be a `string`. No additional data values can be included.
 
 > `values.yml`
 > ```yaml
