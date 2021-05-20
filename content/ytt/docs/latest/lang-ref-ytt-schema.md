@@ -4,10 +4,11 @@ title: Schema module
 
 ## Overview
 
-`ytt`'s Schema feature provides a way to verify data value YAML structures and values with the help of annotations.
-A schema allows you to provide default data values, and verify that each data value file provided is type checked and validated against the schema and guaranteed to be proper.
+`ytt` schemas are currently in the **experimental** phase. To use schema features, include `--enable-experiment-schema`.
 
-Using a schema guarantees to templates that all data values exist and are of the correct type. The alleviates templates from doing existence and type checks, themselves.
+`ytt`'s Schema feature provides a way to verify data value YAML structures and values with the help of annotations.
+
+A schema allows you to provide default data values, and verify that each data value file provided is type checked and validated against the schema and guaranteed to be proper.
 
 ---
 ## Defining Schema
@@ -30,41 +31,16 @@ Notes:
 
 While YAML provides for an extendable range of types, the `ytt` Schema supports a specific set.
 
-### Scalar and Explicit types
+### Types
 
 - `bool` — `true`, `false` (and when not strict, `yes`, `no`, `Y`, `N`, etc.)
 - `float` — e.g. `0.4`
 - `int` — e.g. `42`
 - `null` — `null`, `~`, and when value is omitted.
 - `string` — e.g. `""`, `"ConfigMap"`, `"0xbeadcafe"`
-- `any` — any valid YAML value is permitted. Must be set [explicitly](#@schema/type).
-
-### Array type
-
-A YAML sequence, each item must be of the specified `type`.
-
-_Example: Array of strings_
-```yaml
-- ""
-``` 
-Each array item must contain only a string
-
-_Example: Array of maps_
-```yaml
-- key1: value1
-  key2: value2
-```
-An array must contain only map instances of the same shape.
-
-### Map type
-
-A YAML mapping that must contain exactly one item of each given key, whose value must be of the type specified.
-
-_Example: Map with string value_
-```yaml
-key1: ""
-```
-A map with `key1` must have a string value.
+- `any` — any valid YAML value is permitted. Must be set [explicitly](#schematype).
+- `map` — A YAML mapping that must contain exactly one item of each given key, whose value must be of the type specified.
+- `array` — A YAML sequence, each item must be of the specified `type`.
 
 ---
 ## Inferring Types
@@ -111,9 +87,9 @@ where:
 
 ## Inferring Default Values
 
-The exact values that the Configuration Author specifies in Schema are the defaults (with one notable exception — arrays — which are [detailed below](#inferringdefaultsforarrays)). This ensures that all nodes are initialized with values, with reasonable defaults.
+The exact values specified in Schema are the defaults (with one notable exception — arrays — which are [detailed below](#inferring-defaults-for-arrays)). This ensures that all nodes are initialized with values, with reasonable defaults.
 
-Configuration Consumers should specify only those values which vary from the default, reducing risk of errors and generally making configuration easier to maintain.
+Configuration Consumers should specify in their data values file only those values which vary from the default, reducing risk of errors and generally making configuration easier to maintain.
 
 ### Inferring Defaults for Scalars
 
@@ -159,7 +135,7 @@ When values for an array _are_ provided by the Configuration Consumer, each item
 
 Focusing on just `databases`, if the Configuration Consumer supplies this Data Value:
 
-```yaml=
+```yaml
 #@data/values
 ---
 databases:
@@ -173,7 +149,7 @@ databases:
 
 The resulting Data Values (i.e. that are supplied to templates), would be:
 
-```yaml=
+```yaml
 databases:
 - name: uaa
   adapter: postgresql
@@ -240,3 +216,11 @@ name: ""
 
 where `aws` and `name` are null by default. When set in a data value file `aws` will be a map with the two items, and `name` will be a string.
 
+If evaluated without any data values, it results in:
+```yaml
+aws:
+  username: null
+  password: null
+
+name: null
+```
