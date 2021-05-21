@@ -22,7 +22,7 @@ Configuration Authors establish a Schema by capturing the structure in a YAML do
   is not set to `True`, this results in an error.
 
 Notes:
-- Schema must be defined _before_ any other files containing YAML can be processed. Therefore, a file containing a Schema document must not contain other kinds of documents.
+- a file containing a Schema document must not contain other kinds of documents. This is because schema must be defined _before_ templates can be processed.
 - files containing Schema documents will be detected among input files (i.e. those specified by `-f`).
 - the first file containing a Schema document establishes the "base". Subsequent files containing Schema documents are overlayed onto the "base" in the order they appear (identically to how Data Values files are processed).
 
