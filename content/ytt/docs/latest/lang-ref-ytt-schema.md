@@ -112,7 +112,9 @@ When the Configuration Consumer supplies an empty map (i.e. `{}`), all items are
 
 For example,
 
-`load_balancer: {}`
+    ```yaml
+    load_balancer: {} 
+    ```
 
 is defaulted to:
 
