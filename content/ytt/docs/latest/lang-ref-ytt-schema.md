@@ -220,9 +220,6 @@ where `aws` and `name` are null by default. When set in a data value file `aws` 
 
 If evaluated without any data values, it results in:
 ```yaml
-aws:
-  username: null
-  password: null
-
+aws: null
 name: null
 ```
