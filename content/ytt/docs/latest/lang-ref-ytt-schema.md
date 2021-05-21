@@ -45,7 +45,7 @@ While YAML provides for an extendable range of types, the `ytt` Schema supports 
 ---
 ## Inferring Types
 
-Structure in Schema is largely expressed by example rather than by description. Types are — by default — inferred based on the values given. The Configuration Author can override these defaults using the [`@schema/type`](#schematype) annotation.
+Structure in Schema is largely expressed by example rather than by description. Types are — by default — inferred based on the values given.
 
 ```yaml
 #@schema/match data_values=True
