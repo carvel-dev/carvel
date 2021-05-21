@@ -182,7 +182,7 @@ Configuration Authors may override inferred typing and defaults through annotati
 
 ### @schema/type
 
-Explicitly sets the type of the annotated node.
+Explicitly configures the type of the annotated node. Currently, the only supported configuration is whether to allow any type or not.
 
 ```yaml
 @schema/type any=True
