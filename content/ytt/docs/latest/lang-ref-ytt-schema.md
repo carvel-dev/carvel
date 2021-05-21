@@ -128,7 +128,7 @@ load_balancer:
 
 The default value for all arrays is an empty array. Arrays are the only type for which defaults are **not** inferred.
 
-From the example, above,
+From the example, [above](#inferring-types),
 
 - `app_domains`, if not otherwise specified is `[]`
 - `databases`, if not otherwise specified is `[]`
