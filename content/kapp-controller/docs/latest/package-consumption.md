@@ -69,16 +69,15 @@ Once the deploy has finished, we are able to list the packages and see which one
 
 ```bash
 $ kubectl get packages
-NAME                             PUBLIC-NAME           VERSION      AGE
-simple-app.corp.com.1.0.0        simple-app.corp.com   1.0.0        20s
-simple-app.corp.com.2.0.0        simple-app.corp.com   2.0.0        20s
-simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com   3.0.0-rc.1   20s
+NAME                  DISPLAY NAME   CATEGORIES   SHORT DESCRIPTION        AGE
+simple-app.corp.com   Simple App     demo         Simple app for demoing   2s
 ```
 
-If we want, we can inspect these packages further to get more info about what they're installing:
+If we want, we can inspect the package further to get more detailed high level
+info:
 
 ```bash
-$ kubectl get package simple-app.corp.com.1.0.0 -o yaml
+$ kubectl get package simple-app.corp.com -o yaml
 ```
 
 This will show us the package yaml, which will look something like this:
@@ -88,34 +87,78 @@ This will show us the package yaml, which will look something like this:
 apiVersion: package.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: simple-app.corp.com.1.0.0
+  name: simple-app.corp.com
 spec:
-  publicName: simple-app.corp.com
-  version: 1.0.0
-  displayName: "simple-app v1.0.0"
-  description: "Package for simple-app version 1.0.0"
+  categories:
+  - demo
+  displayName: Simple App
+  longDescription: Simple app consisting of a k8s deployment and service
+  shortDescription: Simple app for demoing
+```
+
+Once we have found a package which fits what we are looking for, we can take a
+look at what versions of that package are available. To do this, we can list the
+PackageVersion CRs in the cluster:
+
+```bash
+$ kubectl get packageversions
+```
+
+If there are numerous available packages, each with many versions, this list can
+become a bit unwieldy, so we can also list the package versions specific to
+particular package using the `--field-selector` option on kubectl get.
+
+```bash
+$ kubectl get packageversions --field-selector spec.packageName=simple-app.corp.com
+NAME                             PACKAGE NAME          VERSION      AGE
+simple-app.corp.com.1.0.0        simple-app.corp.com   1.0.0        8m45s
+simple-app.corp.com.2.0.0        simple-app.corp.com   2.0.0        8m45s
+simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com   3.0.0-rc.1   8m45s
+```
+
+From here, if we are interested, we can further inspect each version to discover
+information such as release notes, installation steps, licenses, etc. For
+example,
+
+```bash
+$ kubectl get packageversions/simple-app.corp.com.2.0.0 -oyaml
+```
+
+will show us more details on version `2.0.0` of the `simple-app.corp.com` package:
+
+```yaml
+apiVersion: package.carvel.dev/v1alpha1
+kind: PackageVersion
+metadata:
+  name: simple-app.corp.com.2.0.0
+spec:
+  packageName: simple-app.corp.com
+  version: 2.0.0
+  releaseNotes: |
+    Adds overlays to control the number of pods
   template:
     spec:
+      deploy:
+      - kapp: {}
       fetch:
       - imgpkgBundle:
-          image: k8slt/kctrl-example-pkg:v1.0.0
+          image: index.docker.io/k8slt/kctrl-example-pkg@sha256:73713d922b5f561c0db2a7ea5f4f6384f7d2d6289886f8400a8aaf5e8fdf134a
       template:
       - ytt:
           paths:
-          - "config.yml"
-          - "values.yml"
+          - config-step-2-template
+          - config-step-2a-overlays
       - kbld:
           paths:
-          - "-"
-          - ".imgpkg/images.yml"
-      deploy:
-      - kapp: {}
+          - '-'
+          - .imgpkg/images.yml
 ```
 
-This simple package will fetch the templates stored in the
-`k8slt/kctrl-example-pkg:v1.0.0` bundle, template them using ytt and kbld, and finally
-deploy them using kapp. Once deployed, there will be a basic greeter app
-running in the cluster. Since this is what we want, we can now move on to installation.
+Here we can see this version will fetch the templates stored in the
+`k8slt/kctrl-example-pkg:v1.0.0` bundle, template them using ytt and kbld, and
+finally deploy them using kapp. Once deployed, there will be a basic greeter app
+running in the cluster. Since this is what we want, we can now move on to
+installation.
 
 ## Installing a package
 
@@ -130,9 +173,10 @@ metadata:
   namespace: default
 spec:
   serviceAccountName: default-ns-sa
-  packageRef:
-    publicName: simple-app.corp.com
-    version: 1.0.0
+  packageVersionRef:
+    packageName: simple-app.corp.com
+    versionSelection:
+      constraint: 1.0.0
   values:
   - secretRef:
       name: pkg-demo-values
@@ -148,10 +192,11 @@ stringData:
     hello_msg: "hi"
 ```
 
-This CR references the package we decided to install in the previous section
-using the Package CR's `publicName` and `version`. The InstalledPackage also
-references the service account which will be used to install the package, as well
-as values to include in the templating step in order to customize our installation.
+This CR references the PackageVersion we decided to install in the previous
+section using the package versions `packageName` and `version` fields. The
+InstalledPackage also references the service account which will be used to
+install the package, as well as values to include in the templating step in
+order to customize our installation.
 
 To install above package, we will also need to create `default-ns-sa` service account (refer to [Security model](security-model.md) for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
 
