@@ -6,9 +6,9 @@ title: Schema module
 
 `ytt` schemas are currently in the **experimental** phase. To use schema features, include `--enable-experiment-schema`.
 
-`ytt`'s Schema feature provides a way to verify data value YAML structures and values with the help of annotations.
+Configuration Authors use Schema to declare data values' type and default value.
 
-A schema allows you to provide default data values, and verify that each data value file provided is type checked and validated against the schema and guaranteed to be proper.
+Supplemental data value files provided by Configuration Consumers are guaranteed to have the same types and structure as the schema. When a data value is used in a template, it is guaranteed to exist and be the proper type.
 
 ---
 ## Defining Schema
@@ -22,9 +22,9 @@ Configuration Authors establish a Schema by capturing the structure in a YAML do
   is not set to `True`, this results in an error.
 
 Notes:
+- files containing Schema documents are supplied to `ytt` by `-f`.
+- it's possible to split a Schema into multiple files. The final Schema will be the _merged_ result. Like [data values](ytt-data-values.md#splitting-data-values-into-multiple-files), merging is controlled via [overlay annotations](lang-ref-ytt-overlay.md) and follows same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order). 
 - a file containing a Schema document must not contain other kinds of documents. This is because schema must be defined _before_ templates can be processed.
-- files containing Schema documents will be detected among input files (i.e. those specified by `-f`).
-- the first file containing a Schema document establishes the "base". Subsequent files containing Schema documents are overlayed onto the "base" in the order they appear (identically to how Data Values files are processed).
 
 ---
 ## Supported Types
@@ -38,9 +38,9 @@ While YAML provides for an extendable range of types, the `ytt` Schema supports 
 - `int` — e.g. `42`
 - `null` — `null`, `~`, and when value is omitted.
 - `string` — e.g. `""`, `"ConfigMap"`, `"0xbeadcafe"`
-- `any` — any valid YAML value is permitted. Must be set [explicitly](#schematype).
 - `map` — A YAML mapping that must contain exactly one item of each given key, whose value must be of the type specified.
 - `array` — A YAML sequence, each item must be of the specified `type`.
+- `any` — any valid YAML value is permitted. Must be set [explicitly](#schematype).
 
 ---
 ## Inferring Types
@@ -87,7 +87,7 @@ where:
 
 ## Inferring Default Values
 
-The exact values specified in Schema are the defaults (with one notable exception — arrays — which are [detailed below](#inferring-defaults-for-arrays)). This ensures that all nodes are initialized with values, with reasonable defaults.
+The exact values specified in Schema are the defaults (with one notable exception — arrays — which are [detailed below](#inferring-defaults-for-arrays)).
 
 Configuration Consumers should specify in their data values file only those values which vary from the default, reducing risk of errors and generally making configuration easier to maintain.
 
@@ -201,25 +201,44 @@ Extends the type of the node to include "null" _and_ to be "null" by default.
 @schema/nullable
 ```
 
-
-where `name` can hold a string, but also be null. `name` is `null` by default.
-
 _Example: Nullable map and string_ 
 
 ```yaml
+#@schema/match data_values=True
+---
 #@schema/nullable
 aws:
-  username: ""
-  password: ""
+  username: admin
+  password: "1234"
 
 #@schema/nullable
-name: ""
+name: dev
 ```
 
-where `aws` and `name` are null by default. When set in a data value file `aws` will be a map with the two items, and `name` will be a string.
-
-If evaluated without any data values, it results in:
+If evaluated without any data values, it results in `aws` and `name` null by default.
 ```yaml
 aws: null
 name: null
 ```
+
+If evaluated with the following data values:
+
+```yaml
+#@data/values
+---
+aws:
+  username: sa
+
+name: acceptance
+```
+
+The final values are the data values combined with the defaults provided in the schema.
+
+```yaml
+aws:
+  username: sa
+  password: "1234"
+
+name: acceptance
+```
+Because `username` was provided in the data values file, `aws` is no longer null, so the other default values for it were filled in.

@@ -11,7 +11,7 @@ Configuration Authors use Schema to declare data values; specifying the type and
 Using a schema guarantees to templates that all data values exist and are of the correct type. This alleviates templates from doing existence and type checks themselves.
 
 
-Consider this simple example schema provided by the _configuration author_:
+Consider this simple example schema and template provided by the Configuration _Author_:
 
 > `schema.yml`
 > ```yaml
@@ -21,6 +21,14 @@ Consider this simple example schema provided by the _configuration author_:
 >   enabled: true
 >   external_ip: ""
 > ```
+
+> `config.yml`
+> ```yaml
+> #@load("ytt:data", "data")
+> ---
+> service: #@ data.values.load_balancer
+> ```
+
 A Configuration _Consumer_ may customize these by providing their own data values. If supplied, `load_balancer.enabled` must be a `bool`, and `load_balancer.external_ip` must be a `string`. No additional data values can be included.
 
 > `values.yml`
@@ -31,15 +39,7 @@ A Configuration _Consumer_ may customize these by providing their own data value
 >   external_ip: 172.120.12.232
 > ```
 
-Then paired with a template
-> `config.yml`
-> ```yaml
-> #@load("ytt:data", "data")
-> ---
-> service: #@ data.values.load_balancer
-> ```
-> 
-And processed by `ytt`
+When processed by `ytt`
 ```console
 $ ytt -f schema.yml -f values.yml -f config.yml --enable-experiment-schema
 ```
