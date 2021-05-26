@@ -176,7 +176,7 @@ spec:
   packageVersionRef:
     packageName: simple-app.corp.com
     versionSelection:
-      constraint: 1.0.0
+      constraints: 1.0.0
   values:
   - secretRef:
       name: pkg-demo-values
