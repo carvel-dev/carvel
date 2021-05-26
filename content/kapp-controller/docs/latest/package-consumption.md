@@ -43,8 +43,8 @@ metadata:
   name: simple-package-repository
 spec:
   fetch:
-    image:
-      url: k8slt/corp-com-pkg-repo:1.0.0
+    imgpkgBundle:
+      image: k8slt/corp-com-pkg-repo:1.0.0
       secretRef:
         name: my-registry-creds
 ```
