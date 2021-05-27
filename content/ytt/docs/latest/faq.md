@@ -2,10 +2,6 @@
 title: FAQ
 ---
 
-## How do I template some text?
-
-[Here is an example](/ytt/#example:example-text-template) describing some ways text templating can be done.
-
 ## Data Values
 
 [Data values doc](ytt-data-values.md)
@@ -103,6 +99,25 @@ The subset matcher does not directly support regex patterns. Instead, a custom m
 
 ---
 
+## When should I include a space in my ytt comment? Does it matter? Is it `#@load` or `#@ load`? `#@overlay/match` or `#@ overlay/match`
+The space is subtly meaningful, and directly, load needs a space, while overlay/match does not – but why?
+
+ytt wraps two concepts in its comment syntax:
+1. Annotations on a node
+1. Directives for ytt
+
+Annotations do not have a space, and they refer to a given node in the tree. These comments attach metadata to the annotated node, which can be used during templating.
+Some examples of annotations are:
+- When inserting a node via an [overlay](#ytt-overlays.md), we would annotate that node with `#@overlay/insert`.
+- When we want to mark a document as containing [data values](#ytt-data-values.md), we annotate the document start marker with `#@data/values`.
+
+Directives, on the other hand, do include a space, and are used to _direct_ ytt to execute the arguments.
+Some examples of directives are:
+- [Loading](#lang-ref-load.md) a library, we add the `#@ load` directive to the doc, unattached to any particular node.
+- To begin and end a [for loop](#lang-ref-for.md) or [conditional](lang-ref-if.md), we use the `#@ for`, `#@ if`, and `#@ end` directives.
+
+For further exploration, investigate what happens when you move an annotation comment and compare it with moving a directive comment!
+
 ## Why is `ytt` complaining about "Unknown comment syntax"; can't I write standard YAML comments (#)? 
 
 You can, but it is discouraged to avoid tricky errors that can go unchecked.
@@ -151,7 +166,7 @@ Additional resources: [Load Statement doc](lang-ref-load.md)
 See the [injecting secrets doc](injecting-secrets.md).
 
 ## How do I template values within text?
-See the [text templating doc](ytt-text-templating.md).
+See the [text templating doc](ytt-text-templating.md). Additionally, see this [playground example](/ytt/#example:example-text-template) which illustrates some ways text templating can be done.
 
 ## What templating language does ytt use?
 
