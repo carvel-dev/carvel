@@ -130,10 +130,10 @@ The default value for all arrays is an empty array. Arrays are the only type for
 
 From the example, [above](#inferring-types),
 
-- `app_domains`, if not otherwise specified is `[]`
-- `databases`, if not otherwise specified is `[]`
+- `app_domains` is `[]` by default
+- `databases` is `[]` by default
 
-When values for an array _are_ provided by the Configuration Consumer, each item is defaulted based on the type specified in the schema.
+To set a non-empty value for arrays, include a Data Values file with the array's value. When values are provided, each item in the array is defaulted based on the type specified in the schema.
 
 Focusing on just `databases`, if the Configuration Consumer supplies this Data Value:
 
@@ -191,7 +191,6 @@ Explicitly configures the type of the annotated node. Currently, the only suppor
 - `any` (`bool`) — whether or not any and all types are permitted on this node (and its children)
     - to avoid confusion, this keyword argument is mutually exclusive to all other arguments; if this argument is
       provided along with others, an error results.
-__
 
 ### @schema/nullable
 
