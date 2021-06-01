@@ -188,9 +188,7 @@ Explicitly configures the type of the annotated node. Currently, the only suppor
 @schema/type any=True
 ```
 
-- `any` (`bool`) — whether or not any and all types are permitted on this node (and its children)
-    - to avoid confusion, this keyword argument is mutually exclusive to all other arguments; if this argument is
-      provided along with others, an error results.
+- `any` (`bool`) — whether or not any and all types are permitted on this node (and its children).
 
 ### @schema/nullable
 
