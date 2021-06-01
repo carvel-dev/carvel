@@ -225,8 +225,6 @@ If evaluated with the following data values:
 ---
 aws:
   username: sa
-
-name: acceptance
 ```
 
 The final values are the data values combined with the defaults provided in the schema.
