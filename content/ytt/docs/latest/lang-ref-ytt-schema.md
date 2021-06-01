@@ -192,7 +192,7 @@ Explicitly configures the type of the annotated node. Currently, the only suppor
 
 ### @schema/nullable
 
-Extends the type of the node to include "null" _and_ to be "null" by default.
+Extends the type of the node to include "null" _and_ sets the default value to be `null`.
 
 ```yaml
 @schema/nullable
