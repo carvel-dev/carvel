@@ -9,6 +9,8 @@ toc:
     subfolderitems:
       - page: Using data values
         url: /ytt-data-values
+      - page: Using schema
+        url: /ytt-schema
       - page: Using overlays
         url: /ytt-overlays
       - page: Data values vs overlays
@@ -37,6 +39,8 @@ toc:
         url: /lang-ref-ytt-version
       - page: Template module
         url: /lang-ref-ytt-template
+      - page: Schema module
+        url: /lang-ref-ytt-schema
   - title: Language
     subfolderitems:
       - page: General
