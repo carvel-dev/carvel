@@ -126,6 +126,10 @@ load("@ytt:sha256", "sha256")
 
 sha256.sum("data") # "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
 ```
+---
+## Schema Module
+
+See [Schema specific docs](lang-ref-ytt-schema.md).
 
 ---
 ## Overlay module
