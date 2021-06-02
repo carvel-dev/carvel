@@ -1,5 +1,6 @@
 ---
 title: Using Schema
+toc: "false"
 ---
 
 ## Overview

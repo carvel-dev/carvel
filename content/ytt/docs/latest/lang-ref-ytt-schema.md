@@ -234,6 +234,6 @@ aws:
   username: sa
   password: "1234"
 
-name: acceptance
+name: null
 ```
 Because `username` was provided in the data values file, `aws` is no longer null, so the other default values for it were filled in.
