@@ -171,6 +171,13 @@ spec:
         - dir/common/bom**/*:type=text-plain
         - dir/nested/app/file.txt:exclude=true
         - dir/common/generated.go.txt:path=gen.go.txt
+        # provide values via ytt's --data-values-file (optional; v0.19.0-alpha.9)
+        valuesFrom:
+          - secretRef:
+              name: secret-name
+          - configMapRef:
+              name: cfgmap-name
+          - path: values/shared.yml
 
     # use kbld to resolve image references to use digests
     - kbld:
