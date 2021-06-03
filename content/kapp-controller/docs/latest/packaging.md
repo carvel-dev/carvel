@@ -50,9 +50,11 @@ to a particular version of the package and instead describes the package at a
 high level, similar to a github README.
 
 ```yaml
-apiVersion: package.carvel.dev/v1alpha1
+apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
+  # Must consist of three segments separated by a '.'
+  # Cannot have a trailing '.'
   name: fluent-bit.vmware.com
   # Package is a cluster scoped resource, so no namespace
 spec:
@@ -89,13 +91,19 @@ installs a package to the cluster.
 **Note:** for this alpha release, dependency management is not handled by kapp-controller
 
 ```yaml
-apiVersion: package.carvel.dev/v1alpha1
+apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageVersion
 metadata:
-  name: fluent-bit.vmware.com.1.5.3
+  # Must begin with '<spec.packageName>.' (Note the period)
+  name: fluent-bit.carvel.dev.1.5.3
 spec:
+  # The name of the package this version belongs to
+  # Must be a valid package name (see Package CR for details)
+  # Cannot be empty
+  packageName: fluent-bit.carvel.dev
   # Package version; Referenced by InstalledPackage;
   # Must be valid semver (required)
+  # Cannot be empty
   version: 1.5.3
   # Version release notes (optional; string; alpha.7+)
   releaseNotes: "Fixed some bugs"
@@ -135,7 +143,7 @@ spec:
 This CR is used to point kapp-controller to a package repository (which contains Package CRs). Once a PackageRepository has been added to the cluster, kapp-controller will automatically make all packages within the store available for installation on the cluster.
 
 ```yaml
-apiVersion: install.package.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   # Any user-chosen name that describes package repository
@@ -180,7 +188,7 @@ spec:
 Example usage:
 
 ```yaml
-apiVersion: install.package.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   name: my-pkg-repo.corp.com
@@ -197,7 +205,7 @@ installation of package resources onto a cluster. It must reference one of the
 PackageVersion CRs.
 
 ```yaml
-apiVersion: install.package.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: InstalledPackage
 metadata:
   name: fluent-bit
