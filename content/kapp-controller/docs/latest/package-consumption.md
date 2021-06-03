@@ -22,7 +22,7 @@ kapp-controller needs to know which packages are available to install. One way t
 
 ```yaml
 ---
-apiVersion: install.package.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   name: simple-package-repository
@@ -37,7 +37,7 @@ need to be added to the fetch stage. For example,
 
 ```yaml
 ---
-apiVersion: install.package.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   name: simple-package-repository
@@ -84,7 +84,7 @@ This will show us the package yaml, which will look something like this:
 
 ```yaml
 ---
-apiVersion: package.carvel.dev/v1alpha1
+apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
   name: simple-app.corp.com
@@ -127,7 +127,7 @@ $ kubectl get packageversions/simple-app.corp.com.2.0.0 -oyaml
 will show us more details on version `2.0.0` of the `simple-app.corp.com` package:
 
 ```yaml
-apiVersion: package.carvel.dev/v1alpha1
+apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageVersion
 metadata:
   name: simple-app.corp.com.2.0.0
@@ -166,7 +166,7 @@ Once we have the packages available for installation (as seen via `kubectl get p
 
 ```yaml
 ---
-apiVersion: install.package.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: InstalledPackage
 metadata:
   name: pkg-demo

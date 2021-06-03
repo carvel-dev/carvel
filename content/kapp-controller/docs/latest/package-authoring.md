@@ -124,7 +124,7 @@ Package CR, which will contain high level information and descriptions about our
 package. For example,
 
 ```yaml
-apiVersion: package.carvel.dev/v1alpha1
+apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
   # This will be the name of our package
@@ -137,6 +137,11 @@ spec:
   - demo
 ```
 
+When creating this CR, the api will validate that the Package's name is a fully
+qualified name, that is it must have at least three segments separated by `.`
+and cannot have a trailing `.`. For reference, the above example's Package name is
+valid.
+
 Before moving on, save this yaml snippet to a file named
 `package.yml`.
 
@@ -147,7 +152,7 @@ PackageVersion CR follows.
 
 ```yaml
 ---
-apiVersion: package.carvel.dev/v1alpha1
+apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageVersion
 metadata:
   name: simple-app.corp.com.1.0.0
@@ -182,6 +187,11 @@ sections are for. For this example, we have chosen a basic setup that will fetch
 the imgpkg bundle we created in the previous section, run the templates stored
 inside through ytt, apply kbld transformations, and then deploy the resulting
 manifests with kapp.
+
+There will also be validations run on the PackageVersion CR, so ensure that
+`spec.packageName` and `spec.version` are not empty and that `metadata.name`
+begins with `<spec.packageName>.`. These are done to encourage a naming scheme
+that keeps package version names unique.
 
 Lets store this in a file named `1.0.0.yml`. Remember to replace
 `registry.corp.com/packages/` in the YAML above with your registry and repository if
