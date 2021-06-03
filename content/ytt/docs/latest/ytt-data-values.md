@@ -116,6 +116,8 @@ See [Multiple data values example](/ytt/#example:example-multiple-data-values) i
 
 (As of v0.17.0+ `--data-value` parses value as string by default. Use `--data-value-yaml` to get previous behaviour.)
 
+As of v0.34.0+ data values passed via CLI flags do not need to be specified in `@data/values` overlays beforehand. In previous versions for CLI flag override to work, data value must have been defined in at least one `@data/values` YAML document.
+
 ytt CLI allows to override input data via several CLI flags:
 
 - `--data-value` (format: `key=val`, `@lib:key=val`) can be used to set a specific key to string value
@@ -130,10 +132,11 @@ ytt CLI allows to override input data via several CLI flags:
   - given two environment variables `DVAL_key1=val1-env` and `DVAL_key2__nested=val2-env`, ytt will pull out `key1=val1-env` and `key2.nested=val2-env` variables
   - interprets values as strings
 - `--data-values-env-yaml` (format: `DVAL`, `@lib:DVAL`) same as `--data-values-env` but parses values as YAML
+- `--data-values-file` (format: `/file-path`, `@lib:/file-path`) can be used to specify multiple data values in a plain YAML file
+  - multiple YAML documents within a file are merged from top to bottom
+  - file cannot contain YAML comments starting with `#@`
 
 These flags can be repeated multiple times and used together. Flag values are merged into data values last.
-
-Note that for override to work data values must be defined in at least one `@data/values` YAML document.
 
 ```bash
 export STR_VALS_key6=true # will be string 'true'
@@ -147,6 +150,37 @@ ytt -f . \
   --data-values-env STR_VALS \
   --data-values-env-yaml YAML_VALS
 ```
+
+Example use of `--data-values-file`:
+
+```bash
+$ cat prod-values.yml
+
+domain: example.com
+client_opts:
+  timeout: 10
+  retry: 5
+
+$ cat shared-values.yml
+
+client_opts:
+  tls_enabled: true
+
+$ ytt -f config/ --data-values-file prod-values.yml --data-values-file shared-values.yml
+...
+```
+
+## Data values order
+
+Data values are merged in following steps (latter one wins):
+
+- `@data/values` overlays (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
+- `--data-values-file` specified files (left to right)
+- `--data-values-env` specified values (left to right)
+- `--data-values-env-yaml` specified values (left to right)
+- `--data-value` specified value (left to right)
+- `--data-value-yaml` specified value (left to right)
+- `--data-value-file` specified value (left to right)
 
 ---
 ## Library data values
@@ -189,4 +223,5 @@ ytt -f . \
   --data-value-file @lib4:key4=/path \
   --data-values-env @lib5:STR_VALS \
   --data-values-env-yaml @lib6:YAML_VALS
+  --data-values-file @lib6:/path
 ```
