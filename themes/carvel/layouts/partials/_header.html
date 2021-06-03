@@ -53,11 +53,11 @@
 		<ul class="desktop-links">
 			<li><a href="{{ $info.root_link }}" {{ if (eq .RelPermalink $info.root_link) }}class="active"{{ end }}>{{ $info.name }} Overview</a></li>
 			<li><a href="{{ $info.latest_docs_link }}" {{ if (eq  .RelPermalink $info.latest_docs_link) }}class="active"{{ end }}>Documentation</a></li>
-			<li><a href="{{ $info.github_url }}"><img src="/img/github.svg" />GitHub</a></li>
+			<li><a href="{{ $info.github_url }}" target="_blank"><img src="/img/github.svg" />GitHub</a></li>
 		</ul>
 		<ul class="mobile-links mobile">
 			<li><a href="{{ $info.latest_docs_link }}" {{ if (eq  .RelPermalink $info.latest_docs_link) }}class="active"{{ end }}>Docs</a></li>
-			<li><a href="{{ $info.github_url }}"><img src="/img/github.svg" />GitHub</a></li>
+			<li><a href="{{ $info.github_url }}" target="_blank"><img src="/img/github.svg" />GitHub</a></li>
 		</ul>
 	</div>
 </header>
