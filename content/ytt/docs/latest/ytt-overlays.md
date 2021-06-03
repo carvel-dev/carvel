@@ -19,28 +19,28 @@ For example, when:
 
 Given a sample target YAML file:
 
-> `config.yml`
-> ```yaml
-> ---
-> id: 1
-> contents:
-> - apple
-> ---
-> id: 2
-> contents:
-> - pineapple
-> ```
+`config.yml`
+```yaml
+---
+id: 1
+contents:
+- apple
+---
+id: 2
+contents:
+- pineapple
+```
 ... this overlay ...
 
-> `add-content.yml`
-> ```yaml
-> #@ load("@ytt:overlay", "overlay")
-> 
-> #@overlay/match by=overlay.all, expects="1+"
-> ---
-> contents:
-> - pen
-> ```
+`add-content.yml`
+```yaml
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.all, expects="1+"
+---
+contents:
+- pen
+```
 
 Prior to v0.32.0 append array items with [`#@overlay/append`](lang-ref-ytt-overlay.md#overlayappend)
 
@@ -58,18 +58,18 @@ $ ytt -f config.yml -f add-content.yml
 
 ... produces ...
 
-> `config.yml` _(edited)_
-> ```yaml
-> id: 1
-> contents:
-> - apple
-> - pen
-> ---
-> id: 2
-> contents:
-> - pineapple
-> - pen
-> ```
+`config.yml` _(edited)_
+```yaml
+id: 1
+contents:
+- apple
+- pen
+---
+id: 2
+contents:
+- pineapple
+- pen
+```
 
 ## Next Steps
 
