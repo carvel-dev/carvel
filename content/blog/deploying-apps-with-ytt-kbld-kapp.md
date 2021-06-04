@@ -181,7 +181,7 @@ With kwt installed, run the following command
 $ sudo -E kwt net start
 ```
 
-and open http://simple-app.default.svc.cluster.local/.
+and open [http://simple-app.default.svc.cluster.local/](http://simple-app.default.svc.cluster.local/).
 
 ---
 ## Deploying configuration changes
