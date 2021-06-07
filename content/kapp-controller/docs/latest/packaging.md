@@ -148,7 +148,7 @@ kind: PackageRepository
 metadata:
   # Any user-chosen name that describes package repository
   name: basic.vmware.com
-  # PackageRepository is a cluster scoped resource, so no namespace
+  namespace: my-ns
 spec:
   # pauses _future_ reconcilation; does _not_ affect
   # currently running reconciliation (optional; default=false)
