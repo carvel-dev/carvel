@@ -150,6 +150,12 @@ metadata:
   name: basic.vmware.com
   # PackageRepository is a cluster scoped resource, so no namespace
 spec:
+  # pauses _future_ reconcilation; does _not_ affect
+  # currently running reconciliation (optional; default=false)
+  paused: true
+  # specifies the length of time to wait, in time + unit
+  # format, before reconciling.(optional; default=5m)
+  syncPeriod: 1m
   # Must have only one directive.
   fetch:
     # pulls imgpkg bundle from Docker/OCI registry
