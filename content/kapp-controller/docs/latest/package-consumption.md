@@ -48,17 +48,14 @@ spec:
       secretRef:
         name: my-registry-creds
 ```
-This secret will need to be located in the kapp-controller namespace and be of
-the format described in the [fetch docs](config.md#image-authentication).
 
-**Note:** This is a temporary authentication model and will change in the
-future.
+This secret will need to be located in the namespace where the PackageRepository 
+is created and be in the format described in the [fetch docs](config.md#image-authentication).
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `k8slt/kctrl-pkg-repo:v1.0.0` imgpkg bundle, which is
 stored in an OCI registry. Save this PackageRepository to a file named repo.yml
 and then apply it to the cluster using kapp:
-
 
 
 ```bash
