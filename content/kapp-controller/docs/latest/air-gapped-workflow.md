@@ -61,7 +61,7 @@ spec:
 ```
 
 In the event your PackageRepository needs authentication to pull the bundle, you can specify credentials via a `secretRef` 
-as shown below. The secret for the `secretRef` property must be created in the `kapp-controller` namespace for the PackageRepository 
+as shown below. The secret for the `secretRef` property must be created in the namespace where the PackageRepository was created
 to use this secret. Supported secret keys are documented [here](config#imgpkgbundle-authentication). This authentication pattern will 
 change in the future as better workflows are proposed for kapp-controller.
 
