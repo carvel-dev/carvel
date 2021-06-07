@@ -104,10 +104,8 @@ pulled from an OCI registry as an [imgpkgBundle](/imgpkg/docs/latest/resources/#
 often happen from fetching the PackageRepository contents (i.e. the `.spec.fetch` portion of the PackageRepository spec).
 
 Failures for PackageRepositories can be viewed directly via the `usefulErrorMessage` property of the PackageRepository's status. 
-This `usefulErrorMessage` property comes from an App CR that is created as a result of creating a PackageRepository. This App is 
-currently always created in the `kapp-controller` namespace, but this may change in the futrue. More information on interpreting 
-the error message from `usefulErrorMessage` can be found under the [Debugging App CRs](#debugging-app-crs). The underlying App CR 
-will have the same name as the PackageRepository that you create.
+Interpreting the error message from `usefulErrorMessage` for PackageRepositories is very similar to debugging an App CR's status. 
+More information on interpreting the errors from App CRs can be found under under the [Debugging App CRs](#debugging-app-crs) section. 
 
 Common problems encountered with PackageRepositories may be needing authentication for a registry where an image or imgpkg bundle is 
 stored (read more [here](package-consumption/#adding-package-repository) on PackageRepositories authenticating to a private registry) 
