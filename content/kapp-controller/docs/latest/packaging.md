@@ -9,9 +9,9 @@ will almost certainly be made and no backwards compatibility is guaranteed
 between alpha versions.
 
 The new alpha release of kapp-controller adds new APIs to bring common package
-management workflows to a Kubernetes cluster.  This is done using four new CRs:
+management workflows to a Kubernetes cluster. This is done using four new CRs:
 PackageRepository, Package, PackageVersion, and InstalledPackage, which are
-described further in their respective sections.  As this is still an alpha
+described further in their respective sections. As this is still an alpha
 feature, we would love any and all feedback regarding these APIs or any
 documentation relating to them! (Ping us on Slack)
 
@@ -56,7 +56,7 @@ metadata:
   # Must consist of three segments separated by a '.'
   # Cannot have a trailing '.'
   name: fluent-bit.vmware.com
-  # Package is a cluster scoped resource, so no namespace
+  namespace: my-ns
 spec:
   # Human friendly name of the package (optional; string)
   displayName: "Fluent Bit"
@@ -96,6 +96,7 @@ kind: PackageVersion
 metadata:
   # Must begin with '<spec.packageName>.' (Note the period)
   name: fluent-bit.carvel.dev.1.5.3
+  namespace: my-ns
 spec:
   # The name of the package this version belongs to
   # Must be a valid package name (see Package CR for details)
@@ -198,6 +199,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   name: my-pkg-repo.corp.com
+  namespace: my-ns
 spec:
   fetch:
     imgpkgBundle:
