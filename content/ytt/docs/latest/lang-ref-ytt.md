@@ -96,8 +96,11 @@ base64.decode("cmVndWxhcg==") # "regular"
 load("@ytt:json", "json")
 
 json.encode({"a": [1,2,3,{"c":456}], "b": "str"})
+json.encode({"a": [1,2,3,{"c":456}], "b": "str"}, indent=3)
+
 json.decode('{"a":[1,2,3,{"c":456}],"b":"str"}')
 ```
+As of v0.35.0, `json.encode()` with `indent` argument encodes result in multi-line string.
 
 ### yaml
 
