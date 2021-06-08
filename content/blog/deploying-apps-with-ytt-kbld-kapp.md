@@ -181,7 +181,7 @@ With kwt installed, run the following command
 $ sudo -E kwt net start
 ```
 
-and open http://simple-app.default.svc.cluster.local/.
+and open [http://simple-app.default.svc.cluster.local/](http://simple-app.default.svc.cluster.local/).
 
 ---
 ## Deploying configuration changes
@@ -665,4 +665,4 @@ Succeeded
 
 We've seen how [ytt](/ytt), [kbld](/kbld), and [kapp](/kapp) can be used together to deploy and iterate on an application running on Kubernetes. Each one of these tools has been designed to be single-purpose and composable with other tools in the larger Kubernetes ecosystem.
 
-We are eager to hear your thoughts and feedback in [#carvel in Kubernetes slack]({{% named_link_url "slack_url" %}}) and/or via Github issues, PRs and discussions (see {{% named_link_url "github_url" %}} for a list of associated repositories). Don't hesitate to reach out!
+We are eager to hear your thoughts and feedback in [#carvel in Kubernetes slack]({{% named_link_url "slack_url" %}}) and/or via Github issues, PRs and discussions (see [GitHub]({{% named_link_url "github_url" %}}) for a list of associated repositories). Don't hesitate to reach out!

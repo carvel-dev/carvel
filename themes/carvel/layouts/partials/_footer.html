@@ -2,9 +2,9 @@
 	<div class="wrapper footer-links">
 		<div class="clearfix">
 			<ul class="left-links">
-				<li><a href="{{ .Site.Params.links.twitter_url }}"><img src="/img/twitter.png" />Twitter</a></li>
-				<li><a href="{{ .Site.Params.links.github_url }}"><img src="/img/github.svg" />Github</a></li>
-				<li><a href="{{ .Site.Params.links.slack_url }}">
+				<li><a href="{{ .Site.Params.links.twitter_url }}" target="_blank"><img src="/img/twitter.png" />Twitter</a></li>
+				<li><a href="{{ .Site.Params.links.github_url }}" target="_blank"><img src="/img/github.svg" />Github</a></li>
+				<li><a href="{{ .Site.Params.links.slack_url }}" target="_blank">
 					<img src="/img/slack.png" />
 					<span class="desktop">#carvel in Kubernetes Slack</span>
 					<span class="mobile">Slack</span>
@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class="bottom-links">
-			<p class="copywrite">&copy; {{ now.Year }} Carvel Authors. <a href="http://vmware.github.io/">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
+			<p class="copywrite">&copy; {{ now.Year }} Carvel Authors. <a href="http://vmware.github.io/" target="_blank">A VMware-backed project. <img src="/img/vm-logo.svg" /></a></p>
 		</div>
 	</div>
 </footer>
