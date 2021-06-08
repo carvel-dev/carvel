@@ -112,7 +112,20 @@ To allow this use case, imgpkg supports the `--include-non-distributable-layers`
 
 Note that usage of this flag shall not preclude your obligation to comply with the terms of the image license(s).
 
+### Image Signatures
+
+Starting on version v0.9.0 `imgpkg` can copy Signature created by [cosign](https://github.com/sigstore/cosign). By
+default `imgpkg` will not search for Signatures for Images. To enable the search and copy of the signatures the
+flag `--cosign-signatures` needs to be provided to copy command
+
+```bash-plain
+$ imgpkg copy -b index.docker.io/k8slt/sample-bundle --to-repo some.repo.io/some-bundle --cosign-signatures
+```
+
+This feature will work while copying to a different repository as well as copying to a tarball.
+
 ---
+
 ## Tag
 
 `imgpkg tag` supports a `list` subcommand that allows users to list the image tags pushed to registries. The command features an `--image`/`-i` option that allows a user to specify an image name. 
