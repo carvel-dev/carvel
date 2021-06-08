@@ -119,3 +119,21 @@ Having a bundle 'reference' another bundle is no different from referencing any 
 One key difference between nested bundles and other OCI images, is the directory structure when `imgpkg pull` writes the nested bundle's content to disk.
 
 For further details refer to [pulling a nested bundle.](commands.md#pulling-nested-bundles)
+
+---
+## Locations OCI Image
+
+`imgpkg` when copying Bundles and Images now creates a new OCI Images that will act as a Cache that contain information
+about the Images that were copied and if these Images are a Bundle or not. This OCI Image will contain a single layer
+with a single file `image-locations.yml` at the root of the image. This is the file structure
+
+```yaml
+apiVersion: imgpkg.carvel.dev/v1alpha1
+kind: ImageLocations
+images:
+- image: some.image.io/test@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+  isBundle: true
+```
+
+The OCI Image will be pushed into the same repository as the Bundle and will have the tag
+`sha256-{Bundle SHA}.image-locations.imgpkg`
