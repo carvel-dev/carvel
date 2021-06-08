@@ -41,5 +41,7 @@ toc:
         url: /air-gapped-workflow
   - title: FAQ
     subfolderitems:
+      - page: kapp-controller FAQ
+        url: /faq
       - page: Security
         url: /security
