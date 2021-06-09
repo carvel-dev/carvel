@@ -240,7 +240,7 @@ spec:
   serviceAccountName: fluent-bit-sa
   packageVersionRef:
     # Specifies the name of the package to install (required)
-    packageName: flluent-bit.vmware.com
+    packageName: fluent-bit.vmware.com
     # Selects version of a package based on constraints provided (optional)
     # Either version or versionSelection is required.
     versionSelection:
@@ -331,3 +331,67 @@ my-pkg-repo/
     - Always have a Package CR if you have PackageVersion CRs
 
 See [Creating a Package Repository](package-authoring.md#creating-a-package-repository) for example creation steps.
+
+---
+## Versioning InstalledPackages
+
+The following sections cover aspects of how to approach versioning when using InstalledPackages. 
+
+### Constraints
+
+InstalledPackages offer a property called `constraints` under `.spec.packageVersionRef.versionSelection`. 
+This `constraints` property can be used to select a specific PackageVersion to install or include a set of 
+conditions to pick a version. This `constraints` property is based on semver ranges and more details on 
+conditions that can be included with `constraints` can be found [here](https://github.com/blang/semver#ranges).
+
+To select a specific version of a PackageVersion to use with an InstalledPackage, the full version (i.e. `.spec.version` 
+from a PackageVersion) can be included in the `constraints` property, such as what is shown below:
+
+```yaml
+packageVersionRef:
+  packageName: fluent-bit.vmware.com
+  versionSelection:
+    constraints: "1.5.3"
+```
+
+The example above will result in version 1.5.3 of the Package being installed.
+
+An example of using a condition to select a PackageVersion with `constraints` is shown below:
+
+```yaml
+packageVersionRef:
+  packageName: fluent-bit.vmware.com
+  versionSelection:
+    constraints: ">1.5.3"
+```
+
+The above constraint will result in any version greater than 1.5.3 of the Package being installed. 
+It will also automatically update to the latest versions of the Package as they become available on 
+the cluster.
+
+### Prereleases
+
+When creating an InstalledPackage, by default prereleases (i.e. release versions that don't follow a semver format) are not included 
+by kapp-controller when considering whether a PackageVersion exists or not. To include prereleases when creating an InstalledPackage, 
+the following can be added to the InstalledPackage spec:
+
+```yaml
+versionSelection:
+  constraints: "3.0.0-rc.1"
+  prereleases: {}
+```
+
+Specifying `prereleases: {}` will make kapp-controller consider all available prereleases when seeing if a PackageVersion is available to be 
+installed. 
+
+To filter by releases containing certain substrings, there is an `identifiers` property under `prereleases` that can be used to only include 
+certain prereleases that contain the identifier, such as what is shown below:
+
+```yaml
+versionSelection:
+  constraints: "3.0.0"
+  prereleases:
+    identifiers: [rc]
+```
+
+Multiple identifiers can be specified in the event that Package's prereleases contain multiple identifiers (e.g. `identifiers: [rc, beta]`).
