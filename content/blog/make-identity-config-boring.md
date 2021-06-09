@@ -3,7 +3,7 @@ title: "How to Make Identity and Config Operations Boring in Kubernetes"
 slug: make-identity-config-boring
 date: 2020-11-13
 author: Nikhita Raghunath
-excerpt: "How do you plugin external identity provider integration and makle your deployment process effortless? Learn how to use Pinniped and Carvel..."
+excerpt: "How do you plugin external identity provider using Pinniped and make your deployment process effortless using Carvel (open source set of tools)..."
 image: /img/logo.svg
 tags: ['Nikitha Raghunath']
 ---
