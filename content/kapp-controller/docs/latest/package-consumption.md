@@ -57,7 +57,6 @@ packages found within the `k8slt/kctrl-pkg-repo:v1.0.0` imgpkg bundle, which is
 stored in an OCI registry. Save this PackageRepository to a file named repo.yml
 and then apply it to the cluster using kapp:
 
-
 ```bash
 $ kapp deploy -a repo -f repo.yml
 ```
@@ -215,8 +214,12 @@ stringData:
 ```
 
 This CR references the PackageVersion we decided to install in the previous
-section using the package versions `packageName` and `version` fields. The
-InstalledPackage also references the service account which will be used to
+section using the PackageVersion's `packageName` and `version` fields. 
+The `versionSelection` property has a `constraints` subproperty to specify what 
+PackageVersion kapp-controller should install. More information on InstalledPackage 
+versioning can be found [here](packaging#versioning-installedpackages).
+
+The InstalledPackage also references the service account which will be used to
 install the package, as well as values to include in the templating step in
 order to customize our installation.
 
