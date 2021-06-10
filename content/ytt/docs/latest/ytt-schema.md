@@ -16,7 +16,7 @@ Consider this simple example schema and template provided by the Configuration A
 
 `schema.yml`
 ```yaml
-#@schema/match data_values=True
+#@data/values-schema
 ---
 load_balancer:
   enabled: true
