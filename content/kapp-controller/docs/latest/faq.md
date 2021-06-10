@@ -2,15 +2,27 @@
 title: FAQ
 ---
 
-This documentation covers frequently asked questions for kapp-controller. It is divided into two sections: 
-[Package Author](#package-author) and [Package Consumer](#package-consumer). This is done to organize questions 
-based on how users are working with kapp-controller.
+This documentation covers frequently asked questions for kapp-controller. It is divided into three sections: 
+[App Developer](#app-developer), [Package Author](#package-author), and [Package Consumer](#package-consumer). 
+This is done to organize questions based on how users are working with kapp-controller.
+
+## App Developer
+
+This section covers questions for users directly using the [App](app-spec.md) custom resource.
+
+None available at this time.
 
 ## Package Author
+
+This section covers questions for users packaging software for Kubernetes. More details on this package author workflow 
+can be found under the [Package Author](package-authoring.md) documentation.
 
 None available at this time.
 
 ## Package Consumer
+
+This section covers questions for users installing software packages for Kubernetes. More details on this package consumer 
+workflow can be found under the [Package Consumer](package-consumption.md) documentation.
 
 ### How does kapp-controller handle InstalledPackages when a PackageRepository is removed from the cluster?
 
