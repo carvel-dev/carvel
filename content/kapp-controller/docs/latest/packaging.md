@@ -119,6 +119,23 @@ spec:
   - "MIT"
   # Timestamp of release (iso8601 formatted string; optional)
   releasedAt: 2021-05-05T18:57:06Z
+  # valuesSchema can be used to show template values that
+  # can be configured by users when a PackageVersion is installed.
+  # These values should be specified in an OpenAPI schema format. (optional)
+  valuesSchema:
+    # openAPIv3 key can be used to declare template values in OpenAPIv3 
+    # format 
+    openAPIv3:
+      title: fluent-bit.carvel.dev.1.5.3 values schema
+      examples:
+      - namespace: fluent-bit
+      properties:
+        namespace:
+          type: string
+          description: Namespace where fluent-bit will be installed.
+          default: fluent-bit
+          examples:
+          - fluent-bit
   # App template used to create the underlying App CR.
   # See 'App CR Spec' docs for more info
   template:

@@ -161,6 +161,32 @@ spec:
   version: 1.0.0
   releaseNotes: |
     Initial release of the simple app package
+  valuesSchema:
+    openAPIv3:
+      title: simple-app.corp.com values schema
+      examples:
+      - svc_port: 80
+        app_port: 80
+        hello_msg: stranger
+      properties:
+        svc_port:
+          type: integer
+          description: Port number for the service.
+          default: 80
+          examples:
+          - 80
+        app_port:
+          type: integer
+          description: Target port for the application.
+          default: 80
+          examples:
+          - 80
+        hello_msg:
+          type: string
+          description: Name used in hello message from app when app is pinged.
+          default: stranger
+          examples:
+          - stranger
   template:
     spec:
       fetch:
@@ -178,10 +204,14 @@ spec:
       deploy:
       - kapp: {}
 ```
+
 This PackageVersion contains some metadata fields specific to the verison, such
-as releaseNotes, but the main component of it is the template section, which
+as releaseNotes and a valuesSchema that shows what properties of this PackageVersion 
+are configurable, but the main component of it is the template section, which
 informs kapp-controller of the actions required to install the packaged
-software. This section is an App template, so take a look at the
+software. 
+
+This section is an App template, so take a look at the
 [app-spec](app-spec.md) section to learn more about what each of the template
 sections are for. For this example, we have chosen a basic setup that will fetch
 the imgpkg bundle we created in the previous section, run the templates stored

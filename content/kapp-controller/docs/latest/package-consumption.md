@@ -133,6 +133,32 @@ spec:
   version: 2.0.0
   releaseNotes: |
     Adds overlays to control the number of pods
+  valuesSchema:
+    openAPIv3:
+      title: simple-app.corp.com values schema
+      examples:
+      - svc_port: 80
+        app_port: 80
+        hello_msg: stranger
+      properties:
+        svc_port:
+          type: integer
+          description: Port number for the service.
+          default: 80
+          examples:
+          - 80
+        app_port:
+          type: integer
+          description: Target port for the application.
+          default: 80
+          examples:
+          - 80
+        hello_msg:
+          type: string
+          description: Name used in hello message from app when app is pinged.
+          default: stranger
+          examples:
+          - stranger
   template:
     spec:
       deploy:
@@ -184,7 +210,6 @@ metadata:
   name: pkg-demo-values
 stringData:
   values.yml: |
-    #@data/values
     ---
     hello_msg: "hi"
 ```
@@ -194,6 +219,13 @@ section using the package versions `packageName` and `version` fields. The
 InstalledPackage also references the service account which will be used to
 install the package, as well as values to include in the templating step in
 order to customize our installation.
+
+As part of installing this PackageVersion, another thing you will notice is 
+that a Kubernetes secret will be created. This secret contains a values.yml 
+file where configurable properties defined in the PackageVersion valuesSchema 
+can be specified. The InstalledPackage references these configurable values via 
+a values property and a secretRef can be used to reference the secret with the 
+configured values.
 
 To install above package, we will also need to create `default-ns-sa` service account (refer to [Security model](security-model.md) for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
 
