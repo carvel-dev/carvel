@@ -2,22 +2,20 @@
 title: Packaging
 ---
 
-Available in [v0.17.0-alpha.1+](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/dev-packaging/alpha-releases)
+The new release candidate of kapp-controller adds new APIs to bring common package
+management workflows to a Kubernetes cluster.  This is done using four new CRs:
+PackageRepository, PackageMetadata, Package, and PackageInstall, which are
+described further in their respective sections.
 
-**Disclaimer:** These APIs are still very much in an alpha stage, so changes
-will almost certainly be made and no backwards compatibility is guaranteed
-between alpha versions.
-
-The new alpha release of kapp-controller adds new APIs to bring common package
-management workflows to a Kubernetes cluster. This is done using four new CRs:
-PackageRepository, Package, PackageVersion, and InstalledPackage, which are
-described further in their respective sections. As this is still an alpha
-feature, we would love any and all feedback regarding these APIs or any
-documentation relating to them! (Ping us on Slack)
+We would love any and all
+feedback regarding these APIs or any documentation relating to them! (Ping us on
+Slack)
 
 ## Install
 
-See the documentation on [installing the alpha release of kapp-controller](install-alpha.md).
+These APIs or only available in the latest release candidate, so see the
+documentation on [installing the latest release candidate of
+kapp-controller](install-alpha.md) to get started.
 
 ## Terminology
 
@@ -31,7 +29,7 @@ A single package is a combination of configuration metadata and OCI images that
 ultimately inform the package manager what software it holds and how to install
 it into a Kubernetes cluster. For example, an nginx-ingress package would
 instruct the package manager where to download the nginx container image, how to
-configure associated Deployment, and install it into a cluster.
+configure the associated Deployment, and install it into a cluster.
 
 ### Package Repositories
 
@@ -43,88 +41,92 @@ repository contains.
 ---
 ## CRDs
 
+### PackageMetadata CR
+
+The PackageMetadata CR is a place to store information that isn't specific to a
+particular version of the package and instead describes the package at a high
+level, similar to a github README.
+
+```yaml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  # Must consist of three segments separated by a '.'
+  # Cannot have a trailing '.'
+  name: fluent-bit.vmware.com
+  # The namespace this package metadata is available in
+  # See Namespacing section below for details on global packages
+  namespace: my-ns
+spec:
+  # Human friendly name of the package (optional; string)
+  displayName: "Fluent Bit"
+  # Long description of the package (optional; string)
+  longDescription: "Fluent bit is an open source..."
+  # Short desription of the package (optional; string)
+  shortDescription: "Log processing and forwarding"
+  # Base64 encoded icon (optional; string)
+  iconSVGBase64: YXNmZGdlcmdlcg==
+  # Name of the entity distributing the package (optional; string)
+  providerName: VMware
+  # List of maintainer info for the package.
+  # Currently only supports the name key. (optional; array of maintner info)
+  maintainers:
+  - name: "Person 1"
+  - name: "Person 2"
+  # Classifiers of the package (optional; Array of strings)
+  categories:
+  - "logging"
+  - "daemon-set"
+  # Description of the support available for the package (optional; string)
+  supportDescription: "..."
+```
+
 ### Package CR
 
-The Package CR is a place to store metadata and information that isn't specific
-to a particular version of the package and instead describes the package at a
-high level, similar to a github README.
+For any version specific information, such as where to fetch manifests, how to
+install them, and whats changed since the last version, there is the
+Package CR. This CR is what will be used when kapp-controller actually
+installs a package to the cluster.
+
+**Note:** for the initial release, dependency management is not handled by kapp-controller
 
 ```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  # Must consist of three segments separated by a '.'
-  # Cannot have a trailing '.'
-  name: fluent-bit.vmware.com
-  namespace: my-ns
-spec:
-  # Human friendly name of the package (optional; string)
-  displayName: "Fluent Bit"
-  # Long description of the package (optional; string; alpha.7+)
-  longDescription: "Fluent bit is an open source..."
-  # Short desription of the package (optional; string; alpha.7+)
-  shortDescription: "Log processing and forwarding"
-  # Base64 encoded icon (optional; string; alpha.7+)
-  iconSVGBase64: YXNmZGdlcmdlcg==
-  # Name of the entity distributing the package (optional; string; alpha.7+)
-  providerName: VMware
-  # List of maintainer info for the package.
-  # Currently only supports the name key. (optional; array of maintner info; alpha.7+)
-  maintainers:
-  - name: "Person 1"
-  - name: "Person 2"
-  # Classifiers of the package (optional; Array of strings; alpha.7+)
-  categories:
-  - "logging"
-  - "daemon-set"
-  # Description of the support available for the package (optional; string; alpha.7+)
-  supportDescription: "..."
-```
-
-### PackageVersion CR
-
-For any version specific information, such as where to fetch manifests, how to
-install them, and whats changed since the last version, there is the
-PackageVersion CR. This CR is what will be used when kapp-controller actually
-installs a package to the cluster.
-
-**Note:** for this alpha release, dependency management is not handled by kapp-controller
-
-```yaml
-apiVersion: data.packaging.carvel.dev/v1alpha1
-kind: PackageVersion
-metadata:
-  # Must begin with '<spec.packageName>.' (Note the period)
+  # Must be of the form '<spec.refName>.<spec.version>' (Note the period)
   name: fluent-bit.carvel.dev.1.5.3
+  # The namespace this package is available in
+  # See Namespacing section below for details on global packages
   namespace: my-ns
 spec:
-  # The name of the package this version belongs to
-  # Must be a valid package name (see Package CR for details)
+  # The name of the PackageMetadata associated with this version
+  # Must be a valid PackageMetadata name (see PackageMetadata CR for details)
   # Cannot be empty
-  packageName: fluent-bit.carvel.dev
-  # Package version; Referenced by InstalledPackage;
+  refName: fluent-bit.carvel.dev
+  # Package version; Referenced by PackageInstall;
   # Must be valid semver (required)
   # Cannot be empty
   version: 1.5.3
-  # Version release notes (optional; string; alpha.7+)
+  # Version release notes (optional; string)
   releaseNotes: "Fixed some bugs"
   # System requirements needed to install the package.
   # Note: these requirements will not be verified by kapp-controller on
-  # installation. (optional; string; alpha.7+)
+  # installation. (optional; string)
   capacityRequirementsDescription: "RAM: 10GB"
   # Description of the licenses that apply to the package software
-  # (optional; Array of strings; alpha.7+)
+  # (optional; Array of strings)
   licenses:
   - "Apache 2.0"
   - "MIT"
   # Timestamp of release (iso8601 formatted string; optional)
   releasedAt: 2021-05-05T18:57:06Z
   # valuesSchema can be used to show template values that
-  # can be configured by users when a PackageVersion is installed.
+  # can be configured by users when a Package is installed.
   # These values should be specified in an OpenAPI schema format. (optional)
   valuesSchema:
-    # openAPIv3 key can be used to declare template values in OpenAPIv3 
-    # format 
+    # openAPIv3 key can be used to declare template values in OpenAPIv3
+    # format
     openAPIv3:
       title: fluent-bit.carvel.dev.1.5.3 values schema
       examples:
@@ -158,14 +160,19 @@ spec:
 
 ### PackageRepository CR
 
-This CR is used to point kapp-controller to a package repository (which contains Package CRs). Once a PackageRepository has been added to the cluster, kapp-controller will automatically make all packages within the store available for installation on the cluster.
+This CR is used to point kapp-controller to a package repository (which contains
+Package and PackageMetadata CRs). Once a PackageRepository has been added to the
+cluster, kapp-controller will automatically make all packages within the store
+available for installation on the cluster.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   # Any user-chosen name that describes package repository
-  name: basic.vmware.com
+  name: basic.carvel.dev
+  # The namespace to make packages available to
+  # See  Namespacing section below for details on global repos
   namespace: my-ns
 spec:
   # pauses _future_ reconcilation; does _not_ affect
@@ -223,24 +230,25 @@ spec:
       image: registry.corp.com/packages/my-pkg-repo:1.0.0
 ```
 
-### InstalledPackage CR
+### PackageInstall CR
 
-This CR is used to install a particular package which ultimately results in
-installation of package resources onto a cluster. It must reference one of the
-PackageVersion CRs.
+This CR is used to install a particular package, which ultimately results in
+installation of the underlying resources onto a cluster. It must reference an
+existing Package CR.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1
-kind: InstalledPackage
+kind: PackageInstall
 metadata:
   name: fluent-bit
+  # The namespace to install the package in to
   namespace: my-ns
 spec:
   # specifies service account that will be used to install underlying package contents
   serviceAccountName: fluent-bit-sa
-  packageVersionRef:
+  packageRef:
     # Specifies the name of the package to install (required)
-    packageName: fluent-bit.vmware.com
+    refName: fluent-bit.vmware.com
     # Selects version of a package based on constraints provided (optional)
     # Either version or versionSelection is required.
     versionSelection:
@@ -272,12 +280,102 @@ status:
 templating step of the package, though we intend to improve this experience in
 later alpha releases.
 
+## Namespacing
+
+In the packaging APIs, all the CRs are namespaced, which can create a lot of
+duplication when wanting to share packages across the cluster. To account for
+this, kapp-controller accepts a flag `-packaging-global-namespace`, which
+configures kapp-controller to treat the provided namespace as a global namespace
+for packaging resources. This means any Package and PackageMetadata CRs within
+that namespace will be included in all other namespaces on the cluster, without
+duplicating them. This does not apply to PackageRepositories or PackageInstalls.
+
+For client discoverability, the namespace should also be present as an
+annotation on the PackageRepository CRD under the
+`kapp-controller.carvel.dev/packaging-global-namespace`. Kapp controller's release
+yaml comes preconfigured with this annotation.
+
+If users would like to exclude the global packages from their namespace, the
+annotation `kapp-controller.carvel.dev/exclude-global-packages` can be added to
+the namespace.
+
+## Versioning PackageInstalls
+
+The following sections cover aspects of how to approach versioning when using PackageInstalls.
+
+### Constraints
+
+PackageInstalls offer a property called `constraints` under
+`.spec.packageVersionRef.versionSelection`.  This `constraints` property can be
+used to select a specific version of a Package CR to install or include a set of
+conditions to pick a version. This `constraints` property is based on semver
+ranges and more details on conditions that can be included with `constraints`
+can be found [here](https://github.com/blang/semver#ranges).
+
+To select a specific version of a Package CR to use with a PackageInstall, the
+full version (i.e. `.spec.version` from a Package CR) can be included in the
+`constraints` property, such as what is shown below:
+
+```yaml
+packageRef:
+  refName: fluent-bit.vmware.com
+  versionSelection:
+    constraints: "1.5.3"
+```
+
+The example above will result in version 1.5.3 of the Package being installed.
+
+An example of using a condition to select a Package CR with `constraints` is shown below:
+
+```yaml
+packageRef:
+  refName: fluent-bit.vmware.com
+  versionSelection:
+    constraints: ">1.5.3"
+```
+
+The above constraint will result in any version greater than `1.5.3` of the
+Package being installed.  It will also automatically update to the latest
+versions of the Package as they become available on the cluster.
+
+### Prereleases
+
+When creating a PackageInstall, by default prereleases are not included by
+kapp-controller when considering which versions of a Package CR to install. To
+include prereleases when creating a PackageInstall, the following can be
+added to the spec:
+
+```yaml
+versionSelection:
+  constraints: "3.0.0-rc.1"
+  prereleases: {}
+```
+
+Specifying `prereleases: {}` will make kapp-controller consider all available
+prereleases when seeing if a Package CR is available to be installed.
+
+To filter by releases containing certain substrings, there is an `identifiers`
+property under `prereleases` that can be used to only include certain
+prereleases that contain the identifier, such as what is shown below:
+
+```yaml
+versionSelection:
+  constraints: "3.0.0"
+  prereleases:
+    identifiers: [rc]
+```
+
+Multiple identifiers can be specified to include multiple types of pre-releases
+(e.g. `identifiers: [rc, beta]`).
+
 ---
 ## Artifact formats
 
 ### Package bundle format
 
-Package bundle is an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle) that holds package contents such as Kubernetes YAML configuration, ytt templates, Helm templates, etc.
+A package bundle is an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle) that
+holds package contents such as Kubernetes YAML configuration, ytt templates,
+Helm templates, etc.
 
 Filesystem structure used for package bundle creation:
 
@@ -295,13 +393,15 @@ my-pkg/
   - `images.yml` file (required) contains container image refs used by configuration (typically generated with `kbld`)
 - `config/` directory (optional) should contain arbitrary package contents such as Kubernetes YAML configuration, ytt templates, Helm templates, etc.
   - Recommendations:
-    - Group Kubernetes configuration into a single directory (`config/` is our recommendation for the name) so that it could be easily referenced in Package CR (e.g. using `ytt` template step against single directory)
+    - Group Kubernetes configuration into a single directory (`config/` is our
+      recommendation for the name) so that it could be easily referenced in the
+      Package CR (e.g. using `ytt` template step against single directory)
 
 See [Creating a package](package-authoring.md#creating-a-package) for example creation steps.
 
 ### Package Repository bundle format
 
-Package repository bundle is an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle) that holds Package CRs.
+A package repository bundle is an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle) that holds PackageMetadata and Package CRs.
 
 Filesystem structure used for package repository bundle creation:
 
@@ -311,87 +411,23 @@ my-pkg-repo/
     └── images.yml
 └── packages/
     └── simple-app.corp.com
-        └── package.yml
+        └── metadata.yml
         └── 1.0.0.yml
         └── 1.2.0.yml
 ```
 
 - `.imgpkg/` directory (required) is a standard directory for any imgpkg bundle
-  - `images.yml` file (required) contains package bundle refs used by PackageVersion CRs (typically generated with `kbld`)
+  - `images.yml` file (required) contains package bundle refs used by Package CRs (typically generated with `kbld`)
 - `packages/` directory (required) should contain zero or more YAML files describing available packages
-  - Each file may contain one or more Package or PackageVersion CRs (using standard YAML document separator)
+  - Each file may contain one or more PackageMetadata or Package CRs (using standard YAML document separator)
   - Files may be grouped in directories or kept flat
   - File names do not have any special meaning
   - Recommendations:
     - Separate packages in to directories with the package name
-    - Keep each Package CR in a `package.yml` file in the package's
+    - Keep each PackageMetadata CR in a `metadata.yml` file in the package's
       directory.
-    - Keep each package version in a file with the version name in the package's
+    - Keep each versioned package in a file with the version name inside the package's
       directory
-    - Always have a Package CR if you have PackageVersion CRs
+    - Always have a PackageMetadata CR if you have Package CRs
 
 See [Creating a Package Repository](package-authoring.md#creating-a-package-repository) for example creation steps.
-
----
-## Versioning InstalledPackages
-
-The following sections cover aspects of how to approach versioning when using InstalledPackages. 
-
-### Constraints
-
-InstalledPackages offer a property called `constraints` under `.spec.packageVersionRef.versionSelection`. 
-This `constraints` property can be used to select a specific PackageVersion to install or include a set of 
-conditions to pick a version. This `constraints` property is based on semver ranges and more details on 
-conditions that can be included with `constraints` can be found [here](https://github.com/blang/semver#ranges).
-
-To select a specific version of a PackageVersion to use with an InstalledPackage, the full version (i.e. `.spec.version` 
-from a PackageVersion) can be included in the `constraints` property, such as what is shown below:
-
-```yaml
-packageVersionRef:
-  packageName: fluent-bit.vmware.com
-  versionSelection:
-    constraints: "1.5.3"
-```
-
-The example above will result in version 1.5.3 of the Package being installed.
-
-An example of using a condition to select a PackageVersion with `constraints` is shown below:
-
-```yaml
-packageVersionRef:
-  packageName: fluent-bit.vmware.com
-  versionSelection:
-    constraints: ">1.5.3"
-```
-
-The above constraint will result in any version greater than 1.5.3 of the Package being installed. 
-It will also automatically update to the latest versions of the Package as they become available on 
-the cluster.
-
-### Prereleases
-
-When creating an InstalledPackage, by default prereleases (i.e. release versions that don't follow a semver format) are not included 
-by kapp-controller when considering whether a PackageVersion exists or not. To include prereleases when creating an InstalledPackage, 
-the following can be added to the InstalledPackage spec:
-
-```yaml
-versionSelection:
-  constraints: "3.0.0-rc.1"
-  prereleases: {}
-```
-
-Specifying `prereleases: {}` will make kapp-controller consider all available prereleases when seeing if a PackageVersion is available to be 
-installed. 
-
-To filter by releases containing certain substrings, there is an `identifiers` property under `prereleases` that can be used to only include 
-certain prereleases that contain the identifier, such as what is shown below:
-
-```yaml
-versionSelection:
-  constraints: "3.0.0"
-  prereleases:
-    identifiers: [rc]
-```
-
-Multiple identifiers can be specified in the event that Package's prereleases contain multiple identifiers (e.g. `identifiers: [rc, beta]`).
