@@ -292,11 +292,11 @@ duplicating them. This does not apply to PackageRepositories or PackageInstalls.
 
 For client discoverability, the namespace should also be present as an
 annotation on the PackageRepository CRD under the
-`kapp-controller.carvel.dev/packaging-global-namespace`. Kapp controller's release
-yaml comes preconfigured with this annotation.
+`packaging.carvel.dev/global-namespace`. Kapp controller's release
+YAML comes preconfigured with this annotation.
 
-If users would like to exclude the global packages from their namespace, the
-annotation `kapp-controller.carvel.dev/exclude-global-packages` can be added to
+(upcoming) If users would like to exclude the global packages from their namespace, the
+annotation `packaging.carvel.dev/exclude-global-packages` can be added to
 the namespace.
 
 ## Versioning PackageInstalls
@@ -306,7 +306,7 @@ The following sections cover aspects of how to approach versioning when using Pa
 ### Constraints
 
 PackageInstalls offer a property called `constraints` under
-`.spec.packageVersionRef.versionSelection`.  This `constraints` property can be
+`.spec.packageRef.versionSelection`.  This `constraints` property can be
 used to select a specific version of a Package CR to install or include a set of
 conditions to pick a version. This `constraints` property is based on semver
 ranges and more details on conditions that can be included with `constraints`
