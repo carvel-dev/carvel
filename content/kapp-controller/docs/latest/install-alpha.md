@@ -5,7 +5,7 @@ title: Installing the Release Candidate
 To install with `kapp`:
 
 ```bash
-$ kapp deploy -a kc -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/alpha-releases/v0.20.0-rc.1yml
+$ kapp deploy -a kc -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/alpha-releases/v0.20.0-rc.1.yml
 ```
 
 To install with `kubectl`:
