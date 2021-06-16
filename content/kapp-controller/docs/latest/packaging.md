@@ -13,7 +13,7 @@ Slack)
 
 ## Install
 
-These APIs or only available in the latest release candidate, so see the
+These APIs are only available in the latest release candidate, so see the
 documentation on [installing the latest release candidate of
 kapp-controller](install-alpha.md) to get started.
 
