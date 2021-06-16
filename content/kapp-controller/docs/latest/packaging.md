@@ -39,9 +39,9 @@ user gives the package manager the ability to install any of the packages the
 repository contains.
 
 ---
-## CRDs
+## Resources
 
-### PackageMetadata CR
+### PackageMetadata
 
 The PackageMetadata CR is a place to store information that isn't specific to a
 particular version of the package and instead describes the package at a high
@@ -81,7 +81,7 @@ spec:
   supportDescription: "..."
 ```
 
-### Package CR
+### Package
 
 For any version specific information, such as where to fetch manifests, how to
 install them, and whats changed since the last version, there is the
@@ -158,7 +158,7 @@ spec:
       - kapp: {}
 ```
 
-### PackageRepository CR
+### PackageRepository
 
 This CR is used to point kapp-controller to a package repository (which contains
 Package and PackageMetadata CRs). Once a PackageRepository has been added to the
@@ -230,7 +230,7 @@ spec:
       image: registry.corp.com/packages/my-pkg-repo:1.0.0
 ```
 
-### PackageInstall CR
+### PackageInstall
 
 This CR is used to install a particular package, which ultimately results in
 installation of the underlying resources onto a cluster. It must reference an
