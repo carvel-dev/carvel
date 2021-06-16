@@ -253,7 +253,7 @@ spec:
     # Either version or versionSelection is required.
     versionSelection:
       # Constraint to limit acceptable versions of a package;
-      # Latest version satisying the constraint is chosen;
+      # Latest version satisfying the constraint is chosen;
       # Newly available, acceptable later versions are picked up and installed automatically. (optional)
       constraints: ">v1.5.3"
       # Include prereleases when selecting version. (optional)
