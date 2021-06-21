@@ -50,42 +50,42 @@ install() {
   echo "${ytt_checksum}  /tmp/ytt" | shasum -c -
   mv /tmp/ytt ${dst_dir}/ytt
   chmod +x ${dst_dir}/ytt
-  echo "Installed ${dst_dir}/ytt v${ytt_version}"
+  echo "Installed ${dst_dir}/ytt ${ytt_version}"
 
   echo "Installing kbld..."
   $dl_bin https://github.com/vmware-tanzu/carvel-kbld/releases/download/${kbld_version}/kbld-${binary_type} > /tmp/kbld
   echo "${kbld_checksum}  /tmp/kbld" | shasum -c -
   mv /tmp/kbld ${dst_dir}/kbld
   chmod +x ${dst_dir}/kbld
-  echo "Installed ${dst_dir}/kbld v${kbld_version}"
+  echo "Installed ${dst_dir}/kbld ${kbld_version}"
 
   echo "Installing kapp..."
   $dl_bin https://github.com/vmware-tanzu/carvel-kapp/releases/download/${kapp_version}/kapp-${binary_type} > /tmp/kapp
   echo "${kapp_checksum}  /tmp/kapp" | shasum -c -
   mv /tmp/kapp ${dst_dir}/kapp
   chmod +x ${dst_dir}/kapp
-  echo "Installed ${dst_dir}/kapp v${kapp_version}"
+  echo "Installed ${dst_dir}/kapp ${kapp_version}"
 
   echo "Installing kwt..."
   $dl_bin https://github.com/vmware-tanzu/carvel-kwt/releases/download/${kwt_version}/kwt-${binary_type} > /tmp/kwt
   echo "${kwt_checksum}  /tmp/kwt" | shasum -c -
   mv /tmp/kwt ${dst_dir}/kwt
   chmod +x ${dst_dir}/kwt
-  echo "Installed ${dst_dir}/kwt v${kwt_version}"
+  echo "Installed ${dst_dir}/kwt ${kwt_version}"
 
   echo "Installing imgpkg..."
   $dl_bin https://github.com/vmware-tanzu/carvel-imgpkg/releases/download/${imgpkg_version}/imgpkg-${binary_type} > /tmp/imgpkg
   echo "${imgpkg_checksum}  /tmp/imgpkg" | shasum -c -
   mv /tmp/imgpkg ${dst_dir}/imgpkg
   chmod +x ${dst_dir}/imgpkg
-  echo "Installed ${dst_dir}/imgpkg v${imgpkg_version}"
+  echo "Installed ${dst_dir}/imgpkg ${imgpkg_version}"
 
   echo "Installing vendir..."
   $dl_bin https://github.com/vmware-tanzu/carvel-vendir/releases/download/${vendir_version}/vendir-${binary_type} > /tmp/vendir
   echo "${vendir_checksum}  /tmp/vendir" | shasum -c -
   mv /tmp/vendir ${dst_dir}/vendir
   chmod +x ${dst_dir}/vendir
-  echo "Installed ${dst_dir}/vendir v${vendir_version}"
+  echo "Installed ${dst_dir}/vendir ${vendir_version}"
 }
 
 install
