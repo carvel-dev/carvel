@@ -208,8 +208,9 @@ spec:
 ```
 
 This Package contains some metadata fields specific to the verison, such as
-releaseNotes and a valuesSchema, which shows what configurable properties for
-the version.
+releaseNotes and a valuesSchema. The valuesSchema shows what configurable properties 
+exist for the version. This will help when users want to install this package and want 
+to know what can be configured.
 
 The other main component of this CR is the template section. This
 section uses an App template to inform kapp-controller of the actions required
