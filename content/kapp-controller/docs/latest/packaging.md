@@ -13,7 +13,7 @@ Slack)
 
 ## Install
 
-These APIs or only available in the latest release candidate, so see the
+These APIs are only available in the latest release candidate, so see the
 documentation on [installing the latest release candidate of
 kapp-controller](install-alpha.md) to get started.
 
@@ -39,9 +39,9 @@ user gives the package manager the ability to install any of the packages the
 repository contains.
 
 ---
-## CRDs
+## Resources
 
-### PackageMetadata CR
+### PackageMetadata
 
 The PackageMetadata CR is a place to store information that isn't specific to a
 particular version of the package and instead describes the package at a high
@@ -81,7 +81,7 @@ spec:
   supportDescription: "..."
 ```
 
-### Package CR
+### Package
 
 For any version specific information, such as where to fetch manifests, how to
 install them, and whats changed since the last version, there is the
@@ -158,7 +158,7 @@ spec:
       - kapp: {}
 ```
 
-### PackageRepository CR
+### PackageRepository
 
 This CR is used to point kapp-controller to a package repository (which contains
 Package and PackageMetadata CRs). Once a PackageRepository has been added to the
@@ -230,7 +230,7 @@ spec:
       image: registry.corp.com/packages/my-pkg-repo:1.0.0
 ```
 
-### PackageInstall CR
+### PackageInstall
 
 This CR is used to install a particular package, which ultimately results in
 installation of the underlying resources onto a cluster. It must reference an
@@ -282,6 +282,8 @@ later alpha releases.
 
 ## Namespacing
 
+### Overview
+
 In the packaging APIs, all the CRs are namespaced, which can create a lot of
 duplication when wanting to share packages across the cluster. To account for
 this, kapp-controller accepts a flag `-packaging-global-namespace`, which
@@ -289,6 +291,50 @@ configures kapp-controller to treat the provided namespace as a global namespace
 for packaging resources. This means any Package and PackageMetadata CRs within
 that namespace will be included in all other namespaces on the cluster, without
 duplicating them. This does not apply to PackageRepositories or PackageInstalls.
+
+### Collisions
+
+When there is a conflict, the locally namespaced resources will take precedence
+over the global ones. A conflict for Packages is defined as having the same
+`spec.refName` and `spec.version`, while for PackageMetadatas it is defined as
+having the same `metadata.name`. For example, if there is a globally available
+PackageMetadata created from the following YAML:
+
+```yaml
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  name: simple-app.corp.com
+  namespace: <global-namespace>
+spec:
+  categories:
+  - demo
+  displayName: Simple App
+  longDescription: Simple app consisting of a k8s deployment and service
+  shortDescription: Simple app for demoing
+```
+
+and then a new locally available PackageMetadata is created from this YAML,
+
+```yaml
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  name: simple-app.corp.com
+  namespace: <local-namespace>
+spec:
+  categories:
+  - demo
+  displayName: Simple App Override
+  longDescription: My locally available version of the Simple App package
+  shortDescription: Simple App with some edits
+```
+
+a user listing the PackageMetadatas will see the second CR, and not the first.
+
+### Annotations
 
 For client discoverability, the namespace should also be present as an
 annotation on the PackageRepository CRD under the
