@@ -119,7 +119,7 @@ spec:
   licenses:
   - "Apache 2.0"
   - "MIT"
-  # Timestamp of release (iso8601 formatted string; optional)
+  # Timestamp of release (optional; metav1.Time (recommended to use iso8601 formatted string))
   releasedAt: 2021-05-05T18:57:06Z
   # valuesSchema can be used to show template values that
   # can be configured by users when a Package is installed.
