@@ -16,7 +16,7 @@ workflows.
 ## Adding package repository
 
 kapp-controller needs to know which packages are available to install. One way
-to let it know about available packages is by registering a package repository.
+to let it know about available packages is by creating a package repository.
 To do this, we need a PackageRepository CR:
 
 ```yaml
@@ -57,7 +57,7 @@ stored in an OCI registry. Save this PackageRepository to a file named repo.yml
 and then apply it to the cluster using kapp:
 
 ```bash
-$ kapp deploy -a repo -f repo.yml
+$ kapp deploy -a repo -f repo.yml -y
 ```
 
 Once the deploy has finished, we are able to list the package metadatas to see,
@@ -117,21 +117,21 @@ information such as release notes, installation steps, licenses, etc. For
 example,
 
 ```bash
-$ kubectl get package simple-app.corp.com.2.0.0 -oyaml
+$ kubectl get package simple-app.corp.com.1.0.0 -o yaml
 ```
 
-will show us more details on version `2.0.0` of the `simple-app.corp.com` package:
+will show us more details on version `1.0.0` of the `simple-app.corp.com` package:
 
 ```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: simple-app.corp.com.2.0.0
+  name: simple-app.corp.com.1.0.0
 spec:
   refName: simple-app.corp.com
-  version: 2.0.0
+  version: 1.0.0
   releaseNotes: |
-    Adds overlays to control the number of pods
+    Initial release of the simple app package
   valuesSchema:
     openAPIv3:
       title: simple-app.corp.com values schema
@@ -160,20 +160,20 @@ spec:
           - stranger
   template:
     spec:
-      deploy:
-      - kapp: {}
       fetch:
       - imgpkgBundle:
-          image: index.docker.io/k8slt/kctrl-example-pkg@sha256:73713d922b5f561c0db2a7ea5f4f6384f7d2d6289886f8400a8aaf5e8fdf134a
+          image: k8slt/kctrl-example-pkg:v1.0.0
       template:
       - ytt:
           paths:
-          - config-step-2-template
-          - config-step-2a-overlays
+          - "config.yml"
+          - "values.yml"
       - kbld:
           paths:
-          - '-'
-          - .imgpkg/images.yml
+          - "-"
+          - ".imgpkg/images.yml"
+      deploy:
+      - kapp: {}
 ```
 
 Here we can see this version will fetch the templates stored in the
@@ -214,7 +214,8 @@ stringData:
     ---
     hello_msg: "hi"
 ```
-This CR references the Package we decided to install in the previous section
+
+This CR references the Package we decided to create in the previous section
 using the package's `refName` and `version` fields. Do note, the `versionSelection`
 property has a `constraints` subproperty to give more control over which
 versions are chosen for installation. More information on PackageInstall versioning
@@ -232,14 +233,14 @@ service accounts are used) that give kapp-controller privileges to create
 resources in the default namespace:
 
 ```bash
-$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
 ```
 
 Save the PackageInstall above to a file named pkginstall.yml and then apply the
 PackageInstall using kapp:
 
 ```bash
-$ kapp deploy -a pkg-demo -f pkginstall.yml
+$ kapp deploy -a pkg-demo -f pkginstall.yml -y
 ```
 
 After the deploy has finished, kapp-controller will have installed the package in the
@@ -256,7 +257,7 @@ If we now use kubectl's port forwarding functionality, we can also see the our
 customized hello message as been used in the workload:
 
 ```bash
-$ kubectl port-forward service/simple-app  3000:80
+$ kubectl port-forward service/simple-app 3000:80
 ```
 
 Then, from another window:
@@ -273,5 +274,11 @@ And we see that our hello_msg value is used.
 To uninstall a package, simply delete the PackageInstall CR:
 
 ```bash
-$ kapp delete -a pkg-demo
+$ kapp delete -a pkg-demo -y
+```
+
+Also remember to cleanup the RBAC created for the PackageInstall:
+
+```bash
+$ kapp delete -a default-ns-rbac -y
 ```
