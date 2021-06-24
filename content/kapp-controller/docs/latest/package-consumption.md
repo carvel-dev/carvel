@@ -185,8 +185,8 @@ installation.
 ## Installing a package
 
 Once we have the packages available for installation (as seen via `kubectl get
-packages`) we need to let kapp-controller know what we want to install one. To do
-this, we will need to create a PackageInstall CR (and a secret to hold the
+packages`), we need to let kapp-controller know which package we want to install. 
+To do this, we will need to create a PackageInstall CR (and a secret to hold the
 values used by our package):
 
 ```yaml
@@ -218,7 +218,7 @@ This CR references the Package we decided to install in the previous section
 using the package's `refName` and `version` fields. Do note, the `versionSelection`
 property has a `constraints` subproperty to give more control over which
 versions are chosen for installation. More information on PackageInstall versioning
-can be found [here](packaging#versioning-installedpackages).
+can be found [here](packaging#versioning-packageinstalls).
 
 This yaml snippet also contains a Kubernetes secret, which is referenced by the
 PackageInstall. This secret is used to provide customized values to the package
