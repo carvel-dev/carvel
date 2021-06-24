@@ -23,7 +23,7 @@ these, see our [install section on the homepage](/#whole-suite).
 
 ### Configuration
 
-For this demo, we will be using [ytt](/ytt) templates that describe simple Kubernetes Deployment and Service. These templates will install a simple greeter app with a templated hello message. The templates consist of two files:
+For this demo, we will be using [ytt](/ytt) templates that describe a simple Kubernetes Deployment and Service. These templates will install a simple greeter app with a templated hello message. The templates consist of two files:
 
 `config.yml`:
 
@@ -104,7 +104,7 @@ $ kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg
 ```
 
 For more on using kbld to populate the `.imgpkg` directory with an ImagesLock, and why it is useful,
-see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration)
+see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration).
 
 Once these files have been added, our package contents bundle is ready to be pushed as shown below
 (**NOTE:** replace `registry.corp.com/packages/` if working through example):
