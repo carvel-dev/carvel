@@ -89,9 +89,9 @@ reference to the greeter app image
 To start, lets create a directory with the above configuration files:
 
 ```bash
-$ mkdir -p package-contents/config/
-$ mv <path to config.yml> package-contents/config/config.yml
-$ mv <path to values.yml> package-contents/config/values.yml
+$ mkdir -p package-contents/
+$ mv <path to config.yml> package-contents/config.yml
+$ mv <path to values.yml> package-contents/values.yml
 ```
 
 ([Package bundle format](packaging.md#package-bundle-format) describes the purpose of each directory as well as general recommendations.)
@@ -149,7 +149,7 @@ Before moving on, save this yaml snippet to a file named
 
 Lastly, we need to create a Package CR. This CR contains versioned instructions
 and metadata used to install packaged sofwtare that fits the description
-provided in the PackageMetadata CR we just created. An example Package CR
+provided in the PackageMetadata CR we just saved in `metadata.yml`. An example Package CR
 follows.
 
 ```yaml
@@ -238,7 +238,7 @@ available on the cluster, so let's apply the Package and PackageMetadata CRs we
 just created directly to the cluster:
 
 ```
-$ kapp deploy -a package -f 1.0.0.yml -f metadata.yml
+$ kapp deploy -a package -f 1.0.0.yml -f metadata.yml -y
 ```
 
 Typically these CRs are made available to the cluster from a package repository,
@@ -297,7 +297,8 @@ $ kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.
 ```
 
 With the bundle metadata files present, we can push our bundle to whatever OCI registry
-we plan to distribute it from:
+we plan to distribute it from (**NOTE:** replace `registry.corp.com/packages/` if working 
+through example):
 
 ```bash
 $ imgpkg push -b registry.corp.com/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
