@@ -3,19 +3,19 @@ title: Schema Migration Guide
 toc: "true"
 ---
 
-Schema documents provide a way to declare data values with their types, and default values. Without schemas, validating the presence of data values requires additional `ytt` configuration containing starlark assertions.
+Schema documents provide a way to declare Data Values with their types, and default values. Without Schemas, validating the presence of Data Values requires additional `ytt` configuration containing starlark assertions.
 
-[Learn more about using schema here.](ytt-schema.md)\
-[Read the detailed schema module here.](lang-ref-ytt-schema.md)
+[Learn more about using Schema here.](ytt-schema.md)\
+[Read the detailed Schema module here.](lang-ref-ytt-schema.md)
 
 
-## How do I, a configuration author, migrate my `ytt` library to use schemas?
+## How do I, a configuration author, migrate my `ytt` library to use Schemas?
 
-To make use of the schema feature, your `ytt` invocation must first contain files using the [data values feature](ytt-data-values.md). Migrating to schemas involves converting your data values files into a schema file.
+To make use of the Schema feature, your `ytt` invocation must first contain files using the [Data Values feature](ytt-data-values.md). Migrating to Schemas involves converting your Data Values files into a Schema file.
 
-### Single data values file
+### Single Data Values file
 
-Starting with a single data values file, `values.yml`:
+Starting with a single Data Values file, `values.yml`:
 ```yaml
 #@data/values
 ---
@@ -23,22 +23,23 @@ key1: myVal
 key2: 8080
 ```
 
-Convert this data values file into schema by changing the top level annotation in the document to say `#@data/values-schema`, and (optional) rename `values.yml` to `values-schema.yml`:
+Convert this Data Values file into Schema by changing the top level annotation in the document to say `#@data/values-schema`, and (optional) rename `values.yml` to `values-schema.yml`:
 ```yaml
 #@data/values-schema
 ---
 key1: myVal
 key2: 8080
 ```
-Now simply include this schema file in your `ytt` invocation to receive the benefits of `ytt` schemas.
+Now simply include this Schema file in your `ytt` invocation to receive the benefits of `ytt` Schemas.
 
 
-**Note: If your data values file contains arrays (ie. `["example"]`, `- example`), be sure to [provide default values for arrays](#how-do-i-provide-default-values-for-an-array).**
+**Note: If your Data Values file contains arrays (ie. `["example"]`, `- example`), be sure to [provide default values for arrays](#how-do-i-provide-default-values-for-an-array).**
 
-### Multiple data values files
-For this case, be sure that you are [using multiple data values files](ytt-data-values.md#splitting-data-values-into-multiple-files). 
+### Multiple Data Values files
+Sometimes, it makes sense to [split Data Values into multiple files](ytt-data-values.md#splitting-data-values-into-multiple-files).
+If this is your situation, there are a few things to note.
 
-Given a `ytt` configuration with two data values files:
+Given a `ytt` configuration with two Data Values files:
 ```bash
 $ tree .
 .
@@ -65,33 +66,34 @@ key3:
   host: registry.dev.io
   port: 8080
 ```
-The first step is to combine these two sets of data values into a single set of data values (a union set of all top level keys from the data values files).
-`ytt` can do this for you by providing the`--data-values-inspect` flag to your usual `ytt` command:
-```bash
-$ `ytt -f . --data-values-inspect
-key1: myVal
-key2: 8088
-key3:
-  host: registry.dev.io
-  port: 8080
-```
-You can now copy this output into a yaml file and make it a schema by adding the `#@data/values-schema` annotation to the top of a new document.
+You can convert each Data Values document into its own Schema document by [following the steps to convert a single Data Values file](#single-data-values-file).
 
-`values-schema.yml`:
+[Multiple Schemas combine exactly like Data Values, via overlays](lang-ref-ytt-schema.md#defining-schema): 
+the first Schema establishes the base set of "data value" declarations, and subsequent Schema files are overlays on top of that base.
+
+`values-1-schema.yml`:
 ```yaml
 #@data/values-schema
 ---
 key1: myVal
+key2: 8080
+```
+
+`values-2-schema.yml`:
+```yaml
+#@data/values-schema
+---
 key2: 8088
+#@overlay/match missing_ok=True
 key3:
   host: registry.dev.io
   port: 8080
 ```
 
-Now just include the `values-schema.yml` file in your `ytt` invocation instead of the multiple data values files.
+Now just include these Schema files in your `ytt` invocation instead of the Data Values files.
 
-### Multiple data values files + Private libraries
-In this scenario, we expect your configuration to depend on a ytt library; outlined in the [library module docs](lang-ref-ytt-library.md).
+### Multiple Data Values files + Private Libraries
+If your configuration depends on a ytt library — outlined in the [library module docs](lang-ref-ytt-library.md) — there are a few points to note.
 
 ```bash
 $ tree .
@@ -114,8 +116,9 @@ $ tree .
 #@ lib = library.get("lib").with_data_values(data.values)
 --- #@ template.replace(lib.eval())
 ```
-Using the same `values-1.yml` and `values-2.yml` files from the [multiple data values files schema migration example above](#multiple-data-values-files).
-Migrating to schema happens one library at a time. Let's start with the root library, which includes everything at and below the file system level where the `ytt` invocation was called, not including the `_ytt_lib` folder:
+Using the same `values-1.yml` and `values-2.yml` files from the [multiple Data Values files Schema migration example above](#multiple-data-values-files).
+
+Migrating to Schema happens one library at a time. Let's start with the root library, which includes everything at and below the file system level where the `ytt` invocation was called, not including the `_ytt_lib` folder:
 ```bash
 .
 └── config
@@ -123,41 +126,38 @@ Migrating to schema happens one library at a time. Let's start with the root lib
     ├── values-1.yml
     └── values-2.yml
 ```
-As seen in the [previous example](#multiple-data-values-files), `values-1.yml` and `values-2.yml` can be combined and replaced with a single schema file:
-`values-schema.yml`:
-```yaml
-#@data/values-schema
----
-key1: myVal
-key2: 8088
-key3:
-  host: registry.dev.io
-  port: 8080
-```
-Now we have migrated the root library to use schemas, and the `ytt` invocation will succeed as the same as before, but the private library, "lib" is not yet migrated to schema. 
+As seen in the [previous example](#multiple-data-values-files), migrating this library to Schemas simply involves converting each `values-1.yml` and `values-2.yml`into a Schema file.
+
+Now we have migrated the root library to use Schemas, and the `ytt` invocation will succeed as the same as before. Each library can independently opt-in to using Schemas. 
 ```bash
 $ tree .
 .
 └── config
     ├── config.yml 
-    ├── values-schema.yml
+    ├── values-1-schema.yml
+    ├── values-2-schema.yml
     └── _ytt_lib
         └── lib
             ├── service.yml
             └── values.yml
 ```
-Migrating a private library to use schemas involves the same process as the root library. You can narrow the context to just the children of the `_ytt_lib` directory:
+Migrating a private library to use Schemas involves the same process as the root library. You can narrow the context to just the children of the `_ytt_lib` directory:
 ```bash
 └── _ytt_lib
     └── lib
         ├── service.yml
         └── values.yml
 ```
-Now simply follow the steps in either of the previous examples to migrate the private library to use schemas.
+Now simply follow the steps in either of the previous examples to migrate the private library to use Schemas.
+
+---
 
 ## How do I provide default values for an array?
-Arrays in schemas have [special behavior](lang-ref-ytt-schema.md#inferring-defaults-for-arrays), their default value is empty, but their inferred type is from the value in the schema document. 
-Arrays must have one and only one item, which provides the inferred type of that data value. The example below shows how to define an array in a schema and them provide default values via a data values file.
+Arrays in Schemas have [special behavior](lang-ref-ytt-schema.md#inferring-defaults-for-arrays):
+exactly one element is specified in the array, and that value is _only_ used to infer the type of that array's elements —
+the default value for arrays is always empty.
+
+The example below shows how to define an array in a Schema and then provide default values via a Data Values file.
 
 `values-schema.yml`:
 ```yaml
@@ -190,12 +190,10 @@ key:
 
 
 ## How do I mark a section of Data Values as "optional"?
-The [@schema/nullalble](lang-ref-ytt-schema.md#schemanullable) annotation can be used to override the defaults of the node it annotates.
+Sometimes your configuration includes a section of Data Values that are not typically used or in some way optional.
+To [make your Data Values optional](ytt-schema.md#make-data-values-optional-with-schema-annotations), use the 
+[@schema/nullalble](lang-ref-ytt-schema.md#schemanullable) annotation to default such a section to `null`.
 
-Use this annotation on a node if `null` is valid input, or you want the default value for that data value to be `null`. (This annotation cannot be use on arrays.)
-
-## How do I mark a Data Value as containing any kind of YAML? (any)
-The [@schema/type any=True](lang-ref-ytt-schema.md#schematype) annotation 
-that can be used to override the inferred typing and defaults of the node it annotates.
-
-If the constraints given by the schema on a data value need to be relaxed, do so by placing `@schema/type any=True` on the node; any value of any type (as long as valid yaml) can be provided as the value of this node.
+## How do I mark a Data Value as containing any kind of YAML?
+For those looking to relax the typing that Schema applies to Data Values, the [@schema/type any=True](lang-ref-ytt-schema.md#schematype) annotation 
+can be used to override the inferred typing on the node it annotates and its children.
