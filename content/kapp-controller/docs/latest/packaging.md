@@ -2,20 +2,15 @@
 title: Packaging
 ---
 
-The new release candidate of kapp-controller adds new APIs to bring common package
-management workflows to a Kubernetes cluster.  This is done using four new CRs:
+Release v0.20.0+ of kapp-controller adds new APIs to bring common package
+management workflows to a Kubernetes cluster. This is done using four new CRs:
 PackageRepository, PackageMetadata, Package, and PackageInstall, which are
 described further in their respective sections.
 
-We would love any and all
-feedback regarding these APIs or any documentation relating to them! (Ping us on
-Slack)
-
 ## Install
 
-These APIs are only available in the latest release candidate, so see the
-documentation on [installing the latest release candidate of
-kapp-controller](install-alpha.md) to get started.
+See the documentation on installing the [latest release of kapp-controller](install.md) 
+to get started.
 
 ## Terminology
 
@@ -276,9 +271,8 @@ status:
   - type: Reconciling
 ```
 
-**Note:** In this alpha release, values will only be included in the first
-templating step of the package, though we intend to improve this experience in
-later alpha releases.
+**Note:** Values will only be included in the first templating step of the package, 
+though we intend to improve this experience in later releases.
 
 ## Namespacing
 

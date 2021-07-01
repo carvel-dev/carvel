@@ -14,7 +14,7 @@ consumers running a kapp-controller in their cluster.
 ## Prerequisites
 
 To go through the examles below, the following prerequisites are assumed:
-* You will need to [install the latest release candidate](install-alpha.md) of kapp-controller on a Kubernetes cluster.
+* You will need to [install the latest release](install.md) of kapp-controller on a Kubernetes cluster.
 * These workflows also assume some of the other Carvel tools are installed on your
 system, namely `kapp`, `imgpkg`, and `kbld`. For more info on how to install
 these, see our [install section on the homepage](/#whole-suite).
