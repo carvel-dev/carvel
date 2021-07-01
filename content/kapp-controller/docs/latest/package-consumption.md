@@ -8,7 +8,7 @@ workflows.
 
 ## Prerequisites
 
-* You will need to [install the latest release candidate](install-alpha.md) on a
+* You will need to [install the latest release](install.md) of kapp-controller on a
   Kubernetes cluster to go through the examples.
 * The instructions below assume [`kapp`](/kapp) and `kubectl` are installed.
 * The instructions assume you are targeted at the default namespace
