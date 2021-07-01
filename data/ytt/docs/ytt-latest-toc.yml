@@ -77,6 +77,8 @@ toc:
         url: /faq
       - page: Why ytt vs. x?
         url: /ytt-vs-x
+      - page: Schema Migration Guide
+        url: /data-values-schema-migration-guide
       - page: Security
         url: /security
       - page: Known Limitations

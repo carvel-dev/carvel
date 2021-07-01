@@ -54,3 +54,5 @@ service:
 ```
   
 Check out how default values work [here](lang-ref-ytt-schema.md#inferring-default-values).
+
+## Make Data Values Optional with Schema Annotations
