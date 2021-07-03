@@ -9,13 +9,13 @@ toc:
     subfolderitems:
       - page: YAML and Annotations
         url: /yaml-primer
-  - title: Techniques
+  - title: How To
     subfolderitems:
-      - page: Using data values
-        url: /ytt-data-values
-      - page: Using schema
-        url: /ytt-schema
-      - page: Using overlays
+      - page: Use Data Values
+        url: /how-to-use-data-values
+      - page: Write Schema
+        url: /how-to-write-schema
+      - page: Use overlays
         url: /ytt-overlays
       - page: Data values vs overlays
         url: /data-values-vs-overlays
@@ -27,6 +27,10 @@ toc:
         url: /lang
       - page: Annotations
         url: /lang-ref-annotation
+      - page: Data Values
+        url: /ytt-data-values
+      - page: Data Values Schema
+        url: /lang-ref-ytt-schema
       - page: Text Templating
         url: /ytt-text-templating
   - title: Built-in @ytt library
@@ -43,8 +47,6 @@ toc:
         url: /lang-ref-ytt-version
       - page: Template module
         url: /lang-ref-ytt-template
-      - page: Schema module
-        url: /lang-ref-ytt-schema
   - title: Language
     subfolderitems:
       - page: General

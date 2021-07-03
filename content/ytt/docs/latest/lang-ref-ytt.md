@@ -19,7 +19,7 @@ x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
 
 ### data
 
-See [ytt @data/values](ytt-data-values.md) for more details
+See [Data Values](ytt-data-values.md) reference for more details
 
 ```python
 load("@ytt:data", "data")
