@@ -5,6 +5,10 @@ toc:
         url: /
       - page: How it Works
         url: /how-it-works
+  - title: Concepts
+    subfolderitems:
+      - page: YAML and Annotations
+        url: /yaml-primer
   - title: Techniques
     subfolderitems:
       - page: Using data values
