@@ -3,160 +3,150 @@ title: "kapp-controller"
 ---
 
 <div class="hero subpage kapp-controller">
-    <div class="wrapper clearfix">
-        <div class="text-block">
-            <h1>Lightweight continuous delivery to Kubernetes</h1>
-            <p>Codify your application deployment in a first-class Kubernetes resource &mdash; App CR. Have Kubernetes fetch application configuration from various sources, template and customize it, and see it converge continuously.</p>
-            <div class="buttons">
-                <a class="button" href="#examples">See Examples</a>
-                <a class="button tertiary" href="https://github.com/vmware-tanzu/carvel-kapp-controller/releases" target="_blank">Install</a>
-            </div>
-        </div>
+  <div class="wrapper clearfix">
+    <div class="text-block">
+      <h1>Package management and continuous delivery for Kubernetes</h1>
+      <p>Package your software deployments through first-class Kubernetes resources. Have Kubernetes fetch
+        package configuration from various sources, template and customize it, and see it converge continuously.</p>
+      <div class="buttons">
+        <a class="button" href="#examples">See Examples</a>
+        <a class="button tertiary" href="https://carvel.dev/kapp-controller/docs/latest/install/"
+          target="_blank">Install</a>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="wrapper mobile-blue">
-    <div class="yaml-grid grid three">
-        <div class="col">
-            <div class="icon">
-                <img src="/img/structure-oriented.svg" />
-            </div>
-            <h3>Consistent</h3>
-            <p>App CR provides a common consistent API for configuring and deploying your applications regardless if it is a Helm chart, plain YAML configuration, ytt templates, etc.</p>
-        </div>
-        <div class="col">
-            <div class="icon">
-                <img src="/img/modularized-config.svg" />
-            </div>
-            <h3>Composable</h3>
-            <p>Take advantage of different tools for each stage -- fetch, template and deploy. For example, fetch Helm templates from a Git repository, use Helm to template them, make modifications with ytt overlays, and finally deploy with kapp.</p>
-        </div>
-        <div class="col">
-            <div class="icon">
-                <img src="/img/deterministic.svg" />
-            </div>
-            <h3>Lightweight</h3>
-            <p>kapp-controller delegates all the heavy lifting to existing configuration management and deployment tools. In doing so, kapp-controller itself is kept very simple, and therefore provides a high degree of reliability.</p>
-        </div>
+  <div class="yaml-grid grid three">
+    <div class="col">
+      <div class="icon">
+        <img src="/img/structure-oriented.svg" />
+      </div>
+      <h3>Consistent</h3>
+      <p>Encapsulate and version software deployments to Kubernetes via a Package CR and install and manage through a
+        PackageInstall CR. kapp-controller provides a consistent API for encapsulating, configuring and deploying
+        software regardless if it is a Helm chart, plain YAML configuration, ytt templates, etc.</p>
     </div>
+    <div class="col">
+      <div class="icon">
+        <img src="/img/modularized-config.svg" />
+      </div>
+      <h3>Composable</h3>
+      <p>Take advantage of different tools for each stage -- fetch, template and deploy. For example, fetch Helm
+        templates from a Git repository, use Helm to template them, make modifications with ytt overlays, and finally
+        deploy with kapp.</p>
+    </div>
+    <div class="col">
+      <div class="icon">
+        <img src="/img/deterministic.svg" />
+      </div>
+      <h3>Lightweight</h3>
+      <p>kapp-controller delegates all the heavy lifting to existing configuration management and deployment tools. In
+        doing so, kapp-controller itself is kept very simple, and therefore provides a high degree of reliability.</p>
+    </div>
+  </div>
 </div>
 
 <div class="wrapper">
-    <div class="text-content" id="examples">
-        <h2>Basic Usage</h2>
-        <p>Describe in <code>simple-app.yml</code> how to fetch, template, and deploy your application:</p>
-        {{< highlight yaml "" >}}
-apiVersion: kappctrl.k14s.io/v1alpha1
-kind: App
+  <div class="text-content" id="examples">
+    <h2>Basic Usage</h2>
+    <p>Make multiple versions of a Kubernetes software package available on a Kubernetes cluster with a
+      PackageRepository:</p>
+{{< highlight yaml "">}}
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
 metadata:
-  name: simple-app
-  namespace: default
+  name: simple-package-repository
 spec:
-  serviceAccountName: default-ns-sa
   fetch:
-  - git:
-      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
-      ref: origin/develop
-      subPath: config-step-1-minimal
-  template:
-  - ytt: {}
-  deploy:
-  - kapp: {}
-{{< / highlight >}}
-        <p>Let's apply configuration to your cluster and see it get reconciled.</p>
-        {{< highlight bash "" >}}
-$ kubect apply -f simple-app.yml
+    imgpkgBundle:
+      image: k8slt/corp-com-pkg-repo:1.0.0
+{{< / highlight>}}
+        <p>Apply configuration above for PackageRepository to your cluster and see the Packages created on your cluster.</p>
+{{< highlight bash "">}}
+$ kubectl apply -f repo.yml
 
-$ kubectl get app
-NAME         DESCRIPTION           SINCE-DEPLOY   AGE
-simple-app   Reconcile succeeded   6s             28s
-{{< / highlight >}}
-        <p>Also take a look at more detailed information about deployed app via <code>kubectl get app simple-app -oyaml</code>.</p>
-        {{< highlight yaml "" >}}
-apiVersion: kappctrl.k14s.io/v1alpha1
-kind: App
+$ kubectl get packages
+NAME                             PACKAGEMETADATA NAME   VERSION      AGE
+simple-app.corp.com.1.0.0        simple-app.corp.com    1.0.0        1m50s
+simple-app.corp.com.2.0.0        simple-app.corp.com    2.0.0        1m50s
+simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com    3.0.0-rc.1   1m50s
+{{< / highlight>}}
+            <p>View the Package CR to see what will be installed and how it will be installed:</p>
+{{< highlight bash "">}}$ kubectl get package simple-app.corp.com.1.0.0 -o yaml{{< / highlight>}}
+{{< highlight yaml "">}}
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
 metadata:
-  name: simple-app
-  namespace: default
-  creationTimestamp: "2020-12-15T00:51:48Z"
-  generation: 1
-  resourceVersion: "37396"
-  uid: dbbb639d-1f58-4a1e-ade6-39bc22ee6d82
-  finalizers:
-  - finalizers.kapp-ctrl.k14s.io/delete
+  name: simple-app.corp.com.1.0.0
+spec:
+  refName: simple-app.corp.com
+  version: 1.0.0
+  releaseNotes: |
+    Initial release of the simple app package
+  valuesSchema:
+    openAPIv3:
+      title: simple-app.corp.com values schema
+      examples:
+      - svc_port: 80
+        app_port: 80
+        hello_msg: stranger
+      properties:
+        svc_port:
+          type: integer
+          description: Port number for the service.
+          default: 80
+          examples:
+          - 80
+        app_port:
+          type: integer
+          description: Target port for the application.
+          default: 80
+          examples:
+          - 80
+        hello_msg:
+          type: string
+          description: Name used in hello message from app when app is pinged.
+          default: stranger
+          examples:
+          - stranger
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: index.docker.io/k8slt/kctrl-example-pkg@sha256:8ffa7f9352149dba1d539d0006b38eda357917edcdd39b82497a61dab2c27b75
+      template:
+      - ytt:
+          paths:
+          - config/
+      - kbld:
+          paths:
+          - '-'
+          - .imgpkg/images.yml
+      deploy:
+      - kapp: {}
+{{< / highlight>}}
+              <p>Install a version of a Package with a PackageInstall CR:</p>
+{{< highlight yaml "">}}
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: pkg-demo
 spec:
   serviceAccountName: default-ns-sa
-  fetch:
-  - git:
-      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
-      ref: origin/develop
-      subPath: config-step-1-minimal
-  template:
-  - ytt: {}
-  deploy:
-  - kapp: {}
-status:
-  observedGeneration: 1
-  conditions:
-  - status: "True"
-    type: ReconcileSucceeded
-  friendlyDescription: Reconcile succeeded
-  fetch:
-    exitCode: 0
-    startedAt: "2020-12-15T00:52:10Z"
-    updatedAt: "2020-12-15T00:52:10Z"
-  template:
-    exitCode: 0
-    updatedAt: "2020-12-15T00:52:10Z"
-  deploy:
-    exitCode: 0
-    finished: true
-    startedAt: "2020-12-15T00:52:10Z"
-    stdout: |-
-      Target cluster 'https://10.96.0.1:443'
-      Changes
-      Namespace  Name        Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri
-      default    simple-app  Deployment  -       -    create  -       reconcile  -   -
-      ^          simple-app  Service     -       -    create  -       reconcile  -   -
-      Op:      2 create, 0 delete, 0 update, 0 noop
-      Wait to: 2 reconcile, 0 delete, 0 noop
-      12:52:10AM: ---- applying 2 changes [0/2 done] ----
-      12:52:10AM: create service/simple-app (v1) namespace: default
-      12:52:12AM: create deployment/simple-app (apps/v1) namespace: default
-      12:52:12AM: ---- waiting on 2 changes [0/2 done] ----
-      12:52:12AM: ok: reconcile service/simple-app (v1) namespace: default
-      12:52:12AM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
-      12:52:12AM:  ^ Waiting for generation 2 to be observed
-      12:52:12AM:  L ok: waiting on replicaset/simple-app-69f4586488 (apps/v1) namespace: default
-      12:52:12AM:  L ongoing: waiting on pod/simple-app-69f4586488-9qrx2 (v1) namespace: default
-      12:52:12AM:     ^ Pending: ContainerCreating
-      12:52:12AM: ---- waiting on 1 changes [1/2 done] ----
-      12:52:12AM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
-      12:52:12AM:  ^ Waiting for 1 unavailable replicas
-      12:52:12AM:  L ok: waiting on replicaset/simple-app-69f4586488 (apps/v1) namespace: default
-      12:52:12AM:  L ongoing: waiting on pod/simple-app-69f4586488-9qrx2 (v1) namespace: default
-      12:52:12AM:     ^ Pending: ContainerCreating
-      12:52:13AM: ok: reconcile deployment/simple-app (apps/v1) namespace: default
-      12:52:13AM: ---- applying complete [2/2 done] ----
-      12:52:13AM: ---- waiting complete [2/2 done] ----
-      Succeeded
-    updatedAt: "2020-12-15T00:52:13Z"
-  inspect:
-    exitCode: 0
-    stdout: |-
-      Target cluster 'https://10.96.0.1:443'
-      Resources in app 'simple-app-ctrl'
-      Namespace  Name                         Kind        Owner    Conds.  Rs  Ri  Age
-      default    simple-app                   Deployment  kapp     2/2 t   ok  -   3s
-      ^          simple-app                   Endpoints   cluster  -       ok  -   3s
-      ^          simple-app                   Service     kapp     -       ok  -   3s
-      ^          simple-app-69f4586488        ReplicaSet  cluster  -       ok  -   3s
-      ^          simple-app-69f4586488-9qrx2  Pod         cluster  4/4 t   ok  -   3s
-      Rs: Reconcile state
-      Ri: Reconcile information
-      5 resources
-      Succeeded
-    updatedAt: "2020-12-15T00:52:13Z"
-{{< / highlight >}}
-    </div>
+  packageRef:
+    refName: simple-app.corp.com
+    versionSelection:
+      constraints: 1.0.0
+{{< / highlight>}}
+{{< highlight bash "">}}$ kubectl apply -f packageinstall.yml{{< / highlight>}}
+                <p>Verify the Package was installed successfully:</p>
+{{< highlight bash "">}}
+$ kubectl get packageinstall pkg-demo
+
+NAME       PACKAGE NAME          PACKAGE VERSION   DESCRIPTION           AGE
+pkg-demo   simple-app.corp.com   1.0.0             Reconcile succeeded   1m50s
+{{< / highlight>}}
+  </div>
 </div>
