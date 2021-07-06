@@ -52,7 +52,7 @@ This secret will need to be located in the namespace where the PackageRepository
 is created and be in the format described in the [fetch docs](config.md#image-authentication).
 
 This PackageRepository CR will allow kapp-controller to install any of the
-packages found within the `k8slt/kctrl-pkg-repo:v1.0.0` imgpkg bundle, which is
+packages found within the `k8slt/kctrl-pkg-repo:1.0.0` imgpkg bundle, which is
 stored in an OCI registry. Save this PackageRepository to a file named repo.yml
 and then apply it to the cluster using kapp:
 
@@ -162,22 +162,21 @@ spec:
     spec:
       fetch:
       - imgpkgBundle:
-          image: k8slt/kctrl-example-pkg:v1.0.0
+          image: index.docker.io/k8slt/kctrl-example-pkg@sha256:8ffa7f9352149dba1d539d0006b38eda357917edcdd39b82497a61dab2c27b75
       template:
       - ytt:
           paths:
-          - "config.yml"
-          - "values.yml"
+          - config/
       - kbld:
           paths:
-          - "-"
-          - ".imgpkg/images.yml"
+          - '-'
+          - .imgpkg/images.yml
       deploy:
       - kapp: {}
 ```
 
 Here we can see this version will fetch the templates stored in the
-`k8slt/kctrl-example-pkg:v1.0.0` bundle, template them using ytt and kbld, and
+`k8slt/kctrl-example-pkg:1.0.0` bundle, template them using ytt and kbld, and
 finally deploy them using kapp. Once deployed, there will be a basic greeter app
 running in the cluster. Since this is what we want, we can now move on to
 installation.
