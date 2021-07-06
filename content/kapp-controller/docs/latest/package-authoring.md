@@ -89,9 +89,9 @@ reference to the greeter app image
 To start, lets create a directory with the above configuration files:
 
 ```bash
-$ mkdir -p package-contents/
-$ mv <path to config.yml> package-contents/config.yml
-$ mv <path to values.yml> package-contents/values.yml
+$ mkdir -p package-contents/config/
+$ mv <path to config.yml> package-contents/config/config.yml
+$ mv <path to values.yml> package-contents/config/values.yml
 ```
 
 ([Package bundle format](packaging.md#package-bundle-format) describes the purpose of each directory as well as general recommendations.)
