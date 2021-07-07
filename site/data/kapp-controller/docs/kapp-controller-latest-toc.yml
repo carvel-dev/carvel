@@ -23,10 +23,6 @@ toc:
         url: /dangerous-flags
       - page: Debugging
         url: /debugging
-  - title: Template steps
-    subfolderitems:
-      - page: Mozilla's sops
-        url: /sops
   - title: Package Management
     subfolderitems:
       - page: Terminology & APIs
@@ -37,6 +33,10 @@ toc:
         url: /package-consumption
       - page: Air-gapped workflow
         url: /air-gapped-workflow
+  - title: Template steps
+    subfolderitems:
+      - page: Mozilla's sops
+        url: /sops
   - title: FAQ
     subfolderitems:
       - page: kapp-controller FAQ
