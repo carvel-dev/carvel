@@ -94,5 +94,5 @@ More examples:
 Related documentation:
 - [How To Write Schema](how-to-write-schema.md) guide
 - [Data Values](ytt-data-values.md) reference
-- [Data Values Schema](lang-ref-ytt-schema.md) reference
-- Schema Migration Guide (TBD)
+- [Data Values Schema Reference](lang-ref-ytt-schema.md)
+- [Schema Migration Guide](data-values-schema-migration-guide.md)

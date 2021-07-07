@@ -42,7 +42,7 @@ For example,
 system_domain: ""
 ```
 
-declares the Data Value, with the name `system_domain` to be of type **string** with the default value of an empty string (i.e. `""`).
+declares the Data Value, with the name `system_domain` to be of type **string** with the default value of an **empty string** (i.e. `""`).
 
 ---
 ## Implying Types
@@ -99,17 +99,39 @@ From the example, [above](#implying-types), the corresponding Data Values have t
 - `load_balancer.enabled` is `true`, and
 - `load_balancer.static_ip` initializes to empty string.
 
+For details on how to set individual default values, see [Data Values Schema Reference: Default Values](lang-ref-ytt-schema.md#default-values).
+
 **Special Case: Arrays**
 
-However, as described in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the two arrays, `app_domains` and `databases` are each an empty list (i.e. `[]`) by default.
+There is one exception: arrays. As described in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the default value for arrays is always an empty list (i.e. `[]`). That said, when an item is added to an array, _its_ value is defaulted as defined in the schema.
 
-That said, when an item is added to `database`, each item will...
-- `adapter` defaulting to `"postresql"`,
-- `port` to `5432`, and
-- `user` initialized to `"admin"`.
+In the example, [above](#implying-types), the definition of `databases` is an array. Each item in _that_ array is a map with six keys including `adapter`, `port`, etc.
+
+While `database` starts out at an empty list, each item added to it will be defaulted with the values given in the schema.
+
+So, if a Data Values overlay is included (as noted [setting a default value for an array](#setting-a-default-value-for-an-array), below):
+
+```yaml
+#@data/values
+---
+databases:
+- name: core
+  host: localhost
+```
+
+That item will be filled-in with defaults:
+
+```yaml
+name: core
+adapter: postgresql
+host: localhost
+port: 5432
+user: admin
+secretRef:
+  name: ""
+```
 
 
-For details on how to set individual default values, see [Data Values Schema Reference: Default Values](lang-ref-ytt-schema.md#default-values).
 
 ---
 ## Specific Use-Cases
@@ -210,8 +232,7 @@ end
 
 In certain cases, one designs a Data Value to carry a chunk of YAML whose exact type or shape is unimportant to templates.
 
-
-
-
 ---
 ## Next Steps
+
+Once you've declared your Data Values, they can be referenced in `ytt` templates as described in [Using Data Values > Referencing Data Values](how-to-use-data-values.md#referencing-data-values)
