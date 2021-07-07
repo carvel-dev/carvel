@@ -6,8 +6,10 @@ title: "kapp-controller"
   <div class="wrapper clearfix">
     <div class="text-block">
       <h1>Continuous delivery and package management for Kubernetes</h1>
-      <p>Have Kubernetes fetch package configuration from various sources, template and customize it, and deploy continuously. 
-        Package and version your software and deployment processes through first-class Kubernetes resources.</p>
+      <p>kapp-controller is a continuous delivery tool and package manager for Kubernetes.
+        It allows you to build, deploy, and manage your own applications; distribute software 
+        to others; and allows users to discover, configure and install software on a cluster.
+      </p>
       <div class="buttons">
         <a class="button" href="#examples">See Examples</a>
         <a class="button tertiary" href="https://carvel.dev/kapp-controller/docs/latest/install/"
@@ -23,27 +25,28 @@ title: "kapp-controller"
       <div class="icon">
         <img src="/img/structure-oriented.svg" />
       </div>
-      <h3>Continuous delivery</h3>
-      <p>kapp-controller continuously fetches, templates, and deploys software out to a Kubernetes cluster 
-        from a variety of sources (git, helm charts, OCI images, etc.). 
+      <h3>App Developers</h3>
+      <p>Build your application for Kubernetes and let kapp-controller continuously fetch, template, and deploy 
+        out to a Kubernetes cluster from a variety of sources (git, helm charts, OCI images, etc.). 
       </p>
     </div>
     <div class="col">
       <div class="icon">
         <img src="/img/modularized-config.svg" />
       </div>
-      <h3>Package management</h3>
-      <p> kapp-controller brings the familiar package manager experience to a Kubernetes cluster. Easily encapsulate, 
-        share, install, and manage software all through a declarative, flexible API.
+      <h3>Package Authors</h3>
+      <p> Encapsulate, version, and distribute your software for others to install on a Kubernetes cluster. 
+        Share your software packages with users in the same cluster where they are developing. 
       </p>
     </div>
     <div class="col">
       <div class="icon">
         <img src="/img/deterministic.svg" />
       </div>
-      <h3>Lightweight</h3>
-      <p>kapp-controller delegates all the heavy lifting to existing configuration management and deployment tools. In
-        doing so, kapp-controller itself is kept very simple, and therefore provides a high degree of reliability.</p>
+      <h3>Package Consumers</h3>
+      <p>Discover, configure, and install versioned software on a Kubernetes cluster without needing 
+        to know all the underlying details. kapp-controller brings the familiar package manager experience to 
+        Kubernetes.</p>
     </div>
   </div>
 </div>
@@ -51,9 +54,9 @@ title: "kapp-controller"
 <div class="wrapper">
   <div class="text-content" id="examples">
     <h2>Basic Usages</h2>
-    <h3>Continuous delivery</h3>
-    <p>Want something lightweight, easy to start with, still providing flexibility in how to fetch, template, and deploy for your 
-      software? Use kapp-controller's App CR.</p>
+    <h3>App development</h3>
+    <p>kapp-controller's App custom resource provides provides a lightweight, flexibile way to choose how to fetch, 
+      template, and deploy your application to Kubernetes.</p>
 {{< highlight yaml "">}}
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
@@ -64,7 +67,7 @@ spec:
   serviceAccountName: default-ns-sa
   fetch:
   - git:
-      url: https://github.com/k14s/k8s-simple-app-example
+      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
       ref: origin/develop
       subPath: config-step-2-template
   template:
@@ -74,6 +77,8 @@ spec:
 {{< / highlight>}}
     <p>Apply the App CR to your cluster and verify the deployment was successful:</p>
 {{< highlight bash "">}}
+$ kubectl apply -f simple-app.yml
+
 $ kubectl get app simple-app
 
 NAME         DESCRIPTION           SINCE-DEPLOY   AGE
@@ -81,9 +86,8 @@ simple-app   Reconcile succeeded   9s             10s
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/walkthrough/">App walkthrough</a> documentation.</p>    
     <h3>Package authoring</h3>
-    <p>Want to start providing versioned software for Kubernetes for users to consume? Want to provide a simple interface for 
-      consumers such that they don't need to know the details of how to install your software? Use kapp-controller's Package 
-      CR.</p>
+    <p>kapp-controller's Package CR provides a way to share versioned software for Kubernetes 
+      so users can easily discover and consume available software.</p>
 {{< highlight yaml "">}}
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
@@ -138,8 +142,9 @@ spec:
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/package-authoring/">package author</a> documentation.</p>   
     <h3>Package consumption</h3> 
-    <p>Want to get a collection of Packages to consumers easily such that they can all be discovered easily from a cluster? Use kapp-controller's 
-      PackageRepository CR.</p>
+    <p>kapp-controller's  PackageRepository custom resource adds a collection of Packages to allow software to be easily discovered and 
+      installed.
+    </p>
 {{< highlight yaml "">}}
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
@@ -152,13 +157,16 @@ spec:
 {{< / highlight>}}
     <p>Apply the PackageRepository to your cluster and view available software packages with kubectl:</p>
 {{< highlight bash "">}}
+$ kubectl apply -f repository.yml
+
 $ kubectl get packages
 NAME                             PACKAGEMETADATA NAME   VERSION      AGE
 simple-app.corp.com.1.0.0        simple-app.corp.com    1.0.0        1m50s
 simple-app.corp.com.2.0.0        simple-app.corp.com    2.0.0        1m50s
 simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com    3.0.0-rc.1   1m50s
 {{< / highlight>}}
-    <p>Want to install software packages on your Kubernetes cluster? Use kapp-controller's PackageInstall CR.</p>
+    <p>kapp-controller's PackageInstall custom resource provides users a way to install Packages on a 
+      Kubernetes cluster.</p>
 {{< highlight yaml "">}}
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
@@ -173,6 +181,8 @@ spec:
 {{< / highlight>}}
     <p>Apply the PackageInstall to your cluster and verify the Package was installed successfully:</p>
 {{< highlight bash "">}}
+$ kubectl apply -f packageinstall.yml
+
 $ kubectl get packageinstall pkg-demo
 
 NAME       PACKAGE NAME          PACKAGE VERSION   DESCRIPTION           AGE
