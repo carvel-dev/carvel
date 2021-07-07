@@ -24,26 +24,26 @@ title: "kapp-controller"
         <img src="/img/structure-oriented.svg" />
       </div>
       <h3>Continuous delivery</h3>
-      <p>kapp-controller's App CR provides a consistent API for fetching, templating, deploying, and syncing software from an underlying 
-        source out to a Kubernetes cluster, regardless if it is a Helm chart, plain YAML configuration, ytt templates, etc.</p>
+      <p>kapp-controller continuously fetches, templates, and deploys software out to a Kubernetes cluster 
+        from a variety of sources (git, helm charts, OCI images, etc.). 
+      </p>
     </div>
     <div class="col">
       <div class="icon">
         <img src="/img/modularized-config.svg" />
       </div>
       <h3>Package management</h3>
-      <p> kapp-controller's package management API allows users to encapsulate, version, and share software packages via a Kubernetes cluster as 
-        Kubernetes custom resources. By making software available as Package CRs, package consumers can discover, configure, and install software 
-        on Kubernetes all through a simple interface.</p>
+      <p> kapp-controller brings the familiar package manager experience to a Kubernetes cluster. Easily encapsulate, 
+        share, install, and manage software all through a declarative, flexible API.
+      </p>
     </div>
     <div class="col">
       <div class="icon">
         <img src="/img/deterministic.svg" />
       </div>
-      <h3>Lightweight, flexible</h3>
+      <h3>Lightweight</h3>
       <p>kapp-controller delegates all the heavy lifting to existing configuration management and deployment tools. In
-        doing so, kapp-controller itself is kept very simple, and therefore provides a high degree of reliability. While 
-        simple and reliabile, kapp-controller supports several use cases around deploying and managing software on Kubernetes.</p>
+        doing so, kapp-controller itself is kept very simple, and therefore provides a high degree of reliability.</p>
     </div>
   </div>
 </div>
