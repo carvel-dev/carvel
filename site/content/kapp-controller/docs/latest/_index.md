@@ -8,9 +8,9 @@ cascade:
   layout: docs
 ---
 
-kapp-controller provides a Kubernetes native package management and continuous delivery experience through custom resource definitions. 
-These new resources for [package management](packaging.md) and [continuous delivery](app-spec.md) help users author software packages 
-and consume packages to ease the process of sharing, installing, and managing software on Kubernetes. 
+kapp-controller provides a Kubernetes native continuous delivery and package management experience through custom resource definitions. 
+These new resources for [continuous delivery](app-spec.md) and [package management](packaging.md) help users author software packages 
+and consume packages to ease the process of sharing, deploying, and managing software on Kubernetes. 
 
 ---
 
