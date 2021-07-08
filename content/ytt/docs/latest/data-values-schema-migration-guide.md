@@ -5,8 +5,8 @@ toc: "true"
 
 Schema documents provide a way to declare Data Values with their types, and default values. Without Schemas, validating the presence of Data Values requires additional `ytt` configuration containing starlark assertions.
 
-[Learn more about using Schema here.](ytt-schema.md)\
-[Read the detailed Schema module here.](lang-ref-ytt-schema.md)
+[Learn more about writing Schema here.](how-to-write-schema.md)\
+[Read the detailed Data Vaues Schema Reference here.](lang-ref-ytt-schema.md)
 
 
 ## How do I, a configuration author, migrate my `ytt` library to use Schemas?
@@ -36,7 +36,7 @@ Now simply include this Schema file in your `ytt` invocation to receive the bene
 **Note: If your Data Values file contains arrays (ie. `["example"]`, `- example`), be sure to [provide default values for arrays](#how-do-i-provide-default-values-for-an-array).**
 
 ### Multiple Data Values files
-Sometimes, it makes sense to [split Data Values into multiple files](ytt-data-values.md#splitting-data-values-into-multiple-files).
+Sometimes, it makes sense to [split Data Values into multiple files](ytt-data-values.md#splitting-data-values-overlays-into-multiple-files).
 If this is your situation, there are a few things to note.
 
 Given a `ytt` configuration with two Data Values files:
@@ -68,7 +68,7 @@ key3:
 ```
 You can convert each Data Values document into its own Schema document by [following the steps to convert a single Data Values file](#single-data-values-file).
 
-[Multiple Schemas combine exactly like Data Values, via overlays](lang-ref-ytt-schema.md#defining-schema): 
+[Multiple Schemas combine exactly like Data Values, via overlays](lang-ref-ytt-schema.md#multiple-schema-documents): 
 the first Schema establishes the base set of "data value" declarations, and subsequent Schema files are overlays on top of that base.
 
 `values-1-schema.yml`:
@@ -153,7 +153,7 @@ Now simply follow the steps in either of the previous examples to migrate the pr
 ---
 
 ## How do I provide default values for an array?
-Arrays in Schemas have [special behavior](lang-ref-ytt-schema.md#inferring-defaults-for-arrays):
+Arrays in Schemas have [special behavior](lang-ref-ytt-schema.md#defaults-for-arrays):
 exactly one element is specified in the array, and that value is _only_ used to infer the type of that array's elements —
 the default value for arrays is always empty.
 
@@ -191,9 +191,12 @@ key:
 
 ## How do I mark a section of Data Values as "optional"?
 Sometimes your configuration includes a section of Data Values that are not typically used or in some way optional.
-To [make your Data Values optional](ytt-schema.md#make-data-values-optional-with-schema-annotations), use the 
+
+If this the case, consider the guidance in [Writing Schema: Marking a Data Value as Optional](how-to-write-schema.md#marking-a-data-value-as-optional), use the 
 [@schema/nullalble](lang-ref-ytt-schema.md#schemanullable) annotation to default such a section to `null`.
 
 ## How do I mark a Data Value as containing any kind of YAML?
 For those looking to relax the typing that Schema applies to Data Values, the [@schema/type any=True](lang-ref-ytt-schema.md#schematype) annotation 
 can be used to override the inferred typing on the node it annotates and its children.
+
+Situations like this are covered in detail in [Writing Schema: Specific Use-Cases](how-to-write-schema.md#specific-use-cases)

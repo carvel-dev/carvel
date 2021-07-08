@@ -20,7 +20,7 @@ A comparison to similar tools can be found in the [ytt vs X doc](ytt-vs-x.md).
 For more:
 * see it in action in the [load data files](/ytt/#example:example-load-data-values) 
 example on the playground
-* check out the [data values reference docs](ytt-data-values.md)
+* check out the [Using Data Values](how-to-use-data-values.md) guide
 
 ## Patching
 

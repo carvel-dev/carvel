@@ -62,7 +62,7 @@ Now, let's look at each type of document, in turn.
 
 #### Data Values Documents
 
-When a document starts with the [`@data/values`](ytt-data-values.md#declaring-and-using-data-values) annotation, it's called a "Data Values Document" (the light grey dashed box in the illustration, [above](#the-ytt-pipeline)).
+When a document starts with the [`@data/values`](how-to-use-data-values.md) annotation, it's called a "Data Values Document" (the light grey dashed box in the illustration, [above](#the-ytt-pipeline)).
 ```yaml
 #@data/values
 ---
@@ -126,7 +126,7 @@ Now that we have a sense of the four kinds of inputs, let's explore what happens
 As the first black pipeline box shows, [above](#the-ytt-pipeline):
 
 1. process all the "Data Values" documents (light grey input) — evaluating any templating in them;
-1. merge those documents, [in order](ytt-data-values.md#splitting-data-values-into-multiple-files). That is, start with the first document and then overlay the second one onto it; then overlay the third document on top of _that_, and so on...
+1. merge those documents, [in order](ytt-data-values.md#splitting-data-values-overlays-into-multiple-files). That is, start with the first document and then overlay the second one onto it; then overlay the third document on top of _that_, and so on...
 
 The result of all this is the final set of values that will be available to templates: the dark grey "final Data Values".
 
@@ -181,7 +181,7 @@ We've scratched the surface: an end-to-end flow from pre-processing inputs, proc
 To learn more about...
 - **Data Values**...
   - poke at a working example in the ytt Playground: [Load Data Values](/ytt/#example:example-load-data-values) example
-  - read-up on the details in "[Using data values](ytt-data-values.md)"
+  - read-up on the details in "[Using Data Values](how-to-use-data-values.md)"
   - work with a complete example from the source: \
     [vmware-tanzu/carvel-ytt/../examples/data-values](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values)
 - **Templates**...
