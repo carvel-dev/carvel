@@ -230,7 +230,47 @@ end
 
 ### Declaring "Pass-through" Data Values
 
-In certain cases, one designs a Data Value to carry a chunk of YAML whose exact type or shape is unimportant to templates.
+In certain cases, one designs a Data Value to carry a chunk of YAML whose exact type or shape is unimportant to templates.  In these situations, it is undesirable for that chunk of YAML to be type-checked.
+
+One can effectively disable type checking by marking the Data Value as of type "any":
+
+```yaml
+#@data/values-schema
+---
+honeycomb:
+  enabled: false
+  api_key: so124me14v4al1i5da5p5i180key
+  #@schema/type any=True
+  optional_config: null
+```
+
+Here, `additional_config` can contain any valid YAML.
+
+For example:
+
+```yaml
+#@data/values
+---
+honeycomb:
+  optional_config:
+    default_series:
+      id: 1001
+      description: Administrative Actions
+```
+
+In a template, the Data Value can be referenced and its contents will be inserted:
+
+```yaml
+#@ load("@ytt:data", "data")
+---
+#@ if/end data.values.honeycomb.enabled:
+honeycomb:
+  config:
+    api_key: #@ data.values.honeycomb.api_key    
+    #@ if/end data.values.honeycomb.optional_config:
+    optional: #@ data.values.honeycomb.optional_config
+```
+
 
 ---
 ## Next Steps
