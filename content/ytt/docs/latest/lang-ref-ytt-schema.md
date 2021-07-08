@@ -12,14 +12,12 @@ Supplemental data value files provided by Configuration Consumers are guaranteed
 
 ---
 ## Defining Schema
-Configuration Authors establish a Schema by capturing the structure in a YAML document with `#@schema/match` at the top:
+Configuration Authors establish a Schema by capturing the structure in a YAML document with `#@data/values-schema` at the top:
 ```yaml
-#@schema/match data_values=True
+#@data/values-schema
 ---
 #! Schema contents
 ```
-- `data_values` (`bool`) — whether this schema is applicable to data values. If this
-  is not set to `True`, this results in an error.
 
 Notes:
 - files containing Schema documents are supplied to `ytt` by `-f`.
@@ -48,7 +46,7 @@ While YAML provides for an extendable range of types, the `ytt` Schema supports 
 Structure in Schema is largely expressed by example rather than by description. Types are — by default — inferred based on the values given.
 
 ```yaml
-#@schema/match data_values=True
+#@data/values-schema
 ---
 system_domain: ""
 
@@ -201,7 +199,7 @@ Extends the type of the node to include "null" _and_ sets the default value to b
 _Example: Nullable map and string_ 
 
 ```yaml
-#@schema/match data_values=True
+#@data/values-schema
 ---
 #@schema/nullable
 aws:
