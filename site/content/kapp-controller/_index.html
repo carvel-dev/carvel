@@ -6,9 +6,9 @@ title: "kapp-controller"
   <div class="wrapper clearfix">
     <div class="text-block">
       <h1>Continuous delivery and package management for Kubernetes</h1>
-      <p>kapp-controller is a continuous delivery tool and package manager for Kubernetes.
-        It allows you to build, deploy, and manage your own applications; distribute software 
-        to others; and allows users to discover, configure and install software on a cluster.
+      <p>kapp-controller's declarative APIs and layered approach enable you to build, deploy, and manage your own 
+        applications. It also helps package your software into easily distributable packages and enables your users 
+        to discover, configure, and install these packages on a Kubernetes cluster.
       </p>
       <div class="buttons">
         <a class="button" href="#examples">See Examples</a>
@@ -26,8 +26,9 @@ title: "kapp-controller"
         <img src="/img/structure-oriented.svg" />
       </div>
       <h3>App Developers</h3>
-      <p>Build your application for Kubernetes and let kapp-controller continuously fetch, template, and deploy 
-        out to a Kubernetes cluster from a variety of sources (git, helm charts, OCI images, etc.). 
+      <p>Build your application for Kubernetes and let kapp-controller continuously fetch configuration and images 
+        from a variety of sources (git, helm charts, OCI image registry, etc.), template using various tools 
+        (ytt, kbld, helm, etc.), and deploy out to a cluster. 
       </p>
     </div>
     <div class="col">
@@ -45,8 +46,8 @@ title: "kapp-controller"
       </div>
       <h3>Package Consumers</h3>
       <p>Discover, configure, and install versioned software on a Kubernetes cluster without needing 
-        to know all the underlying details. kapp-controller brings the familiar package manager experience to 
-        Kubernetes.</p>
+        to know all the underlying details. kapp-controller will continuously fetch, template, and deploy 
+        the installed package just like an application.</p>
     </div>
   </div>
 </div>
@@ -54,9 +55,17 @@ title: "kapp-controller"
 <div class="wrapper">
   <div class="text-content" id="examples">
     <h2>Basic Usages</h2>
+    <p>Before learning about kapp-controller's custom resources (CR), it may be helpful to start with a metaphor. 
+      In object-oriented programming, you may install a library to get the definition of a class, which you can 
+      then instantiate via a constructor. A PackageRepository is like a library, each Package is a class definition, 
+      a PackageInstall is like a call to the class constructor, and the App is the instantiation of the class.
+    </p>
     <h3>App development</h3>
-    <p>kapp-controller's App custom resource provides provides a lightweight, flexibile way to choose how to fetch, 
-      template, and deploy your application to Kubernetes.</p>
+    <p>kapp-controller's App CR provides provides a lightweight, flexibile way to choose how to fetch, 
+      template, and deploy your application to Kubernetes. It can be used independently of kapp-controller's 
+      package management CRs, to assist in the creation of Package CRs, or kapp-controller will create one for 
+      you as a result of creating a PackageInstall CR.
+    </p>
 {{< highlight yaml "">}}
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
@@ -142,7 +151,7 @@ spec:
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/package-authoring/">package author</a> documentation.</p>   
     <h3>Package consumption</h3> 
-    <p>kapp-controller's  PackageRepository custom resource adds a collection of Packages to allow software to be easily discovered and 
+    <p>kapp-controller's PackageRepository CR adds a collection of Packages to allow software to be easily discovered and 
       installed.
     </p>
 {{< highlight yaml "">}}
@@ -165,7 +174,7 @@ simple-app.corp.com.1.0.0        simple-app.corp.com    1.0.0        1m50s
 simple-app.corp.com.2.0.0        simple-app.corp.com    2.0.0        1m50s
 simple-app.corp.com.3.0.0-rc.1   simple-app.corp.com    3.0.0-rc.1   1m50s
 {{< / highlight>}}
-    <p>kapp-controller's PackageInstall custom resource provides users a way to install Packages on a 
+    <p>kapp-controller's PackageInstall CR provides users a way to install Packages on a 
       Kubernetes cluster.</p>
 {{< highlight yaml "">}}
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -184,9 +193,16 @@ spec:
 $ kubectl apply -f packageinstall.yml
 
 $ kubectl get packageinstall pkg-demo
-
+    
 NAME       PACKAGE NAME          PACKAGE VERSION   DESCRIPTION           AGE
 pkg-demo   simple-app.corp.com   1.0.0             Reconcile succeeded   1m50s
+{{< / highlight>}}
+    <p>View the App CR created as a result of the PackageInstall creation:</p>
+{{< highlight bash "">}}
+$ kubectl get app pkg-demo
+
+NAME         DESCRIPTION           SINCE-DEPLOY   AGE
+pkg-demo     Reconcile succeeded   9s             1m45s
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/package-consumption/">package consumption</a> documentation.</p>   
   </div>
