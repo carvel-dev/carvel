@@ -60,6 +60,17 @@ qux: third document's a charm!
 
 Now, let's look at each type of document, in turn.
 
+#### Data Values Schema Documents
+If a document begins with the [`@data/values-schema`](how-to-write-schema.md#starting-a-schema-document) annotation, we call it a "Data Values Schema Document" (the light grey dashed box in the illustration, [above](#the-ytt-pipeline)).
+```yaml
+#@data/values-schema
+---
+instances: 1
+...
+```
+
+These files declare variables (Data Values) by setting their name, default value, and type.
+
 #### Data Values Documents
 
 When a document starts with the [`@data/values`](how-to-use-data-values.md) annotation, it's called a "Data Values Document" (the light grey dashed box in the illustration, [above](#the-ytt-pipeline)).
@@ -115,7 +126,7 @@ These documents describe edits to apply just before generating the output (descr
   
 #### Kinds of Documents in Input Files
 
-Note that an "input file" can contain any combination of "Plain Documents", "Templated Documents", and "Overlay Documents". In contrast,  "Data Values Documents" must be in their own "Input File", as illustrated [above](#the-ytt-pipeline).
+Note that an "input file" can contain any combination of "Plain Documents", "Templated Documents", and "Overlay Documents". In contrast, "Data Values Schema Documents" and "Data Values Documents" must be in their own "Input File", as illustrated [above](#the-ytt-pipeline).
 
 ### The Pipeline Steps
 
@@ -125,6 +136,8 @@ Now that we have a sense of the four kinds of inputs, let's explore what happens
 
 As the first black pipeline box shows, [above](#the-ytt-pipeline):
 
+1. process all the "Data Values Schema" documents (light grey input) — evaluating any templating in them;
+1. merge those documents, [in order](lang-ref-ytt-schema.md#multiple-schema-documents), generating a "Data Values" document populated with default values and type information.
 1. process all the "Data Values" documents (light grey input) — evaluating any templating in them;
 1. merge those documents, [in order](ytt-data-values.md#splitting-data-values-overlays-into-multiple-files). That is, start with the first document and then overlay the second one onto it; then overlay the third document on top of _that_, and so on...
 
@@ -179,6 +192,11 @@ The result is sent to standard out (suitable for piping into other tools). If de
 We've scratched the surface: an end-to-end flow from pre-processing inputs, processing templates, post-processing overlays, and finally rendering the resulting output.
 
 To learn more about...
+- **Data Values Schema**
+  - learn about [writing Schema](how-to-write-schema.md) for Data Values
+  - read-up on the details in the "[Data Values Schema Referce](lang-ref-ytt-schema.md)" material
+  - work with a complete example from the source: \
+    [vmware-tanzu/carvel-ytt/../examples/schema](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/schema)
 - **Data Values**...
   - poke at a working example in the ytt Playground: [Load Data Values](/ytt/#example:example-load-data-values) example
   - read-up on the details in "[Using Data Values](how-to-use-data-values.md)"
