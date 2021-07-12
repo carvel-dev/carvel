@@ -27,7 +27,7 @@ install() {
 
   if [[ `uname` == Darwin ]]; then
     binary_type=darwin-amd64
-    ytt_checksum=1c8d5c28c107da2767d1688fd3aaff86ba9d8f26706d12b0986d49ada24f39f2
+    ytt_checksum=425c5a66c6d1cb765fff11b670081dbe9c63679d25129e4f566f37242cef324d
     kbld_checksum=73274d02b0c2837d897c463f820f2c8192e8c3f63fd90c526de5f23d4c6bdec4
     kapp_checksum=da6411b79c66138cd7437beb268675edf2df3c0a4a8be07fb140dd4ebde758c1
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
@@ -35,7 +35,7 @@ install() {
     vendir_checksum=3e6af7ae5cd89579f6d153af6b6a4c0ab1cfcac22f5014b983d1d942feb8bab0
   else
     binary_type=linux-amd64
-    ytt_checksum=1d129457872d777c14c187ecc40b99c49d9206502af0b9c29bbee68897a1e5d9
+    ytt_checksum=23718f9b92b952f53b8ee603981031e3d2a54d9ad2aaf933da692d8e07a33c90
     kbld_checksum=76c5c572e7a9095256b4c3ae2e076c370ef70ce9ff4eb138662f56828889a00c
     kapp_checksum=f845233deb6c87feac7c82d9b3f5e03ced9a4672abb1a14d4e5b74fe53bc4538
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
