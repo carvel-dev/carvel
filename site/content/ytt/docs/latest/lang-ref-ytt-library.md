@@ -6,7 +6,7 @@ title: Library Module
 
 Available in v0.28.0+
 
-- `#@library/ref`: Attaches a yaml document to the specified library to be used during evalutaion via the library module (only supported for [data value documents](ytt-data-values.md#setting-library-values-via-files))
+- `#@library/ref`: Attaches a yaml document to the specified library to be used during evalutaion via the library module (only supported for [data value and data value schema documents](ytt-data-values.md#setting-library-values-via-files))
 
 ```yaml
 #@library/ref "@app"
@@ -26,6 +26,9 @@ Library module `@ytt:library` provides a way to programmatically get result of t
 # build library instance
 app1 = library.get("app")
 
+# build new copy of library with data values schema (does not mutate app1)
+app1_with_schema = app1.with_data_values_schema({"name": "default"})
+
 # build new copy of library with data values (does not mutate app1)
 app1_with_vals = app1.with_data_values({"name": "app1"})
 
@@ -44,7 +47,7 @@ url_func() # result of url function
       - see [File Marks > type detection for YAML files](file-marks.md#type-detection-for-yaml-files) for more details.
     - `implicit_map_key_overrides=<bool>` (default False) equivalent to `ytt --implicit-map-key-overrides`. Available v0.31.0+
     - `strict=<bool>` (default False) equivalent to `ytt --strict`. Available v0.31.0+
-
+- `x.with_data_values_schema(vals)` (`x`: library, `vals`: dict or YAML fragment, returned: library): returns a new library copy with added data values schema. Given data values schemas are overlayed on top of data values schema found within library. Available v0.35.0+
 - `x.with_data_values(vals)` (`x`: library, `vals`: dict or YAML fragment, returned: library): returns a new library copy with added data values. Given data values are overlayed on top of data values found within library.
 
 ```yaml
