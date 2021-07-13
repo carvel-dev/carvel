@@ -1,10 +1,10 @@
 ![logo](https://raw.githubusercontent.com/vmware-tanzu/carvel/master/logos/CarvelLogo.png)
 
-# Website for [carvel.dev](https://carvel.dev/)
+# Carvel
 
 Carvel provides a set of reliable, single-purpose, composable tools that aid in your application building, configuration, and deployment to Kubernetes.
 
-This is a list of repos associated with [Carvel](https://carvel.dev) project.
+This is a list of repos associated with the [Carvel](https://carvel.dev) project.
 
 * [ytt](https://github.com/vmware-tanzu/carvel-ytt) - Template and overlay Kubernetes configuration via YAML structures, not text documents
 * [kapp](https://github.com/vmware-tanzu/carvel-kapp) - Install, upgrade, and delete multiple Kubernetes resources as one "application"
@@ -38,6 +38,8 @@ Examples:
 * [carvel-guestbook-example-on-kubernetes](https://github.com/vmware-tanzu/carvel-guestbook-example-on-kubernetes)
 
 ---
+# Website for [carvel.dev](https://carvel.dev)
+
 ## Local Development
 
 ### Prerequisites
@@ -63,11 +65,13 @@ Serve site at [http://localhost:1313]()
 - `themes/carvel/assets/` includes SCSS
 - `themes/carvel/static/img/` includes images
 - `content/` includes content for tool docs
-- `data/` includes configuration for docs TOCs 
+- `data/` includes configuration for docs TOCs
 
 More details: [Directory Structure Explained](https://gohugo.io/getting-started/directory-structure/)
 
-### Join the Community and Make Carvel Better
+---
+
+# Join the Community and Make Carvel Better
 Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community.
 Please join us during our online community meetings and office hours. Details can be found on our [Carvel website](https://carvel.dev/community/).
 
