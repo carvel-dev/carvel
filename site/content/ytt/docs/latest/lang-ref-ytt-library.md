@@ -10,6 +10,12 @@ Available in v0.28.0+
 
 ```yaml
 #@library/ref "@app"
+#@data/values-schema
+---
+name: "default"
+```
+```yaml
+#@library/ref "@app"
 #@data/values
 ---
 name: "app1"
@@ -25,9 +31,6 @@ Library module `@ytt:library` provides a way to programmatically get result of t
 ```python
 # build library instance
 app1 = library.get("app")
-
-# build new copy of library with data values schema (does not mutate app1)
-app1_with_schema = app1.with_data_values_schema({"name": "default"})
 
 # build new copy of library with data values (does not mutate app1)
 app1_with_vals = app1.with_data_values({"name": "app1"})
@@ -51,11 +54,20 @@ url_func() # result of url function
 - `x.with_data_values(vals)` (`x`: library, `vals`: dict or YAML fragment, returned: library): returns a new library copy with added data values. Given data values are overlayed on top of data values found within library.
 
 ```yaml
+#@ def app_schema():
+name: ""
+#@overlay/match missing_ok=True
+env_vars:
+  custom_key: ""
+#@ end
+
+#! with_data_values_schema
+#@ app1_with_schema = app1.with_data_values_schema(app_schema())
+---
 #@ def app_vals():
 name: app1
 env_vars:
-  #@overlay/match missing_ok=True
-  custom_key: val
+  custom_key: some_val
 #@ end
 
 #! with_data_values 
