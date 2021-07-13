@@ -55,6 +55,11 @@ title: "kapp-controller"
 <div class="wrapper">
   <div class="text-content" id="examples">
     <h2>Basic Usages</h2>
+    <ul>
+      <li>App CR</li>
+      <li>Package authoring</li>
+      <li>Package consumption</li>
+    </ul>
     <h3>App development</h3>
     <p>kapp-controller's App CR provides provides a lightweight, flexibile way to choose how to fetch, 
       template, and deploy your application to Kubernetes. It can be used independently of kapp-controller's 
@@ -102,6 +107,21 @@ spec:
   version: 1.0.0
   releaseNotes: |
     Initial release of the simple app package
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: index.docker.io/k8slt/kctrl-example-pkg@sha256:8ffa7f9352149dba1d539d0006b38eda357917edcdd39b82497a61dab2c27b75
+      template:
+      - ytt:
+          paths:
+          - config/
+      - kbld:
+          paths:
+          - '-'
+          - .imgpkg/images.yml
+      deploy:
+      - kapp: {}
   valuesSchema:
     openAPIv3:
       title: simple-app.corp.com values schema
@@ -128,21 +148,6 @@ spec:
           default: stranger
           examples:
           - stranger
-  template:
-    spec:
-      fetch:
-      - imgpkgBundle:
-          image: index.docker.io/k8slt/kctrl-example-pkg@sha256:8ffa7f9352149dba1d539d0006b38eda357917edcdd39b82497a61dab2c27b75
-      template:
-      - ytt:
-          paths:
-          - config/
-      - kbld:
-          paths:
-          - '-'
-          - .imgpkg/images.yml
-      deploy:
-      - kapp: {}
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/package-authoring/">package author</a> documentation.</p>   
     <h3>Package consumption</h3> 
@@ -154,6 +159,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   name: simple-package-repository
+  namespace: default
 spec:
   fetch:
     imgpkgBundle:
@@ -176,6 +182,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: pkg-demo
+  namespace: default
 spec:
   serviceAccountName: default-ns-sa
   packageRef:
