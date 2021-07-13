@@ -9,7 +9,7 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
 
-<a href="https://beam.lu/" border="0" target="_blank"><img alt="Revng" src="logos/BEAMSARL.png" height="50"></a>
+<a href="https://beam.lu/" border="0" target="_blank"><img alt="Beam" src="logos/BEAMSARL.png" height="50"></a>
 
 ## Solutions built with Carvel
 
