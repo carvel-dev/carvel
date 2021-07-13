@@ -5,7 +5,7 @@ toc:
         url: /
       - page: Install
         url: /install
-      - page: Walkthrough
+      - page: App Walkthrough
         url: /walkthrough
   - title: Reference
     subfolderitems:
