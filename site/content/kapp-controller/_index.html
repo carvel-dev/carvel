@@ -25,7 +25,7 @@ title: "kapp-controller"
       <div class="icon">
         <img src="/img/structure-oriented.svg" />
       </div>
-      <h3>App Developers</h3>
+      <h3>Kubernetes Developers</h3>
       <p>Build your application for Kubernetes and let kapp-controller continuously fetch configuration and images 
         from a variety of sources (git, helm charts, OCI image registry, etc.), template using various tools 
         (ytt, kbld, helm, etc.), and deploy out to a cluster. 
@@ -56,10 +56,11 @@ title: "kapp-controller"
   <div class="text-content" id="examples">
     <h2>Basic Usages</h2>
     <ul>
-      <li>App CR</li>
-      <li>Package authoring</li>
-      <li>Package consumption</li>
+      <li><a href="#app">App CR</a></li>
+      <li><a href="#package-author">Package authoring</a></li>
+      <li><a href="#package-consumer">Package consumption</a></li>
     </ul>
+  <div class="text-content" id="app">  
     <h3>App development</h3>
     <p>kapp-controller's App CR provides provides a lightweight, flexibile way to choose how to fetch, 
       template, and deploy your application to Kubernetes. It can be used independently of kapp-controller's 
@@ -94,6 +95,7 @@ NAME         DESCRIPTION           SINCE-DEPLOY   AGE
 simple-app   Reconcile succeeded   9s             10s
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/walkthrough/">App walkthrough</a> documentation.</p>    
+  <div class="text-content" id="package-author">  
     <h3>Package authoring</h3>
     <p>kapp-controller's Package CR provides a way to share versioned software for Kubernetes 
       so users can easily discover and consume available software.</p>
@@ -150,6 +152,7 @@ spec:
           - stranger
 {{< / highlight>}}
     <p>Discover more in the <a href="https://carvel.dev/kapp-controller/docs/latest/package-authoring/">package author</a> documentation.</p>   
+  <div class="text-content" id="package-consumer">  
     <h3>Package consumption</h3> 
     <p>kapp-controller's PackageRepository CR adds a collection of Packages to allow software to be easily discovered and 
       installed.
