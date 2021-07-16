@@ -46,7 +46,7 @@ level, similar to a github README.
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
-  # Must consist of three segments separated by a '.'
+  # Must consist of at least three segments separated by a '.'
   # Cannot have a trailing '.'
   name: fluent-bit.vmware.com
   # The namespace this package metadata is available in
