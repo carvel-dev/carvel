@@ -7,7 +7,7 @@ Carvel, an open source project, is committed to building an open, inclusive, pro
 
 ---
 # Code Repositories
-The following code repositories are governed by the Carvel community and maintained under the `vmware-tanzu\carvel` organization.
+The following code repositories are governed by the Carvel community and maintained under the `vmware-tanzu\carvel` organization. We'll do our best to maintain this list of repositories but generally any repository under the [vmware-tanzu](https://github.com/vmware-tanzu/) organization with the word "carvel" in its name or is tagged with "carvel" should be included in this governance structure.
 
 * [Carvel](https://github.com/vmware-tanzu/carvel): Main Carvel Repo
 * [Carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt): Template and overlay Kubernetes configuration via YAML structures, not text documents
@@ -18,9 +18,9 @@ The following code repositories are governed by the Carvel community and maintai
 * [Carvel-vendir](https://github.com/vmware-tanzu/carvel-vendir): Declaratively state what files should be in a directory
 
 **Experimental:**
-* [kwt](https://github.com/vmware-tanzu/carvel-kwt)
+* [Carvel-kwt](https://github.com/vmware-tanzu/carvel-kwt)
 * [terraform-provider-carvel](https://github.com/vmware-tanzu/terraform-provider-carvel)
-* [carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
+* [Carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
 
 **Installation:**
 * [homebrew-carvel](https://github.com/vmware-tanzu/homebrew-carvel)
@@ -30,6 +30,7 @@ The following code repositories are governed by the Carvel community and maintai
 
 **Plugins:**
 * [ytt.vim](https://github.com/vmware-tanzu/ytt.vim)
+* [vscode-ytt](https://github.com/vmware-tanzu/vscode-ytt)
 
 **Examples:**
 * [carvel-simple-app-on-kubernetes](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes)
@@ -43,8 +44,8 @@ The following code repositories are governed by the Carvel community and maintai
 * **Contributors:** A contributor is anyone that contributes to one or more projects (documentation, code reviews, responding to issues, participation in proposal discussions, contributing code, etc.) or is continuously active in the Carvel community.
 * **Maintainers:** The Carvel project leaders. They are responsible for the overall health and direction of the project and responsible for releases. Maintainers are responsible for one or more components within the project. Some maintainers act as a technical lead for specific components. Carvel maintainers are broken down into three sub-roles: maintainer, reviewer, approver. 
     * **Maintainer:** Maintainers are expected to contribute code and documentation, triage issues, proactively fix bugs, and perform maintenance tasks for these components.
-    * **Reviewer:** They have all the responsibilities of a maintainer with additional responsibilities and permissions. A reviewer can review code for quality and correctness on a tool. They are knowledgeable about both the codebase and software engineering principles. They can approve pprovers' contributions.
-    * **Approver:** They have all the responsibilities of a eviewer with additional responsibilities and permissions. An Approver can both review and approve code contributions from anyone. While code review is focused on code quality and correctness, approval is focused on holistic acceptance of a contribution including backward/forwards compatibility, adhering to API and flag conventions, subtle performance and correctness issues, interactions with other parts of the system, etc.
+    * **Reviewer:** They have all the responsibilities of a maintainer with additional responsibilities and permissions. A reviewer can review code for quality and correctness on a tool. They are knowledgeable about both the codebase and software engineering principles. They can approve approvers' contributions.
+    * **Approver:** They have all the responsibilities of a reviewer with additional responsibilities and permissions. An approver can both review and approve code contributions from anyone. While code review is focused on code quality and correctness, approval is focused on holistic acceptance of a contribution including backward/forwards compatibility, adhering to API and flag conventions, subtle performance and correctness issues, interactions with other parts of the system, etc.
 
 ---
 # Maintainers
@@ -58,31 +59,11 @@ A supermajority is defined as two-thirds of members in the group. A supermajorit
 # Decision Making
 Ideally, all project decisions are resolved by consensus. If impossible, any maintainer may call a vote. Unless otherwise specified in this document, any vote will be decided by a supermajority of maintainers.
 
-Votes by maintainers belonging to the same company will count as one vote; e.g., 4 maintainers employed by fictional company Valerium will only have one combined vote. If voting members from a given company do not agree, the company's vote is determined by a supermajority of voters from that company. If no supermajority is achieved, the company is considered to have abstained.
+Once we have maintainers from other companies, votes by maintainers belonging to the same company will count as one vote; e.g., 4 maintainers employed by fictional company Valerium will only have one combined vote. If voting members from a given company do not agree, the company's vote is determined by a supermajority of voters from that company. If no supermajority is achieved, the company is considered to have abstained.
 
 ---
 # Proposal Process
-One of the most important aspects in any open source community is the concept of proposals. Large changes to the codebase and / or new features should be preceded by a proposal in our carvel repo. This process allows for all members of the community to weigh in on the concept (including the technical details), share their comments and ideas, and offer to help. It also ensures that members are not duplicating work or inadvertently stepping on toes by making large conflicting changes.
-
-The [project roadmap](https://github.com/vmware-tanzu/carvel/blob/develop/ROADMAP.md) is defined by accepted proposals.
-
-Proposals should cover the high-level objectives, use cases, and technical recommendations on how to implement. In general, the community member(s) interested in implementing the proposal should be either deeply engaged in the proposal process or be an author of the proposal.
-
-The proposal process including a [Proposal Template](https://github.com/vmware-tanzu/carvel/tree/develop/proposals#proposal-template) is covered at length within the [proposal directory](https://github.com/vmware-tanzu/carvel/tree/develop/proposals).
-
----
-# Proposal Lifecycle
-1. Author adds a proposal by creating a PR in draft mode. (Authors can save their work until ready.)
-2. When the author elaborates the proposal sufficiently to withstand critique they:
-    i. change the status to `in-review` and
-    ii. mark the PR as "Ready for Review"
-3. The community critiques the proposal by adding PR reviews in order to mature/converge on the proposal.
-4. When the approvers reach [rough consensus](https://en.wikipedia.org/wiki/Rough_consensus), they:
-    i. change the status to `accepted` or `rejected`,
-    ii. record both majority and dissenting opinions, and
-    iii. merge the PR.
-
-For more information on proposals please refer to the [proposal directory](https://github.com/vmware-tanzu/carvel/tree/develop/proposals).
+The proposal process, including a [Proposal Template](https://github.com/vmware-tanzu/carvel/tree/develop/proposals#proposal-template), is covered at length within the [proposal directory](https://github.com/vmware-tanzu/carvel/tree/develop/proposals).
 
 ---
 # Lazy Consensus

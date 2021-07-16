@@ -29,6 +29,7 @@ Installation:
 Plugins:
 
 * [ytt.vim](https://github.com/vmware-tanzu/ytt.vim)
+* [vscode-ytt](https://github.com/vmware-tanzu/vscode-ytt)
 
 Examples:
 
