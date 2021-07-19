@@ -1,0 +1,5 @@
+apiVersion: imgpkg.carvel.dev/v1alpha1
+kind: ImagesLock
+images:
+- image: ghcr.io/k14s/design-docs/simple-app-bundle@sha256:d211dd700949154e429d28661d01c99d53a38af0d5275842ccbf0bf6dbef8ca4
+- image: ghcr.io/k14s/design-docs/utilities@sha256:47ae428a887c41ba0aedf87d560eb305a8aa522ffb80ac1c96a37b16df038e0f

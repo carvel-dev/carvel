@@ -1,0 +1,9 @@
+apiVersion: imgpkg.carvel.dev/v1alpha1
+kind: Bundle
+metadata:
+  name: bundle-2
+authors:
+- name: Carvel Team
+  email: carvel@vmware.com
+websites:
+- url: carvel.dev/imgpkg
