@@ -44,7 +44,7 @@ Those Data Values can then be used in a template via the `@ytt:data` module.
 
 `config.yml`
 ```yaml
-#@load("ytt:data", "data")
+#@ load("@ytt:data", "data")
 ---
 service: #@ data.values.load_balancer
 ```

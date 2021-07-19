@@ -1,0 +1,14 @@
+#! Describes contents and authorship of bundle
+---
+apiVersion: pkg.k14s.io/v1alpha1
+kind: Bundle
+metadata:
+  name: my-app
+authors:
+- name: sarah
+  email: sarah@example.com
+websites:
+- url: my-app.example.com
+contents:
+  paths:
+  - contents/**

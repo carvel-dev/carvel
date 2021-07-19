@@ -8,11 +8,13 @@ cascade:
   layout: docs
 ---
 
-kapp-controller provides a Kubernetes native way, via App CRD, to specify how to fetch, configure and deploy software to the current cluster or to a different cluster.
+kapp-controller provides a Kubernetes native continuous delivery and package management experience through custom resource definitions. 
+These new resources for [continuous delivery](app-spec.md) and [package management](packaging.md) help users author software packages 
+and consume packages to ease the process of sharing, deploying, and managing software on Kubernetes. 
 
 ---
 
-Given that application configurations for Kubernetes software can be specified in various forms:
+Given that software configurations for Kubernetes software can be specified in various forms:
 
 - plain YAML configurations
 - Helm charts
@@ -32,7 +34,7 @@ and written/provided by:
 - in-house development teams
 - vendors offering COTS products
 
-as a Kubernetes user I would like to customize, install, and update such software in a _consistent_ and _manageable_ manner.
+kapp-controller allows users to encapsulate, customize, install, and update such software in a _consistent_ and _manageable_ manner.
 
 ---
 

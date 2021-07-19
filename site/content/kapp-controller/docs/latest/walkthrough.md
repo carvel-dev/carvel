@@ -1,5 +1,5 @@
 ---
-title: Walkthrough
+title: App Walkthrough
 ---
 
 The goal of this walkthrough is to demonstrate how to install a simple example application, an HTTP server, on Kubernetes with kapp-controller. We will use `examples/simple-app-git` directory as our YAML configuration. 
