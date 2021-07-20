@@ -148,7 +148,7 @@ Before moving on, save this yaml snippet to a file named
 `metadata.yml`.
 
 Lastly, we need to create a Package CR. This CR contains versioned instructions
-and metadata used to install packaged sofwtare that fits the description
+and metadata used to install packaged software that fits the description
 provided in the PackageMetadata CR we just saved in `metadata.yml`. An example Package CR
 follows.
 
