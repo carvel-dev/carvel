@@ -197,8 +197,7 @@ spec:
       template:
       - ytt:
           paths:
-          - "config.yml"
-          - "values.yml"
+          - "config/"
       - kbld:
           paths:
           - "-"
