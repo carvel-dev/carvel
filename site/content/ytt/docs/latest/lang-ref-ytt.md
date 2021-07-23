@@ -46,11 +46,17 @@ regexp.replace("[a-z]+[0-9]+", "__hello123__", "foo")                 # __foo__
 regexp.replace("(?i)[a-z]+[0-9]+", "__hello123__HI456__", "bye")      # __bye__bye__
 regexp.replace("([a-z]+)[0-9]+", "__hello123__bye123__", "$1")        # __hello__bye__
 regexp.replace("[a-z]+[0-9]+", "__hello123__", lambda s: str(len(s))) # __8__
+
+# example of passing the "dot matches newline" flag and using replace to extract a single match from a multiline input string
+input_str = "\\ multline string\n\nconst (\n\t// Value is what we want to scrape\n\tValue = 12\n)\n\nfunc main() {..."
+regexp.replace("(?s).*Value = ([0-9]+).*", input_str, "$1") # 12
 ```
 
-See the [RE2 docs](https://github.com/google/re2/wiki/Syntax) for more on the regex syntax supported.
+See the [RE2 docs](https://github.com/google/re2/wiki/Syntax) for more on regex syntax. Note that flags such as multiline mode are passed in the pattern string as in the [golang regexp library](https://pkg.go.dev/regexp/syntax).
 
-Note that you can pass either a string or a lambda function as the third parameter. When given a string, `$` symbols are expanded, so that `$1` expands to the first submatch. When given a lambda function, the match is directly replaced by the result of the function.
+When calling `replace` you can pass either a string or a lambda function as the third parameter. When given a string, `$` symbols are expanded, so that `$1` expands to the first submatch. When given a lambda function, the match is directly replaced by the result of the function.
+
+While `match` and `replace` are currently the only regexp verbs supported, it is possible to mimic `find` by using `replace` to replace all its input with a capture group (see example above).
 
 ### url
 
