@@ -97,7 +97,7 @@ sources:
       pull: true
       noCache: true
       file: "hack/Dockefile.dev"
-      rawOptions: ["--squash"]
+      rawOptions: ["--squash", "--build-arg", "ARG_IN_DOCKERFILE=value"]
 ```
 
 - `docker.build.target` (string): Set the target build stage to build (no default)
