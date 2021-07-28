@@ -1,6 +1,6 @@
 {
   "title": "Package Management with Carvel's kapp-controller",
-  "description": "(Draft) When we agree this is done we can copy the contents to a different place",
+  "description": "Author and Consume Packages with Carvel tools",
   "difficulty": "Intermediate",
   "time": "15 minutes",
   "details": {
