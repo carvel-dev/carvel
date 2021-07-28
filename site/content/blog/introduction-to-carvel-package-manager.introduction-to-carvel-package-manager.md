@@ -1,7 +1,7 @@
 ---
 title: "[Re]Introducing kapp-controller: Carvel’s Package Manager for Kubernetes"
 slug: introduction-to-carvel-package-manager
-date: 2021-07-27
+date: 2021-07-29
 author: Carvel Team
 excerpt: "In this blog post, we will introduce you to the new Package Manager for Kubernetes, kapp-controller..."
 image: /img/logo.svg
@@ -52,7 +52,7 @@ The [App Custom Resource](/kapp-controller/docs/latest/app-spec/) provides a lig
 
 ## How do I learn more and get started?
 
-We recommend watching the demo of the Package Management APIs in action and then moving on to an easy to follow **[tutorial on Katacoda](/)** where you don’t need to set up your own system.
+We recommend watching the demo of the Package Management APIs in action and then moving on to an easy to follow and interactive **[tutorial on Katacoda](https://katacoda.com/carvel/scenarios/kapp-controller-package-management)** where you don’t need to set up your own system or you can follow the steps [here](/kapp-controller/docs/latest/packaging_tutorial/) in your favorite playground.
 
 {{< youtube id="PmwkicgEKQE" title="Carvel kapp-controller Demo - Kubernetes Package Management API" >}}
 
