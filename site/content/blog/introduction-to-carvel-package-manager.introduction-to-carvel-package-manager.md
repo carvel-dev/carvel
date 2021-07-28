@@ -1,7 +1,7 @@
 ---
 title: "[Re]Introducing kapp-controller: Carvel’s Package Manager for Kubernetes"
 slug: introduction-to-carvel-package-manager
-date: 2021-07-29
+date: 2021-07-28
 author: Carvel Team
 excerpt: "In this blog post, we will introduce you to the new Package Manager for Kubernetes, kapp-controller..."
 image: /img/logo.svg
