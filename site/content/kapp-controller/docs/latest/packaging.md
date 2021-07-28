@@ -239,6 +239,30 @@ metadata:
   # The namespace to install the package in to
   namespace: my-ns
 spec:
+  # pauses _future_ reconcilation; does _not_ affect
+  # currently running reconciliation (optional; default=false)
+  paused: true
+  # cancels current and future reconciliations (optional; default=false)
+  canceled: true
+  # Deletion requests for the PackageInstall/App will result in 
+  # the PackageInstall/App CR being deleted, but its associated 
+  # resources will not be deleted (optional; default=false)
+  noopDelete: true
+  # specifies the length of time to wait, in time + unit
+  # format, before reconciling. Always >= 30s. If value below
+  # 30s is specified, 30s will be used. (optional; default=30s)
+  syncPeriod: 1m
+  # specifies that Package should be deployed to destination cluster;
+  # by default, cluster is same as where this resource resides (optional)
+  cluster:
+    # specifies namespace in destination cluster (optional)
+    namespace: ns2
+    # specifies secret containing kubeconfig (required)
+    kubeconfigSecretRef:
+      # specifies secret name within app's namespace (required)
+      name: cluster1
+      # specifies key that contains kubeconfig (optional)
+      key: value
   # specifies service account that will be used to install underlying package contents
   serviceAccountName: fluent-bit-sa
   packageRef:
