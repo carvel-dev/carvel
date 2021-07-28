@@ -1,5 +1,4 @@
-# Package Management for Kubernetes
-## With kapp-controller and Carvel tools
+# Package Management for Kubernetes With kapp-controller and Carvel tools
 
 
 Are you looking for a way to package and distribute
