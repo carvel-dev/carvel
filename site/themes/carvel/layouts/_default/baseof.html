@@ -18,6 +18,7 @@
 	{{- end }}
 </head>
 <body>
+	{{ partial "package_announce_header" . }}
 	{{ partial "_header" . }}
 	{{ block "main" . }}{{ end }}
 	{{ partial "_footer" . }}
