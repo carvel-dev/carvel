@@ -52,7 +52,7 @@ The [App Custom Resource](/kapp-controller/docs/latest/app-spec/) provides a lig
 
 ## How do I learn more and get started?
 
-We recommend watching the demo of the Package Management APIs in action and then moving on to an easy to follow and interactive **[tutorial on Katacoda](https://katacoda.com/carvel/scenarios/kapp-controller-package-management)** where you don’t need to set up your own system or you can follow the steps [here](/kapp-controller/docs/latest/packaging_tutorial/) in your favorite playground.
+We recommend watching the demo of the Package Management APIs in action and then moving on to an easy to follow and interactive **[tutorial on Katacoda](https://katacoda.com/carvel/scenarios/kapp-controller-package-management)** where you don’t need to set up your own system or you can follow the steps [here](/kapp-controller/docs/latest/packaging-tutorial/) in your favorite playground.
 
 {{< youtube id="PmwkicgEKQE" title="Carvel kapp-controller Demo - Kubernetes Package Management API" >}}
 
