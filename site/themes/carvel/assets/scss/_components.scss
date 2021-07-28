@@ -43,6 +43,7 @@
             .grid.three {
                 padding-bottom: 60px;
                 .card {
+                    border: 1px solid $lightgrey;
                     position: relative;
                     padding: 30px 20px;
                     box-shadow: 0px 2px 10px rgba(0, 0, 0, .2);
@@ -86,9 +87,9 @@
             }
         }
     }
-}
-
-.introduction {
+ }
+  
+ .introduction {
     .grid.two {
         column-gap: 140px;
         padding: 35px 20px;
@@ -106,9 +107,9 @@
             padding-bottom: 50px;
         }
     }
-}
-
-.tools {
+ }
+  
+ .tools {
     .grid.three .col {
         border: 1px solid $lightgrey;
         padding: 25px;
@@ -130,9 +131,9 @@
     &.wrapper {
         padding-bottom: 0px;
     }
-}
-
-.team {
+ }
+  
+ .team {
     background-color: $brightblue;
     h2, p {
         color: $white;
@@ -147,7 +148,7 @@
         margin-top: 40px;
     }
     .bio {
-        display: grid;  
+        display: grid; 
         grid-template-columns: 120px 1fr;
         column-gap: 20px;
         .info {
@@ -165,9 +166,9 @@
             }
         }
     }
-}
-
-.hero.subpage {
+ }
+  
+ .hero.subpage {
     padding-bottom: 100px;
     .buttons {
         margin-top: 70px;
@@ -240,20 +241,20 @@
             display: none;
         }
     }
-}
-.mobile-blue {
+ }
+ .mobile-blue {
     @include breakpoint(small) {
         background-color: $brightblue;
         padding-bottom: 40px;
     }
-}
-.mobile-teal {
+ }
+ .mobile-teal {
     @include breakpoint(small) {
         background-color: $teal;
         padding-bottom: 40px;
     }
-}
-.yaml-grid {
+ }
+ .yaml-grid {
     padding: 0px;
     margin-top: -100px;
     .col {
@@ -268,9 +269,9 @@
             text-align: center;
         }
     }
-}
-
-.experimental {
+ }
+  
+ .experimental {
     .grid.three .col {
         padding: 0px;
         h3 {
@@ -289,9 +290,9 @@
     .content {
         padding: 25px;
     }
-}
-
-.getting-started {
+ }
+  
+ .getting-started {
     background-color: $lightgrey;
     color: #111;
     p {
@@ -339,15 +340,15 @@
             margin-top: 20px;
         }
     }
-}
-
-#docs {
+ }
+  
+ #docs {
     background-color: unset;
     .hero {
         background-color: #00C1D5;
     }
-}
-.docs {
+ }
+ .docs {
     h1 {
         color: #000;
     }
@@ -463,16 +464,15 @@
             width: 100%;
         }
     }
-}
-
-.blog {
+ }
+  
+ .blog {
     .card {
         border: 1px solid $lightgrey;
         padding: 20px;
     }
-}
-
-.community {
+ }
+ .resources {
     .grid {
         .col {
             border: 1px solid #F2F2F2;
@@ -498,19 +498,46 @@
             }
         }
     }
-}
-
-.dedicated-page {
+ }
+ .community {
+    .grid {
+        .col {
+            border: 1px solid #F2F2F2;
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 140px;
+            }
+            .content {
+                padding: 0px 20px 20px 20px;
+                h3 {
+                    margin-top: 0px;
+                    text-align: center;
+                }
+                ul {
+                    padding-left: 20px;
+                    li {
+                        margin-bottom: 10px;
+                        list-style-image: url(/img/arrow.svg);
+                    }
+                }
+            }
+        }
+    }
+ }
+  
+ .dedicated-page {
     background-color: #fff;
     margin-top: -100px;
     padding: 30px 30px 50px 30px;
     &.docs {
         margin-top: 0;
     }
-}
-
-/* Examples: documentation content, blog post */
-.text-content {
+ }
+  
+ /* Examples: documentation content, blog post */
+ .text-content {
     a {
         font-family: $metropolis-regular;
     }
@@ -537,4 +564,5 @@
     img {
         max-width: 100%;
     }
-}
+ }
+ 

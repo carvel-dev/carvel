@@ -1,7 +1,6 @@
 # Carvel Adopters
 
-If you're using Carvel and want to add your organization to this
-list, [follow these directions](#adding-your-organization-to-the-list-of-adopters)!
+If you're using Carvel and want to add your organization to this list, [follow these directions](#adding-your-organization-to-the-list-of-adopters)!
 
 ## Organizations using Carvel
 
@@ -9,13 +8,14 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
 
-<a href="https://beam.lu/" border="0" target="_blank"><img alt="Beam" src="logos/BEAMSARL.png" height="50"></a>
+<a href="https://beam.lu/" border="0" target="_blank"><img alt="Beam" src="logos/BEAM-SARL.png" height="50"></a>
 
 ## Solutions built with Carvel
 
 Below is a list of solutions where Carvel is being used as a component.
 
 **[BEAM](https://beam.lu/)**
+
 BEAM is a consulting company based in Luxembourg and specialized in DevOps, Cloud and automation. BEAM supports their customers in their workload and delivery optimizations and helps them transition from traditional IT models to DevOps.
 
 **[Revng](https://rev.ng/)**
