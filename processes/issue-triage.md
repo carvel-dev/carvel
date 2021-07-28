@@ -12,7 +12,7 @@ Triaging is important because it:
 - helps build prioritization, negotiation, and decision-making skills, which are critical to most tech roles.
 
 ## Who is responsible?
-The responsibility is open to anyone. If no one volunteers to triage issues, it falls on the maintainers of each tool/repo. Maintainers are listed in the `MAINTAINERS.md` file of each repo.
+The responsibility is open to anyone. If no one volunteers to triage issues, it falls on the maintainers of each tool/repo. Maintainers are listed in [`MAINTAINERS.md`](https://github.com/vmware-tanzu/carvel/blob/develop/MAINTAINERS.md).
 
 ## When do we triage?
 Triage can happen asynchronously and continuously, or at regularly scheduled times. It's left up to the maintainers of each repo to figure out what's best for them.
@@ -31,7 +31,7 @@ Some good practices:
 ### 1. Respond to Newly Created PRs and Issues
 Labels are the primary tools for triaging. New issues are automatically assigned a `carvel triage` label. Issues with the `carvel triage` label indicate that the issue is awaiting triage.
 
-1. Filter the _PRs_ with a `carvel triage` label for the repos you're focused on. If you're using the ZenHub board, these will show up in the Needs Review column.
+1. Respond to new _PRs_ for the repos you're focused on. If you're using the ZenHub board, these will show up in the Needs Review column.
 1. If a PR has not been acknowledged,
     1. thank the submitter for their contribution
     1. assign a `kind` label (if you're comfortable doing so)
@@ -81,14 +81,14 @@ We aim for consistency across the entire project. If you notice an issue that yo
 
 | Priority label | What it means | Examples |
 |---|---|---|
-| `priority/0` | Team leaders are responsible for making sure that these issues (in their area) are being actively worked on (i.e., drop what you're doing). These should be fixed before the next release. | user-visible bugs in core features <br> broken builds or tests <br> critical security vulnerabilities |
-| `priority/1` | Must be staffed and worked on either currently or very soon. Ideally, this will be done in time for the next release. Important, but wouldn't block a release. | Work to consider for the current or next release  |
-| `priority/2` | Important over the long term, but may not be currently staffed and/or may require multiple releases to complete. Wouldn't block a release. | Work to consider for the roadmap (1+ quarters out) |
-| `priority/3` | General agreement that this is a nice-to-have, but no one is allocated to work on it anytime soon. |  |
-| `priority/4` | Possibly useful but not yet enough support to actually incorporate it. | Placeholders for potentially good ideas so that they don't get completely forgotten. |
+| `priority/critical-urgent` | Team leaders are responsible for making sure that these issues (in their area) are being actively worked on (i.e., drop what you're doing). These should be fixed before the next release. | user-visible bugs in core features <br> broken builds or tests <br> critical security vulnerabilities |
+| `priority/important-soon` | Must be staffed and worked on either currently or very soon. Ideally, this will be done in time for the next release. Important, but wouldn't block a release. | Work to consider for the current or next release  |
+| `priority/important-longterm` | Important over the long term, but may not be currently staffed and/or may require multiple releases to complete. Wouldn't block a release. | Work to consider for the roadmap (1+ quarters out) |
+| `priority/unprioritized-backlog` | General agreement that this is a nice-to-have, but no one is allocated to work on it anytime soon. |  |
+| `priority/awaiting-more-evidence` | Possibly useful but not yet enough support to actually incorporate it. | Placeholders for potentially good ideas so that they don't get completely forgotten. |
 
 A couple of notes:
-- If you're categorizing an issue as a `priority/0`, please inform a team leader even if you plan to start working on it immediately.
+- If you're categorizing an issue as a `priority/critical-urgent`, please inform a team leader even if you plan to start working on it immediately.
 - If you're unsure which priority to assign then provide your thinking in a comment so that team leaders can share their feedback and thoughts.
 
 ## Sources
