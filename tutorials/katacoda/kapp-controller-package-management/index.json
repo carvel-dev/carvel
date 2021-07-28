@@ -8,41 +8,41 @@
       {
         "title": "Step 1: Wait for Kubernetes environment to initialize",
         "code": "step1-spinner-wrapper.sh",
-        "text": "step1.md"
+        "text": "step01.md"
       },
       {
         "title": "Step 2: Installing Carvel",
-        "text": "step2.md",
+        "text": "step02.md",
         "verify": "step2-verify.sh"
       },
       {
         "title": "Step 3: An optional kapp interlude",
-        "text": "step3.md"
+        "text": "step03.md"
       },
       {
         "title": "Step 4: Installing kapp-controller",
-        "text": "step4.md"
+        "text": "step04.md"
       },
       {
         "title": "Step 5: The Package Author Experience (1)",
-        "text": "step5.md",
+        "text": "step05.md",
         "verify": "step5-verify.sh"
       },
       {
         "title": "Step 6: The Package Author Experience(2)",
-        "text": "step6.md"
+        "text": "step06.md"
       },
       {
         "title": "Step 7: The Package Author Experience (3)",
-        "text": "step7.md"
+        "text": "step07.md"
       },
       {
         "title": "Step 8: The Package Author Experience (4)",
-        "text": "step8.md"
+        "text": "step08.md"
       },
       {
         "title": "Step 9: The Package Consumer Experience (1)",
-        "text": "step9.md"
+        "text": "step09.md"
       },
       {
         "title": "Step 10: The Package Consumer Experience (2)",
