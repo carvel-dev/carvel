@@ -1,4 +1,4 @@
-# Optional: explore kapp
+## Optional: explore kapp
 
 Before we install kapp-controller with [kapp](https://carvel.dev/kapp/), you may be interested in seeing
 a different example of how kapp works.

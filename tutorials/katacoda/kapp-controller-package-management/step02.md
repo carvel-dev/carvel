@@ -1,4 +1,4 @@
-# Installing kapp-controller dependencies
+## Installing kapp-controller dependencies
 
 We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so first we'll install 
 [ytt](https://carvel.dev/ytt/), [kbld](https://carvel.dev/kbld/),

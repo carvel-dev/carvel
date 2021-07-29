@@ -33,6 +33,8 @@ toc:
         url: /package-consumption
       - page: Air-gapped workflow
         url: /air-gapped-workflow
+      - page: Tutorial
+        url: /packaging-tutorial
   - title: Template steps
     subfolderitems:
       - page: Mozilla's sops

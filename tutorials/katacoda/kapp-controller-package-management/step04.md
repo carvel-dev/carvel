@@ -1,4 +1,4 @@
-# I believe I was promised kapp-controller?
+## I believe I was promised kapp-controller?
 
 Use kapp to install kapp-controller (reconciliation may take a moment, which you
 could use to read about [kubernetes controller reconciliation loops](https://kubernetes.io/docs/concepts/architecture/controller/)):
