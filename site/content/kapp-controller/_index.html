@@ -55,13 +55,19 @@ title: "kapp-controller"
 <div class="wrapper">
   <div class="text-content" id="examples">
     <h2>Basic Usages</h2>
+    <p>Get more hands on with kapp-controller by watching the demo video below, taking it for spin through an <a href="https://katacoda.com/carvel/scenarios/kapp-controller-package-management">interactive tutorial</a>, 
+    or <a href="/kapp-controller/docs/latest/packaging-tutorial/">follow the same tutorial</a> with your own Kubernetes cluster.</p>
+    {{< youtube id="PmwkicgEKQE" title="Carvel kapp-controller Demo - Kubernetes Package Management API" >}}
+    <p>You can also see a high level overview of kapp-controller's custom resources below and jump into more in depth documentation for 
+      each workflow outlined.
+    </p>
     <ul>
-      <li><a href="#app">App CR</a></li>
+      <li><a href="#app">Continuous Delivery</a></li>
       <li><a href="#package-author">Package authoring</a></li>
       <li><a href="#package-consumer">Package consumption</a></li>
     </ul>
   <div class="text-content" id="app">  
-    <h3>App development</h3>
+    <h3>Continuous Delivery</h3>
     <p>kapp-controller's App CR provides provides a lightweight, flexibile way to choose how to fetch, 
       template, and deploy your application to Kubernetes. It can be used independently of kapp-controller's 
       package management CRs, to assist in the creation of Package CRs, or kapp-controller will create one for 

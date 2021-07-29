@@ -13,8 +13,6 @@ consumers running a kapp-controller in their cluster.
 
 ## Prerequisites
 
-If you'd rather use a canned environment, you can follow our [katacoda tutorial](https://katacoda.com/carvel/scenarios/kapp-controller-package-management).
-
 To go through the examples below, the following prerequisites are assumed:
 * You will need to [install the latest release](install.md) of kapp-controller on a Kubernetes cluster.
 * These workflows also assume some of the other Carvel tools are installed on your

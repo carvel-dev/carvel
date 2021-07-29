@@ -8,8 +8,6 @@ workflows.
 
 ## Prerequisites
 
-If you'd rather use a canned environment, you can follow our [katacoda tutorial](https://katacoda.com/carvel/scenarios/kapp-controller-package-management).
-
 * You will need to [install the latest release](install.md) of kapp-controller on a
   Kubernetes cluster to go through the examples.
 * The instructions below assume [`kapp`](/kapp) and `kubectl` are installed.
