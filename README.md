@@ -4,6 +4,8 @@
 
 Carvel provides a set of reliable, single-purpose, composable tools that aid in your application building, configuration, and deployment to Kubernetes.
 
+Carvel eases lifecycle management of your Kubernetes workloads. The origin of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy Kubernetes workloads. These tools were monolithic, error-prone, and hard to debug. Carvel promises a better way, one that extracts common app configuration into a library for use by all your applications.
+
 This is a list of repos associated with the [Carvel](https://carvel.dev) project.
 
 * [ytt](https://github.com/vmware-tanzu/carvel-ytt) - Template and overlay Kubernetes configuration via YAML structures, not text documents
@@ -39,44 +41,12 @@ Examples:
 * [carvel-guestbook-example-on-kubernetes](https://github.com/vmware-tanzu/carvel-guestbook-example-on-kubernetes)
 
 ---
-# Website for [carvel.dev](https://carvel.dev)
-
-## Local Development
-
-### Prerequisites
-
-* Install [Hugo](https://github.com/gohugoio/hugo)
-    - (Note "hugo extended" is required since this site uses SCSS)
-    - Prebuilt binaries: https://github.com/gohugoio/hugo/releases
-    - macOS: `brew install hugo`
-    - Windows: `choco install hugo-extended -confirm`
-
-### Run locally
-
-```bash
-cd site
-./hack/run.sh
-```
-
-### Serve
-
-Serve site at [http://localhost:1313]()
-
-### Directories
-
-- `site/themes/carvel/assets/` includes SCSS
-- `site/themes/carvel/static/img/` includes images
-- `site/content/` includes content for tool docs
-- `site/data/` includes configuration for docs TOCs
-
-More details: [Directory Structure Explained](https://gohugo.io/getting-started/directory-structure/)
-
----
-
 # Join the Community and Make Carvel Better
 Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community.
-Please join us during our online community meetings and office hours. Details can be found on our [Carvel website](https://carvel.dev/community/).
+Please join us during our online community meetings. Details can be found on our [Carvel website](https://carvel.dev/community/).
 
 You can chat with us on Kubernetes Slack in the [#carvel channel](https://kubernetes.slack.com/archives/CH8KCCKA5) and follow us on Twitter at [@carvel_dev](https://twitter.com/carvel_dev).
+
+Note: If aren’t already a member on the Kubernetes Slack workspace, please first [request an invitation](https://slack.k8s.io/) to gain access.
 
 Check out which organizations are using and contributing to Carvel: [Adopter's list](https://github.com/vmware-tanzu/carvel/blob/develop/ADOPTERS.md)
