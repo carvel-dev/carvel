@@ -4,7 +4,7 @@
  
 Carvel provides a set of reliable, single-purpose, composable tools that aid in your application building, configuration, and deployment to Kubernetes.
  
-Carvel is a set of tools designed to ease lifecycle management of your Kubernetes workloads. The origin of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy Kubernetes workloads. These tools were monolithic, error-prone, and hard to debug. Carvel promises a better way, one that extracts common app configuration into a library for use by all your applications.
+Carvel eases lifecycle management of your Kubernetes workloads. The origin of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy Kubernetes workloads. These tools were monolithic, error-prone, and hard to debug. Carvel promises a better way, one that extracts common app configuration into a library for use by all your applications.
  
 Carvel is built with UNIX philosophy in mind. We believe each tool should be optimized for a single purpose, and have clear boundaries. This allows you to weave Carvel into your Kubernetes environment however you want. It’s up to you to choose one element of Carvel, or the entire set of tools.
  
