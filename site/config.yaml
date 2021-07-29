@@ -22,19 +22,19 @@ params:
     version_latest: latest
     versions:
       - latest
-  kbld:
-    name: kbld
-    root_link: /kbld/
-    latest_docs_link: /kbld/docs/latest/
-    github_url: https://github.com/vmware-tanzu/carvel-kbld
-    search: true
-    search_index_name: carvel
-    search_api_key: 582b1408d7a3fe145c0f84f48ca03755
-    search_tag: kbld
-    versioning: false
-    version_latest: latest
-    versions:
-      - latest
+   kbld:
+     name: kbld
+     root_link: /kbld/
+     latest_docs_link: /kbld/docs/latest/
+     github_url: https://github.com/vmware-tanzu/carvel-kbld
+     search: true
+     search_index_name: carvel
+     search_api_key: 582b1408d7a3fe145c0f84f48ca03755
+     search_tag: kbld
+     versioning: false
+     version_latest: latest
+     versions:
+       - latest
   kapp:
     name: kapp
     root_link: /kapp/
@@ -105,5 +105,5 @@ markup:
     style: github
     tabWidth: 4
 permalinks:
- tags: "/blog/tags/:slug"
+  tags: "/blog/tags/:slug"
 
