@@ -9,13 +9,14 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
 
-<a href="https://beam.lu/" border="0" target="_blank"><img alt="Beam" src="logos/BEAMSARL.png" height="50"></a>
+<a href="https://beam.lu/" border="0" target="_blank"><img alt="Beam" src="logos/BEAM-SARL.png" height="50"></a>
 
 ## Solutions built with Carvel
 
 Below is a list of solutions where Carvel is being used as a component.
 
 **[BEAM](https://beam.lu/)**
+
 BEAM is a consulting company based in Luxembourg and specialized in DevOps, Cloud and automation. BEAM supports their customers in their workload and delivery optimizations and helps them transition from traditional IT models to DevOps.
 
 **[Revng](https://rev.ng/)**
@@ -28,7 +29,4 @@ VMware uses Carvel as their package management tooling for [their Kubernetes off
 
 ## Adding your organization to the list of adopters
 
-If you are using Carvel and would like to be included in the list of Carvel Adopters, add an SVG version of your logo to
-the `logos` directory in this repo and submit a pull request with your change. Name the image file something that
-reflects your company (e.g., if your company is called Acme, name the image acme.svg).
-See [this PR](https://github.com/vmware-tanzu/carvel/pull/4) for an example.
+If you are using Carvel and would like to be included in the list of Carvel Adopters, add an SVG version of your logo to the `logos` directory in this repo and submit a pull request with your change. Name the image file something that reflects your company (e.g., if your company is called Acme, name the image acme.svg). See [this PR](https://github.com/vmware-tanzu/carvel/pull/4) for an example.
