@@ -1,5 +1,5 @@
 ---
-title: "Introducing kapp-controller as Package Manager for Kubernetes"
+title: "Introducing kapp-controller: the Package Manager for Kubernetes"
 slug: introduction-to-carvel-package-manager-for-kubernetes
 date: 2021-07-28
 author: Vibhas Kumar and Eli Wrenn
@@ -62,7 +62,7 @@ In the next few months, we will also share a set of packages that you will be ab
 
 ## What's Next for Carvel and kapp-controller?
 
-In this [initial release](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.22.0), we have provided the basic package management functionality and we plan to work on making it even better. Here are a few things that we are thinking about (not in a particular order):
+In the initial release, we have provided the basic package management functionality and we plan to work on making it even better. Here are a few things that we are thinking about (not in a particular order):
 
 * Supporting OCI registries that require authentication
 * Dependency management between packages
