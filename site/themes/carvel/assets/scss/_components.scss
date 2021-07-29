@@ -472,6 +472,34 @@
     }
 }
 
+.resources {
+    .grid {
+        .col {
+            border: 1px solid #F2F2F2;
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 140px;
+            }
+            .content {
+                padding: 0px 20px 20px 20px;
+                h3 {
+                    margin-top: 0px;
+                    text-align: center;
+                }
+                ul {
+                    padding-left: 20px;
+                    li {
+                        margin-bottom: 10px;
+                        list-style-image: url(/img/arrow.svg);
+                    }
+                }
+            }
+        }
+    }
+ }
+ 
 .community {
     .grid {
         .col {
