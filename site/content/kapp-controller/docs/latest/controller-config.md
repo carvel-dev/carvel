@@ -2,17 +2,19 @@
 title: Configuring the Controller
 ---
 
-(available in v0.14.0+)
+kapp-controller exposes the ability to configure the controller via a
+Secret (available in v0.22.0+) or ConfigMap (available in v0.14.0+), 
+which kapp controller will look for and apply as part of its [startup processes](startup.md).
 
-Kapp controller exposes the ability to configure the controller via a
-config map which kapp controller will look for and apply as part of the
-[startup processes](startup.md)
+The controller configuration was originally only available in a ConfigMap 
+format, but as of v0.22.0 it is recommended to use a Secret since there 
+may be sensitive information stored in the config (e.g. proxy information including passwords).
 
-## ConfigMap Spec
+## Controller Configuration Spec
 
 ```yaml
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   # Name must be `kapp-controller-config` for kapp controller to pick it up
   name: kapp-controller-config
@@ -20,7 +22,7 @@ metadata:
   # Namespace must match the namespace kapp-controller is deployed to
   namespace: kapp-controller
 
-data:
+stringData:
   # A cert chain of trusted ca certs. These will be added to the system-wide
   # cert pool of trusted ca's (optional)
   caCerts: |

@@ -15,7 +15,7 @@ and is therefore responsible for reaping any zombie processes, so the process
 begins by starting a thread to reap any zombies that appear. More on PID 1 and
 zombie processes can be found [here][1].
 
-Next, the process will look for the [controller ConfigMap][2] and apply any system level
+Next, the process will look for the [controller Secret or ConfigMap][2] and apply any system level
 configuration specified within.
 
 Finally, the process will fork to the same binary with a new flag, `--internal-controller`,
