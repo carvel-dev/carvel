@@ -5,12 +5,8 @@ toc:
         url: /
       - page: Install
         url: /install
-      - page: App Walkthrough
-        url: /walkthrough
   - title: Reference
     subfolderitems:
-      - page: App CR Spec
-        url: /app-spec
       - page: Configuration
         url: /config
       - page: Controller Configuration
@@ -23,6 +19,12 @@ toc:
         url: /dangerous-flags
       - page: Debugging
         url: /debugging
+  - title: Continuous Delivery
+    subfolderitems:
+      - page: App CR Spec
+        url: /app-spec
+      - page: App Walkthrough
+        url: /walkthrough
   - title: Package Management
     subfolderitems:
       - page: Terminology & APIs
