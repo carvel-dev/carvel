@@ -1,5 +1,0 @@
-<div class="pageinfo pageinfo--red" style="text-align:center; margin:1px; display:flex; justify-content: center">
-<h3 style="margin: 0px; padding: 8px; background-color:#fff7b3; width: 100%;">
-Introducing kapp-controller as Carvel’s Package Manager for Kubernetes. Checkout our <a href="/blog/introduction-to-carvel-package-manager/">blog</a> to learn more!
-</h3>
-</div>
