@@ -8,7 +8,7 @@ image: /img/logo.svg
 tags: ['Vibhas Kumar', 'Eli Wrenn', 'Vibhas Kumar and Eli Wrenn']
 ---
 
-We've been working on an exciting new feature in Carvel that is now available and would like to celebrate this milestone with you! In this blog post, we will introduce you to [kapp-controller](/kapp-controller/), a **Package Manager for Kubernetes, [kapp-controller](/kapp-controller/)**.
+We've been working on an exciting new feature in Carvel that is now available and would like to celebrate this milestone with you! In this blog post, we will introduce you to **[kapp-controller](/kapp-controller/), a Package Manager for Kubernetes**.
 
 ## What is Carvel and why did we create a Package Manager?
 
