@@ -15,8 +15,6 @@ We work with and rely on community feedback to focus our efforts to improve Carv
 The following table includes the current roadmap for Carvel. If you have any questions or would like to contribute to Carvel, please attend a [community meeting](https://carvel.dev/community/) to discuss with our team. If you don't know where to start, we are always looking for contributors that will help us reduce technical, automation, and documentation debt.
 Please take the timelines & dates as proposals and goals. Priorities and requirements change based on community feedback, roadblocks encountered, community contributions, etc. If you depend on a specific item, we encourage you to attend community meetings to get updated status information, or help us deliver that feature by contributing to Carvel.
 
-
-
 |Theme|Description|Timeline|
 |---|---|---|
 |**[kapp-controller]** Private Registry Authentication | Software package consumers can access private registries that require authentication. | August 2021 |
@@ -26,6 +24,6 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 |**[imgpkg]** Renaming Images When Copying Bundles | Allow users that are copying bundles between registries to have more control over the location where the images are copied to. [Proposal doc](https://github.com/vmware-tanzu/carvel-community/tree/003-copy-bundles-with-rename/proposals/imgpkg/003-copy-bundles-with-rename) |Q4 2021|
 |**[imgpkg]** Pulling Nested Bundles| Allow users to have more fine-grained control over which bundles to pull from nested bundles. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/issues/vmware-tanzu/carvel-imgpkg/120) |Future|
 
-Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kapp, kbld, vendir etc and are addressing any urgent issues that surface up. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
+Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kapp, kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
 
 `Last Updated: July 2021`

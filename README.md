@@ -4,8 +4,6 @@
 
 Carvel provides a set of reliable, single-purpose, composable tools that aid in your application building, configuration, and deployment to Kubernetes.
 
-Carvel eases lifecycle management of your Kubernetes workloads. The origin of Carvel begins with Dmitriy Kalinin and Nima Kaviani not being satisfied with existing tools to deploy Kubernetes workloads. These tools were monolithic, error-prone, and hard to debug. Carvel promises a better way, one that extracts common app configuration into a library for use by all your applications.
-
 This is a list of repos associated with the [Carvel](https://carvel.dev) project.
 
 * [ytt](https://github.com/vmware-tanzu/carvel-ytt) - Template and overlay Kubernetes configuration via YAML structures, not text documents
@@ -42,8 +40,8 @@ Examples:
 
 ---
 # Join the Community and Make Carvel Better
-Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community.
-Please join us during our online community meetings. Details can be found on our [Carvel website](https://carvel.dev/community/).
+
+Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community. Please join us during our online community meetings. Details can be found on our [Carvel website](https://carvel.dev/community/).
 
 You can chat with us on Kubernetes Slack in the [#carvel channel](https://kubernetes.slack.com/archives/CH8KCCKA5) and follow us on Twitter at [@carvel_dev](https://twitter.com/carvel_dev).
 
