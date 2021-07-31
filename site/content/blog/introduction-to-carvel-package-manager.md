@@ -1,14 +1,14 @@
 ---
-title: "Introducing kapp-controller: the Package Manager for Kubernetes"
+title: "Introducing kapp-controller as a Package Manager for Kubernetes"
 slug: introduction-to-carvel-package-manager-for-kubernetes
 date: 2021-07-28
 author: Vibhas Kumar and Eli Wrenn
-excerpt: "In this blog post we will introduce you to kapp-controller as the new Package Manager for Kubernetes..."
+excerpt: "In this blog post we will introduce you to kapp-controller as a Package Manager for Kubernetes..."
 image: /img/logo.svg
 tags: ['Vibhas Kumar', 'Eli Wrenn', 'Vibhas Kumar and Eli Wrenn']
 ---
 
-We've been working on an exciting new feature in Carvel that is now available and would like to celebrate this milestone with you! In this blog post, we will introduce you to the new **Package Manager for Kubernetes, [kapp-controller](/kapp-controller/)**.
+We've been working on an exciting new feature in Carvel that is now available and would like to celebrate this milestone with you! In this blog post, we will introduce you to **[kapp-controller](/kapp-controller/), a Package Manager for Kubernetes**.
 
 ## What is Carvel and why did we create a Package Manager?
 
@@ -20,7 +20,7 @@ Over the last few years, [Carvel](/) has been built to help the Kubernetes commu
 
 Recently, though, we felt that something was missing -- the keystone that brings it all together to provide a simple software distribution and installation experience on Kubernetes. At the core, what we wanted was a lightweight package manager for Kubernetes that provided similar functionality to rpm, brew, apt, etc, but still followed Carvel's guiding principles. Keeping the experience of software authors in mind, we were additionally looking for the ability to easily create and distribute Packages and Package Repositories (a collection of Packages) using standard OCI registry APIs so that signed software can be installed on air-gapped environments. To us, these capabilities seemed essential for a tool that would allow us and the Kubernetes community to build a richer package distribution story and more easily share software with others.
 
-Since no solution out there scratched our itch for lightweight and declarative package management, we decided to implement a thin layer on top of the existing Carvel tools. This brings us to today and the [re]introduction of **kapp-controller** as a new **Package Manager for Kubernetes**.
+Since no solution out there scratched our itch for lightweight and declarative package management, we decided to implement a thin layer on top of the existing Carvel tools. This brings us to today and the [re]introduction of **kapp-controller** as a **Package Manager for Kubernetes**.
 
 ## What does the Package Manager do?
 
