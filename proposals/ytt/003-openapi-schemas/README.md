@@ -1,4 +1,4 @@
-# Export OpenAPI Schema
+# Generate OpenAPI Schema
 
 - Status: **Scoping** | Pre-Alpha | In Alpha | In Beta | GA | Rejected
 - Originating Issue: [ytt#103](https://github.com/vmware-tanzu/carvel-ytt/issues/103)
@@ -7,7 +7,8 @@
 Configuration Authors want to be able to generate documentation for configuration inputs (for example, Data Values Schema, and Data Values) for their users. Additionally, Configuration Consumers want to be able to validate their configuration inputs by other tools (for example, IDE's and OpenAPI Schema validators). 
 
 # Proposal
-Implement a flag to export an [OpenAPI Schema](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) yaml document generated from a [Data Values schema](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-schema/) file, and an optional Data Values file. When invoking ytt with configuration inputs and the flag `--schema-inspect-openapi`, the result is the OpenAPI formatted document only. 
+Implement a flag to create an [OpenAPI Schema](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) yaml document generated from a [Data Values schema](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-schema/) file, and an optional Data Values file. When invoking ytt with configuration inputs and the flag `--schema-inspect-openapi`, the result is the OpenAPI formatted Schema object only. 
+In addition, the `--schema-inspect-openapi-metadata` flag may be used to include _both_ the [OpenAPI metadata](#openapi-document-with-metadata) and the [Schema object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#schema-object).
 
 This flag will behave similar to the `--data-values-inspect` flag, which excludes any templates in the output.
 
@@ -32,23 +33,14 @@ The reason for waiting to support Data Values files only is so that the OpenAPI 
 * Configuration inputs: a ytt Schema file and a Data Values file
 * [Data Value Schema](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-schema/) A ytt document that declares default values and type information for parameterized values.
 * [Data Value](https://carvel.dev/ytt/docs/latest/ytt-data-values/) A ytt document that overrides defaults declared in a Data Values Schema.
-
+* [Schemas Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#schema-object): The `components.schemas` section of an OpenAPI Document that defines the input and output data types.
 
 ## Generated Openapi Document Spec:
+### OpenAPI `Schemas` object
+Some users (e.g. kapp-controller) only need the Schemas object and not an entire OpenAPI document. To make easier substitution of the output of this flag into an existing document it outputs only the Schema object section of an OpenAPI Document.
 
-### Root Document fields:
-```yaml
-openapi: 3.1.0 # Version of the openapi spec
-info:
-  version: 1.0.0 # Version of this document
-  title: Openapi schema generated from ytt schema # Title of this document
-components: # Required field that holds 'schemas object'
-  ...
-```
-All openapi schemas generated will be prefixed by the above.
-
-### Openapi Map Example:
-#### Ytt schema:
+#### Openapi Map Example:
+##### Ytt schema:
 ```yaml
 #@data/values-schema
 ---
@@ -56,22 +48,35 @@ load_balancer:
   enabled: true
   static_ip: ""
 ```
-#### openapi schema:
+##### openapi schema:
 ```yaml
-...
-components:
+load_balancer:
+  type: object # `object` is always the type for a collection
+  properties:  # `properties` holds the items in the collection
+    enabled: 
+      type: boolean
+    static_ip: 
+      type: string
+  required:
+  - enabled
+  - static_ip
+  additionalProperties: false # disallows any other items than those listed for this collection
+```
+
+### OpenAPI Document with Metadata 
+Invoking ytt with `ytt -f . --schema-inspect-openapi-metadata` results in a complete OpenAPI document that includes both the Schema Object and the metadata from the yaml below. 
+
+The benefit of this flag would be to have a OpenAPI spec compliant document, and include metadata like version.
+
+#### Root Document fields:
+```yaml
+openapi: 3.1.0 # Version of the openapi spec
+info:
+  version: 1.0.0 # Version of this document
+  title: Openapi schema generated from ytt schema # Title of this document
+components: # Required field that holds 'schemas object'
   schemas:
-    load_balancer:
-      type: object # `object` is always the type for a collection
-      properties:  # `properties` holds the items in the collection
-        enabled: 
-          type: boolean
-        static_ip: 
-          type: string
-      required:
-      - enabled
-      - static_ip
-      additionalProperties: false # disallows any other items than those listed for this collection
+   ...
 ```
 
 ## References:
