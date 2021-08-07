@@ -21,9 +21,7 @@
 <body>
 	{{ partial "_banner" . }}
 	{{ partial "_header" . }}
-	<main id="main">
-	  {{ block "main" . }}{{ end }}
-	</main>
+	{{ block "main" . }}{{ end }}
 	{{ partial "_footer" . }}
 </body>
 </html>
