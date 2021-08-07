@@ -12,7 +12,7 @@ done to organize questions based on how users are working with kapp-controller.
 This section covers questions for users directly using the [App](app-spec.md)
 custom resource.
 
-### How can I control the reconciliation (pause, force, adjust frequency...)?
+### How can I control App CR reconciliation (pause, force, adjust frequency...)?
 
 You can set and unset spec.paused
 ([example](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/d94984a77fa907ac5ecc681e9a842b9877766a6b/test/e2e/pause_test.go#L91))
