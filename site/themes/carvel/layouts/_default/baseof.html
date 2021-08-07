@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {{"<!-- _default/baseof.html -->" | safeHTML }}
 <html lang="{{ .Site.LanguageCode | default "en-us" }}">
-<head>
+  <head itemscope itemtype="{{ .Site.BaseURL }}">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,15 +12,18 @@
 	{{ $style := resources.Get "scss/site.scss" | resources.ToCSS $options }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
 	<link rel="icon" type="image/png" href="/img/favicon.png">
+	{{ partial "meta" . }}
 	<script src="{{ "js/main.js" | relURL }}" type="text/javascript"></script>
 	{{ with .OutputFormats.Get "RSS" -}}
 		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
 	{{- end }}
-</head>
+  </head>
 <body>
 	{{ partial "_banner" . }}
 	{{ partial "_header" . }}
-	{{ block "main" . }}{{ end }}
+	<main id="main">
+	  {{ block "main" . }}{{ end }}
+	</main>
 	{{ partial "_footer" . }}
 </body>
 </html>
