@@ -57,13 +57,13 @@
     {
       "@context": "http://schema.org",
       "@type": "Article",
-      "headline": {{ .Title }},
+      "headline": "{{ .Title }}",
       "author": {
         "@type": "Person",
         "name": "{{ .Site.Params.github }}"
       },
       "datePublished": "{{ .Date.Format "2006-01-02" }}",
-      "description": {{ .Description }},
+      "description": "{{ .Description }}",
       "wordCount": {{ .WordCount }},
       "mainEntityOfPage": "True",
       "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
@@ -75,7 +75,7 @@
         "name": "{{ .Site.Title }}",
         "logo": {
           "@type": "imageObject",
-          "url": "https://www.example.com/images/brand/favicon.png"
+          "url": "https://carvel.dev/img/favicon.png"
         }
       }
     }
