@@ -7,6 +7,8 @@ cat > $DESTFILE << EOF
 title: Package Management Tutorial
 ---
 
+[//]: # (Generated from katacoda content using 'carvel/tutorials/copy-katacoda-to-static.sh')
+
 ## Get Started With Katacoda
 Make a katacoda account and take our interactive tutorial [here](https://katacoda.com/carvel/scenarios/kapp-controller-package-management)
 ## Or Follow Our Tutorial Below
