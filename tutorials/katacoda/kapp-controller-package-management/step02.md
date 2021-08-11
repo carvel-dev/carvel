@@ -6,6 +6,8 @@ We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so 
 
 Install the whole tool suite with the script below:
 
-`wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | bash`{{execute}}
+```bash
+wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | bash
+```{{execute}}
 
 

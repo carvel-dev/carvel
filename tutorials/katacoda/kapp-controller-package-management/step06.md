@@ -6,14 +6,14 @@ The [package bundle format](https://carvel.dev/kapp-controller/docs/latest/packa
 used in this section of the tutorial as well as general recommendations.
 
 Let's create a directory with our configuration files:
-```
+```bash
 mkdir -p package-contents/config/
 cp config.yml package-contents/config/config.yml
 cp values.yml package-contents/config/values.yml
 ```{{execute}}
 
 Once we have the configuration figured out, let’s use kbld to record which container images are used:
-```
+```bash
 mkdir -p package-contents/.imgpkg
 kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg/images.yml
 ```{{execute}}
@@ -26,23 +26,29 @@ For the purpose of this tutorial, we will run an unsecured local docker
 registry. In the real world please be safe and use appropriate security
 measures.
 
-`docker run -d -p 5000:5000 --restart=always --name registry registry:2`{{execute}}
+```bash
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```{{execute}}
 
 From the terminal we can access this registry as `localhost:5000` but within the
 cluster we'll need the IP Address. To emphasize that you would
 normally use a repo host such as dockerhub or harbor we will store the IP
 address in a variable:
 
-```
+```bash
 export REPO_HOST="`ifconfig | grep -A1 docker | grep inet | cut -f10 -d' '`:5000"
 ```{{execute}}
 
 Now we can publish our bundle to our registry:
 
-`imgpkg push -b ${REPO_HOST}/packages/simple-app:1.0.0 -f package-contents/`{{execute}}
+```bash
+imgpkg push -b ${REPO_HOST}/packages/simple-app:1.0.0 -f package-contents/
+```{{execute}}
 
 
 You can verify that we pushed something called `packages/simple-app` by checking the Docker registry catalog:
 
-`curl ${REPO_HOST}/v2/_catalog`{{execute}}
+```bash
+curl ${REPO_HOST}/v2/_catalog
+```{{execute}}
 
