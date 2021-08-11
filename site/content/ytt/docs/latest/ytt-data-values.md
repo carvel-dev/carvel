@@ -130,7 +130,7 @@ Notes:
 
 Data Values can also be configured via a specific kind of `ytt` Overlay.
 
-A Data Values file is a YAML document annotated with `@data/values`.
+A Data Values Overlay is a YAML document annotated with `@data/values`.
 
 ```yaml
 #@data/values
