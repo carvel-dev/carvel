@@ -35,3 +35,7 @@ $ vendir sync --directory vendor/local-dir=local-dir-dev
 - for `manual`, nothing is recorded
 
 To use these resolved references on top of `vendir.yml`, use `vendir sync -l`.
+
+## Syncing from different directory
+
+As of v0.22.0, you can use `--chdir` flag with `vendir sync` command to change current working directory of vendir before any syncing occurs. All other paths provided to `vendir sync` should be relative to the changed directory.
