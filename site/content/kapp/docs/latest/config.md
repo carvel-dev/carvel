@@ -221,7 +221,7 @@ andMatcher:
 ### apiGroupKindMatcher
 
 ```yaml
-apiVersionKindMatcher: {apiGroup: apps, kind: Deployment}
+apiGroupKindMatcher: {apiGroup: apps, kind: Deployment}
 ```
 
 ### apiVersionKindMatcher
