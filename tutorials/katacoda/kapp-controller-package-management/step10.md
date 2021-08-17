@@ -4,7 +4,7 @@ Once we have the packages available for installation (as seen via `kubectl get p
 we need to let kapp-controller know which package we want to install.
 To do this, we will need to create a PackageInstall CR (and a secret to hold the values used by our package):
 
-```
+```bash
 cat > pkginstall.yml << EOF
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -41,17 +41,27 @@ This yaml snippet also contains a Kubernetes secret, which is referenced by the 
 
 Finally, to install the above package, we will also need to create `default-ns-sa` service account (refer to [Security model](https://carvel.dev/kapp-controller/docs/latest/security-model/)
 for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
-`kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y`{{execute}}
+```bash
+kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+```{{execute}}
 
 Apply the PackageInstall using kapp:
-`kapp deploy -a pkg-demo -f pkginstall.yml -y`{{execute}}
+```bash
+kapp deploy -a pkg-demo -f pkginstall.yml -y
+```{{execute}}
 
 After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of simple-app:
-`kubectl get pods`{{execute}}
+```bash
+kubectl get pods
+```{{execute}}
 
 Once the pod is ready, you can use kubectl’s port forwarding to verify the customized hello message has been used in the workload:
-`kubectl port-forward service/simple-app 3000:80 &`{{execute}}
+```bash
+kubectl port-forward service/simple-app 3000:80 &
+```{{execute}}
 
 Now if we make a request against our service, we can see that our `hello_msg`
 values is being used:
-`curl localhost:3000`{{execute}}
+```bash
+curl localhost:3000
+```{{execute}}

@@ -5,7 +5,7 @@ These templates will install a simple greeter app with a templated hello message
 
 Create a config.yml:
 
-```
+```bash
 cat > config.yml << EOF
 #@ load("@ytt:data", "data")
 
@@ -48,7 +48,7 @@ EOF
 
 and a values.yml:
 
-```
+```bash
 cat > values.yml <<- EOF
 #@data/values
 ---

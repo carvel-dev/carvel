@@ -6,7 +6,7 @@ When creating this CR, the api will validate that the PackageMetadata’s name i
 
 We'll make a conformant `metadata.yml` file:
 
-```
+```bash
 cat > metadata.yml << EOF
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
@@ -25,7 +25,7 @@ EOF
 Now we need to create a Package CR.
 This CR contains versioned instructions and metadata used to install packaged software that fits the description provided in the PackageMetadata CR we just saved in `metadata.yml`.
 
-```
+```bash
 cat > 1.0.0.yml << EOF
 ---
 apiVersion: data.packaging.carvel.dev/v1alpha1

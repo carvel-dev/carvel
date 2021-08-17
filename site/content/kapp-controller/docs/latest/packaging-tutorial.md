@@ -1,12 +1,16 @@
-## Package Management Tutorial
+---
+title: Package Management Tutorial
+---
 
-### Get Started With Katacoda
+[//]: # (Generated from katacoda content using 'carvel/tutorials/copy-katacoda-to-static.sh')
+
+## Get Started With Katacoda
 Make a katacoda account and take our interactive tutorial [here](https://katacoda.com/carvel/scenarios/kapp-controller-package-management)
-### Or Follow Our Tutorial Below
+## Or Follow Our Tutorial Below
 You can spin up your favorite [playground](https://www.katacoda.com/courses/kubernetes/playground) and follow the steps below.
 Note the below steps are from the linked katacoda tutorial so your environment may differ slightly.
 
-### Installing kapp-controller dependencies
+## Installing kapp-controller dependencies
 
 We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so first we'll install 
 [ytt](https://carvel.dev/ytt/), [kbld](https://carvel.dev/kbld/),
@@ -14,10 +18,12 @@ We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so 
 
 Install the whole tool suite with the script below:
 
-`wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | bash`
+```bash
+wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | bash
+```
 
 
-### Optional: explore kapp
+## Optional: explore kapp
 
 Before we install kapp-controller with [kapp](https://carvel.dev/kapp/), you may be interested in seeing
 a different example of how kapp works.
@@ -28,37 +34,53 @@ You can skip this step if you want to get straight to kapp-controller.
 
 First clone the GitHub repository for examples:
 
-`git clone https://github.com/vmware-tanzu/carvel-kapp`
+```bash
+git clone https://github.com/vmware-tanzu/carvel-kapp
+```
 
 Then deploy a CronJob to the Kubernetes cluster in this environment:
 
-`kapp deploy -a hellocron -f carvel-kapp/examples/jobs/cron-job.yml -y`
+```bash
+kapp deploy -a hellocron -f carvel-kapp/examples/jobs/cron-job.yml -y
+```
 
 Now take a look at the Kubernetes resources being managed by kapp:
 
-`kapp ls`
+```bash
+kapp ls
+```
 
-`kapp inspect -a hellocron --tree`
+```bash
+kapp inspect -a hellocron --tree
+```
 
 We scheduled our CronJob to output a hello message every minute, so if you're
 patient you'll see new messages appended to the logs:
 
-`kapp logs -f -a hellocron`
+```bash
+kapp logs -f -a hellocron
+```
 
 When you're done watching the logs you can use control-c (`^C`) to quit.
 
 Because this was an optional interlude, we can use kapp to uninstall the CronJob before proceeding:
-`kapp delete -a hellocron -y`
-### I believe I was promised kapp-controller?
+```bash
+kapp delete -a hellocron -y
+```
+## I believe I was promised kapp-controller?
 
 Use kapp to install kapp-controller (reconciliation may take a moment, which you
 could use to read about [kubernetes controller reconciliation loops](https://kubernetes.io/docs/concepts/architecture/controller/)):
 
-`kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.21.0/release.yml -y`
+```bash
+kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.21.0/release.yml -y
+```
 
 Gaze upon the splendor! 
 
-`kubectl get all -n kapp-controller`
+```bash
+kubectl get all -n kapp-controller
+```
 
 The kapp deployment is managing a replicaset which owns a service and a pod. The
 pod is running kapp-controller, which is a kubernetes controller
@@ -67,21 +89,27 @@ running its own reconciliation loop.
 kapp-controller introduces new Custom Resource (CR) types we'll use throughout this
 tutorial, including PackageRepositories and PackageInstalls.
 
-`kubectl api-resources --api-group packaging.carvel.dev`
+```bash
+kubectl api-resources --api-group packaging.carvel.dev
+```
 
 You can see other kapp-controller CRs in other groups:
 
-`kubectl api-resources --api-group data.packaging.carvel.dev`
+```bash
+kubectl api-resources --api-group data.packaging.carvel.dev
+```
 
-`kubectl api-resources --api-group kappctrl.k14s.io`
-### Creating a Package: Templating our config
+```bash
+kubectl api-resources --api-group kappctrl.k14s.io
+```
+## Creating a Package: Templating our config
 
 We will be using [ytt](https://carvel.dev/ytt/) templates that describe a simple Kubernetes Deployment and Service.
 These templates will install a simple greeter app with a templated hello message.
 
 Create a config.yml:
 
-```
+```bash
 cat > config.yml << EOF
 #@ load("@ytt:data", "data")
 
@@ -124,7 +152,7 @@ EOF
 
 and a values.yml:
 
-```
+```bash
 cat > values.yml <<- EOF
 #@data/values
 ---
@@ -135,7 +163,7 @@ EOF
 ```
 
 
-### Creating a Package: Structuring our contents
+## Creating a Package: Structuring our contents
 We'll create an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle)
 that contains the package contents: the configuration (config.yml and values.yml from the previous step) and a reference to the greeter app image (docker.io/dkalinin/k8s-simple-app@sha256:...).
 
@@ -143,14 +171,14 @@ The [package bundle format](https://carvel.dev/kapp-controller/docs/latest/packa
 used in this section of the tutorial as well as general recommendations.
 
 Let's create a directory with our configuration files:
-```
+```bash
 mkdir -p package-contents/config/
 cp config.yml package-contents/config/config.yml
 cp values.yml package-contents/config/values.yml
 ```
 
 Once we have the configuration figured out, let’s use kbld to record which container images are used:
-```
+```bash
 mkdir -p package-contents/.imgpkg
 kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg/images.yml
 ```
@@ -163,27 +191,33 @@ For the purpose of this tutorial, we will run an unsecured local docker
 registry. In the real world please be safe and use appropriate security
 measures.
 
-`docker run -d -p 5000:5000 --restart=always --name registry registry:2`
+```bash
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
 
 From the terminal we can access this registry as `localhost:5000` but within the
 cluster we'll need the IP Address. To emphasize that you would
 normally use a repo host such as dockerhub or harbor we will store the IP
 address in a variable:
 
-```
+```bash
 export REPO_HOST="`ifconfig | grep -A1 docker | grep inet | cut -f10 -d' '`:5000"
 ```
 
 Now we can publish our bundle to our registry:
 
-`imgpkg push -b ${REPO_HOST}/packages/simple-app:1.0.0 -f package-contents/`
+```bash
+imgpkg push -b ${REPO_HOST}/packages/simple-app:1.0.0 -f package-contents/
+```
 
 
 You can verify that we pushed something called `packages/simple-app` by checking the Docker registry catalog:
 
-`curl ${REPO_HOST}/v2/_catalog`
+```bash
+curl ${REPO_HOST}/v2/_catalog
+```
 
-### Creating the Custom Resources
+## Creating the Custom Resources
 
 To finish creating a package, we need to create two CRs. The first CR is the PackageMetadata CR, which will contain high level information and descriptions about our package.
 
@@ -191,7 +225,7 @@ When creating this CR, the api will validate that the PackageMetadata’s name i
 
 We'll make a conformant `metadata.yml` file:
 
-```
+```bash
 cat > metadata.yml << EOF
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
@@ -210,7 +244,7 @@ EOF
 Now we need to create a Package CR.
 This CR contains versioned instructions and metadata used to install packaged software that fits the description provided in the PackageMetadata CR we just saved in `metadata.yml`.
 
-```
+```bash
 cat > 1.0.0.yml << EOF
 ---
 apiVersion: data.packaging.carvel.dev/v1alpha1
@@ -273,7 +307,7 @@ This section informs kapp-controller of the actions required to install the pack
 
 There will also be validations run on the Package CR, so ensure that spec.refName and spec.version are not empty and that metadata.name is `<spec.refName>.<spec.version>`.
 These validations are done to encourage a naming scheme that keeps package version names unique.
-### Creating a Package Repository
+## Creating a Package Repository
 
 A [package repository bundle](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository-bundle-format)
 is a collection of packages (more specifically a collection of Package and PackageMetadata CRs).
@@ -283,41 +317,49 @@ The [PackageRepository bundle format](https://carvel.dev/kapp-controller/docs/la
 
 Lets start by creating the needed directories:
 
-`mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages/simple-app.corp.com`
+```bash
+mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages/simple-app.corp.com
+```
 
 we can copy our CR YAMLs from the previous step in to the proper packages
 subdirectory:
 
-```
+```bash
 cp 1.0.0.yml my-pkg-repo/packages/simple-app.corp.com
 cp metadata.yml my-pkg-repo/packages/simple-app.corp.com
 ```
 
 Next, let’s use kbld to record which package bundles are used:
 
-`kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.yml`
+```bash
+kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.yml
+```
 
 With the bundle metadata files present, we can push our bundle to whatever OCI
 registry we plan to distribute it from, which for this tutorial will just be our
 same REPO_HOST.
 
-`imgpkg push -b ${REPO_HOST}/packages/my-pkg-repo:1.0.0 -f my-pkg-repo`
+```bash
+imgpkg push -b ${REPO_HOST}/packages/my-pkg-repo:1.0.0 -f my-pkg-repo
+```
 
 The package repository is pushed!
 
 You can verify by checking the Docker registry catalog:
 
-`curl ${REPO_HOST}/v2/_catalog`
+```bash
+curl ${REPO_HOST}/v2/_catalog
+```
 
 In the next steps we'll act as the package consumer, showing an example of adding and using a PackageRepository with kapp-controller.
 
-### Adding a PackageRepository
+## Adding a PackageRepository
 
 kapp-controller needs to know which packages are available to install.
 One way to let it know about available packages is by creating a package repository.
 To do this, we need a PackageRepository CR:
 
-```
+```bash
 cat > repo.yml << EOF
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -340,34 +382,44 @@ packages found within the `${REPO_HOST}/packages/my-pkg-repo:1.0.0` imgpkg bundl
 stored in our docker OCI registry previously.
 
 We can use kapp to apply it to the cluster:
-`kapp deploy -a repo -f repo.yml -y`
+```bash
+kapp deploy -a repo -f repo.yml -y
+```
 
 Check for the success of reconciliation to see the repository become available:
-`watch kubectl get packagerepository`
+```bash
+watch kubectl get packagerepository
+```
 
 Once the simple-package-repository has a "**Reconcile succeeded**" description,
 we're ready to continue! You can exit the watch by hitting control-c or
 clicking: `^C`
 
 Once the deploy has finished, we are able to list the package metadatas to see, at a high level, which packages are now available within our namespace:
-`kubectl get packagemetadatas`
+```bash
+kubectl get packagemetadatas
+```
 
 If there are numerous available packages, each with many versions, this list can become a bit unwieldy, so we can also list the packages with a particular name using the --field-selector option on kubectl get.
-`kubectl get packages --field-selector spec.refName=simple-app.corp.com`
+```bash
+kubectl get packages --field-selector spec.refName=simple-app.corp.com
+```
 
 From here, if we are interested, we can further inspect each version to discover
 information such as release notes, installation steps, licenses, etc. For
 example:
-`kubectl get package simple-app.corp.com.1.0.0 -o yaml`
+```bash
+kubectl get package simple-app.corp.com.1.0.0 -o yaml
+```
 
 
-### Installing a Package
+## Installing a Package
 
 Once we have the packages available for installation (as seen via `kubectl get packages`), 
 we need to let kapp-controller know which package we want to install.
 To do this, we will need to create a PackageInstall CR (and a secret to hold the values used by our package):
 
-```
+```bash
 cat > pkginstall.yml << EOF
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -404,21 +456,31 @@ This yaml snippet also contains a Kubernetes secret, which is referenced by the 
 
 Finally, to install the above package, we will also need to create `default-ns-sa` service account (refer to [Security model](https://carvel.dev/kapp-controller/docs/latest/security-model/)
 for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
-`kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y`
+```bash
+kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+```
 
 Apply the PackageInstall using kapp:
-`kapp deploy -a pkg-demo -f pkginstall.yml -y`
+```bash
+kapp deploy -a pkg-demo -f pkginstall.yml -y
+```
 
 After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of simple-app:
-`kubectl get pods`
+```bash
+kubectl get pods
+```
 
 Once the pod is ready, you can use kubectl’s port forwarding to verify the customized hello message has been used in the workload:
-`kubectl port-forward service/simple-app 3000:80 &`
+```bash
+kubectl port-forward service/simple-app 3000:80 &
+```
 
 Now if we make a request against our service, we can see that our `hello_msg`
 values is being used:
-`curl localhost:3000`
-### Congratulations!
+```bash
+curl localhost:3000
+```
+## Congratulations!
 
 Visit [carvel.dev](https://carvel.dev/) to learn more about Carvel tools.
 
