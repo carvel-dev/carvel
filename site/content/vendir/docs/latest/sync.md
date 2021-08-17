@@ -26,6 +26,7 @@ $ vendir sync --directory vendor/local-dir=local-dir-dev
 `vendir sync` writes [`vendir.lock.yml`](vendir-lock-spec.md) (next to `vendir.yml`) that contains resolved references:
 
 - for `git`, resolved SHAs are recorded
+- for `hg`, resolved SHAs are recorded
 - for `http`, nothing is recorded
 - for `image`, resolved URL as a digest reference
 - for `githubRelease`, permanent links are recorded

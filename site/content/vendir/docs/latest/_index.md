@@ -13,6 +13,7 @@ vendir allows to declaratively state what should be in a directory. It was desig
 Supported sources for fetching:
 
 - git
+- hg (Mercurial)
 - http
 - image (image from OCI registry)
 - imgpkgBundle (bundle from OCI registry)

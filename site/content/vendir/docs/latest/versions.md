@@ -7,6 +7,9 @@ Available in v0.12.0+.
 Vendir uses version selection in following places:
 
 - git source type for selection of `ref` based on Git tags
+- image source type for selection of `tag` based on registry tags
+- imgpkgBundle source type for selection of `tag` based on registry tags
+- githubRelease source type for selection of `tag` based on tags
 
 ---
 ## VersionSelection type

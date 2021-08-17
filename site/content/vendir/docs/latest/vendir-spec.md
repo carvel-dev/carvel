@@ -47,6 +47,19 @@ directories:
         # (required)
         name: my-git-auth
 
+    # uses hg to clone repository (optional; v0.11.0+)
+    hg:
+      # http or ssh urls are supported (required)
+      url: https://github.com/cloudfoundry/cf-k8s-networking
+      # branch, tag, commit; origin is the name of the remote (required)
+      ref: origin/master
+      # specifies name of a secret with auth details;
+      # secret may include 'ssh-privatekey', 'ssh-knownhosts',
+      # 'username', 'password' keys (optional)
+      secretRef:
+        # (required)
+        name: my-hg-auth
+
     # fetches asset over HTTP (optional)
     http:
       # asset URL (required)
@@ -63,9 +76,23 @@ directories:
     image:
       # image URL; could be plain, tagged or digest reference (required)
       url: gcr.io/repo/image:v1.0.0
+      # specifies a strategy to choose a tag (optional; v0.22.0+)
+      # if specified, do not include a tag in url key
+      tagSelection:
+        semver:
+          # list of semver constraints (see versions.md for details) (required)
+          constraints: ">0.4.0"
+          # by default prerelease versions are not included (optional; v0.12.0+)
+          prereleases:
+            # select prerelease versions that include given identifiers (optional; v0.12.0+)
+            identifiers: [beta, rc]
       # specifies name of a secret with registry auth details;
       # secret may include 'username', 'password' and/or 'token' keys;
       # as of v0.19.0+, dockerconfigjson secrets are also supported (optional)
+      # of of v0.22.0+, multiple registry credentials are supported and
+      #   are passed to imgpkg via env. registry hostname must match url
+      #   for auth information to be chosen by imgpkg.
+      #   (https://carvel.dev/imgpkg/docs/latest/auth/#via-environment-variables)
       secretRef:
         # (required)
         name: my-image-auth
@@ -76,9 +103,23 @@ directories:
     imgpkgBundle:
       # could be plain, tagged or digest reference (required)
       image: gcr.io/repo/bundle:v1.0.0
+      # specifies a strategy to choose a tag (optional; v0.22.0+)
+      # if specified, do not include a tag in image key
+      tagSelection:
+        semver:
+          # list of semver constraints (see versions.md for details) (required)
+          constraints: ">0.4.0"
+          # by default prerelease versions are not included (optional; v0.12.0+)
+          prereleases:
+            # select prerelease versions that include given identifiers (optional; v0.12.0+)
+            identifiers: [beta, rc]
       # specifies name of a secret with registry auth details;
       # secret may include 'username', 'password' and/or 'token' keys;
       # as of v0.19.0+, dockerconfigjson secrets are also supported (optional)
+      # of of v0.22.0+, multiple registry credentials are supported and
+      #   are passed to imgpkg via env. registry hostname must match image
+      #   for auth information to be chosen by imgpkg.
+      #   (https://carvel.dev/imgpkg/docs/latest/auth/#via-environment-variables)
       secretRef:
         # (required)
         name: my-image-auth
@@ -90,7 +131,17 @@ directories:
       # slug for repository (org/repo) (required)
       slug: k14s/kapp-controller
       # use release tag (optional)
+      # optional if tagSelection is specified (available in v0.22.0+)
       tag: v0.1.0
+      # specifies a strategy to choose a tag (optional; v0.22.0+)
+      tagSelection:
+        semver:
+          # list of semver constraints (see versions.md for details) (required)
+          constraints: ">0.4.0"
+          # by default prerelease versions are not included (optional; v0.12.0+)
+          prereleases:
+            # select prerelease versions that include given identifiers (optional; v0.12.0+)
+            identifiers: [beta, rc]
       # use latest published version (optional)
       latest: true
       # use exact release URL (optional)
@@ -128,8 +179,11 @@ directories:
         # oci:// scheme (required)
         url: https://...
         # specifies name of a secret with helm repo auth details;
-        # secret may include 'username', 'password'; as of v0.19.0,
-        # dockerconfigjson secrets are also supported (optional)
+        # secret may include 'username', 'password';
+        # as of v0.19.0+, dockerconfigjson secrets are also supported (optional)
+        # as of v0.22.0+, 0 or 1 auth credential is expected within dockerconfigjson secret
+        #   if >1 auth creds found, error will be returned. (currently registry hostname
+        #   is not used when found in provide auth credential.)
         secretRef:
           # (required)
           name: my-helm-auth

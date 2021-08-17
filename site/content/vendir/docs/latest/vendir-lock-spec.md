@@ -26,6 +26,13 @@ directories:
       tags:
       - "4.0.0"
 
+    # present if hg  (v0.22.0+)
+    hg:
+      # resolved checked out change SHA
+      sha: 2b009b61fa8afb330a4302c694ee61b11104c54c
+      # resolved checked out change title
+      changeSetTitle: 'feat: add /metrics prometheus scrapable endpoint...'
+
     # present if github release
     githubRelease:
       # resolved release url
@@ -43,11 +50,15 @@ directories:
     image:
       # fully resolve image URL with digest
       url: index.docker.io/dkalinin/consul-helm@sha256:d1cdbd46561a144332f0744302d45f27583fc0d75002cba473d840f46630c9f7
+      # included if image URL included a tag (v0.22.0+)
+      tag: "some-tag"
 
     # present if imgpkgBundle (v0.16.0+)
     imgpkgBundle:
       # fully resolve image URL with digest
       image: index.docker.io/dkalinin/consul-helm@sha256:d1cdbd46561a144332f0744302d45f27583fc0d75002cba473d840f46630c9f7
+      # included if image URL included a tag (v0.22.0+)
+      tag: "some-tag"
 
     # present if inline (v0.11.0+)
     inline: {}
