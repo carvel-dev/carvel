@@ -26,12 +26,12 @@ directories:
       tags:
       - "4.0.0"
 
-    # present if hg  (v0.22.0+)
+    # present if hg (v0.22.0+)
     hg:
       # resolved checked out change SHA
-      sha: 2b009b61fa8afb330a4302c694ee61b11104c54c
+      sha: 180c776fe29448afa8c756ab572bab7a1cf17a06
       # resolved checked out change title
-      changeSetTitle: 'feat: add /metrics prometheus scrapable endpoint...'
+      changeSetTitle: 'Prevent wrapping filenames to preserve whitespace'
 
     # present if github release
     githubRelease:

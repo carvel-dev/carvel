@@ -18,7 +18,7 @@ directories:
   - # path lives relative to directory path # (required)
     path: github.com/cloudfoundry/cf-k8s-networking
 
-    # uses git to clone repository (optional)
+    # uses git to clone Git repository (optional)
     git:
       # http or ssh urls are supported (required)
       url: https://github.com/cloudfoundry/cf-k8s-networking
@@ -47,12 +47,12 @@ directories:
         # (required)
         name: my-git-auth
 
-    # uses hg to clone repository (optional; v0.11.0+)
+    # uses hg to clone Mercurial repository (optional; v0.22.0+)
     hg:
       # http or ssh urls are supported (required)
-      url: https://github.com/cloudfoundry/cf-k8s-networking
-      # branch, tag, commit; origin is the name of the remote (required)
-      ref: origin/master
+      url: https://hg.sr.ht/~sircmpwn/hg.sr.ht
+      # branch, tag, commit (required)
+      ref: 180c776fe29448afa8c756ab572bab7a1cf17a06
       # specifies name of a secret with auth details;
       # secret may include 'ssh-privatekey', 'ssh-knownhosts',
       # 'username', 'password' keys (optional)
