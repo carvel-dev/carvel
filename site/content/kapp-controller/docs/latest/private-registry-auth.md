@@ -2,12 +2,12 @@
 title: Authenticating to Private Registires
 ---
 
-In order for kapp-controller to pull imgpkg bundles or images from registries requiring authentication, 
-kapp-controller supports a workflow to more easily manage Kubernetes secrets and use them as part of working 
+To pull imgpkg bundles or images from registries requiring authentication, kapp-controller 
+supports a workflow to more easily manage Kubernetes secrets and use them as part of working 
 with PackageRepositories or PackageInstalls. 
 
 In addition to having kapp-controller installed, when [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) 
-is installed on the same cluster, kapp-controller will create secrets that are used when PackageRepositories or 
+is installed on the same cluster, kapp-controller will create [placeholder secrets](#placeholder-secrets) that are used when PackageRepositories or 
 PackageInstalls are created. These secrets are then populated by secretgen-controller and will contain all "exported" 
 registry credentials stored on a cluster as Kubernetes secrets. 
 
@@ -43,7 +43,7 @@ stringData:
   .dockerconfigjson: |
     {
       "auths": {
-        "index.docker.io/v2/": {
+        "index.docker.io": {
           "username": "user",
           "password": "password",
           "auth": ""
@@ -70,7 +70,7 @@ use these credentials when fetching the contents.
 
 The workflow described under the [Create Registry Credentials](#create-registry-credentials) section mentions 
 that kapp-controller will create secrets when PackageRepositories or PackageInstalls are created. These secrets 
-are referred to as "placeholder secrets". kapp-controller will look at the PackageRepository/Package fetch 
+are referred to as placeholder secrets. kapp-controller will look at the PackageRepository/Package fetch 
 stages to determine whether any secretRefs have been provided. 
 
 If no secretRef is specified on the PackageRepository or Package to be installed by a PackageInstall, kapp-controller 
