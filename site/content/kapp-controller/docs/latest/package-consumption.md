@@ -31,25 +31,8 @@ spec:
       image: k8slt/corp-com-pkg-repo:1.0.0
 ```
 
-If the registry containing the repository is private, a secret ref will
-need to be added to the fetch stage. For example,
-
-```yaml
----
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageRepository
-metadata:
-  name: simple-package-repository
-spec:
-  fetch:
-    imgpkgBundle:
-      image: k8slt/corp-com-pkg-repo:1.0.0
-      secretRef:
-        name: my-registry-creds
-```
-
-This secret will need to be located in the namespace where the PackageRepository
-is created and be in the format described in the [fetch docs](config.md#image-authentication).
+If the registry containing the repository is private, you can read more about 
+kapp-controller's private auth workflows [here](private-registry-auth.md)
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `k8slt/kctrl-pkg-repo:1.0.0` imgpkg bundle, which is
