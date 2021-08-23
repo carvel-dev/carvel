@@ -7,7 +7,7 @@
 Configuration Authors want to be able to generate documentation for configuration inputs (for example, Data Values Schema, and Data Values) for their users. Additionally, Configuration Consumers want to be able to validate their configuration inputs by other tools (for example, IDE's and OpenAPI Schema validators). 
 
 # Proposal
-Implement the flag `--data-values-schema-inspect -o openapi` to create an [OpenAPI Document](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#openapi-object) from a [Data Values schema](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-schema/) file. When invoking ytt with this flag and a Data Values Schema file, a yaml OpenAPI document that has [ headers](#openapi-document-with-metadata) such as version, and a [Schema Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#schema-object) is output. 
+Implement the flag `--data-values-schema-inspect -o openapi` to create an [OpenAPI Document](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#openapi-object) from one or more [Data Values schema](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-schema/) files merged together. When invoking ytt with this flag and a Data Values Schema file, a yaml OpenAPI document that has [headers](#openapi-document-with-metadata) such as version, and a [Schema Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#schema-object) is output. 
 
 The following additional flags may be implemented.
 
