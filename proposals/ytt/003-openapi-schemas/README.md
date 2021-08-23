@@ -27,7 +27,8 @@ ytt --data-values-inspect           # prints values files
 ytt --data-values-inspect -ojson    # prints values as json
 
 # New flags
-ytt --data-values-schema-inspect -o openapi     # prints data values schema files as an OpenAPI Document
+ytt --data-values-schema-inspect -o openapi[,yaml]   # prints data values schema as an OpenAPI Document (in YAML format; this is the default)
+ytt --data-values-schema-inspect -o openapi,json     # prints data values schema as an OpenAPI Document (in JSON format)
 
 # Additional New flags
 ytt --data-values-inspect -o openapi    # prints values files as OpenAPI Document
