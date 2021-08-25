@@ -20,7 +20,7 @@ or PackageInstalls.
 To use the authentication flows mentioned below, install secretgen-controller on the cluster where kapp-controller is installed:
 
 ```bash
-kapp deploy -a sg -f https://raw.githubusercontent.com/vmware-tanzu/carvel-secretgen-controller/develop/alpha-releases/0.4.0-alpha.1.yml
+kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
 ```
 
 ### Create Registry Credentials
