@@ -137,6 +137,45 @@ components:
 ### OpenAPI `Schemas` object
 Some users (e.g. kapp-controller) only need the Schemas object and not an entire OpenAPI document. To make easier substitution of the output of this flag into an existing document `ytt -f . --data-values-schema-inspect -o openapi-v3-schema` outputs only the Schema Object (`components.schemas`) section of an OpenAPI Document.
 
+## Implementation breakdown
+### Phase 0 - Export OpenAPI Document from Data Values Schema
+After this phase is complete the users would be able to:
+
+Use`--data-values-schema-inspect -o openapi-v3` flag to export an OpenAPI Document. At this point no other flags will exist, and using `--data-values-schema-inspect` without `-o openapi` is disallowed.
+
+**Note**: After this phase, we will gather data from users to determine the next highest priority, and the phases below may shift places.
+
+### Phase 1 - Export OpenAPI Schema only from Data Values Schema
+After this phase is complete the users would be able to:
+
+Use`--data-values-schema-inspect -o openapi-v3-schema` to export an OpenAPI Schema. Again,`--data-values-schema-inspect` without `-o openapi` is disallowed.
+
+### Phase 2 - Export a ytt Data Values Schema 
+After this phase is complete the users would be able to:
+
+Use`--data-values-schema-inspect` to export or inspect a Data Values Schema that includes ytt Schema annotations.
+
+
+### Phase 3 - Export OpenAPI Document from Data Values Schema and Data Values
+After this phase is complete the users would be able to:
+
+Use `--data-values-inspect -o openapi-v3` to generate an OpenAPI Schema document using both Data Values Schema and Data Values files.
+
+## Implementation Details
+As part of the phase 0 of this work, the headers for an OpenAPI Doc will need to be created, and the Data Values Schema will be output in OpenAPI format. To be able to export all the fields needed in an OpenAPI Doc, a few ytt Schema annotations will need to be implemented.
+
+The `#@schema/default` annotation will need to be implemented in order to have default values for arrays in a Data Value Schema. Implementing this annotation allows all elements of a Schema to be supplied by Data Values Schema files, since phase 0 flag only uses Data Values Schema files, this is necessary for full compatibility.
+
+Implement the export of an OpenAPI Doc that has the `type` and `default` keys that will provide information for scalar types and collection types from a Data Values schema.
+
+Implement the export of an OpenAPI Doc that represents the equivalent of ytt's `#@schema/nullable` and `#@schema/type any=True` annotations.
+
+At this point, users can start testing and using this incomplete feature.
+
+The `#@schema/doc` annotation will need to be implemented to provide the `description` key that explains what a key in a schema is.
+
+The `#@schema/example` annotation will need to be implemented to provide an `example` key for a key in the schema.
+
 ## Glossary
 * OpenAPI Schema: A document that follows this [spec](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#openapi-object)
 * Collection: a yaml map or array
