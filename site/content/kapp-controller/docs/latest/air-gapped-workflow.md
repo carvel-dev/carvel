@@ -60,24 +60,8 @@ spec:
       image: final-registry.corp.com/apps/simple-app-bundle
 ```
 
-In the event your PackageRepository needs authentication to pull the bundle, you can specify credentials via a `secretRef` 
-as shown below. The secret for the `secretRef` property must be created in the namespace where the PackageRepository was created
-to use this secret. Supported secret keys are documented [here](config#imgpkgbundle-authentication). This authentication pattern will 
-change in the future as better workflows are proposed for kapp-controller.
-
-```yaml
----
-apiVersion: install.package.carvel.dev/v1alpha1
-kind: PackageRepository
-metadata:
-  name: simple-package-repository
-spec:
-  fetch:
-    imgpkgBundle:
-      image: final-registry.corp.com/apps/simple-app-bundle
-      secretRef:
-        name: my-registry-creds
-```
+In the event your PackageRepository needs authentication to pull the bundle, you can read more about kapp-controller's 
+[private authentication workflows using secretgen-controller](private-registry-auth.md) or [without secretgen-controller](private-registry-auth.md#packagerepository-authentication-without-secretgen-controller).
 
 After applying the PackageRepository definition above to your Kubernetes cluster, you will be able to check that the PackageRepository and 
 its associated Packages were successfully deployed by checking the PackageRepository status:
