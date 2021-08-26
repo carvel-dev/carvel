@@ -1,5 +1,5 @@
 ---
-title: Authenticating to Private Registires
+title: Authenticating to Private Registries
 ---
 
 To pull imgpkg bundles or images from registries requiring authentication, kapp-controller 
