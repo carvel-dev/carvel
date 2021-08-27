@@ -2,7 +2,7 @@
 title: Authenticating to Private Registries
 ---
 
-To pull imgpkg bundles or images from registries requiring authentication, kapp-controller 
+To pull imgpkg bundles or images from registries requiring authentication, kapp-controller (v0.24.0+) 
 supports a workflow to more easily manage Kubernetes secrets and use them as part of working 
 with PackageRepositories or PackageInstalls. 
 
@@ -99,4 +99,64 @@ spec:
 ```
 
 This secret will need to be located in the namespace where the PackageRepository
+is created and be in the format described in the [fetch docs](config.md#image-authentication).
+
+### PackageInstall Authentication without secretgen-controller
+
+In kapp-controller v0.23.0, support for adding an annotation on the PackageInstall was added to 
+allow users to set a secret on the PackageInstall's underlying App custom resource. Before creating 
+a PackageInstall, users can look at the Package definition that they want to install and see what 
+fetch stages a Package has defined like below:
+
+```yaml
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: simple-app.corp.com.1.0.0
+spec:
+  refName: simple-app.corp.com
+  version: 1.0.0
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: registry.corp.com/packages/simple-app:1.0.0
+      template:
+      - ytt:
+          paths:
+          - "config/"
+      - kbld:
+          paths:
+          - "-"
+          - ".imgpkg/images.yml"
+      deploy:
+      - kapp: {}
+```
+
+In the example above, the Package has a single fetch stage to retrieve an imgpkg bundle. To use a PackageInstall 
+to specify what secret to use for this fetch stage, an annotation is added to the PackageInstall as shown below:
+
+```yaml
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: simple-app-with-secret
+  annotations:
+    "ext.packaging.carvel.dev/fetch-0-secret-name": "simple-app-secret"
+spec:
+  serviceAccountName: default-ns-sa
+  packageRef:
+    refName: simple-app.corp.com
+    versionSelection:
+      constraints: 1.0.0
+```
+
+The annotation shown above `"ext.packaging.carvel.dev/fetch-0-secret-name": "simple-app-secret"` has a format that allows 
+users to specify the specific fetch stage by how it is defined in the Package definition. In this case, the PackageInstall 
+being created will add a secretRef to the App's first fetch stage (i.e. `fetch-0-secret-name`) for the imgpkg bundle. If the 
+Package definition had an additional fetch stage, the secret annotation could be added in the following format: `"ext.packaging.carvel.dev/fetch-1-secret-name": "simple-app-additional-secret"`.
+
+To use this annotation with a PackageInstall, associated secrets will need to be located in the namespace where the PackageInstall
 is created and be in the format described in the [fetch docs](config.md#image-authentication).
