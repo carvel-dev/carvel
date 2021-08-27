@@ -59,7 +59,7 @@ kind: Secret
 metadata:
   name: reg-creds
   annotations:
-    secretgen.cavel.dev/image-pull-secret: ""
+    secretgen.carvel.dev/image-pull-secret: ""
 type: kubernetes.io/dockerconfigjson
 data:
   .dockerconfigjson: e30K
