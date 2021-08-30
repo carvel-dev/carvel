@@ -30,6 +30,8 @@ Anytime there is a change to a resource marked as a versioned resource, entirely
 
 To make resource versioned, add `kapp.k14s.io/versioned` annotation with an empty value. Created resource follow `{resource-name}-ver-{n}` naming pattern by incrementing `n` any time there is a change.
 
+As of v0.38.0+, You can use `kapp.k14s.io/versioned-keep-original` annotation in conjunction with `kapp.k14s.io/versioned` to have the original resource (resource without `-ver-{n}` suffix in name) along with versioned resource.
+
 You can control number of kept resource versions via `kapp.k14s.io/num-versions=int` annotation.
 
 Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/carvel-kapp/tree/develop/examples/gitops/redis-with-configmap) and changing `ConfigMap` in a next deploy.
