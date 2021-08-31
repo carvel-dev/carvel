@@ -135,3 +135,31 @@ versionSelection:
 
 Multiple identifiers can be specified to include multiple types of pre-releases
 (e.g. `identifiers: [rc, beta]`).
+
+### Downgrading
+
+In v0.25.0+ of kapp-controller, PackageInstalls feature an annotation to allow 
+PackageInstalls to be downgraded to previous versions of a Package. By default, 
+kapp-controller does not allow downgrading to a previous version of a Package to 
+protect against certain scenarios (e.g. the latest version of a Package being removed 
+resulting in a unintended reconciliation where the PackageInstall picks up a lower 
+Package version that is now the latest version).
+
+If downgrading to a previous version is desired, adding the annotation 
+`packaging.carvel.dev/downgradable: ""` to a PackageInstall will allow for 
+explicit or automated ways of downgrading the PackageInstall to a lower version.
+
+```yaml
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: pkg-demo
+  annotations:
+    packaging.carvel.dev/downgradable: ""
+spec:
+  packageRef:
+    refName: simple-app.corp.com
+    versionSelection:
+      constraints: >=1.0.0
+```
