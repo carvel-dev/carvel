@@ -75,6 +75,16 @@ spec:
           name: secret-name
         # grab only portion of image (optional)
         subPath: inside-dir/dir2
+        # specifies a strategy to choose a tag (optional; v0.24.0+)
+        # if specified, do not include a tag in url key
+        tagSelection:
+          semver:
+            # list of semver constraints (required)
+            constraints: ">1.0.0 <3.0.0"
+            # by default prerelease versions are not included (optional; v0.24.0+)
+            prereleases:
+              # select prerelease versions that include given identifiers (optional; v0.24.0+)
+              identifiers: [beta, rc]
 
     # pulls imgpkg bundle from Docker/OCI registry (v0.17.0+)
     - imgpkgBundle:
@@ -84,6 +94,16 @@ spec:
         # secret with auth details (optional)
         secretRef:
           name: secret-name
+        # specifies a strategy to choose a tag (optional; v0.24.0+)
+        # if specified, do not include a tag in url key
+        tagSelection:
+          semver:
+            # list of semver constraints (see https://carvel.dev/vendir/docs/latest/versions/ for details) (required)
+            constraints: ">1.0.0 <3.0.0"
+            # by default prerelease versions are not included (optional; v0.24.0+)
+            prereleases:
+              # select prerelease versions that include given identifiers (optional; v0.24.0+)
+              identifiers: [beta, rc]
 
     # uses http library to fetch file
     - http:
@@ -112,6 +132,15 @@ spec:
         subPath: config-step-2-template
         # skip lfs download (optional)
         lfsSkipSmudge: true
+        # specifies a strategy to resolve to an explicit ref (optional; v0.24.0+)
+        refSelection:
+          semver:
+            # list of semver constraints (see https://carvel.dev/vendir/docs/latest/versions/ for details) (required)
+            constraints: ">0.4.0"
+            # by default prerelease versions are not included (optional; v0.24.0+)
+            prereleases:
+              # select prerelease versions that include given identifiers (optional; v0.24.0+)
+              identifiers: [beta, rc]
 
     # uses helm fetch to fetch specified chart
     - helmChart:

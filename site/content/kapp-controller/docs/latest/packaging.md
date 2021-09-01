@@ -183,6 +183,16 @@ spec:
       # Docker image url; unqualified, tagged, or
       # digest references supported (required)
       image: host.com/username/image:v0.1.0
+      # specifies a strategy to choose a tag (optional; v0.24.0+)
+      # if specified, do not include a tag in url key
+      tagSelection:
+        semver:
+          # list of semver constraints (see https://carvel.dev/vendir/docs/latest/versions/ for details) (required)
+          constraints: ">1.0.0 <3.0.0"
+          # by default prerelease versions are not included (optional; v0.24.0+)
+          prereleases:
+            # select prerelease versions that include given identifiers (optional; v0.24.0+)
+            identifiers: [beta, rc]
     # pulls image containing packages from Docker/OCI registry
     image:
       # Image url; unqualified, tagged, or
@@ -190,6 +200,16 @@ spec:
       url: host.com/username/image:v0.1.0
       # grab only portion of image (optional)
       subPath: inside-dir/dir2
+      # specifies a strategy to choose a tag (optional; v0.24.0+)
+      # if specified, do not include a tag in url key
+      tagSelection:
+        semver:
+          # list of semver constraints (see https://carvel.dev/vendir/docs/latest/versions/ for details) (required)
+          constraints: ">1.0.0 <3.0.0"
+          # by default prerelease versions are not included (optional; v0.24.0+)
+          prereleases:
+            # select prerelease versions that include given identifiers (optional; v0.24.0+)
+            identifiers: [beta, rc]
     # uses http library to fetch file containing packages
     http:
       # http and https url are supported;
@@ -209,6 +229,15 @@ spec:
       subPath: config-step-2-template
       # skip lfs download (optional)
       lfsSkipSmudge: true
+      # specifies a strategy to resolve to an explicit ref (optional; v0.24.0+)
+      refSelection:
+        semver:
+          # list of semver constraints (see https://carvel.dev/vendir/docs/latest/versions/ for details) (required)
+          constraints: ">0.4.0"
+          # by default prerelease versions are not included (optional; v0.24.0+)
+          prereleases:
+            # select prerelease versions that include given identifiers (optional; v0.24.0+)
+            identifiers: [beta, rc]
 ```
 
 Example usage:
