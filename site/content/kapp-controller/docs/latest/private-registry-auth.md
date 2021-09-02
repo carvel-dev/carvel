@@ -104,7 +104,7 @@ If you are an owner of an operator, similar to the above section, we encourage y
         }
 
     ---
-    apiVersion: secretgen.carvel.io/v1alpha1
+    apiVersion: secretgen.carvel.dev/v1alpha1
     kind: SecretExport
     metadata:
       name: reg-creds        # must match source secret name
