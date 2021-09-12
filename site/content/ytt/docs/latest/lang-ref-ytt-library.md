@@ -6,7 +6,7 @@ title: Library Module
 
 Available in v0.28.0+
 
-- `#@library/ref`: Attaches a yaml document to the specified library to be used during evalutaion via the library module (only supported for [data value and data value schema documents](ytt-data-values.md#setting-library-values-via-files))
+- `#@library/ref`: Attaches a yaml document to the specified library to be used during evaluation via the library module (only supported for [data value and data value schema documents](ytt-data-values.md#setting-library-values-via-files))
 
 ```yaml
 #@library/ref "@app"
