@@ -8,7 +8,7 @@ theme: "carvel"
 frontmatter:
   date: [":filename", ":default"]
 params:
-  products: [ytt, kbld, kapp, imgpkg, kapp-controller, vendir]
+  products: [kapp-controller, ytt, imgpkg, kapp, kbld, vendir]
   ytt:
     name: ytt
     root_link: /ytt/
