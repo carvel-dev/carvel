@@ -71,6 +71,8 @@ diffMaskRules:
 kapp rebase rules explicitly define how to merge resources during an update. To read more about why rebase rules are necessary, see [Resource Merge Method](merge-method.md).
 For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md).
 
+As of v0.38.0+, We have two types of rebase rule one is copy/remove field value to resource and other where you can logically define the rebase rule using ytt templating tool functionality.
+
 - `rebaseRules` (array) list of rebase rules
   - `path` (array of strings) specifies location within a resource to rebase. Mutually exclusive with `paths`. Example: `[spec, clusterIP]`
   - `paths` (array of `path`) specifies multiple locations within a resource to rebase. This is a convenience for specifying multiple rebase rules with only different paths. Mutually exclusive with `path`. Available in v0.27.0+.
@@ -80,6 +82,9 @@ For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deploym
      - `[existing, new]` – If field value is present in the `existing` resource on cluster, use that value, otherwise use the value in the `new` user input.
      - `[existing]` – Only look for field values in resources already on cluster, corresponding value you provide in new resource will be overwritten.
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
+  - `ytt` specifies rebase rules written in ytt. 
+  - `overlayContractV1` specifies ytt overlay feature used to patch YAML files. 
+  - `overlay.yml` YAMl document that is the overlay. describing the modification. 
   
 Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
 ```yaml
