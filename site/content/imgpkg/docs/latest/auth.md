@@ -2,36 +2,6 @@
 title: Authentication
 ---
 
-## Via Docker config
-
-Even though `imgpkg` commands use registry APIs directly, by default it uses credentials stored in `~/.docker/config.json` which are typically generated via a `docker login` command.
-
-Example generated `~/.docker/config.json`:
-
-```json
-{
-  "auths": {
-    "https://index.docker.io/v1/": {
-      "auth": "dXNlcjpwYXNzd29yZA=="
-    },
-  },
-  "HttpHeaders": {
-    "User-Agent": "Docker-Client/18.09.6 (darwin)"
-  }
-}
-```
-
-where `dXNlcjpwYXNzd29yZA==` is `base64("username:password")`.
-
-## Via Command Flags
-
-You can explicitly specify credentials via command flags or associated environment variables. See `imgpkg push -h` for further details.
-
-- `--registry-username` (or `$IMGPKG_USERNAME`)
-- `--registry-password` (or `$IMGPKG_PASSWORD`)
-- `--registry-token` (or `$IMGPKG_TOKEN`): to specify the access token to be used in the Authorization Header as a [Bearer Token](https://docs.docker.com/registry/spec/auth/token/#using-the-bearer-token).
-- `--registry-anon` (or `$IMGPKG_ANON=true`): used for anonymous access (commonly for pulling)
-
 ## Via Environment Variables
 
 As of v0.7.0+, `imgpkg` can also use following environment variables:
@@ -42,7 +12,7 @@ As of v0.7.0+, `imgpkg` can also use following environment variables:
 - `IMGPKG_REGISTRY_IDENTITY_TOKEN` to authenticate the user and get an access token for the registry via an [oauth2 refresh token grant type](https://docs.docker.com/registry/spec/auth/oauth/).
 - `IMGPKG_REGISTRY_REGISTRY_TOKEN` to specify the access token to be used in the Authorization Header as a [Bearer Token](https://docs.docker.com/registry/spec/auth/token/#using-the-bearer-token).
 
-Since you may need to provide multiple registry credentials, the environment variables above may be specified multiple times with a suffix of 1+ alphanumeric characters, 
+Since you may need to provide multiple registry credentials, the environment variables above may be specified multiple times with a suffix of 1+ alphanumeric characters,
 
 e.g. If you had 2 registries you wish to provide authentication credentials for, you would require 2 sets of env variables.
 
@@ -65,6 +35,36 @@ When imgpkg interacts with `hostname.for.registry.1`, it will use the env variab
 
 
 Note: Credentials provided via an env variable for a specific registry will take precedence over Command Flags.
+
+## Via Command Flags
+
+You can explicitly specify credentials via command flags or associated environment variables. See `imgpkg push -h` for further details.
+
+- `--registry-username` (or `$IMGPKG_USERNAME`)
+- `--registry-password` (or `$IMGPKG_PASSWORD`)
+- `--registry-token` (or `$IMGPKG_TOKEN`): to specify the access token to be used in the Authorization Header as a [Bearer Token](https://docs.docker.com/registry/spec/auth/token/#using-the-bearer-token).
+- `--registry-anon` (or `$IMGPKG_ANON=true`): used for anonymous access (commonly for pulling)
+
+## Via Docker config
+
+Even though `imgpkg` commands use registry APIs directly, by default it uses credentials stored in `~/.docker/config.json` which are typically generated via a `docker login` command.
+
+Example generated `~/.docker/config.json`:
+
+```json
+{
+  "auths": {
+    "https://index.docker.io/v1/": {
+      "auth": "dXNlcjpwYXNzd29yZA=="
+    },
+  },
+  "HttpHeaders": {
+    "User-Agent": "Docker-Client/18.09.6 (darwin)"
+  }
+}
+```
+
+where `dXNlcjpwYXNzd29yZA==` is `base64("username:password")`.
 
 ## gcr.io
 
