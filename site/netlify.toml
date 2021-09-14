@@ -52,3 +52,9 @@ HUGO_ENABLEGITINFO = "true"
   to = "https://carvel.dev/kbld"
   status = 302
   force = true
+
+[[redirects]]
+  from = "https://carvel.dev/kubecon"
+  to = "https://carvel.dev/kapp-controller"
+  status = 302
+  force = true
