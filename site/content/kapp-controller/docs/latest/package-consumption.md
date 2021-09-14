@@ -201,7 +201,7 @@ This CR references the Package we decided to create in the previous section
 using the package's `refName` and `version` fields. Do note, the `versionSelection`
 property has a `constraints` subproperty to give more control over which
 versions are chosen for installation. More information on PackageInstall versioning
-can be found [here](packaging#versioning-packageinstalls).
+can be found [here](package-consumer-concepts.md#using-packageinstalls-version-selection).
 
 This yaml snippet also contains a Kubernetes secret, which is referenced by the
 PackageInstall. This secret is used to provide customized values to the package
