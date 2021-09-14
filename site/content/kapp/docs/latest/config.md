@@ -108,7 +108,7 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-Rebase rule to rebase service accounts with custom secrets using `ytt` which is added as a default rule in Kapp from v0.38.0+, which merge -token- secret based on existing object from cluster:
+Rebase rule to rebase service accounts with custom secrets using `ytt` added as a default rule in Kapp from v0.38.0+, which merge -token- secret based on existing object from cluster:
 see [Default ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
 
 ### ownershipLabelRules
