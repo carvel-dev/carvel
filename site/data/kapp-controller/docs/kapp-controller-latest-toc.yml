@@ -19,22 +19,22 @@ toc:
     subfolderitems:
       - page: Terminology & APIs
         url: /packaging
+      - page: Tutorial
+        url: /packaging-tutorial
+      - page: Authoring Walkthrough
+        url: /package-authoring
       - page: Artifact Formats
         url: /packaging-artifact-formats
+      - page: Consuming Walkthrough
+        url: /package-consumption
       - page: Consumer Concepts
         url: /package-consumer-concepts
       - page: Install Extensions
         url: /package-install-exentensions
-      - page: Authoring Walkthrough
-        url: /package-authoring
-      - page: Consuming Walkthrough
-        url: /package-consumption
       - page: Air-gapped workflow
         url: /air-gapped-workflow
       - page: Private Registry Auth
         url: /private-registry-auth
-      - page: Tutorial
-        url: /packaging-tutorial
   - title: Reference
     subfolderitems:
       - page: Debugging
