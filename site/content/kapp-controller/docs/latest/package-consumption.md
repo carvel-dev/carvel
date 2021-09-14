@@ -11,7 +11,6 @@ workflows.
 * You will need to [install the latest release](install.md) of kapp-controller on a
   Kubernetes cluster to go through the examples.
 * The instructions below assume [`kapp`](/kapp) and `kubectl` are installed.
-* The instructions assume you are targeted at the default namespace
 
 ## Adding package repository
 
@@ -36,7 +35,9 @@ kapp-controller's private auth workflows [here](private-registry-auth.md)
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `k8slt/kctrl-pkg-repo:1.0.0` imgpkg bundle, which is
-stored in an OCI registry. Save this PackageRepository to a file named repo.yml
+stored in an OCI registry.
+
+Save this PackageRepository to a file named repo.yml
 and then apply it to the cluster using kapp:
 
 ```bash
@@ -207,7 +208,10 @@ This yaml snippet also contains a Kubernetes secret, which is referenced by the
 PackageInstall. This secret is used to provide customized values to the package
 installation's templating steps. Consumers can discover more details on the
 configurable properties of a package by inspecting the Package CR's
-valuesSchema.
+valuesSchema. 
+
+For more advanced options on configuring Packages before installing, such as using ytt 
+overlays with a PackageInstall, more information can be found [here](package-install-extensions.md).
 
 Finally, to install the above package, we will also need to create `default-ns-sa` service
 account (refer to [Security model](security-model.md) for explanation of how

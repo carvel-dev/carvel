@@ -36,6 +36,10 @@ repository contains.
 ---
 ## Resources
 
+**NOTE:** PackageRepositories, Packages, and PackageMetadata are namespaced resources, 
+but kapp-controller does support ways of making these resources shared across a cluster 
+similar to cluster-scoped resources. Read more [here](package-consumer-concepts.md#namespacing).
+
 ### PackageMetadata
 
 The PackageMetadata CR is a place to store information that isn't specific to a
@@ -50,7 +54,6 @@ metadata:
   # Cannot have a trailing '.'
   name: fluent-bit.vmware.com
   # The namespace this package metadata is available in
-  # See Namespacing section below for details on global packages
   namespace: my-ns
 spec:
   # Human friendly name of the package (optional; string)
@@ -92,7 +95,6 @@ metadata:
   # Must be of the form '<spec.refName>.<spec.version>' (Note the period)
   name: fluent-bit.carvel.dev.1.5.3
   # The namespace this package is available in
-  # See Namespacing section below for details on global packages
   namespace: my-ns
 spec:
   # The name of the PackageMetadata associated with this version
@@ -167,7 +169,6 @@ metadata:
   # Any user-chosen name that describes package repository
   name: basic.carvel.dev
   # The namespace to make packages available to
-  # See  Namespacing section below for details on global repos
   namespace: my-ns
 spec:
   # pauses _future_ reconcilation; does _not_ affect
