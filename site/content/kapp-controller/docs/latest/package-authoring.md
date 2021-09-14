@@ -83,8 +83,11 @@ We'll need both of these files, so save them somewhere on your filesystem.
 The first step in creating our package is to create an [imgpkg
 bundle](/imgpkg/docs/latest/resources/#bundle) that contains the package
 contents: the above configuration (`config.yml` and `values.yml`) and a
-reference to the greeter app image
-(`docker.io/dkalinin/k8s-simple-app@sha256:...`).
+reference to the greeter app image (`docker.io/dkalinin/k8s-simple-app@sha256:...`). 
+
+In the next steps, you will be asked to create directories named `.imgpkg` and `config` 
+and a file called `images.yml`.The [Package bundle format section](packaging-artifact-formats.md#package-contents-bundle) 
+describes the purpose of each directory/file as well as general recommendations.
 
 To start, lets create a directory with the above configuration files:
 
@@ -93,8 +96,6 @@ $ mkdir -p package-contents/config/
 $ mv <path to config.yml> package-contents/config/config.yml
 $ mv <path to values.yml> package-contents/config/values.yml
 ```
-
-([Package bundle format](packaging.md#package-bundle-format) describes the purpose of each directory as well as general recommendations.)
 
 Once we have the configuration figured out, let's use `kbld` to record which container images are used:
 
@@ -254,10 +255,12 @@ docs](debugging.md) for help troubleshooting the package or the underlying app.
 ---
 ### Creating a Package Repository
 
-A [package repository bundle](packaging.md#package-repository-bundle-format) is
-a collection of packages (more specifically a collection of Package and
-PackageMetadata CRs).  Currently, our recommended way to make a package
-repository is via an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle).
+A PackageRepository bundle is a collection of packages (more specifically a collection of Package and
+PackageMetadata CRs). Currently, our recommended way to make a package repository is via an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle).
+
+In the next steps, you will be asked to create directories named `.imgpkg` and `packages` 
+and a file called `images.yml`.The [PackageRepository bundle format section](packaging-artifact-formats.md#package-repository-bundle) 
+describes the purpose of each directory/file as well as general recommendations.
 
 The filesystem structure for a package repository bundle looks like this:
 
@@ -270,10 +273,6 @@ my-pkg-repo/
         └── metadata.yml
         └── 1.0.0.yml
 ```
-
-([Package Repository bundle
-format](packaging.md#package-repository-bundle-format) describes purpose of each
-directory and general recommendations.)
 
 Lets start by creating the needed directories:
 
