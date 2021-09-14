@@ -82,7 +82,7 @@ As of v0.38.0+, We have two types of rebase rule one is copy/remove field value 
      - `[existing, new]` – If field value is present in the `existing` resource on cluster, use that value, otherwise use the value in the `new` user input.
      - `[existing]` – Only look for field values in resources already on cluster, corresponding value you provide in new resource will be overwritten.
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
-  - `ytt` specifies rebase rules written in ytt. 
+  - `ytt` specifies choice as ytt for rebase rule. 
   - `overlayContractV1` specifies ytt overlay feature used to patch YAML files. 
   - `overlay.yml` YAMl document that is the overlay, describing the modification. 
   
@@ -108,8 +108,8 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-Rebase rule `ytt` added as a default rule in Kapp from v0.38.0+, which allows to rebase service accounts with custom secrets by merging -token- secret based on existing object from cluster:
-[Default ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
+Rebase rule to rebase service accounts with custom secrets using `ytt` which is added as a default rule in Kapp from v0.38.0+, which merge -token- secret based on existing object from cluster:
+see [Default ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
 
 ### ownershipLabelRules
 
