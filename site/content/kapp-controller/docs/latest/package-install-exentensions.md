@@ -38,7 +38,7 @@ spec:
 
 ```
 
-Will include the overlay stored in the secret `my-overlay-secret` during the
+will include the overlay stored in the secret `my-overlay-secret` during the
 templating steps of the package. This will allow users to further customize a
 package installation in advanced cases.
 
