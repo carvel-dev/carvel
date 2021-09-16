@@ -1,0 +1,25 @@
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: pkg-demo
+  annotations:
+    kapp.k14s.io/change-rule: "upsert after upserting rbac"
+    kapp.k14s.io/change-rule: "delete before deleting rbac"
+spec:
+  serviceAccountName: default-ns-sa
+  packageRef:
+    refName: simple-app.corp.com
+    versionSelection:
+      constraints: 1.0.0
+  values:
+  - secretRef: 
+      name: pkg-demo-values
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pkg-demo-values
+stringData:
+  values.yml: |
+    hello_msg: "friend"
