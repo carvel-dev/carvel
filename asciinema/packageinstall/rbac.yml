@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default-ns-sa
+  annotations:
+    kapp.k14s.io/change-group: "rbac"
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: default-ns-role
+  annotations:
+    kapp.k14s.io/change-group: "rbac"
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: default-ns-role-binding
+  annotations:
+    kapp.k14s.io/change-group: "rbac"
+subjects:
+- kind: ServiceAccount
+  name: default-ns-sa
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: default-ns-role
