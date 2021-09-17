@@ -34,7 +34,7 @@ secretgen-controller will populate placeholder Secrets with a combined registry 
   - Secret `corp-reg` includes registry credentials for `registry.corp.com` domain
   - SecretExport CR `corp-reg` specifies that same-named secret will be exported to all namespaces
 - within `cert-manager-install` Namespace
-  - Secret `reg-creds` has `secretgen.carvel.dev/image-pull-secret` annotation indicating to secretgen to continiously ensure that this secret is filled with combination of registry credentials that allow export to this namespace (in this case both `dockerhub-reg` and `corp-reg`)
+  - Secret `reg-creds` has `secretgen.carvel.dev/image-pull-secret` annotation indicating to secretgen to continuously ensure that this secret is filled with combination of registry credentials that allow export to this namespace (in this case both `dockerhub-reg` and `corp-reg`)
 
 Known limitation: Currently Secrets with type `kubernetes.io/dockerconfigjson` do not allow specifying multiple credentials for the same domain, hence you cannot provide multiple credentials for the same registry.
 
