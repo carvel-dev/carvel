@@ -17,7 +17,10 @@ The order at which imgpkg chooses which authentication details to use is the fol
 
 As of v0.7.0+, `imgpkg` can also use following environment variables:
 
-- `IMGPKG_REGISTRY_HOSTNAME` to specify registry hostname (e.g. gcr.io, docker.io)
+- `IMGPKG_REGISTRY_HOSTNAME` to specify registry hostname (e.g. gcr.io, docker.io, https://gcr.io, docker.io/v2/)
+  - As of v0.18.0+ `IMGPKG_REGISTRY_HOSTNAME` also supports providing glob wildcards. for e.g. `*.*.docker.io` will match `bar.foo.docker.io`. 
+    - Note: if there is overlap between 2 HOSTNAMES, one using globbing and the other not, the HOSTNAME not using globbing will be applied. e.g. `IMGPKG_REGISTRY_HOSTNAME_0=*.docker.io` vs `IMGPKG_REGISTRY_HOSTNAME_1=foo.docker.io` for the image `foo.docker.io/image` will result in auth details from `IMGPKG_REGISTRY_HOSTNAME_1` being used.
+  - As of v0.18.0+ `IMGPKG_REGISTRY_HOSTNAME` also supports providing the fully qualified repository. for e.g. `gcr.io/repo/image`. 
 - `IMGPKG_REGISTRY_USERNAME` to specify registry username
 - `IMGPKG_REGISTRY_PASSWORD` to specify registry password
 - `IMGPKG_REGISTRY_IDENTITY_TOKEN` to authenticate the user and get an access token for the registry via an [oauth2 refresh token grant type](https://docs.docker.com/registry/spec/auth/oauth/).
