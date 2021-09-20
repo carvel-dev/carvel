@@ -4,15 +4,15 @@ echo ''
 echo "# Let's start by making some software packages available on your cluster " | pv -qL 12
 echo "# You can add one or more Packages to your cluster via a PackageRepository " | pv -qL 12
 echo ''
-echo 'cat packagerepo-crd.yml' | pv -qL 12
-cat packagerepo-crd.yml
+echo 'cat packagerepository.yml' | pv -qL 12
+cat packagerepository.yml
 sleep 4
 clear
 echo ''
 echo "# Now create the PackageRepository and associated Packages with kapp " | pv -qL 12
 echo ''
-echo 'kapp deploy -a repo -f packagerepo-crd.yml -y ' | pv -qL 12
-kapp deploy -a repo -f packagerepo-crd.yml -y --warnings=false
+echo 'kapp deploy -a repo -f packagerepository.yml -y ' | pv -qL 12
+kapp deploy -a repo -f packagerepository.yml -y --warnings=false
 sleep 4
 clear
 echo ''
@@ -35,7 +35,7 @@ echo ''
 echo '# Install the Package using kapp ' | pv -qL 12
 echo ''
 echo 'kapp deploy -a simple-app -f packageinstall.yml' | pv -qL 12
-kapp deploy -a simple-app -f packageinstall/packageinstall.yml -f packageinstall/rbac.yml --warnings=false -y
+kapp deploy -a simple-app -f packageinstall --warnings=false -y
 sleep 4
 clear
 echo ''
