@@ -2,6 +2,17 @@
 title: Authentication
 ---
 
+# Ordering
+
+imgpkg has multiple ways to provide authentication details to registries.
+
+The order at which imgpkg chooses which authentication details to use is the following:
+
+1. [Via Environment Variables](#via-environment-variables)
+1. [Via IaaS](#via-iaas)
+1. [Via Command Flags](#via-command-flags)
+1. [Via Docker Config](#via-docker-config)
+
 ## Via Environment Variables
 
 As of v0.7.0+, `imgpkg` can also use following environment variables:
