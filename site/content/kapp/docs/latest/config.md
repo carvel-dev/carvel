@@ -83,8 +83,8 @@ As of v0.38.0+, We have two types of rebase rule one is copy/remove field value 
      - `[existing]` – Only look for field values in resources already on cluster, corresponding value you provide in new resource will be overwritten.
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
   - `ytt` specifies choice as ytt for rebase rule. 
-  - `overlayContractV1` specifies ytt overlay feature used to patch YAML files. 
-  - `overlay.yml` YAMl document that is the overlay, describing the modification. 
+    - `overlayContractV1` specifies ytt overlay feature used to patch YAML files. 
+      - `overlay.yml` YAMl document that is the overlay, describing the modification. 
   
 Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
 ```yaml
