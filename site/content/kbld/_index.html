@@ -121,11 +121,11 @@ metadata:
     app: nginx
   annotations:
     kbld.k14s.io/images: |
-      - Metas:
-        - Tag: 1.17
-          Type: resolved
-          URL: nginx:1.17
-        URL: index.docker.io/library/nginx@sha256:2539d4344...
+      - origins:
+        - tag: 1.17
+          type: resolved
+          url: nginx:1.17
+        url: index.docker.io/library/nginx@sha256:2539d4344...
 spec:
   replicas: 3
   selector:
@@ -187,14 +187,14 @@ metadata:
   annotations:
     # informational metadata about how image was built
     kbld.k14s.io/images: |
-      - Metas:
-        - Path: /Users/pivotal/workspace/simple-app
-          Type: local
-        - Dirty: false
-          RemoteURL: git@github.com:k14s/super-secret-simple-app
-          SHA: e877718521f7ccea0ab0844db0f86fe123a8d8ef
-          Type: git
-        URL: index.docker.io/hk/simple-app@sha256:e932e46fd...
+      - origins:
+        - path: /users/pivotal/workspace/simple-app
+          type: local
+        - dirty: false
+          remoteURL: git@github.com:k14s/super-secret-simple-app
+          sha: e877718521f7ccea0ab0844db0f86fe123a8d8ef
+          type: git
+        url: index.docker.io/hk/simple-app@sha256:e932e46fd...
 spec:
   replicas: 3
   selector:
