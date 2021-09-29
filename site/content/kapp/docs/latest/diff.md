@@ -75,6 +75,56 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 
 You can control number of kept resource versions via `kapp.k14s.io/num-versions=int` annotation.
 
+As of v0.41.0+, the `kapp.k14s.io/versioned-explicit-ref` can be used to explicitly refer to a versioned resource. This annotation allows a resource to be updated whenever a new version of the referred resource is created.
+
+Example:
+```yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-1
+  annotations:
+    kapp.k14s.io/versioned: ""
+data:
+  foo: bar
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-2
+  annotations:
+    kapp.k14s.io/versioned-explicit-ref: |
+      apiVersion: v1
+      kind: ConfigMap
+      name: config-1
+data:
+  foo: bar
+```
+Here, `config-2` explicitly refers `config-1` and is updated with the latest versioned name when `config-1` is versioned.
+```bash
+@@ create configmap/config-1-ver-2 (v1) namespace: default @@
+  ...
+  1,  1   data:
+  2     -   foo: bar
+      2 +   foo: alpha
+  3,  3   kind: ConfigMap
+  4,  4   metadata:
+@@ update configmap/config-2 (v1) namespace: default @@
+  ...
+  8,  8         kind: ConfigMap
+  9     -       name: config-1-ver-1
+      9 +       name: config-1-ver-2
+ 10, 10     creationTimestamp: "2021-09-29T17:27:34Z"
+ 11, 11     labels:
+
+Changes
+
+Namespace  Name            Kind       Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    config-1-ver-2  ConfigMap  -       -    create  -       reconcile  -   -  
+^          config-2        ConfigMap  -       14s  update  -       reconcile  ok  -  
+```
+
 Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/carvel-kapp/tree/develop/examples/gitops/redis-with-configmap) and changing `ConfigMap` in a next deploy.
 
 ---
