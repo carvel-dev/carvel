@@ -70,6 +70,7 @@ default    secret-sa-sample        Secret  -       -    create  -       reconcil
 Op:      2 create, 0 delete, 0 update, 0 noop
 Wait to: 2 reconcile, 0 delete, 0 noop
 ```
+For `kapp.k14s.io/versioned-keep-original` annotation use case refer to issue [#119](https://github.com/vmware-tanzu/carvel-kapp/issues/119)
 
 You can control number of kept resource versions via `kapp.k14s.io/num-versions=int` annotation.
 
