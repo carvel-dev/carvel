@@ -61,7 +61,7 @@ metadata:
     kapp.k14s.io/versioned: ""
     kapp.k14s.io/versioned-keep-original: ""
 ```
-This will create two versioned resource one with original name `secret-sa-sample` and one with `-ver-{n}` suffix in name `secret-sa-sample-ver-1`.
+This will create two resources one with original name `secret-sa-sample` and one with `-ver-{n}` suffix in name `secret-sa-sample-ver-1`.
 ```
 Namespace  Name                    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    secret-sa-sample        Secret  -       -    create  -       reconcile  -   -  
