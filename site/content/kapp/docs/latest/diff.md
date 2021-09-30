@@ -31,7 +31,8 @@ Anytime there is a change to a resource marked as a versioned resource, entirely
 To make resource versioned, add `kapp.k14s.io/versioned` annotation with an empty value. Created resource follow `{resource-name}-ver-{n}` naming pattern by incrementing `n` any time there is a change.
 
 Example:
-```
+```yaml
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -41,7 +42,7 @@ metadata:
 ```
 This will create versioned resource named `secret-sa-sample-ver-1`
 
-```
+```bash
 Namespace  Name                    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    secret-sa-sample-ver-1  Secret  -       -    create  -       reconcile  -   -  
 
@@ -52,7 +53,8 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 As of v0.38.0+, You can use `kapp.k14s.io/versioned-keep-original` annotation in conjunction with `kapp.k14s.io/versioned` to have the original resource (resource without `-ver-{n}` suffix in name) along with versioned resource.
 
 Example:
-```
+```yaml
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -62,7 +64,7 @@ metadata:
     kapp.k14s.io/versioned-keep-original: ""
 ```
 This will create two resources one with original name `secret-sa-sample` and one with `-ver-{n}` suffix in name `secret-sa-sample-ver-1`.
-```
+```bash
 Namespace  Name                    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    secret-sa-sample        Secret  -       -    create  -       reconcile  -   -  
 ^          secret-sa-sample-ver-1  Secret  -       -    create  -       reconcile  -   -  
