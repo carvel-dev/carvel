@@ -156,7 +156,7 @@ Diff summary shows quick information about what's being changed:
     stringData:
       foo: bar
     ```
-    ```
+    ```bash
     $ kapp deploy -a brahmos -f config.yaml --diff-summary=true 
     Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
     
@@ -187,7 +187,7 @@ Diff changes (line-by-line diffs) are useful for looking at actual changes:
     stringData:
       foo: barbar
     ```
-    ```
+    ```bash
     $ kapp deploy -a brahmos -f config.yaml --diff-changes=true
     ```
   ![diff changes](/images/kapp/diff-changes.png)
