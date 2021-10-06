@@ -48,13 +48,59 @@ Possible values: "" (empty). In some cases it's not possible or wanted to record
 ---
 ## Controlling diff via deploy flags
 
-Diff summary shows quick information about what's being changed:
-
+Diff summary shows quick information about what's being changed:  
 - `--diff-summary=bool` (default `true`) shows diff summary, listing how resources have changed
+  
+  <details>
+    <summary>
+      <small>Example</small>   
+    </summary>
 
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: sample
+    stringData:
+      foo: bar
+    ```
+    ```
+    $ kapp deploy -a brahmos -f config.yaml --diff-summary=true 
+    Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+    
+    Changes
+    
+    Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+    default    sample  Secret  -       -    create  -       reconcile  -   -  
+    
+    Op:      1 create, 0 delete, 0 update, 0 noop
+    Wait to: 1 reconcile, 0 delete, 0 noop
+    
+    Continue? [yN]: 
+    ```
+    
+  </details>
 Diff changes (line-by-line diffs) are useful for looking at actual changes:
 
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
+  <details>
+    <summary><small>Example</small></summary>
+  
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: sample
+    stringData:
+      foo: barbar
+    ```
+    ```
+    $ kapp deploy -a brahmos -f config.yaml --diff-changes=true
+    ```
+  ![diff changes](/images/kapp/diff-changes.png)
+  </details>
 - `--diff-context=int` (default `2`) controls number of lines to show around changed lines
 - `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
 
