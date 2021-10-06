@@ -49,13 +49,9 @@ Possible values: "" (empty). In some cases it's not possible or wanted to record
 ## Controlling diff via deploy flags
 
 Diff summary shows quick information about what's being changed:  
-- `--diff-summary=bool` (default `true`) shows diff summary, listing how resources have changed
-  
-  <details>
-    <summary>
-      <small>Example</small>   
-    </summary>
+- `--diff-summary=bool` (default `true`) shows diff summary, listing how resources have changed  
 
+  {{%expand "Example" %}}
     ```yaml
     ---
     apiVersion: v1
@@ -79,8 +75,9 @@ Diff summary shows quick information about what's being changed:
     
     Continue? [yN]: 
     ```
-    
-  </details>
+
+  {{% /expand%}}  
+
 Diff changes (line-by-line diffs) are useful for looking at actual changes:
 
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
@@ -95,7 +92,7 @@ Diff changes (line-by-line diffs) are useful for looking at actual changes:
       name: sample
     stringData:
       foo: barbar
-    ```
+    ``` 
     ```
     $ kapp deploy -a brahmos -f config.yaml --diff-changes=true
     ```
