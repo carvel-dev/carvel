@@ -28,7 +28,7 @@ Additionally kapp allows to customize order of changes via following resource an
 - `kapp.k14s.io/change-rule: "upsert after upserting apps.big.co/db-migrations"`
 - `kapp.k14s.io/change-rule: "delete before upserting apps.big.co/service"`
 
-As of v0.41.0+, kapp provides change group placeholders, which provides the functionality to add those placeholder in change-group and change-rule annotation values, which are later replaced by other values (based on the resource they are applied to) before the ordering graph is generated. For example:
+As of v0.41.0+, kapp provides change group placeholders, which can be used in change-group and change-rule annotation values and are later replaced by values from the resource manifest of the resource they are associated with. For example:
 
 - `kapp.k14s.io/change-group: apps.co/db-migrations-{name}` - Here `{name}` would later be replaced by the name of the resource.
 - `kapp.k14s.io/change-rule: upsert after upserting apps.co/namespaces-{namespace}` - Here `{namespace}` would later be replaced by the namespace of the resource.
