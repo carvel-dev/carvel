@@ -71,7 +71,7 @@ diffMaskRules:
 kapp rebase rules explicitly define how to merge resources during an update. To read more about why rebase rules are necessary, see [Resource Merge Method](merge-method.md).
 For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md).
 
-As of v0.38.0+, We have two types of rebase rule one is copy/remove field value to resource and other where you can logically define the rebase rule using [ytt](https://github.com/vmware-tanzu/carvel-ytt).
+As of v0.38.0+, Rebase rule can be configured using ytt [ytt](https://github.com/vmware-tanzu/carvel-ytt) templates also.
 
 - `rebaseRules` (array) list of rebase rules
   - `path` (array of strings) specifies location within a resource to rebase. Mutually exclusive with `paths`. Example: `[spec, clusterIP]`
@@ -84,7 +84,7 @@ As of v0.38.0+, We have two types of rebase rule one is copy/remove field value 
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
   - `ytt` specifies choice as ytt for rebase rule. 
     - `overlayContractV1` specifies ytt overlay feature used to patch YAML files. 
-      - `overlay.yml` YAMl document that is the overlay, describing the modification. 
+      - `overlay.yml` overlay YAML file. 
   
 Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
 ```yaml
@@ -108,7 +108,7 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-Rebase rule to rebase service accounts with custom secrets using `ytt` added as a default rule in Kapp from v0.38.0+, which merge -token- secret based on existing object from cluster:
+Default `ytt` Rebase rule to `copy` K8s generated `token` secret from the existing Service Account on cluster to `ServiceAccount/ v1` resources:
 see [Default ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
 
 ### ownershipLabelRules
