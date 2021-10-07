@@ -71,7 +71,7 @@ diffMaskRules:
 kapp rebase rules explicitly define how to merge resources during an update. To read more about why rebase rules are necessary, see [Resource Merge Method](merge-method.md).
 For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md).
 
-As of v0.38.0+, Rebase rule can be configured using ytt [ytt](https://github.com/vmware-tanzu/carvel-ytt) templates also.
+As of v0.38.0+, Rebase rule can be configured using [ytt](https://github.com/vmware-tanzu/carvel-ytt) templates also.
 
 - `rebaseRules` (array) list of rebase rules
   - `path` (array of strings) specifies location within a resource to rebase. Mutually exclusive with `paths`. Example: `[spec, clusterIP]`
