@@ -282,6 +282,6 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      // Checkout the latest version from Tanzu Community Edition docs
+      # Check out the latest version from Tanzu Community Edition docs
       image: projects.registry.vmware.com/tce/main:0.9.1
 ```
