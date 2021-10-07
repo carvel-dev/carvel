@@ -139,7 +139,7 @@ Possible values: "" (empty). In some cases it's not possible or wanted to record
 ---
 ## Controlling diff via deploy flags
 
-Diff filter set changes filter on newResource (configuration provided to kapp) and existingResource (resources in kubernetes cluster)
+Diff filter set changes filter on operation (add/update/delete), newResource (configuration provided to kapp) and existingResource (resources in kubernetes cluster)
 
 - `--diff-filter='{"and":[{"ops":["update"]},{"existingResource":{"kinds":["Deployment"]}]}'` will filter out the resources which are getting updated and were of kind Deployment.
 
