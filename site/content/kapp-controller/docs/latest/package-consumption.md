@@ -268,3 +268,20 @@ Also remember to cleanup the RBAC created for the PackageInstall:
 ```bash
 $ kapp delete -a default-ns-rbac -y
 ```
+
+## Get Started with an OSS Package Repository
+
+If you want to get started and are looking to install packages on your Kubernetes cluster, checkout the [Packages](https://tanzucommunityedition.io/packages/) in [Tanzu Community Edition](https://tanzucommunityedition.io/). These are open source packages, and the source code can be found on [GitHub](https://github.com/vmware-tanzu/community-edition/tree/main/addons/packages). You can add the Package Repository to your cluster by creating a PackageRepository CR.
+
+```yaml
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: tce-repo
+spec:
+  fetch:
+    imgpkgBundle:
+      # Check out the latest version from Tanzu Community Edition docs
+      image: projects.registry.vmware.com/tce/main:0.9.1
+```
