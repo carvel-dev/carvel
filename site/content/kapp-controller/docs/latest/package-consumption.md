@@ -271,7 +271,7 @@ $ kapp delete -a default-ns-rbac -y
 
 ## Get Started with an OSS Package Repository
 
-If you want to get started and are looking to install packages on your Kubernetes cluster, checkout the [Packages](https://tanzucommunityedition.io/packages/) in [Tanzu Community Edition](https://tanzucommunityedition.io/). These packages are open sourced and the source code can be found on [GitHub](https://github.com/vmware-tanzu/community-edition/tree/main/addons/packages). You can add the Package Repository to your cluster by creating a PackageRepository CR.
+If you want to get started and are looking to install packages on your Kubernetes cluster, checkout the [Packages](https://tanzucommunityedition.io/packages/) in [Tanzu Community Edition](https://tanzucommunityedition.io/). These are open source packages, and the source code can be found on [GitHub](https://github.com/vmware-tanzu/community-edition/tree/main/addons/packages). You can add the Package Repository to your cluster by creating a PackageRepository CR.
 
 ```yaml
 ---
