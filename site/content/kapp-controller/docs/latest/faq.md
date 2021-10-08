@@ -20,6 +20,10 @@ or fiddle with spec.syncPeriod ([example](
 https://github.com/vmware-tanzu/carvel-kapp-controller/blob/d94984a77fa907ac5ecc681e9a842b9877766a6b/test/e2e/app_secret_configmap_reconcile_test.go#L133)), which
 defaults to 30 seconds.
 
+### How can I tell which version of kapp-controller is installed?
+
+kapp-controller sets the annotation `kapp-controller.carvel.dev/version` on the deployment to the version deployed,
+so e.g. `kubectl describe deployment kapp-controller -n kapp-controller | grep version` will show the installed version.
 
 ## Package Author
 
