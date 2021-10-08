@@ -13,8 +13,12 @@ See [@ytt:struct module docs](lang-ref-ytt-struct.md).
 ```python
 load("@ytt:assert", "assert")
 
-assert.fail("expected value foo, but was {}".format(value)) # stops execution
+# stop execution 
+assert.fail("expected value foo, but was {}".format(value))
 x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
+
+# if a function fails, return an error instead of stopping (available in v0.37.0+)
+result, err = assert.try_to(lambda: function_that_might_fail())
 ```
 
 ### data
