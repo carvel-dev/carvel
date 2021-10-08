@@ -1,92 +1,20 @@
 ---
-title: Packaging
+title: Package Management
 ---
 
-Release v0.20.0+ of kapp-controller adds new APIs to bring common package
-management workflows to a Kubernetes cluster. This is done using four new CRs:
-PackageRepository, PackageMetadata, Package, and PackageInstall, which are
-described further in their respective sections.
 
-## Install
+## Overview
 
-See the documentation on installing the [latest release of kapp-controller](install.md) 
-to get started.
+kapp-controller provides a declarative way to install, manage, and upgrade packages on a Kubernetes cluster. It leverages the PackageRepository, PackageMetadata, Package, and PackageInstall CRDs. Get started by installing the [latest release of kapp-controller](install.md).
 
-## Terminology
 
-To ensure understanding of the newly introduced CRDs and their uses,
-establishing a shared vocabulary of some terms commonly used
-in package management may be necessary.
+## Concepts & CustomResourceDefinitions
 
 ### Package
 
-A single package is a combination of configuration metadata and OCI images that
-ultimately inform the package manager what software it holds and how to install
-it into a Kubernetes cluster. For example, an nginx-ingress package would
-instruct the package manager where to download the nginx container image, how to
-configure the associated Deployment, and install it into a cluster.
+A package is a combination of configuration metadata and OCI images that informs the package manager what software it holds and how to install itself onto a Kubernetes cluster.For example, an nginx-ingress package would instruct the package manager where to download the nginx container image, how to configure the associated Deployment, and install it into a cluster. 
 
-### Package Repositories
-
-A package repository is a collection of packages that are grouped together.
-By informing the package manager of the location of a package repository, the
-user gives the package manager the ability to install any of the packages the
-repository contains.
-
----
-## Resources
-
-**NOTE:** PackageRepositories, Packages, and PackageMetadata are namespaced resources, 
-but kapp-controller does support ways of making these resources shared across a cluster 
-similar to cluster-scoped resources. Read more [here](package-consumer-concepts.md#namespacing).
-
-### PackageMetadata
-
-The PackageMetadata CR is a place to store information that isn't specific to a
-particular version of the package and instead describes the package at a high
-level, similar to a github README.
-
-```yaml
-apiVersion: data.packaging.carvel.dev/v1alpha1
-kind: PackageMetadata
-metadata:
-  # Must consist of at least three segments separated by a '.'
-  # Cannot have a trailing '.'
-  name: fluent-bit.vmware.com
-  # The namespace this package metadata is available in
-  namespace: my-ns
-spec:
-  # Human friendly name of the package (optional; string)
-  displayName: "Fluent Bit"
-  # Long description of the package (optional; string)
-  longDescription: "Fluent bit is an open source..."
-  # Short desription of the package (optional; string)
-  shortDescription: "Log processing and forwarding"
-  # Base64 encoded icon (optional; string)
-  iconSVGBase64: YXNmZGdlcmdlcg==
-  # Name of the entity distributing the package (optional; string)
-  providerName: VMware
-  # List of maintainer info for the package.
-  # Currently only supports the name key. (optional; array of maintner info)
-  maintainers:
-  - name: "Person 1"
-  - name: "Person 2"
-  # Classifiers of the package (optional; Array of strings)
-  categories:
-  - "logging"
-  - "daemon-set"
-  # Description of the support available for the package (optional; string)
-  supportDescription: "..."
-```
-
-### Package
-
-For any version specific information, such as where to fetch manifests, how to
-install them, and whats changed since the last version, there is the
-Package CR. This CR is what will be used when kapp-controller actually
-installs a package to the cluster.
-
-**Note:** for the initial release, dependency management is not handled by kapp-controller
+A Package is represented in kapp-controller using a Package CR. The Package CR is created for every new version of a package and it carries information about how to fetch, template, and deploy the package. A Package CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a Package CR across all namespaces within a cluster.
 
 ```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
@@ -155,12 +83,45 @@ spec:
       - kapp: {}
 ```
 
-### PackageRepository
+### Package Metadata 
 
-This CR is used to point kapp-controller to a package repository (which contains
-Package and PackageMetadata CRs). Once a PackageRepository has been added to the
-cluster, kapp-controller will automatically make all packages within the store
-available for installation on the cluster.
+Package Metadata are attributes of a single package do not change frequently and that are shared across multiple versions of a single package. It contains information similar to a project's README.md. It is represented in kapp-controller by the PackageMetadata CR. A PackageMetadata CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageMetadata CR across all namespaces within a cluster.
+```yaml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  # Must consist of at least three segments separated by a '.'
+  # Cannot have a trailing '.'
+  name: fluent-bit.vmware.com
+  # The namespace this package metadata is available in
+  namespace: my-ns
+spec:
+  # Human friendly name of the package (optional; string)
+  displayName: "Fluent Bit"
+  # Long description of the package (optional; string)
+  longDescription: "Fluent bit is an open source..."
+  # Short desription of the package (optional; string)
+  shortDescription: "Log processing and forwarding"
+  # Base64 encoded icon (optional; string)
+  iconSVGBase64: YXNmZGdlcmdlcg==
+  # Name of the entity distributing the package (optional; string)
+  providerName: VMware
+  # List of maintainer info for the package.
+  # Currently only supports the name key. (optional; array of maintner info)
+  maintainers:
+  - name: "Person 1"
+  - name: "Person 2"
+  # Classifiers of the package (optional; Array of strings)
+  categories:
+  - "logging"
+  - "daemon-set"
+  # Description of the support available for the package (optional; string)
+  supportDescription: "..."
+```
+
+### Package Repository
+
+A package repository is a collection of packages and their metadata. Similar to a maven repository or a rpm repository, adding a package repository to a cluster gives users of that cluster the ability to install any of the packages from that repository. It is represented in kapp-controller by the PackageRepository CR. A PackageRepository CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageRepository CR across all namespaces within a cluster.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -241,25 +202,9 @@ spec:
             identifiers: [beta, rc]
 ```
 
-Example usage:
+### Package Install
 
-```yaml
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageRepository
-metadata:
-  name: my-pkg-repo.corp.com
-  namespace: my-ns
-spec:
-  fetch:
-    imgpkgBundle:
-      image: registry.corp.com/packages/my-pkg-repo:1.0.0
-```
-
-### PackageInstall
-
-This CR is used to install a particular package, which ultimately results in
-installation of the underlying resources onto a cluster. It must reference an
-existing Package CR.
+A Package Install is an actual installation of a package and its underlying resources on a Kubernetes cluster. It is represented in kapp-controller by the PackageInstall CR. A PackageInstall CR must reference a Package CR.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1
