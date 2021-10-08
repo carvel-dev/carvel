@@ -139,10 +139,6 @@ Possible values: "" (empty). In some cases it's not possible or wanted to record
 ---
 ## Controlling diff via deploy flags
 
-Diff filter set changes filter on operation (add/update/delete), newResource (configuration provided to kapp) and existingResource (resources in kubernetes cluster)
-
-- `--diff-filter='{"and":[{"ops":["update"]},{"existingResource":{"kinds":["Deployment"]}]}'` will filter out the resources which are getting updated and were of kind Deployment.
-
 Diff summary shows quick information about what's being changed:
 
 - `--diff-summary=bool` (default `true`) shows diff summary, listing how resources have changed
@@ -158,3 +154,7 @@ Controlling how diffing is done:
 - `--diff-against-last-applied=bool` (default `false`) forces kapp to use particular diffing strategy (see above)
 - `--diff-run=bool` (default `false`) stops after showing diff information
 - `--diff-exit-status=bool` (default `false`) controls exit status for diff runs (`0`: unused, `1`: any error, `2`: no changes, `3`: pending changes)
+
+Diff filter allows to filter changes based on operation (add/update/delete), newResource (configuration provided to kapp) and existingResource (resources in Kubernetes cluster)
+
+- `--diff-filter='{"and":[{"ops":["update"]},{"existingResource":{"kinds":["Deployment"]}]}'` will filter out the resources which are getting updated and were of kind Deployment.
