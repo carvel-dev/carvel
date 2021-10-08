@@ -71,8 +71,6 @@ diffMaskRules:
 kapp rebase rules explicitly define how to merge resources during an update. To read more about why rebase rules are necessary, see [Resource Merge Method](merge-method.md).
 For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deployment-rebase.md) or [PersistentVolumeClaim rebase](rebase-pvc.md).
 
-As of v0.38.0+, Rebase rule can be configured using [ytt](https://github.com/vmware-tanzu/carvel-ytt) templates also.
-
 - `rebaseRules` (array) list of rebase rules
   - `path` (array of strings) specifies location within a resource to rebase. Mutually exclusive with `paths`. Example: `[spec, clusterIP]`
   - `paths` (array of `path`) specifies multiple locations within a resource to rebase. This is a convenience for specifying multiple rebase rules with only different paths. Mutually exclusive with `path`. Available in v0.27.0+.
@@ -82,8 +80,8 @@ As of v0.38.0+, Rebase rule can be configured using [ytt](https://github.com/vmw
      - `[existing, new]` – If field value is present in the `existing` resource on cluster, use that value, otherwise use the value in the `new` user input.
      - `[existing]` – Only look for field values in resources already on cluster, corresponding value you provide in new resource will be overwritten.
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
-  - `ytt` specifies choice as ytt for rebase rule. 
-    - `overlayContractV1` specifies ytt overlay feature used to patch YAML files. 
+  - `ytt` specifies choice as [ytt](https://carvel.dev/ytt/) for rebase rule. Available in v0.38.0+.
+    - `overlayContractV1` allows to use ytt overlay to modify provided resource based on existing resource. 
       - `overlay.yml` overlay YAML file. 
   
 Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
@@ -108,8 +106,7 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-Default `ytt` Rebase rule to `copy` K8s generated `token` secret from the existing Service Account on cluster to `ServiceAccount/ v1` resources:
-see [Default ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
+See [ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154) (included in default configuration) for retaining cluster added token secret in ServiceAccount's secrets array.
 
 ### ownershipLabelRules
 
