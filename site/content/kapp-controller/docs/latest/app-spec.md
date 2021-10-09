@@ -1,5 +1,5 @@
 ---
-title: App spec
+title: App CR spec
 ---
 
 ```yaml
