@@ -18,7 +18,7 @@ kapp-controller provides software authors flexibility to choose their own config
 
 #### Lightweight and composable
 kapp-controller breaks down the installation of applications and packages into three easy to understand steps: 
-- Fetch: get configuration and OCI images from various sources including a Git repository, a local ConfigMap, a Helm chart, an OCI registry, etc
+- Fetch: get configuration and OCI images from various sources including a Git repository, a local ConfigMap, a Helm chart, an OCI registry, etc.
 - Template: take user provided values to customize software using ytt templates, helm templates, and more
 - Deploy: create/update resources on the cluster
 
