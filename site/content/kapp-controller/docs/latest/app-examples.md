@@ -1,5 +1,5 @@
 ---
-title: Example App CRs
+title: Example Usage
 ---
 
 Below are some example App CRs showing common ways our users have used App CRs. Full App CR spec can be found [here](app-spec.md).
@@ -19,8 +19,10 @@ spec:
       url: https://github.com/k14s/k8s-simple-app-example
       ref: origin/develop
       subPath: config-step-2-template
+
   template:
   - ytt: {}
+
   deploy:
   - kapp: {}
 ```
@@ -72,9 +74,7 @@ spec:
 ```
 
 ## Customize a Helm chart by adding an overlay 
-
-Template source via `helm template` and then modify via `ytt` overlay
-
+In this example a user wants to use `helm template`, but then modify the resulting YAML by adding their own add their own `ytt overlay` 
 ```yaml
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
