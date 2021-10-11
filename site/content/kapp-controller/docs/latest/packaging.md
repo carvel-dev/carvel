@@ -121,7 +121,9 @@ spec:
 
 ### Package Repository
 
-A package repository is a collection of packages and their metadata. Similar to a maven repository or a rpm repository, adding a package repository to a cluster gives users of that cluster the ability to install any of the packages from that repository. It is represented in kapp-controller by a PackageRepository CR. A PackageRepository CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageRepository CR across all namespaces within a cluster.
+A package repository is a collection of packages and their metadata. Similar to a maven repository or a rpm repository, adding a package repository to a cluster gives users of that cluster the ability to install any of the packages from that repository. 
+
+It is represented in kapp-controller by a PackageRepository CR. A PackageRepository CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageRepository CR across all namespaces within a cluster.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1
