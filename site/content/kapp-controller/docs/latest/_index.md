@@ -8,7 +8,7 @@ cascade:
   layout: docs
 ---
 
-**kapp-controller provides declarative APIs to customize, install, and update your Kubernetes applications and packages.** Get started with the [tutorial](packaging-tutorial.md)!
+kapp-controller provides declarative APIs to customize, install, and update your Kubernetes applications and packages. It is a part of the Carvel toolkit and follows core Carvel design principles. Get started with the [tutorial](packaging-tutorial.md)!
 
 #### Choice for authors; consistency for consumers
 Kubernetes configuration takes many forms -- plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc.
