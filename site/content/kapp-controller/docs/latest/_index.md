@@ -23,7 +23,7 @@ kapp-controller breaks down the installation of applications and packages into t
 - Deploy: create/update resources on the cluster
 
 #### GitOps and Continuous Delivery
-With its layered approach kapp-controller can be used as:
+With its layered approach, kapp-controller can be used as:
 - Continuous delivery for Kubernetes applications using [App CR](app-spec.md)
 - Kubernetes Package Management using [Package CR and supplementary CRs](packaging.md)
 - Managing applications and packages using GitOps
