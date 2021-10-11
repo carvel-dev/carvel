@@ -25,3 +25,5 @@ toc:
         url: /security
       - page: CA Certs on Windows
         url: /ca-certs-windows
+      - page: Debugging
+        url: /debugging
