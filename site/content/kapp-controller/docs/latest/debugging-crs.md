@@ -4,7 +4,7 @@ title: Debugging CRs
 
 Running into issues deploying any of the kapp-controller CRs? This page will help with commonly encountered issues.
 
-If you can't find what you are looking for here, please reach out to us on #project-carvel. We love hearing from users and are keen to help you resolve any issues!
+If you can't find what you are looking for here, please reach out to us on #carvel. We love hearing from users and are keen to help you resolve any issues!
 
 ## Debugging kapp-controller CRs
 
