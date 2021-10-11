@@ -85,7 +85,9 @@ spec:
 
 ### Package Metadata 
 
-Package Metadata are attributes of a single package do not change frequently and that are shared across multiple versions of a single package. It contains information similar to a project's README.md. It is represented in kapp-controller by a PackageMetadata CR. A PackageMetadata CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageMetadata CR across all namespaces within a cluster.
+Package Metadata are attributes of a single package that do not change frequently and that are shared across multiple versions of a single package. It contains information similar to a project's README.md. 
+
+It is represented in kapp-controller by a PackageMetadata CR. A PackageMetadata CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageMetadata CR across all namespaces within a cluster.
 ```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
