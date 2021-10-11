@@ -17,6 +17,8 @@ toc:
         url: /app-examples
       - page: Intergration with Mozilla's sops
         url: /sops
+      - page: Security Model
+        url: /security-model
   - title: Package Management
     subfolderitems:
       - page: Concepts & CRDs
@@ -37,18 +39,16 @@ toc:
         url: /air-gapped-workflow
       - page: Private Registry Auth
         url: /private-registry-auth
-  - title: Reference
+  - title: Advanced Topics
     subfolderitems:
-      - page: Debugging
-        url: /debugging
+      - page: Debugging CRs
+        url: /debugging-crs
       - page: Controller Configuration
         url: /controller-config
       - page: Controller Startup
-        url: /startup
-      - page: Security Model
-        url: /security-model
-      - page: Dangerous Flags
-        url: /dangerous-flags
+        url: /startup   
+      - page: Debugging kapp-controller
+        url: /debugging-kc
   - title: FAQ
     subfolderitems:
       - page: kapp-controller FAQ
