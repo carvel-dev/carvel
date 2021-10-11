@@ -157,4 +157,4 @@ Controlling how diffing is done:
 
 Diff filter allows to filter changes based on operation (add/update/delete), newResource (configuration provided to kapp) and existingResource (resources in Kubernetes cluster)
 
-- `--diff-filter='{"and":[{"ops":["update"]},{"existingResource":{"kinds":["Deployment"]}]}'` will filter out the resources which are getting updated and were of kind Deployment.
+- `--diff-filter='{"and":[{"ops":["update"]},{"existingResource":{"kinds":["Deployment"]}]}'` will keep the resources which are getting updated and were of kind Deployment.
