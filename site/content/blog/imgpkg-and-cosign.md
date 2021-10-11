@@ -1,6 +1,6 @@
 ---
-title: "imgpkg and cosign"
-slug: imgpkg-and-cosign-blog-post
+title: "Signing imgpkg Bundles with cosign"
+slug: signing-imgpkg-bundles-with-cosign
 date: 2021-10-07
 author: Dennis Leon
 excerpt: "Interested in learning about how imgpkg integrates with cosign? Take a walkthrough on how imgpkg can promote a bundle into prod, signing and verifying using cosign"
