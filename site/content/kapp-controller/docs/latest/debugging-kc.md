@@ -1,8 +1,8 @@
 ---
-title: Dangerous Flags
+title: Debugging kapp-controller
 ---
 
-There are several flags available for kapp-controller binary that are **strongly discouraged in a production setting**.
+The following flags can be used to debug the kapp-controller deployment. Use of these flags are **strongly discouraged in a production setting**.
 
 ## `--dangerous-enable-pprof=true`
 

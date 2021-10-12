@@ -5,14 +5,13 @@ title: Package Management
 
 ## Overview
 
-kapp-controller provides a declarative way to install, manage, and upgrade packages on a Kubernetes cluster. It leverages the PackageRepository, PackageMetadata, Package, and PackageInstall CRDs. Get started by installing the [latest release of kapp-controller](install.md).
-
+kapp-controller provides a declarative way to install, manage, and upgrade packages on a Kubernetes cluster. It leverages the PackageRepository, PackageMetadata, Package, and PackageInstall CRDs to do so. Get started by installing the [latest release of kapp-controller](install.md).
 
 ## Concepts & CustomResourceDefinitions
 
 ### Package
 
-A package is a combination of configuration metadata and OCI images that informs the package manager what software it holds and how to install itself onto a Kubernetes cluster.For example, an nginx-ingress package would instruct the package manager where to download the nginx container image, how to configure the associated Deployment, and install it into a cluster. 
+A package is a combination of configuration metadata and OCI images that informs the package manager what software it holds and how to install itself onto a Kubernetes cluster. For example, an nginx-ingress package would instruct the package manager where to download the nginx container image, how to configure the associated Deployment, and install it into a cluster. 
 
 A Package is represented in kapp-controller using a Package CR. The Package CR is created for every new version of a package and it carries information about how to fetch, template, and deploy the package. A Package CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a Package CR across all namespaces within a cluster.
 
@@ -85,7 +84,10 @@ spec:
 
 ### Package Metadata 
 
-Package Metadata are attributes of a single package do not change frequently and that are shared across multiple versions of a single package. It contains information similar to a project's README.md. It is represented in kapp-controller by the PackageMetadata CR. A PackageMetadata CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageMetadata CR across all namespaces within a cluster.
+Package Metadata are attributes of a single package that do not change frequently and that are shared across multiple versions of a single package. It contains information similar to a project's README.md. 
+
+It is represented in kapp-controller by a PackageMetadata CR. A PackageMetadata CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageMetadata CR across all namespaces within a cluster.
+
 ```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
@@ -121,7 +123,9 @@ spec:
 
 ### Package Repository
 
-A package repository is a collection of packages and their metadata. Similar to a maven repository or a rpm repository, adding a package repository to a cluster gives users of that cluster the ability to install any of the packages from that repository. It is represented in kapp-controller by the PackageRepository CR. A PackageRepository CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageRepository CR across all namespaces within a cluster.
+A package repository is a collection of packages and their metadata. Similar to a maven repository or a rpm repository, adding a package repository to a cluster gives users of that cluster the ability to install any of the packages from that repository. 
+
+It is represented in kapp-controller by a PackageRepository CR. A PackageRepository CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageRepository CR across all namespaces within a cluster.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -204,7 +208,7 @@ spec:
 
 ### Package Install
 
-A Package Install is an actual installation of a package and its underlying resources on a Kubernetes cluster. It is represented in kapp-controller by the PackageInstall CR. A PackageInstall CR must reference a Package CR.
+A Package Install is an actual installation of a package and its underlying resources on a Kubernetes cluster. It is represented in kapp-controller by a PackageInstall CR. A PackageInstall CR must reference a Package CR.
 
 ```yaml
 apiVersion: packaging.carvel.dev/v1alpha1

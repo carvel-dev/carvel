@@ -1,15 +1,15 @@
 ---
-title: Debugging kapp-controller
+title: Debugging CRs
 ---
 
-This documentation covers troubleshooting failures with kapp-controller, where
-to look for detailed error messages for kapp-controller custom resources (CRs),
-and where to look when you need more information than what is presented in error
-messages.
+Running into issues deploying any of the kapp-controller CRs? This page will help with commonly encountered issues.
+
+If you can't find what you are looking for here, please reach out to us on #carvel. We love hearing from users and are keen to help you resolve any issues!
 
 ## Debugging kapp-controller CRs
 
-When encountering errors with kapp-controller, your first alert to a failure
+### Reconcile failed
+Your first alert to a failure
 will come from the tool(s) (e.g. kapp or kubectl) you are using to deploy
 kapp-controller CRs. `kapp` will more immediately tell you if a resource you are
 creating or updating fails, but you will need to verify with a `kubectl get` if
@@ -25,12 +25,12 @@ NAMESPACE   NAME                  PACKAGE NAME          PACKAGE VERSION   DESCRI
 foo         instl-pkg-test-fail   pkg.fail.carvel.dev   1.0.0             Reconcile failed: Error (see .status.usefulErrorMessage for details)   12s
 ```
 
+### status.usefulErrorMessage
 Once you have confirmed an error occurred, you can review the status of the CR
-for more information.  With the exception of Packages and PackageMetadatas, each
-CR has a status that will show error messages for failures.
+for more information.
 
 Apps, PackageInstalls, and PackageRepsitories all feature a status property
-named `usefulErrorMessage`. `usefulErrorMessage` will contain an error message
+named `usefulErrorMessage`. `usefulErrorMessage` which contains an error message
 from kapp-controller or the stderr from the underlying tool used by
 kapp-controller (i.e. vendir, imgpkg, kbld, ytt, kapp, or helm).
 
@@ -51,11 +51,11 @@ $ kubectl get packageinstall simple-app -o=jsonpath={.status.usefulErrorMessage}
 $ kubectl get packagerepository repo -o=jsonpath={.status.usefulErrorMessage}
 ```
 
-### Debugging App CRs
+### Errors from underlying tools (App CR and PackageInstall CR)
 
 Failures can arise from fetch, template, deploy, or delete steps for an App CR.
 These failures correspond to issues with runtime information declared in the App
-CR's spec.
+CR's spec. kapp-controller creates an App CR for every PackageInstall 
 
 Errors are reported as stderr from associated tools used in kapp-controller
 (i.e. vendir, imgpkg, kbld, ytt, kapp, and helm) or as direct messages from
@@ -99,14 +99,10 @@ Failures for PackageInstalls can be viewed directly via the `usefulErrorMessage`
 property of the PackageInstall's status. This `usefulErrorMessage` property
 comes from an App CR that is created as a result of creating a PackageInstall.
 More information on interpreting the error message from `usefulErrorMessage` can
-be found under the [Debugging App CRs](#debugging-app-crs).  The underlying App
+be found under the [Errors from underlying tools](#Errors from underlying tools (App CR and PackageInstall CR)).  The underlying App
 CR will have the same name as the PackageInstall that you create.
 
-In addition to understanding the error from the underlying App CR, it can also
-be useful the inspect the Package definition to see if there are issues for the
-Package being deployed by the PackageInstall.
-
-You can view the Package details by running the following command:
+You can also inpect the Package CR referenced by the PackageInstall CR for issues. You can view the Package details by running the following command:
 
 ```
 $ kubectl describe package/<package name>
@@ -118,21 +114,12 @@ create the App for the PackageInstall and can lead to failures.
 
 ### Debugging PackageRepository CRs
 
-The primary responsibility of the PackageRepository is to fetch the
-configuration for all of its Packages, which are typically pulled from an OCI
-registry as an [imgpkgBundle](/imgpkg/docs/latest/resources/#bundle). Failures
-for PackageRepositories most often happen from fetching the PackageRepository
-contents (i.e. the `.spec.fetch` portion of the PackageRepository spec).
-
 Failures for PackageRepositories can be viewed directly via the
-`usefulErrorMessage` property of the PackageRepository's status.  Interpreting
-the error message from `usefulErrorMessage` for PackageRepositories is very
-similar to debugging an App CR's status.  More information on interpreting the
-errors from App CRs can be found under under the [Debugging App
-CRs](#debugging-app-crs) section. 
+`usefulErrorMessage` property of the PackageRepository's status. More information [here](status.usefulErrorMessage)
 
-Common problems encountered with PackageRepositories may be needing
-authentication for a registry where an image or imgpkg bundle is stored (read
-more [here](package-consumption/#adding-package-repository) on
-PackageRepositories authenticating to a private registry) and proper formatting
-of Package resources.
+A common source of errors is being unable to fetch the PackageRepository
+contents. Please check the `.spec.fetch` portion of the PackageRepository spec for issues related to this.
+
+Is the registry you are fetching from require authentication? If so, check out [authenticating to private registries](private-registry-auth.md)
+
+You can also fetch the PackageRepository `imgpkg` bundle or image separately and inspect format of Package resources.
