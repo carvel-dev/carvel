@@ -17,7 +17,7 @@ toc:
         url: /sops
   - title: Package Management
     subfolderitems:
-      - page: Terminology & APIs
+      - page: Concepts & CRDs
         url: /packaging
       - page: Tutorial
         url: /packaging-tutorial
