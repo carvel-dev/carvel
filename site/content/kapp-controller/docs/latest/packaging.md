@@ -7,7 +7,6 @@ title: Package Management
 
 kapp-controller provides a declarative way to install, manage, and upgrade packages on a Kubernetes cluster. It leverages the PackageRepository, PackageMetadata, Package, and PackageInstall CRDs to do so. Get started by installing the [latest release of kapp-controller](install.md).
 
-
 ## Concepts & CustomResourceDefinitions
 
 ### Package
@@ -88,6 +87,7 @@ spec:
 Package Metadata are attributes of a single package that do not change frequently and that are shared across multiple versions of a single package. It contains information similar to a project's README.md. 
 
 It is represented in kapp-controller by a PackageMetadata CR. A PackageMetadata CR is a namespaced resource by default. [Learn more](package-consumer-concepts.md#namespacing) about how to share a PackageMetadata CR across all namespaces within a cluster.
+
 ```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata

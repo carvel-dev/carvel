@@ -13,8 +13,12 @@ See [@ytt:struct module docs](lang-ref-ytt-struct.md).
 ```python
 load("@ytt:assert", "assert")
 
-assert.fail("expected value foo, but was {}".format(value)) # stops execution
+# stop execution 
+assert.fail("expected value foo, but was {}".format(value))
 x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
+
+# if a function fails, return an error instead of stopping (available in v0.37.0+)
+result, err = assert.try_to(lambda: function_that_might_fail())
 ```
 
 ### data
@@ -33,6 +37,46 @@ data.read("data/data.txt") # "data-txt contents"
 # relative to library root (available in v0.27.1+)
 data.list("/")              # list files 
 data.list("/data/data.txt") # read file
+```
+
+### ip
+
+Parse and inspect Internet Protocol values. 
+
+(available in v0.37.0+)
+
+```python
+load("@ytt:ip", "ip")
+
+# Parse IP addresses...
+addr = ip.parse_addr("192.0.2.1")
+addr.is_ipv4()    # True
+addr.is_ipv6()    # False
+addr.string()     # "192.0.2.1"
+
+addr = ip.parse_addr("2001:db8::1")
+addr.is_ipv4()    # False
+addr.is_ipv6()    # True
+addr.string()     # "2001:db8::1"
+
+# Parse CIDR notation into an IP Address and IP Network...
+addr, net = ip.parse_cidr("192.0.2.1/24")
+addr.string()         # "192.0.2.1"
+addr.is_ipv4()        # True
+addr.is_ipv6()        # False
+net.string()          # "192.0.2.0/24"
+net.addr().string()   # "192.0.2.1"
+net.addr().is_ipv4()  # True
+net.addr().is_ipv6()  # False
+
+addr, net = ip.parse_cidr("2001:db8::1/96")
+addr.string()         # "2001:db8::1"
+addr.is_ipv4()        # False
+addr.is_ipv6()        # True
+net.string()          # "2001:db8::/96"
+net.addr().string()   # "2001:db8::"
+net.addr().is_ipv4()  # False
+net.addr().is_ipv6()  # True
 ```
 
 ### regexp
