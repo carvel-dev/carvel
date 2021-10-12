@@ -154,6 +154,9 @@ header {
         .text-logo {
             float: left;
             font-size: 33px;
+            .short {
+                display: none;
+            }
         }
         @include breakpoint(small) {
             .text-logo {
@@ -161,6 +164,12 @@ header {
                 overflow-x: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                .long {
+                    display: none;
+                }
+                .short {
+                    display: inline-block;
+                }
             }
         }
         .desktop-links,

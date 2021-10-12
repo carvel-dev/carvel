@@ -24,6 +24,7 @@ params:
       - latest
   kbld:
     name: kbld
+    short_name: kbld
     root_link: /kbld/
     latest_docs_link: /kbld/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kbld
@@ -37,6 +38,7 @@ params:
       - latest
   kapp:
     name: kapp
+    short_name: kapp
     root_link: /kapp/
     latest_docs_link: /kapp/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
@@ -50,6 +52,7 @@ params:
       - latest
   imgpkg:
     name: imgpkg
+    short_name: imgpkg
     root_link: /imgpkg/
     latest_docs_link: /imgpkg/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
@@ -63,6 +66,7 @@ params:
       - latest
   kapp-controller:
     name: kapp-controller
+    short_name: kc
     root_link: /kapp-controller/
     latest_docs_link: /kapp-controller/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
@@ -76,6 +80,7 @@ params:
       - latest
   vendir:
     name: vendir
+    short_name: vendir
     root_link: /vendir/
     latest_docs_link: /vendir/docs/latest/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
