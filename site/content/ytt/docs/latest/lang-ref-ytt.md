@@ -152,6 +152,22 @@ json.decode('{"a":[1,2,3,{"c":456}],"b":"str"}')
 ```
 As of v0.35.0, `json.encode()` with `indent` argument encodes result in multi-line string.
 
+### toml
+
+As of v0.38.0.
+
+```python
+load("@ytt:toml", "toml")
+
+toml.encode({"a": [1,2,3,456], "b": "str"})  # 'a = [1, 2, 3, 456]\nb = "str"'
+toml.encode({"metrics": {"address":"", "grpc_histogram": False}}, indent=4)
+  # '[metrics]\n    address = ""\n    grpc_histogram = false\n'
+
+toml.decode("[plugins]\n  [plugins.cgroups]\n    no_prometheus = false")
+  # {"plugins": {"cgroups": {"no_prometheus": False}}}
+```
+
+
 ### yaml
 
 ```python
