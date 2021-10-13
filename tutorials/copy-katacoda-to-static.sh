@@ -4,7 +4,7 @@ export DESTFILE="$(dirname $0)/../site/content/kapp-controller/docs/latest/packa
 
 cat > $DESTFILE << EOF
 ---
-title: Package Management Tutorial
+title: "Tutorial: Create and Install a Package"
 ---
 
 [//]: # (Generated from katacoda content using 'carvel/tutorials/copy-katacoda-to-static.sh')

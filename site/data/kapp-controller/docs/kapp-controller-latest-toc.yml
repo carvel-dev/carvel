@@ -23,7 +23,7 @@ toc:
     subfolderitems:
       - page: Concepts & CRDs
         url: /packaging
-      - page: Tutorial
+      - page: "Tutorial: Create and Install a Package"
         url: /packaging-tutorial
       - page: Authoring Walkthrough
         url: /package-authoring

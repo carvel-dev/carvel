@@ -1,5 +1,5 @@
 ---
-title: Package Management Tutorial
+title: "Tutorial: Create and Install a Package"
 ---
 
 [//]: # (Generated from katacoda content using 'carvel/tutorials/copy-katacoda-to-static.sh')
