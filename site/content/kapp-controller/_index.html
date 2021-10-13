@@ -68,6 +68,7 @@ title: "kapp-controller"
       <li><a href="#package-author">Package authoring</a></li>
       <li><a href="#package-consumer">Package consumption</a></li>
     </ul>
+  </div>
   <div class="text-content" id="app">  
     <h3>Continuous Delivery</h3>
     <p>kapp-controller's App CR provides a lightweight, flexibile way to choose how to fetch, 
@@ -102,7 +103,8 @@ $ kubectl get app simple-app
 NAME         DESCRIPTION           SINCE-DEPLOY   AGE
 simple-app   Reconcile succeeded   9s             10s
 {{< / highlight>}}
-    <p>Discover more in the <a href="/kapp-controller/docs/latest/walkthrough/">App walkthrough</a> documentation.</p>    
+    <p>Discover more in the <a href="/kapp-controller/docs/latest/walkthrough/">App walkthrough</a> documentation.</p>
+  </div>
   <div class="text-content" id="package-author">  
     <h3>Package authoring</h3>
     <p>kapp-controller's Package CR provides a way to share versioned software for Kubernetes 
@@ -160,6 +162,7 @@ spec:
           - stranger
 {{< / highlight>}}
     <p>Discover more in the <a href="/kapp-controller/docs/latest/package-authoring/">package author</a> documentation.</p>   
+  </div>
   <div class="text-content" id="package-consumer">  
     <h3>Package consumption</h3> 
     <p>kapp-controller's PackageRepository CR adds a collection of Packages to allow software to be easily discovered and 
