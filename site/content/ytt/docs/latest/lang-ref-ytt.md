@@ -13,12 +13,18 @@ See [@ytt:struct module docs](lang-ref-ytt-struct.md).
 ```python
 load("@ytt:assert", "assert")
 
-# stop execution 
-assert.fail("expected value foo, but was {}".format(value))
+# stop execution and report a failure
+assert.fail("expected value foo, but was {}".format(value)) # stops execution
 x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
 
-# if a function fails, return an error instead of stopping (available in v0.37.0+)
-result, err = assert.try_to(lambda: function_that_might_fail())
+# invoke a function value, catching failure if it occurs
+x, err = assert.try_to(lambda : json.decode('{"key": "value"}'))
+x     # { "key" = "value" }    (i.e. dict with one entry)
+err   # None
+
+x, err = assert.try_to(lambda : json.decode("(not JSON)"))
+x     # None
+err   # "json.decode: invalid character '(' looking for beginning of value"
 ```
 
 ### data
