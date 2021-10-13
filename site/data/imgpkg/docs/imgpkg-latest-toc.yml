@@ -3,6 +3,8 @@ toc:
     subfolderitems:
       - page: About imgpkg
         url: /
+      - page: Install
+        url: /install
   - title: Workflows
     subfolderitems:
       - page: Basic workflow
