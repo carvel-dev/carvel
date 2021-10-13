@@ -23,16 +23,12 @@ toc:
     subfolderitems:
       - page: Concepts & CRDs
         url: /packaging
-      - page: "Tutorial: Create and Install a Package"
+      - page: "Tutorial: Create & Install a Package"
         url: /packaging-tutorial
-      - page: Authoring Walkthrough
-        url: /package-authoring
+      - page: OSS Carvel Packages
+        url: /oss-packages
       - page: Artifact Formats
         url: /packaging-artifact-formats
-      - page: Consuming Walkthrough
-        url: /package-consumption
-      - page: Consumer Concepts
-        url: /package-consumer-concepts
       - page: Install Extensions
         url: /package-install-extensions
       - page: Air-gapped workflow

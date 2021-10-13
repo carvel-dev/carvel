@@ -23,17 +23,14 @@ defaults to 30 seconds.
 
 ## Package Author
 
-This section covers questions for users packaging software for Kubernetes. More
-details on this package author workflow can be found under the [Package
-Author](package-authoring.md) documentation.
+This section covers questions for users packaging software for Kubernetes.
 
 None available at this time.
 
 ## Package Consumer
 
 This section covers questions for users installing software packages for
-Kubernetes. More details on this package consumer workflow can be found under
-the [Package Consumer](package-consumption.md) documentation.
+Kubernetes.
 
 ### How does kapp-controller handle PackageInstall when a PackageRepository is removed from the cluster?
 

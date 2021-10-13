@@ -374,8 +374,7 @@ EOF
 ```
 
 (See our
-[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/package-consumption/#adding-package-repository) examples for more typical
-use-case against an external repository.)
+[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/private-registry-auth) for more typical usage with an external repository.)
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `${REPO_HOST}/packages/my-pkg-repo:1.0.0` imgpkg bundle, which we
@@ -484,6 +483,4 @@ curl localhost:3000
 
 Visit [carvel.dev](https://carvel.dev/) to learn more about Carvel tools.
 
-See the full docs for kapp-controller's Package [authoring](https://carvel.dev/kapp-controller/docs/latest/package-authoring/) and
-Package
-[consumption](https://carvel.dev/kapp-controller/docs/latest/package-consumption/).
+See the full docs for [Package Management with kapp-controller](https://carvel.dev/kapp-controller/docs/latest/packaging/)
