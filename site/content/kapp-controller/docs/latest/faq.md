@@ -2,12 +2,7 @@
 title: FAQ
 ---
 
-This documentation covers frequently asked questions for kapp-controller. It is
-divided into three sections: [App Developer](#app-developer), [Package
-Author](#package-author), and [Package Consumer](#package-consumer).  This is
-done to organize questions based on how users are working with kapp-controller.
-
-## App Developer
+## App CR
 
 This section covers questions for users directly using the [App](app-spec.md)
 custom resource.
@@ -21,16 +16,10 @@ https://github.com/vmware-tanzu/carvel-kapp-controller/blob/d94984a77fa907ac5ecc
 defaults to 30 seconds.
 
 
-## Package Author
+## Package Management CRs
 
-This section covers questions for users packaging software for Kubernetes.
-
-None available at this time.
-
-## Package Consumer
-
-This section covers questions for users installing software packages for
-Kubernetes.
+This section covers questions for users directly using the [Package Management CRs](packaging.md)
+custom resource.
 
 ### How does kapp-controller handle PackageInstall when a PackageRepository is removed from the cluster?
 
