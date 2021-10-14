@@ -132,6 +132,31 @@ Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/car
 
 ### kapp.k14s.io/disable-original
 
+`kapp`, by default, records the resource copy into its annotation `kapp.k14s.io/original` while applying the resource onto k8s cluster. 
+
+Example:
+```yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-1
+data:
+  foo: bar
+```
+After deploying the resource, this is what will get stored on the cluster. `kapp` added the annotation `kapp.k14s.io/original` in the resource `metadata.annotations` section. And annotation's value is the resource copy itself.
+```bash
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-1
+  annotations:
+    kapp.k14s.io/original: {"apiVersion":"v1","data":{"foo":"bar"},"kind":"ConfigMap","metadata":{"labels":{"kapp.k14s.io/app":"1633691751618381000", "kapp.k14s.io/association":"v1.f6aec336f0189c0a564f356f34742c4b"},"name":"config-1","namespace":"default"}}
+data:
+  foo: bar
+
+```
+
 `kapp.k14s.io/disable-original` annotation controls whether to record provided resource copy (rarely wanted)
 
 Possible values: "" (empty). In some cases it's not possible or wanted to record applied resource copy into its annotation `kapp.k14s.io/original`. One such case might be when resource is extremely lengthy (e.g. long ConfigMap or CustomResourceDefinition) and will exceed annotation value max length of 262144 bytes.
