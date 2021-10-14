@@ -50,6 +50,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 ```
 
 Additionally kapp follows configuration rules (default ones, and ones that can be provided as part of application) to find and update object references (since new resource name is not something that configuration author knew about).
+
 Example:
 ```yaml
 apiVersion: kapp.k14s.io/v1alpha1
