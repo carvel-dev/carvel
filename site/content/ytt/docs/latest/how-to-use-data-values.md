@@ -4,10 +4,10 @@ title: Using Data Values
 
 ## Overview
 
-The standard way to externalize configuration values is to:
-1. declare them as "Data Values" in a schema,
-2. reference those values in templates, and
-3. (optionally) configure them through Data Value inputs.
+The way to introduce a variable in `ytt` (i.e. to externalize a configuration value) is to:
+1. declare it as a "Data Value" by naming it in a schema file,
+2. reference it in templates, and
+3. configure it through Data Value inputs.
 
 This guide shows how to do this.
 
