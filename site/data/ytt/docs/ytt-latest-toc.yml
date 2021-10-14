@@ -79,6 +79,8 @@ toc:
         url: /file-marks
       - page: Strict yaml
         url: /strict
+      - page: Shell Completion
+        url: /completion
   - title: FAQ
     subfolderitems:
       - page: FAQ
