@@ -29,11 +29,11 @@ toc:
         url: /oss-packages
       - page: Artifact Formats
         url: /packaging-artifact-formats
-      - page: Install Extensions
+      - page: Overlays with PackageInstall
         url: /package-install-extensions
-      - page: Air-gapped workflow
+      - page: Air-gapped installations
         url: /air-gapped-workflow
-      - page: Private Registry Auth
+      - page: Private registry authentication
         url: /private-registry-auth
   - title: Advanced Topics
     subfolderitems:
