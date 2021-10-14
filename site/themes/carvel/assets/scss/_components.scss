@@ -171,13 +171,18 @@
     padding-bottom: 100px;
     .buttons {
         margin-top: 70px;
+        .button {
+            background: $white;
+            color: $blue;
+            border: 0;
+        }
         .button:hover {
           color: $white;
+          background-color: $brightblue;
           text-decoration: underline;
         }
         .button.tertiary {
             margin-left: 30px;
-            background-color: unset;
         }
     }
     .text-block {
@@ -192,6 +197,11 @@
         @include breakpoint(small) {
             background-image: none;
             background-color: $brightblue;
+        }
+        .buttons {
+            .button:hover {
+                background-color: $blue;
+            }
         }
     }
     &.kbld {
@@ -396,7 +406,7 @@
         }
         .form-control {
             display: block;
-            width: 100%;
+            width: 90%;
             height: 40px;
             padding: .375rem .75rem;
             font-size: 1.125rem;
