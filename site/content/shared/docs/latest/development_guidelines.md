@@ -55,16 +55,19 @@ Developers should feel free to add more structure as complexity grows by making 
     * [Fields used only by receivers on the structs](https://github.com/vmware-tanzu/carvel-vendir/blob/f65c73335261488c3328c98c99ef123ceeee5def/pkg/vendir/fetch/imgpkgbundle/sync.go#L16)
     * [Methods used only locally](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/pkg/kapp/app/preparation.go#L67)
     * [Methods on receivers](https://github.com/vmware-tanzu/carvel-imgpkg/blob/6cb2b71f01d15e640de28b04af84c2c9fb944238/pkg/imgpkg/bundle/bundle.go#L250-L252) (func doesn’t use receiver, but is scoped to the struct to indicate semantically some where/how/who of usage)
-* Godocs: 
+* Godocs:
     * Should impart more context or information than the name alone.
     * Note: older code may not already have godocs,  great to add docs as you learn what something does
 * Prefer multi-line over single-line err check:
-    * Prefer: \
-```
-err := foo() \
-if err != nil { //...
-```
-    * Avoid: `if err := foo(); err != nil {  //…`
+    * Prefer:
+      ```
+      err := foo()
+      if err != nil { //…
+      ```
+    * Occasionally appropriate: (example: [highly indented guard clause](https://github.com/vmware-tanzu/carvel-ytt/blob/efbe80b11dd7039ced30a48a35a5e4572070d80e/pkg/template/compiled_template.go#139))
+      ```
+      if err := foo(); err != nil { //…
+      ```
 * Dependencies
     * are all vendored locally and version controlled
     * `go mod vendor; go mod tidy` are your friends; hack/build.sh runs them.
@@ -80,18 +83,18 @@ if err != nil { //...
         * Because we vendor all our libraries, println style debugs can also be added to 3rd party source code.  However you must comment out the `go mod vendor` and `tidy` commands in hack/build.sh.
 
 ### K8s Controller-Specific Concerns: API Changes
-    * Adding fields to CRDs is not a breaking change; removing fields is; see guidance on breaking changes below.
-    * Kubernetes auto-generates code for APIs and Custom Resource objects
-        * Generators can be run via hack/gen.sh
-        * Kapp-controller’s aggregated API server has a separate generator: hack/gen-apiserver.sh
-        * The CRD yaml is generated via[ a separate script](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/85e814cda7109169809ede1c8a4f211739ad15d2/hack/gen-crds.sh) that is run by hack/build.sh
+* Adding fields to CRDs is not a breaking change; removing fields is; see guidance on breaking changes below.
+* Kubernetes auto-generates code for APIs and Custom Resource objects
+    * Generators can be run via hack/gen.sh
+    * Kapp-controller’s aggregated API server has a separate generator: hack/gen-apiserver.sh
+    * The CRD yaml is generated via[ a separate script](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/85e814cda7109169809ede1c8a4f211739ad15d2/hack/gen-crds.sh) that is run by hack/build.sh
 
 ## Development Process
 ### Controller specific workflows
-    * Deploy in order to test changes to a local or dev cluster via hack/deploy-test.sh
-        * We use minikube; while other solutions may work, minikube definitely works. Remember to  `> eval $(minikube docker-env)`
-        * You can also use hack/deploy.sh to deploy
-        * See dev.md for more details.
+* Deploy in order to test changes to a local or dev cluster via hack/deploy-test.sh
+    * We use minikube; while other solutions may work, minikube definitely works. Remember to  `> eval $(minikube docker-env)`
+    * You can also use hack/deploy.sh to deploy
+    * See dev.md for more details.
 
 ### Automated Testing
 We write mainly e2es and units;  some tools have [performance tests](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/test/perf)
@@ -126,27 +129,30 @@ We write mainly e2es and units;  some tools have [performance tests](https://git
     * Test assets should include comments describing how to generate or modify those assets. [example](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/1844e157b6de4048cec3ba0e53fc699d37e9c71e/test/e2e/assets/https-server/certs-for-custom-ca.yml#L9)
 
 ### Issues, Branching, Pull Requests, Approval
-* Issues (see issue triaging docs)
+* Issues (see also, [issue triaging docs](https://www.google.com/url?q=https://github.com/vmware-tanzu/carvel/blob/develop/processes/issue-triage.md&sa=D&source=docs&ust=1634161804254000&usg=AOvVaw3al0fXNnNVR7ynUf-DwcU0) for more info!)
     * [Proposal Process](https://github.com/vmware-tanzu/carvel/tree/develop/proposals#carvel-proposals)
     * Prefer to leave issues open until documentation is complete
-    * Docs typically live in separate repo: carvel.dev
+    * Docs typically live in a [separate
+      repo](https://github.com/vmware-tanzu/carvel/tree/develop/site) which
+      renders to [https://carvel.dev](https://carvel.dev)
     * When closing the issue manually, comment which release includes the issue so that others can easily find it.
 * Branching
     * Our default / primary branch is named develop
     * We do not have convention around branch names
     * Prefer to delete branches from github after they’ve been merged.
 * Pull Requests
-    * Commits 
-        * Currently open-ended: can be intentionally staged, messy with the intention of squashing them, etc. 
+    * Commits
+        * Currently open-ended: can be intentionally staged, messy with the intention of squashing them, etc.
         * We may revisit automated release tooling and commit squashing.
     * Generally author should ping in slack after a PR is filed and ready for review
-    * TODO: link to issues/triage doc for approval/merge/review process
+    * See our [issues/triage
+      doc](https://www.google.com/url?q=https://github.com/vmware-tanzu/carvel/blob/develop/processes/issue-triage.md&sa=D&source=docs&ust=1634161804254000&usg=AOvVaw3al0fXNnNVR7ynUf-DwcU0) for more info!
 * Refactors
     * If a new feature needs a large refactor, we prefer that refactor in a separate PR. At a minimum developers should put refactor in a separate commit. This helps scope reviews and minimize changesets.
 * Approvals
     * Maintainers will offer feedback on PRs but we have very little formalization around approval
     * Reviewers leave a “LGTM” or approved comment indicating a timestamped approval
-    * Maintainers merge PRs when no outstanding comments are left other than LGTM / approval. 
+    * Maintainers merge PRs when no outstanding comments are left other than LGTM / approval.
 
 ### Versioning and Backwards Compatibility
 Carvel uses semver, x.y.z version structure, with all tools at major version x=0 currently.
