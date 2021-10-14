@@ -29,6 +29,8 @@ toc:
         url: /oss-packages
       - page: Artifact Formats
         url: /packaging-artifact-formats
+      - page: Consumer Concepts
+        url: /package-consumer-concepts
       - page: Overlays with PackageInstall
         url: /package-install-extensions
       - page: Air-gapped installations
