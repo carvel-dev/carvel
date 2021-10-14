@@ -39,10 +39,12 @@ Labels are the primary tools for triaging. New issues are automatically assigned
     1. assign a reviewer (found in MAINTAINERS.md)
     1. @-mention the reviewer in a comment
     1. remove the `carvel triage` label
+    1. set the ZenHub pipeline, accordingly
 1. If a PR has been acknowledged,
     1. ensure that the submitter is not waiting on a reviewer, @-mention the reviewer if needed
     1. ensure that `kind` and `priority` labels are assigned
     1. remove the `carvel triage` label
+    1. set the ZenHub pipeline, accordingly
 1. Filter the _issues_ with a `carvel triage` label. If you're using the ZenHub board, these will show up in the New Issues column.
 1. If an issue has not yet been assigned `kind` and `priority` labels,
     1. thank the submitter for their contribution
@@ -62,6 +64,7 @@ For all issues, `kind` labels are generally supplied by the submitter. Ensure th
   1. define its priority
   1. change the label to `carvel accepted` from `carvel triage`
   1. if appropriate, add the `good first issue` label
+  1. set the ZenHub pipeline, accordingly
 1. If the issue does not look like a good fit for the tool, add a comment explaining your reasoning and close the issue.
 
 #### Bug
@@ -69,6 +72,7 @@ For all issues, `kind` labels are generally supplied by the submitter. Ensure th
 1. If you're able to replicate the issue,
   1. Define its priority
   1. change the label to `carvel accepted` from `carvel triage`
+  1. set the ZenHub pipeline, accordingly
 1. If you're unable to replicate the issue,
   1. add the `triage/not-reproducible` label
   1. ask the submitter for more information
