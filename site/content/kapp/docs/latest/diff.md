@@ -141,6 +141,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-1
+  namespace: default
 data:
   foo: bar
 ```
@@ -150,11 +151,26 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-1
+  namespace: default
   annotations:
-    kapp.k14s.io/original: {"apiVersion":"v1","data":{"foo":"bar"},"kind":"ConfigMap","metadata":{"labels":{"kapp.k14s.io/app":"1633691751618381000", "kapp.k14s.io/association":"v1.f6aec336f0189c0a564f356f34742c4b"},"name":"config-1","namespace":"default"}}
+    kapp.k14s.io/original: 
+    {
+      "apiVersion":"v1",
+      "data":{"foo":"bar"},
+      "kind":"ConfigMap",
+      "metadata":
+      {
+        "labels":
+        {
+          "kapp.k14s.io/app":"1633691751618381000",
+          "kapp.k14s.io/association":"v1.f6aec336f0189c0a564f356f34742c4b"
+        },
+        "name":"config-1",
+        "namespace":"default"
+      }
+    }
 data:
   foo: bar
-
 ```
 
 `kapp.k14s.io/disable-original` annotation controls whether to record provided resource copy (rarely wanted)
