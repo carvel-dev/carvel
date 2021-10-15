@@ -55,3 +55,11 @@ $ chmod +x /usr/local/bin/ytt
 # Check its version
 $ ytt version
 ```
+## Shell Completion 
+
+The `ytt completion` command generates an autocompletion script for the specified shell.
+
+See `ytt completion --help` for information and instructions.
+
+For detailed instructions on enabling shell completion, specify the type of shell in the help command. For example:
+`ytt completion zsh --help`.
