@@ -32,4 +32,4 @@ With its layered approach, kapp-controller can be used as:
 Use kapp-controller's Package Management features along with Carvel's imgpkg bundles to distribute Package Repositories that can be added to cluster to provide a catalog of software for users to install. Package Repositries can be automatically updated ensuring users always have access to latest versions of software. Package Repositories and Packages can also be relocated and run in air-gapped environments.
 
 #### Reliable and ready for production!
-kapp-controller has been hardened and is in use on production Kubernetes clusters. Learn more through case studies on our blog (coming soon!)
+kapp-controller has been hardened and is in use on production Kubernetes clusters. Learn more through [case studies](/blog/casestudy-modernizing-the-us-army) on our blog.
