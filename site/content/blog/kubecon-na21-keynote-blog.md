@@ -8,7 +8,7 @@ image: /img/logo.svg
 tags: ['Vibhas']
 ---
 
-Hello, KubeCon + CloudNativeCon attendees! We were thrilled to share [Carvel on the keynote stage](https://sched.co/ocSC) with you all. This blog post will help you learn more and get started with the Carvel tool suiteCarvel’s package manager, kapp-controller.
+Hello, KubeCon + CloudNativeCon attendees! We were thrilled to share [Carvel on the keynote stage](https://sched.co/ocSC) with you all. This blog post will help you learn more and get started with Carvel's package manager, kapp-controller.
 
 ## The Future of Package Management
 
