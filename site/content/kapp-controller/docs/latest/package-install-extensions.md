@@ -1,5 +1,5 @@
 ---
-title: Install Extensions
+title: Overlays with PackageInstall
 ---
 
 PackageInstalls expose the ability to customize package installation using

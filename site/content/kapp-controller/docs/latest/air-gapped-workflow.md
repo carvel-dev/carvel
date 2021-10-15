@@ -1,5 +1,5 @@
 ---
-title: Air-gapped Workflow
+title: Install Packages in an air-gapped (offline) environment
 ---
 
 The documentation below covers topics from the [imgpkg air-gapped workflow docs](/imgpkg/docs/latest/air-gapped-workflow) 

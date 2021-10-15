@@ -19,8 +19,7 @@ EOF
 ```{{execute}}
 
 (See our
-[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/package-consumption/#adding-package-repository) examples for more typical
-use-case against an external repository.)
+[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/private-registry-auth) for more typical usage with an external repository.)
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `${REPO_HOST}/packages/my-pkg-repo:1.0.0` imgpkg bundle, which we
