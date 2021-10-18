@@ -93,6 +93,13 @@ spec:
   deploy:
   - kapp: {}
 {{< / highlight>}}
+
+<p>Install [examples/default-ns-rbac.yml](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/rbac/default-ns.yml). It creates `default-ns-sa` service account that allows to change any
+  resource within the `default` namespace. This will be used by the App CR below.</p>
+{{< highlight  bash "">}}
+  $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+{{< / highlight>}}
+
     <p>Apply the App CR to your cluster and verify the deployment was successful:</p>
 {{< highlight bash "">}}
 $ kubectl apply -f simple-app.yml
