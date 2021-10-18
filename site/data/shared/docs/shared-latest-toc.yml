@@ -7,3 +7,5 @@ toc:
         url: /code-of-conduct
       - page: Security Policy
         url: /security-policy
+      - page: Development Guidelines
+        url: /development_guidelines
