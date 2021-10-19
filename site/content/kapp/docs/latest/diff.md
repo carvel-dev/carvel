@@ -132,7 +132,7 @@ Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/car
 
 ### kapp.k14s.io/disable-original
 
-`kapp`, by default, records the resource copy into its annotation `kapp.k14s.io/original` while applying the resource to the cluster. 
+kapp, by default, records the resource copy into its annotation `kapp.k14s.io/original` while applying the resource to the cluster. 
 
 Example:
 ```yaml
@@ -145,7 +145,7 @@ metadata:
 data:
   foo: bar
 ```
-After deploying the resource, `kapp` added the annotation `kapp.k14s.io/original` with the content of the resource that was given to `kapp`:
+After deploying the resource, kapp added the annotation `kapp.k14s.io/original` with the content of the resource that was given to kapp:
 
 ```bash
 apiVersion: v1
