@@ -132,7 +132,7 @@ Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/car
 
 ### kapp.k14s.io/disable-original
 
-`kapp`, by default, records the resource copy into its annotation `kapp.k14s.io/original` while applying the resource onto k8s cluster. 
+`kapp`, by default, records the resource copy into its annotation `kapp.k14s.io/original` while applying the resource to the cluster. 
 
 Example:
 ```yaml
@@ -145,7 +145,8 @@ metadata:
 data:
   foo: bar
 ```
-After deploying the resource, this is what will get stored on the cluster. `kapp` added the annotation `kapp.k14s.io/original` in the resource `metadata.annotations` section. And annotation's value is the resource copy itself.
+After deploying the resource, `kapp` added the annotation `kapp.k14s.io/original` with the content of the resource that was given to `kapp`:
+
 ```bash
 apiVersion: v1
 kind: ConfigMap
@@ -153,22 +154,7 @@ metadata:
   name: config-1
   namespace: default
   annotations:
-    kapp.k14s.io/original: 
-    {
-      "apiVersion":"v1",
-      "data":{"foo":"bar"},
-      "kind":"ConfigMap",
-      "metadata":
-      {
-        "labels":
-        {
-          "kapp.k14s.io/app":"1633691751618381000",
-          "kapp.k14s.io/association":"v1.f6aec336f0189c0a564f356f34742c4b"
-        },
-        "name":"config-1",
-        "namespace":"default"
-      }
-    }
+    kapp.k14s.io/original: '{ "apiVersion": "v1", "kind": "ConfigMap", ...snip... }'
 data:
   foo: bar
 ```
