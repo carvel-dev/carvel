@@ -11,9 +11,8 @@ title: "kapp-controller"
         to discover, configure, and install these packages on a Kubernetes cluster.
       </p>
       <div class="buttons">
-        <a class="button" href="#examples">See Examples</a>
-        <a class="button tertiary" href="https://carvel.dev/kapp-controller/docs/latest/install/"
-          target="_blank">Install</a>
+        <a class="button" href="https://katacoda.com/carvel/scenarios/kapp-controller-package-management">Interactive Tutorial</a>
+        <a class="button tertiary" href="/kapp-controller/docs/latest/install/">Install</a>
       </div>
     </div>
   </div>
@@ -54,28 +53,10 @@ title: "kapp-controller"
 
 <div class="wrapper">
   <div class="text-content" id="examples">
-    <h2>Basic Usages</h2>
-    <p>Get more hands on with kapp-controller by watching the demo video below or a more <a href="https://www.youtube.com/watch?v=PmwkicgEKQE">in-depth demo video</a> 
-      from our community meeting, taking it for spin through an <a href="https://katacoda.com/carvel/scenarios/kapp-controller-package-management">interactive tutorial</a>, 
-      or <a href="/kapp-controller/docs/latest/packaging-tutorial/">follow the same tutorial</a> with your own Kubernetes cluster. You can also get started by installing 
-      packages from <a href="/kapp-controller/docs/latest/package-consumption/#get-started-with-an-oss-package-repository">this OSS Package Repository</a> on your cluster.</p>
-    <script src="https://asciinema.org/a/hhZwxyDcXEGiPD9RDHTb3e9QL.js" id="asciicast-hhZwxyDcXEGiPD9RDHTb3e9QL" async></script>
-    <p>You can also see a high level overview of kapp-controller's custom resources below and jump into more in depth documentation for 
-      each workflow outlined.
-    </p>
-    <ul>
-      <li><a href="#app">Continuous Delivery</a></li>
-      <li><a href="#package-author">Package authoring</a></li>
-      <li><a href="#package-consumer">Package consumption</a></li>
-    </ul>
-  <div class="text-content" id="app">  
-    <h3>Continuous Delivery</h3>
-    <p>kapp-controller's App CR provides a lightweight, flexibile way to choose how to fetch, 
-      template, and deploy your application to Kubernetes. It can be used independently of kapp-controller's 
-      package management CRs, to assist in the creation of Package CRs, or kapp-controller will create one for 
-      you as a result of creating a PackageInstall CR.
-    </p>
-{{< highlight yaml "">}}
+    <h2>Example Usage</h2>
+    <h3>Install and update your application declaratively</h3>
+        <p>kapp-controller's App CRD provides a declarative way to install, manage, and upgrade applications on a Kubernetes cluster</p>
+        {{< highlight yaml "">}}
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
@@ -102,12 +83,11 @@ $ kubectl get app simple-app
 NAME         DESCRIPTION           SINCE-DEPLOY   AGE
 simple-app   Reconcile succeeded   9s             10s
 {{< / highlight>}}
-    <p>Discover more in the <a href="/kapp-controller/docs/latest/walkthrough/">App walkthrough</a> documentation.</p>    
-  <div class="text-content" id="package-author">  
-    <h3>Package authoring</h3>
-    <p>kapp-controller's Package CR provides a way to share versioned software for Kubernetes 
-      so users can easily discover and consume available software.</p>
-{{< highlight yaml "">}}
+    <p>Discover more in the <a href="/kapp-controller/docs/latest/app-overview/">App CR</a> documentation.</p>  
+      
+      <h3>Create a Package</h3>
+      <p>kapp-controller's Package CRD provides a way for you to write and share software as Packages so that Kubernetes users can easily discover and install them.</p>
+      {{< highlight yaml "">}}
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -158,13 +138,10 @@ spec:
           default: stranger
           examples:
           - stranger
-{{< / highlight>}}
-    <p>Discover more in the <a href="/kapp-controller/docs/latest/package-authoring/">package author</a> documentation.</p>   
-  <div class="text-content" id="package-consumer">  
-    <h3>Package consumption</h3> 
-    <p>kapp-controller's PackageRepository CR adds a collection of Packages to allow software to be easily discovered and 
-      installed.
-    </p>
+{{< / highlight>}} 
+  
+    <h3>Install a Package</h3>
+    <p>kapp-controller's PackageRepository CRD allows you to easily discover a collection of Packages.</p>
 {{< highlight yaml "">}}
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
@@ -217,6 +194,9 @@ $ kubectl get app pkg-demo
 NAME         DESCRIPTION           SINCE-DEPLOY   AGE
 pkg-demo     Reconcile succeeded   9s             1m45s
 {{< / highlight>}}
-    <p>Discover more in the <a href="/kapp-controller/docs/latest/package-consumption/">package consumption</a> documentation.</p>   
+    <p>Discover more about creating and installing Packages in the <a href="/kapp-controller/docs/latest/packaging/">docs</a></p>   
+     
+    <h2>Demo</h2>
+    <p><script src="https://asciinema.org/a/hhZwxyDcXEGiPD9RDHTb3e9QL.js" id="asciicast-hhZwxyDcXEGiPD9RDHTb3e9QL" async></script></p>
   </div>
 </div>

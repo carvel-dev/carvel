@@ -13,8 +13,18 @@ See [@ytt:struct module docs](lang-ref-ytt-struct.md).
 ```python
 load("@ytt:assert", "assert")
 
+# stop execution and report a failure
 assert.fail("expected value foo, but was {}".format(value)) # stops execution
 x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
+
+# invoke a function value, catching failure if it occurs
+x, err = assert.try_to(lambda : json.decode('{"key": "value"}'))
+x     # { "key" = "value" }    (i.e. dict with one entry)
+err   # None
+
+x, err = assert.try_to(lambda : json.decode("(not JSON)"))
+x     # None
+err   # "json.decode: invalid character '(' looking for beginning of value"
 ```
 
 ### data
@@ -33,6 +43,46 @@ data.read("data/data.txt") # "data-txt contents"
 # relative to library root (available in v0.27.1+)
 data.list("/")              # list files 
 data.list("/data/data.txt") # read file
+```
+
+### ip
+
+Parse and inspect Internet Protocol values. 
+
+(available in v0.37.0+)
+
+```python
+load("@ytt:ip", "ip")
+
+# Parse IP addresses...
+addr = ip.parse_addr("192.0.2.1")
+addr.is_ipv4()    # True
+addr.is_ipv6()    # False
+addr.string()     # "192.0.2.1"
+
+addr = ip.parse_addr("2001:db8::1")
+addr.is_ipv4()    # False
+addr.is_ipv6()    # True
+addr.string()     # "2001:db8::1"
+
+# Parse CIDR notation into an IP Address and IP Network...
+addr, net = ip.parse_cidr("192.0.2.1/24")
+addr.string()         # "192.0.2.1"
+addr.is_ipv4()        # True
+addr.is_ipv6()        # False
+net.string()          # "192.0.2.0/24"
+net.addr().string()   # "192.0.2.1"
+net.addr().is_ipv4()  # True
+net.addr().is_ipv6()  # False
+
+addr, net = ip.parse_cidr("2001:db8::1/96")
+addr.string()         # "2001:db8::1"
+addr.is_ipv4()        # False
+addr.is_ipv6()        # True
+net.string()          # "2001:db8::/96"
+net.addr().string()   # "2001:db8::"
+net.addr().is_ipv4()  # False
+net.addr().is_ipv6()  # True
 ```
 
 ### regexp
@@ -107,6 +157,22 @@ json.encode({"a": [1,2,3,{"c":456}], "b": "str"}, indent=3)
 json.decode('{"a":[1,2,3,{"c":456}],"b":"str"}')
 ```
 As of v0.35.0, `json.encode()` with `indent` argument encodes result in multi-line string.
+
+### toml
+
+As of v0.38.0.
+
+```python
+load("@ytt:toml", "toml")
+
+toml.encode({"a": [1,2,3,456], "b": "str"})  # 'a = [1, 2, 3, 456]\nb = "str"'
+toml.encode({"metrics": {"address":"", "grpc_histogram": False}}, indent=4)
+  # '[metrics]\n    address = ""\n    grpc_histogram = false\n'
+
+toml.decode("[plugins]\n  [plugins.cgroups]\n    no_prometheus = false")
+  # {"plugins": {"cgroups": {"no_prometheus": False}}}
+```
+
 
 ### yaml
 

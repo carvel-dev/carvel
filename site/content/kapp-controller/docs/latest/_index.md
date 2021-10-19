@@ -8,36 +8,28 @@ cascade:
   layout: docs
 ---
 
-kapp-controller provides a Kubernetes native continuous delivery and package management experience through custom resource definitions. 
-These new resources for [continuous delivery](app-spec.md) and [package management](packaging.md) help users author software packages 
-and consume packages to ease the process of sharing, deploying, and managing software on Kubernetes. 
+kapp-controller provides declarative APIs to customize, install, and update your Kubernetes applications and packages. It is a part of the Carvel toolkit and follows core Carvel design principles. Get started with the [tutorial](packaging-tutorial.md)!
 
----
+#### Choice for authors; consistency for consumers
+Kubernetes configuration takes many forms -- plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc.
+Software running on Kubernetes lives in many different places: a Git repository, an archive over HTTP, a Helm repository, etc.
 
-Given that software configurations for Kubernetes software can be specified in various forms:
+kapp-controller provides software authors flexibility to choose their own configuration tools, while providing software consumers with consistent declarative APIs to customize, install, and update software on Kubernetes from various sources.
 
-- plain YAML configurations
-- Helm charts
-- ytt templates
-- jsonnet templates
-- etc.
+#### Lightweight and composable
+kapp-controller breaks down the installation of applications and packages into three easy to understand steps: 
+- Fetch: get configuration and OCI images from various sources including a Git repository, a local ConfigMap, a Helm chart, an OCI registry, etc.
+- Template: take user provided values to customize software using ytt templates, helm templates, and more
+- Deploy: create/update resources on the cluster
 
-and found in various locations:
+#### GitOps and Continuous Delivery
+With its layered approach, kapp-controller can be used as:
+- Continuous delivery for Kubernetes applications using [App CR](app-spec.md)
+- Kubernetes Package Management using [Package CR and supplementary CRs](packaging.md)
+- Managing applications and packages using GitOps
 
-- Git repository
-- Archive over HTTP
-- Helm repository
-- etc.
+#### Share software and build distributions
+Use kapp-controller's Package Management features along with Carvel's imgpkg bundles to distribute Package Repositories that can be added to cluster to provide a catalog of software for users to install. Package Repositries can be automatically updated ensuring users always have access to latest versions of software. Package Repositories and Packages can also be relocated and run in air-gapped environments.
 
-and written/provided by:
-
-- in-house development teams
-- vendors offering COTS products
-
-kapp-controller allows users to encapsulate, customize, install, and update such software in a _consistent_ and _manageable_ manner.
-
----
-
-Another motivation for kapp-controller was to make a small and single purpose system (as opposed to a general CD system); hence, it's lightweight, easy-to-understand and easy-to-debug. It builds on small composable tools to achieve its goal and therefore is easy to think about.
-
-Finally, for the fans of GitOps, kapp-controller turns [kapp](/kapp) into your _continuous_ cluster reconciler.
+#### Reliable and ready for production!
+kapp-controller has been hardened and is in use on production Kubernetes clusters. Learn more through [case studies](/blog/casestudy-modernizing-the-us-army) on our blog.

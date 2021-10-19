@@ -195,3 +195,7 @@ Controlling how diffing is done:
 - `--diff-against-last-applied=bool` (default `false`) forces kapp to use particular diffing strategy (see above)
 - `--diff-run=bool` (default `false`) stops after showing diff information
 - `--diff-exit-status=bool` (default `false`) controls exit status for diff runs (`0`: unused, `1`: any error, `2`: no changes, `3`: pending changes)
+
+Diff filter allows to filter changes based on operation (add/update/delete), newResource (configuration provided to kapp) and existingResource (resources in Kubernetes cluster)
+
+- `--diff-filter='{"and":[{"ops":["update"]},{"existingResource":{"kinds":["Deployment"]}]}'` will keep the resources which are getting updated and were of kind Deployment.

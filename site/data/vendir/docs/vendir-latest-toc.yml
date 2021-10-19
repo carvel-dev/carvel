@@ -3,6 +3,8 @@ toc:
     subfolderitems:
       - page: About vendir
         url: /
+      - page: Install
+        url: /install
   - title: Reference
     subfolderitems:
       - page: Sync command

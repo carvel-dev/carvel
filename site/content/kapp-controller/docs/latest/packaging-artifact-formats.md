@@ -28,7 +28,7 @@ my-pkg/
       recommendation for the name) so that it could be easily referenced in the
       Package CR (e.g. using `ytt` template step against single directory)
 
-See [Creating a package](package-authoring.md#creating-a-package) for example creation steps.
+See [Creating a package](packaging-tutorial.md#creating-a-package) for example creation steps.
 
 ## Package Repository Bundle
 
@@ -61,5 +61,5 @@ my-pkg-repo/
       directory
     - Always have a PackageMetadata CR if you have Package CRs
 
-See [Creating a Package Repository](package-authoring.md#creating-a-package-repository) for example creation steps.
+See [Creating a Package Repository](packaging-tutorial.md#creating-a-package-repository) for example creation steps.
 

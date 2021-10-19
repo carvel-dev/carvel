@@ -80,6 +80,9 @@ For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deploym
      - `[existing, new]` – If field value is present in the `existing` resource on cluster, use that value, otherwise use the value in the `new` user input.
      - `[existing]` – Only look for field values in resources already on cluster, corresponding value you provide in new resource will be overwritten.
   - `resourceMatchers` (array) specifies rules to find matching resources. See various resource matchers below.
+  - `ytt` specifies choice as [ytt](https://carvel.dev/ytt/) for rebase rule. Available in v0.38.0+.
+    - `overlayContractV1` allows to use ytt overlay to modify provided resource based on existing resource. 
+      - `overlay.yml` overlay YAML file. 
   
 Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
 ```yaml
@@ -102,6 +105,8 @@ rebaseRules:
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
+
+See [ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154) (included in default configuration) for retaining cluster added token secret in ServiceAccount's secrets array.
 
 ### ownershipLabelRules
 

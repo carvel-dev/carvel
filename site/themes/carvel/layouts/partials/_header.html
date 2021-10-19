@@ -51,7 +51,10 @@
 {{ $info := (index .Site.Params .Section) }}
 <header class="subproject-specific">
 	<div class="wrapper">
-		<a href="{{ $info.root_link }}" class="text-logo">{{ $info.name }}</a>
+		<a href="{{ $info.root_link }}" class="text-logo">
+			<span class="long">{{ $info.name }}</span>
+			<span class="short">{{ $info.short_name }}</span>
+		</a>
 		<ul class="desktop-links">
 			<li><a href="{{ $info.root_link }}" {{ if (eq .RelPermalink $info.root_link) }}class="active"{{ end }}>{{ $info.name }} Overview</a></li>
 			<li><a href="{{ $info.latest_docs_link }}" {{ if (eq  .RelPermalink $info.latest_docs_link) }}class="active"{{ end }}>Documentation</a></li>

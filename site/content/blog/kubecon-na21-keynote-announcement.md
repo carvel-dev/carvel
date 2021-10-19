@@ -8,7 +8,7 @@ image: /img/logo.svg
 tags: ['Helen']
 ---
 
-We're thrilled to share [Carvel on the keynote stage](https://sched.co/lVEN) with the global cloud native audience. Whether you're attending virtually or in-person, you'll hear from Shatarupa Nandi covering the tool suite with a demo included on October 15, 2021, at 9:40am PDT.
+We're thrilled to share [Carvel on the keynote stage](https://sched.co/ocSC) with the global cloud native audience. Whether you're attending virtually or in-person, you'll hear from Shatarupa Nandi covering the tool suite with a demo included on October 15, 2021, at 9:40am PDT.
 
 
 ## Keynote Abstract
