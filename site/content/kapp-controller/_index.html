@@ -96,7 +96,7 @@ spec:
 
 <p>Install <a href="https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/rbac/default-ns.yml">
     our default-ns-rbac example</a>. It creates the default-ns-sa service account that allows us to change any
-  resource in the default namespace. This will be used by the App CR below.</p>
+  resource in the default namespace. It used as the serviceAccountName in the app spec above.</p>
 {{< highlight  bash "">}}
   $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
 {{< / highlight>}}
