@@ -1,10 +1,10 @@
 ## Creating a Package Repository
 
-A [package repository bundle](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository-bundle-format)
+A [package repository](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository)
 is a collection of packages (more specifically a collection of Package and PackageMetadata CRs).
-Currently, our recommended way to make a package repository is via an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle).
+Our recommended way to make a package repository is via an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle).
 
-The [PackageRepository bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository-bundle-format) describes purpose of each directory and general recommendations.
+The [PackageRepository bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) describes purpose of each directory and general recommendations.
 
 Lets start by creating the needed directories:
 

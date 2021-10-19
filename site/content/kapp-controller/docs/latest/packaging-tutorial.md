@@ -1,5 +1,5 @@
 ---
-title: Package Management Tutorial
+title: "Tutorial: Create and Install a Package"
 ---
 
 [//]: # (Generated from katacoda content using 'carvel/tutorials/copy-katacoda-to-static.sh')
@@ -167,7 +167,7 @@ EOF
 We'll create an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle)
 that contains the package contents: the configuration (config.yml and values.yml from the previous step) and a reference to the greeter app image (docker.io/dkalinin/k8s-simple-app@sha256:...).
 
-The [package bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-bundle-format) describes the purpose of each directory 
+The [package bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-contents-bundle) describes the purpose of each directory 
 used in this section of the tutorial as well as general recommendations.
 
 Let's create a directory with our configuration files:
@@ -309,11 +309,11 @@ There will also be validations run on the Package CR, so ensure that spec.refNam
 These validations are done to encourage a naming scheme that keeps package version names unique.
 ## Creating a Package Repository
 
-A [package repository bundle](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository-bundle-format)
+A [package repository](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository)
 is a collection of packages (more specifically a collection of Package and PackageMetadata CRs).
-Currently, our recommended way to make a package repository is via an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle).
+Our recommended way to make a package repository is via an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle).
 
-The [PackageRepository bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository-bundle-format) describes purpose of each directory and general recommendations.
+The [PackageRepository bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) describes purpose of each directory and general recommendations.
 
 Lets start by creating the needed directories:
 
@@ -374,8 +374,7 @@ EOF
 ```
 
 (See our
-[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/package-consumption/#adding-package-repository) examples for more typical
-use-case against an external repository.)
+[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/private-registry-auth) for more typical usage with an external repository.)
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `${REPO_HOST}/packages/my-pkg-repo:1.0.0` imgpkg bundle, which we
@@ -484,6 +483,4 @@ curl localhost:3000
 
 Visit [carvel.dev](https://carvel.dev/) to learn more about Carvel tools.
 
-See the full docs for kapp-controller's Package [authoring](https://carvel.dev/kapp-controller/docs/latest/package-authoring/) and
-Package
-[consumption](https://carvel.dev/kapp-controller/docs/latest/package-consumption/).
+See the full docs for [Package Management with kapp-controller](https://carvel.dev/kapp-controller/docs/latest/packaging/)

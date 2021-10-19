@@ -480,6 +480,10 @@
         border: 1px solid $lightgrey;
         padding: 20px;
     }
+    img[alt="CReATE"] {
+        margin: 40px auto;
+        width: 400px;
+    }
 }
 
 .resources {
@@ -574,5 +578,7 @@
     }
     img {
         max-width: 100%;
+        display: block;
+        margin: 0 auto;
     }
 }

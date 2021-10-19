@@ -55,7 +55,6 @@ We recommend:
 If you would like to read more about Package Management APIs, check out the following resources:
 
 * [Overview of the APIs and Terminology](/kapp-controller/docs/latest/packaging/)
-* [Start creating your package](/kapp-controller/docs/latest/package-authoring/)
 * [Helpful workflows](/kapp-controller/#examples) to help you get started
 
 In the next few months, we will also share a set of packages that you will be able to install on your Kubernetes cluster directly.
