@@ -147,7 +147,7 @@ Diff summary shows quick information about what's being changed:
       <small>Example</small>   
     </summary>
   
-    ###### Example
+    ###### Sample config
     ```yaml
     ---
     apiVersion: v1
@@ -157,8 +157,10 @@ Diff summary shows quick information about what's being changed:
     stringData:
       foo: bar
     ```
-    ```bash
+    ```markdown
     $ kapp deploy -a brahmos -f config.yaml --diff-summary=true 
+    ```
+    ```bash
     Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
     
     Changes
@@ -171,17 +173,17 @@ Diff summary shows quick information about what's being changed:
     
     Continue? [yN]: 
     ```
-    
   </details>
 Diff changes (line-by-line diffs) are useful for looking at actual changes:
-
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
 - `--diff-context=int` (default `2`) controls number of lines to show around changed lines
 - `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
   <details>
-    <summary><small>Example</small></summary>
-    
-    ###### Example
+    <summary>
+      <small>Example</small>   
+    </summary>
+
+    ###### Sample config
     ```yaml
     ---
     apiVersion: v1
@@ -191,7 +193,7 @@ Diff changes (line-by-line diffs) are useful for looking at actual changes:
     stringData:
       foo: barbar
     ```
-    ```bash
+    ```markdown
     $ kapp deploy -a brahmos -f config.yaml --diff-changes=true
     ```
     ```bash
@@ -213,6 +215,7 @@ Diff changes (line-by-line diffs) are useful for looking at actual changes:
     Wait to: 1 reconcile, 0 delete, 0 noop
     
     Continue? [yN]:
+    ```
   </details>
 
 Controlling how diffing is done:
