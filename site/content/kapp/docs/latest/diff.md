@@ -146,7 +146,8 @@ Diff summary shows quick information about what's being changed:
     <summary>
       <small>Example</small>   
     </summary>
-
+  
+    ###### Example
     ```yaml
     ---
     apiVersion: v1
@@ -175,9 +176,12 @@ Diff summary shows quick information about what's being changed:
 Diff changes (line-by-line diffs) are useful for looking at actual changes:
 
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
+- `--diff-context=int` (default `2`) controls number of lines to show around changed lines
+- `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
   <details>
     <summary><small>Example</small></summary>
-  
+    
+    ###### Example
     ```yaml
     ---
     apiVersion: v1
@@ -190,10 +194,26 @@ Diff changes (line-by-line diffs) are useful for looking at actual changes:
     ```bash
     $ kapp deploy -a brahmos -f config.yaml --diff-changes=true
     ```
-  ![diff changes](/images/kapp/diff-changes.png)
+    ```bash
+    Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+    
+    @@ update secret/sample (v1) namespace: default @@
+    ...
+    32, 32   stringData:
+    33     -   foo: <-- value not shown (#1)
+    33 +   foo: <-- value not shown (#2)
+    34, 34
+
+    Changes
+    
+    Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+    default    sample  Secret  -       13d  update  -       reconcile  ok  -
+    
+    Op:      0 create, 0 delete, 1 update, 0 noop
+    Wait to: 1 reconcile, 0 delete, 0 noop
+    
+    Continue? [yN]:
   </details>
-- `--diff-context=int` (default `2`) controls number of lines to show around changed lines
-- `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
 
 Controlling how diffing is done:
 
