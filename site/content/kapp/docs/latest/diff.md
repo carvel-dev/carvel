@@ -1,7 +1,6 @@
 ---
 title: Diff stage
 ---
-
 ## Overview
 
 kapp compares resources specified in files against resources that exist in Kubernetes API. Once change set is calculated, it provides an option to apply it (see [Apply](apply.md) section for further details).
@@ -141,82 +140,74 @@ Possible values: "" (empty). In some cases it's not possible or wanted to record
 
 Diff summary shows quick information about what's being changed:  
 - `--diff-summary=bool` (default `true`) shows diff summary, listing how resources have changed
-  
-  <details>
-    <summary>
-      <small>Example</small>   
-    </summary>
-  
-    ###### Sample config
-    ```yaml
-    ---
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: sample
-    stringData:
-      foo: bar
-    ```
-    ```markdown
-    $ kapp deploy -a brahmos -f config.yaml --diff-summary=true 
-    ```
-    ```bash
-    Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
-    
-    Changes
-    
-    Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-    default    sample  Secret  -       -    create  -       reconcile  -   -  
-    
-    Op:      1 create, 0 delete, 0 update, 0 noop
-    Wait to: 1 reconcile, 0 delete, 0 noop
-    
-    Continue? [yN]: 
-    ```
-  </details>
+   {{< detail-tag "Example" >}}
+Sample config
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample
+stringData:
+  foo: bar
+```
+```bash
+$ kapp deploy -a sample_secret -f config.yaml --diff-summary=true 
+```
+```bash
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+
+Changes
+
+Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    sample  Secret  -       -    create  -       reconcile  -   -  
+
+Op:      1 create, 0 delete, 0 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+Continue? [yN]: 
+```
+    {{< /detail-tag >}}
+
 Diff changes (line-by-line diffs) are useful for looking at actual changes:
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
 - `--diff-context=int` (default `2`) controls number of lines to show around changed lines
 - `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
-  <details>
-    <summary>
-      <small>Example</small>   
-    </summary>
+    {{< detail-tag "Example" >}}
+Sample config
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample
+stringData:
+  foo: barbar
+```
+```bash
+$ kapp deploy -a sample_secret -f config.yaml --diff-changes=true
+```
+```bash
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
-    ###### Sample config
-    ```yaml
-    ---
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: sample
-    stringData:
-      foo: barbar
-    ```
-    ```markdown
-    $ kapp deploy -a brahmos -f config.yaml --diff-changes=true
-    ```
-    ```bash
-    Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
-    
-    @@ update secret/sample (v1) namespace: default @@
-    ...
-    32, 32   stringData:
-    33     -   foo: <-- value not shown (#1)
-    33 +   foo: <-- value not shown (#2)
-    34, 34
+@@ update secret/sample (v1) namespace: default @@
+...
+32, 32   stringData:
+33     -   foo: <-- value not shown (#1)
+33 +   foo: <-- value not shown (#2)
+34, 34
 
-    Changes
-    
-    Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-    default    sample  Secret  -       13d  update  -       reconcile  ok  -
-    
-    Op:      0 create, 0 delete, 1 update, 0 noop
-    Wait to: 1 reconcile, 0 delete, 0 noop
-    
-    Continue? [yN]:
-    ```
-  </details>
+Changes
+
+Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    sample  Secret  -       13d  update  -       reconcile  ok  -
+
+Op:      0 create, 0 delete, 1 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+Continue? [yN]:
+```
+    {{< /detail-tag >}}
 
 Controlling how diffing is done:
 
