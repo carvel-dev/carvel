@@ -152,7 +152,7 @@ stringData:
   foo: bar
 ```
 ```bash
-$ kapp deploy -a sample_secret -f config.yaml --diff-summary=true 
+$ kapp deploy -a sample-secret -f config.yaml --diff-summary=true
 ```
 ```bash
 Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
@@ -169,12 +169,12 @@ Continue? [yN]:
 ```
     {{< /detail-tag >}}
 
-Diff changes (line-by-line diffs) are useful for looking at actual changes:
+Diff changes (line-by-line diffs) are useful for looking at actual changes, when app is re-deployed:
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
 - `--diff-context=int` (default `2`) controls number of lines to show around changed lines
 - `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
     {{< detail-tag "Example" >}}
-Sample config
+Update the config
 ```yaml
 ---
 apiVersion: v1
@@ -185,27 +185,30 @@ stringData:
   foo: barbar
 ```
 ```bash
-$ kapp deploy -a sample_secret -f config.yaml --diff-changes=true
+# re-deploy sample-secret app 
+$ kapp deploy -a sample-secret -f config.yaml --diff-mask=true --diff-changes=true --diff-context=4
 ```
 ```bash
 Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
 @@ update secret/sample (v1) namespace: default @@
-...
-32, 32   stringData:
-33     -   foo: <-- value not shown (#1)
-33 +   foo: <-- value not shown (#2)
-34, 34
+  ...
+ 30, 30     resourceVersion: "244751"
+ 31, 31     uid: b2453c2a-8dc8-4ed1-9b59-791547f78ea8
+ 32, 32   stringData:
+ 33     -   foo: <-- value not shown (#1)
+     33 +   foo: <-- value not shown (#2)
+ 34, 34   
 
 Changes
 
 Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-default    sample  Secret  -       13d  update  -       reconcile  ok  -
+default    sample  Secret  -       7m   update  -       reconcile  ok  -  
 
 Op:      0 create, 0 delete, 1 update, 0 noop
 Wait to: 1 reconcile, 0 delete, 0 noop
 
-Continue? [yN]:
+Continue? [yN]: 
 ```
     {{< /detail-tag >}}
 
