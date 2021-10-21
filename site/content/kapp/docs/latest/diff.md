@@ -134,7 +134,8 @@ Try deploying [redis-with-configmap example](https://github.com/vmware-tanzu/car
 
 kapp, by default, records the resource copy into its annotation `kapp.k14s.io/original` while applying the resource to the cluster. 
 
-Example:
+{{< detail-tag "Example" >}}
+Sample config
 ```yaml
 ---
 apiVersion: v1
@@ -158,10 +159,40 @@ metadata:
 data:
   foo: bar
 ```
+{{< /detail-tag >}}
 
 `kapp.k14s.io/disable-original` annotation controls whether to record provided resource copy (rarely wanted)
 
 Possible values: "" (empty). In some cases it's not possible or wanted to record applied resource copy into its annotation `kapp.k14s.io/original`. One such case might be when resource is extremely lengthy (e.g. long ConfigMap or CustomResourceDefinition) and will exceed annotation value max length of 262144 bytes.
+
+{{< detail-tag "Example" >}}
+Sample config
+```yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-1
+  namespace: default
+  annotations:
+    kapp.k14s.io/disable-original: ""
+data:
+  foo: bar
+```
+After deploying the resource, kapp didn't add the annotation `kapp.k14s.io/original` this time:
+
+```bash
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-1
+  namespace: default
+  annotations:
+    kapp.k14s.io/disable-original: ""
+data:
+  foo: bar
+```
+{{< /detail-tag >}}
 
 ---
 ## Controlling diff via deploy flags
