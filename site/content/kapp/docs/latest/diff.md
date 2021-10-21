@@ -100,7 +100,7 @@ spec:
                   name: special-config
                   key: special.how
 ```
-Here we have specified the configuration rules that will update the ConfigMap object reference in resources of Kind Deployment. Here `ConfigMap` is marked as versioned so anytime there is an update it will create a new resource with name `{special-config}-ver-{n}` and update the same name in resource of kind `Deployment` under `configMapKeyRef`.
+Here we have specified the configuration rules that will update the ConfigMap object reference in resources of Kind Deployment. Here `ConfigMap` special-config is marked as versioned so anytime there is an update it will create a new resource with name `special-config-ver-{n}` and update the same name in resource of kind `Deployment` under `configMapKeyRef`. This example is part of [default configuration rule](https://github.com/vmware-tanzu/carvel-kapp/blob/28b17b775558ef4c64ce27a5655b81c00c8a2f59/pkg/kapp/config/default.go#L299) that kapp follows.
 
 As of v0.38.0+, `kapp.k14s.io/versioned-keep-original` annotation can be used in conjunction with `kapp.k14s.io/versioned` to have the original resource (resource without `-ver-{n}` suffix in name) along with versioned resource.
 
