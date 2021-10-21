@@ -153,8 +153,6 @@ stringData:
 ```
 ```bash
 $ kapp deploy -a sample-secret -f config.yaml --diff-summary=true
-```
-```bash
 Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
 Changes
@@ -185,10 +183,9 @@ stringData:
   foo: barbar
 ```
 ```bash
+
 # re-deploy sample-secret app 
-$ kapp deploy -a sample-secret -f config.yaml --diff-mask=true --diff-changes=true --diff-context=4
-```
-```bash
+$ kapp deploy -a sample-secret -f config.yaml --diff-changes=true --diff-context=4
 Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
 @@ update secret/sample (v1) namespace: default @@
@@ -209,11 +206,99 @@ Op:      0 create, 0 delete, 1 update, 0 noop
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: 
+
+# --diff-mask=true by default, note the masked value for secret data
+
+# try out kapp deploy -a sample-secret -f config.yaml --diff-mask=false --diff-changes=true --diff-context=2
 ```
     {{< /detail-tag >}}
 
 Controlling how diffing is done:
 
-- `--diff-against-last-applied=bool` (default `false`) forces kapp to use particular diffing strategy (see above)
-- `--diff-run=bool` (default `false`) stops after showing diff information
+- `--diff-against-last-applied=bool` (default `false`) forces kapp to use particular diffing strategy (see above). When this flag is true, kapp will diff against a "valid" copy of last applied resource, if it is present, instead of diffing against resource that is actually stored on cluster.
+  {{< detail-tag "Example" >}}
+  Sample config
+```yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-pod
+spec:
+ containers:
+   - name: nginx
+     image: nginx:1.14.1
+     ports:
+       - containerPort: 80
+```
+```bash
+# deploy pod-sample app
+$ kapp deploy -a pod-sample -f pod.yaml
+
+# update the pod spec
+...
+spec:
+ containers:
+   - name: nginx
+     image: nginx:1.14.2
+... 
+
+# re-deploy pod-sample app to update
+kapp deploy -a pod-sample -f pod.yaml --diff-against-last-applied=true -c
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+
+@@ update pod/static-web-1 (v1) namespace: default @@
+  ...
+ 87, 87     containers:
+ 88     -   - image: nginx:1.14.1
+     88 +   - image: nginx:1.14.2
+ 89, 89       name: nginx1
+ 90, 90       ports:
+
+Changes
+
+Namespace  Name          Kind  Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    static-web-1  Pod   4/4 t   22m  update  -       reconcile  ok  -  
+
+Op:      0 create, 0 delete, 1 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+Continue? [yN]:
+ 
+# above shows the diff against the last applied changes.  
+
+# try out kapp deploy -a pod-sample -f pod.yaml --diff-against-last-applied=false -c
+```
+    {{< /detail-tag >}}
+- `--diff-run=bool` (default `false`) set the flag to true, to stop after showing diff information.
 - `--diff-exit-status=bool` (default `false`) controls exit status for diff runs (`0`: unused, `1`: any error, `2`: no changes, `3`: pending changes)
+  {{< detail-tag "Example" >}}
+  Sample config
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample
+stringData:
+  foo: bar
+```
+```bash
+# deploy secret-sample app
+kapp deploy -a secret-sample -f config.yaml  --diff-run=true --diff-exit-status=true
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+
+Changes
+
+Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    sample  Secret  -       -    create  -       reconcile  -   -
+
+Op:      1 create, 0 delete, 0 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+kapp: Error: Exiting after diffing with pending changes (exit status 3)
+
+# note that kapp exits after diff and displays the exit status
+
+```
+    {{< /detail-tag >}}
