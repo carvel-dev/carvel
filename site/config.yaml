@@ -109,5 +109,9 @@ markup:
     noClasses: true
     style: github
     tabWidth: 4
+  tableOfContents:
+    endLevel: 2
+    ordered: false
+    startLevel: 2
 permalinks:
   tags: "/blog/tags/:slug"
