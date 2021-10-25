@@ -3,6 +3,8 @@ toc:
     subfolderitems:
       - page: About ytt
         url: /
+      - page: Install
+        url: /install
       - page: How it Works
         url: /how-it-works
   - title: Concepts

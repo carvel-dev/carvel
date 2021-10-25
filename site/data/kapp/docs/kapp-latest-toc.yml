@@ -3,6 +3,8 @@ toc:
     subfolderitems:
       - page: About kapp
         url: /
+      - page: Install
+        url: /install
       - page: Applications
         url: /apps
   - title: Deploy command

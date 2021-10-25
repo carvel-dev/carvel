@@ -2,6 +2,8 @@
 title: Authenticating to Private Registries
 ---
 
+## Scenario
+
 As a package consumer you may need to provide registry credentials if you are consuming package repository (and/or packages) from a registry that requires authenticated access. That may involve providing registry credentials to multiple parts of the system:
 
 1. credentials for pulling package repository bundle (via PackageRepository CR)
@@ -16,6 +18,8 @@ As a package consumer you may need to provide registry credentials if you are co
     - e.g. needed by Kafka cluster Pods created for KafkaInstance CR
 
 Providing credentials manually to each one of these parts of the system can become a hassle. kapp-controller v0.24.0+ when installed together with [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) v0.5.0+ allow package consumers and package authors to simplify such configuration.
+
+Note that if you are using an IaaS provided Kubernetes cluster already preauthenticated with an IaaS provided registry, then there is no need to provide credentials manually in the cluster. kapp-controller v0.25.0+ is able to automatically pick up provided credentials to satisfy first two bullet points above. Last two bullet points are already satisfied by the Kubernetes kubelet.
 
 ## secretgen-controller's placeholder secrets and SecretExport CR
 
@@ -38,7 +42,7 @@ secretgen-controller will populate placeholder Secrets with a combined registry 
 
 Known limitation: Currently Secrets with type `kubernetes.io/dockerconfigjson` do not allow specifying multiple credentials for the same domain, hence you cannot provide multiple credentials for the same registry.
 
-[!!! Warning !!!] Since SecretExport CR allows you to export registry credentials to other namespaces, they will become visible to users of such namespaces. We **strongly recommend** to ensure that registry credentials you are exporting only allow read-only access to the registry.
+**Warning** Since SecretExport CR allows you to export registry credentials to other namespaces, they will become visible to users of such namespaces. We **strongly recommend** to ensure that registry credentials you are exporting only allow read-only access to the registry and are minimally scoped within the registry.
 
 ## kapp-controller CRs and placeholder secrets
 
@@ -71,6 +75,7 @@ Note: `e30K` is base64 encoded `{}`. Valid `.dockerconfigjson` value is required
 
 If you are an owner of an operator, similar to the above section, we encourage you to create a placeholder secret for Pods (or other resources that consume image pull secrets) that may be created by your operator in other namespaces. More general operator packaging docs will come soon.
 
+---
 ## Bringing it all together
 
 - Ensure kapp-controller v0.24.0+ is installed

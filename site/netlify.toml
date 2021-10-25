@@ -55,6 +55,6 @@ HUGO_ENABLEGITINFO = "true"
 
 [[redirects]]
   from = "https://carvel.dev/kubecon"
-  to = "https://carvel.dev/kapp-controller"
+  to = "https://carvel.dev/blog/kubecon-na21-keynote-blog/"
   status = 302
   force = true

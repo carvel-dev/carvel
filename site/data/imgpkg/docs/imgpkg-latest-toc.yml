@@ -3,6 +3,8 @@ toc:
     subfolderitems:
       - page: About imgpkg
         url: /
+      - page: Install
+        url: /install
   - title: Workflows
     subfolderitems:
       - page: Basic workflow
@@ -23,3 +25,7 @@ toc:
     subfolderitems:
       - page: Security
         url: /security
+      - page: CA Certs on Windows
+        url: /ca-certs-windows
+      - page: Debugging
+        url: /debugging

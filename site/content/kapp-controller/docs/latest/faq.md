@@ -2,12 +2,7 @@
 title: FAQ
 ---
 
-This documentation covers frequently asked questions for kapp-controller. It is
-divided into three sections: [App Developer](#app-developer), [Package
-Author](#package-author), and [Package Consumer](#package-consumer).  This is
-done to organize questions based on how users are working with kapp-controller.
-
-## App Developer
+## App CR
 
 This section covers questions for users directly using the [App](app-spec.md)
 custom resource.
@@ -20,20 +15,15 @@ or fiddle with spec.syncPeriod ([example](
 https://github.com/vmware-tanzu/carvel-kapp-controller/blob/d94984a77fa907ac5ecc681e9a842b9877766a6b/test/e2e/app_secret_configmap_reconcile_test.go#L133)), which
 defaults to 30 seconds.
 
+### How can I tell which version of kapp-controller is installed?
 
-## Package Author
+kapp-controller sets the annotation `kapp-controller.carvel.dev/version` on the deployment to the version deployed,
+so e.g. `kubectl describe deployment kapp-controller -n kapp-controller | grep version` will show the installed version.
 
-This section covers questions for users packaging software for Kubernetes. More
-details on this package author workflow can be found under the [Package
-Author](package-authoring.md) documentation.
+## Package Management CRs
 
-None available at this time.
-
-## Package Consumer
-
-This section covers questions for users installing software packages for
-Kubernetes. More details on this package consumer workflow can be found under
-the [Package Consumer](package-consumption.md) documentation.
+This section covers questions for users directly using the [Package Management CRs](packaging.md)
+custom resource.
 
 ### How does kapp-controller handle PackageInstall when a PackageRepository is removed from the cluster?
 
