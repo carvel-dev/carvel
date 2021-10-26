@@ -172,7 +172,7 @@ Diff changes (line-by-line diffs) are useful for looking at actual changes, when
 - `--diff-context=int` (default `2`) controls number of lines to show around changed lines
 - `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
     {{< detail-tag "Example" >}}
-Update the config
+Sample config
 ```yaml
 ---
 apiVersion: v1
@@ -180,11 +180,19 @@ kind: Secret
 metadata:
   name: sample
 stringData:
-  foo: barbar
+  foo: bar
 ```
 ```bash
+# deploy sample-secre app
+$ kapp deploy -a sample-secret -f config.yaml
 
-# re-deploy sample-secret app 
+#update config
+...
+stringData:
+  foo: bars
+...
+
+# re-deploy sample-secret app with required diff-changes flag to see line by line changes 
 $ kapp deploy -a sample-secret -f config.yaml --diff-changes=true --diff-context=4
 Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
@@ -215,74 +223,7 @@ Continue? [yN]:
 
 Controlling how diffing is done:
 
-- `--diff-against-last-applied=bool` (default `false`) forces kapp to use particular diffing strategy (see above). When this flag is true, kapp will diff against a "valid" copy of last applied resource, if it is present, instead of diffing against resource that is actually stored on cluster.
-  {{< detail-tag "Example" >}}
-  Sample config
-```yaml
-# update volumes and volumeMounts as per your cluster 
----
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: nginx-pod
-     namespace: default
-   spec:
-     containers:
-       - image: nginx:1.14.1
-         name: nginx
-         ports:
-           - containerPort: 80
-         volumeMounts:
-           - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-             name: default-token-8qfmn
-             readOnly: true
-     serviceAccount: default
-     activeDeadlineSeconds: 9999
-     serviceAccountName: default
-     volumes:
-       - name: default-token-8qfmn
-         secret:
-           defaultMode: 420
-           secretName: default-token-8qfmn
-```
-```bash
-# deploy pod-sample app
-$ kapp deploy -a pod-sample -f pod.yaml
-
-# update the pod spec
-...
-     serviceAccount: default
-     activeDeadlineSeconds: 9998
-     serviceAccountName: default
-... 
-
-# re-deploy pod-sample app to update
-kapp deploy -a pod-sample -f pod.yaml --diff-against-last-applied=true -c
-Target cluster 'https://127.0.0.1:61454' (nodes: minikube)
-
-@@ update pod/nginx-pod (v1) namespace: default @@
-  ...
-105,105   spec:
-106     -   activeDeadlineSeconds: 9999
-    106 +   activeDeadlineSeconds: 9998
-107,107     containers:
-108,108     - image: nginx:1.14.1
-
-Changes
-
-Namespace  Name       Kind  Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-default    nginx-pod  Pod   4/4 t   27s  update  -       reconcile  ok  -  
-
-Op:      0 create, 0 delete, 1 update, 0 noop
-Wait to: 1 reconcile, 0 delete, 0 noop
-
-Continue? [yN]: 
- 
-# above shows the diff against the last applied changes.  
-
-# try out kapp deploy -a pod-sample -f pod.yaml --diff-against-last-applied=false -c
-```
-    {{< /detail-tag >}}
+- `--diff-against-last-applied=bool` (default `true`) forces kapp to use particular diffing strategy (see above).
 - `--diff-run=bool` (default `false`) set the flag to true, to stop after showing diff information.
 - `--diff-exit-status=bool` (default `false`) controls exit status for diff runs (`0`: unused, `1`: any error, `2`: no changes, `3`: pending changes)
   {{< detail-tag "Example" >}}
@@ -298,7 +239,7 @@ stringData:
 ```
 ```bash
 # deploy secret-sample app
-kapp deploy -a secret-sample -f config.yaml  --diff-run=true --diff-exit-status=true
+$ kapp deploy -a secret-sample -f config.yaml  --diff-run=true --diff-exit-status=true
 Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
 Changes
