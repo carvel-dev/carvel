@@ -219,17 +219,31 @@ Controlling how diffing is done:
   {{< detail-tag "Example" >}}
   Sample config
 ```yaml
+# update volumes and volumeMounts as per your cluster 
 ---
-apiVersion: v1
-kind: Pod
-metadata:
- name: nginx-pod
-spec:
- containers:
-   - name: nginx
-     image: nginx:1.14.1
-     ports:
-       - containerPort: 80
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: nginx-pod
+     namespace: default
+   spec:
+     containers:
+       - image: nginx:1.14.1
+         name: nginx
+         ports:
+           - containerPort: 80
+         volumeMounts:
+           - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+             name: default-token-8qfmn
+             readOnly: true
+     serviceAccount: default
+     activeDeadlineSeconds: 9999
+     serviceAccountName: default
+     volumes:
+       - name: default-token-8qfmn
+         secret:
+           defaultMode: 420
+           secretName: default-token-8qfmn
 ```
 ```bash
 # deploy pod-sample app
@@ -237,33 +251,32 @@ $ kapp deploy -a pod-sample -f pod.yaml
 
 # update the pod spec
 ...
-spec:
- containers:
-   - name: nginx
-     image: nginx:1.14.2
+     serviceAccount: default
+     activeDeadlineSeconds: 9998
+     serviceAccountName: default
 ... 
 
 # re-deploy pod-sample app to update
 kapp deploy -a pod-sample -f pod.yaml --diff-against-last-applied=true -c
-Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+Target cluster 'https://127.0.0.1:61454' (nodes: minikube)
 
-@@ update pod/static-web-1 (v1) namespace: default @@
+@@ update pod/nginx-pod (v1) namespace: default @@
   ...
- 87, 87     containers:
- 88     -   - image: nginx:1.14.1
-     88 +   - image: nginx:1.14.2
- 89, 89       name: nginx1
- 90, 90       ports:
+105,105   spec:
+106     -   activeDeadlineSeconds: 9999
+    106 +   activeDeadlineSeconds: 9998
+107,107     containers:
+108,108     - image: nginx:1.14.1
 
 Changes
 
-Namespace  Name          Kind  Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-default    static-web-1  Pod   4/4 t   22m  update  -       reconcile  ok  -  
+Namespace  Name       Kind  Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    nginx-pod  Pod   4/4 t   27s  update  -       reconcile  ok  -  
 
 Op:      0 create, 0 delete, 1 update, 0 noop
 Wait to: 1 reconcile, 0 delete, 0 noop
 
-Continue? [yN]:
+Continue? [yN]: 
  
 # above shows the diff against the last applied changes.  
 
