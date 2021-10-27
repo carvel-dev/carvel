@@ -64,6 +64,13 @@ a {
     color: $blue;
     font-family: $metropolis-medium;
 }
+
+summary {
+  text-decoration: underline;
+  color: $blue;
+  cursor: pointer;
+}
+
 hr {
     margin: 30px 0;
     border-width: 1px 0 0;
