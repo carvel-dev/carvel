@@ -140,7 +140,7 @@ spec:
   # currently running reconciliation (optional; default=false)
   paused: true
   # specifies the length of time to wait, in time + unit
-  # format, before reconciling.(optional; default=5m)
+  # format, before reconciling.(optional; default=10m)
   syncPeriod: 1m
   # Must have only one directive.
   fetch:
