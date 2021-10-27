@@ -184,7 +184,7 @@ Taking each annotation in turn:
   - has a **map item** to its left, and so attaches to _that_ node.
   - there _is_ another **map item** below it (i.e. `bar: true`), but a home has already been found for this annotation.
     
-#### Example: Annotation an Array
+#### Example: Annotating an Array
 
 When an **array item** contains a **map**, it can be tricky to know which item a particular annotation attaches to.
 
