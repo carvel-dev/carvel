@@ -1,7 +1,6 @@
 ---
 title: Diff stage
 ---
-
 ## Overview
 
 kapp compares resources specified in files against resources that exist in Kubernetes API. Once change set is calculated, it provides an option to apply it (see [Apply](apply.md) section for further details).
@@ -194,21 +193,124 @@ data:
 ---
 ## Controlling diff via deploy flags
 
-Diff summary shows quick information about what's being changed:
-
+Diff summary shows quick information about what's being changed:  
 - `--diff-summary=bool` (default `true`) shows diff summary, listing how resources have changed
+   {{< detail-tag "Example" >}}
+Sample config
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample
+stringData:
+  foo: bar
+```
+```bash
+$ kapp deploy -a sample-secret -f config.yaml --diff-summary=true
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
 
-Diff changes (line-by-line diffs) are useful for looking at actual changes:
+Changes
 
+Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    sample  Secret  -       -    create  -       reconcile  -   -  
+
+Op:      1 create, 0 delete, 0 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+Continue? [yN]: 
+```
+    {{< /detail-tag >}}
+
+Diff changes (line-by-line diffs) are useful for looking at actual changes, when app is re-deployed:
 - `--diff-changes=bool` (`-c`) (default `false`) shows line-by-line diffs
 - `--diff-context=int` (default `2`) controls number of lines to show around changed lines
 - `--diff-mask=bool` (default `true`) controls whether to mask sensitive fields
+    {{< detail-tag "Example" >}}
+Sample config
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample
+stringData:
+  foo: bar
+```
+```bash
+# deploy sample-secre app
+$ kapp deploy -a sample-secret -f config.yaml
+
+#update config
+...
+stringData:
+  foo: bars
+...
+
+# re-deploy sample-secret app with required diff-changes flag to see line by line changes 
+$ kapp deploy -a sample-secret -f config.yaml --diff-changes=true --diff-context=4
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+
+@@ update secret/sample (v1) namespace: default @@
+  ...
+ 30, 30     resourceVersion: "244751"
+ 31, 31     uid: b2453c2a-8dc8-4ed1-9b59-791547f78ea8
+ 32, 32   stringData:
+ 33     -   foo: <-- value not shown (#1)
+     33 +   foo: <-- value not shown (#2)
+ 34, 34   
+
+Changes
+
+Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    sample  Secret  -       7m   update  -       reconcile  ok  -  
+
+Op:      0 create, 0 delete, 1 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+Continue? [yN]: 
+
+# --diff-mask=true by default, note the masked value for secret data
+
+# try out kapp deploy -a sample-secret -f config.yaml --diff-mask=false --diff-changes=true --diff-context=2
+```
+    {{< /detail-tag >}}
 
 Controlling how diffing is done:
 
-- `--diff-against-last-applied=bool` (default `false`) forces kapp to use particular diffing strategy (see above)
-- `--diff-run=bool` (default `false`) stops after showing diff information
+- `--diff-against-last-applied=bool` (default `true`) forces kapp to use particular diffing strategy (see above).
+- `--diff-run=bool` (default `false`) set the flag to true, to stop after showing diff information.
 - `--diff-exit-status=bool` (default `false`) controls exit status for diff runs (`0`: unused, `1`: any error, `2`: no changes, `3`: pending changes)
+  {{< detail-tag "Example" >}}
+  Sample config
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample
+stringData:
+  foo: bar
+```
+```bash
+# deploy secret-sample app
+$ kapp deploy -a secret-sample -f config.yaml  --diff-run=true --diff-exit-status=true
+Target cluster 'https://127.0.0.1:56540' (nodes: kind-control-plane)
+
+Changes
+
+Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
+default    sample  Secret  -       -    create  -       reconcile  -   -
+
+Op:      1 create, 0 delete, 0 update, 0 noop
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+kapp: Error: Exiting after diffing with pending changes (exit status 3)
+
+# note that kapp exits after diff and displays the exit status
+
+```
+    {{< /detail-tag >}}
 
 Diff filter allows to filter changes based on operation (add/update/delete), newResource (configuration provided to kapp) and existingResource (resources in Kubernetes cluster)
 
