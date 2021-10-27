@@ -21,6 +21,8 @@ toc:
         url: /commands
       - page: Working directly with images
         url: /working-directly-with-images
+      - page: Proxy
+        url: /proxy
   - title: FAQ
     subfolderitems:
       - page: Security
