@@ -57,7 +57,7 @@ Notes:
 - `encode()` cannot encode functions nor [YAML Fragments](lang-ref-yaml-fragment.md). If you wish to make a struct that
  contains attributes that hold these types, consider [`make()`](#structmake).
 
-### Example 1: Data structure from a dictionary
+### Example: Data structure from a dictionary
 
 ```python
 load("@ytt:struct", "struct")
@@ -68,33 +68,6 @@ d.a[3].c   # <== 456
 bar["b"]   # <== "str"
 ```
 
-### Example 2: Collection of functions
-
-"Export" a set of functions from a library file.
-
-`urls.star`
-```python
-load("@ytt:struct", "struct")
-
-def _valid_port(port):
-...
-end
-
-def _url_encode(url):
-...
-end
-
-urls = struct.encode({"valid_port": _valid_port, "encode": _url_encode, ...})
-```
-
-```yaml
-#@ load("urls.star", "urls")
-
-#@ if/end urls.valid_port(...):
-...
-```
-
----
 ## struct.make()
 
 Instantiates a `struct` based on the key/value pairs provided.
@@ -144,13 +117,37 @@ Nested invocations of `make()` to retain dot expression access.
 ```python
 load("@ytt:struct", "struct")
 
-consts = struct.make(service=struct.make(version="0.39.0", name="prometheus"})
+consts = struct.make(service=struct.make(version="0.39.0", name="prometheus"))
 
 consts.service.version  # <== "0.39.0"
 consts.service.name     # <== "prometheus"
 ```
 See also: [`struct.encode()`](#structencode) to convert all `dict` values to `struct`s, recursively.
 
+### Example 4: Collection of functions
+
+"Export" a set of functions from a library file.
+
+`urls.star`
+```python
+load("@ytt:struct", "struct")
+
+def _valid_port(port):
+...
+end
+
+def _url_encode(url):
+...
+end
+
+urls = struct.make(valid_port= _valid_port, encode= _url_encode, ...)
+```
+```yaml
+#@ load("urls.star", "urls")
+
+#@ if/end urls.valid_port(...):
+encoded: #@ urls.encode("encode_url")
+```
 ---
 ## struct.make_and_bind()
 
