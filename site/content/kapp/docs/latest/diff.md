@@ -25,7 +25,7 @@ Related: [rebase rules](config.md/#rebaserules).
 
 In some cases it's useful to represent an update to a resource as an entirely new resource. Common example is a workflow to update ConfigMap referenced by a Deployment. Deployments do not restart their Pods when ConfigMap changes making it tricky for wide variety of applications for pick up ConfigMap changes. kapp provides a solution for such scenarios, by offering a way to create uniquely named resources based on an original resource.
 
-Anytime there is a change to a resource marked as a versioned resource, entirely new resource will be created instead of updating an existing resource. Additionally kapp follows configuration rules (default ones, and ones that can be provided as part of application) to find and update object references (since new resource name is not something that configuration author knew about).
+Anytime there is a change to a resource marked as a versioned resource, entirely new resource will be created instead of updating an existing resource.
 
 To make resource versioned, add `kapp.k14s.io/versioned` annotation with an empty value. Created resource follow `{resource-name}-ver-{n}` naming pattern by incrementing `n` any time there is a change.
 
@@ -48,6 +48,61 @@ default    secret-sa-sample-ver-1  Secret  -       -    create  -       reconcil
 Op:      1 create, 0 delete, 0 update, 0 noop
 Wait to: 1 reconcile, 0 delete, 0 noop
 ```
+
+Additionally kapp follows configuration rules (default ones, and ones that can be provided as part of application) to find and update object references (since new resource name is not something that configuration author knew about).
+
+{{< detail-tag "Example" >}}
+
+```yaml
+apiVersion: kapp.k14s.io/v1alpha1
+kind: Config
+templateRules:
+  - resourceMatchers:
+      - apiVersionKindMatcher: {apiVersion: v1, kind: ConfigMap}
+    affectedResources:
+      objectReferences:
+        - path: [spec, template, spec, containers, {allIndexes: true}, env, {allIndexes: true}, valueFrom, configMapKeyRef]
+      resourceMatchers:
+  - apiVersionKindMatcher: {apiVersion: apps/v1, kind: Deployment}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config
+  annotations:
+    kapp.k14s.io/versioned: ""
+data:
+  special.how: very-good
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          env:
+            - name: SPECIAL_LEVEL_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: special-config
+                  key: special.how
+```
+Here we have specified the configuration rules that will update the ConfigMap object reference in resources of Kind Deployment. Here `ConfigMap` special-config is marked as versioned so anytime there is an update it will create a new resource with name `special-config-ver-{n}` and update the same name in resource of kind `Deployment` under `configMapKeyRef`. This example is part of [default configuration rule](https://github.com/vmware-tanzu/carvel-kapp/blob/28b17b775558ef4c64ce27a5655b81c00c8a2f59/pkg/kapp/config/default.go#L299) that kapp follows.
+{{< /detail-tag >}}
 
 As of v0.38.0+, `kapp.k14s.io/versioned-keep-original` annotation can be used in conjunction with `kapp.k14s.io/versioned` to have the original resource (resource without `-ver-{n}` suffix in name) along with versioned resource.
 
