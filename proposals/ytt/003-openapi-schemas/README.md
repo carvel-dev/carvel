@@ -1,6 +1,6 @@
 # Generate OpenAPI Schema
 
-- Status: **Scoping** | Pre-Alpha | In Alpha | In Beta | GA | Rejected
+- Status: Scoping | **Pre-Alpha** | In Alpha | In Beta | GA | Rejected
 - Originating Issue: [ytt#103](https://github.com/vmware-tanzu/carvel-ytt/issues/103)
 
 # Problem Statement
@@ -63,11 +63,12 @@ info:
 paths: {}
 components:
   schemas:
-    type: object
-    properties:
-      namespace:
-        type: string
-        default: fluent-bit
+    dataValues:
+      type: object
+      properties:
+        namespace:
+          type: string
+          default: fluent-bit
 ```
 2. Insert the OpenAPI Schema Object into a Package via `ytt -f package.yml --data-value-file openapi=openapi.yml`
 ```yaml
@@ -78,7 +79,7 @@ components:
 kind: Package
 spec:
   valuesSchema:
-    openAPIv3:  #@ yaml.decode(data.values.openapi)["components"]["schemas"]
+    openAPIv3:  #@ yaml.decode(data.values.openapi)["components"]["schemas"]["dataValues"]
 ```
 Note: the data value is named in the command by `openapi=openapi.yml` to avoid conflicts, and since the file is read as a string the `yaml.decode()` is necessary to prevent it from being a multiline string.
 
@@ -117,22 +118,18 @@ info:
 paths: {}
 components: 
   schemas:
-    type: object # `object` is always the type for a collection
-    properties: # `properties` holds the items in the collection
-      load_balancer:
-        type: object
-        properties:
-          enabled:
-            type: boolean
-          static_ip:
-            type: string
-        required:
-          - enabled
-          - static_ip
-        additionalProperties: false # disallows any other items than those listed for this collection
-    required:
-      - load_balancer
-    additionalProperties: false
+    dataValues:
+      type: object # `object` is always the type for a collection
+      properties: # `properties` holds the items in the collection
+        load_balancer:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            static_ip:
+              type: string
+          additionalProperties: false # disallows any other items than those listed for this collection
+      additionalProperties: false
 ```
 ### OpenAPI `Schemas` object
 Some users (e.g. kapp-controller) only need the Schemas object and not an entire OpenAPI document. To make easier substitution of the output of this flag into an existing document `ytt -f . --data-values-schema-inspect -o openapi-v3-schema` outputs only the Schema Object (`components.schemas`) section of an OpenAPI Document.
@@ -172,7 +169,7 @@ Implement the export of an OpenAPI Doc that represents the equivalent of ytt's `
 
 At this point, users can start testing and using this incomplete feature.
 
-The `#@schema/doc` annotation will need to be implemented to provide the `description` key that explains what a key in a schema is.
+The `#@schema/desc` annotation will need to be implemented to provide the `description` key that explains what a key in a schema is.
 
 The `#@schema/example` annotation will need to be implemented to provide an `example` key for a key in the schema.
 
