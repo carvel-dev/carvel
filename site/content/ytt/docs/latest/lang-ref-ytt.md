@@ -120,7 +120,8 @@ url.query_param_value_encode("part part") # "part+part"
 url.query_param_value_decode("part+part") # "part part"
 
 url.query_params_encode({"x":["1"],"y":["2","3"],"z":[""]}) # "x=1&y=2&y=3&z="
-url.query_params_decode("x=1&y=2&y=3;z")                    # {"x":["1"],"y":["2","3"],"z":[""]}
+url.query_params_decode("x=1&y=2&y=3;z")    # (DEPRECATED)  # {"x":["1"],"y":["2","3"],"z":[""]} 
+url.query_params_decode("x=1&y=2&y=3&z")                    # {"x":["1"],"y":["2","3"],"z":[""]}
 
 u = url.parse("http://alice:secret@example.com")
 u.string()                 # "http://alice:secret@example.com"
@@ -129,6 +130,9 @@ u.user.password            # "secret"
 u.user.string()            # "alice:secret"
 u.without_user().string()  # "http://example.com"
 ```
+
+As of v0.38.0, including semicolons in query strings is deprecated behavior.
+Allowing semicolons in query strings can [lead to cache poisoning attacks](https://snyk.io/blog/cache-poisoning-in-popular-open-source-packages/). Authors should use ampersands (i.e. `&`) exclusively to separate parameters.
 
 ### version
 
