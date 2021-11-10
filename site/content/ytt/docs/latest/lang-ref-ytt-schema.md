@@ -244,7 +244,7 @@ where:
 
 The annotated node and its nested children are not checked by schema, and has no schema default behavior. 
 However, the annotated node and its children are simply passed-through as a data value. 
-All nested annotations are ignored.
+All nested `@schema` annotations are ignored.
 
 _Example: Using any=True to avoid schema restrictions on an array_
 ```yaml

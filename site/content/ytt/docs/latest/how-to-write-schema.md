@@ -207,7 +207,7 @@ In rare cases, a given Data Value needs allow more than one type.
 
 Currently, `ytt` Schema does not explicitly support specifying more than one type for a Data Value.
 
-In the meantime, one can mark such Data Values as having any type:
+In the meantime, one can mark such Data Values as having [`any` Type](lang-ref-ytt-schema.md#any-type):
 
 ```yaml
 #@schema/type any=True
