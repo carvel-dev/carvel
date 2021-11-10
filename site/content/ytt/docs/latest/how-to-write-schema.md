@@ -207,7 +207,7 @@ In rare cases, a given Data Value needs allow more than one type.
 
 Currently, `ytt` Schema does not explicitly support specifying more than one type for a Data Value.
 
-In the meantime, one can mark such types as having any type:
+In the meantime, one can mark such Data Values as having any type:
 
 ```yaml
 #@schema/type any=True
@@ -215,7 +215,8 @@ int_or_string: ""
 ```
 so that:
 - `int_or_string` is, by default, an empty string
-- it can accept an **integer** or a **string** ... or any other type.
+- it can accept an **integer** or a **string** ... or any other type,
+- and the value of `int_or_string` and its children is not checked by schema.
 
 If it is critical to ensure that the type of `int_or_string` to be _only_ an integer or string, one can include a validating library that does so explicitly:
 
@@ -232,7 +233,7 @@ end
 
 In certain cases, one designs a Data Value to carry a chunk of YAML whose exact type or shape is unimportant to templates.  In these situations, it is undesirable for that chunk of YAML to be type-checked.
 
-One can effectively disable type checking by marking the Data Value as of type "any":
+One can effectively disable schema type checking and defaulting by marking the Data Value as of type "any":
 
 ```yaml
 #@data/values-schema
