@@ -70,3 +70,18 @@ stringData:
   # fetching images or imgpkgBundles, will skip TLS verification. (optional)
   dangerousSkipTLSVerify: "private-registry.com,insecure-registry.com"
 ```
+
+## Config Shorthands
+
+kapp-controller currently supports a shorthand for easily adding the `KUBERNETES_SERVICE_HOST` 
+environment variable to kapp-controller's `noProxy` controller config property. This can help 
+when a Kubernetes cluster is configured with a proxy and the kapp-controller-config is created 
+with the http and https proxy URL. In this case, kapp-controller fails to communicate with the 
+Kubernetes API server.
+
+To make this configuration simpler, the `noProxy` property will interpret `KAPPCTRL_KUBERNETES_SERVICE_HOST` 
+as the value of `KUBERNETES_SERVICE_HOST` (typically 10.96.9.1) environment variable in the kapp-controller pod.
+
+```yaml
+noProxy: "github.com,docker.io,KAPPCTRL_KUBERNETES_SERVICE_HOST"
+```
