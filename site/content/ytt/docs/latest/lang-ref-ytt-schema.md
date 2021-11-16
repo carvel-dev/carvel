@@ -213,7 +213,7 @@ This results in a Data Value whose default value is `null`, but when set to a no
 
 #### `any` Type
 
-In certain cases, it may be necessary to relax any restrictions on the type or shape of a Data Value:
+In certain cases, it may be necessary to relax all restrictions on the type or shape of a Data Value:
 
 - the Data Value is a pass-through, where template(s) using it merely insert its value, but care not about the actual contents;
 - a heterogeneous array is required;
@@ -240,8 +240,21 @@ Explicitly configures the type of the annotated node. Currently, the only suppor
 ```
 
 where:
-- `any` (`bool`) — whether or not any and all types are permitted on this node (and its children).
+- `any` (`bool`) — whether or not any and all types are permitted on this node and its children.
 
+The annotated node and its nested children are not checked by schema, and has no schema default behavior. 
+However, the annotated node and its children are simply passed-through as a data value. 
+All nested `@schema` annotations are ignored.
+
+_Example: Using any=True to avoid schema restrictions on an array_
+```yaml
+#@data/values-schema
+---
+#@schema/type any=True
+app_domains:
+  - "carvel.dev"
+  - 8080
+```
 ### @schema/nullable
 
 Extends the type of the Data Value to also allow `null` _and_ sets the default value to be `null`.
