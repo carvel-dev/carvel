@@ -300,7 +300,8 @@ spec:
 EOF
 ```
 
-This Package contains some metadata fields specific to the verison, such as releaseNotes and a valuesSchema. The valuesSchema shows what configurable properties exist for the version. This will help when users want to install this package and want to know what can be configured.
+This Package contains some metadata fields specific to the version, such as releaseNotes and a valuesSchema. The valuesSchema shows what configurable properties exist for the version. This will help when users want to install this package and want to know what can be configured. Note that if you are using `ytt` for templating, you can [generate this value in OpenAPI v3 format from your ytt schema](faq.md#how-can-i-generate-the-valuesschema-from-my-ytt-schema).
+
 
 The other main component of this CR is the template section.
 This section informs kapp-controller of the actions required to install the packaged software, so take a look at the [app-spec](https://carvel.dev/kapp-controller/docs/latest/app-spec/) section to learn more about each of the template sections. For this example, we have chosen a basic setup that will fetch the imgpkg bundle we created in the previous section, run the templates stored inside through ytt, apply kbld transformations, and then deploy the resulting manifests with kapp.

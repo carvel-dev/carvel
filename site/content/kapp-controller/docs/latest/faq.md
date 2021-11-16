@@ -38,3 +38,59 @@ Even though the error above is reported, the Package will still be installed and
 should work as expected. It can also still be uninstalled by deleting the
 PackageInstall. The PackageRepository can be recreated and the PackageInstall
 will sync and reconcile without any updates needed to resolve the error.
+
+### How can I generate the valuesSchema from my ytt schema?
+
+If you are using `ytt` as your Package's templating option and have [defined a schema](../../../ytt/docs/latest/how-to-write-schema), you can use `ytt` to generate your `valuesSchema` (which is in OpenAPI v3 format) for you.
+
+This is the recommended workflow:
+
+1. Create an OpenAPI Document from a Data Values Schema file:
+
+    ```bash
+    $ ytt -f schema.yml --data-values-schema-inspect -o openapi-v3 >schema-openapi.yml
+    ```
+   
+    which will produce...
+
+    ```yaml
+    #! schema-openapi.yml
+    openapi: 3.0.3
+    info:
+      version: 1.0.0
+      title: Openapi schema generated from ytt schema
+    paths: {}
+    components:
+      schemas:
+        dataValues:
+          type: object
+          properties:
+            namespace:
+              type: string
+              default: fluent-bit
+    ```
+
+2. Turn your Package CR into a `ytt` template, itself:
+
+    ```yaml
+    #! package.tpl.yml
+    #@ load("@ytt:data", "data")
+    #@ load("@ytt:yaml", "yaml")
+    #! package.yml
+    ...
+    kind: Package
+    spec:
+      valuesSchema:
+        openAPIv3:  #@ yaml.decode(data.values.openapi)["components"]["schemas"]["dataValues"]
+    ```
+   
+   and render with the output from the ytt schema inspect:
+
+   ```bash
+   $ ytt -f package.tpl.yml --data-value-file openapi=openapi.yml > package.yml
+   ```
+
+For more details, see:
+- [ytt: Export Schema in OpenAPI Format](../../../ytt/docs/latest/how-to-export-schema.md).
+- [ytt: Configuring Data Values via command line flags](../../../ytt/docs/latest/ytt-data-values.md#configuring-data-values-via-command-line-flags)
+- [@ytt:yaml module](../../../ytt/docs/latest/lang-ref-ytt.md#yaml)
