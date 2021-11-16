@@ -17,11 +17,13 @@ toc:
         url: /how-to-use-data-values
       - page: Write Schema
         url: /how-to-write-schema
-      - page: Use overlays
+      - page: Export Schema in OpenAPI format
+        url: /how-to-export-schema
+      - page: Use Overlays
         url: /ytt-overlays
-      - page: Data values vs overlays
+      - page: Data Values vs. Overlays
         url: /data-values-vs-overlays
-      - page: Injecting secrets
+      - page: Inject secrets
         url: /injecting-secrets
   - title: Reference
     subfolderitems:
