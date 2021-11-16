@@ -154,7 +154,7 @@ Now simply follow the steps in either of the previous examples to migrate the pr
 ## How do I provide default values for an array?
 Arrays in Schemas are [handled differently](lang-ref-ytt-schema.md#defaults-for-arrays) than other types:
 exactly one element is specified in the array, and that value is _only_ used to infer the type of that array's elements —
-the default value for arrays is always empty.
+the default value, by default, is an empty list (i.e. `[]`).
 
 The example below shows how to define an array in a Schema and then provide default values via the `@schema/default` annotation.
 

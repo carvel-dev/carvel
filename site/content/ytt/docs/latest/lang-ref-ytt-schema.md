@@ -129,9 +129,9 @@ the missing item (here, `enabled`) is defaulted:
 
 #### Defaults for Arrays
 
-The default value for all arrays is always an empty array.
+The default value for all arrays is, by default, an empty array.
 
-This is different from all other types where the default value is literally what is specified in schema. For arrays, it is always `[]` (i.e. an empty array).
+This is different from all other types where the default value is literally what is specified in schema. For arrays, it is `[]` (i.e. an empty array).
 
 This means that the value given for the element is _only_ used to infer the type of the array's _elements_.
 

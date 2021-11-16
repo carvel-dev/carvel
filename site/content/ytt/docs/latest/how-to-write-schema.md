@@ -103,7 +103,7 @@ For details on how to set individual default values, see [Data Values Schema Ref
 
 **Special Case: Arrays**
 
-There is one exception: arrays. As described in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the default value for arrays is always an empty list (i.e. `[]`). That said, when an item is added to the array, _that item's_ value is defaulted as defined in the schema.
+There is one exception: arrays. As described in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the default value for arrays, by default, is an empty list (i.e. `[]`). That said, when an item is added to the array, _that item's_ value is defaulted as defined in the schema.
 
 In the example, [above](#implying-types), the definition of `databases` is an array. Each item in _that_ array is a map with six keys including `adapter`, `port`, etc.
 
