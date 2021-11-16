@@ -73,7 +73,7 @@ stringData:
 
 ## Config Shorthands
 
-kapp-controller currently supports a shorthand for easily adding the `KUBERNETES_SERVICE_HOST` 
+kapp-controller v0.30.0+ supports a shorthand for easily adding the `KUBERNETES_SERVICE_HOST` 
 environment variable to kapp-controller's `noProxy` controller config property. This can help 
 when a Kubernetes cluster is configured with a proxy and the kapp-controller-config is created 
 with the http and https proxy URL. In this case, kapp-controller fails to communicate with the 
