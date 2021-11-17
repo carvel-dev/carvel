@@ -55,7 +55,7 @@ This is the recommended workflow:
 
     ```yaml
     #! schema-openapi.yml
-    openapi: 3.0.3
+    openapi: 3.0.0
     info:
       version: 1.0.0
       title: Openapi schema generated from ytt schema
@@ -76,18 +76,18 @@ This is the recommended workflow:
     #! package.tpl.yml
     #@ load("@ytt:data", "data")
     #@ load("@ytt:yaml", "yaml")
-    #! package.yml
     ...
     kind: Package
     spec:
       valuesSchema:
         openAPIv3:  #@ yaml.decode(data.values.openapi)["components"]["schemas"]["dataValues"]
+    ...
     ```
    
    and render with the output from the ytt schema inspect:
 
    ```bash
-   $ ytt -f package.tpl.yml --data-value-file openapi=openapi.yml > package.yml
+   $ ytt -f package.tpl.yml --data-value-file openapi=schema-openapi.yml > package.yml
    ```
 
 For more details, see:
