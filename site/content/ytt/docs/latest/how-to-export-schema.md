@@ -17,21 +17,25 @@ Given a `ytt` schema:
 
 #@data/values-schema
 ---
+#@schema/desc "Whether to include a LoadBalancer type service and if so, what its IP address is."
 load_balancer:
   enabled: true
   #@schema/nullable
   static_ip: ""
 
+#@schema/desc "DNS domains to accept traffic for."
 #@schema/default ["apps.example.com", "mobile.example.com"]
 app_domains:
 - ""
 
+#@schema/desc "Connection information for databases used by the system."
 databases:
 - name: ""
   adapter: postgresql
   host: ""
   port: 5432
 
+#@schema/desc "Configuration for experimental/optional components; see documentation for more details."
 #@schema/type any=True
 additional_config: {}
 ```
@@ -70,6 +74,7 @@ components:
               type: string
               default: null
               nullable: true
+          description: Whether to include a LoadBalancer type service and if so, what its IP address is.
         app_domains:
           type: array
           items:
@@ -78,6 +83,7 @@ components:
           default:
           - apps.example.com
           - mobile.example.com
+          description: DNS domains to accept traffic for.
         databases:
           type: array
           items:
@@ -97,9 +103,11 @@ components:
                 type: integer
                 default: 5432
           default: []
+          description: Connection information for databases used by the system. 
         additional_config:
           nullable: true
           default: {}
+          description: Configuration for experimental/optional components; see documentation for more details.
 ```
 
 ## Exported Properties
