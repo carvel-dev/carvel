@@ -160,7 +160,7 @@ Explains the contents and/or consequences of certain values of the property.
 
 The following are not yet supported in `ytt`:
 - `ytt` schema does not yet support declarative validations and thus does not produce such validations in an OpenAPI export.
-- there is no means yet to modify the [`info` section of the OpenAPI document](https://swagger.io/specification/#info-object) from within a `--data-values-schema-inspect`.
+- there is no means yet to modify the [`info` section of the OpenAPI document](https://swagger.io/specification/#info-object) from within a `--data-values-schema-inspect`. There are defaults supplied, however we recommend that these fields are updated manually.
 - inspecting output in `ytt` Schema format is not yet supported.
 
 
