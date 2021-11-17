@@ -27,6 +27,8 @@ toc:
         url: /proxy
   - title: FAQ
     subfolderitems:
+      - page: General
+        url: /faq
       - page: Security
         url: /security
       - page: CA Certs on Windows
