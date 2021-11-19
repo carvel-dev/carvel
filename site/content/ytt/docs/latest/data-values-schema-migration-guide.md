@@ -3,11 +3,10 @@ title: Schema Migration Guide
 toc: "true"
 ---
 
-Schema documents provide a way to declare Data Values with their types, and default values. Without Schemas, validating the presence of Data Values requires additional `ytt` configuration containing starlark assertions.
+Schema documents provide a way to declare Data Values with their types, and default values. Without Schema, validating the presence of Data Values requires additional `ytt` configuration containing Starlark assertions.
 
-[Learn more about writing Schema here.](how-to-write-schema.md)\
-[Read the detailed Data Vaues Schema Reference here.](lang-ref-ytt-schema.md)
-
+- Learn more about [writing Schema](how-to-write-schema.md)
+- Read the detailed [Data Vaues Schema Reference](lang-ref-ytt-schema.md)
 
 ## How do I, a configuration author, migrate my `ytt` library to use Schemas?
 
@@ -153,16 +152,23 @@ Now simply follow the steps in either of the previous examples to migrate the pr
 ---
 
 ## How do I provide default values for an array?
-Arrays in Schemas have [special behavior](lang-ref-ytt-schema.md#defaults-for-arrays):
+Arrays in Schemas are [handled differently](lang-ref-ytt-schema.md#defaults-for-arrays) than other types:
 exactly one element is specified in the array, and that value is _only_ used to infer the type of that array's elements —
-the default value for arrays is always empty.
+the default value, by default, is an empty list (i.e. `[]`).
 
-The example below shows how to define an array in a Schema and then provide default values via a Data Values file.
+The example below shows how to define an array in a Schema and then provide default values via the `@schema/default` annotation.
 
 `values-schema.yml`:
 ```yaml
+#@ def default_conns():
+- host: registry.dev.io
+  port: 8080
+  transport: tcp
+#@ end
+
 #@data/values-schema
 ---
+#@schema/default default_conns()
 key: 
 - host: ""
   port: 0
@@ -170,16 +176,14 @@ key:
   insecure_disable_tls_validation: false
 ```
 
-`values.yml`:
+Given that schema, if a template file were to use the `key` data value:
+
 ```yaml
-#@data/values
----
-key:
-- host: registry.dev.io
-  port: 8080
-  transport: tcp
+key: #@ data.values.key
 ```
-Providing these files along with a template file containing `key: #@ data.values.key` will produce:
+
+this would output
+
 ```yaml
 key:
 - host: registry.dev.io

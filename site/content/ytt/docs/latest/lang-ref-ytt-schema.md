@@ -72,6 +72,8 @@ The default value for a Data Value is specified in schema, directly:
 - the default value for an **array** is an empty list (i.e. `[]`).
   - the default value for _an item_ in an array are the contents of the item specified in schema (with _their_ defaults, recursively).
 
+Default values can be overridden using the [@schema/default](#schemadefault) annotation.
+
 #### Defaults for Scalars
 
 When a [scalar value](#types-of-scalars) is specified, the default is merely that value.
@@ -127,9 +129,9 @@ the missing item (here, `enabled`) is defaulted:
 
 #### Defaults for Arrays
 
-The default value for all arrays is always an empty array.
+The default value for all arrays is, by default, an empty array.
 
-This is different from all other types where the default value is literally what is specified in schema. For arrays, it is always `[]` (i.e. an empty array).
+This is different from all other types where the default value is literally what is specified in schema. For arrays, it is `[]` (i.e. an empty array).
 
 This means that the value given for the element is _only_ used to infer the type of the array's _elements_.
 
@@ -153,6 +155,8 @@ databases:
 - `databases` is `[]` by default. Each item in the array must be a **map**. When an item is added to the array:
   - its key must be one of those named in this schema: `name`, `adapter`, `host`, etc.
   - if it lacks any of the six keys, they will be added with their default values.
+
+The default value of an array _itself_ can be overridden using the [@schema/default](#schemadefault) annotation.
 
 ---
 ### Types
@@ -227,34 +231,92 @@ This is done by annotating the Data Value as having "any" type. See [`@schema/ty
 `ytt` determines the type of each Data Value by _inferring_ it from the value specified in the schema file (as described in [Types](#types), above). Currently, there is no way to _explicitly_ set the type of a Data Value.
 
 Configuration Authors can explicit specify the type of a Data Value in two cases that are **not** inferrable:
+- overriding the default value (via the [@schema/default](#schemadefault) annotation);
+- also allowing null (via the [@schema/nullable](#schemanullable) annotation);
 - allowing any type (via the [@schema/type](#schematype) annotation).
-- also allowing null (via the [@schema/nullable](#schemanullable) annotation).
 
+### @schema/default
 
-### @schema/type
-
-Explicitly configures the type of the annotated node. Currently, the only supported configuration is whether to allow the "any" type or not.
+Overrides the default value for the annotated node.
 
 ```yaml
-#@schema/type any=True
+#@schema/default default_value
 ```
+- `default_value` — the value to set as the default for the annotated node.
+  - this value must be of the same type as the value given on the node.
 
-where:
-- `any` (`bool`) — whether or not any and all types are permitted on this node and its children.
+_(as of v0.38.0)_
 
-The annotated node and its nested children are not checked by schema, and has no schema default behavior. 
-However, the annotated node and its children are simply passed-through as a data value. 
-All nested `@schema` annotations are ignored.
+_Example 1: Default value for an array of scalars_
 
-_Example: Using any=True to avoid schema restrictions on an array_
 ```yaml
 #@data/values-schema
 ---
-#@schema/type any=True
+#@schema/default ["apps.example.com", "gateway.example.com"]
 app_domains:
-  - "carvel.dev"
-  - 8080
+- ""
 ```
+
+... yields the default:
+
+```yaml
+app_domains:
+- apps.example.com
+- gateway.example.com
+```
+
+_Example 2: Default value for an array of maps_
+
+When specifying values for an array of maps, it can quickly become unwieldy to keep on a single line.
+
+To handle these situations, enclose those values in a [Fragment function](lang-ref-yaml-fragment.md) and invoke that function as the value for `@schema/default`:
+
+```yaml
+#! For best results, declare functions *before* the schema document.
+#@ def default_dbs():
+- name: core
+  host: coredb
+  user: app1
+- name: audit
+  host: metrics.svc.local
+  user: observer
+#@ end
+
+#@data/values-schema
+---
+#@schema/default default_dbs()
+databases:
+- name: ""
+  adapter: postgresql
+  host: ""
+  port: 5432
+  user: admin
+  secretRef:
+    name: ""
+```
+
+Yields the default:
+
+```yaml
+databases:
+- name: core
+  adapter: postgresql
+  host: coredb
+  port: 5432
+  user: app1
+  secretRef:
+    name: ""
+- name: audit
+  adapter: postgresql
+  host: metrics.svc.local
+  port: 5432
+  user: observer
+  secretRef:
+    name: ""
+```
+
+Note: as the comment in the example schema indicates, it is best to declare the function prior to starting the schema document itself (see https://github.com/vmware-tanzu/carvel-ytt/issues/526 for details).
+
 ### @schema/nullable
 
 Extends the type of the Data Value to also allow `null` _and_ sets the default value to be `null`.
@@ -297,4 +359,30 @@ aws:
   password: "1234"
 
 name: null
+```
+
+### @schema/type
+
+Explicitly configures the type of the annotated node. Currently, the only supported configuration is whether to allow the "any" type or not.
+
+```yaml
+#@schema/type any=True
+```
+
+where:
+- `any` (`bool`) — whether or not any and all types are permitted on this node and its children.
+
+The annotated node and its nested children are not checked by schema, and has no schema default behavior.
+However, the annotated node and its children are simply passed-through as a data value.
+All nested `@schema` annotations are ignored.
+
+_Example: Using any=True to avoid schema restrictions on an array_
+
+```yaml
+#@data/values-schema
+---
+#@schema/type any=True
+app_domains:
+  - "carvel.dev"
+  - 8080
 ```

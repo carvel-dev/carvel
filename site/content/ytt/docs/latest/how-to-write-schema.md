@@ -103,13 +103,13 @@ For details on how to set individual default values, see [Data Values Schema Ref
 
 **Special Case: Arrays**
 
-There is one exception: arrays. As described in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the default value for arrays is always an empty list (i.e. `[]`). That said, when an item is added to an array, _its_ value is defaulted as defined in the schema.
+There is one exception: arrays. As described in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the default value for arrays, by default, is an empty list (i.e. `[]`). That said, when an item is added to the array, _that item's_ value is defaulted as defined in the schema.
 
 In the example, [above](#implying-types), the definition of `databases` is an array. Each item in _that_ array is a map with six keys including `adapter`, `port`, etc.
 
-While `database` starts out at an empty list, each item added to it will be defaulted with the values given in the schema.
+`database` starts out as an empty list. Then, as each item added to it, they will be defaulted with the values given in the schema.
 
-So, if a Data Values overlay is included (as noted [setting a default value for an array](#setting-a-default-value-for-an-array), below):
+Continuing with our example schema, [above](#implying-types), if a Data Values overlay gives an actual value for the array:
 
 ```yaml
 #@data/values
@@ -131,6 +131,7 @@ secretRef:
   name: ""
 ```
 
+In order to override the default of the array, _itself_, within schema see [Setting a Default Value for Arrays](#setting-a-default-value-for-an-array).
 
 
 ---
@@ -145,30 +146,23 @@ A few less common, but real-world scenarios:
 
 ### Setting a Default Value for an Array
 
-As explained in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), the default value for an array is an empty list (i.e. `[]`).
+As explained in [Data Values Schema Reference: Defaults for Arrays](lang-ref-ytt-schema.md#defaults-for-arrays), unlike all other types, the default value for an array is an empty list (i.e. `[]`).
 
-In some cases, it is useful to provide a non-empty default value for an array. To do so, one typically uses a Data Values overlay.
+In some cases, it is useful to provide a non-empty default value for an array. To do so, one uses the `@schema/default` annotation.
 
 For example, with this schema:
 
 ```yaml
 #@data/values-schema
 ---
+#@schema/default ["apps.cf-apps.io", "mobile.cf-apps.io"]
 app_domains:
 - ""
 ```
 
-and this Data Values overlay:
-
-```yaml
-#@data/values
----
-app_domains:
-- apps.cf-apps.io
-- mobile.cf-apps.io
-```
-
 The default value for `app_domains` will be `["apps.cf-apps.io", "mobile.cf-apps.io"]`.
+
+See also: [@schema/default](lang-ref-ytt-schema.md#schemadefault).
 
 ### Marking a Data Value as Optional
 
