@@ -70,10 +70,10 @@ This is the recommended workflow:
               default: fluent-bit
     ```
 
-2. Turn your Package CR into a `ytt` template, itself:
+2. Turn your Package CR into a `ytt` template, so that you can insert the schema definition in the right spot, automatically:
 
+    `package-template.yml`
     ```yaml
-    #! package.tpl.yml
     #@ load("@ytt:data", "data")
     #@ load("@ytt:yaml", "yaml")
     ...
@@ -87,7 +87,7 @@ This is the recommended workflow:
    and render with the output from the ytt schema inspect:
 
    ```bash
-   $ ytt -f package.tpl.yml --data-value-file openapi=schema-openapi.yml > package.yml
+   $ ytt -f package-template.yml --data-value-file openapi=schema-openapi.yml > package.yml
    ```
 
 For more details, see:
