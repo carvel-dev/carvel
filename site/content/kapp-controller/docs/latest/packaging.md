@@ -50,7 +50,8 @@ spec:
   # These values should be specified in an OpenAPI schema format. (optional)
   valuesSchema:
     # openAPIv3 key can be used to declare template values in OpenAPIv3
-    # format
+    # format. Read more on using ytt to generate this schema: 
+    # https://carvel.dev/kapp-controller/docs/latest/packaging-tutorial/#creating-the-custom-resources
     openAPIv3:
       title: fluent-bit.carvel.dev.1.5.3 values schema
       examples:
