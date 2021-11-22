@@ -18,8 +18,13 @@ We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so 
 
 Install the whole tool suite with the script below:
 
+(Note: we are temporarily overriding kapp-controller's version to jump to ytt
+0.38.0, in order to include the recent OpenAPI Schema feature in this tutorial)
 ```bash
-wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | bash
+wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | \
+sed 's/ytt_version=v0.35.1/ytt_version=v0.38.0/' | \
+sed 's/0aa78f7b5f5a0a4c39bddfed915172880344270809c26b9844e9d0cbf6437030/2ca800c561464e0b252e5ee5cacff6aa53831e65e2fb9a09cf388d764013c40d/' | \
+bash
 ```
 
 
@@ -150,18 +155,20 @@ spec:
 EOF
 ```
 
-and a values.yml:
+and put our schema into values.yml:
 
 ```bash
 cat > values.yml <<- EOF
-#@data/values
+#@data/values-schema
 ---
+#@schema/desc "Port number for the service."
 svc_port: 80
+#@schema/desc "Target port for the application."
 app_port: 80
+#@schema/desc "Name used in hello message from app when app is pinged."
 hello_msg: stranger
 EOF
 ```
-
 
 ## Creating a Package: Structuring our contents
 We'll create an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle)
@@ -244,49 +251,38 @@ EOF
 Now we need to create a Package CR.
 This CR contains versioned instructions and metadata used to install packaged software that fits the description provided in the PackageMetadata CR we just saved in `metadata.yml`.
 
+In order to create the Package CR with our OpenAPI Schema, we will export from
+our ytt schema:
+
 ```bash
-cat > 1.0.0.yml << EOF
+ytt -f package-contents/config/values.yml --data-values-schema-inspect -o openapi-v3 > schema-openapi.yml
+```
+
+That command creates an OpenAPI document, from which we really only need the
+`components.schema` section for our Package CR.
+
+
+```bash
+cat > package-template.yml << EOF
+#@ load("@ytt:data", "data")  # for reading data values (generated via ytt's data-values-schema-inspect mode).
+#@ load("@ytt:yaml", "yaml")  # for dynamically decoding the output of ytt's data-values-schema-inspect
 ---
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: simple-app.corp.com.1.0.0
+  name: #@ "simple-app.corp.com." + data.values.version
 spec:
   refName: simple-app.corp.com
-  version: 1.0.0
+  version: #@ data.values.version
   releaseNotes: |
         Initial release of the simple app package
   valuesSchema:
-    openAPIv3:
-      title: simple-app.corp.com values schema
-      examples:
-      - svc_port: 80
-        app_port: 80
-        hello_msg: stranger
-      properties:
-        svc_port:
-          type: integer
-          description: Port number for the service.
-          default: 80
-          examples:
-          - 80
-        app_port:
-          type: integer
-          description: Target port for the application.
-          default: 80
-          examples:
-          - 80
-        hello_msg:
-          type: string
-          description: Name used in hello message from app when app is pinged.
-          default: stranger
-          examples:
-          - stranger
+    openAPIv3: #@ yaml.decode(data.values.openapi)["components"]["schemas"]["dataValues"]
   template:
     spec:
       fetch:
       - imgpkgBundle:
-          image: ${REPO_HOST}/packages/simple-app:1.0.0
+          image: #@ "${REPO_HOST}/packages/simple-app:" + data.values.version
       template:
       - ytt:
           paths:
@@ -300,7 +296,7 @@ spec:
 EOF
 ```
 
-This Package contains some metadata fields specific to the verison, such as releaseNotes and a valuesSchema. The valuesSchema shows what configurable properties exist for the version. This will help when users want to install this package and want to know what can be configured.
+This Package contains some metadata fields specific to the version, such as releaseNotes and a valuesSchema. The valuesSchema shows what configurable properties exist for the version. This will help when users want to install this package and want to know what can be configured.
 
 The other main component of this CR is the template section.
 This section informs kapp-controller of the actions required to install the packaged software, so take a look at the [app-spec](https://carvel.dev/kapp-controller/docs/latest/app-spec/) section to learn more about each of the template sections. For this example, we have chosen a basic setup that will fetch the imgpkg bundle we created in the previous section, run the templates stored inside through ytt, apply kbld transformations, and then deploy the resulting manifests with kapp.
@@ -322,10 +318,11 @@ mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages/simple-app.corp.com
 ```
 
 we can copy our CR YAMLs from the previous step in to the proper packages
-subdirectory:
+subdirectory. Note that we are declaring the version and the openAPI schema file
+to ytt.
 
 ```bash
-cp 1.0.0.yml my-pkg-repo/packages/simple-app.corp.com
+ytt -f package-template.yml  --data-value-file openapi=schema-openapi.yml -v version="1.0.0" > my-pkg-repo/packages/simple-app.corp.com/1.0.0.yml
 cp metadata.yml my-pkg-repo/packages/simple-app.corp.com
 ```
 

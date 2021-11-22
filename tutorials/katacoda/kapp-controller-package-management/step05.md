@@ -46,16 +46,18 @@ spec:
 EOF
 ```{{execute}}
 
-and a values.yml:
+and put our schema into values.yml:
 
 ```bash
 cat > values.yml <<- EOF
-#@data/values
+#@data/values-schema
 ---
+#@schema/desc "Port number for the service."
 svc_port: 80
+#@schema/desc "Target port for the application."
 app_port: 80
+#@schema/desc "Name used in hello message from app when app is pinged."
 hello_msg: stranger
 EOF
 ```{{execute}}
-
 

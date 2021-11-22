@@ -13,10 +13,11 @@ mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages/simple-app.corp.com
 ```{{execute}}
 
 we can copy our CR YAMLs from the previous step in to the proper packages
-subdirectory:
+subdirectory. Note that we are declaring the version and the openAPI schema file
+to ytt.
 
 ```bash
-cp 1.0.0.yml my-pkg-repo/packages/simple-app.corp.com
+ytt -f package-template.yml  --data-value-file openapi=schema-openapi.yml -v version="1.0.0" > my-pkg-repo/packages/simple-app.corp.com/1.0.0.yml
 cp metadata.yml my-pkg-repo/packages/simple-app.corp.com
 ```{{execute}}
 
