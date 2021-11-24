@@ -1,7 +1,7 @@
 ---
 title: "Using Carvel Terraform Provider to manage Kubernetes workloads"
 slug: terraform-carvel-provider
-date: 2021-11-17
+date: 2021-11-29
 author: Soumik Majumder
 excerpt: "Looking to leverage Carvel tools to manage workloads on Kubernetes while setting up your platform using Terraform? Carvel's Terraform provider has your back"
 image: /img/logo.svg
@@ -12,7 +12,7 @@ The Carvel tools are designed to empower our users to manage their Kubernetes wo
 
 In this blog, we will be using the provider to deploy this [sample guestbook application](https://github.com/vmware-tanzu/terraform-provider-carvel/tree/develop/examples/guestbook) on a Kubernetes cluster.
 
-Do make a copy of the folder in your working directory if you wanna follow along!
+Do make a copy of the folder in your working directory if you want to follow along!
 
 ## Setting things up
 The [Carvel provider](https://registry.terraform.io/providers/vmware-tanzu/carvel/latest) is published on the Terraform registry.
@@ -26,6 +26,8 @@ $ curl -L https://carvel.dev/install.sh | bash
 ```
 
 See our [**Install** section](/) for alternative installation methods.
+
+If you do not have Terraform set up on your system, you can refer to the [installation page](https://learn.hashicorp.com/tutorials/terraform/install-cli) in the official docs for the same.
 
 We will be using the latest version of the Carvel provider available as of today.
 We declare this requirement in `main.tf`
@@ -56,7 +58,7 @@ provider "carvel" {
 }
 ```
 ## Overlaying using _ytt_
-We can use [_ytt_](https://github.com/vmware-tanzu/carvel-ytt) to template and apply overlays to our manifests. In this blog, we will be asking _ytt_ to apply an overlay that ensures that all Deployment resources spawn one replica.
+We can use [_ytt_](https://github.com/vmware-tanzu/carvel-ytt) to template and apply overlays to our manifests, this allows our manifests to be dynamic. In this blog, we will be asking _ytt_ to apply an overlay that ensures that all Deployment resources spawn one replica.
 
 ```terraform
 data "carvel_ytt" "guestbook" {
@@ -162,3 +164,13 @@ If you are using Terraform to declaratively provision GKE or EKS clusters and de
 This stands true for other resources you would want to deploy on your cluster after provisioning it while the _ytt_ data source allows you to template and overlay your manifests on the go.
 
 We would love to know how you are using the Carvel tools and our Terraform provider on [this thread](https://github.com/vmware-tanzu/carvel/issues/213)!
+
+## Join us on Slack and GitHub
+
+We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
+* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Attend our Community Meetings, happening every Thursday at 10:30am PT / 1:30pm ET. Check out the [Community page](/community/) for full details on how to attend.
+
+We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!
