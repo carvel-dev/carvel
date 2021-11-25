@@ -10,6 +10,13 @@ title: FAQ
 No. As with all data values, those passed through `--data-value` must be overrides, not new values. Instead, overlays are the intended way to provide new keys. 
 See the [data values vs overlays doc](data-values-vs-overlays.md) for more information.
 
+## How can I dynamically set or replace map key as a data value in my template?
+You can use data.values value as a key in a map by using [Text Templating](ytt-text-templating.md) feature.
+That way, you can use data values as keys in a map dynamically.
+```yaml
+#@yaml/text-templated-strings
+(@= data.values.some_key @): some-value
+```
 ## How do I load json for use as a data value?
 An important note here is that json is valid yaml. yaml syntax is a superset of json syntax.\
 ytt can naturally parse json by passing it through `--data-value-yaml`, or json can be loaded by passing the file as a `--data-value-file`.
