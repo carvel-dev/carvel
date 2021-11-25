@@ -12,11 +12,14 @@ See the [data values vs overlays doc](data-values-vs-overlays.md) for more infor
 
 ## How can I dynamically set or replace map key as a data value in my template?
 You can use data.values value as a key in a map by using [Text Templating](ytt-text-templating.md) feature.
-That way, you can use data values as keys in a map dynamically.
+That way, you can dynamically set keys using data values in a map.
 ```yaml
 #@yaml/text-templated-strings
 (@= data.values.some_key @): some-value
 ```
+Additionally, see this [playground example](/ytt/#example:example-text-template) which illustrates the use of text templating to set key of a map item.
+
+
 ## How do I load json for use as a data value?
 An important note here is that json is valid yaml. yaml syntax is a superset of json syntax.\
 ytt can naturally parse json by passing it through `--data-value-yaml`, or json can be loaded by passing the file as a `--data-value-file`.
