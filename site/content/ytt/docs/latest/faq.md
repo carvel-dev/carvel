@@ -12,7 +12,7 @@ See the [data values vs overlays doc](data-values-vs-overlays.md) for more infor
 
 ## How can I dynamically set or replace map key as a data value in my template?
 You can use data.values value as a key in a map by using [Text Templating](ytt-text-templating.md) feature.
-That way, you can dynamically set keys using data values in a map.
+That way, you can dynamically set keys in a map using data values.
 ```yaml
 #@yaml/text-templated-strings
 (@= data.values.some_key @): some-value
