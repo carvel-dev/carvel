@@ -17,15 +17,13 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 
 |Theme|Description|Timeline|
 |---|---|---|
-|**[kapp]** kapp Enhancements | [Cluster fulfilled resources](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/issues/vmware-tanzu/carvel-kapp/195) and other enhancements | October 2021 |
-|**[ytt]** [Export ytt Schema as OpenAPI Schema](https://github.com/vmware-tanzu/carvel/pull/198) |Users can export ytt schema into OpenAPI schema so that package authors can provide this standardized OpenAPI schema for their configuration when creating a package. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/issues/vmware-tanzu/carvel-ytt/357) | November 2021 |
+|**[ytt]** [OpenAPI Document Metadata & UX Improvements](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/issues/vmware-tanzu/carvel-ytt/512) | Users can have the ability to further customize the exported OpenAPI documents so that package authors can provide this standardized OpenAPI schema for their configuration when creating a package. | December 2021 |
+|**[kapp-controller]** kapp-controller CLI | To provide a user interface for interacting with kapp-controller. |TBD|
+|**[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents)|Configuration authors can specify the valid range or format of the data values. |TBD|
+|**[carvel]** asset signing & verification | Carvel supports the ability to sign and verify images/bundles. |TBD|
 |**[ytt]** [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314) | Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/board?epics=173207060_314&filterLogic=any&repos=173207060) | TBD |
 |**[kapp-controller]** Dependency Management & Upgrade Scenarios |  | TBD |
-|**[imgpkg]** [Renaming Images When Copying Bundles](https://github.com/vmware-tanzu/carvel-community/tree/003-copy-bundles-with-rename/proposals/imgpkg/003-copy-bundles-with-rename) | Allow users that are copying bundles between registries to have more control over the location where the images are copied to. |TBD|
-|**[ytt]** Improve compatibility with other tools | In order to grow ytt's capabilities, we want to ensure that it integrates well with common tools in the open-source ecosystem |TBD|
-|**[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents)|Configuration authors can specify the valid range or format of the data values. |TBD|
-|**[imgpkg]** image signing & verification | imgpkg supports the ability to sign and verify images/bundles. |TBD|
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kapp, kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
 
-`Last Updated: October 2021`
+`Last Updated: December 2021`
