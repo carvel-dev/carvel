@@ -18,7 +18,7 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 |Theme|Description|Timeline|
 |---|---|---|
 |**[ytt]** [OpenAPI Document Metadata & UX Improvements](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/issues/vmware-tanzu/carvel-ytt/512) | Users can have the ability to further customize the exported OpenAPI documents so that package authors can provide this standardized OpenAPI schema for their configuration when creating a package. | December 2021 |
-|**[kapp-controller]** kapp-controller CLI | To provide a user interface for interacting with kapp-controller. |TBD|
+|**[kapp-controller]** [kapp-controller CLI](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | To provide a user interface for interacting with kapp-controller. |TBD|
 |**[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents)|Configuration authors can specify the valid range or format of the data values. |TBD|
 |**[carvel]** asset signing & verification | Carvel supports the ability to sign and verify images/bundles. |TBD|
 |**[ytt]** [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314) | Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/board?epics=173207060_314&filterLogic=any&repos=173207060) | TBD |
