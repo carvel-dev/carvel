@@ -90,7 +90,7 @@ Possible values: "" (default), `containerName1`, `containerName1,containerName2`
 
 If the resource is not present already, then kapp uses the `exists` operation for such resources and waits until the resource is created by the cluster (or some external agency).
 
-If the resource is already present, then `noop` is used for it.
+If the resource already exists, kapp does not perform any operation on it (the `noop` operation is used).
 
 Possible values: "".
 
