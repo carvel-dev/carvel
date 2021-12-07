@@ -86,17 +86,19 @@ Possible values: "" (default), `containerName1`, `containerName1,containerName2`
 
 ### kapp.k14s.io/exists (Available in v0.43.0+)
 
-`kapp.k14s.io/exists` allows us to wait for non-kapp owned resources. 
+`kapp.k14s.io/exists` will ensure that resource exists in Kubernetes. It will not be considered to be part of the app (not labeled).
 
-If the resource is not present already, then kapp uses the `exists` operation for such resources and waits until the resource is created by the cluster (or some external agency).
+If the resource is not present already, then kapp uses the `exists` operation and ensures that the resource exists in Kubernetes. 
 
 If the resource already exists, kapp does not perform any operation on it (the `noop` operation is used).
 
 Possible values: "".
 
+Especially useful in scenarios where an external agency such as a controller might be creating a resource that we want to wait for.
+
 ### kapp.k14s.io/noop (Available in v0.43.0+)
 
-`kapp.k14s.io/noop` allows kapp to know about non-kapp owned resources. 
+`kapp.k14s.io/noop` ensures that kapp is aware of the resource. It will not be considered to be part of the app (not labeled). 
 
 kapp always uses the `noop` operation for these resources.
 
