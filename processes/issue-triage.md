@@ -60,23 +60,23 @@ For all issues, `kind` labels are generally supplied by the submitter. Ensure th
 1. Read the issue and try to understand the ask.
 1. If information is missing or something is not clear, reply to the issue asking for further clarification. Add the `triage/needs-more-information` label. You should keep tabs on this issue until triage is complete.
 1. If the issue looks like a good improvement for the tool,
-  1. add a comment explaining your reasoning
-  1. define its priority
-  1. change the label to `carvel accepted` from `carvel triage`
-  1. if appropriate, add the `good first issue` label
-  1. set the ZenHub pipeline, accordingly
+    1. add a comment explaining your reasoning
+    1. define its priority
+    1. change the label to `carvel accepted` from `carvel triage`
+    1. if appropriate, add the `good first issue` label
+    1. set the ZenHub pipeline, accordingly
 1. If the issue does not look like a good fit for the tool, add a comment explaining your reasoning and close the issue.
 
 #### Bug
 1. Try to replicate the issue.
 1. If you're able to replicate the issue,
-  1. Define its priority
-  1. change the label to `carvel accepted` from `carvel triage`
-  1. set the ZenHub pipeline, accordingly
+    1. Define its priority
+    1. change the label to `carvel accepted` from `carvel triage`
+    1. set the ZenHub pipeline, accordingly
 1. If you're unable to replicate the issue,
-  1. add the `triage/not-reproducible` label
-  1. ask the submitter for more information
-  1. if both parties agree that the issue can't be reproduced then close the issue
+    1. add the `triage/not-reproducible` label
+    1. ask the submitter for more information
+    1. if both parties agree that the issue can't be reproduced then close the issue
 
 ### 3. Define Priority
 We use labels for prioritization. If an issue lacks a priority label then it has not been reviewed and prioritized completely, yet.
