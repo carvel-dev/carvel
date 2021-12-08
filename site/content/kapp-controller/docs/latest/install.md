@@ -35,7 +35,11 @@ rules:
   ...
   - packageinstalls/finalizers
 ```
-2. Bind the kapp controller cluster role to a security context constraint that allows uids/gids that kapp deployment uses.
+2. Bind the kapp-controller cluster role to a security context constraint that allows uids/gids that kapp deployment uses
+(currently uid 1000; value given for `runAsUser` in the release.yaml for your
+version of kapp-controller).
+The security context constraint you provide should allow kapp-controller's uid
+to run and should not have root privileges.
 ```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -45,7 +49,7 @@ rules:
 - apiGroups:
   - security.openshift.io
   resourceNames:
-  - nonroot
+  - my-nonroot-security-context-contstraint
   resources:
   - securitycontextconstraints
   verbs:
