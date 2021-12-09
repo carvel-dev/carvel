@@ -51,7 +51,7 @@ test2: 125
 ```
 
 - if-elif-else conditional boolean (and/or) \
-  See [Starlark binary operators](https://github.com/google/starlark-go/blob/master/doc/spec.md#binary-operators) for more details.
+  See [Starlark or/and operators](https://github.com/google/starlark-go/blob/master/doc/spec.md#or-and-and) for more details.
 
 
 ```yaml
