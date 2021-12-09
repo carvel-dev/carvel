@@ -42,11 +42,11 @@ test2: 124
 
 ```yaml
 #@ if True:
-test2: 123
+test1: 123
 #@ elif False:
 test2: 124
 #@ else:
-test2: 125
+test3: 125
 #@ end
 ```
 
@@ -62,6 +62,7 @@ test2: 124
 test3: 125
 #@ end
 ```
+See [Starlark binary operators](https://github.com/google/starlark-go/blob/master/doc/spec.md#binary-operators) for more details.
 
 - single line if
 
