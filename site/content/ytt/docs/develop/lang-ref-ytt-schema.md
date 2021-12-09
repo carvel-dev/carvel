@@ -377,9 +377,9 @@ Explicitly configures the type of the annotated node. Currently, the only suppor
 where:
 - `any` (`bool`) — whether or not any and all types are permitted on this node and its children.
 
-The annotated node and its nested children are not checked by schema, and has no schema default behavior.
-However, the annotated node and its children are simply passed-through as a data value.
-All nested `@schema` annotations are ignored.
+The annotated node and its nested children are not checked by schema, and has no schema defaulting behavior.
+However, any `@schema` annotation that alters type or value of a nested child node would conflict with the fragment's "any" type, resulting in an error.
+Otherwise, the annotated node and its children are simply passed-through as a data value.
 
 _Example: Using any=True to avoid schema restrictions on an array_
 
