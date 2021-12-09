@@ -42,15 +42,17 @@ test2: 124
 
 ```yaml
 #@ if True:
-test1: 123
+test2: 123
 #@ elif False:
 test2: 124
 #@ else:
-test3: 125
+test2: 125
 #@ end
 ```
 
-- if-elif-else conditional boolean (and/or)
+- if-elif-else conditional boolean (and/or) \
+  See [Starlark binary operators](https://github.com/google/starlark-go/blob/master/doc/spec.md#binary-operators) for more details.
+
 
 ```yaml
 #@ test = 123
@@ -62,7 +64,7 @@ test2: 124
 test3: 125
 #@ end
 ```
-See [Starlark binary operators](https://github.com/google/starlark-go/blob/master/doc/spec.md#binary-operators) for more details.
+
 
 - single line if
 
