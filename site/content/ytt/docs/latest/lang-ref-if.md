@@ -50,6 +50,22 @@ test2: 125
 #@ end
 ```
 
+- if-elif-else conditional boolean (and/or) \
+  See [Starlark or/and operators](https://github.com/google/starlark-go/blob/master/doc/spec.md#or-and-and) for more details.
+
+
+```yaml
+#@ test = 123
+#@ if test > 100 and test < 200:
+test1: 123
+#@ elif test == 100 or test == 200:
+test2: 124
+#@ else:
+test3: 125
+#@ end
+```
+
+
 - single line if
 
 ```yaml
