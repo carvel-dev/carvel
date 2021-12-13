@@ -47,6 +47,14 @@ toc:
         url: /startup   
       - page: Debugging kapp-controller
         url: /debugging-kc
+  - title: CLI (kctrl)
+    subfolderitems:
+      - page: About
+        url: /cli
+      - page: Install
+        url: /cli-install
+      - page: Package Command
+        url: /package-command 
   - title: FAQ
     subfolderitems:
       - page: kapp-controller FAQ
