@@ -378,7 +378,7 @@ where:
 - `any` (`bool`) — whether or not any and all types are permitted on this node and its children.
 
 The annotated node and its nested children are not checked by schema, and has no schema defaulting behavior.
-However, any nested `@schema` annotation that alters type or value of a child would conflict with the fragment's "any" type, resulting in an error.
+However, _(as of v0.39.0)_ any nested `@schema` annotation that alters type or value of a child would conflict with the fragment's "any" type, resulting in an error.
 Otherwise, the annotated node and its children are simply passed-through as a data value.
 
 _Example: Using any=True to avoid schema restrictions on an array_
@@ -390,4 +390,32 @@ _Example: Using any=True to avoid schema restrictions on an array_
 app_domains:
   - "carvel.dev"
   - 8080
+```
+
+_Example: Error case when setting schema within an any type fragment_
+
+```yaml
+#@data/values-schema
+---
+#@schema/type any=True
+app_domains:
+  #@schema/default "localhost"
+  #@schema/type any=False
+  - "carvel.dev"
+```
+```
+ytt: Error:
+  Invalid schema
+  ==============
+
+  Schema was specified within an "any type" fragment
+  schema.yml:
+    |
+  5 |   #@schema/default "localhost"
+  6 |   #@schema/type any=False
+  7 |   - "carvel.dev"
+    |
+
+    = found: @schema/type, @schema/default annotation(s)
+    = expected: no '@schema/...' on nodes within a node annotated '@schema/type any=True'
 ```
