@@ -5,25 +5,40 @@ title: Package Command
 ## Overview
 Package command provides options to interact with package repositories, available packages and package installs.
 
-## package available
-`package available` can be used to get or list packages available in a namespace or all namespaces.
+## Available packages
+The `package available` group of commands can be used to get or list packages available in a namespace or all namespaces.
 
-### package available list
-`package available list` can be used to get a list of packages available in one or all namespaces.
-
-Example:
+### Listing available packages
+The `package available list` command can be used to get a list of packages available in one or all namespaces.
 ```bash
 $ kctrl package available list
-Target cluster 'https://192.168.64.53:8443' (nodes: minikube)
-
-Available summarized packages in namespace 'default'
-
-Name                 Display name  
-test-pkg.carvel.dev  Carvel Test Package  
-
-Succeeded
-
 ```
+A package can also be passed to get different available versions of the package.
+```bash
+$ kctrl package available list -p pkg.test.carvel.dev
+```
+Supported flags:
+- `-A`, `--all-namespaces` _string_, List available packages in all namespaces
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `-p`, `--package`, _string_, List all available versions of package
+- `--summary`, _boolean_, Show summarized list of packages (default true)
+- `--wide`, _boolean_, Show additional info
+
+### Getting details of available packages
+The `package available get` command can be used to get details of available packages or specific versions of a package.
+```bash
+$ kctrl package available get -p pkg.test.carvel.dev
+# or...
+$ kctrl package available get -p pkg.test.carvel.dev/1.0.0
+```
+The `values-schema` flag can be used to get the available values schema for a specific version of the package.
+```bash
+$ kctrl package available get -p pkg.test.carvel.dev/1.0.0 --values-schema
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `-p`, `--package`, _string_, List all available versions of package
+- `--values-schema`, _string_, Values schema of the package (optional)
 
 ## Installed Packages
 The `package installed` group of commands can be used to view, create and update installed packages.
