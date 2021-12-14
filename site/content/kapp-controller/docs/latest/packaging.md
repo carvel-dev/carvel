@@ -229,8 +229,7 @@ spec:
   # resources will not be deleted (optional; default=false)
   noopDelete: true
   # specifies the length of time to wait, in time + unit
-  # format, before reconciling. Always >= 30s. If value below
-  # 30s is specified, 30s will be used. (optional; default=30s)
+  # format, before reconciling.(optional; default=10m)
   syncPeriod: 1m
   # specifies that Package should be deployed to destination cluster;
   # by default, cluster is same as where this resource resides (optional)
