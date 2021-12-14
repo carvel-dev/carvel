@@ -5,6 +5,65 @@ title: Package Command
 ## Overview
 Package command provides options to interact with package repositories, available packages and package installs.
 
+## Package Repositories
+The `package repository` group of commands can be used to view, create and delete packages repositories.
+
+### Adding package repositories
+The `package repository add` command can be used to add a package repository to a namespace.
+```bash
+$ kctrl package repository add -r test-repo --url index.docker.io/k8slt/kc-e2e-test-repo:latest
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `-r`, `--repository`, _string_, Set package repository name (required)
+- `--url`, _string_, OCI registry url for package repository bundle (required)
+- `--wait`, _boolean_, Wait for reconciliation to complete (default true)
+- `--wait-check-interval`, _duration_, Amount of time to sleep between checks while waiting (default 1s)
+- `--wait-timeout`, _duration_, Maximum amount of time to wait in wait phase (default 5m0s)
+
+### Updating existing package repositories
+The `package repository update` command can be used to update an existing repository.
+```bash
+$ kctrl package repository update -r test-repo --url index.docker.io/k8slt/kc-e2e-test-repo-2:latest
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `-r`, `--repository`, _string_, Set package repository name (required)
+- `--url`, _string_, OCI registry url for package repository bundle (required)
+- `--wait`, _boolean_, Wait for reconciliation to complete (default true)
+- `--wait-check-interval`, _duration_, Amount of time to sleep between checks while waiting (default 1s)
+- `--wait-timeout`, _duration_, Maximum amount of time to wait in wait phase (default 5m0s)
+
+### Listing package repositories
+The `package repository list` command can be used to list existing repositories.
+```bash
+$ kctrl package repository list
+```
+Supported flags:
+- `-A`, `--all-namespaces` _string_, List available packages in all namespaces
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+
+### Getting details for package repositories
+The `package repository get` command can be used to get details of an existing package repository.
+```bash
+$ kctrl package repository get -r test-repo
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `-r`, `--repository` _string_, Set package repository name (required)
+
+### Deleting package repositories
+The `package repository delete` command can be used to delete a package repository.
+```bash
+$ kctrl package repository delete -r test-repo
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `-r`, `--repository` _string_, Set package repository name (required)
+- `--wait`, _boolean_, Wait for reconciliation to complete (default true)
+- `--wait-check-interval`, _duration_, Amount of time to sleep between checks while waiting (default 1s)
+- `--wait-timeout`, _duration_, Maximum amount of time to wait in wait phase (default 5m0s)
+
 ## Available packages
 The `package available` group of commands can be used to get or list packages available in a namespace or all namespaces.
 
