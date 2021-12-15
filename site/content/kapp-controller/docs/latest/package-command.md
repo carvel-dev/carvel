@@ -162,6 +162,14 @@ Or to download the values file consumed by the installation.
 ```bash
 $ kctrl package installed get --package-install cert-man --values-file-output output-values.yml
 ```
+
+### Deleting package installatiions
+The `package installed delete` command can be used to delete package installations and resources created along with it by `kctrl`.
+```bash
+$ kctrl package installed delete -i cert-man
+```
+Created resources other than the `PackageInstall` resource might include Secrets, Service Accounts, Cluster Roles and Cluster Role Bindings which are cleaned up if they were created while installing the package using the CLI.
+
 ### Shared flags
 - `-i`, `--package-install` _string_, assigned name for a package installation
 
