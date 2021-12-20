@@ -17,7 +17,7 @@ Software running on Kubernetes lives in many different places: a Git repository,
 kapp-controller provides software authors flexibility to choose their own configuration tools, while providing software consumers with consistent declarative APIs to customize, install, and update software on Kubernetes from various sources.
 
 #### Lightweight and composable
-kapp-controller breaks down the installation of applications and packages into three easy to understand steps: 
+kapp-controller breaks down the installation of applications and packages into three easy to understand steps:
 - Fetch: get configuration and OCI images from various sources including a Git repository, a local ConfigMap, a Helm chart, an OCI registry, etc.
 - Template: take user provided values to customize software using ytt templates, helm templates, and more
 - Deploy: create/update resources on the cluster
