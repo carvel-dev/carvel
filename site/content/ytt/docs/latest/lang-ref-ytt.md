@@ -42,7 +42,7 @@ data.read("data/data.txt") # "data-txt contents"
 
 # relative to library root (available in v0.27.1+)
 data.list("/")              # list files 
-data.list("/data/data.txt") # read file
+data.read("/data/data.txt") # read file
 ```
 
 ### ip
