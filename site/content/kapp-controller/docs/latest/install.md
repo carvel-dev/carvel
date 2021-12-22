@@ -57,3 +57,9 @@ rules:
 ```
 3. Set the `IMGPKG_ENABLE_IAAS_AUTH` [environment
    variable](https://carvel.dev/imgpkg/docs/latest/auth/#via-iaas) to false.
+
+   ### Kubernetes versions < 1.20
+   Starting in kapp-controller 0.31.0 we have upgraded our underlying kubernetes
+   libraries which will try to use APIs that don't exist on clusters v1.19 and
+   earlier. To disable these APIs, set the deployment config variable
+   `enable_APIPriorityAndFairness` to false.
