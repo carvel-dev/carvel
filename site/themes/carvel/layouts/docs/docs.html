@@ -13,11 +13,7 @@
     <script src="{{ "js/main.js" | relURL }}" type="text/javascript"></script>
     {{ $subprojectInfo := (index .Site.Params .Section) }}
     {{ if $subprojectInfo.search }}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
-  {{ end }}
-    {{ if ne .Params.version "master" }}
-      <!-- Block google from indexing versioned docs -->
-      <meta name="robots" content="noindex">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     {{ end }}
     <title>{{ .Site.Title }} - {{ .Section }} - {{ .Title }}</title>
   </head>
