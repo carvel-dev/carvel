@@ -37,6 +37,8 @@ toc:
         url: /air-gapped-workflow
       - page: Private registry authentication
         url: /private-registry-auth
+      - page: Package Management with GitOps
+        url: /packaging-gitops
   - title: Advanced Topics
     subfolderitems:
       - page: Debugging CRs
