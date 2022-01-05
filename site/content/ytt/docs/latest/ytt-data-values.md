@@ -90,6 +90,7 @@ Those flags are:
 `--data-values-file [@lib:]file-path` — sets one or more Data Values from a plain YAML file.
 - `file-path` — file-system path to a file which will be parsed as YAML structured identically to expected Data Values.
   - file must be plain YAML (i.e. not a `ytt` template or Data Values Overlay); it cannot contain YAML comments starting with `#@`.
+  - array values _replace_ (rather than append to) any existing value.
   - if there are more than one YAML documents in such a file, they are merged from top to bottom (last wins)
 - `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
 - example: \
