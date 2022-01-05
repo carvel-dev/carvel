@@ -42,6 +42,26 @@ will include the overlay stored in the secret `my-overlay-secret` during the
 templating steps of the package. This will allow users to further customize a
 package installation in advanced cases.
 
+Example secret resource with a ytt overlay that adds a label to all Namespaces added by this package:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-overlay-secret
+  namespace: my-ns
+stringData:
+  add-ns-label.yml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind":"Namespace"}),expects="1+"
+    ---
+    metadata:
+      #@overlay/match missing_ok=True
+      labels:
+        #@overlay/match missing_ok=True
+        custom-lbl: custom-lbl-value
+```
+
 ## Using Data Values Overlays
 
 Since kapp-controller exposes a consistent interface to specify data values
