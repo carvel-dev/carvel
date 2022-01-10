@@ -202,14 +202,16 @@ See [Multiple data values example](/ytt/#example:example-multiple-data-values) i
 
 Data values are merged in following order (latter one wins):
 
-- default values from `@data/values-schema` files
-- `@data/values` overlays (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
-- `--data-values-file` specified files (left to right)
-- `--data-values-env` specified values (left to right)
-- `--data-values-env-yaml` specified values (left to right)
-- `--data-value` specified value (left to right)
-- `--data-value-yaml` specified value (left to right)
-- `--data-value-file` specified value (left to right)
+1. default values from `@data/values-schema` files
+2. `@data/values` overlays (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
+3. `--data-values-file` specified files (left to right)
+4. `--data-values-env` specified values (left to right)
+5. `--data-values-env-yaml` specified values (left to right)
+6. `--data-value` specified value (left to right)
+7. `--data-value-yaml` specified value (left to right)
+8. `--data-value-file` specified value (left to right)
+
+_(When configuring libraries, the [data values merge order](#library-data-values-merge-order), is the same, even if through different mechanisms.)_
 
 ---
 ## Library data values
@@ -220,7 +222,7 @@ Each library may specify data values which will be evaluated separately from the
 
 ### Setting library values via files
 
-To override library data values, add `@library/ref` annotation to data values YAML document, like so:
+To override library data values, add [`@library/ref`](lang-ref-ytt-library.md#libraryref) annotation to data values YAML document, like so:
 
 ```yaml
 #@library/ref "@lib1"
@@ -254,3 +256,24 @@ ytt -f . \
   --data-values-env-yaml @lib6:YAML_VALS
   --data-values-file @lib6:/path
 ```
+
+### Library Data Values merge order
+
+For a given library instance, data values are merged in following order (latter one wins):
+
+1. default values from schema:
+   1. `@data/values-schema` files within the library
+   2. `@data/values-schema` files [externally referenced in](#setting-library-values-via-files).
+   3. given through [`instance.with_data_values_schema()`](lang-ref-ytt-library.md#instancewith_data_values_schema)
+   4. `@data/values-schema` files [externally referenced in `after_library_module=True`](#setting-library-values-via-files).
+2. values from data value sources:
+   1. `@data/values` overlays within the library (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
+   2. `@data/values` overlays [externally referenced in](#setting-library-values-via-files)
+   3. specified using [`instance.with_data_values()`](lang-ref-ytt-library.md#instancewith_data_values)
+   4. `@data/values` overlays [externally referenced in `after_library_module=True`](#setting-library-values-via-files)
+   5. `--data-values-file` specified files [referenced in](#setting-library-values-via-command-line-flags) (left to right)
+   6. `--data-values-env` specified values [referenced in](#setting-library-values-via-command-line-flags) (left to right)
+   7. `--data-values-env-yaml` specified values [referenced in](#setting-library-values-via-command-line-flags) (left to right)
+   8. `--data-value` specified value [referenced in](#setting-library-values-via-command-line-flags) (left to right)
+   9. `--data-value-yaml` specified value [referenced in](#setting-library-values-via-command-line-flags) (left to right)
+
