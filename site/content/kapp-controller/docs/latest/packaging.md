@@ -145,23 +145,6 @@ spec:
   syncPeriod: 1m
   # Must have only one directive.
   fetch:
-    # pull content from within this resource; or other resources in the cluster
-    inline:
-      # specifies mapping of paths to their content;
-      # not recommended for sensitive values as CR is not encrypted (optional)
-      paths:
-        dir/file.ext: file-content
-      # specifies content via secrets and config maps;
-      # data values are recommended to be placed in secrets (optional)
-      pathsFrom:
-        - secretRef:
-            name: secret-name
-            # specifies where to place files found in secret (optional)
-            directoryPath: dir
-        - configMapRef:
-            name: cfgmap-name
-            # specifies where to place files found in config map (optional)
-            directoryPath: dir
     # pulls imgpkg bundle from Docker/OCI registry
     imgpkgBundle:
       # Docker image url; unqualified, tagged, or
