@@ -329,7 +329,7 @@ Extends the type of the Data Value to also allow `null` _and_ sets the default v
 
 The preferred way to express "unset value" for a string-type is _not_ to mark it as "nullable" but to provide the empty value: `""`. Empty values in Starlark are falsey (details in the [Starlark Spec > Booleans](https://github.com/google/starlark-go/blob/master/doc/spec.md#booleans)).
 
-When empty string is a valid value, _then_ marking the Data Value as "nullable" is appropriate. In this case, one must take care explicitly check if that Data Value is not [`None`](lang.md#types).
+When empty string is a useful/valid value for a given Data Value, _then_ marking it as "nullable" is appropriate. In this case, one must take care to explicitly check if that Data Value is not [`None`](lang.md#types).
 
 _Example: Nullable map_ 
 
