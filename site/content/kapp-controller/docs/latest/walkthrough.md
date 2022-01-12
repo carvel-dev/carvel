@@ -44,7 +44,7 @@ You can use `kubectl` (or another tool) to deploy the YAML examples below. We've
 
 - Check out `kubectl get app` output to see that app is deployed.
 
-- Additionally, let's check status of our App CR. It shows the overall status of the application, including the latest deploy output (`status.deploy.stdout`) and latest inspect output (`status.inspect.stdout`). Based on the inspect output we can see that our app included a `Deployment` and a `Service`.
+- Additionally, let's check status of our App CR. It shows the overall status of the application, including the latest deploy output (`status.deploy.stdout`) and latest inspect output (`status.inspect.stdout`). Based on the inspect output we can see that our app included a `Deployment` and a `Service`. (Note: As of kapp-controller v0.31.0, inspect is disabled by default. See [App CR spec](app-spec.md) for more details.)
 
   ```bash-plain
   $ kapp inspect -a simple-app --status

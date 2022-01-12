@@ -256,6 +256,8 @@ spec:
         # pass through options to kapp deploy (optional)
         rawOptions: ["--apply-concurrency=10"]
         # configuration for inspect command (optional)
+        # as of kapp-controller v0.31.0, inspect is disabled by default
+        # add rawOptions or use an empty inspect config like `inspect: {}` to enable it
         inspect:
           # pass through options to kapp inspect (optional)
           rawOptions: ["--json=true"]
