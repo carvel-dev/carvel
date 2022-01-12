@@ -72,4 +72,4 @@ k8s.io/client-go@v0.22.4/tools/cache/reflector.go:167: Failed to watch *v1beta1.
 While kapp-controller will still work, your logs may fill at a remarkable pace.
 
 To disable these APIs, set the deployment config variable
-`enable_APIPriorityAndFairness` to false.
+`enable_api_priority_and_fairness` to false.
