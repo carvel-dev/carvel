@@ -146,7 +146,7 @@ spec:
   # Must have only one directive.
   fetch:
     # pull content from within this resource; or other resources in the cluster
-    inline:
+    inline: # NOTE: inline fetch available since v 0.31.0
       # specifies mapping of paths to their content;
       # not recommended for sensitive values as CR is not encrypted (optional)
       paths:
