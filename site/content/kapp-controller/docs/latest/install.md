@@ -57,3 +57,19 @@ rules:
 ```
 3. Set the `IMGPKG_ENABLE_IAAS_AUTH` [environment
    variable](https://carvel.dev/imgpkg/docs/latest/auth/#via-iaas) to false.
+
+
+### Kubernetes versions < 1.20
+Starting in kapp-controller 0.31.0 we have upgraded our underlying kubernetes
+libraries which will try to use APIs that don't exist on clusters v1.19 and
+earlier.
+
+Those using k8s v1.19 and earlier will see a repeating error message such as the one below, because
+our libraries are hardcoded to watch `v1beta1.PriorityLevelConfiguration` and that won't exist on your cluster.
+```
+k8s.io/client-go@v0.22.4/tools/cache/reflector.go:167: Failed to watch *v1beta1.PriorityLevelConfiguration: failed to list *v1beta1.PriorityLevelConfiguration: the server could not find the requested resource (get prioritylevelconfigurations.flowcontrol.apiserver.k8s.io)
+```
+While kapp-controller will still work, your logs may fill at a remarkable pace.
+
+To disable these APIs, set the deployment config variable
+`enable_api_priority_and_fairness` to false.
