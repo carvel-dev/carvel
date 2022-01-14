@@ -325,7 +325,13 @@ Extends the type of the Data Value to also allow `null` _and_ sets the default v
 #@schema/nullable
 ```
 
-_Example: Nullable map and string_ 
+**Unset value for strings**
+
+The preferred way to express "unset value" for a string-type is _not_ to mark it as "nullable" but to provide the empty value: `""`. Empty values in Starlark are falsey (details in the [Starlark Spec > Booleans](https://github.com/google/starlark-go/blob/master/doc/spec.md#booleans)).
+
+When empty string is a useful/valid value for a given Data Value, _then_ marking it as "nullable" is appropriate. In this case, one must take care to explicitly check if that Data Value is not [`None`](lang.md#types).
+
+_Example: Nullable map_ 
 
 ```yaml
 #@data/values-schema
@@ -335,14 +341,13 @@ aws:
   username: admin
   password: "1234"
 
-#@schema/nullable
-name: dev
+name: ""
 ```
 
-Without other Data Value settings, `aws` and `name` are both `null` by default:
+Without other Data Value settings, `aws` is `null` by default:
 ```yaml
 aws: null
-name: null
+name: ""
 ```
 
 However, if a Data Value is set:
@@ -358,7 +363,7 @@ aws:
   username: sa
   password: "1234"
 
-name: null
+name: ""
 ```
 
 ### @schema/type
