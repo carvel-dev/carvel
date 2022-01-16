@@ -35,7 +35,6 @@ data:
 
 If we try to deploy this application, we would get an error suggesting that the namespace _ns-sample_ doesn't exists.
 
-{{< detail-tag "Bash" >}}
 ```bash
 kapp deploy -a test -f config.yml
 Target cluster 'https://192.168.64.53:8443' (nodes: minikube)
@@ -57,7 +56,6 @@ Continue? [yN]: y
 kapp: Error: Applying create secret/secret-sample (v1) namespace: ns-sample:
   Creating resource secret/secret-sample (v1) namespace: ns-sample: namespaces "ns-sample" not found (reason: NotFound)
 ```
-{{< /detail-tag >}}
 
 We know that the namespace will be created by a controller at some point of time, but how do we make sure that we are creating our resources after the namespace has been created. Should we wait for the creation of the namespace and then deploy our app? Sounds mundane, right? Well, we do have a solution for this which will allow us to deploy the app and let kapp do the waiting on it's own. We will use the `kapp.k14s.io/exists` annotation for this.
 
