@@ -8,9 +8,9 @@ image: /img/logo.svg
 tags: ['Praveen', 'kapp', 'exists']
 ---
 
-kapp CLI encourages Kubernetes users to manage resources in bulk by working with "Kubernetes applications" (sets of resources with the same label). But their are often times when we want to incorporate resources that are not actually part of the same application (created by external agents). 
+kapp CLI encourages Kubernetes users to manage resources in bulk by working with "Kubernetes applications" (sets of resources with the same label). But there are often times when we want to incorporate resources that are not actually part of the same application (created by external agents). 
 
-In this blog, we are going to learn how to use the `kapp.k14s.io/exists` annotation to wait for resources that are not owned by kapp and are not labeled.
+In this blog, we are going to learn how to use the `kapp.k14s.io/exists` annotation to wait for resources that are not owned by kapp.
 
 ## Problem Statement
 Let's take a look at an example application which consists of a _configmap_ and a _secret_ both of which needs to be created in a namespace which is not part of the application and it will be created by an external agency (such as a controller).
@@ -62,7 +62,7 @@ kapp: Error: Applying create secret/secret-sample (v1) namespace: ns-sample:
 We know that the namespace will be created by a controller at some point of time, but how do we make sure that we are creating our resources after the namespace has been created. Should we wait for the creation of the namespace and then deploy our app? Sounds mundane, right? Well, we do have a solution for this which will allow us to deploy the app and let kapp do the waiting on it's own. We will use the `kapp.k14s.io/exists` annotation for this.
 
 ## How to use the _exists_ annotation
-To use the _exists_ annotation, we would need the basic information of the resource that we want to wait for. By basic, we mean the information that uniquely identifies the resource. For example, we would need the _apiVersion_, _kind_ and _name_ of a namespace to wait for it.
+To use the _exists_ annotation, we would need the basic information of the resource that we want to wait for. By basic, we mean the information that uniquely identifies the resource. In our case, we would need the _apiVersion_, _kind_ and _name_ of a namespace to wait for it.
 Next step is to add this information in the yaml along with the other resources and add the exists annotation to it. So, our yaml would now look something like this.
 
 ```yaml
