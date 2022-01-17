@@ -147,7 +147,7 @@ spec:
     kind: K8sRequiredLabels           #This is provided in the ConstraintTemplate CR
 ```
 
-Now you can deploy gatekeeper along with the Constraint CRs without having to wait for the CRDs manually. Note that you would need to add a few change rules so that the Constraints are deployed after the gatekeeper controller pods are in ready state. Refer to this [gist](https://gist.github.com/praveenrewar/a97820ecef7a79ef13b2f7125421c723) for reference.
+Now you can deploy gatekeeper along with the Constraint CRs without having to wait for the CRDs manually. Note that you would need to add a few change rules so that the Constraints are deployed after the gatekeeper controller pods are in ready state. The updated yaml for the complete deployment of gatekeeper and Constraints can be found [here](https://gist.github.com/praveenrewar/a97820ecef7a79ef13b2f7125421c723).
 
 
 ## Join us on Slack and GitHub
