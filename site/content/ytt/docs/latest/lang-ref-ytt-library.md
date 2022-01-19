@@ -71,11 +71,11 @@ instance = library.get(name, [<kwargs>])
 - keyword arguments (optional):
   - **`alias=`** (`string`) — unique name for this library instance. See [Aliases](#aliases), below.
   - **`ignore_unknown_comments=`** (`bool`) — equivalent to `ytt --ignore-unknown-comments`; see [File Marks > type detection for YAML files](file-marks.md#type-detection-for-yaml-files) for more details (default: `False`). (as of v0.31.0)
-  - **`implicit_map_key_overrides=`** (`bool`) — equivalent to `ytt --implicit-map-key-overrides` (default: `False`). (as of v0.31.0)
+  - **`implicit_map_key_overrides=`** (`bool`) — equivalent to `ytt --implicit-map-key-overrides`; see [@yaml/map-key-override](lang-ref-annotation.md#yaml-templating-annotations) for more details.  (default: `False`). (as of v0.31.0)
   - **`strict=`** (`bool`) — equivalent to `ytt --strict` (default: `False`). (as of v0.31.0)
 - **`instance`** ([`@ytt:library.instance`](#library-instances)) — a new library instance backed by the contents of the named library.
 
-The file containing method invocation must be a sibling of the [`_ytt_lib` directory](lang-ref-load.md#_ytt_lib-directory).
+The file containing this method invocation must be a sibling of the [`_ytt_lib` directory](lang-ref-load.md#_ytt_lib-directory).
 
 ---
 
@@ -90,7 +90,7 @@ With a library instance:
   - [`instance.with_data_values_schema()`](#instancewith_data_values_schema)
   - [`instance.with_data_values()`](#instancewith_data_values)
 - evaluate its contents via [`instance.eval()`](#instanceeval)
-- query the contents using:
+- fetch values from it using:
   - [`instance.data_values()`](#instancedata_values) for the final data values for the library
   - [`instance.export()`](#instanceexport) to access its functions and variables
 
@@ -106,13 +106,13 @@ dvs = instance.data_values()
 
 ### instance.eval()
 
-Calculates the library's final data values (i.e. the net result of [all configured data values](ytt-data-values.md#library-data-values)), evaluates its templates into a document set, and applies its overlays on that document set. Executes the pipeline described in [How it works](how-it-works.md) for its inputs and contents.
+Calculates the library's final data values (i.e. the net result of [all configured data values](ytt-data-values.md#library-data-values)), evaluates its templates into a document set, and applies its overlays on that document set (i.e. executes the pipeline described in [How it works](how-it-works.md) for this library instance's inputs and contents).
 
 ```python
 document_set = instance.eval()
 ```
 
-- **`document_set`** ([`yamlfragment`](lang-ref-yaml-fragment.md#yaml-document-set)) — the YAML document set resulting from the full evaluation of the library.
+- **`document_set`** ([`yamlfragment`](lang-ref-yaml-fragment.md#yaml-document-set)) — the YAML document set resulting from the evaluation of this instance.
 
 ### instance.export()
 
@@ -124,10 +124,10 @@ Returns the value of an identifier declared within the library instance.
 value = instance.export(name, [path=])
 ```
 
-- **`name`** (`string`) — the name of a function or a variable declared within a [module](lang-ref-load.md#terminology) in the library. (i.e. a file with the extension `.lib.yml` or `.star`).
+- **`name`** (`string`) — the name of a function or a variable declared within some [module](lang-ref-load.md#terminology)/file in the library. (i.e. a file with the extension `.lib.yml` or `.star`).
 - **`path=`** (`string`) — the path to the module/file that contains the declaration. Only required when `name` is not unique within the library.
 - **`value`** (any) — a copy of the specified value.
-  - if `value` is a function, it is executed within the context of _its_ library instance.
+  - if `value` is a function, it is executed within the context of _its_ library instance. For example, if the function depends on values from the [`@ytt:data`](lang-ref-ytt.md#data) module, the values provided are those of this library instance.
 
 **Examples:**
 
@@ -186,11 +186,11 @@ new_instance = instance.with_data_values(dvs, [plain=])
 ```
 
 - **`dvs`** (`struct` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — data values with which to overlay (or set, if none exist).
-  - only `yamlfragment`s wrapping a map or an array are supported (i.e. `yamlfragment`s wrapping document sets are not supported)
+  - only `yamlfragment`s wrapping a map or an array are supported (i.e. `yamlfragment`s wrapping document sets are not supported).
   - `yamlfragment` values _can_ contain [overlay annotations](lang-ref-ytt-overlay.md#overlay-annotations) for fine-grained overlay control.
-- **`plain=`** (`bool`) — when `True` indicates that `dvs` should be "plain merged" over existing data values (i.e. the exact same behavior as [`--data-values-file`](https://carvel.dev/ytt/docs/latest/ytt-data-values/#configuring-data-values-via-command-line-flags)).
-  - `dvs` must be plain YAML (i.e. a `struct` or a `yamlfragment` without annotations)
-- **`new_instance`** (`@ytt:library.instance`) — a copy of `instance` with `dvs` overlayed on its data values; `instance` remains unchanged.
+- **`plain=`** (`bool`) — when `True` indicates that `dvs` should be "plain merged" over existing data values (i.e. the exact same behavior as [`--data-values-file`](ytt-data-values.md#configuring-data-values-via-command-line-flags)).
+  - `dvs` must be plain YAML (i.e. a `struct` or a `yamlfragment` with no annotations).
+- **`new_instance`** ([`@ytt:library.instance`](#library-instances)) — a copy of `instance` with `dvs` overlayed on its data values; `instance` remains unchanged.
 
 ### instance.with_data_values_schema()
 
@@ -205,7 +205,7 @@ new_instance = instance.with_data_values_schema(schema)
 - **`schema`** (`struct` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — schema for data values with which to overlay on existing schema (or set if none exist).
   - only `yamlfragment`s wrapping a map or an array are supported (i.e. `yamlfragment`s wrapping document sets are not supported)
   - `yamlfragment` values _can_ contain [overlay annotations](lang-ref-ytt-overlay.md#overlay-annotations) for fine-grained overlay control.
-- **`new_instance`** (`@ytt:library.instance`) — a copy of `instance` with a schema updated with `schema`; `instance` remains unchanged.
+- **`new_instance`** ([`@ytt:library.instance`](#library-instances)) — a copy of `instance` with a schema updated with `schema`; `instance` remains unchanged.
 
 **Examples:**
 
@@ -219,7 +219,6 @@ env_vars:
   custom_key: ""
 #@ end
 
-#! with_data_values_schema
 #@ app1_with_schema = app1.with_data_values_schema(app_schema())
 ---
 #@ def app_vals():
@@ -228,7 +227,6 @@ env_vars:
   custom_key: some_val
 #@ end
 
-#! with_data_values 
 #@ app1_with_vals = app1.with_data_values(app_vals())
 ```
 
@@ -246,11 +244,11 @@ Only supported on documents annotated with `@data/values` and `@data/values-sche
 ```
 @library/ref library_name
 ```
-- **`library_name`** (`string`) — `@`-prefixed path to the base directory of the desired library: `./_ytt_lib/<name>`. Can contain slashes `/` for sub-directories (e.g. `github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes/app`).
+- **`library_name`** (`string`) — `@`-prefixed path to the base directory of the desired library: `./_ytt_lib/<name>`. Can contain slashes `/` for sub-directories (e.g. `github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes/app`). Can also be an [alias](#aliases) for specific library instance(s).
 
 **Examples:**
 
-_Example 1: Change default for data value in a library._
+_Example 1: Change schema default for a data value in a library._
 
 ```yaml
 #@data/values-schema
@@ -277,7 +275,7 @@ Sets the "backend" library's `domains` data value to be exactly the values given
 
 See also: [Data Values > Setting Library Values via Files](ytt-data-values.md#setting-library-values-via-files).
 
-Note: data values may also be attached to libraries via [command line flags](ytt-data-values.md#setting-library-values-via-command-line-flags)
+Note: data values may also be attached to libraries via [command line flags](ytt-data-values.md#setting-library-values-via-command-line-flags).
 
 ---
 
@@ -287,9 +285,9 @@ To facilitate configuring specific library instances, one can mark them with an 
 
 An alias:
 - is defined in a [`library.get()`](#libraryget) call, using the optional `alias=` keyword argument.
-- is added to a library reference by prefixing it with a tilde:
+- is added to a library reference by prefixing it with a tilde, `~`:
   - `@~<alias-name>` refers to _any_ library instance with the alias.
-  - `@<library-name>~<alias-name>` refers to _any_ instance of the named library that also has the alias.
+  - `@<library-name>~<alias-name>` refers to any instance of the named library that _also_ has the alias.
 
 For example, given a library known as "fruit":
 
@@ -310,7 +308,7 @@ where:
 #@ load("@ytt:data", "data")
 --- #@ data.values
 ```
-and
+the template in the library simply returns its data values as a document, and ...
 ```yaml
 #! _ytt_lib/fruit/values.yml
 
@@ -319,6 +317,7 @@ and
 variety: ordinary
 poisoned: false
 ```
+... those are the data values in the library.
 
 The root library can assign aliases to library instances:
 
@@ -338,10 +337,14 @@ apple:
   2: #@ apple2.eval()[0]
 orange: #@ orange.eval()[0]
 ```
+where:
+- `apple1` has the alias "apple"
+- `apple2` also has the alias "apple" (part of being a copy of `apple1`)
+- `orange` has the alias "orange"
 
-(note: `apple2` inherits `apple1`'s alias of "apple")
+These aliases can be used to target changes to specific library instance(s).
 
-These aliases can be used to target changes to specific library instance(s):
+For example, our root library has these two data values overlays:
 
 ```yaml
 #! ./apple-values.yml
@@ -352,6 +355,7 @@ These aliases can be used to target changes to specific library instance(s):
 variety: red delicious
 poisoned: true
 ```
+... which will affect all library instances with the alias "apple", and ...
 
 ```yaml
 #! ./orange-values.yml
@@ -361,6 +365,8 @@ poisoned: true
 ---
 variety: valencia
 ```
+
+... overlays on top of library instance with the alias "orange".
 
 When the whole fileset is evaluated, the result is:
 
