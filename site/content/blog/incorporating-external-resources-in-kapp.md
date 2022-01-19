@@ -13,7 +13,7 @@ kapp CLI encourages Kubernetes users to manage resources in bulk by working with
 In this blog, we are going to learn how to use the `kapp.k14s.io/exists` annotation to wait for resources that are not owned by kapp.
 
 ## Problem Statement
-Let's take a look at an example application which consists of a _configmap_ and a _secret_ both of which needs to be created in a namespace which is not part of the application and it will be created by an external agency (such as a controller).
+Let's take a look at an example application which consists of a _configmap_ and a _secret_. Both the _configmap_ and the _secret_ needs to be created in a namespace which is not part of the application and it will be created by an external agency (such as a controller).
 
 ```yaml
 apiVersion: v1
