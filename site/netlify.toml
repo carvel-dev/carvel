@@ -58,3 +58,9 @@ HUGO_ENABLEGITINFO = "true"
   to = "https://carvel.dev/blog/kubecon-na21-keynote-blog/"
   status = 302
   force = true
+
+[[redirects]]
+  from = "https://carvel.dev/kapp-controller/docs/latest/package-authoring"
+  to = "https://carvel.dev/kapp-controller/docs/latest/packaging-tutorial"
+  status = 301
+  force = true
