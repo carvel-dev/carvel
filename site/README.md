@@ -29,3 +29,15 @@ Serve site at [http://localhost:1313]()
 - `/data/` includes configuration for docs TOCs
 
 More details: [Directory Structure Explained](https://gohugo.io/getting-started/directory-structure/)
+
+### Generate documentation for new version
+When creating a new version v0.1.0 of imgpkg
+```bash
+./hack/release-docs.sh imgpkg v0.1.0
+```
+
+### Generate documentation for new patch
+When creating a patch v0.1.1 for the version v0.1.0 of imgpkg
+```bash
+./hack/release-docs.sh imgpkg v0.1.1 v0.1.0
+```
