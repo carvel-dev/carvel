@@ -26,16 +26,17 @@ params:
     name: kbld
     short_name: kbld
     root_link: /kbld/
-    latest_docs_link: /kbld/docs/latest/
+    latest_docs_link: /kbld/docs/v0.32.0/
     github_url: https://github.com/vmware-tanzu/carvel-kbld
     search: true
     search_index_name: carvel
     search_api_key: 582b1408d7a3fe145c0f84f48ca03755
     search_tag: kbld
-    versioning: false
-    version_latest: latest
+    versioning: true
+    version_latest: v0.32.0
     versions:
-      - latest
+      - develop
+      - v0.32.0
   kapp:
     name: kapp
     short_name: kapp
