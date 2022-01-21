@@ -1,4 +1,5 @@
 ---
+aliases: [/kapp-controller/docs/latest/faq]
 title: FAQ
 ---
 

@@ -20,7 +20,7 @@ Full App CR spec can be found [here](app-spec.md).
 App CR supports multiple source for fetching configuration and OCI images to give developers flexibility.
 
 - `inline`: specify one or more files within resource
-- `imgpkgBundle`: download [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle) from registry (available in v0.17.0+)
+- `imgpkgBundle`: download [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle) from registry (available in v0.17.0+)
 - `image`: download Docker image from registry
 - `http`: download file at URL
 - `git`: clone Git repository

@@ -2,4 +2,5 @@
 # (TOC). You'll want to use this after any revamps to information architecture, to ensure
 # that the navigation for older versions still work.
 
-latest: kapp-controller-latest-toc
+develop: kapp-controller-develop-toc
+v0.31.0: kapp-controller-v0-31-0-toc
