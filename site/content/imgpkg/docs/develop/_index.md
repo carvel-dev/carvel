@@ -2,7 +2,7 @@
 title: "About imgpkg"
 toc: "false"
 cascade:
-  version: v0.24.0
+  version: develop
   toc: "true"
   type: docs
   layout: docs

@@ -54,7 +54,7 @@ params:
     name: imgpkg
     short_name: imgpkg
     root_link: /imgpkg/
-    latest_docs_link: /imgpkg/docs/latest/
+    latest_docs_link: /imgpkg/docs/v0.24.0/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
     search: true
     search_index_name: carvel
@@ -63,6 +63,7 @@ params:
     versioning: true
     version_latest: v0.24.0
     versions:
+      - develop
       - v0.24.0
   kapp-controller:
     name: kapp-controller
