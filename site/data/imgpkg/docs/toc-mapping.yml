@@ -2,5 +2,4 @@
 # (TOC). You'll want to use this after any revamps to information architecture, to ensure
 # that the navigation for older versions still work.
 
-latest: imgpkg-latest-toc
-# v0.3.0: imgpkg-v0-3-0-toc
+v0.24.0: imgpkg-v0-24-0-toc

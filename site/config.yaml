@@ -60,10 +60,10 @@ params:
     search_index_name: carvel
     search_api_key: 582b1408d7a3fe145c0f84f48ca03755
     search_tag: imgpkg
-    versioning: false
-    version_latest: latest
+    versioning: true
+    version_latest: v0.24.0
     versions:
-      - latest
+      - v0.24.0
   kapp-controller:
     name: kapp-controller
     short_name: kc

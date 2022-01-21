@@ -387,6 +387,7 @@
             }
         }
         .dropdown-menu {
+            z-index: 1;
             position: absolute;
             border: 1px solid $grey;
             border-radius: 5px;
@@ -402,6 +403,10 @@
             }
             &.dropdown-menu-visible {
                 display: block;
+            }
+
+            .dropdown-item.deprecated {
+                color: $grey;
             }
         }
         .form-control {
