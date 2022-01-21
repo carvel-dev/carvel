@@ -17,17 +17,20 @@ Given a `ytt` schema:
 
 #@data/values-schema
 ---
+#@schema/title "LoadBalancer type service"
 #@schema/desc "Whether to include a LoadBalancer type service and if so, what its IP address is."
 load_balancer:
   enabled: true
   #@schema/nullable
   static_ip: ""
-
+  
+#@schema/title "DNS domains"
 #@schema/desc "DNS domains to accept traffic for."
 #@schema/default ["apps.example.com", "mobile.example.com"]
 app_domains:
 - ""
 
+#@schema/title "Database connections"
 #@schema/desc "Connection information for databases used by the system."
 databases:
 - name: ""
@@ -35,11 +38,11 @@ databases:
   host: ""
   port: 5432
 
+#@schema/title "Additional configuration"
 #@schema/desc "Configuration for experimental/optional components; see documentation for more details."
 #@schema/type any=True
 additional_config: {}
 ```
-
 One can generate the corresponding OpenAPI Document:
 
 ```bash
@@ -64,6 +67,7 @@ components:
       additionalProperties: false
       properties:
         load_balancer:
+          title: LoadBalancer type service
           type: object
           additionalProperties: false
           properties:
@@ -76,6 +80,7 @@ components:
               nullable: true
           description: Whether to include a LoadBalancer type service and if so, what its IP address is.
         app_domains:
+          title: DNS domains
           type: array
           items:
             type: string
@@ -85,6 +90,7 @@ components:
           - mobile.example.com
           description: DNS domains to accept traffic for.
         databases:
+          title: Database connections
           type: array
           items:
             type: object
@@ -105,6 +111,7 @@ components:
           default: []
           description: Connection information for databases used by the system. 
         additional_config:
+          title: Additional configuration
           nullable: true
           default: {}
           description: Configuration for experimental/optional components; see documentation for more details.
@@ -113,6 +120,15 @@ components:
 ## Exported Properties
 
 Of the properties declared in the [OpenAPI Schema specification](https://swagger.io/specification/#schema-object), the following are generated.
+
+### `title`
+
+(As of v0.39.0+)
+
+Sets the user-friendly name or title of the node
+
+- when a data value is annotated `@schema/title`, the value of that title is the value of this property, verbatim;
+- otherwise, this property is omitted.
 
 ### `type`
 
