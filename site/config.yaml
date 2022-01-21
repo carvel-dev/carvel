@@ -42,16 +42,17 @@ params:
     name: kapp
     short_name: kapp
     root_link: /kapp/
-    latest_docs_link: /kapp/docs/latest/
+    latest_docs_link: /kapp/docs/v0.44.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
     search: true
     search_index_name: carvel
     search_api_key: 582b1408d7a3fe145c0f84f48ca03755
     search_tag: kapp
-    versioning: false
-    version_latest: latest
+    versioning: true
+    version_latest: v0.44.0
     versions:
-      - latest
+      - develop
+      - v0.44.0
   imgpkg:
     name: imgpkg
     short_name: imgpkg
