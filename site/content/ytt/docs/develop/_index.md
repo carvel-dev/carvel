@@ -1,7 +1,7 @@
 ---
 title: "About ytt"
 cascade:
-  version: latest
+  version: develop
   toc: "true"
   type: docs
   layout: docs

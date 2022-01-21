@@ -12,16 +12,17 @@ params:
   ytt:
     name: ytt
     root_link: /ytt/
-    latest_docs_link: /ytt/docs/latest/
+    latest_docs_link: /ytt/docs/v0.38.0/
     github_url: https://github.com/vmware-tanzu/carvel-ytt
     search: true
     search_index_name: carvel
     search_api_key: 582b1408d7a3fe145c0f84f48ca03755
     search_tag: ytt
-    versioning: false
-    version_latest: latest
+    versioning: true
+    version_latest: v0.38.0
     versions:
-      - latest
+      - develop
+      - v0.38.0
   kbld:
     name: kbld
     short_name: kbld
