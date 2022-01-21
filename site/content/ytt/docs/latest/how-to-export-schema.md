@@ -2,6 +2,8 @@
 title: Export Schema in OpenAPI Format
 ---
 
+Available in v0.38.0+ unless otherwise noted.
+
 The primary use of schema is to declare (and type-check) Data Values.
 
 `ytt` _also_ supports the ability to export schema definitions in [OpenAPI v3.0.x](https://swagger.io/specification/) format. This is useful for tools that require schema definition in this industry-standard format. For example, `kapp-controller`, requires [Package](https://carvel.dev/kapp-controller/docs/latest/packaging/#package) 's `spec.valuesSchema.openAPIv3` to contain an [OpenAPI Schema map](https://swagger.io/specification/#schema-object).
