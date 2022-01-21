@@ -122,6 +122,9 @@ components:
 Of the properties declared in the [OpenAPI Schema specification](https://swagger.io/specification/#schema-object), the following are generated.
 
 ### `title`
+
+(As of v0.39.0+)
+
 Sets the user-friendly name or title of the node
 
 - when a data value is annotated `@schema/title`, the value of that title is the value of this property, verbatim;
