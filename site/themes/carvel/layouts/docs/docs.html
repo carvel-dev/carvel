@@ -16,6 +16,10 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     {{ end }}
     <title>{{ .Site.Title }} - {{ .Section }} - {{ .Title }}</title>
+
+    <!-- Algolia metadata -->
+    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:version" content="{{ .CurrentSection.Params.version }}" />
   </head>
 
   <body id="docs">
