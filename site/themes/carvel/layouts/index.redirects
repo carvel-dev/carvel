@@ -1,0 +1,4 @@
+{{ $latest   := site.Params.latest }}
+
+/:slug/docs/latest                   /:slug/docs/{{ $latest }}
+/:slug/docs/latest/*                 /:slug/docs/{{ $latest }}/:splat

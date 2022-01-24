@@ -111,3 +111,10 @@ markup:
     tabWidth: 4
 permalinks:
   tags: "/blog/tags/:slug"
+mediaTypes:
+  "text/netlify":
+    delimiter: ""
+outputFormats:
+  REDIRECTS:
+    mediaType: "text/netlify"
+    baseName: "_redirects"
