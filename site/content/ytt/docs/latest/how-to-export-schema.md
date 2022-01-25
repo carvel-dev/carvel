@@ -160,15 +160,6 @@ The value of this property depends on the type of data value implied in the `ytt
 - integer ==> `integer`
 - float ==> `type: number; format: float`
 
-### `default`
-
-Declares a default value.
-
-The value of this property:
-- is always included;
-- is typically the value of the data value in the `ytt` schema;
-- if the data value is annotated `@schema/default`, _that_ value is used instead.
-
 ### `additionalProperties`
 
 Indicates whether other keys are allowed in a mapping/object.
@@ -190,22 +181,35 @@ Explains the contents and/or consequences of certain values of the property.
 - when a data value is annotated `@schema/desc`, the value of that description is the value of this property, verbatim;
 - otherwise, this property is omitted.
 
+### `x-example-description`
+
+(As of v0.39.0+)
+
+Explains the contents of the `example` property.
+
+- when a data value is annotated `@schema/examples`, examples are provided via 2-tuples, only the first tuple will be exported to the OpenAPI Document.
+- the example description is the first argument of 2-tuple, and must be a string.
+- otherwise, this property is omitted.
+
 ### `example`
 
+(As of v0.39.0+)
+
 Presents an example value for the data value.
-(as of v0.39.0)
+
 - when a data value is annotated `@schema/examples`, examples are provided via 2-tuples, only the first tuple will be exported to the OpenAPI Document.
 - a 2-tuple contains string description, and an example value: `("first example", exampleYAML())`.
 - example values should conform to the type of the same property.
 - otherwise, this property is omitted.
 
-### `x-example-description`
+### `default`
 
-Explains the contents of the `example` property.
-(as of v0.39.0)
-- when a data value is annotated `@schema/examples`, examples are provided via 2-tuples, only the first tuple will be exported to the OpenAPI Document.
-- the example description is the first argument of 2-tuple, and must be a string.
-- otherwise, this property is omitted.
+Declares a default value.
+
+The value of this property:
+- is always included;
+- is typically the value of the data value in the `ytt` schema;
+- if the data value is annotated `@schema/default`, _that_ value is used instead.
 
 ## Known Limitations
 
