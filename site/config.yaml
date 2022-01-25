@@ -1,14 +1,21 @@
----
-baseURL: "https://carvel.dev"
+baseURL: https://carvel.dev
 disablePathToLower: true
 languageCode: en-us
-DefaultContentLanguage: "en"
-title: "Carvel"
-theme: "carvel"
+DefaultContentLanguage: en
+title: Carvel
+theme: carvel
 frontmatter:
-  date: [":filename", ":default"]
+  date:
+  - :filename
+  - :default
 params:
-  products: [kapp-controller, ytt, kapp, kbld, imgpkg, vendir]
+  products:
+  - kapp-controller
+  - ytt
+  - kapp
+  - kbld
+  - imgpkg
+  - vendir
   ytt:
     name: ytt
     root_link: /ytt/
@@ -21,8 +28,8 @@ params:
     versioning: true
     version_latest: v0.38.0
     versions:
-      - develop
-      - v0.38.0
+    - develop
+    - v0.38.0
   kbld:
     name: kbld
     short_name: kbld
@@ -36,23 +43,24 @@ params:
     versioning: true
     version_latest: v0.32.0
     versions:
-      - develop
-      - v0.32.0
+    - develop
+    - v0.32.0
   kapp:
     name: kapp
     short_name: kapp
     root_link: /kapp/
-    latest_docs_link: /kapp/docs/v0.44.0/
+    latest_docs_link: /kapp/docs/v0.45.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
     search: true
     search_index_name: carvel
     search_api_key: 582b1408d7a3fe145c0f84f48ca03755
     search_tag: kapp
     versioning: true
-    version_latest: v0.44.0
+    version_latest: v0.45.0
     versions:
-      - develop
-      - v0.44.0
+    - develop
+    - v0.45.0
+    - v0.44.0
   imgpkg:
     name: imgpkg
     short_name: imgpkg
@@ -66,8 +74,8 @@ params:
     versioning: true
     version_latest: v0.24.0
     versions:
-      - develop
-      - v0.24.0
+    - develop
+    - v0.24.0
   kapp-controller:
     name: kapp-controller
     short_name: kc
@@ -81,7 +89,7 @@ params:
     versioning: false
     version_latest: latest
     versions:
-      - latest
+    - latest
   vendir:
     name: vendir
     short_name: vendir
@@ -95,8 +103,8 @@ params:
     versioning: true
     version_latest: v0.24.0
     versions:
-      - develop
-      - v0.24.0
+    - develop
+    - v0.24.0
   links:
     twitter_url: https://twitter.com/carvel_dev
     github_url: https://github.com/vmware-tanzu/carvel
@@ -115,11 +123,11 @@ markup:
     style: github
     tabWidth: 4
 permalinks:
-  tags: "/blog/tags/:slug"
+  tags: /blog/tags/:slug
 mediaTypes:
-  "text/netlify":
+  text/netlify:
     delimiter: ""
 outputFormats:
   REDIRECTS:
-    mediaType: "text/netlify"
-    baseName: "_redirects"
+    mediaType: text/netlify
+    baseName: _redirects

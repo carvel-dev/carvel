@@ -1,4 +1,5 @@
 ---
+aliases: [/kapp/docs/latest/gitops]
 title: HPA and Deployment rebase
 ---
 ## HPA and Deployment rebase
