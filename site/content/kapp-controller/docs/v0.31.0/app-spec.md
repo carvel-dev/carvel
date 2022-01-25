@@ -38,7 +38,7 @@ spec:
   # by default, cluster is same as where this resource resides (optional; v0.5.0+)
   cluster:
     # specifies kapp namespace in destination cluster (optional)
-    # see {{< ref "/kapp/docs/latest/state-namespace" >}}
+    # see {{< ref "/kapp/docs/v0.44.0/state-namespace" >}}
     namespace: ns2
     # specifies secret containing kubeconfig (required)
     kubeconfigSecretRef:
