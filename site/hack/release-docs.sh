@@ -41,6 +41,11 @@ if [ "${FROM_VERSION}" == "develop" ]; then # When creating a new release from d
   echo "Update version on ${NEW_VERSION} docs"
   sed -i.bak "s/version: develop/version: ${NEW_VERSION}/" "${CONTENT_DIRECTORY}"/${NEW_VERSION}/_index.md
   rm "${CONTENT_DIRECTORY}"/${NEW_VERSION}/_index.md.bak
+
+  dashedVersion=${NEW_VERSION//\./-}
+  echo "Copy table of content"
+  cp  "${TOC_DIRECTORY}"/"${TOOL}"-develop-toc.yml "${TOC_DIRECTORY}"/"${TOOL}"-"${dashedVersion}"-toc.yml
+  git add "${TOC_DIRECTORY}"/"${TOOL}"-"${dashedVersion}"-toc.yml
 elif [ "${FROM_VERSION}" == "${LATEST_VERSION}" ]; then # When creating a patch from the latest release
     echo "Copying the content of the latest documentation to named version ${LATEST_VERSION}"
     cp -rf "${CONTENT_DIRECTORY}"/${LATEST_VERSION} "${CONTENT_DIRECTORY}"/"${NEW_VERSION}"
@@ -48,16 +53,26 @@ elif [ "${FROM_VERSION}" == "${LATEST_VERSION}" ]; then # When creating a patch 
     echo "Update version on ${NEW_VERSION} docs"
     sed -i.bak "s/version: ${LATEST_VERSION}/version: ${NEW_VERSION}/" "${CONTENT_DIRECTORY}"/${NEW_VERSION}/_index.md
     rm "${CONTENT_DIRECTORY}"/${NEW_VERSION}/_index.md.bak
+
+    dashedVersion=${NEW_VERSION//\./-}
+    latestVersionDashedVersion=${LATEST_VERSION//\./-}
+    echo "Copy table of content"
+    cp  "${TOC_DIRECTORY}/${TOOL}-${latestVersionDashedVersion}-toc.yml" "${TOC_DIRECTORY}/${TOOL}-${dashedVersion}-toc.yml"
+    git add "${TOC_DIRECTORY}"/"${TOOL}"-"${dashedVersion}"-toc.yml
 else # When creating a patch for any other release
   echo "Copying the content of the ${FROM_VERSION} documentation to named version ${NEW_VERSION}"
   cp -rf "${CONTENT_DIRECTORY}/${FROM_VERSION}/" "${CONTENT_DIRECTORY}"/"${NEW_VERSION}"
   sed -i.bak "s/version: ${FROM_VERSION}/version: ${NEW_VERSION}/" "${CONTENT_DIRECTORY}"/${NEW_VERSION}/_index.md
   rm "${CONTENT_DIRECTORY}"/${NEW_VERSION}/_index.md.bak
+
+  dashedVersion=${NEW_VERSION//\./-}
+  fromDashedVersion=${FROM_VERSION//\./-}
+  echo "Copy table of content"
+  cp  "${TOC_DIRECTORY}/${TOOL}-${fromDashedVersion}-toc.yml" "${TOC_DIRECTORY}/${TOOL}-${dashedVersion}-toc.yml"
+  git add "${TOC_DIRECTORY}"/"${TOOL}"-"${dashedVersion}"-toc.yml
 fi
 
-dashedVersion=${NEW_VERSION//\./-}
-echo "Copy table of content"
-cp  "${TOC_DIRECTORY}"/"${TOOL}"-develop-toc.yml "${TOC_DIRECTORY}"/"${TOOL}"-"${dashedVersion}"-toc.yml
+git add "${CONTENT_DIRECTORY}"/${NEW_VERSION}
 
 currentTOC="${TOC_DIRECTORY}"/toc-mapping.yml
 
@@ -71,6 +86,7 @@ ytt --ignore-unknown-comments -f"$currentTOC" -ftocOverlay.yml=<(cat <<EOF
 ${NEW_VERSION}: ${TOOL}-${dashedVersion}-toc
 EOF) > /tmp/newToc.yml
 mv /tmp/newToc.yml $currentTOC
+git add $currentTOC
 
 echo "Updating the configuration file"
 if [ "${FROM_VERSION}" == "develop" ] || [ "${FROM_VERSION}" == "${LATEST_VERSION}" ]; then
@@ -90,6 +106,7 @@ params:
     - ${NEW_VERSION}
 EOF) > /tmp/newConfig.yml
   mv /tmp/newConfig.yml config.yaml
+  git add config.yaml
 
   echo "Add redirection from latest to version ${NEW_VERSION}"
   for file in $(find content/${TOOL}/docs/${NEW_VERSION} -name "*.md");
@@ -101,6 +118,7 @@ EOF) > /tmp/newConfig.yml
 
      cat "$file" | awk 'BEGIN {t=0}; { print }; /---/ { t++; if ( t==1) { printf "aliases: [/%s/docs/latest/%s]\n", tool, filename } }' tool=${TOOL} filename="${filename%.md}" > "$file.bak"
      mv "$file".bak "$file"
+     git add $file
   done
 
   echo "Remove redirection from ${LATEST_VERSION} to latest"
@@ -108,6 +126,7 @@ EOF) > /tmp/newConfig.yml
     do
        sed -i.bak "s/aliases: \[[a-z\/\-]*\]//" $file
        rm "$file.bak"
+       git add $file
     done
 else
   echo "For patch version version"
@@ -124,4 +143,5 @@ params:
     - ${NEW_VERSION}
 EOF) > /tmp/newConfig.yml
   mv /tmp/newConfig.yml config.yaml
+  git add config.yaml
 fi
