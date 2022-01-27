@@ -19,7 +19,7 @@ if [[ -d $CONTENT_DIRECTORY/$NEW_VERSION ]]; then
     exit 1
 fi
 
-LATEST_VERSION=$(yq e ".params.${TOOL}.version_latest" config.yaml)
+LATEST_VERSION=$(ytt -f version.yml=<(echo -e "#@ load('@ytt:data', 'data')\n--- #@ data.values.params[\"${TOOL}\"].version_latest") --data-values-file config.yaml)
 # don't run if cannot find the origin version
 if [[ ! -d $CONTENT_DIRECTORY/$FROM_VERSION ]]; then
     echo "ERROR: $CONTENT_DIRECTORY/$FROM_VERSION from version folder does not exist"
@@ -29,7 +29,7 @@ fi
 PREVIOUS_VERSION="${LATEST_VERSION}"
 COPY_FROM_FOLDER="${CONTENT_DIRECTORY}/${LATEST_VERSION}/"
 if [ "${FROM_VERSION}" != "develop" ] && [ "${FROM_VERSION}" != "${LATEST_VERSION}" ]; then
-  PREVIOUS_VERSION=$(head -n8 "${CONTENT_DIRECTORY}"/${FROM_VERSION}/_index.md | yq e '.cascade.version' -)
+  PREVIOUS_VERSION=$(ytt -f version.yml=<(echo -e "#@ load('@ytt:data', 'data')\n--- #@ data.values.cascade.version") --data-values-file <(head -n8 content/ytt/docs/v0.38.0/_index.md))
   COPY_FROM_FOLDER="${CONTENT_DIRECTORY}/${FROM_VERSION}/"
 fi
 
