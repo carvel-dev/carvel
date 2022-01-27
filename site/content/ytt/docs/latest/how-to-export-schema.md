@@ -30,10 +30,12 @@ load_balancer:
 #@schema/desc "DNS domains to accept traffic for."
 #@schema/default ["apps.example.com", "mobile.example.com"]
 app_domains:
-- ""
+  #@schema/examples ("Example app domain", "web.myapp.com"), ("","localhost:8080")
+  - ""
 
 #@schema/title "Database connections"
 #@schema/desc "Connection information for databases used by the system."
+#@schema/examples ("Example for local db", [{"name": "default", "adapter": "postgresql", "host": "localhost", "port": 8080}])
 databases:
 - name: ""
   adapter: postgresql
@@ -42,6 +44,7 @@ databases:
 
 #@schema/title "Additional configuration"
 #@schema/desc "Configuration for experimental/optional components; see documentation for more details."
+#@schema/examples ("Example of additional config", {"username": "default", "password": "password", "insecureFlag": True})
 #@schema/type any=True
 additional_config: {}
 ```
@@ -72,28 +75,37 @@ components:
           title: LoadBalancer type service
           type: object
           additionalProperties: false
+          description: Whether to include a LoadBalancer type service and if so, what its IP address is.
           properties:
             enabled:
               type: boolean
               default: true
             static_ip:
               type: string
-              default: null
               nullable: true
-          description: Whether to include a LoadBalancer type service and if so, what its IP address is.
+              default: null
         app_domains:
           title: DNS domains
           type: array
+          description: DNS domains to accept traffic for.
           items:
             type: string
+            x-example-description: Example app domain
+            example: web.myapp.com
             default: ""
           default:
-          - apps.example.com
-          - mobile.example.com
-          description: DNS domains to accept traffic for.
+            - apps.example.com
+            - mobile.example.com
         databases:
           title: Database connections
           type: array
+          description: Connection information for databases used by the system.
+          x-example-description: Example for local db
+          example:
+            - name: default
+              adapter: postgresql
+              host: localhost
+              port: 8080
           items:
             type: object
             additionalProperties: false
@@ -111,12 +123,16 @@ components:
                 type: integer
                 default: 5432
           default: []
-          description: Connection information for databases used by the system. 
         additional_config:
           title: Additional configuration
           nullable: true
-          default: {}
           description: Configuration for experimental/optional components; see documentation for more details.
+          x-example-description: Example of additional config
+          example:
+            username: default
+            password: password
+            insecureFlag: true
+          default: {}
 ```
 
 ## Exported Properties
@@ -144,15 +160,6 @@ The value of this property depends on the type of data value implied in the `ytt
 - integer ==> `integer`
 - float ==> `type: number; format: float`
 
-### `default`
-
-Declares a default value.
-
-The value of this property:
-- is always included;
-- is typically the value of the data value in the `ytt` schema;
-- if the data value is annotated `@schema/default`, _that_ value is used instead.
-
 ### `additionalProperties`
 
 Indicates whether other keys are allowed in a mapping/object.
@@ -173,6 +180,36 @@ Explains the contents and/or consequences of certain values of the property.
 
 - when a data value is annotated `@schema/desc`, the value of that description is the value of this property, verbatim;
 - otherwise, this property is omitted.
+
+### `x-example-description`
+
+(As of v0.39.0+)
+
+Explains the contents of the `example` property.
+
+- when a data value is annotated `@schema/examples`, examples are provided via 2-tuples, only the first tuple will be exported to the OpenAPI Document.
+- the example description is the first argument of 2-tuple, and must be a string.
+- otherwise, this property is omitted.
+
+### `example`
+
+(As of v0.39.0+)
+
+Presents an example value for the data value.
+
+- when a data value is annotated `@schema/examples`, examples are provided via 2-tuples, only the first tuple will be exported to the OpenAPI Document.
+- a 2-tuple contains string description, and an example value: `("first example", exampleYAML())`.
+- example values should conform to the type of the same property.
+- otherwise, this property is omitted.
+
+### `default`
+
+Declares a default value.
+
+The value of this property:
+- is always included;
+- is typically the value of the data value in the `ytt` schema;
+- if the data value is annotated `@schema/default`, _that_ value is used instead.
 
 ## Known Limitations
 
