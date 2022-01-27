@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/private-registry-auth]
 title: Authenticating to Private Registries
 ---
 
@@ -7,14 +7,14 @@ title: Authenticating to Private Registries
 
 As a package consumer you may need to provide registry credentials if you are consuming package repository (and/or packages) from a registry that requires authenticated access. That may involve providing registry credentials to multiple parts of the system:
 
-1. credentials for pulling package repository bundle (via PackageRepository CR)
+- credentials for pulling package repository bundle (via PackageRepository CR)
     - consumed by imgpkg running inside kapp-controller Pod
-1. credentials for pulling package contents bundle (via PackageInstall CR)
+- credentials for pulling package contents bundle (via PackageInstall CR)
     - consumed by imgpkg running inside kapp-controller Pod
-1. credentials for pulling container images used by the package
+- credentials for pulling container images used by the package
     - credentials consumed by Kubelets
     - e.g. needed by cert-manager controller Pod
-1. credentials for pulling container images used by packages operator
+- credentials for pulling container images used by packages operator
     - credentials consumed by Kubelets
     - e.g. needed by Kafka cluster Pods created for KafkaInstance CR
 
@@ -24,7 +24,7 @@ Note that if you are using an IaaS provided Kubernetes cluster already preauthen
 
 ## secretgen-controller's placeholder secrets and SecretExport CR
 
-For this specific use case, secretgen-controller allows package consumer to specify registry credentials in one namespace and allows to export that secret to the entire cluster (or subset of namespaces) via [SecretExport CR](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md#secretexport-and-secretrequest). Registry credentials could be consumed in different namespaces via "placeholder secrets". 
+For this specific use case, secretgen-controller allows package consumer to specify registry credentials in one namespace and allows to export that secret to the entire cluster (or subset of namespaces) via [SecretExport CR](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md#secretexport-and-secretrequest). Registry credentials could be consumed in different namespaces via "placeholder secrets".
 
 A placeholder secret is:
 - plain Kubernetes Secret
@@ -49,7 +49,7 @@ Known limitation: Currently Secrets with type `kubernetes.io/dockerconfigjson` d
 
 As of kapp-controller v0.24.0+, PackageRepository and PackageInstall CRs automatically create placeholder secrets for `image` and `imgpkgBunle` fetch types, if no explicit `secretRef.name` is provided. (These placeholder secrets are named as `<resource-name>-fetch-<i>`.) If secretgen-controller is present on the cluster, these secrets will be populated with combined registry credentials; otherwise, they will remain empty.
 
-## Package authoring and placeholder secrets 
+## Package authoring and placeholder secrets
 
 We encourage all package authors to include placeholder secrets within your package configuration already preconfigured to be used by your Deployments, StatefulSets, DaemonSets, Pods, etc (and any other resources that consume image pull secrets). This removes a need for package consumers to worry about configuring packages in any special way if it's being consumed from a registry that requires authentication. Note that even if you are distributing package repository from a registry that support anonymous access, package consumers may still copy it (via imgpkg copy) into a private registry that does require authentication.
 
@@ -193,7 +193,7 @@ spec:
       # ...
 ```
 
-In the example above, the Package has a single fetch stage to retrieve an imgpkg bundle. To use a PackageInstall 
+In the example above, the Package has a single fetch stage to retrieve an imgpkg bundle. To use a PackageInstall
 to specify what secret to use for this fetch stage, an annotation is added to the PackageInstall as shown below:
 
 ```yaml

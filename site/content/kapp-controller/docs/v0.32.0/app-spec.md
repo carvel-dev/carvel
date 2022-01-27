@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-spec]
 title: App CR spec
 ---
 
@@ -21,7 +21,7 @@ spec:
   canceled: true
 
   # Deletion requests for the App will result in the App CR being
-  # deleted, but its associated resources will not be deleted
+  # deleted, but its associated resources will not be deleted 
   # (optional; default=false; v0.18.0+)
   noopDelete: true
 
@@ -37,8 +37,7 @@ spec:
   # specifies that app should be deployed to destination cluster;
   # by default, cluster is same as where this resource resides (optional; v0.5.0+)
   cluster:
-    # specifies kapp namespace in destination cluster (optional)
-    # see {{< ref "/kapp/docs/v0.44.0/state-namespace" >}}
+    # specifies namespace in destination cluster (optional)
     namespace: ns2
     # specifies secret containing kubeconfig (required)
     kubeconfigSecretRef:

@@ -82,17 +82,18 @@ params:
     name: kapp-controller
     short_name: kc
     root_link: /kapp-controller/
-    latest_docs_link: /kapp-controller/docs/v0.31.0/
+    latest_docs_link: /kapp-controller/docs/v0.32.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
     search: true
     search_index_name: carvel
     search_api_key: b20c4201c550557613a0c4771996b6c5
     search_tag: kapp-controller
     versioning: true
-    version_latest: v0.31.0
+    version_latest: v0.32.0
     versions:
     - develop
-      - v0.31.0
+    - v0.32.0
+    - v0.31.0
   vendir:
     name: vendir
     short_name: vendir
@@ -126,4 +127,4 @@ markup:
     style: github
     tabWidth: 4
 permalinks:
-  tags: "/blog/tags/:slug"
+  tags: /blog/tags/:slug
