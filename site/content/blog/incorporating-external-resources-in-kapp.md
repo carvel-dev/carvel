@@ -108,7 +108,7 @@ Continue? [yN]: y
 
 10:11:24AM: ---- applying 1 changes [0/3 done] ----
 10:11:24AM: exists namespace/ns-sample (v1) cluster
-10:11:24AM:  ^ Retryable error: External resource doesnt exists
+10:11:24AM:  ^ Retryable error: External resource does not exists
 10:11:37AM: exists namespace/ns-sample (v1) cluster
 10:11:37AM: ---- waiting on 1 changes [0/3 done] ----
 10:11:37AM: ok: reconcile namespace/ns-sample (v1) cluster
