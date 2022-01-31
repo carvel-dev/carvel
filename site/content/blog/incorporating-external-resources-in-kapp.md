@@ -1,14 +1,14 @@
 ---
 title: "Incorporating external resources in kapp"
 slug: incorporating-external-resources-in-kapp
-date: 2021-12-24
+date: 2022-01-31
 author: Praveen Rewar
-excerpt: "How to use kapp's exists annotation to wait for resources created by external agencies"
+excerpt: "How to use kapp's exists annotation to wait for resources created outside of direct configuration"
 image: /img/logo.svg
 tags: ['Praveen', 'kapp', 'exists']
 ---
 
-kapp CLI encourages Kubernetes users to manage resources in bulk by working with "Kubernetes applications" (sets of resources with the same label). But there are often times when we want to incorporate resources that are not actually part of the same application (created by external agents). 
+[kapp CLI](https://carvel.dev/kapp) encourages Kubernetes users to manage resources in bulk by working with "Kubernetes applications" (sets of resources with the same label). But there are often times when we want to incorporate resources that are not actually part of the same application (created by external agents). 
 
 In this blog, we are going to learn how to use the `kapp.k14s.io/exists` annotation to wait for resources that are not owned by kapp.
 
@@ -132,19 +132,19 @@ To create a Constraint, we are first required to create a [ConstraintTemplate](h
 We would need to add the details of the CRD to our deployment and we can get those details from the ConstraintTemplate CR itself. Heres a CRD declaration that you would need to wait for the actual CRD to be created. 
 
 ```yaml
-apiVersion: apiextensions.k8s.io/v1          #Same for all CRDs
-kind: CustomResourceDefinition               #Same for all CRDs 
+apiVersion: apiextensions.k8s.io/v1          # Same for all CRDs
+kind: CustomResourceDefinition               # Same for all CRDs 
 metadata:
   # name must match the spec fields below, and be in the form: <plural>.<group>
-  name: k8srequiredlabels.constraints.gatekeeper.sh    #plural = spec.names.kind (in lowercase)
+  name: k8srequiredlabels.constraints.gatekeeper.sh    # plural = spec.names.kind (in lowercase)
   annotations:
     kapp.k14s.io/exists: ""
 spec:
-  group: constraints.gatekeeper.sh           #Same for all Constraint CRDs
+  group: constraints.gatekeeper.sh           # Same for all Constraint CRDs
   versions:
-    - name: v1beta1                          #Same as version of ConstraintTemplate CR
+    - name: v1beta1                          # Same as version of ConstraintTemplate CR
   names:
-    kind: K8sRequiredLabels           #This is provided in the ConstraintTemplate CR
+    kind: K8sRequiredLabels           # This is provided in the ConstraintTemplate CR
 ```
 
 Now you can deploy gatekeeper along with the Constraint CRs without having to wait for the CRDs manually. Note that you would need to add a few change rules so that the Constraints are deployed after the gatekeeper controller pods are in ready state. The updated yaml for the complete deployment of gatekeeper and Constraints can be found [here](https://gist.github.com/praveenrewar/a97820ecef7a79ef13b2f7125421c723).
