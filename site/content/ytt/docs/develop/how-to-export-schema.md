@@ -19,7 +19,9 @@ Given a `ytt` schema:
 ---
 #@schema/title "LoadBalancer type service"
 #@schema/desc "Whether to include a LoadBalancer type service and if so, what its IP address is."
+#@schema/deprecated ""
 load_balancer:
+  #@schema/deprecated ""
   enabled: true
   #@schema/nullable
   static_ip: ""
@@ -28,6 +30,7 @@ load_balancer:
 #@schema/desc "DNS domains to accept traffic for."
 #@schema/default ["apps.example.com", "mobile.example.com"]
 app_domains:
+  #@schema/deprecated ""
   #@schema/examples ("Example app domain", "web.myapp.com"), ("","localhost:8080")
   - ""
 
@@ -38,12 +41,14 @@ databases:
 - name: ""
   adapter: postgresql
   host: ""
+  #@schema/deprecated ""
   port: 5432
 
 #@schema/title "Additional configuration"
 #@schema/desc "Configuration for experimental/optional components; see documentation for more details."
 #@schema/examples ("Example of additional config", {"username": "default", "password": "password", "insecureFlag": True})
 #@schema/type any=True
+#@schema/deprecated ""
 additional_config: {}
 ```
 One can generate the corresponding OpenAPI Document:
@@ -73,10 +78,12 @@ components:
           title: LoadBalancer type service
           type: object
           additionalProperties: false
+          deprecated: true
           description: Whether to include a LoadBalancer type service and if so, what its IP address is.
           properties:
             enabled:
               type: boolean
+              deprecated: true
               default: true
             static_ip:
               type: string
@@ -88,6 +95,7 @@ components:
           description: DNS domains to accept traffic for.
           items:
             type: string
+            deprecated: true
             x-example-description: Example app domain
             example: web.myapp.com
             default: ""
@@ -119,11 +127,13 @@ components:
                 default: ""
               port:
                 type: integer
+                deprecated: true
                 default: 5432
           default: []
         additional_config:
           title: Additional configuration
           nullable: true
+          deprecated: true
           description: Configuration for experimental/optional components; see documentation for more details.
           x-example-description: Example of additional config
           example:
@@ -170,6 +180,16 @@ Indicates whether other keys are allowed in a mapping/object.
 Indicates whether `null` is also allowed.
 
 - when a data value is annotated `@schema/nullable` or `@schema/type any=True`, this property is included and set to `true`;
+- otherwise, this property is omitted.
+
+### `deprecated`
+
+(As of v0.39.0+)
+
+Marks a data value as targeted for removal while still remaining defined and used.
+
+- when a data value is annotated `@schema/deprecated ""`, this property is included and set to `true`;
+- It requires a single string value however this value is ignored as of now.
 - otherwise, this property is omitted.
 
 ### `description`
