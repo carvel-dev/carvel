@@ -24,9 +24,8 @@ params:
     latest_docs_link: /ytt/docs/v0.38.0/
     github_url: https://github.com/vmware-tanzu/carvel-ytt
     search: true
-    search_index_name: carvel
-    search_api_key: b20c4201c550557613a0c4771996b6c5
-    search_tag: ytt
+    search_index_name: carvel-ytt
+    search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
     version_latest: v0.38.0
     versions:
@@ -39,9 +38,8 @@ params:
     latest_docs_link: /kbld/docs/v0.32.0/
     github_url: https://github.com/vmware-tanzu/carvel-kbld
     search: true
-    search_index_name: carvel
-    search_api_key: b20c4201c550557613a0c4771996b6c5
-    search_tag: kbld
+    search_index_name: carvel-kbld
+    search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
     version_latest: v0.32.0
     versions:
@@ -54,9 +52,8 @@ params:
     latest_docs_link: /kapp/docs/v0.45.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
     search: true
-    search_index_name: carvel
-    search_api_key: b20c4201c550557613a0c4771996b6c5
-    search_tag: kapp
+    search_index_name: carvel-kapp
+    search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
     version_latest: v0.45.0
     versions:
@@ -70,9 +67,8 @@ params:
     latest_docs_link: /imgpkg/docs/v0.24.0/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
     search: true
-    search_index_name: carvel
-    search_api_key: b20c4201c550557613a0c4771996b6c5
-    search_tag: imgpkg
+    search_index_name: carvel-imgpkg
+    search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
     version_latest: v0.24.0
     versions:
@@ -85,9 +81,8 @@ params:
     latest_docs_link: /kapp-controller/docs/v0.32.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
     search: true
-    search_index_name: carvel
-    search_api_key: b20c4201c550557613a0c4771996b6c5
-    search_tag: kapp-controller
+    search_index_name: carvel-kapp-controller
+    search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
     version_latest: v0.32.0
     versions:
@@ -101,9 +96,8 @@ params:
     latest_docs_link: /vendir/docs/v0.24.0/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
     search: true
-    search_index_name: carvel
-    search_api_key: b20c4201c550557613a0c4771996b6c5
-    search_tag: vendir
+    search_index_name: carvel-vendir
+    search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
     version_latest: v0.24.0
     versions:

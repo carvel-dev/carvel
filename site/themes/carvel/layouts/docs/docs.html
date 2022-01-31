@@ -57,7 +57,7 @@
           apiKey: '{{ $subprojectInfo.search_api_key }}',
           indexName: '{{ $subprojectInfo.search_index_name }}',
           inputSelector: '.docsearch-input',
-          algoliaOptions: {'facetFilters': ["tags:{{$subprojectInfo.search_tag}}"], hitsPerPage: 9},
+          algoliaOptions: {'facetFilters': [["version:{{.CurrentSection.Params.version}}"]], hitsPerPage: 9},
           debug: false // Set debug to true if you want to inspect the dropdown
         });
       </script>
