@@ -29,7 +29,7 @@ fi
 PREVIOUS_VERSION="${LATEST_VERSION}"
 COPY_FROM_FOLDER="${CONTENT_DIRECTORY}/${LATEST_VERSION}/"
 if [ "${FROM_VERSION}" != "develop" ] && [ "${FROM_VERSION}" != "${LATEST_VERSION}" ]; then
-  PREVIOUS_VERSION=$(ytt -f version.yml=<(echo -e "#@ load('@ytt:data', 'data')\n--- #@ data.values.cascade.version") --data-values-file <(head -n8 content/ytt/docs/v0.38.0/_index.md))
+  PREVIOUS_VERSION=$(ytt -f version.yml=<(echo -e "#@ load('@ytt:data', 'data')\n--- #@ data.values.cascade.version") --data-values-file <(head -n8 "content/${TOOL}/docs/${FROM_VERSION}/_index.md"))
   COPY_FROM_FOLDER="${CONTENT_DIRECTORY}/${FROM_VERSION}/"
 fi
 
@@ -108,18 +108,20 @@ EOF) > /tmp/newConfig.yml
   mv /tmp/newConfig.yml config.yaml
   git add config.yaml
 
-  echo "Add redirection from latest to version ${NEW_VERSION}"
-  for file in $(find content/${TOOL}/docs/${NEW_VERSION} -name "*.md");
-  do
-     filename=$(basename $file)
-     if [[ "$filename" == "_index.md" ]]; then
-       filename=
-     fi
+  if [ "${FROM_VERSION}" != "${LATEST_VERSION}" ]; then
+    echo "Add redirection from latest to version ${NEW_VERSION}"
+    for file in $(find content/${TOOL}/docs/${NEW_VERSION} -name "*.md");
+    do
+       filename=$(basename $file)
+       if [[ "$filename" == "_index.md" ]]; then
+         filename=
+       fi
 
-     cat "$file" | awk 'BEGIN {t=0}; { print }; /---/ { t++; if ( t==1) { printf "aliases: [/%s/docs/latest/%s]\n", tool, filename } }' tool=${TOOL} filename="${filename%.md}" > "$file.bak"
-     mv "$file".bak "$file"
-     git add $file
-  done
+       cat "$file" | awk 'BEGIN {t=0}; { print }; /---/ { t++; if ( t==1) { printf "aliases: [/%s/docs/latest/%s]\n", tool, filename } }' tool=${TOOL} filename="${filename%.md}" > "$file.bak"
+       mv "$file".bak "$file"
+       git add $file
+    done
+  fi
 
   echo "Remove redirection from ${LATEST_VERSION} to latest"
   for file in $(find content/${TOOL}/docs/${LATEST_VERSION} -name "*.md");
