@@ -1,0 +1,26 @@
+name: fronzen-doc-check
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  check-for-fronzen-doc-change:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.x
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Build Tools
+        run: |
+          set -e -x
+          ./site/hack/build.sh
+      - name: Check if frozen documentation was changed
+        run:  |
+          set -e -x
+          ./site/hack/validate-doc-change.sh

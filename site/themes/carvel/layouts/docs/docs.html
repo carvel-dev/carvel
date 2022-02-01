@@ -16,6 +16,10 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     {{ end }}
     <title>{{ .Site.Title }} - {{ .Section }} - {{ .Title }}</title>
+
+    <!-- Algolia metadata -->
+    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:version" content="{{ .CurrentSection.Params.version }}" />
   </head>
 
   <body id="docs">
@@ -49,10 +53,11 @@
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
       <script type="text/javascript">
         docsearch({
+          appId: '{{ .Site.Params.search.app_id }}',
           apiKey: '{{ $subprojectInfo.search_api_key }}',
           indexName: '{{ $subprojectInfo.search_index_name }}',
           inputSelector: '.docsearch-input',
-          algoliaOptions: {'facetFilters': ["tags:{{$subprojectInfo.search_tag}}"], hitsPerPage: 9},
+          algoliaOptions: {'facetFilters': [["version:{{.CurrentSection.Params.version}}"]], hitsPerPage: 9},
           debug: false // Set debug to true if you want to inspect the dropdown
         });
       </script>

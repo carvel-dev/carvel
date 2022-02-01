@@ -2,4 +2,5 @@
 # (TOC). You'll want to use this after any revamps to information architecture, to ensure
 # that the navigation for older versions still work.
 
-latest: vendir-latest-toc
+develop: vendir-develop-toc
+v0.24.0: vendir-v0-24-0-toc

@@ -7,18 +7,18 @@ Carvel, an open source project, is committed to building an open, inclusive, pro
 # Code Repositories
 The following code repositories are governed by the Carvel community and maintained under the `vmware-tanzu\carvel` organization. We'll do our best to maintain this list of repositories but generally any repository under the [vmware-tanzu](https://github.com/vmware-tanzu/) organization with the word "carvel" in its name or is tagged with "carvel" should be included in this governance structure.
 
-* [Carvel](https://github.com/vmware-tanzu/carvel): Main Carvel Repo
-* [Carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt): Template and overlay Kubernetes configuration via YAML structures, not text documents
-* [Carvel-kapp](https://github.com/vmware-tanzu/carvel-kapp): Install, upgrade, and delete multiple Kubernetes resources as one "application"
-* [Carvel-kbld](https://github.com/vmware-tanzu/carvel-kbld): Build or reference container images in Kubernetes configuration in an immutable way
-* [Carvel-imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg): Bundle and relocate application configuration (with images) via Docker registries
-* [Carvel-kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller): Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp
-* [Carvel-vendir](https://github.com/vmware-tanzu/carvel-vendir): Declaratively state what files should be in a directory
+* [carvel](https://github.com/vmware-tanzu/carvel): Main Carvel Repo
+* [carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt): Template and overlay Kubernetes configuration via YAML structures, not text documents
+* [carvel-kapp](https://github.com/vmware-tanzu/carvel-kapp): Install, upgrade, and delete multiple Kubernetes resources as one "application"
+* [carvel-kbld](https://github.com/vmware-tanzu/carvel-kbld): Build or reference container images in Kubernetes configuration in an immutable way
+* [carvel-imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg): Bundle and relocate application configuration (with images) via Docker registries
+* [carvel-kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller): Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp
+* [carvel-vendir](https://github.com/vmware-tanzu/carvel-vendir): Declaratively state what files should be in a directory
+* [carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
 
 **Experimental:**
-* [Carvel-kwt](https://github.com/vmware-tanzu/carvel-kwt)
+* [carvel-kwt](https://github.com/vmware-tanzu/carvel-kwt)
 * [terraform-provider-carvel](https://github.com/vmware-tanzu/terraform-provider-carvel)
-* [Carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
 
 **Installation:**
 * [homebrew-carvel](https://github.com/vmware-tanzu/homebrew-carvel)

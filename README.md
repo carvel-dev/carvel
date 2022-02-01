@@ -12,12 +12,12 @@ This is a list of repos associated with the [Carvel](https://carvel.dev) project
 * [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) - Bundle and relocate application configuration (with images) via Docker registries
 * [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) - Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp.
 * [vendir](https://github.com/vmware-tanzu/carvel-vendir) - Declaratively state what files should be in a directory.
+* [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
 
 Experimental:
 
 * [kwt](https://github.com/vmware-tanzu/carvel-kwt)
 * [terraform-provider-carvel](https://github.com/vmware-tanzu/terraform-provider-carvel)
-* [carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
 
 Installation:
 

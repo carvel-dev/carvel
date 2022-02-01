@@ -1,19 +1,28 @@
 {{ $subprojectInfo := (index .Site.Params .Section) }}
 <div class="dropdown">
     {{ if $subprojectInfo.versioning }}
+        {{ $is_latest := eq $subprojectInfo.version_latest .CurrentSection.Params.version }}
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" onclick="docsVersionToggle()">
             {{ .CurrentSection.Params.version }}
+            {{ if $is_latest }}
+            (latest)
+            {{ end }}
         </button>
         <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {{ $original_version := printf "/%s/" .CurrentSection.Params.version }}
-            {{ $latest_url := replace .Params.url .CurrentSection.Params.version $subprojectInfo.version_latest | relURL }}
             {{ $currentUrl := .Permalink }}
 
-            {{ range $subprojectInfo.versions }}
-                {{ $new_version := printf "/%s/" . }}
+            {{ range $version := $subprojectInfo.versions }}
+                {{ $new_version := printf "/%s/" $version }}
+                {{ $url := replace $currentUrl $original_version $new_version | relURL }}
+                {{ if eq $subprojectInfo.version_latest $version }}
                 <a class="dropdown-item"
-                    href="{{ replace $currentUrl $original_version $new_version | relURL }}">{{ . }}</a>
+                   href="{{ $url }}">{{ $version }} (latest)</a>
+                {{ else }}
+                <a class="dropdown-item"
+                   href="{{ $url }}">{{ $version }}</a>
+                {{ end }}
             {{ end }}
         </div>
     {{ else }}

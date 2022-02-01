@@ -34,3 +34,16 @@
 		clear: both;
 	}
 }
+
+// Toggles
+//
+// Used in conjunction with global variables to enable certain theme features.
+
+// Components
+@import "mixins/alert";
+
+// Skins
+@import "mixins/gradients";
+@import "mixins/border-radius";
+
+// Layout
