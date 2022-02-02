@@ -131,6 +131,8 @@ You can control number of kept resource versions via `kapp.k14s.io/num-versions=
 
 As of v0.41.0+, the `kapp.k14s.io/versioned-explicit-ref` can be used to explicitly refer to a versioned resource. This annotation allows a resource to be updated whenever a new version of the referred resource is created.
 
+Multiple annotations with the prefix `kapp.k14s.io/versioned-explicit-ref.`(Note the "." at the end) can be used to define multiple explicit references.
+
 Example:
 ```yaml
 ---
