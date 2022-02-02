@@ -44,6 +44,7 @@ databases:
 #@schema/desc "Configuration for experimental/optional components; see documentation for more details."
 #@schema/examples ("Example of additional config", {"username": "default", "password": "password", "insecureFlag": True})
 #@schema/type any=True
+#@schema/deprecated "This data value will be removed in a future release"
 additional_config: {}
 ```
 One can generate the corresponding OpenAPI Document:
@@ -124,6 +125,7 @@ components:
         additional_config:
           title: Additional configuration
           nullable: true
+          deprecated: true
           description: Configuration for experimental/optional components; see documentation for more details.
           x-example-description: Example of additional config
           example:
@@ -170,6 +172,16 @@ Indicates whether other keys are allowed in a mapping/object.
 Indicates whether `null` is also allowed.
 
 - when a data value is annotated `@schema/nullable` or `@schema/type any=True`, this property is included and set to `true`;
+- otherwise, this property is omitted.
+
+### `deprecated`
+
+(As of v0.39.0+)
+
+Indicates if a key is deprecated.
+
+- when a data value is annotated `@schema/deprecated ""`, this property is included and set to `true`;
+- requires a string argument intended to explain the deprecation, this string is omitted from the openapi document.
 - otherwise, this property is omitted.
 
 ### `description`
