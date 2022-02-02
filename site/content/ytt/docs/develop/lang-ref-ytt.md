@@ -25,6 +25,9 @@ err   # None
 x, err = assert.try_to(lambda : json.decode("(not JSON)"))
 x     # None
 err   # "json.decode: invalid character '(' looking for beginning of value"
+
+# stop execution if two values are not equal
+assert.equals("not", "equal") # stops execution
 ```
 
 ### data
