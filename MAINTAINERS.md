@@ -17,6 +17,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Varsha Munishwar | [vmunishwar](https://github.com/vmunishwar)| [VMware](https://www.github.com/vmware/) |[ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Daniel Helfand | [danielhelfand](https://github.com/danielhelfand) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (Reviewer), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Joe Kimmel | [joel-kimmel-vmw](https://github.com/joel-kimmel-vmw) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
+| Ben Moss | [benmoss](https://github.com/benmoss) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (Reviewer), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Renu Yarday | [renuy](https://github.com/renuy) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 | Praveen Rewar | [praveenrewar](https://github.com/praveenrewar) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 | Yash Sethiya | [sethiyash](https://github.com/sethiyash) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
@@ -40,6 +41,5 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Deployment Lifecycle | Renu Yarday (renuy), Engineering Manager |
 | Deployment Lifecycle | Helen George (iamhsk), Product Manager |
 | Deployment Lifecycle | John Ryan (jtigger), Tech Lead |
-| Package Management | Vibhas Kumar (vibhas), Product Manager |
 | [Windows Application Packages Contributor](https://github.com/adriens?tab=repositories&q=chocolatey-&type=&language=powershell&sort=stargazers) | Adrien Sales (adriens) |
 | Community Management | Nanci Lancaster (microwavables) |
