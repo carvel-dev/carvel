@@ -1,5 +1,3 @@
-creating: tmp/install.sh.txt
-
 #!/bin/bash
 
 if test -z "$BASH_VERSION"; then
