@@ -2,7 +2,7 @@
 We're planning to showcase Carvel by publishing new content weekly. This will
 increase the project's visibility so that we can grow the community.
 
-We'd like this to be a lightweight effort (i.e. less formal that documentation).
+We'd like this to be a lightweight effort (i.e. less formal than documentation).
 The topic being covered can be anything Carvel-related. Find something that's
 interesting to you. Some ideas include use case walkthroughs (one tool,
 multi-tool, w/ non-Carvel tools), concept explanations, introducing new
