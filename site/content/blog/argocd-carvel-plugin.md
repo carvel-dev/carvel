@@ -1,5 +1,5 @@
 ---
-title: "Continuous deployment using the Carvel ytt Argo CD plugin"
+title: "Continuous deployment using a Carvel ytt Argo CD plugin"
 slug: argocd-carvel-plugin
 date: 2022-02-02
 author: Cari Lynn
@@ -86,7 +86,7 @@ $ ytt -f argocd-cm-overlay.yml -f  repo-server-overlay.yml -f https://raw.github
 ```
 
 ## Create and template an Application with the ytt plugin
-Now, we're going to create an Application resource containing simple ytt templates and data values that watches the git repo directory  `config-step-2-template/`. If you want to see updates automatically deployed when you make changes, fork this repo. Add `spec.source.plugin` to tell Argo to use the ytt plugin. 
+Now, we're going to create an Application resource that watches the git repo directory `config-step-2-template/` containing simple ytt templates and data values. If you want to see updates automatically deployed when you make changes, fork this repo. Add `spec.source.plugin` to tell Argo to use the ytt plugin. 
 
 ```yaml
 # simple-app-application.yml
@@ -118,6 +118,7 @@ $ kapp deploy --namespace argocd --app argo-app --file simple-app-application.ym
 ```
 Inspect the Application using `argocd` cli
 ```shell
+$ kubectl config set-context --current --namespace=argocd
 $ argocd login --core
 $ argocd app get simple-app
 ```
