@@ -6,7 +6,7 @@ We'd like this to be a lightweight effort (i.e. less formal than documentation).
 The topic being covered can be anything Carvel-related, something that interests you that you wish to share with the community.
  Some ideas include use case walkthroughs (one tool,
 multi-tool, w/ non-Carvel tools), concept explanations, introducing new
-features, or highlighting existing features. To broadcast awareness of our
+features, or highlighting existing features. To broadcast awareness of these publishings, we'll [tweet](https://twitter.com/carvel_dev) and share them at [community meetings](https://hackmd.io/F7g3RT2hR3OcIh-Iznk2hw) as well as on the public Kubernetes Slack workspace in the [#carvel channel](https://kubernetes.slack.com/archives/CH8KCCKA5).
 publishings, we'll tweet and share them at community meetings.
 
 Below is a signup for individuals to reserve weeks in advance.
