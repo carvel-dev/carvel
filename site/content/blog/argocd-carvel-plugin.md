@@ -8,7 +8,7 @@ image: /img/logo.svg
 tags: ['ytt', 'argocd', 'gitops']
 ---
 
-Argo CD is a declarative, GitOps continuous delivery tool for kubernetes. It follows GitOps philosophy of using Git as a single source of truth for the desired application state. ytt templates are one way you can store desired application state. Here's how you can use ytt templates with Argo CD.
+Argo CD is a declarative, GitOps, continuous delivery tool for kubernetes. It follows the GitOps philosophy of using Git as a single source of truth for the desired application state. ytt templates are one way you can store desired application state. Here's how you can use ytt templates with Argo CD.
 
 At a high level a deployment using Argo CD starts with a configuration change. A commit with a change is made to the application repository, causing the Argo CD controller to notice the desired state has changed. It processes the manifests from the application repository through built-in templating engines like helm, or what we will be using today, a Carvel Argo CD plugin. Finally, it applies the manifests to the cluster via kubectl.
 
