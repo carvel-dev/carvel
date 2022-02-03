@@ -12,7 +12,7 @@ Below is a signup for individuals to reserve weeks in advance.
 
 | Date | Author(s) | Topic | Type of Medium (Blog, Video, etc.) | Twitter handle |
 | --- | --- | --- | --- | --- |
-| February 2, 2022 | | |
+| February 2, 2022 | Nanci Lancaster, [microwavables](https://github.com/microwavables) | Example | Blog | @microwables |
 | February 9, 2022 | | |
 | February 16, 2022 | | |
 | February 23, 2022 | | |
