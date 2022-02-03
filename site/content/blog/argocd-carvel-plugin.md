@@ -79,7 +79,7 @@ Since these files need to patch the Argo CD configuration, we can apply the ytt 
 
 Now, lets install Argo CD Core. To keep setup simple we are using the core version that does not include the UI. The manifests are available [here](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd): `https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml`. 
 
-We can run this command to apply the ytt overlays to the Argo CD core manifests, then apply that to the cluster using kapp (or modify for kubectl, if you prefer). The `-y` continues deployment without confirmation. 
+We can run this command to apply the ytt overlays to the Argo CD core manifests and then apply that to the cluster using kapp (or modify for kubectl, if you prefer). The `-y` continues deployment without confirmation. 
 
 ```shell
 $ ytt -f argocd-cm-overlay.yml -f  repo-server-overlay.yml -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml  | kapp deploy --app argo --namespace argocd --file - -y
