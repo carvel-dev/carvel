@@ -1,5 +1,5 @@
 ---
-title: "Continuous deployment using a Carvel ytt Argo CD plugin"
+title: "Continuous delivery using a Carvel ytt Argo CD plugin"
 slug: argocd-carvel-plugin
 date: 2022-02-02
 author: Cari Lynn
