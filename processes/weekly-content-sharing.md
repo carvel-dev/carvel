@@ -10,7 +10,7 @@ publishings, we'll tweet and share them at community meetings.
 
 Below is a signup for individuals to reserve weeks in advance.
 
-| Date | Author(s) | Topic |
+| Date | Author(s) | Topic | Type of Medium (Blog, Video, etc.) | Twitter handle |
 | --- | --- | --- |
 | February 2, 2022 | | |
 | February 9, 2022 | | |
