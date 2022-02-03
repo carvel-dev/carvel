@@ -1,5 +1,5 @@
 # Weekly Content Sharing
-We're planning to showcase Carvel by publishing new content weekly. This will
+We're planning to showcase Carvel by publishing new content weekly. Through sharing knowledge in various mediums with the community, this will increase visibility and understanding of the project's tools, foster community growth, and provide global support for developers that traditional documentation might miss.
 increase the project's visibility so that we can grow the community.
 
 We'd like this to be a lightweight effort (i.e. less formal than documentation).
