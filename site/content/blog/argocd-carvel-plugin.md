@@ -22,7 +22,7 @@ At a high level a deployment using Argo CD starts with a configuration change. A
 To make the Carvel plugin available to the application we want to deploy, we need to make a couple patches to the Argo CD cluster configuration. We can do this with ytt overlays!
 
 ### Adding carvel-ytt binary to `argocd-repo-server`
-This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Adding this configuration to the existing deployment creates a `initContainer` using an image we publish that contains the Carvel tools. The container copies the ytt binary via volume mounts, as explained further in the [Argo docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/custom_tools/#adding-tools-via-volume-mounts).
+This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Adding this configuration to the existing deployment creates an `initContainer` using an image we publish that contains the Carvel tools. The container copies the ytt binary via volume mounts, as explained further in the [Argo docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/custom_tools/#adding-tools-via-volume-mounts).
 
 ```yaml
 #! repo-server-overlay.yml
