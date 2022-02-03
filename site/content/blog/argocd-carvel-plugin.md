@@ -3,7 +3,7 @@ title: "Continuous delivery using a Carvel ytt Argo CD plugin"
 slug: argocd-carvel-plugin
 date: 2022-02-02
 author: Cari Lynn
-excerpt: "Use your favorite Carvel templating tool in your GitOps continuous deployment using the Carvel ytt Argo CD plugin."
+excerpt: "Use your favorite Carvel templating tool in your GitOps continuous delivery using the Carvel ytt Argo CD plugin."
 image: /img/logo.svg
 tags: ['ytt', 'argocd', 'gitops']
 ---
