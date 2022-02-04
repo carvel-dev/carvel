@@ -127,7 +127,7 @@ For fun, you can view the app at `127.0.0.1:8080`. Visiting the site you should 
 $ kubectl port-forward svc/simple-app 8080:80 --namespace default
 ```
 
-## Join us on Slack and GitHub
+## Join the Carvel Community
 
 We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
 
