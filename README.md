@@ -48,3 +48,5 @@ You can chat with us on Kubernetes Slack in the [#carvel channel](https://kubern
 Note: If aren’t already a member on the Kubernetes Slack workspace, please first [request an invitation](https://slack.k8s.io/) to gain access.
 
 Check out which organizations are using and contributing to Carvel: [Adopter's list](https://github.com/vmware-tanzu/carvel/blob/develop/ADOPTERS.md)
+
+We intend to publish new Carvel content weekly, if you're interested in contributing [please sign-up here](processes/weekly-content-sharing.md).
