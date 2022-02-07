@@ -15,7 +15,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Garrett Cheadle | [gcheadle-vmware](https://github.com/gcheadle-vmware) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Dennis Leon | [DennisDenuto](https://github.com/DennisDenuto)| [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Reviewer), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Varsha Munishwar | [vmunishwar](https://github.com/vmunishwar)| [VMware](https://www.github.com/vmware/) |[ytt](https://github.com/vmware-tanzu/carvel-ytt) |
-| Daniel Helfand | [danielhelfand](https://github.com/danielhelfand) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (Reviewer), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Joe Kimmel | [joel-kimmel-vmw](https://github.com/joel-kimmel-vmw) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Ben Moss | [benmoss](https://github.com/benmoss) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Renu Yarday | [renuy](https://github.com/renuy) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
@@ -29,6 +28,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 ## Emeritus Maintainers
 * Eli Wrenn, [ewrenn8](https://github.com/ewrenn8)
 * Steven Locke, [StevenLocke](https://github.com/StevenLocke)
+* Daniel Helfand, [danielhelfand](https://github.com/danielhelfand)
 
 ## Carvel Stakeholders
 **Deployment Lifecycle Tools:** imgpkg, kapp, kbld, ytt
