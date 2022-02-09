@@ -1,5 +1,4 @@
 ---
-aliases: [/kapp-controller/docs/latest/walkthrough]
 title: Install an Application
 ---
 
@@ -24,15 +23,8 @@ by running one of the following commands:
 
     ```bash-plain
     $ kapp deploy -a simple-app -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/1.yml
-    ```
+    # or... kubectl apply -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/1.yml
 
-    ```bash-plain
-    $ kubectl apply -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/1.yml
-    ```
-
-    Expect to see the following output:
-
-    ```bash-plain
     Changes
 
     Namespace  Name        Kind  Conds.  Age  Op      Wait to    Rs  Ri
@@ -62,15 +54,8 @@ by running one of the following commands:
 
     ```bash-plain
     $ kapp inspect -a simple-app --status
-    ```
+    # or... kubectl get app simple-app -oyaml
 
-    ```bash-plain
-    $ kubectl get app simple-app -oyaml
-    ```
-
-    Expect to see the following output:
-
-    ```bash-plain
     Resources in app 'simple-app'
 
     Namespace  default
@@ -143,15 +128,8 @@ by running one of the following commands:
 
     ```bash-plain
     $ kapp deploy -a simple-app -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml -c
-    ```
+    # or... kubectl apply -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml
 
-    ```bash-plain
-    $ kubectl apply -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml
-    ```
-
-    Expect to see the following output:
-
-    ```bash-plain    
     --- update app/simple-app (kappctrl.k14s.io/v1alpha1) namespace: default
       ...
      23, 23     template:
@@ -208,15 +186,8 @@ by running one of the following commands:
 
     ```bash-plain
     $ kapp delete -a simple-app
-    ```
+    # or... kubectl delete -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml
 
-    ```bash-plain
-    $ kubectl delete -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/2.yml
-    ```
-
-    Expect to see the following output:
-
-    ```bash-plain
     Changes
 
     Namespace  Name               Kind    Conds.  Age  Op      Wait to  Rs  Ri
