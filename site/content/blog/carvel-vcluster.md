@@ -16,8 +16,7 @@ not because you are unsure what Kubernetes cluster you are using.
 of using an independent Kubernetes cluster within a host Kubernetes cluster's namespace. To summarize, 
 your cluster can host other clusters.
 
-The idea of vcluster is discussed in [greater detail on the vcluster webiste](https://www.vcluster.com/docs/architecture/basics), 
-but a summary from these docs is as follows for what vclusters are:
+The idea of vcluster is discussed in [greater detail on the vcluster webiste](https://www.vcluster.com/docs/architecture/basics), but a summary from these docs is as follows for what vclusters are:
 
 > vclusters run as a single pod (scheduled by a StatefulSet) that consists of 2 containers:
 > * Control Plane: This container contains API server, controller manager and a connection (or mount) of the data store.
@@ -30,6 +29,8 @@ Hopefully the introduction to vclusters above is exciting to you. As users of Ca
 to understand how the experience of `kapp` looks when using vclusters.
 
 Let's walk through an example of using `kapp` to deploy and also work with vclusters. I am using vcluster version `0.5.3`.
+
+### vclusters and kapp
 
 To start, you'll need a Kubernetes cluster. I am using `minikube` in this example. You will also need `helm`, `ytt`, and 
 `kapp` to fully go through this walkthrough.
@@ -57,7 +58,19 @@ spec:
           kapp.k14s.io/owned-for-deletion: ""
 ```
 
-Next, let's create a namespace for the vcluster and see what `kapp` creates when a vcluster is created:
+Next, let's create a namespace for the vcluster and see what `kapp` creates when a vcluster is created. 
+
+**NOTE:** The serviceCIDR value used in the helm command will vary depending on your cluster. I ran the 
+following command below to verify the serviceCIDR:
+
+```
+$ kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
+```
+
+The response will look something like `--service-cluster-ip-range=10.96.0.0/12` with `10.96.0.0/12` being the data 
+we need in this case.
+
+Create the namespace and view what kapp will create: 
 
 ```
 $ kubectl create ns host-namespace-1
@@ -179,12 +192,116 @@ When you are finished, you can clean up the vcluster with a kapp delete:
 $ kapp delete -a vcluster
 ```
 
+### vclusters and kapp-controller
+
+Another interesting use case for Carvel and vclusters is using kapp-controller's package management approach to 
+encapsulate and deploy vclusters using a declarative API.
+
+So instead of running the kapp, ytt, and helm commands above, you can use kapp-controller Packages and PackageInstalls 
+to install vclusters to various namespaces. A kapp-controller Package for vcluster might look something like below:
+
+```yaml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: vcluster.package.demo.0.5.3
+spec:
+  refName: vcluster.package.demo
+  version: 0.5.3
+  template:
+    spec:
+      fetch:
+        - helmChart:
+            name: vcluster
+            version: 0.5.3
+            repository:
+              url: https://charts.loft.sh
+
+      template:
+        - helmTemplate:
+            name: my-vcluster
+
+        - ytt:
+            ignoreUnknownComments: true
+            inline:
+              paths:
+                add-pvc-annotation.yml: |
+                  #@ load("@ytt:overlay", "overlay")
+                  #@overlay/match by=overlay.subset({"kind":"StatefulSet", "metadata":{"name":"my-vcluster"}}), expects=1
+                  ---
+                  spec:
+                    volumeClaimTemplates:
+                      #@overlay/match by=overlay.index(0)
+                      - metadata:
+                          name: data
+                          #@overlay/match missing_ok=True
+                          annotations:
+                            kapp.k14s.io/owned-for-deletion: ""
+
+      deploy:
+        - kapp: {}
+```
+
+The Package above specifies to fetch the vcluster helm chart, template the helm chart using helm and the ytt overlay, and 
+deploy the vcluster using kapp. Basically the same process you ran locally to deploy a vcluster can be carried out by kapp-controller running on your cluster.
+
+You can add this Package to a cluster by [installing kapp-controller](https://carvel.dev/kapp-controller/docs/v0.32.0/install/) and running the following command:
+
+```
+$ kapp deploy -a vcluster-pkg -f vcluster-0.5.3.yml -n kapp-controller-packaging-global
+```
+
+With the Package created in the kapp-controller global namespace, you can now install this Package in any namespace on your 
+cluster using a PackageInstall like below:
+
+```yaml
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: vcluster
+  annotations:
+spec:
+  serviceAccountName: default-ns-sa
+  packageRef:
+    refName: vcluster.package.demo
+    versionSelection:
+      constraints: 0.5.3
+  values:
+  - secretRef:
+      name: vcluster-vals
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vcluster-vals
+stringData:
+  values.yaml: |
+    serviceCIDR: 10.96.0.0/12
+```
+
+The PackageInstall above will install the vcluster Package created previously and also input the serviceCIDR helm value, 
+which can be stored in a Secret.
+
+Since this PackageInstall needs permissions to create resources, we'll need to create some RBAC. Let's add some to the 
+default namespace with the command below:
+
+```
+$ kapp deploy -a rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+```
+
+With the RBAC created, you can now deploy vclusters via kapp-controller by deploying the PackageInstall and Secret yaml above:
+
+```
+kapp deploy -a vcluster-default -f vcluster-pkgi.yml
+```
+
+Once the command completes, you will have a vcluster running in your default namespace. You can access the vcluster 
+following the same steps outlined above (i.e. using port-forwarding and the vcluster kubeconfig).
+
+### Conclusion
+
 I hope this explains the basics of vcluster and using Carvel tools with vcluster. There are definitely 
 still some challenges around using the vcluster CLI if you deploy vclusters using kapp or any non-helm tool 
 (e.g. listing available vclusters, deleting vcluster, connecting to vclusters), but using Carvel with vclusters 
 provisioned in any way should still offer many exciting opportunities for Kubernetes developers.
-
-One of the really interesting opportunities that I have not tried out yet is being able to provision vclusters 
-as a [kapp-controller Package](https://carvel.dev/kapp-controller/docs/v0.32.0/packaging/#package). This would 
-allow users a declaritive workflow for setting up these lightweight dev environments on a host cluster. I am 
-hoping to do a follow up later on and share my findings.
