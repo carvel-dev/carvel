@@ -16,8 +16,7 @@ You can use [kapp](/kapp) or another tool such as kubectl to deploy the followin
     $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
     ```
 
-1. Install [examples/simple-app-git/1.yml](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/simple-app-git/1.yml) App CR
-by running one of the following commands:
+1. Install [examples/simple-app-git/1.yml](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/simple-app-git/1.yml) App CR.
 
     It specifies how to fetch, template, and deploy the example application.
 
@@ -48,7 +47,7 @@ by running one of the following commands:
 
 1. Run `kubectl get app` to verify that the app is deployed.
 
-1. Verify the status of the App CR by running one of the following commands:
+1. Verify the status of the App CR.
 
     **Note:** As of kapp-controller v0.31.0, inspect is deactivated by default. See [App CR spec](app-spec.md) for more details.
 
@@ -122,7 +121,7 @@ by running one of the following commands:
 
     The output shows the overall status of the application, including the latest deploy output (`status.deploy.stdout`) and the latest inspect output (`status.inspect.stdout`). Based on the inspect output you can see that the app included a `Deployment` and a `Service`.
 
-1. Update `simple-app` App CR to reconfigure it by running one of the following commands:
+1. Update `simple-app` App CR to reconfigure it.
 
     This example changes data values for ytt templates.
 
@@ -182,7 +181,7 @@ by running one of the following commands:
     Succeeded
     ```
 
-1. Delete the `simple-app` App CR by running one of the following commands:
+1. Delete the `simple-app` App CR.
 
     ```bash-plain
     $ kapp delete -a simple-app
