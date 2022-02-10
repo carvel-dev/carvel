@@ -41,7 +41,7 @@ worries though on whether this plays nice with Carvel tools as we can use helm w
 To start, we'll need to craft a simple overlay to add an annotation to the vcluster StatefulSet. Since this StatefulSet 
 creates a PersistentVolumeClaim, we want to give `kapp` permission to delete it when we are done with our vcluster. 
 
-Go ahead sand save the overlay below to a file named `vcluster-statefulset-overlay.yml`:
+Go ahead and save the overlay below to a file named `vcluster-statefulset-overlay.yml`:
 
 ```yaml
 #! vcluster-statefulset-overlay.yml
