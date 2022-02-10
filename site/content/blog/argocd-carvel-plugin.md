@@ -8,13 +8,13 @@ image: /img/logo.svg
 tags: ['ytt', 'argocd', 'gitops']
 ---
 
-Argo CD is a declarative, GitOps, continuous delivery tool for kubernetes. It's design follows the GitOps philosophy of using Git as a single source of truth for the desired state of the system. In this example we're storing desired application state in ytt templates, and extending Argo CD to template and deploy them.
+Argo CD is a declarative, GitOps, continuous delivery tool for Kubernetes. It's design embraces GitOps philosophy of using Git as a single source of truth for the desired state of the system. In this example we're storing desired application state in ytt templates, and extending Argo CD to template and deploy them.
 
-At a high level a deployment using Argo CD starts with a configuration change. A commit with a change is made to the application repository, causing the Argo CD controller to notice the desired state has changed. It processes the manifests from the application repository through built-in templating engines like helm, or what we will be using: a Carvel ytt Argo CD plugin. Finally, it applies the manifests to the cluster via kubectl.
+At a high level a deployment using Argo CD starts with a configuration change. A commit with a change is made to the application repository, causing the Argo CD controller to notice the desired state has changed. It processes the manifests from the application repository through built-in templating engines like helm, or what we will be using: a Carvel ytt Argo CD plugin. Finally, it applies the manifests to the cluster.
 
 ## You will need these to start your journey:
 - [argocd cli](https://argo-cd.readthedocs.io/en/stable/getting_started/#2-download-argo-cd-cli)
-- kubernetes cluster (I'm using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-with-a-package-manager))
+- Kubernetes cluster (I'm using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-with-a-package-manager))
 - [kapp](https://github.com/vmware-tanzu/carvel-kapp) or [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [ytt](https://github.com/vmware-tanzu/carvel-ytt)
 
@@ -27,7 +27,7 @@ This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Addin
 ```yaml
 #! repo-server-overlay.yml
 #@ load("@ytt:overlay", "overlay")
-#@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"argocd-repo-server"}}), expects=1
+#@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"argocd-repo-server"}})
 ---
 spec:
   template:
@@ -48,7 +48,7 @@ spec:
               name: custom-tools
       #! 3. Volume mount the custom binary to the bin directory
       containers:
-        #@overlay/match by=overlay.subset({"name": "argocd-repo-server"}), expects=1
+        #@overlay/match by=overlay.subset({"name": "argocd-repo-server"})
         - name: argocd-repo-server
           volumeMounts:
             - mountPath: /usr/local/bin/ytt
@@ -70,8 +70,8 @@ data:
   configManagementPlugins: |
     - name: carvel-ytt
       generate:                      # Command to generate manifests YAML
-        command: ["sh", "-c"]
-        args: ["ytt -f ."]
+        command: ["ytt"]
+        args: ["-f", "."]
 ```
 
 ### Apply the changes to the cluster
@@ -83,16 +83,27 @@ $ kubectl create namespace argocd
 
 Now, lets install Argo CD Core. To keep setup simple use the core version that does not include the UI.
 
-Run this command to apply the ytt overlays to the Argo CD core manifests and then apply that to the cluster using kapp (or modify for kubectl, if you prefer). The `-y` continues deployment without confirmation. 
+Run this command to apply the ytt overlays to the Argo CD core manifests and then apply that to the cluster using kapp (or modify for kubectl, if you prefer).
 
 ```shell
-$ ytt -f argocd-cm-overlay.yml -f  repo-server-overlay.yml -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.2.5/manifests/core-install.yaml  | kapp deploy --app argo --namespace argocd --file - -y
+$ kapp deploy --app argo --namespace argocd -f <(ytt -f argocd-cm-overlay.yml -f  repo-server-overlay.yml -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.2.5/manifests/core-install.yaml)
 ```
 
 ## Create and template an Application with the ytt plugin
-Now, create an Application resource that watches the git repo directory `config-step-2-template/`. This example contains simple ytt templates and data values for a Service and Deployment. If you want to see updates automatically deployed when you make changes, fork [this repo](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes) and update the `repoURL` reference below. Add `spec.source.plugin` to tell Argo to use the ytt plugin.
+Now, create an Application resource that watches [this](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/tree/develop/config-step-2-template) git repo directory `config-step-2-template/`. This directory contains a simple ytt template and data values for a Service and Deployment.
 
-Additionally, create an `AppProject` resource to manually create the `default` project since there is a delay before the one that is automatically created is available. This shouldn't be necessary outside of this example.
+```shell    
+$ tree .
+.
+├── config.yml
+└── values.yml
+
+0 directories, 2 file
+```
+
+Add `spec.source.plugin` to tell Argo to use the ytt plugin. If you want to see updates automatically deployed when you make changes, fork the repo and update the `repoURL` reference below.
+
+Additionally, create an `AppProject` resource to manually create the `default` project since there is a short delay before the one that is automatically created is available. This shouldn't be necessary outside of this example.
 
 ```yaml
 # simple-app-application.yml
