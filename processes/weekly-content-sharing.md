@@ -11,7 +11,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | --- | --- | --- | --- | --- |
 | February 2, 2022 | [Nanci Lancaster](https://github.com/microwavables) | Example | Blog | @microwables |
 | February 9, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
-| February 16, 2022 | | |
+| February 16, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Carvelizing Helm Charts| Blog | N/A |
 | February 23, 2022 | | |
 | March 2, 2022 | | |
 | March 9, 2022 | | |
