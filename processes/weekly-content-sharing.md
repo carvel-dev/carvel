@@ -10,9 +10,9 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | Date | Author(s) | Topic | Type of Medium (Blog, Video, etc.) | Twitter handle |
 | --- | --- | --- | --- | --- |
 | February 2, 2022 | [Nanci Lancaster](https://github.com/microwavables) | Example | Blog | @microwables |
-| February 9, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
+| February 9, 2022 | [Daniel Helfand](https://github.com/danielhelfand)| Using vclusters with Carvel | Blog | N/A |
 | February 16, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Carvelizing Helm Charts| Blog | N/A |
-| February 23, 2022 | | |
+| February 23, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
 | March 2, 2022 | | |
 | March 9, 2022 | | |
 | March 16, 2022 | | |
