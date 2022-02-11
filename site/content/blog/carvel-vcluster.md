@@ -41,7 +41,7 @@ worries though on whether this plays nice with Carvel tools as we can use helm w
 To start, we'll need to craft a simple overlay to add an annotation to the vcluster StatefulSet. Since this StatefulSet 
 creates a PersistentVolumeClaim, we want to give `kapp` permission to delete it when we are done with our vcluster. 
 
-Go ahead sand save the overlay below to a file named `vcluster-statefulset-overlay.yml`:
+Go ahead and save the overlay below to a file named `vcluster-statefulset-overlay.yml`:
 
 ```yaml
 #! vcluster-statefulset-overlay.yml
@@ -194,7 +194,7 @@ $ kapp delete -a vcluster
 
 ### vclusters and kapp-controller
 
-Another interesting use case for Carvel and vclusters is using kapp-controller's package management approach to 
+Another interesting thought for Carvel and vclusters is using kapp-controller's package management approach to 
 encapsulate and deploy vclusters using a declarative API.
 
 So instead of running the kapp, ytt, and helm commands above, you can use kapp-controller Packages and PackageInstalls 
@@ -301,7 +301,10 @@ following the same steps outlined above (i.e. using port-forwarding and the vclu
 
 ### Conclusion
 
-I hope this explains the basics of vcluster and using Carvel tools with vcluster. There are definitely 
-still some challenges around using the vcluster CLI if you deploy vclusters using kapp or any non-helm tool 
-(e.g. listing available vclusters, deleting vcluster, connecting to vclusters), but using Carvel with vclusters 
-provisioned in any way should still offer many exciting opportunities for Kubernetes developers.
+I hope this explains the basics of vcluster and using Carvel tools with vcluster. There are definitely a lot exciting opportunities that these tools combined can offer Kubernetes developers.
+
+I do want to call out some considerations for using these tools together. There are definitely still some challenges around using the vcluster CLI if you deploy vclusters using kapp or any non-helm tool (e.g. listing available vclusters, deleting vcluster, connecting to vclusters). 
+
+Additionally, while it's intruiging to be able to install vclusters via kapp-controller, it is probably not recommended to continuously reconcile vclusters like kapp-controller does. This is because configuration changes can end up breaking the vcluster if not introduced properly. You can always pause the reconciliation by setting `paused: true` as part of the PackageInstall spec to keep the vcluster in a stable state. 
+
+Thanks for reading, and looking forward to your thoughts!
