@@ -106,7 +106,7 @@ function NewTemplates(parentEl, templatesOpts) {
       templatesOpts.preEvaluateCallback(currReqId);
     }
 
-    $.ajax({
+  $.ajax({
       type: "POST",
       url: "https://get-ytt.io/template",
       contentType:"application/json; charset=utf-8",
@@ -165,6 +165,17 @@ function NewTemplates(parentEl, templatesOpts) {
     return false;
   });
 
+    $.ajax({
+      type: "POST",
+      url: "/.netlify/functions/template",
+      contentType:"application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify({files: files}),
+
+      success: $("HELLO WORLD");
+
+  });
+
   function evaluate() {
     $(".config-form", parentEl).submit();
   }
@@ -207,7 +218,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     var exampleSets = JSON.parse(data);
 
     exampleSets.forEach(exampleSet => {
-      
+
       $(".button-container").append(
           '<p>' +
             '<button type="button" class="button example-set-button" name="' + exampleSet.id + '">' +

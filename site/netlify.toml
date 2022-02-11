@@ -1,7 +1,6 @@
 [build]
 publish = "public"
-# TODO put this in a script
-command = "(cd carvel-ytt && ./hack/build.sh) && mv carvel-ytt/tmp/ytt-lambda-website.zip netlify/functions/template.zip && hugo --gc --minify"
+command = "hugo --gc --minify"
 
 [context.production.environment]
 HUGO_VERSION = "0.78.0"
