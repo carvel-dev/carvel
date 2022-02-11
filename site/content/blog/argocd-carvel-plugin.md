@@ -62,14 +62,17 @@ Expose the plugin by patching the `argocd-cm` ConfigMap's `configManagementPlugi
 ```yaml
 #! argocd-cm-overlay.yml
 #@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:yaml", "yaml")
+
 #@overlay/match by=overlay.subset({"kind":"ConfigMap", "metadata":{"name":"argocd-cm"}})
 ---
 #@overlay/match missing_ok=True
 data:
-  #! TODO append instead of overwrite this
+  #! Append to configManagementPlugins
+  #@overlay/replace via=lambda left,right: yaml.encode(overlay.apply(yaml.decode(left), yaml.decode(right)))
   configManagementPlugins: |
     - name: carvel-ytt
-      generate:                      # Command to generate manifests YAML
+      generate:                      #! Command to generate manifests YAML
         command: ["ytt"]
         args: ["-f", "."]
 ```
