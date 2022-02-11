@@ -7,14 +7,14 @@ Below is a signup for individuals to reserve weeks in advance.
 
 And, as a thank you for sharing your knowledge with the community, we would love to send a t-shirt to anyone who is a not a maintainer of Carvel that participates. Please send an email to [Nanci Lancaster](mailto:nancil@vmware.com) with your contact information so that we can get the right sized t-shirt shipped to you.
 
-| Date | Author(s) | Topic | Type of Medium (Blog, Video, etc.) | Twitter handle |
-| --- | --- | --- | --- | --- |
-| February 2, 2022 | [Nanci Lancaster](https://github.com/microwavables) | Example | Blog | [@microwavables](https://twitter.com/microwavables) |
-| February 9, 2022 | [Daniel Helfand](https://github.com/danielhelfand)| Using vclusters with Carvel | Blog | [@danielhelfand](https://twitter.com/danielhelfand) |
-| February 16, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Carvelizing Helm Charts| Blog | N/A |
-| February 23, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
-| March 2, 2022 | | |
-| March 9, 2022 | | |
-| March 16, 2022 | | |
-| March 23, 2022 | | |
-| March 30, 2022 | | |
+|       Date        |                     Author(s)                             | Topic                                               | Type of Medium (Blog, Video, etc.) | Twitter handle |
+|        ---        |                        ---                                | ---                                                 | --- | --- |
+| February 2, 2022  | [Nanci Lancaster](https://github.com/microwavables)       | Example                                             | Blog | [@microwavables](https://twitter.com/microwavables) |
+| February 9, 2022  | [Daniel Helfand](https://github.com/danielhelfand)        | Using vclusters with Carvel                         | Blog | [@danielhelfand](https://twitter.com/danielhelfand) |
+| February 16, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020)         | Carvelizing Helm Charts                             | Blog | N/A |
+| February 23, 2022 | [Cari Lynn](https://github.com/cari-lynn)                 | Argo CD + ytt                                       | Blog | N/A |
+| March 2, 2022     | [Adrien SALES](https://www.linkedin.com/in/adrien-sales/) | [Neo4J plugins with vendir](https://bit.ly/3uHEaHs) | Blog | [@rastadidi](https://twitter.com/rastadidi)
+| March 9, 2022     | | |
+| March 16, 2022    | | |
+| March 23, 2022    | | |
+| March 30, 2022    | | |
