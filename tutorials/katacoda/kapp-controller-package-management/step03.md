@@ -5,18 +5,16 @@ a different example of how kapp works.
 
 You can skip this step if you want to get straight to kapp-controller.
 
-### Using kapp to install a cronjob
-
-First clone the GitHub repository for examples:
+First pull down the yaml for this example:
 
 ```bash
-git clone https://github.com/vmware-tanzu/carvel-kapp
+wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp/5886f388900ce66e4318220025ca77d16bfaa488/examples/jobs/cron-job.yml
 ```{{execute}}
 
 Then deploy a CronJob to the Kubernetes cluster in this environment:
 
 ```bash
-kapp deploy -a hellocron -f carvel-kapp/examples/jobs/cron-job.yml -y
+kapp deploy -a hellocron -f cron-job.yml -y
 ```{{execute}}
 
 Now take a look at the Kubernetes resources being managed by kapp:
