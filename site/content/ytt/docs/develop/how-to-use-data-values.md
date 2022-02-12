@@ -48,6 +48,13 @@ Those Data Values can then be used in a template via the `@ytt:data` module.
 ---
 service: #@ data.values.load_balancer
 ```
+Using the previous example files, `ytt` produces output:
+```console
+$ ytt -f schema.yml -f config.yml
+service: 
+  enabled: true
+  external_ip: ""
+```
 
 _(For details on using the Data module, refer to [`@ytt:data`](lang-ref-ytt.md#data).)_
 
