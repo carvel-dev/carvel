@@ -1,4 +1,5 @@
 ---
+aliases: [/kapp-controller/docs/latest/packaging-tutorial]
 title: "Tutorial: Create and Install a Package"
 ---
 
