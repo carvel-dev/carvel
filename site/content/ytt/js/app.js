@@ -172,7 +172,7 @@ function NewTemplates(parentEl, templatesOpts) {
       dataType: "json",
       data: JSON.stringify({files: files}),
 
-      success: $("HELLO WORLD");
+      success: $("HELLO WORLD")
 
   });
 
