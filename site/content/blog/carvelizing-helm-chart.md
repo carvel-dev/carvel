@@ -1,6 +1,6 @@
 ---
 title: "Carvelizing Helm Chart"
-slug: package-helm-chart
+slug: carvelize-helm-chart
 date: 2022-02-16
 author: Rohit Aggarwal
 excerpt: "Use Carvel to author and consume helm chart "
