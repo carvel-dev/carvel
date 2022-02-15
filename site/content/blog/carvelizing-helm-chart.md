@@ -11,7 +11,7 @@ tags: ['carvel', 'helm', 'gitops']
 
 ## Introduction
 
-In this blog, we will see how to author bitnami nginx helm chart into Carvel package and then consume the same.
+In this blog, we will see how to author [`bitnami nginx helm chart`](https://github.com/bitnami/charts/tree/master/bitnami/nginx) into Carvel package and then consume the same.
 
 ## Why should I choose Carvel
 
@@ -23,11 +23,11 @@ Kapp-controller, a carvel tool, provide software authors flexibility to choose t
 
 Basic knowledge of imgpkg, kbld, kapp controller
 
-imgpkg: A tool to package, distribute, and relocate your Kubernetes configuration and dependent OCI images as one OCI artifact: a bundle.
+[`imgpkg`](https://carvel.dev/imgpkg/): A tool to package, distribute, and relocate your Kubernetes configuration and dependent OCI images as one OCI artifact: a bundle.
 
-kbld: kbld incorporates image building and image pushing into your development and deployment workflows.
+[`kbld`](https://carvel.dev/kbld/): kbld incorporates image building and image pushing into your development and deployment workflows.
 
-kapp-controller: Kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages.
+[`kapp-controller`](https://carvel.dev/kapp-controller/): Kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages.
 
 ## Install Carvel Tools
 
@@ -36,18 +36,17 @@ We'll be using Carvel tools throughout this tutorial, so first we'll install the
 Install the tools with the scripts below:
 To install all the carvel tools, run this `install.sh` script.
 
-```
-wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/dependencies.yml
-wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/install-deps.sh
-chmod a+x ./install-deps.sh
-./install-deps.sh
-```
-
-```
-kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+```bash
+$ wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/dependencies.yml
+$ wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/install-deps.sh
+$ chmod a+x ./install-deps.sh
+$ ./install-deps.sh
+$ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
-Note: Going forward, I will be using `kapp` to deploy the yaml. `kapp` is a cli used to deploy and view groups of Kubernetes resources as “application”.
+**Note**: Going forward, I will be using [`kapp`](https://carvel.dev/kapp/) to deploy the yaml. `kapp` is a cli used to deploy and view groups of Kubernetes resources as “application”.
+
+--------------------------
 
 ## Authoring a Carvel Package
 
@@ -55,8 +54,9 @@ To create a package, we need to create two CRs. We will go through step by step 
 
 **1. Create Package Metadata**: Package Metadata contains very high level information and description about the package. Multiple versions of a package share same package metadata.
 
-```
-cat <<EOF > pkgMetadata.yaml
+```bash
+
+$ cat <<EOF > pkgMetadata.yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
@@ -78,8 +78,9 @@ EOF
 
 **2. Package Helm Chart**: Package is a combination of configuration metadata and OCI images that informs the package manager what software it holds and how to install itself onto a Kubernetes cluster.
 
-```
-cat <<EOF > 1.0.0.yaml
+```bash
+
+$ cat <<EOF > 1.0.0.yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -126,46 +127,62 @@ EOF
 
 For the purpose of this tutorial, we will run an unsecured local docker registry. In the real world please be safe and use appropriate security measures.
     
-    ```docker run -d -p 5000:5000 --restart=always --name registry registry:2```
+```bash
+    $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
 
 From the terminal we can access this registry as localhost:5000 but within the cluster we'll need the IP Address. We will store the IP address in a variable:
 
-```REPO_HOST=:5000```
+```bash 
+$ export REPO_HOST="`ifconfig | grep inet | grep -E '\b10\.' | awk '{ print $2}'`:5000"
+```
 
+Confirm that REPO_HOST is set to <IP_ADDRESS:PORT>
 
+```bash
+$ echo $REPO_HOST
+  10.104.3.7:5000
+```
 
 Lets start by creating the needed directories:
 
-```mkdir -p nginx-bitnami-repo nginx-bitnami-repo/.imgpkg nginx-bitnami-repo/packages/nginx.bitnami.vmware.com```
+```bash
+$ mkdir -p nginx-bitnami-repo nginx-bitnami-repo/.imgpkg nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
+```
 
 We can copy our CR YAMLs from the previous step in to the proper packages subdirectory. 
 
-```
-cp 1.0.0.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
+```bash
+$ cp 1.0.0.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
 
-cp pkgMetadata.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
+$ cp pkgMetadata.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
 ```
 
 Now, let’s use kbld to record which package bundles are used:
 
-```kbld -f nginx-bitnami-repo/packages/ --imgpkg-lock-output nginx-bitnami-repo/.imgpkg/images.yml```
+```bash
+$ kbld -f nginx-bitnami-repo/packages/ --imgpkg-lock-output nginx-bitnami-repo/.imgpkg/images.yml
+```
 
 We will push the bundle onto repository using `imgpkg`.
 
-```imgpkg push -b ${REPO_HOST}/packages/nginx-bitnami-repo:1.0.0 -f nginx-bitnami-repo```
+```bash
+$ imgpkg push -b ${REPO_HOST}/packages/nginx-bitnami-repo:1.0.0 -f nginx-bitnami-repo
+```
 
 We can verify by checking the Docker registry catalog:
 
-```curl ${REPO_HOST}/v2/_catalog```
+```bash
+$ curl ${REPO_HOST}/v2/_catalog
+```
 
 --------------------------
-
 
 ## Consuming Carvel Helm Package:
 
 **1. Install Package Repository**: Before installing a package, we have to create a PackageRepository first. A PackageRepository is a collection of packages which are available to install. 
-```
-cat > repo.yml << EOF
+```bash
+$ cat > repo.yml << EOF
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
@@ -178,34 +195,45 @@ spec:
 EOF
 ```
 
-```kapp deploy -a repo -f repo.yml -y```
+```bash
+$ kapp deploy -a repo -f repo.yml -y
+```
 
 After deploying, wait for the packageRepository description to become `Reconcile succeeded`. 
 
-`kubectl get packagerepository`
+```bash 
+$ kubectl get packagerepository
+```
 
 Now, we can see the list of package metadata's available
 
-```kubectl get packagemetadatas```
+```bash
+$ kubectl get packagemetadatas
+```
 
 **2. List Packages**:
-We can see the list of packages and their version's available for install ```kubectl get packages```.
+We can see the list of packages and their version's available for install 
+
+```bash 
+kubectl get packages
+```
 
 As we can see, our published nginx helm package is available for us to install.
+
 **3. Create Service Account**: To install the above package, we need to create default-ns-sa service account that give kapp-controller privileges to create resources in the default namespace
 
-```
-kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+```bash
+$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
 ```
 
-**3. Install the Package**: To install a carvel Package, we need to create PackageInstall Kuberentes resource. A Package Install will install the nginx helm package and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package`.
+**4. Install the Package**: To install a carvel Package, we need to create PackageInstall Kuberentes resource. A Package Install will install the nginx helm package and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package`.
 
 We are providing our custom values via secret. 
 
 **NOTE**: If you are using minikube, for nginx service to be in `ACTIVE` state, start `minikube tunnel` in other window as services of LoadBalancer types do not come up otherwise in minikube  
 
-```
-cat > pkginstall.yml << EOF
+```bash
+$ cat > pkginstall.yml << EOF
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
@@ -239,21 +267,27 @@ stringData:
         }
       }
 EOF
-```
 
-kapp deploy -a pkg-demo -f pkginstall.yml -y
+$ kapp deploy -a pkg-demo -f pkginstall.yml -y
+```
 
 After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of nginx:
 
-```kubectl get pods```
+```bash
+$ kubectl get pods
+```
 
 Once the pod is ready, you can use kubectl’s port forwarding to verify the customized response used in the workload:
 
-```kubectl port-forward service/nginx-pkg 3000:80 &```
+```bash
+$ kubectl port-forward service/nginx-pkg 3000:80 &
+```
 
 Now if we make a request against our service, we can see that server response is ```Response from Custom Server"```
 
-```curl localhost:3000```
+```bash 
+$ curl localhost:3000
+```
 
 ## Join the Carvel Community
 
