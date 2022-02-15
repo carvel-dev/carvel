@@ -7,9 +7,6 @@ excerpt: "Use Carvel to author and consume helm chart "
 image: /img/logo.svg
 tags: ['carvel', 'helm', 'gitops']
 ---
-# Carvelizing Helm Chart
-
-## Introduction
 
 In this blog, we will see how to author [`bitnami nginx helm chart`](https://github.com/bitnami/charts/tree/master/bitnami/nginx) into Carvel package and then consume the same.
 
@@ -29,7 +26,7 @@ Basic knowledge of imgpkg, kbld, kapp controller
 
 [`kapp-controller`](https://carvel.dev/kapp-controller/): Kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages.
 
-## Install Carvel Tools
+## Installing Carvel Tools
 
 We'll be using Carvel tools throughout this tutorial, so first we'll install them:
 
