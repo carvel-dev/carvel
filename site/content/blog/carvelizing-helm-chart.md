@@ -30,7 +30,18 @@ kbld: kbld incorporates image building and image pushing into your development a
 kapp-controller: Kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages.
 
 ## Install Carvel Tools
+
+We'll be using Carvel tools throughout this tutorial, so first we'll install them:
+
+Install the tools with the scripts below:
 To install all the carvel tools, run this `install.sh` script.
+
+```
+wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/dependencies.yml
+wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/install-deps.sh
+chmod a+x ./install-deps.sh
+./install-deps.sh
+```
 
 ```
 kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
