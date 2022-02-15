@@ -128,7 +128,7 @@ EOF
 For the purpose of this tutorial, we will run an unsecured local docker registry. In the real world please be safe and use appropriate security measures.
     
 ```bash
-    $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
 From the terminal we can access this registry as localhost:5000 but within the cluster we'll need the IP Address. We will store the IP address in a variable:
@@ -154,7 +154,6 @@ We can copy our CR YAMLs from the previous step in to the proper packages subdir
 
 ```bash
 $ cp 1.0.0.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
-
 $ cp pkgMetadata.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
 ```
 
@@ -271,19 +270,19 @@ EOF
 $ kapp deploy -a pkg-demo -f pkginstall.yml -y
 ```
 
-After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of nginx:
+After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of nginx.
 
 ```bash
 $ kubectl get pods
 ```
 
-Once the pod is ready, you can use kubectl’s port forwarding to verify the customized response used in the workload:
+Once the pod is ready, you can use kubectl’s port forwarding to verify the customized response used in the workload.
 
 ```bash
 $ kubectl port-forward service/nginx-pkg 3000:80 &
 ```
 
-Now if we make a request against our service, we can see that server response is ```Response from Custom Server"```
+Now if we make a request against our service, we can see that server response is ```Response from Custom Server```
 
 ```bash 
 $ curl localhost:3000
