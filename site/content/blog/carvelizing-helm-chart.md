@@ -45,13 +45,12 @@ $ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releas
 
 ## Authoring a Carvel Package
 
-To create a package, we need to create two Custom Resources (CRs). We will go through step by step to author an nginx helm chart:
+To create a package, we need to create two Custom Resources (CRs). We will go through step by step process of authoring an nginx helm chart:
 
 **1. Create PackageMetadata CR**: Package Metadata contains high level information and description about the package. Multiple versions of a package share same package metadata.
 
 Save the below PackageMetadata CR to a file named `pkgMetadata.yaml`
 ```yaml
-
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
@@ -74,7 +73,6 @@ spec:
 
 Save the below Package CR to a file named `1.0.0.yaml`
 ```yaml
-
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -117,7 +115,7 @@ spec:
 ```
 **Note**: This is one way of packaging helm chart. Another way is to use `imgpkg` bundle to store the helm chart itself and then reference it. 
 
-**3. Create Package Repository**: A package repository is a collection of packages and their metadata. We will use `imgpkg` bundle to create package repository.
+**3. Create Package Repository**: A package repository is a collection of packages and their metadata. We will use `imgpkg` bundle to create Package Repository.
 
 For the purpose of this tutorial, we will run an unsecured local docker registry. In the real world please be safe and use appropriate security measures.
     
@@ -157,51 +155,6 @@ Now, let’s use kbld to record which package bundles are used:
 
 ```bash
 $ kbld -f nginx-bitnami-repo/packages/ --imgpkg-lock-output nginx-bitnami-repo/.imgpkg/images.yml
----
-apiVersion: data.packaging.carvel.dev/v1alpha1
-kind: Package
-metadata:
-  name: nginx.bitnami.vmware.com.1.0.0
-spec:
-  refName: nginx.bitnami.vmware.com
-  releaseNotes: Initial release of the nginx package by wrapping helm Chart. Nginx
-    Helm chart version is 9.5.4
-  template:
-    spec:
-      deploy:
-      - kapp: {}
-      fetch:
-      - helmChart:
-          name: nginx
-          repository:
-            url: https://charts.bitnami.com/bitnami
-          version: 9.5.4
-      template:
-      - helmTemplate: {}
-  valuesSchema:
-    openAPIv3:
-      examples: null
-      properties: null
-      title: nginx.bitnami.vmware.com
-  version: 1.0.0
----
-apiVersion: data.packaging.carvel.dev/v1alpha1
-kind: PackageMetadata
-metadata:
-  name: nginx.bitnami.vmware.com
-spec:
-  categories:
-  - proxy-server
-  displayName: Bitnami Nginx Carvel Package
-  longDescription: Proxifying Server
-  maintainers:
-  - name: Carvel
-  - name: CarvelInd
-  - name: Rohit Aggarwal
-  providerName: VMWare
-  shortDescription: Proxifying Server
-
-Succeeded
 ```
 
 We will push the bundle into the repository using `imgpkg`.
@@ -234,7 +187,6 @@ $ curl ${REPO_HOST}/v2/_catalog
 
 Save the below PackageRepository CR to a file named `repo.yaml`
 ```yaml
----
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
@@ -271,7 +223,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
-After deploying, wait for the packageRepository description to become `Reconcile succeeded`. 
+After deploying, wait for the PackageRepository description to become `Reconcile succeeded`. 
 
 ```bash 
 $ kubectl get packagerepository
@@ -330,7 +282,7 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
-**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the nginx helm package and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package`.
+**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the nginx helm chart and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package` CR.
 
 In this example, we will provide our custom values via secret. There are other ways we can provide the values like configMap etc.
 
@@ -338,7 +290,6 @@ In this example, we will provide our custom values via secret. There are other w
 
 Save the below PackageInstall CR to a file named `pkgInstall.yaml`
 ```yaml
----
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
@@ -443,7 +394,7 @@ Response from Custom Server
 
 ## Congratulations
 
-You have successfully wrapped, distributed and install'ed an existing Helm chart as a Carvel package.
+You have successfully wrapped, distributed and installed an existing Helm chart as a Carvel package.
 
 
 ## Join the Carvel Community
