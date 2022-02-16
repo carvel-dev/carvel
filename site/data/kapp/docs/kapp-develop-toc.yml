@@ -29,6 +29,8 @@ toc:
         url: /cheatsheet
       - page: Dangerous Flags
         url: /dangerous-flags
+      - page: Configmap Migration (experimental)
+        url: /configmap-migration
   - title: Integrations
     subfolderitems:
       - page: Integrating With Other Tools
