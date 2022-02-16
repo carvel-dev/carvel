@@ -135,7 +135,7 @@ Confirm that REPO_HOST is set to <IP_ADDRESS:PORT>
 
 ```bash
 $ echo $REPO_HOST
-  10.104.3.7:5000
+  10.104.40.33:5000
 ```
 
 Lets start by creating the directories:
@@ -404,9 +404,23 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
-After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of nginx.
-
+After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by doing the `kapp inspect` and checking the pods to see that we have a workload pod running.
 ```bash
+$ kapp inspect -a pkg-demo
+Target cluster 'https://192.168.64.32:8443' (nodes: minikube)
+
+Resources in app 'pkg-demo'
+
+Namespace  Name          Kind            Owner  Conds.  Rs  Ri  Age
+default    nginx-pkg     PackageInstall  kapp   1/1 t   ok  -   7m
+^          nginx-values  Secret          kapp   -       ok  -   7m
+
+Rs: Reconcile state
+Ri: Reconcile information
+
+2 resources
+
+Succeeded
 $ kubectl get pods
 NAME                         READY   STATUS    RESTARTS   AGE
 nginx-pkg-6db5c6978d-tt8k4   1/1     Running   0          82s
