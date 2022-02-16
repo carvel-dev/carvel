@@ -28,7 +28,7 @@ metadata:
 stringData:
   values.yml: |
     ---
-    hello_msg: "to all my katacoda friends"
+    hello_msg: "to all my internet friends"
 EOF
 ```{{execute}}
 

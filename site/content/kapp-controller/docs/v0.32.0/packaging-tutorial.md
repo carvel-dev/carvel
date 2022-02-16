@@ -13,19 +13,17 @@ Note the below steps are from the linked katacoda tutorial so your environment m
 
 ## Installing kapp-controller dependencies
 
-We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so first we'll install 
+We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so first we'll install
 [ytt](https://carvel.dev/ytt/), [kbld](https://carvel.dev/kbld/),
 [kapp](https://carvel.dev/kapp/), [imgpkg](https://carvel.dev/imgpkg/), and [vendir](https://carvel.dev/vendir/).
 
-Install the whole tool suite with the script below:
+Install the tools with the scripts below:
 
-(Note: we are temporarily overriding kapp-controller's version to jump to ytt
-0.38.0, in order to include the recent OpenAPI Schema feature in this tutorial)
 ```bash
-wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | \
-sed 's/ytt_version=v0.35.1/ytt_version=v0.38.0/' | \
-sed 's/0aa78f7b5f5a0a4c39bddfed915172880344270809c26b9844e9d0cbf6437030/2ca800c561464e0b252e5ee5cacff6aa53831e65e2fb9a09cf388d764013c40d/' | \
-bash
+wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/dependencies.yml
+wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/install-deps.sh
+chmod a+x ./install-deps.sh
+./install-deps.sh
 ```
 
 
@@ -36,18 +34,16 @@ a different example of how kapp works.
 
 You can skip this step if you want to get straight to kapp-controller.
 
-### Using kapp to install a cronjob
-
-First clone the GitHub repository for examples:
+First pull down the yaml for this example:
 
 ```bash
-git clone https://github.com/vmware-tanzu/carvel-kapp
+wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp/5886f388900ce66e4318220025ca77d16bfaa488/examples/jobs/cron-job.yml
 ```
 
 Then deploy a CronJob to the Kubernetes cluster in this environment:
 
 ```bash
-kapp deploy -a hellocron -f carvel-kapp/examples/jobs/cron-job.yml -y
+kapp deploy -a hellocron -f cron-job.yml -y
 ```
 
 Now take a look at the Kubernetes resources being managed by kapp:
@@ -79,7 +75,7 @@ Use kapp to install kapp-controller (reconciliation may take a moment, which you
 could use to read about [kubernetes controller reconciliation loops](https://kubernetes.io/docs/concepts/architecture/controller/)):
 
 ```bash
-kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.21.0/release.yml -y
+kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.32.0/release.yml -y
 ```
 
 Gaze upon the splendor! 
@@ -172,10 +168,10 @@ EOF
 ```
 
 ## Creating a Package: Structuring our contents
-We'll create an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle)
+We'll create an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle)
 that contains the package contents: the configuration (config.yml and values.yml from the previous step) and a reference to the greeter app image (docker.io/dkalinin/k8s-simple-app@sha256:...).
 
-The [package bundle format](packaging-artifact-formats.md#package-contents-bundle) describes the purpose of each directory 
+The [package bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-contents-bundle) describes the purpose of each directory 
 used in this section of the tutorial as well as general recommendations.
 
 Let's create a directory with our configuration files:
@@ -191,7 +187,7 @@ mkdir -p package-contents/.imgpkg
 kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg/images.yml
 ```
 
-For more on using kbld to populate the .imgpkg directory with an ImagesLock, and why it is useful, see the [imgpkg docs on the subject](/imgpkg/docs/latest/resources/#imageslock-configuration).
+For more on using kbld to populate the .imgpkg directory with an ImagesLock, and why it is useful, see the [imgpkg docs on the subject](https://carvel.dev/imgpkg/docs/latest/resources/#imageslock-configuration).
 
 Once these files have been added, our package contents bundle is ready to be pushed!
 
@@ -300,17 +296,17 @@ EOF
 This Package contains some metadata fields specific to the version, such as releaseNotes and a valuesSchema. The valuesSchema shows what configurable properties exist for the version. This will help when users want to install this package and want to know what can be configured.
 
 The other main component of this CR is the template section.
-This section informs kapp-controller of the actions required to install the packaged software, so take a look at the [app-spec](app-spec.md) section to learn more about each of the template sections. For this example, we have chosen a basic setup that will fetch the imgpkg bundle we created in the previous section, run the templates stored inside through ytt, apply kbld transformations, and then deploy the resulting manifests with kapp.
+This section informs kapp-controller of the actions required to install the packaged software, so take a look at the [app-spec](https://carvel.dev/kapp-controller/docs/latest/app-spec/) section to learn more about each of the template sections. For this example, we have chosen a basic setup that will fetch the imgpkg bundle we created in the previous section, run the templates stored inside through ytt, apply kbld transformations, and then deploy the resulting manifests with kapp.
 
 There will also be validations run on the Package CR, so ensure that spec.refName and spec.version are not empty and that metadata.name is `<spec.refName>.<spec.version>`.
 These validations are done to encourage a naming scheme that keeps package version names unique.
 ## Creating a Package Repository
 
-A [package repository](packaging.md#package-repository)
+A [package repository](https://carvel.dev/kapp-controller/docs/latest/packaging/#package-repository)
 is a collection of packages (more specifically a collection of Package and PackageMetadata CRs).
-Our recommended way to make a package repository is via an [imgpkg bundle](/imgpkg/docs/latest/resources/#bundle).
+Our recommended way to make a package repository is via an [imgpkg bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle).
 
-The [PackageRepository bundle format](packaging-artifact-formats.md#package-repository-bundle) describes purpose of each directory and general recommendations.
+The [PackageRepository bundle format](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) describes purpose of each directory and general recommendations.
 
 Lets start by creating the needed directories:
 
@@ -372,7 +368,7 @@ EOF
 ```
 
 (See our
-[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](private-registry-auth.md) for more typical usage with an external repository.)
+[demo video](https://www.youtube.com/watch?v=PmwkicgEKQE) and [website](https://carvel.dev/kapp-controller/docs/latest/private-registry-auth) for more typical usage with an external repository.)
 
 This PackageRepository CR will allow kapp-controller to install any of the
 packages found within the `${REPO_HOST}/packages/my-pkg-repo:1.0.0` imgpkg bundle, which we
@@ -440,18 +436,18 @@ metadata:
 stringData:
   values.yml: |
     ---
-    hello_msg: "to all my katacoda friends"
+    hello_msg: "to all my internet friends"
 EOF
 ```
 
 
 This CR references the Package we created in the previous sections using the package’s `refName` and `version` fields (see yaml from step 7).
 Do note, the `versionSelection` property has a constraints subproperty to give more control over which versions are chosen for installation.
-More information on PackageInstall versioning can be found [here](packaging.md#versioning-packageinstalls).
+More information on PackageInstall versioning can be found [here](https://carvel.dev/kapp-controller/docs/latest/packaging/#versioning-packageinstalls).
 
 This yaml snippet also contains a Kubernetes secret, which is referenced by the PackageInstall. This secret is used to provide customized values to the package installation’s templating steps. Consumers can discover more details on the configurable properties of a package by inspecting the Package CR’s valuesSchema.
 
-Finally, to install the above package, we will also need to create `default-ns-sa` service account (refer to [Security model](security-model.md)
+Finally, to install the above package, we will also need to create `default-ns-sa` service account (refer to [Security model](https://carvel.dev/kapp-controller/docs/latest/security-model/)
 for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
 ```bash
 kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
@@ -481,4 +477,4 @@ curl localhost:3000
 
 Visit [carvel.dev](https://carvel.dev/) to learn more about Carvel tools.
 
-See the full docs for [Package Management with kapp-controller](packaging.md)
+See the full docs for [Package Management with kapp-controller](https://carvel.dev/kapp-controller/docs/latest/packaging/)
