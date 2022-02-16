@@ -39,7 +39,8 @@ In the Kubernetes space, as cluster deployments become **increasingly complex**,
     - a function that asserts the rule against an actual value;
     - a violation message template, used to report invalid values.
     - **custom rule** — a rule based on a function (either one written by a user or provided in a `ytt` module).
-    - **named rule** — a rule provided with `ytt` expressed through a keyword argument to `@assert/validate`.
+    - **named rule** — a rule provided with `ytt` expressed through a keyword argument to an `@schema/validation` or `@assert/validate`.
+- **schema base document** — the document instantiated from a schema; when the schema describes Data Values, it is the annotated default data values document.
 - **validation** — the binding of one or more "rule"s to a "node".
 - **violation** — an instance of where a given value of a "node" fails a "validation".
 
@@ -48,6 +49,10 @@ In the Kubernetes space, as cluster deployments become **increasingly complex**,
 Implement all plumbing logic required to provide high-quality data validation over Data Values and output documents.
 
 Mechanically, this means:
+
+Extend `@schema/...` to be able to annotate validations in schema:
+- introduce `@schema/validation` which attaches a validation to a type.
+- when generating default Data Values (generally, the schema base document), when a type has a validation, annotate the corresponding node with an `@assert/validate` with that validation.
 
 Extend the `@ytt:assert` module, to include the ability to validate:
 - introduce an annotation (`@assert/validate`) which attaches one or more "rules" to a "node", defining what a valid value is for that node;
@@ -105,9 +110,9 @@ The recommended way for an author to indicate required string input is to expect
 #@data/values-schema
 ---
 dex:
-  #@assert/validate min_len=1
+  #@schema/validation min_len=1
   namespace: ""
-  #@assert/validate min_len=1
+  #@schema/validation min_len=1
   username: ""
 ```
 
@@ -115,7 +120,7 @@ This case is so common (it is our understanding that most string-based data valu
 
 ```yaml
 #@data/values-schema
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 ---
 dex:
   namespace: ""
@@ -133,7 +138,7 @@ Similarly, a non-empty value of an array has at least one element:
 ---
 dex:
   oauth2:
-    #@assert/validate min_len=1
+    #@schema/validation min_len=1
     responseTypes:
     - ""
 ```
@@ -148,7 +153,7 @@ For some integer-typed (or float-typed) data values, a zero value may be invalid
 ```yaml
 #@data/values-schema
 dex:
-  #@assert/validate min=1024, max=65535
+  #@schema/validation min=1024, max=65535
   port: 0
 ```
 
@@ -162,7 +167,7 @@ Some types have no natural (or easily detectable) "empty" value. In these cases,
 #@data/values-schema
 ---
 #@schema/nullable
-#@assert/validate not_null=("Cloud credentials are required.", True)
+#@schema/validation not_null=("Cloud credentials are required.", True)
 credential:
   name:
   secretContents:
@@ -180,7 +185,7 @@ Values can be constrained to be one of a finite site (i.e. of an enumeration).
 ---
 volumeSnapshotLocation:
   spec:
-    #@assert/validate one_of=["aws", "azure", "vsphere"]
+    #@schema/validation one_of=["aws", "azure", "vsphere"]
     provider: ""
 ```
 
@@ -192,7 +197,7 @@ An author can require that exactly one of a set of sibling node has a value:
 #@data/values-schema
 ---
 dex:
-  #@assert/validate one_not_null=["oidc", "ldap"]
+  #@schema/validation one_not_null=["oidc", "ldap"]
   config:
     #@schema/nullable
     oidc:
@@ -251,7 +256,7 @@ The author places the validation at the lowest-common parent Node:
 #@ end
 
 #@data/values-schema
-#@assert/validate ("There should be exactly one (1) registry replica if Helm Charts are stored on the filesystem.", one_registry_if_pvc_is_filesystem)
+#@schema/validation ("There should be exactly one (1) registry replica if Helm Charts are stored on the filesystem.", one_registry_if_pvc_is_filesystem)
 ---
 persistence:
   imageChartStorage:
@@ -274,7 +279,7 @@ Whenever a node is annotated `@schema/nullable`, then its default value is `null
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate min=42, max=42
+#@schema/validation min=42, max=42
 #@schema/nullable
 foo: 13
 ```
@@ -284,7 +289,7 @@ The author may opt to short-circuit validations when the actual value is `null`:
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate min=42, max=42, when_null_skip=True
+#@schema/validation min=42, max=42, when_null_skip=True
 #@schema/nullable
 foo: 13
 ```
@@ -304,7 +309,7 @@ The author can short-circuit validations under certain conditions:
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate ("", valid_service_config), when=lambda v: v.enabled
+#@schema/validation ("", valid_service_config), when=lambda v: v.enabled
 service:
   enabled: true
   type: NodePort
@@ -499,13 +504,20 @@ The default `message` is:
 - centering around the word "...requires..." helps the message work both in the case where the consumer supplied no value (see [Use Case: Required input](#use-case-required-input)) _and_ when they supplied an invalid value.
 - `{value}` is omitted to not contribute to the risk of leaking secrets.
 
+> **Note** \
+> Examples below illustrate how an author would specify a validation (using `@schema/validation`) that becomes an `@assert/validate` as this is the driving use case at this time.
 
 _Example 1: Named rules_
 
 ```yaml
 #@data/values-schema
 ---
-
+#@schema/validation min=49142 max=65535
+adminPort: 1024
+```
+which yields a schema base document:
+```yaml
+---
 #@assert/validate min=49142 max=65535
 adminPort: 1024
 ```
@@ -519,6 +531,12 @@ _Example 2: Custom assertion-based rule_
 #@   n >= 49142 and n <= 65535 or assert.fail("{} is not in the dynamic port range".format(n))
 #@ end
 
+#@schema/validation ("a TCP/IP port in the \"dynamic\" range: 49142 and 65535, inclusive", is_valid_port)
+adminPort: 1024
+```
+which yields a schema base document:
+```yaml
+---
 #@assert/validate ("a TCP/IP port in the \"dynamic\" range: 49142 and 65535, inclusive", is_valid_port)
 adminPort: 1024
 ```
@@ -535,9 +553,16 @@ _Example 3: Custom violation message_
 #@   n >= 49142 and n <= 65535 or assert.fail("{} is not in the dynamic port range".format(n))
 #@ end
 
+#@schema/validation ("a TCP/IP port in the \"dynamic\" range: 49142 and 65535, inclusive", is_valid_port, "\"{key}\" (={value}) must be between 49142 and 65535")
+adminPort: 1024
+```
+which yields a schema base document:
+```yaml
+---
 #@assert/validate ("a TCP/IP port in the \"dynamic\" range: 49142 and 65535, inclusive", is_valid_port, "\"{key}\" (={value}) must be between 49142 and 65535")
 adminPort: 1024
 ```
+
 
 Yields:
 > "adminPort" (=1024) must be between 49142 and 65535
@@ -551,6 +576,12 @@ _Example 4: Custom predicate-based rule_
 #@   return n >= 49142 and n <= 65535
 #@ end
 
+#@schema/validation ("A TCP/IP port in the \"dynamic\" range: 49142 and 65535, inclusive", is_valid_port)
+adminPort: 1024
+```
+which yields a schema base document:
+```yaml
+---
 #@assert/validate ("A TCP/IP port in the \"dynamic\" range: 49142 and 65535, inclusive", is_valid_port)
 adminPort: 1024
 ```
@@ -604,19 +635,6 @@ username: ""
 > `"username" requires a valid value (a non-empty string); it is a length of 0.`
 
 Note: if an author wishes to provide a custom violation message, they would use the corresponding built-in rule as a custom rule.
-
-#### @assert/validate-string-defaults
-
-> **TODO:**
-> - [ ] firm-up name of this annotation: is it a bug or a feature that it is type-specific?
-
-Defines what a valid value is for all descendants which hold a "string" value.
-
-```
-@assert/validate-string-defaults [rule0, rule1...] [,<named-rules>] [,when=] [,when_null_skip=]
-```
-
-See also: [Consideration: Setting validation defaults for strings in a schema overlay](#consideration-setting-validation-defaults-for-strings-in-a-schema-overlay).
 
 #### @ytt:assert.validate()
 
@@ -699,6 +717,30 @@ When present, this validator is always checked first.
 
 ##### @ytt:assert.starts_with()
 
+#### @schema/validation
+
+Attaches a validation to the type being declared by the annotated node.
+
+```
+@schema/validation [rule0, rule1, ...] [,<named-rules>] [,when=] [,when_null_skip=]
+```
+
+When the schema base document is generated, the corresponding node is annotated with `@assert/validate` with the same configuration provide _this_ annotation.
+
+See [@assert/validate](#assertvalidate) for details about arguments to this annotation.
+
+#### @schema/validation-defaults-for-strings
+
+> **TODO:**
+> - [ ] firm-up name of this annotation: is it a bug or a feature that it is type-specific?
+
+Defines what a valid value is for all descendants which hold a "string" value.
+
+```
+@schema/validation-defaults-for-strings [rule0, rule1...] [,<named-rules>] [,when=] [,when_null_skip=]
+```
+
+See also: [Consideration: Setting validation defaults for strings in a schema overlay](#consideration-setting-validation-defaults-for-strings-in-a-schema-overlay).
 #### Custom Validation Functions
 
 > **TODO:**
@@ -720,7 +762,7 @@ available with existing mechanisms:
 
 1. **Q:** How are `one_not_null` expressed in CRDs (or built-in types) e.g. go look at Volumes (for each array item). \
    https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/_print/#validation
-2. **Q:** `@assert/validate-string-defaults` feels overly specific; is there a way to both generalize the notion of defaulting while keeping a reasonable syntax?
+2. **Q:** `@schema/validation-defaults-for-strings` feels overly specific; is there a way to both generalize the notion of defaulting while keeping a reasonable syntax?
 3. **Q:** in the case where a function is placed higher up on the tree, but really the value being checked is one of the children, should we give the facility to be able to name the path of the target key? In this way, the violation message can be associated with the child (as well).
 4. **Q:** When evaluating a private library, should validations be _automatically_ evaluated?
 5. **Q:** Should we provide a "break-the-glass" means of capturing a form of a validation in CEL?
@@ -764,33 +806,33 @@ From:
 To:
 
 ```yaml
-#@ load("@ytt:validation", "validation")
+#@ load("@ytt:assert", "assert")
 #@
 #@ def one_registry_if_pvc_is_filesystem(val):
 #@   if val.persistence.imageChartStorage.type == "filesystem" and
 #@      val.persistence.persistentVolumeClaim.registry.accessMode == "ReadWriteOnce":
 #@      return val.registry.replicas == 1 \
-#@          or (False, "Charts are being stored in a 'filesystem' type PVC and the Registry's PVC access mode is 'ReadWriteOnce': there must be exactly one (1) replica of the registry but {} replicas are configured.".format(val.registry.replicas))
+#@          or assert.fail("Charts are being stored in a 'filesystem' type PVC and the Registry's PVC access mode is 'ReadWriteOnce': there must be exactly one (1) replica of the registry but {} replicas are configured.".format(val.registry.replicas))
 #@   end
 #@ end
 
 #@data/values-schema
-#@assert/validate ("There can be exactly one (1) registry replica if Helm Charts are stored on the filesystem.", one_registry_if_pvc_is_filesystem)
-#@assert/validate-string-defaults min_len=1
+#@schema/validation ("There can be exactly one (1) registry replica if Helm Charts are stored on the filesystem.", one_registry_if_pvc_is_filesystem)
+#@schema/validation-defaults-for-strings min_len=1
 ---
 #@schema/desc "The namespace to install Harbor"
 namespace: harbor
 
 #@schema/desc "The FQDN for accessing Harbor admin UI and Registry service."
-#@assert/validate min_len=1, format="hostname"
+#@schema/validation min_len=1, format="hostname"
 hostname: harbor.yourdomain.com
 #@schema/desc "The network port of the Envoy service in Contour or other Ingress Controller."
 port:
-  #@assert/validate min=1, max=65535
+  #@schema/validation min=1, max=65535
   https: 443
 
 #@schema/desc "The log level of core, exporter, jobservice, registry."
-#@assert/validate one_of=["debug", "info", "warning", "error", "fatal"]
+#@schema/validation one_of=["debug", "info", "warning", "error", "fatal"]
 logLevel: info
 
 #@ text = """
@@ -805,7 +847,7 @@ tlsCertificate:
   #@schema/desc "The private key"
   tls.key: ""
   #@schema/desc "The certificate of CA, this enables the download link on portal to download the certificate of CA."
-  #@assert/validate min_len=0
+  #@schema/validation min_len=0
   ca.crt: ""
 
 #@schema/desc "Use contour http proxy instead of the ingress."
@@ -815,7 +857,7 @@ enableContourHttpProxy: true
 harborAdminPassword: ""
 
 #@schema/desc "The secret key used for encryption."
-#@assert/validate len=16
+#@schema/validation len=16
 secretKey: ""
 
 database:
@@ -827,7 +869,7 @@ core:
   #@schema/desc "Secret is used when core server communicates with other components."
   secret: ""
   #@schema/desc "The XSRF key."
-  #@assert/validate len=32
+  #@schema/validation len=32
   xsrfKey: ""
 jobservice:
   replicas: 1
@@ -879,11 +921,11 @@ persistence:
   #@ StorageClass will be used(the default).
   #@ Set it to '-' to disable dynamic provisioning
   #@ """
-  #@assert/validate-string-defaults min_len=0
+  #@schema/validation-defaults-for-strings min_len=0
   persistentVolumeClaim:
-    #@assert/validate ("Either existingClaim or storageClass can be specified, but not both", lambda v: v.existing.....)
+    #@schema/validation ("Either existingClaim or storageClass can be specified, but not both", lambda v: v.existing.....)
     registry_b: #@ persistent_volume_claim_config(size="10Gi")
-    #@assert/validate ("", validPersistentVolumeClaimConfig)
+    #@schema/validation ("", validPersistentVolumeClaimConfig)
     registry:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -892,7 +934,7 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 10Gi
-    #@assert/validate ("", validPersistentVolumeClaimConfig)
+    #@schema/validation ("", validPersistentVolumeClaimConfig)
     jobservice:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -901,7 +943,7 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
-    #@assert/validate ("", validPersistentVolumeClaimConfig)
+    #@schema/validation ("", validPersistentVolumeClaimConfig)
     database:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -910,7 +952,7 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
-    #@assert/validate ("", validPersistentVolumeClaimConfig)
+    #@schema/validation ("", validPersistentVolumeClaimConfig)
     redis:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -919,7 +961,7 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
-    #@assert/validate ("", validPersistentVolumeClaimConfig)
+    #@schema/validation ("", validPersistentVolumeClaimConfig)
     trivy:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -932,7 +974,7 @@ persistence:
   #! Specify the type of storage: "filesystem", "azure", "gcs", "s3", "swift", "oss" by filling in the information 
   #! in the corresponding section. 
   #! You must use "filesystem" if you want to use persistent volumes for registry and chartmuseum
-  #@assert/validate one_not_null=["filesystem", "azure", "gcs", "s3", "swift", "oss"]
+  #@schema/validation one_not_null=["filesystem", "azure", "gcs", "s3", "swift", "oss"]
   
   #@ text = """
   #@ Define which storage backend is used for registry and chartmuseum to store
@@ -958,7 +1000,7 @@ persistence:
     #@ of registry's and chartmuseum's containers.
     #@ """
     #@schema/desc text
-    #@assert/validate min_len=0
+    #@schema/validation min_len=0
     caBundleSecretName: ""
 
     #@schema/nullable
@@ -972,21 +1014,21 @@ persistence:
       #@schema/desc "base-64 encoded account key"
       accountkey: ""
       container: ""
-      #@assert/validate min_len=0
+      #@schema/validation min_len=0
       #@schema/examples ("Using the default realm", "core.windows.net")
       realm: ""
     #@schema/nullable
     gcs:
       bucket: ""
       #@schema/desc The base64 encoded json file which contains the key
-      #@assert/validate min_len=0
+      #@schema/validation min_len=0
       encodedkey: ""
-      #@assert/validate min_len=0
+      #@schema/validation min_len=0
       rootdirectory: ""
       chunksize: 5242880
     #@schema/nullable
     s3:
-      #@assert/validate one_of=["af-south-1", "ap-east-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-south-1", "ap-southeast-1", "ap-southeast-2", "ap-southeast-3", "ca-central-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "me-south-1", "sa-east-1", "us-east-1", "us-east-2", "us-gov-east-1", "us-gov-west-1", "us-west-1", "us-west-2"]
+      #@schema/validation one_of=["af-south-1", "ap-east-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-south-1", "ap-southeast-1", "ap-southeast-2", "ap-southeast-3", "ca-central-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "me-south-1", "sa-east-1", "us-east-1", "us-east-2", "us-gov-east-1", "us-gov-west-1", "us-west-1", "us-west-2"]
       region: us-west-1
       bucket: ""
       #@schema/examples ("", "awsaccesskey")
@@ -994,7 +1036,7 @@ persistence:
       #@schema/examples ("", "awssecretkey")
       secretkey: ""
       #@schema/examples ("Local endpoint", "http://myobjects.local")
-      #@assert/validate min_len=0
+      #@schema/validation min_len=0
       regionendpoint: ""
       encrypt: false
       #@schema/examples ("", "mykeyid")
@@ -1004,9 +1046,9 @@ persistence:
       v4auth: true
       #@schema/nullable
       chunksize: 0
-      #@assert/validate min_len=0
+      #@schema/validation min_len=0
       rootdirectory: ""
-      #@assert/validate one_of=["DEEP_ARCHIVE", "GLACIER", "INTELLIGENT_TIERING", "ONEZONE_IA", "REDUCED_REDUNDANCY", "STANDARD", "STANDARD_IA"]
+      #@schema/validation one_of=["DEEP_ARCHIVE", "GLACIER", "INTELLIGENT_TIERING", "ONEZONE_IA", "REDUCED_REDUNDANCY", "STANDARD", "STANDARD_IA"]
       storageclass: STANDARD
       #@schema/nullable
       multipartcopychunksize: 0
@@ -1015,7 +1057,7 @@ persistence:
       #@schema/nullable
       multipartcopythresholdsize: 0
     
-    #@assert/validate one_of=["1", "10"], when_null_skip=True
+    #@schema/validation one_of=["1", "10"], when_null_skip=True
     #@schema/nullable
     swift:
       #@schema/examples ("Example", "https://storage.myprovider.com/v3/auth")
@@ -1038,7 +1080,7 @@ persistence:
       #@schema/nullable
       insecureskipverify: false
       #@schema/nullable
-      #@assert/validate format="quantity", when_null_skip=True
+      #@schema/validation format="quantity", when_null_skip=True
       #@schema/examples ("Five meg chunks", "5M")
       chunksize: ""
       #@schema/nullable
@@ -1226,7 +1268,7 @@ Accept a sequence as part of the annotation name:
 
 #### Defining merge semantics for annotations in an overlay
 
-... so that (for example) a consumer can edit `@assert/validate` annotations
+... so that (for example) a consumer can edit `@schema/validation` annotations
 
 ##### Replacing an existing annotation
 
@@ -1235,7 +1277,7 @@ Accept a sequence as part of the annotation name:
 
 #@data/values-schema
 ---
-#@assert/validate is_even
+#@schema/validation is_even
 foo: 42
 bar: 13
 ```
@@ -1247,10 +1289,10 @@ bar: 13
 
 #@data/values-schema
 ---
-#@assert/validate lambda n: n < 1000
+#@schema/validation lambda n: n < 1000
 #@overlay/replace-ann
 foo: 13
-#@assert/validate lambda n: n < 1000
+#@schema/validation lambda n: n < 1000
 #@overlay/replace-ann
 bar: 1001
 ```
@@ -1261,9 +1303,9 @@ bar: 1001
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate lambda n: n < 1000
+#@schema/validation lambda n: n < 1000
 foo: 13
-#@assert/validate lambda n: n < 1000
+#@schema/validation lambda n: n < 1000
 bar: 1001
 ```
 
@@ -1278,7 +1320,7 @@ bar: 1001
 
 #@data/values-schema
 ---
-#@assert/validate is_even, not_null=True
+#@schema/validation is_even, not_null=True
 foo: 42
 bar: 13
 ```
@@ -1290,11 +1332,11 @@ bar: 13
 
 #@data/values-schema
 ---
-#@assert/validate lambda n: n < 1000, min=10, not_null=False
+#@schema/validation lambda n: n < 1000, min=10, not_null=False
 #@overlay/noop
 #@overlay/merge-anns
 foo: ~
-#@assert/validate lambda n: n < 1000
+#@schema/validation lambda n: n < 1000
 #@overlay/noop
 #@overlay/merge-anns
 bar: ~
@@ -1305,9 +1347,9 @@ bar: ~
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate is_even, lambda n: n < 1000, not_null=False, min=10
+#@schema/validation is_even, lambda n: n < 1000, not_null=False, min=10
 foo: 42
-#@assert/validate lambda n: n < 1000
+#@schema/validation lambda n: n < 1000
 bar: 13
 ```
 
@@ -1318,10 +1360,10 @@ bar: 13
 
 #@data/values-schema
 ---
-#@assert/validate is_even, not_null=True
+#@schema/validation is_even, not_null=True
 foo: 42
 #@schema/nullable
-#@assert/validate not_null=True
+#@schema/validation not_null=True
 bar: 13
 ```
 
@@ -1378,7 +1420,7 @@ For example `@ytt:assert.not_null()`'s functionality is likely literally used in
 
 ### Consideration: Setting validation defaults for strings in a schema overlay
 
-When exploring how to implement [@assert/validate-string-defaults](#assertvalidate-string-defaults), there are challenges.
+When exploring how to implement [@schema/validation-defaults-for-strings](#schemavalidation-defaults-for-strings), there are challenges.
 
 Setting up an example:
 
@@ -1389,7 +1431,7 @@ Two (2) schema files: a base and an overlay.
 
 #@data/values-schema
 ---
-#@assert/validate min_len=5
+#@schema/validation min_len=5
 hostname: ""
 
 proxy: ""
@@ -1400,10 +1442,10 @@ proxy: ""
 
 #@data/values-schema
 #@overlay/match-child-defaults missing_ok=True
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 ---
 kp_default_repository: ""
-#@assert/validate min_len=0
+#@schema/validation min_len=0
 kp_username: ""
 limit: #@ 30
 ```
@@ -1418,17 +1460,17 @@ So, merging our example with the current release of `ytt` (v0.38.0) results in:
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate min_len=5
+#@schema/validation min_len=5
 hostname: ""
 
 proxy: ""
 kp_default_repository: ""
-#@assert/validate min_len=0
+#@schema/validation min_len=0
 kp_username: ""
 limit: 30
 ```
 where:
-- 👎 the `@assert/validate-string-defaults` annotation is effectively ignored.
+- 👎 the `@schema/validation-defaults-for-strings` annotation is effectively ignored.
 
 #### Solution A1: Implement merge semantics for annotations
 
@@ -1437,21 +1479,21 @@ where:
 
 #### Challenge B: Unintended scoping of "normalized" annotations
 
-We classify `@assert/validate-string-defaults` as a "normalized annotation" — by that we mean that it represents a factoring out of a set of annotations within a tree of nodes. In our example, it's the "factoring out" of `@assert/validate min_len=1` from `kp_default_repository:`.
+We classify `@schema/validation-defaults-for-strings` as a "normalized annotation" — by that we mean that it represents a factoring out of a set of annotations within a tree of nodes. In our example, it's the "factoring out" of `@schema/validation min_len=1` from `kp_default_repository:`.
 
 The next challenge is that the naive merge causes the normalized annotation to apply to not just the nodes of the overlay, but of the entire overlayed result:
 
 ```yaml
 #@data/values-schema
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 ---
-#@assert/validate min_len=5
+#@schema/validation min_len=5
 hostname: ""
 
 http_proxy: ""
 
 kp_default_repository: ""
-#@assert/validate min_len=0
+#@schema/validation min_len=0
 kp_username: ""
 limit: 30
 ```
@@ -1469,12 +1511,12 @@ One approach is to "distribute" the annotation to all the descendents _before_ t
 #@data/values-schema
 #@overlay/match-child-defaults missing_ok=True
 ---
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 kp_default_repository: ""
-#@assert/validate min_len=0
-#@assert/validate-string-defaults min_len=1
+#@schema/validation min_len=0
+#@schema/validation-defaults-for-strings min_len=1
 kp_username: ""
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 limit: 30
 ```
 Note:
@@ -1486,38 +1528,38 @@ Which results in a net schema:
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate min_len=5
+#@schema/validation min_len=5
 hostname: ""
 
 proxy: ""
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 kp_default_repository: ""
-#@assert/validate min_len=0
-#@assert/validate-string-defaults min_len=1
+#@schema/validation min_len=0
+#@schema/validation-defaults-for-strings min_len=1
 kp_username: ""
-#@assert/validate-string-defaults min_len=1
+#@schema/validation-defaults-for-strings min_len=1
 limit: 30
 ```
 
 ... that can be compiled into a `schema.Type` composite tree.
 
-In type compilation process, the `@assert/validate-string-defaults` is properly combined with the existing annotations (if any):
+In type compilation process, the `@schema/validation-defaults-for-strings` is properly combined with the existing annotations (if any):
 
 ```yaml
 #@data/values-schema
 ---
-#@assert/validate min_len=5
+#@schema/validation min_len=5
 hostname: ""
 
 proxy: ""
-#@assert/validate min_len=1
+#@schema/validation min_len=1
 kp_default_repository: ""
-#@assert/validate min_len=0
+#@schema/validation min_len=0
 kp_username: ""
 limit: 30
 ```
 where:
 - `kp_default_repository:` obtains its validation from the defaults.
-- `kp_username` — already having a `@assert/validate` present, ignores the defaults.
+- `kp_username` — already having a `@schema/validation` present, ignores the defaults.
 - `limit` — having a type other than `"string"`, ignores the defaults.
 
