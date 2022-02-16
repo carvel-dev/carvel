@@ -138,7 +138,7 @@ $ echo $REPO_HOST
   10.104.40.33:5000
 ```
 
-`imgpkg` has a pre-defined bundle format which allows it to perform recursive image relocation. https://carvel.dev/kapp-controller/docs/v0.32.0/packaging-artifact-formats/#package-repository-bundle
+`imgpkg` has a pre-defined [`bundle structure`](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) which allows it to perform recursive image relocation. 
 
 Lets start by creating the directories as required by `imgpkg`:
 
