@@ -649,12 +649,12 @@ where:
 
 This function is the programmatic equivalent of [@assert/validate](#assertvalidate).
 
-#### @ytt:assert.is_valid()
+#### @ytt:assert.valid()
 
 Asserts any validations present on a Node (and descendents).
 
 ```python
-assert.is_valid(node)
+assert.valid(node)
 ```
 
 - if all validation rules are satisfied, nothing happens.
