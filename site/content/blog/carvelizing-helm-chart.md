@@ -28,9 +28,9 @@ Basic knowledge of imgpkg, kbld, kapp-controller, kapp
 
 [`kapp-controller`](https://carvel.dev/kapp-controller/): kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages.
 
-### Installing Carvel Tools
+**Installing Carvel Tools**
 
-We'll be using Carvel tools throughout this tutorial, so first we'll install them using `install.sh` script.
+We'll be using Carvel tools throughout this tutorial, so first we'll install them using [`install.sh`](https://carvel.dev/install.sh) script.
 
 ```bash
 $ wget -O- https://carvel.dev/install.sh > install.sh
@@ -138,7 +138,7 @@ $ echo $REPO_HOST
   10.104.3.7:5000
 ```
 
-Lets start by creating the needed directories:
+Lets start by creating the directories:
 
 ```bash
 $ mkdir -p nginx-bitnami-repo nginx-bitnami-repo/.imgpkg nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
@@ -155,18 +155,73 @@ Now, let’s use kbld to record which package bundles are used:
 
 ```bash
 $ kbld -f nginx-bitnami-repo/packages/ --imgpkg-lock-output nginx-bitnami-repo/.imgpkg/images.yml
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: nginx.bitnami.vmware.com.1.0.0
+spec:
+  refName: nginx.bitnami.vmware.com
+  releaseNotes: Initial release of the nginx package by wrapping helm Chart. Nginx
+    Helm chart version is 9.5.4
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - helmChart:
+          name: nginx
+          repository:
+            url: https://charts.bitnami.com/bitnami
+          version: 9.5.4
+      template:
+      - helmTemplate: {}
+  valuesSchema:
+    openAPIv3:
+      examples: null
+      properties: null
+      title: nginx.bitnami.vmware.com
+  version: 1.0.0
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  name: nginx.bitnami.vmware.com
+spec:
+  categories:
+  - proxy-server
+  displayName: Bitnami Nginx Carvel Package
+  longDescription: Proxifying Server
+  maintainers:
+  - name: Carvel
+  - name: CarvelInd
+  - name: Rohit Aggarwal
+  providerName: VMWare
+  shortDescription: Proxifying Server
+
+Succeeded
 ```
 
 We will push the bundle into the repository using `imgpkg`.
 
 ```bash
 $ imgpkg push -b ${REPO_HOST}/packages/nginx-bitnami-repo:1.0.0 -f nginx-bitnami-repo
+dir: .
+dir: .imgpkg
+file: .imgpkg/images.yml
+dir: packages
+dir: packages/nginx.bitnami.vmware.com
+file: packages/nginx.bitnami.vmware.com/1.0.0.yaml
+file: packages/nginx.bitnami.vmware.com/pkgMetadata.yaml
+Pushed '10.104.40.33:5000/packages/nginx-bitnami-repo@sha256:706aa0174d9ab0d30414ec074458f8a45c5c12bf348440ffc22b58c5036e73dd'
+Succeeded
 ```
 
 We can verify by checking the Docker registry catalog:
 
 ```bash
 $ curl ${REPO_HOST}/v2/_catalog
+{"repositories":["packages/nginx-bitnami-repo"]}
 ```
 
 --------------------------
@@ -188,27 +243,55 @@ spec:
       image: ${REPO_HOST}/packages/nginx-bitnami-repo:1.0.0
 ```
 
+Replace the ${REPO_HOST} in `repo.yaml` file with the actual value you got above.
+
 ```bash
 $ kapp deploy -a repo -f repo.yaml -y
+Target cluster 'https://192.168.64.32:8443' (nodes: minikube)
+
+Changes
+
+Namespace  Name                       Kind               Conds.  Age  Op      Op st.  Wait to    Rs  Ri
+default    simple-package-repository  PackageRepository  -       -    create  -       reconcile  -   -
+
+Op:      1 create, 0 delete, 0 update, 0 noop, 0 exists
+Wait to: 1 reconcile, 0 delete, 0 noop
+
+12:35:17PM: ---- applying 1 changes [0/1 done] ----
+12:35:17PM: create packagerepository/simple-package-repository (packaging.carvel.dev/v1alpha1) namespace: default
+12:35:17PM: ---- waiting on 1 changes [0/1 done] ----
+12:35:17PM: ongoing: reconcile packagerepository/simple-package-repository (packaging.carvel.dev/v1alpha1) namespace: default
+12:35:17PM:  ^ Waiting for generation 1 to be observed
+12:35:18PM: ok: reconcile packagerepository/simple-package-repository (packaging.carvel.dev/v1alpha1) namespace: default
+12:35:18PM: ---- applying complete [1/1 done] ----
+12:35:18PM: ---- waiting complete [1/1 done] ----
+
+Succeeded
 ```
 
 After deploying, wait for the packageRepository description to become `Reconcile succeeded`. 
 
 ```bash 
 $ kubectl get packagerepository
+NAME                        AGE   DESCRIPTION
+simple-package-repository   40s   Reconcile succeeded
 ```
 
 Now, we can see the list of package metadata's available
 
 ```bash
 $ kubectl get packagemetadatas
+NAME                       DISPLAY NAME                   CATEGORIES     SHORT DESCRIPTION   AGE
+nginx.bitnami.vmware.com   Bitnami Nginx Carvel Package   proxy-server   Proxifying Server   56s
 ```
 
 **2. List Packages**:
 We can see the list of packages and their version's available for install 
 
 ```bash 
-kubectl get packages
+$ kubectl get packages
+NAME                             PACKAGEMETADATA NAME       VERSION   AGE
+nginx.bitnami.vmware.com.1.0.0   nginx.bitnami.vmware.com   1.0.0     1m29s
 ```
 
 As we can see, our published nginx helm package is available for us to install.
@@ -217,6 +300,32 @@ As we can see, our published nginx helm package is available for us to install.
 
 ```bash
 $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+Target cluster 'https://192.168.64.32:8443' (nodes: minikube)
+
+Changes
+
+Namespace  Name                     Kind            Conds.  Age  Op      Op st.  Wait to    Rs  Ri
+default    default-ns-role          Role            -       -    create  -       reconcile  -   -
+^          default-ns-role-binding  RoleBinding     -       -    create  -       reconcile  -   -
+^          default-ns-sa            ServiceAccount  -       -    create  -       reconcile  -   -
+
+Op:      3 create, 0 delete, 0 update, 0 noop, 0 exists
+Wait to: 3 reconcile, 0 delete, 0 noop
+
+12:37:16PM: ---- applying 2 changes [0/3 done] ----
+12:37:16PM: create role/default-ns-role (rbac.authorization.k8s.io/v1) namespace: default
+12:37:16PM: create serviceaccount/default-ns-sa (v1) namespace: default
+12:37:16PM: ---- waiting on 2 changes [0/3 done] ----
+12:37:16PM: ok: reconcile serviceaccount/default-ns-sa (v1) namespace: default
+12:37:16PM: ok: reconcile role/default-ns-role (rbac.authorization.k8s.io/v1) namespace: default
+12:37:16PM: ---- applying 1 changes [2/3 done] ----
+12:37:17PM: create rolebinding/default-ns-role-binding (rbac.authorization.k8s.io/v1) namespace: default
+12:37:17PM: ---- waiting on 1 changes [2/3 done] ----
+12:37:17PM: ok: reconcile rolebinding/default-ns-role-binding (rbac.authorization.k8s.io/v1) namespace: default
+12:37:17PM: ---- applying complete [3/3 done] ----
+12:37:17PM: ---- waiting complete [3/3 done] ----
+
+Succeeded
 ```
 
 **4. Install the Package**: To install a carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the nginx helm package and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package`.
@@ -225,7 +334,7 @@ We are providing our custom values via secret.
 
 **NOTE**: If you are using minikube, for nginx service to be in `ACTIVE` state, start `minikube tunnel` in another window as services of LoadBalancer types do not come up otherwise in minikube.  
 
-Save the below PackageInstall CR to a file named `pkginstall.yaml`
+Save the below PackageInstall CR to a file named `pkgInstall.yaml`
 ```yaml
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -262,13 +371,45 @@ stringData:
 ```
 
 ```bash
-$ kapp deploy -a pkg-demo -f pkginstall.yaml -y
+$ kapp deploy -a pkg-demo -f pkgInstall.yaml -y
+Target cluster 'https://192.168.64.32:8443' (nodes: minikube)
+
+Changes
+
+Namespace  Name          Kind            Conds.  Age  Op      Op st.  Wait to    Rs  Ri
+default    nginx-pkg     PackageInstall  -       -    create  -       reconcile  -   -
+^          nginx-values  Secret          -       -    create  -       reconcile  -   -
+
+Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
+Wait to: 2 reconcile, 0 delete, 0 noop
+
+12:38:14PM: ---- applying 1 changes [0/2 done] ----
+12:38:14PM: create secret/nginx-values (v1) namespace: default
+12:38:14PM: ---- waiting on 1 changes [0/2 done] ----
+12:38:14PM: ok: reconcile secret/nginx-values (v1) namespace: default
+12:38:14PM: ---- applying 1 changes [1/2 done] ----
+12:38:14PM: create packageinstall/nginx-pkg (packaging.carvel.dev/v1alpha1) namespace: default
+12:38:14PM: ---- waiting on 1 changes [1/2 done] ----
+12:38:14PM: ongoing: reconcile packageinstall/nginx-pkg (packaging.carvel.dev/v1alpha1) namespace: default
+12:38:14PM:  ^ Waiting for generation 1 to be observed
+12:38:15PM: ongoing: reconcile packageinstall/nginx-pkg (packaging.carvel.dev/v1alpha1) namespace: default
+12:38:15PM:  ^ Reconciling
+12:39:15PM: ---- waiting on 1 changes [1/2 done] ----
+12:39:16PM: ongoing: reconcile packageinstall/nginx-pkg (packaging.carvel.dev/v1alpha1) namespace: default
+12:39:16PM:  ^ Reconciling
+12:39:31PM: ok: reconcile packageinstall/nginx-pkg (packaging.carvel.dev/v1alpha1) namespace: default
+12:39:31PM: ---- applying complete [2/2 done] ----
+12:39:31PM: ---- waiting complete [2/2 done] ----
+
+Succeeded
 ```
 
 After the deploy has finished, kapp-controller will have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show a single running pod which is part of nginx.
 
 ```bash
 $ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-pkg-6db5c6978d-tt8k4   1/1     Running   0          82s
 ```
 
 Once the pod is ready, you can use kubectl’s port forwarding to verify the customized response used in the workload.
@@ -281,6 +422,7 @@ Now if we make a request against our service, we can see that server response is
 
 ```bash 
 $ curl localhost:3000
+Response from Custom Server
 ```
 
 ## Conclusion
