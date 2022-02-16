@@ -2,8 +2,6 @@
 title: Configmap Migration (experimental)
 ---
 
-## Configmap Migration (experimental)
-
 ## Overview
 
 Kapp internally uses a configmap to store information about an application.
