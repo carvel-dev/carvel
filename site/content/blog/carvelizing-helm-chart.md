@@ -14,7 +14,7 @@ In this blog post we will first show you how to wrap and distribute [`Bitnami ng
 
 Kubernetes configuration takes many forms – plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc. Software running on Kubernetes lives in many different places, e.g. a Git repository, an archive over HTTP, a Helm repository.
 
-Carvel is a collection of small sharp tools that breaks up the problem into smaller building blocks with clean boundaries. This approach facilitates interoperability with other tools, giving users the option to swap out pieces with tools of their choice. Carvel declarative APIs approach provides a familiar experience for Kubernetes users. This means that package management using Carvel is about declaring desired state via a Package CR and have it be continuously reconciled to that desired state on a Kubernetes cluster.
+Carvel is a collection of small sharp tools that breaks up the problem into smaller building blocks with clean boundaries. This approach facilitates interoperability with other tools, giving users the option to swap out pieces with tools of their choice. Carvel declarative APIs approach provides a familiar experience for Kubernetes users. This means that package management using Carvel is about declaring desired state via a Package CR and have it be continuously reconciled to the desired state on a Kubernetes cluster.
 
 ## Prerequisites
 
@@ -125,13 +125,13 @@ For the purpose of this tutorial, we will run an unsecured local docker registry
 $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
-From the terminal we can access this registry as localhost:5000 but within the cluster we'll need the IP Address. We will store the IP address in a variable:
+From the terminal we can access this registry as `localhost:5000` but within the cluster we'll need the IP Address. We will store the IP address in a variable:
 
 ```bash 
 $ export REPO_HOST="`ifconfig | grep inet | grep -E '\b10\.' | awk '{ print $2}'`:5000"
 ```
 
-Confirm that REPO_HOST is set to <IP_ADDRESS:PORT>
+Confirm that `REPO_HOST` is set to <IP_ADDRESS:PORT>
 
 ```bash
 $ echo $REPO_HOST
@@ -140,13 +140,13 @@ $ echo $REPO_HOST
 
 `imgpkg` has a pre-defined [`bundle structure`](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) which allows it to perform recursive image relocation. 
 
-Lets start by creating the directories as required by `imgpkg`:
+Lets start by creating the directories required by `imgpkg`:
 
 ```bash
 $ mkdir -p nginx-bitnami-repo nginx-bitnami-repo/.imgpkg nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
 ```
 
-We can copy our CR YAMLs from the previous step in to the proper packages subdirectory. 
+We can copy our CR YAMLs from the previous step to the proper package subdirectory. 
 
 ```bash
 $ cp 1.0.0.yaml nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
@@ -228,7 +228,7 @@ $ curl ${REPO_HOST}/v2/_catalog
 
 --------------------------
 
-## Consuming Carvel Helm Package:
+## Consuming Carvel Helm Package
 
 **1. Install Package Repository**: Before installing the package, we have to make it visible to kapp-controller by using a PackageRepository CR. A PackageRepository is a collection of packages which are available to install. 
 
@@ -279,7 +279,7 @@ NAME                        AGE   DESCRIPTION
 simple-package-repository   40s   Reconcile succeeded
 ```
 
-Now, we can see the list of package metadata's available
+Now, we can see the list of package metadata's available.
 
 ```bash
 $ kubectl get packagemetadatas
@@ -288,7 +288,7 @@ nginx.bitnami.vmware.com   Bitnami Nginx Carvel Package   proxy-server   Proxify
 ```
 
 **2. List Packages**:
-We can see the list of packages and their version's available for install 
+We can see the list of packages and their version's available for install.
 
 ```bash 
 $ kubectl get packages
@@ -298,7 +298,7 @@ nginx.bitnami.vmware.com.1.0.0   nginx.bitnami.vmware.com   1.0.0     1m29s
 
 As we can see, our published nginx helm package is available for us to install.
 
-**3. Create Service Account**: To install the above package, we need to create default-ns-sa service account that give PackageInstall CR privileges to create resources in the default namespace
+**3. Create Service Account**: To install the above package, we need to create `default-ns-sa` service account that give PackageInstall CR privileges to create resources in the default namespace.
 
 ```bash
 $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
@@ -330,9 +330,9 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
-**4. Install the Package**: To install a carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the nginx helm package and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package`.
+**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the nginx helm package and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package`.
 
-We are providing our custom values via secret. 
+In this example, we will provide our custom values via secret. There are other ways we can provide the values like configMap etc.
 
 **NOTE**: If you are using minikube, for nginx service to be in `ACTIVE` state, start `minikube tunnel` in another window as services of LoadBalancer types do not come up otherwise in minikube.  
 
@@ -441,9 +441,9 @@ $ curl localhost:3000
 Response from Custom Server
 ```
 
-## Conclusion
+## Congratulations
 
-This completes how we can wrap, distribute and install an existing Helm chart as a Carvel package.
+You have successfully wrapped, distributed and install'ed an existing Helm chart as a Carvel package.
 
 
 ## Join the Carvel Community
