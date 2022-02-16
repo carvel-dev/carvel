@@ -92,7 +92,7 @@ App 'my-app' (namespace: default) does not exist
 
 ### Caveats
 
-1. Migrated apps will not show up via `kapp` if `false` is selected:
+1. Migrated apps will not show up via `kapp` if `KAPP_FQ_CONFIGMAP_NAMES=false` or not set:
 
 ```bash
 export KAPP_FQ_CONFIGMAP_NAMES=true
@@ -117,6 +117,6 @@ To return to the previous configmap naming convention, the following steps must 
 
 1. `kubectl create -f app.yml`
 
-1. It is important to delete the migrated configmap after opting-out. 
-   
-   `kubectl delete configmap my-app.apps.k14s.io` 
+1. `kubectl delete configmap my-app.apps.k14s.io`
+
+> It is important to delete the migrated configmap after opting-out.   
