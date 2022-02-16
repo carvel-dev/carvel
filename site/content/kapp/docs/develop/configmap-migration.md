@@ -117,4 +117,4 @@ To return to the previous configmap naming convention, the following steps must 
 
 1. `kubectl delete configmap my-app.apps.k14s.io`
 
-> It is important to delete the migrated configmap after opting-out.   
+*Important Note: Ensure the configmap with suffix `apps.k14s.io` is deleted after opting-out!*   
