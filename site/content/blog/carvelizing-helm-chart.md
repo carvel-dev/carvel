@@ -12,9 +12,9 @@ In this blog post we will first show you how to wrap and distribute [`Bitnami ng
 
 ## Why should I choose Carvel
 
-Kubernetes configuration takes many forms – plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc. Software running on Kubernetes lives in many different places: a Git repository, an archive over HTTP, a Helm repository, etc.
+Kubernetes configuration takes many forms – plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc. Software running on Kubernetes lives in many different places, e.g. a Git repository, an archive over HTTP, a Helm repository.
 
-Kapp-controller, a Carvel tool, provides software authors flexibility to choose their own configuration tools, while providing software consumers with consistent declarative APIs to customize, install, and update software on Kubernetes from various sources.
+Carvel is a collection of small sharp tools that breaks up the problem into smaller building blocks with clean boundaries. This approach facilitates interoperability with other tools, giving users the option to swap out pieces with tools of their choice. Carvel declarative APIs approach provides a familiar experience for Kubernetes users. This means that package management using Carvel is about declaring desired state via a Package CR and have it be continuously reconciled to that desired state on a Kubernetes cluster.
 
 ## Prerequisites
 
@@ -22,11 +22,11 @@ Basic knowledge of imgpkg, kbld, kapp-controller, kapp
 
 [`kbld`](https://carvel.dev/kbld/): kbld incorporates image building and image pushing into your development and deployment workflows.
 
-[`imgpkg`](https://carvel.dev/imgpkg/): A tool to package, distribute, and relocate your Kubernetes configuration and dependent OCI images as one OCI artifact: a bundle.
+[`imgpkg`](https://carvel.dev/imgpkg/): A tool to package, distribute and relocate your Kubernetes configuration and dependent OCI images as one OCI artifact: a bundle.
 
 [`kapp`](https://carvel.dev/kapp/): kapp is a cli used to deploy and view groups of Kubernetes resources as “application”.
 
-[`kapp-controller`](https://carvel.dev/kapp-controller/): kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages.
+[`kapp-controller`](https://carvel.dev/kapp-controller/): kapp-controller provides declarative APIs to create, customize, install, and update your Kubernetes applications into packages. It also continuously fetches and reconciles resources to converge into their desired state.
 
 **Installing Carvel Tools**
 
@@ -138,7 +138,9 @@ $ echo $REPO_HOST
   10.104.40.33:5000
 ```
 
-Lets start by creating the directories:
+`imgpkg` has a pre-defined bundle format which allows it to perform recursive image relocation. https://carvel.dev/kapp-controller/docs/v0.32.0/packaging-artifact-formats/#package-repository-bundle
+
+Lets start by creating the directories as required by `imgpkg`:
 
 ```bash
 $ mkdir -p nginx-bitnami-repo nginx-bitnami-repo/.imgpkg nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
@@ -423,7 +425,7 @@ Ri: Reconcile information
 Succeeded
 $ kubectl get pods
 NAME                         READY   STATUS    RESTARTS   AGE
-nginx-pkg-6db5c6978d-tt8k4   1/1     Running   0          82s
+nginx-pkg-6db5c6978d-tt8k4   1/1     Running   0          8m
 ```
 
 Once the pod is ready, you can use kubectl’s port forwarding to verify the customized response used in the workload.
