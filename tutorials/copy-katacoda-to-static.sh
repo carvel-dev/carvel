@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export DESTFILE="$(dirname $0)/../site/content/kapp-controller/docs/latest/packaging-tutorial.md"
+export DESTFILE="$(dirname $0)/../site/content/kapp-controller/docs/develop/packaging-tutorial.md"
 
 cat > $DESTFILE << EOF
 ---

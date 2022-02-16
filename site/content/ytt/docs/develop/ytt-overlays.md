@@ -4,11 +4,9 @@ title: Overlays
 
 ## Overview
 
-The way to describe patch-like edits in `ytt` is via "Overlays".
+Configure patch-like edits in `ytt` via "Overlays".
 
 _(For a high-level overview of `ytt`, see [How it works](how-it-works.md).)_
-
-## What are they?
 
 Sometimes it makes more sense to patch some YAML rather than template it.
 
@@ -17,6 +15,7 @@ For example, when:
 - the edit will apply to most or all documents; or
 - the specific variable is less commonly configured.
 
+## Example
 Given a sample target YAML file:
 
 `config.yml`
@@ -41,8 +40,6 @@ contents:
 contents:
 - pen
 ```
-
-Prior to v0.32.0 append array items with [`#@overlay/append`](lang-ref-ytt-overlay.md#overlayappend)
 
 _read as..._
 1. _"match all YAML documents, expecting to match _at least_ one;"_
