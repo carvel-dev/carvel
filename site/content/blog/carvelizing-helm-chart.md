@@ -8,13 +8,13 @@ image: /img/logo.svg
 tags: ['carvel', 'helm', 'gitops']
 ---
 
-In this blog post we will first show you how to wrap and distribute [`Bitnami nginx helm chart`](https://github.com/bitnami/charts/tree/master/bitnami/nginx) as a Carvel package, and then install it on the Kubernetes cluster via PackageInstall CR (via kapp-controller).
+In this blog post we will first show you how to wrap and distribute [`Bitnami Nginx helm chart`](https://github.com/bitnami/charts/tree/master/bitnami/nginx) as a Carvel package, and then install it on the Kubernetes cluster via PackageInstall CR (via kapp-controller).
 
 ## Why should I choose Carvel
 
 Kubernetes configuration takes many forms – plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc. Software running on Kubernetes lives in many different places, e.g. a Git repository, an archive over HTTP, a Helm repository.
 
-Carvel is a collection of small sharp tools that breaks up the problem into smaller building blocks with clean boundaries. This approach facilitates interoperability with other tools, giving users the option to swap out pieces with tools of their choice. Carvel declarative APIs approach provides a familiar experience for Kubernetes users. This means that package management using Carvel is about declaring desired state via a Package CR and have it be continuously reconciled to the desired state on a Kubernetes cluster.
+Carvel is a collection of small sharp tools that breaks up the problem into smaller building blocks with clean boundaries. This approach facilitates interoperability with other tools, giving users the option to swap out pieces with tools of their choice. Carvel declarative APIs approach provides a familiar experience for Kubernetes users. This means that package management using Carvel is about declaring the desired state via a Package CR and having it be continuously reconciled to the desired state on a Kubernetes cluster.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Basic knowledge of imgpkg, kbld, kapp-controller, kapp
 
 **Installing Carvel Tools**
 
-We'll be using Carvel tools throughout this tutorial, so first we'll install them using [`install.sh`](https://carvel.dev/install.sh) script.
+We'll be using Carvel tools throughout this tutorial, so first, we'll install them using [`install.sh`](https://carvel.dev/install.sh) script.
 
 ```bash
 $ wget -O- https://carvel.dev/install.sh > install.sh
@@ -45,9 +45,9 @@ $ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releas
 
 ## Authoring a Carvel Package
 
-To create a package, we need to create two Custom Resources (CRs). We will go through step by step process of authoring an nginx helm chart:
+To create a package, we need to create two Custom Resources (CRs). We will go through step by step process of authoring an Nginx helm chart:
 
-**1. Create PackageMetadata CR**: Package Metadata contains high level information and description about the package. Multiple versions of a package share same package metadata.
+**1. Create PackageMetadata CR**: Package Metadata contains high level information about the package. Multiple versions of a package share the same package metadata.
 
 Save the below PackageMetadata CR to a file named `pkgMetadata.yaml`
 ```yaml
@@ -89,11 +89,11 @@ spec:
   version: 1.0.0
   # Version release notes (optional; string)
   releaseNotes:
-    Initial release of the nginx package by wrapping helm Chart. Nginx Helm chart version is 9.5.4
+    The initial release of the Nginx package by wrapping helm Chart. Nginx Helm chart version is 9.5.4
   # valuesSchema can be used to show template values that
   # can be configured by users when a Package is installed.
   # These values should be specified in an OpenAPI schema format. (optional)
-  # For helm chart, we can either define the configurable values here or let it be. Even if we dont define them here, we can still customize them.
+  # For helm chart, we can either define the configurable values here or let it be. Even if we don't define them here, we can still customize them.
   valuesSchema:
     openAPIv3:
       title: nginx.bitnami.vmware.com
@@ -113,17 +113,17 @@ spec:
       deploy:
       - kapp: {}
 ```
-**Note**: This is one way of packaging helm chart. Another way is to use `imgpkg` bundle to store the helm chart itself and then reference it. 
+**Note**: This is one way of packaging helm chart. Another way is to use the `imgpkg` bundle to store the helm chart itself and then reference it. 
 
-**3. Create Package Repository**: A package repository is a collection of packages and their metadata. We will use `imgpkg` bundle to create Package Repository.
+**3. Create Package Repository**: A package repository is a collection of packages and their metadata. We will use the `imgpkg` bundle to create a Package Repository.
 
-For the purpose of this tutorial, we will run an unsecured local docker registry. In the real world please be safe and use appropriate security measures.
+For this tutorial, we will run an unsecured local docker registry. In the real world please be safe and use appropriate security measures.
     
 ```bash
 $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
-From the terminal we can access this registry as `localhost:5000` but within the cluster we'll need the IP Address. We will store the IP address in a variable:
+From the terminal, we can access this registry as `localhost:5000` but within the cluster, we'll need the IP Address. We will store the IP address in a variable:
 
 ```bash 
 $ export REPO_HOST="`ifconfig | grep inet | grep -E '\b10\.' | awk '{ print $2}'`:5000"
@@ -138,7 +138,7 @@ $ echo $REPO_HOST
 
 `imgpkg` has a pre-defined [`bundle structure`](https://carvel.dev/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) which allows it to perform recursive image relocation. 
 
-Lets start by creating the directories required by `imgpkg`:
+Let's start by creating the directories required by `imgpkg`:
 
 ```bash
 $ mkdir -p nginx-bitnami-repo nginx-bitnami-repo/.imgpkg nginx-bitnami-repo/packages/nginx.bitnami.vmware.com
@@ -183,7 +183,7 @@ $ curl ${REPO_HOST}/v2/_catalog
 
 ## Consuming Carvel Helm Package
 
-**1. Install Package Repository**: Before installing the package, we have to make it visible to kapp-controller by using a PackageRepository CR. A PackageRepository is a collection of packages which are available to install. 
+**1. Install Package Repository**: Before installing the package, we have to make it visible to kapp-controller by using a PackageRepository CR. A PackageRepository is a collection of packages that are available to install. 
 
 Save the below PackageRepository CR to a file named `repo.yaml`
 ```yaml
@@ -197,7 +197,7 @@ spec:
       image: ${REPO_HOST}/packages/nginx-bitnami-repo:1.0.0
 ```
 
-Replace the ${REPO_HOST} in `repo.yaml` file with the actual value you got above.
+Replace the `${REPO_HOST}` in the `repo.yaml` file with the actual value you got above.
 
 ```bash
 $ kapp deploy -a repo -f repo.yaml -y
@@ -240,7 +240,7 @@ nginx.bitnami.vmware.com   Bitnami Nginx Carvel Package   proxy-server   Proxify
 ```
 
 **2. List Packages**:
-We can see the list of packages and their version's available for install.
+We can see the list of packages and their versions available for installation.
 
 ```bash 
 $ kubectl get packages
@@ -248,9 +248,9 @@ NAME                             PACKAGEMETADATA NAME       VERSION   AGE
 nginx.bitnami.vmware.com.1.0.0   nginx.bitnami.vmware.com   1.0.0     1m29s
 ```
 
-As we can see, our published nginx helm package is available for us to install.
+As we can see, our published Nginx helm package is available for us to install.
 
-**3. Create Service Account**: To install the above package, we need to create `default-ns-sa` service account that give PackageInstall CR privileges to create resources in the default namespace.
+**3. Create Service Account**: To install the above package, we need to create `default-ns-sa` service account that gives PackageInstall CR privileges to create resources in the default namespace.
 
 ```bash
 $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
@@ -282,11 +282,11 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
-**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the nginx helm chart and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package` CR.
+**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the Nginx helm chart and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package` CR.
 
 In this example, we will provide our custom values via secret. There are other ways we can provide the values like configMap etc.
 
-**NOTE**: If you are using minikube, for nginx service to be in `ACTIVE` state, start `minikube tunnel` in another window as services of LoadBalancer types do not come up otherwise in minikube.  
+**NOTE**: If you are using minikube, for Nginx service to be in `ACTIVE` state, start `minikube tunnel` in another window as services of LoadBalancer types do not come up otherwise in minikube.  
 
 Save the below PackageInstall CR to a file named `pkgInstall.yaml`
 ```yaml
@@ -394,7 +394,7 @@ Response from Custom Server
 
 ## Congratulations
 
-You have successfully wrapped, distributed and installed an existing Helm chart as a Carvel package.
+You have successfully wrapped, distributed, and installed an existing Helm chart as a Carvel package.
 
 
 ## Join the Carvel Community
@@ -403,4 +403,4 @@ We are excited to hear from you and learn with you! Here are several ways you ca
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings, happening every Thursday at 10:30am PT / 1:30pm ET. Check out the [Community page](/community/) for full details on how to attend.
+* Attend our Community Meetings, happening every Thursday at 10:30 am PT / 1:30 pm ET. Check out the [Community page](/community/) for full details on how to attend.
