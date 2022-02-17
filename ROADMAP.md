@@ -17,13 +17,14 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 
 |Theme|Description|Timeline|
 |---|---|---|
-|**[kapp-controller]** [kapp-controller CLI](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | Milestone 1: To provide a user interface for interacting with kapp-controller. |January 2022|
-|**[ytt]** [OpenAPI Document Metadata & UX Improvements](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/issues/vmware-tanzu/carvel-ytt/512) | Users can have the ability to further customize the exported OpenAPI documents so that package authors can provide this standardized OpenAPI schema for their configuration when creating a package. | February 2022 |
-|**[kapp-controller]** [kapp-controller CLI](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | Milestone 2: [Consuming as a library.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) |TBD|
-|**[carvel]** asset signing & verification | Carvel supports the ability to sign and verify images/bundles. |TBD|
-|**[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents)|Configuration authors can specify the valid range or format of the data values. |TBD|
-|**[ytt]** [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314) | Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/board?epics=173207060_314&filterLogic=any&repos=173207060) | TBD |
+|**[kapp]** Stability | Performance improvements to improve IaaS-specific issues. | March 2022|
+|**[kapp-controller]** Stability | Focus on improving the stability, predictability, and debuggability of the Package Management APIs (such as [pkgr layering issues](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/428) and [name collisions](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/376)) | March 2022|
+|**[ytt]** Easy to Get Started | [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314): Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/board?epics=173207060_314&filterLogic=any&repos=173207060) | March 2022 |
+|**[kapp-controller]** Easy to Get Started | kapp-controller CLI Milestone 2: [Consuming as a library.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | March 2022 |
+|**[ytt]** Enhancements | [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents): Configuration authors can specify the valid range or format of the data values. | Q2 |
+|**[carvel]** Enhancements | Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). | Q2 |
+
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
 
-`Last Updated: January 2022`
+`Last Updated: February 2022`
