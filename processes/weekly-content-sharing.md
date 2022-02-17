@@ -11,10 +11,10 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | --- | --- | --- | --- | --- |
 | February 2, 2022 | [Nanci Lancaster](https://github.com/microwavables) | Example | Blog | [@microwavables](https://twitter.com/microwavables) |
 | February 9, 2022 | [Daniel Helfand](https://github.com/danielhelfand)| Using vclusters with Carvel | Blog | [@danielhelfand](https://twitter.com/danielhelfand) |
-| February 16, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Carvelizing Helm Charts| Blog | N/A |
-| February 23, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
-| March 2, 2022 | | |
-| March 9, 2022 | | |
-| March 16, 2022 | | |
-| March 23, 2022 | | |
-| March 30, 2022 | | |
+| February 17, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Carvelizing Helm Charts| Blog | N/A |
+| February 24, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
+| March 3, 2022 | | |
+| March 10, 2022 | | |
+| March 17, 2022 | | |
+| March 24, 2022 | | |
+| March 31, 2022 | | |
