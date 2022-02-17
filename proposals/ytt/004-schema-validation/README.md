@@ -464,7 +464,7 @@ spec:
 
 ```
 
-Note: in order for validations to be applied via an overlay in any practical way, we would need to [define merge semantics of annotations in overlays](#defining-merge-semantics-for-annotations-in-an-overlay).
+Note: in order for validations to be applied via an overlay in any practical way, we would need to [define merge semantics of annotations in overlays](#consideration-defining-merge-semantics-for-annotations-in-an-overlay).
 
 Sources:
 - [cloudfoundry/cf-for-k8s/tests](https://github.com/cloudfoundry/cf-for-k8s/tree/95c77d741706ab2a27979db90873fb4461a1ac3c/tests)
@@ -751,7 +751,7 @@ Validations are checked, leaf-upwards: a parent value can't be valid if one of i
 
 #### Consideration: Merging Validations on Schema Nodes
 
-Some preliminary design work has been done describe how to augment the Overlay module to better support editing of annotations.  (see [Defining merge semantics for annotations in an overlay](#defining-merge-semantics-for-annotations-in-an-overlay) for details).
+Some preliminary design work has been done describe how to augment the Overlay module to better support editing of annotations.  (see [Defining merge semantics for annotations in an overlay](#consideration-defining-merge-semantics-for-annotations-in-an-overlay) for details).
 
 However, for the few that find themselves in a situation where they need to edit existing schema, they have workarounds
 available with existing mechanisms:
@@ -1265,137 +1265,6 @@ Accept a sequence as part of the annotation name:
 ```yaml
 #@assert/validate2
 ```
-
-#### Defining merge semantics for annotations in an overlay
-
-... so that (for example) a consumer can edit `@schema/validation` annotations
-
-##### Replacing an existing annotation
-
-```yaml
-#! base-schema.yml
-
-#@data/values-schema
----
-#@schema/validation is_even
-foo: 42
-bar: 13
-```
-
-...overlayed with...
-
-```yaml
-#! schema-overlay.yml
-
-#@data/values-schema
----
-#@schema/validation lambda n: n < 1000
-#@overlay/replace-ann
-foo: 13
-#@schema/validation lambda n: n < 1000
-#@overlay/replace-ann
-bar: 1001
-```
-- requiring the consumer to supply the
-
-... yields ...
-
-```yaml
-#@data/values-schema
----
-#@schema/validation lambda n: n < 1000
-foo: 13
-#@schema/validation lambda n: n < 1000
-bar: 1001
-```
-
-##### Merging over an existing annotation
-
-- new arguments are appended,
-- new keyword arguments are appended,
-- existing keyword arguments are replaced.
-
-```yaml
-#! base-schema.yml
-
-#@data/values-schema
----
-#@schema/validation is_even, not_null=True
-foo: 42
-bar: 13
-```
-
-...overlayed with...
-
-```yaml
-#! schema-overlay.yml
-
-#@data/values-schema
----
-#@schema/validation lambda n: n < 1000, min=10, not_null=False
-#@overlay/noop
-#@overlay/merge-anns
-foo: ~
-#@schema/validation lambda n: n < 1000
-#@overlay/noop
-#@overlay/merge-anns
-bar: ~
-```
-
-... yields ...
-
-```yaml
-#@data/values-schema
----
-#@schema/validation is_even, lambda n: n < 1000, not_null=False, min=10
-foo: 42
-#@schema/validation lambda n: n < 1000
-bar: 13
-```
-
-##### Removing an existing annotation
-
-```yaml
-#! base-schema.yml
-
-#@data/values-schema
----
-#@schema/validation is_even, not_null=True
-foo: 42
-#@schema/nullable
-#@schema/validation not_null=True
-bar: 13
-```
-
-...overlayed with...
-
-_(or with an overlay-namespaced annotation)_
-```yaml
-#! schema-overlay.yml
-
-#@data/values-schema
----
-#@overlay/noop
-#@overlay/remove-anns "schema/validate"
-foo: 13
-#@overlay/noop
-#@overlay/remove-anns "schema/validate"
-#@overlay/validate min=1, max=1000
-bar: 0
-```
-- include a `via=` kwarg takes a predicate, called once for each existing annotation?
-
-... yields ...
-
-```yaml
-#@data/values-schema
----
-foo: 42
-#@overlay/nullable
-#@overlay/validate min=1, max=1000
-bar: 13
-```
-
 ## Implementation Considerations
 
 ### Consideration: Attaching Validations to Nodes
@@ -1474,7 +1343,7 @@ where:
 
 #### Solution A1: Implement merge semantics for annotations
 
-... let's stipulate that we _do_ implement merging of annotations (as described in [Defining merge semantics for annotations in an overlay](#defining-merge-semantics-for-annotations-in-an-overlay), then we hit the next challenge...
+... let's stipulate that we _do_ implement merging of annotations (as described in [Defining merge semantics for annotations in an overlay](#consideration-defining-merge-semantics-for-annotations-in-an-overlay), then we hit the next challenge...
 
 
 #### Challenge B: Unintended scoping of "normalized" annotations
@@ -1562,4 +1431,135 @@ where:
 - `kp_default_repository:` obtains its validation from the defaults.
 - `kp_username` — already having a `@schema/validation` present, ignores the defaults.
 - `limit` — having a type other than `"string"`, ignores the defaults.
+
+
+### Consideration: Defining merge semantics for annotations in an overlay
+
+... so that (for example) a consumer can edit `@schema/validation` annotations
+
+#### Replacing an existing annotation
+
+```yaml
+#! base-schema.yml
+
+#@data/values-schema
+---
+#@schema/validation is_even
+foo: 42
+bar: 13
+```
+
+...overlayed with...
+
+```yaml
+#! schema-overlay.yml
+
+#@data/values-schema
+---
+#@schema/validation lambda n: n < 1000
+#@overlay/replace-ann
+foo: 13
+#@schema/validation lambda n: n < 1000
+#@overlay/replace-ann
+bar: 1001
+```
+- requiring the consumer to supply the
+
+... yields ...
+
+```yaml
+#@data/values-schema
+---
+#@schema/validation lambda n: n < 1000
+foo: 13
+#@schema/validation lambda n: n < 1000
+bar: 1001
+```
+
+#### Merging over an existing annotation
+
+- new arguments are appended,
+- new keyword arguments are appended,
+- existing keyword arguments are replaced.
+
+```yaml
+#! base-schema.yml
+
+#@data/values-schema
+---
+#@schema/validation is_even, not_null=True
+foo: 42
+bar: 13
+```
+
+...overlayed with...
+
+```yaml
+#! schema-overlay.yml
+
+#@data/values-schema
+---
+#@schema/validation lambda n: n < 1000, min=10, not_null=False
+#@overlay/noop
+#@overlay/merge-anns
+foo: ~
+#@schema/validation lambda n: n < 1000
+#@overlay/noop
+#@overlay/merge-anns
+bar: ~
+```
+
+... yields ...
+
+```yaml
+#@data/values-schema
+---
+#@schema/validation is_even, lambda n: n < 1000, not_null=False, min=10
+foo: 42
+#@schema/validation lambda n: n < 1000
+bar: 13
+```
+
+#### Removing an existing annotation
+
+```yaml
+#! base-schema.yml
+
+#@data/values-schema
+---
+#@schema/validation is_even, not_null=True
+foo: 42
+#@schema/nullable
+#@schema/validation not_null=True
+bar: 13
+```
+
+...overlayed with...
+
+_(or with an overlay-namespaced annotation)_
+```yaml
+#! schema-overlay.yml
+
+#@data/values-schema
+---
+#@overlay/noop
+#@overlay/remove-anns "schema/validate"
+foo: 13
+#@overlay/noop
+#@overlay/remove-anns "schema/validate"
+#@overlay/validate min=1, max=1000
+bar: 0
+```
+- include a `via=` kwarg takes a predicate, called once for each existing annotation?
+
+... yields ...
+
+```yaml
+#@data/values-schema
+---
+foo: 42
+#@overlay/nullable
+#@overlay/validate min=1, max=1000
+bar: 13
+```
 
