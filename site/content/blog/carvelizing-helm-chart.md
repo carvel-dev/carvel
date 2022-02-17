@@ -3,12 +3,12 @@ title: "Carvelizing Helm Chart"
 slug: carvelize-helm-chart
 date: 2022-02-16
 author: Rohit Aggarwal
-excerpt: "Use Carvel to author and consume helm chart "
+excerpt: "Use Carvel to author and consume Helm chart "
 image: /img/logo.svg
 tags: ['carvel', 'helm', 'gitops']
 ---
 
-In this blog post we will first show you how to wrap and distribute [`Bitnami Nginx helm chart`](https://github.com/bitnami/charts/tree/master/bitnami/nginx) as a Carvel package, and then install it on the Kubernetes cluster via PackageInstall CR (via kapp-controller).
+In this blog post we will first show you how to wrap and distribute [`Bitnami Nginx Helm chart`](https://github.com/bitnami/charts/tree/master/bitnami/nginx) as a Carvel package, and then install it on the Kubernetes cluster via PackageInstall CR (via kapp-controller).
 
 ## Why should I choose Carvel
 
@@ -45,7 +45,7 @@ $ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releas
 
 ## Authoring a Carvel Package
 
-To create a package, we need to create two Custom Resources (CRs). We will go through step by step process of authoring an Nginx helm chart:
+To create a package, we need to create two Custom Resources (CRs). We will go through step by step process of authoring an Nginx Helm chart:
 
 **1. Create PackageMetadata CR**: Package Metadata contains high level information about the package. Multiple versions of a package share the same package metadata.
 
@@ -89,11 +89,11 @@ spec:
   version: 1.0.0
   # Version release notes (optional; string)
   releaseNotes:
-    The initial release of the Nginx package by wrapping helm Chart. Nginx Helm chart version is 9.5.4
+    The initial release of the Nginx package by wrapping Helm Chart. Nginx Helm chart version is 9.5.4
   # valuesSchema can be used to show template values that
   # can be configured by users when a Package is installed.
   # These values should be specified in an OpenAPI schema format. (optional)
-  # For helm chart, we can either define the configurable values here or let it be. Even if we don't define them here, we can still customize them.
+  # For Helm chart, we can either define the configurable values here or let it be. Even if we don't define them here, we can still customize them.
   valuesSchema:
     openAPIv3:
       title: nginx.bitnami.vmware.com
@@ -106,14 +106,14 @@ spec:
           name: nginx
           version: 9.5.4
           repository:
-            # From where to pull the helm chart
+            # From where to pull the Helm chart
             url: https://charts.bitnami.com/bitnami 
       template:
       - helmTemplate: {}
       deploy:
       - kapp: {}
 ```
-**Note**: This is one way of packaging helm chart. Another way is to use the `imgpkg` bundle to store the helm chart itself and then reference it. 
+**Note**: This is one way of packaging Helm chart. Another way is to use the `imgpkg` bundle to store the Helm chart itself and then reference it. 
 
 **3. Create Package Repository**: A package repository is a collection of packages and their metadata. We will use the `imgpkg` bundle to create a Package Repository.
 
@@ -248,7 +248,7 @@ NAME                             PACKAGEMETADATA NAME       VERSION   AGE
 nginx.bitnami.vmware.com.1.0.0   nginx.bitnami.vmware.com   1.0.0     1m29s
 ```
 
-As we can see, our published Nginx helm package is available for us to install.
+As we can see, our published Nginx Helm package is available for us to install.
 
 **3. Create Service Account**: To install the above package, we need to create `default-ns-sa` service account that gives PackageInstall CR privileges to create resources in the default namespace.
 
@@ -282,7 +282,7 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
-**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the Nginx helm chart and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package` CR.
+**4. Install the Package**: To install a Carvel Package, we need to create PackageInstall Kubernetes resource. A Package Install will install the Nginx Helm chart and its underlying resources on a Kubernetes cluster. A `PackageInstall` references a `Package`. Thus, we can create the `PackageInstall` yaml from the `Package` CR.
 
 In this example, we will provide our custom values via secret. There are other ways we can provide the values like configMap etc.
 
