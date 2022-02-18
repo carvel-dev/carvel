@@ -812,7 +812,7 @@ To:
 #@   if val.persistence.imageChartStorage.type == "filesystem" and
 #@      val.persistence.persistentVolumeClaim.registry.accessMode == "ReadWriteOnce":
 #@      return val.registry.replicas == 1 \
-#@          or assert.fail("Charts are being stored in a 'filesystem' type PVC and the Registry's PVC access mode is 'ReadWriteOnce': there must be exactly one (1) replica of the registry but {} replicas are configured.".format(val.registry.replicas))
+#@          or assert.fail("{} replicas are configured".format(val.registry.replicas))
 #@   end
 #@ end
 
@@ -923,9 +923,6 @@ persistence:
   #@ """
   #@schema/validation-defaults-for-strings min_len=0
   persistentVolumeClaim:
-    #@schema/validation ("Either existingClaim or storageClass can be specified, but not both", lambda v: v.existing.....)
-    registry_b: #@ persistent_volume_claim_config(size="10Gi")
-    #@schema/validation ("", validPersistentVolumeClaimConfig)
     registry:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -934,7 +931,6 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 10Gi
-    #@schema/validation ("", validPersistentVolumeClaimConfig)
     jobservice:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -943,7 +939,6 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
-    #@schema/validation ("", validPersistentVolumeClaimConfig)
     database:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -952,7 +947,6 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
-    #@schema/validation ("", validPersistentVolumeClaimConfig)
     redis:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -961,7 +955,6 @@ persistence:
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
-    #@schema/validation ("", validPersistentVolumeClaimConfig)
     trivy:
       #@schema/desc pvc_existing_claim_desc
       existingClaim: ""
@@ -1048,7 +1041,7 @@ persistence:
       chunksize: 0
       #@schema/validation min_len=0
       rootdirectory: ""
-      #@schema/validation one_of=["DEEP_ARCHIVE", "GLACIER", "INTELLIGENT_TIERING", "ONEZONE_IA", "REDUCED_REDUNDANCY", "STANDARD", "STANDARD_IA"]
+      #@schema/validation one_of=["REDUCED_REDUNDANCY", "STANDARD"]
       storageclass: STANDARD
       #@schema/nullable
       multipartcopychunksize: 0
