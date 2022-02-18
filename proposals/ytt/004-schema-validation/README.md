@@ -8,6 +8,17 @@ approvers: []
 
 # Validations
 
+- [Problem Statement](#problem-statement)
+- [Terminology / Concepts](#terminology--concepts)
+- [Proposal](#proposal)
+  - [Use Cases](#use-cases)
+  - [Specification](#specification)
+  - [Open Questions](#open-questions)
+  - [Answered Questions](#answered-questions)
+  - [Complete Examples](#complete-examples)
+  - [Other Approaches Considered](#other-approaches-considered)
+- [Implementation Considerations](#implementation-considerations)
+
 ## Problem Statement
 
 To date, ytt Library / Carvel Package **authors have had to "roll their own" logic to check that customer's inputs are valid.** That is: that data values are a) present/non-empty; and b) within expected range(s).
