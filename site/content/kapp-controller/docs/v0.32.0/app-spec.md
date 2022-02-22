@@ -214,8 +214,8 @@ spec:
         # lists paths to use explicitly (optional; v0.13.0+)
         # - must be quoted when included with paths
         paths:
-        - "-"
         - .imgpkg/images.yml
+        - "-"
 
     # use helm template command to render helm chart
     - helmTemplate:
