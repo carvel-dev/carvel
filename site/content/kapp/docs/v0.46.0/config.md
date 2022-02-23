@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/config]
 title: Configuration
 ---
 
