@@ -165,7 +165,7 @@ $ kubectl port-forward svc/simple-app 8080:80 --namespace default
 
 ## Join the Carvel Community
 
-We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
+We are excited to hear from you and learn with you! Here are several ways you can get involved:
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
