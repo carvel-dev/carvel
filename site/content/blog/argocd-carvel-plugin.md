@@ -76,7 +76,7 @@ data:
         command: ["ytt"]
         args: ["-f", "."]
 ```
-Note: Passing a plugin flags like `--data-values-file` is currently not easily doable. See the issue in argocd regarding this for more information, and for a workaround using environment variables.
+Note: Passing a plugin flags like `--data-values-file` is currently not easily doable. See the issue in ArgoCD regarding this for more information, and for a workaround using environment variables.
 
 ### Apply the changes to the cluster
 Since these overlays need to patch the Argo CD configuration, create the namespace and apply the overlays with the Argo CD installation manifests.
