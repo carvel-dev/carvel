@@ -1,7 +1,7 @@
 ---
 title: "Continuous delivery using a Carvel ytt Argo CD plugin"
 slug: argocd-carvel-plugin
-date: 2022-02-02
+date: 2022-02-23
 author: Cari Lynn
 excerpt: "Use your favorite Carvel templating tool in your GitOps continuous delivery using the Carvel ytt Argo CD plugin."
 image: /img/logo.svg
@@ -22,7 +22,7 @@ At a high level a deployment using Argo CD starts with a configuration change. A
 To make the Carvel plugin available to the application we want to deploy, we need to make a couple patches to the Argo CD cluster configuration. We can do this with ytt overlays!
 
 ### Adding carvel-ytt binary to `argocd-repo-server`
-This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Adding this configuration to the existing deployment creates an `initContainer` using an [image](https://github.com/vmware-tanzu/carvel-docker-image) we publish that contains the Carvel tools. The container copies the ytt binary via a shared volume at `/custom-tools`, as explained further in the [Argo docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/custom_tools/#adding-tools-via-volume-mounts).
+This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Adding this configuration to the existing deployment creates an `initContainer` using an [image](https://github.com/vmware-tanzu/carvel-docker-image) we publish that contains the Carvel tools. The container copies the ytt binary via a shared volume at `/custom-tools`, explained further in the [Argo docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/custom_tools/#adding-tools-via-volume-mounts).
 
 ```yaml
 #! repo-server-overlay.yml
@@ -76,6 +76,7 @@ data:
         command: ["ytt"]
         args: ["-f", "."]
 ```
+Note: Passing a plugin flags like `--data-values-file` is currently not easily doable. See the issue in argocd regarding this for more information, and for a workaround using environment variables.
 
 ### Apply the changes to the cluster
 Since these overlays need to patch the Argo CD configuration, create the namespace and apply the overlays with the Argo CD installation manifests.
