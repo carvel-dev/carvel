@@ -13,7 +13,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | February 9, 2022 | [Daniel Helfand](https://github.com/danielhelfand)| Using vclusters with Carvel | Blog | [@danielhelfand](https://twitter.com/danielhelfand) |
 | February 17, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Carvelizing Helm Charts| Blog | N/A |
 | February 24, 2022 | [Cari Lynn](https://github.com/cari-lynn)| Argo CD + ytt | Blog | N/A |
-| March 3, 2022 | | |
+| March 3, 2022 | [Praveen Rewar](https://github.com/praveenrewar) | Moving existing resources to a new kapp app | Blog | [@praveen_rewar](https://twitter.com/praveen_rewar) |
 | March 10, 2022 | | |
 | March 17, 2022 | | |
 | March 24, 2022 | | |
