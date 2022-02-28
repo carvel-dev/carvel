@@ -290,8 +290,8 @@ spec:
           - "config/"
       - kbld:
           paths:
-          - "-"
           - ".imgpkg/images.yml"
+          - "-"
       deploy:
       - kapp: {}
 EOF
