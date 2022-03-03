@@ -27,7 +27,7 @@ This is challenging when users also want to create a configmap named `my-app` fo
 
 ## Enabling Configmap migration 
 
-As of v0.50.0+, kapp now supports a new optional boolean environment variable `KAPP_FQ_CONFIGMAP_NAMES` which can be used to migrate **both new and existing configmaps** to the new naming convention: `<app_name>.apps.k14s.io`. 
+As of v0.47.0+, kapp now supports a new optional boolean environment variable `KAPP_FQ_CONFIGMAP_NAMES` which can be used to migrate **both new and existing configmaps** to the new naming convention: `<app_name>.apps.k14s.io`. 
 
 - `KAPP_FQ_CONFIGMAP_NAMES=true` opts into the new kapp behavior.
 - `KAPP_FQ_CONFIGMAP_NAMES=false` maintains the current kapp behavior.
