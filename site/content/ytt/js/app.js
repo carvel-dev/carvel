@@ -106,7 +106,7 @@ function NewTemplates(parentEl, templatesOpts) {
       templatesOpts.preEvaluateCallback(currReqId);
     }
 
-  $.ajax({
+    $.ajax({
       type: "POST",
       url: "https://get-ytt.io/template",
       contentType:"application/json; charset=utf-8",
@@ -163,17 +163,6 @@ function NewTemplates(parentEl, templatesOpts) {
     });
 
     return false;
-  });
-
-    $.ajax({
-      type: "POST",
-      url: "/.netlify/functions/template",
-      contentType:"application/json; charset=utf-8",
-      dataType: "json",
-      data: JSON.stringify({files: files}),
-
-      success: $("HELLO WORLD")
-
   });
 
   function evaluate() {
