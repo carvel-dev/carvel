@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "go build -o ./netlify/functions/ytt ./cmd/ytt/... && go build -o ./netlify/functions/main ./cmd/ytt-lambda-website/... && hugo --gc --minify"
+command = "./hack/build-ytt-playground.sh && hugo --gc --minify"
 
 [context.production.environment]
 HUGO_VERSION = "0.78.0"
@@ -15,7 +15,7 @@ HUGO_VERSION = "0.78.0"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
-command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+command = "./hack/build-ytt-playground.sh && hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.78.0"
