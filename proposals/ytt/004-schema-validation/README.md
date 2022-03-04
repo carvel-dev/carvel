@@ -404,13 +404,13 @@ Supported (ytt rule ==> OpenAPI v3 / JSON Schema property):
   - [ipv6](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00#section-7.3.5)
   - [uri](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00#section-7.3.6)
   - [uriref](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00#section-7.3.7)
+- `multiple_of=` / `@ytt:assert.multiple_of()` : [multipleOf](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00#section-5.1)
 
 The following are deferred:
 
 - uniqueItems
 - exclusiveMaximum (is this useful?)
 - exclusiveMinimum (is this useful?)
-- [multipleOf](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00#section-5.1)
 - pattern (This string SHOULD be a valid regular expression, according to the ECMA 262 regular - expression dialect)
 
 The following JSON Schema properties are better supported as part of `ytt` schema:
@@ -620,10 +620,15 @@ They are:
 
 General-purpose string assertions:
 - `starts_with=` (see [`@ytt:assert.starts_with()`](#yttassertstarts_with))
-- `ends_with=` (see [`@ytt:assert.ends_with()`](#yttassertends_with))
-- `contains=` (see [`@ytt:assert.contains()`](#yttassertcontains))
+- `ends_with=` (see [`@ytt:assert.ends_with()`](#yttassertends_with)) — e.g. ".git" for a git source in GitOps CRDs in a CI/CD system.
+- `contains=` (see [`@ytt:assert.contains()`](#yttassertcontains)) — e.g. registry name within a URL, "@sha" to validate an image reference is digest-resolved.
 - `matches=` (see [`@ytt:assert.matches()`](#yttassertmatches))
 - `format=` (see [`@ytt:assert.format()`](#yttassertformat))
+
+Kubernetes-common:
+- `even=` (see [`@ytt:assert.even()`](#yttasserteven)) — e.g. memory resources should be even.
+- `odd=` (see [`@ytt:assert.odd()`](#yttassertodd)) — e.g. replicas should be odd numbers in stateful applications.
+- `multiple_of=` (see [`@ytt:assert.multiple_of()`](#yttassertmultiple_of)) — e.g. memory sizes ought to be multiples of 1024
 
 ###### Named rule arguments
 
@@ -669,7 +674,8 @@ assert.valid(node)
 ```
 
 - if all validation rules are satisfied, nothing happens.
-- if any validation rule is violated, `assert.fail()`s with the corresponding validation message(s).
+- all violated validation rules result ..., `assert.fail()`s with the corresponding validation message(s).
+  - `violations` (`list`)
 
 
 #### Included Assertion Functions
@@ -687,6 +693,8 @@ assert.valid(node)
 ##### @ytt:assert.contains()
 
 ##### @ytt:assert.ends_with()
+
+##### @ytt:assert.even()
 
 ##### @ytt:assert.format()
 
@@ -718,9 +726,13 @@ The value is _at least_ (inclusive) of the given minimum.
 
 The length of the value is _at least_ (inclusive) that of the given minimum.
 
+##### @ytt:assert.multiple_of()
+
 ##### @ytt:assert.not_null()
 
 When present, this validator is always checked first.
+
+##### @ytt:assert.odd()
 
 ##### @ytt:assert.one_not_null()
 
@@ -1440,6 +1452,9 @@ where:
 ### Consideration: Defining merge semantics for annotations in an overlay
 
 ... so that (for example) a consumer can edit `@schema/validation` annotations
+
+For example to:
+- be able to remove/disable/edit a validation on a given Data Value (or output field).
 
 #### Replacing an existing annotation
 
