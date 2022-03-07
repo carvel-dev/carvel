@@ -320,15 +320,14 @@ Succeeded
 
 This time I deployed using kapp `-y` flag which will not ask for confirmation before applying the changes. It also shows a progress log while reconciling for the changes to provide details on for which resources it is waiting and what all got applied successfully.
 
-Here, just to limit the scope of this article I have used some basic but powerful features of ytt for templating and patching but there are many advanced features provided by ytt which will be worth exploring and can match your use case.
+Here, just to limit the scope of this article I have used some basic but powerful features of ytt for templating and patching but there are many advanced features provided by ytt which will be worth exploring and can match your specific use case.
 
 To learn more...
 - take a feature-wise tour of `ytt` by exploring the ["Basics" example group in the playground](https://carvel.dev/ytt/#example:example-plain-yaml)
 - get a more thorough introduction of how to [Use Data Values](https://carvel.dev/ytt/docs/v0.40.0/how-to-use-data-values/).
 - if you're curious about the order and manner `ytt` processes inputs, check out [How it works](https://carvel.dev/ytt/docs/v0.40.0/how-it-works/).
 
-Hope you enjoyed reading this blog and believe it will make your life easier in handling different deployment environments.
-
+Hope you enjoyed reading this blog and believe it will make your life easier in handling different deployment environments. Share your experience in our Carvel's slack channel.
 ## Join the Carvel Community
 
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
