@@ -1,9 +1,9 @@
 ---
-
+aliases: [/imgpkg/docs/latest/]
 title: "About imgpkg"
 toc: "false"
 cascade:
-  version: v0.25.0
+  version: v0.26.0
   toc: "true"
   type: docs
   layout: docs
