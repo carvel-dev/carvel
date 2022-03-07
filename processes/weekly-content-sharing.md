@@ -17,7 +17,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | March 10, 2022 | [Yash Sethiya](https://github.com/sethiyash)| Multi environment deployment with ytt and kapp | Blog | N/A |
 | March 17, 2022 | | |
 | March 24, 2022 | | |
-| March 31, 2022 | | |
+| March 31, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware) | ytt |
 | April 7, 2022 | | |
 | April 14, 2022 | | |
 | April 21, 2022 | | |
