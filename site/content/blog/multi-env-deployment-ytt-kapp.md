@@ -1,9 +1,9 @@
 ---
-title: "Multi environment deployment with ytt and kapp"
+title: "Handle multiple environments with ytt and kapp"
 slug: multi-env-deployment-ytt-kapp
 date: 2022-03-10
 author: Yash Sethiya
-excerpt: "Handle multiple environments with ytt and kapp"
+excerpt: "Managing Multi-environments configuration with ytt and kapp"
 image: /img/logo.svg
 tags: ['carvel', 'kapp', 'ytt']
 
@@ -11,17 +11,17 @@ tags: ['carvel', 'kapp', 'ytt']
 
 One of the most typical challenges when deploying a complex application is the handling of different deployment environments during the software lifecycle.
 
-The most typical setup is the trilogy of QA/Staging/Production environments. An application developer needs an easy way to deploy to the different environments and also to understand what version is deployed where.
+Commonly, the setup is a trilogy of QA/Staging/Production environments. An application developer needs an easy way to deploy to the different environments and also to understand what version is deployed where.
 
 Unlike [many other tools used for templating](https://carvel.dev/ytt/docs/v0.40.0/ytt-vs-x/), ytt takes a different approach to work with YAML files. Instead of interpreting YAML configuration as plain text, it works with YAML structures such as maps, lists, YAML documents, scalars, etc. By doing so ytt is able to eliminate a lot of problems that plague other tools (character escaping, ambiguity, indentation, etc.). Additionally ytt provides Python-like language (Starlark) that executes in a hermetic environment making it friendly, yet more deterministic compared to just using general purpose languages directly or non-familiar custom templating languages.
 
 
 ## How to handle different environment configurations
 
-This problem is typically solved in two ways: templating or patching. [ytt](https://carvel.dev/ytt) supports both approaches. In this section, we’ll see how ytt allows to template YAML configuration, and how it can patch YAML configuration via overlays.
+This problem is usually solved in two ways: templating or patching. [ytt](https://carvel.dev/ytt) supports both approaches. In this section, we’ll see how ytt allows to template YAML configuration, and how it can patch YAML configuration via overlays.
 
 ### Data values
-Data values provide a way to inject input data. In ytt, before a Data Value can be used in a template, it must be declared. This is typically done via [Data Values Schema](https://carvel.dev/ytt/docs/v0.40.0/how-to-write-schema/#overview). We will have a common schema file for all the environments.
+Data values provide a way to inject input data. In ytt, before a Data Value can be used in a template, it must be declared. This is done via [Data Values Schema](https://carvel.dev/ytt/docs/v0.40.0/how-to-write-schema/#overview). We will have a common schema file for all the environments.
 
 ```yaml
 #! schema.yaml (#! is used for comment in ytt)
@@ -42,9 +42,9 @@ databaseUser: ""
 databasePassword: ""
 ```
 
-While normally schema defines the default configuration, it makes sense to create different values files for all different environments. Let's suppose we have two environments `staging` and `prod`.
+A schema sets the defaults for each data value as they are declared. We will want to override some of those defaults for each of our environments. We do this by creating a values file for each environment. Let's suppose we have two environments `staging` and `prod`.
 
-In `values.yaml` we will be just putting the values that we want to override from schema
+In `values-staging.yaml` we will be just putting the values that we want to override from schema
  
 ```yaml
 #! values-staging.yaml
@@ -139,7 +139,7 @@ data:
 As you can see above file contains lots of ytt annotations (i.e. lines that contain #@), it’s a ytt template. With the help of this annotations we are using the values defined in schema file. 
 
 ## Deploying with kapp 
-Let's now look into how we can deploy for different environments by passing environment specific `values.yaml` we created above. First, let's see the final manifest for staging environment.
+Let's now look into how we can deploy for different environments by passing environment specific `values-*.yaml` we created above. First, let's see the final manifest for staging environment.
 
 ```bash
 $ ytt -f app.yaml -f schema.yaml -f values-staging.yaml
@@ -190,6 +190,8 @@ data:
   db_user: staging-user
   db_password: staging-password
 ```
+
+**Try this** out in our [ytt interactive playground]((https://carvel.dev/ytt/#gist:https://gist.github.com/sethiyash/63287cf10fcd2155bb0247012939207a)
 
 As our final manifest looks good let's deploy it with kapp - 
 
@@ -284,7 +286,7 @@ data:
   db_password: prod-password
 ```
 
-**Try this** out in our [ytt interactive playground](https://carvel.dev/ytt/#gist:https://gist.github.com/pivotaljohn/495a132fdce5a6889fd5ccf0b48b098f). 
+**Try this** out in our [ytt interactive playground](https://carvel.dev/ytt/#gist:https://gist.github.com/sethiyash/2e527d2f5acd93015edb9f4565c9aeed). 
 
 Now let's deploy it using kapp - 
 ```bash
@@ -318,7 +320,12 @@ Succeeded
 
 This time I deployed using kapp `-y` flag which will not ask for confirmation before applying the changes. It also shows a progress log while reconciling for the changes to provide details on for which resources it is waiting and what all got applied successfully.
 
-Here, just to limit the scope of this blog I have used some basic but powerful features of ytt for templating and patching but there are many advanced features provided by ytt which will be worth exploring and can match your use case.
+Here, just to limit the scope of this article I have used some basic but powerful features of ytt for templating and patching but there are many advanced features provided by ytt which will be worth exploring and can match your use case.
+
+To learn more...
+- take a feature-wise tour of `ytt` by exploring the ["Basics" example group in the playground](https://carvel.dev/ytt/#example:example-plain-yaml)
+- get a more thorough introduction of how to [Use Data Values](https://carvel.dev/ytt/docs/v0.40.0/how-to-use-data-values/).
+- if you're curious about the order and manner `ytt` processes inputs, check out [How it works](https://carvel.dev/ytt/docs/v0.40.0/how-it-works/).
 
 Hope you enjoyed reading this blog and believe it will make your life easier in handling different deployment environments.
 
