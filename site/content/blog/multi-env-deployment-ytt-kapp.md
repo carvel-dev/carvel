@@ -77,7 +77,7 @@ databaseUser: prod-user
 databasePassword: prod-password
 ```
 
-## Using Data Values in manifest - 
+## Using Data Values in manifest
 Now we will see how we can use the data values that has been declared via data value schema. Here I have put all the resources in single yaml file `app.yaml` just for the demonstration purpose.
 
 ```yaml
@@ -212,11 +212,11 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 Continue? [yN]: 
 ```
 
-Here [kapp](https://carvel.dev/kapp/) is showing calculated changes between configuration provided and live cluster state and asking for confirmation before actually applying the change.
+Here [kapp](https://carvel.dev/kapp/) is showing calculated changes between configuration provided and live cluster state. It then asks for confirmation before actually applying the change.
 Similarly, for deploying application on prod environment we will be passing `values-prod.yaml`.
 
 ### Overlays
-When user would like to configure fields beyond what the original author has exposed as data values, they should turn to Overlays. Here we look into a way to specify locations within configuration and either add to, remove from, or replace within that existing configuration.
+When the user would like to configure fields beyond what the original author has exposed as data values, they should turn to Overlays. Here we look into a way to specify locations within configuration and either add to, remove from, or replace within that existing configuration.
 
 ```yaml
 #! add-namespace.yaml
