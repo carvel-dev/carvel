@@ -1,6 +1,11 @@
 [build]
 publish = "public"
-command = "./hack/build-ytt-playground.sh && hugo --gc --minify"
+command = "cd carvel-ytt && ./hack/build-netlify-function.sh && cd .. && hugo --gc --minify"
+
+[context.development.environment]
+HUGO_VERSION = "0.78.0"
+HUGO_ENV = "development"
+GO_VERSION = "1.17.3"
 
 [context.production.environment]
 HUGO_VERSION = "0.78.0"
@@ -15,10 +20,11 @@ HUGO_VERSION = "0.78.0"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
-command = "./hack/build-ytt-playground.sh && hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+command = "cd carvel-ytt && ./hack/build-netlify-function.sh && cd .. && hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.78.0"
+GO_VERSION = "1.17.3"
 
 [context.branch-deploy]
 command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
