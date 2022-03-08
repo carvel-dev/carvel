@@ -1582,3 +1582,14 @@ foo: 42
 bar: 13
 ```
 
+### Consideration: Proactively Address Likely-Challenging Topics in Documentation
+
+- The concept of declaring [Required Input](#use-case-required-input) by setting the default value to be invalid is not intuitive for many users. We anticipate this being a heavily-used feature and need to make sure it is grokable.
+  - documenting approaches around this idea should particularly _start_ from the user/reader's intention.
+  - sometimes acknowledging that a concept is counter-intuitive for some and buttressing the explanation with the explicit benefits for the user can help.
+  - is there an analogy that can help bridge the gap?
+  - see also: https://github.com/vmware-tanzu/carvel/pull/331#discussion_r820794818 
+- When guiding users through the [Union Structures use case](#use-case-union-structures), be mindful there is a body of existing configuration that uses the discriminator style.
+  - It's a breaking change for them to modify their configuration to adopt the union-style we recommend.
+  - even as we recommend the union-style over discriminator, given the pervasive existence of the latter, it would ease adoption if there were specific guidance on how to implement/work with the former.
+  - see also: https://github.com/vmware-tanzu/carvel/pull/331#discussion_r820796795
