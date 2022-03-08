@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-lock-spec]
 title: vendir.lock.yml spec
 ---
 
