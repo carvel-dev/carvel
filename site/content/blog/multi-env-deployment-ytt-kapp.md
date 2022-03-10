@@ -200,8 +200,8 @@ Changes
 
 Namespace  Name                  Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    application-settings  ConfigMap   -       -    create  -       reconcile  -   -  
-^          sample-app-staging    Deployment  -       -    create  -       reconcile  -   -  
-^          sample-app-staging    Service     -       -    create  -       reconcile  -   -  
+^          sample-app            Deployment  -       -    create  -       reconcile  -   -  
+^          sample-app            Service     -       -    create  -       reconcile  -   -  
 
 Op:      3 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 3 reconcile, 0 delete, 0 noop
@@ -294,8 +294,8 @@ Changes
 
 Namespace     Name                  Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 my-namespace  application-settings  ConfigMap   -       -    create  -       reconcile  -   -  
-^             sample-app-prod       Deployment  -       -    create  -       reconcile  -   -  
-^             sample-app-prod       Service     -       -    create  -       reconcile  -   -  
+^             sample-app            Deployment  -       -    create  -       reconcile  -   -  
+^             sample-app            Service     -       -    create  -       reconcile  -   -  
 
 Op:      3 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 3 reconcile, 0 delete, 0 noop
@@ -305,8 +305,8 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 6:55:46PM: ---- waiting on 1 changes [0/3 done] ----
 6:55:46PM: ok: reconcile configmap/application-settings (v1) namespace: my-namespace
 6:55:46PM: ---- applying 2 changes [1/3 done] ----
-6:55:46PM: create deployment/sample-app-prod (apps/v1) namespace: my-namespace
-6:55:46PM: create service/sample-app-prod (v1) namespace: my-namespace
+6:55:46PM: create deployment/sample-app (apps/v1) namespace: my-namespace
+6:55:46PM: create service/sample-app (v1) namespace: my-namespace
 6:55:46PM: ---- waiting on 2 changes [1/3 done] ----
 ...
 6:55:50PM: ---- applying complete [3/3 done] ----
