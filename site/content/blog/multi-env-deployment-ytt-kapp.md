@@ -27,14 +27,14 @@ Data values provide a way to inject input data. In ytt, before a Data Value can 
 #! schema.yaml (#! is used for comment in ytt)
 #@data/values-schema
 ---
-replicaCount: 1
+---
+replicas: 1
 
 image:
   name: nginx
   tag: "1.14.2"
 
-nameOverride: ""
-fullnameOverride: ""
+name: ""
 
 appMode: ""
 certificatePath: ""
@@ -53,7 +53,7 @@ In `values-staging.yaml` we will be just putting the values that we want to over
 image:
   tag: "latest"
 
-nameOverride: "staging"
+name: "sample-app"
 
 appMode: staging
 certificatePath: /etc/ssl/staging
@@ -67,9 +67,9 @@ In production maybe we want to have more replicas so we can override that in `va
 #! values-prod.yaml
 #@data/values
 ---
-replicaCount: 3
+replicas: 3
 
-nameOverride: "prod"
+name: "sample-app"
 
 appMode: prod
 certificatePath: /etc/ssl/prod
@@ -84,22 +84,19 @@ Now we will see how we can use the data values that has been declared via data v
 #! app.yaml
 #@ load("@ytt:data", "data")
 ---
-#@ def fullname():
-#@ return data.values.fullnameOverride if data.values.fullnameOverride else "sample-app-" + data.values.nameOverride
-#@ end
 
 #@ def labels():
-app.kubernetes.io/name: #@ fullname()
+environment: #@ data.values.appMode
 #@ end
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ fullname()
+  name: #@ data.values.name
   labels: #@ labels()
 spec:
   selector:
-    app: #@ fullname()
+    app: #@ data.values.name
   ports:
     - protocol: TCP
       port: 80
@@ -108,10 +105,10 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ fullname()
+  name: #@ data.values.name
   labels: #@ labels()
 spec:
-  replicas: #@ data.values.replicaCount
+  replicas: #@ data.values.replicas
   selector:
     matchLabels: #@ labels()
   template:
@@ -146,12 +143,12 @@ $ ytt -f app.yaml -f schema.yaml -f values-staging.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-app-staging
+  name: sample-app
   labels:
-    app.kubernetes.io/name: sample-app-staging
+    environment: staging
 spec:
   selector:
-    app: sample-app-staging
+    app: sample-app
   ports:
   - protocol: TCP
     port: 80
@@ -160,18 +157,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-app-staging
+  name: sample-app
   labels:
-    app.kubernetes.io/name: sample-app-staging
+    environment: staging
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: sample-app-staging
+      environment: staging
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: sample-app-staging
+        environment: staging
     spec:
       containers:
       - name: sample-app
@@ -238,13 +235,13 @@ $ ytt -f app.yaml -f schema.yaml -f values-prod.yaml -f add-namespace.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-app-prod
+  name: sample-app
   labels:
-    app.kubernetes.io/name: sample-app-prod
+    environment: prod
   namespace: my-namespace
 spec:
   selector:
-    app: sample-app-prod
+    app: sample-app
   ports:
   - protocol: TCP
     port: 80
@@ -253,19 +250,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-app-prod
+  name: sample-app
   labels:
-    app.kubernetes.io/name: sample-app-prod
+    environment: prod
   namespace: my-namespace
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: sample-app-prod
+      environment: prod
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: sample-app-prod
+        environment: prod
     spec:
       containers:
       - name: sample-app
