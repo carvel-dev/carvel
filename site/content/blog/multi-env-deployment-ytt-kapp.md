@@ -1,5 +1,5 @@
 ---
-title: "Handle multiple environments with ytt and kapp"
+title: "Deploying to multiple environments with ytt and kapp"
 slug: multi-env-deployment-ytt-kapp
 date: 2022-03-10
 author: Yash Sethiya
