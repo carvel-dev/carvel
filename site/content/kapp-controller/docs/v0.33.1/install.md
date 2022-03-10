@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/install]
 title: Install
 ---
 
@@ -24,6 +24,7 @@ appreciate your corrections and contributions to help everyone install
 kapp-controller everywhere.
 
 ### Openshift
+
 1. Explicitly set resource packageinstalls/finalizers for kapp controller cluster role to access (else the kapp controller fails to create packageinstalls).
 
     ```

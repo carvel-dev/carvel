@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/faq]
 title: FAQ
 ---
 
@@ -42,7 +42,7 @@ will sync and reconcile without any updates needed to resolve the error.
 
 ### How can I generate the valuesSchema from my ytt schema?
 
-If you are using `ytt` as your Package's templating option and have [defined a schema](../../../../ytt/docs/latest/how-to-write-schema), you can use `ytt` to generate your `valuesSchema` (which is in OpenAPI v3 format) for you.
+If you are using `ytt` as your Package's templating option and have [defined a schema](../../../ytt/docs/latest/how-to-write-schema), you can use `ytt` to generate your `valuesSchema` (which is in OpenAPI v3 format) for you.
 
 This is the recommended workflow:
 
