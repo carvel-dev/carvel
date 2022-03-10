@@ -1,7 +1,12 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/package-consumer-concepts]
 title: Concepts for Package Consumers
 ---
+
+## Resource Lineage
+All resources created by a PackageRepository (PKGR) are decorated with an annotation
+indicating their parent: `packaging.carvel.dev/package-repository-ref:
+<pkgr-namespace>/<pkgr-name>`
 
 ## Namespacing
 
@@ -64,9 +69,9 @@ annotation on the PackageRepository CRD under the
 `packaging.carvel.dev/global-namespace`. Kapp controller's release
 YAML comes preconfigured with this annotation.
 
-(upcoming) If users would like to exclude the global packages from their namespace, the
-annotation `packaging.carvel.dev/exclude-global-packages` can be added to
-the namespace.
+To exclude global packages from a namespace, add the
+annotation `packaging.carvel.dev/exclude-global-packages` to
+that namespace.
 
 ## Using PackageInstall's Version Selection
 

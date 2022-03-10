@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-spec]
 title: App CR spec
 ---
 
@@ -65,6 +65,8 @@ spec:
               name: cfgmap-name
               # specifies where to place files found in config map (optional)
               directoryPath: dir
+      # Relative path to place the fetched artifacts
+      path: dir (optional; v0.33.1+)
 
     # pulls content from Docker/OCI registry
     - image:
