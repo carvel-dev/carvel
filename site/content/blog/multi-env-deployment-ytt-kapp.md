@@ -188,7 +188,7 @@ data:
   db_password: staging-password
 ```
 
-**Try this** out in our [ytt interactive playground]((https://carvel.dev/ytt/#gist:https://gist.github.com/sethiyash/63287cf10fcd2155bb0247012939207a)
+**Try this** out in our [ytt interactive playground](https://carvel.dev/ytt/#gist:https://gist.github.com/sethiyash/63287cf10fcd2155bb0247012939207a)
 
 As our final manifest looks good let's deploy it with kapp - 
 
