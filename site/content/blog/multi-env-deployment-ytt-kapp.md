@@ -25,16 +25,15 @@ Data values provide a way to inject input data. In ytt, before a Data Value can 
 
 ```yaml
 #! schema.yaml (#! is used for comment in ytt)
+
 #@data/values-schema
 ---
----
+name: ""
 replicas: 1
 
 image:
   name: nginx
   tag: "1.14.2"
-
-name: ""
 
 appMode: ""
 certificatePath: ""
@@ -48,12 +47,12 @@ In `values-staging.yaml` we will be just putting the values that we want to over
  
 ```yaml
 #! values-staging.yaml
+
 #@data/values
 ---
+name: "sample-app"
 image:
   tag: "latest"
-
-name: "sample-app"
 
 appMode: staging
 certificatePath: /etc/ssl/staging
@@ -65,11 +64,11 @@ In production maybe we want to have more replicas so we can override that in `va
 
 ```yaml
 #! values-prod.yaml
+
 #@data/values
 ---
-replicas: 3
-
 name: "sample-app"
+replicas: 3
 
 appMode: prod
 certificatePath: /etc/ssl/prod
@@ -82,8 +81,8 @@ Now we will see how we can use the data values that has been declared via data v
 
 ```yaml
 #! app.yaml
+
 #@ load("@ytt:data", "data")
----
 
 #@ def labels():
 environment: #@ data.values.appMode
@@ -123,10 +122,10 @@ spec:
           - containerPort: 8080
 ---
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   name: application-settings
-data:
+stringData:
   app_mode: #@ data.values.appMode
   certificates: #@ data.values.certificatePath
   db_user: #@ data.values.databaseUser
@@ -140,6 +139,7 @@ Let's now look into how we can deploy for different environments by passing envi
 
 ```bash
 $ ytt -f app.yaml -f schema.yaml -f values-staging.yaml
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -178,10 +178,10 @@ spec:
         - containerPort: 8080
 ---
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   name: application-settings
-data:
+stringData:
   app_mode: staging
   certificates: /etc/ssl/staging
   db_user: staging-user
@@ -199,7 +199,7 @@ Target cluster 'https://127.0.0.1:57418' (nodes: minikube)
 Changes
 
 Namespace  Name                  Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-default    application-settings  ConfigMap   -       -    create  -       reconcile  -   -  
+default    application-settings  Secret      -       -    create  -       reconcile  -   -  
 ^          sample-app            Deployment  -       -    create  -       reconcile  -   -  
 ^          sample-app            Service     -       -    create  -       reconcile  -   -  
 
@@ -217,6 +217,7 @@ When the user would like to configure fields beyond what the original author has
 
 ```yaml
 #! add-namespace.yaml
+
 #@ load("@ytt:overlay", "overlay")
 
 #@overlay/match by=overlay.all, expects="1+"
@@ -232,6 +233,7 @@ On applying overlay, final manifest will look like -
 
 ```bash
 $ ytt -f app.yaml -f schema.yaml -f values-prod.yaml -f add-namespace.yaml
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -272,11 +274,11 @@ spec:
         - containerPort: 8080
 ---
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   name: application-settings
   namespace: my-namespace
-data:
+stringData:
   app_mode: prod
   certificates: /etc/ssl/prod
   db_user: prod-user
@@ -293,7 +295,7 @@ Target cluster 'https://127.0.0.1:57418' (nodes: minikube)
 Changes
 
 Namespace     Name                  Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
-my-namespace  application-settings  ConfigMap   -       -    create  -       reconcile  -   -  
+my-namespace  application-settings  Secret      -       -    create  -       reconcile  -   -  
 ^             sample-app            Deployment  -       -    create  -       reconcile  -   -  
 ^             sample-app            Service     -       -    create  -       reconcile  -   -  
 
@@ -301,9 +303,9 @@ Op:      3 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 3 reconcile, 0 delete, 0 noop
 
 6:55:46PM: ---- applying 1 changes [0/3 done] ----
-6:55:46PM: create configmap/application-settings (v1) namespace: my-namespace
+6:55:46PM: create secret/application-settings (v1) namespace: my-namespace
 6:55:46PM: ---- waiting on 1 changes [0/3 done] ----
-6:55:46PM: ok: reconcile configmap/application-settings (v1) namespace: my-namespace
+6:55:46PM: ok: reconcile secret/application-settings (v1) namespace: my-namespace
 6:55:46PM: ---- applying 2 changes [1/3 done] ----
 6:55:46PM: create deployment/sample-app (apps/v1) namespace: my-namespace
 6:55:46PM: create service/sample-app (v1) namespace: my-namespace
@@ -325,6 +327,7 @@ To learn more...
 - if you're curious about the order and manner `ytt` processes inputs, check out [How it works](https://carvel.dev/ytt/docs/v0.40.0/how-it-works/).
 
 Hope you enjoyed reading this blog and believe it will make your life easier in handling different deployment environments. Share your experience in our Carvel's slack channel.
+
 ## Join the Carvel Community
 
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
