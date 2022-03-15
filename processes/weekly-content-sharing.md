@@ -16,7 +16,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | March 3, 2022 | [Praveen Rewar](https://github.com/praveenrewar)      | Moving existing resources to a new kapp app    | Blog | [@praveen_rewar](https://twitter.com/praveen_rewar) |
 | March 10, 2022 | [Yash Sethiya](https://github.com/sethiyash)          | Multi environment deployment with ytt and kapp | Blog | N/A |
 | March 17, 2022 | [Joao Pereira](https://github.com/joaopapereira)      | imgpkg image collocation and tagging           | Blog | N/A |
-| March 24, 2022 |                                                       |                                                |
+| March 24, 2022 | [John Ryan](https://github.com/pivotaljohn)           | Managing YAML | Blog/Vlog | [@jtigger](https://twitter.com/jtigger)
 | March 31, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware) | ytt                                            |
 | April 7, 2022 |                                                       |                                                |
 | April 14, 2022 |                                                       |                                                |
