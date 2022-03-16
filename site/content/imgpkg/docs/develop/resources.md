@@ -118,6 +118,11 @@ Having a bundle 'reference' another bundle is no different from referencing any 
 
 One key difference between nested bundles and other OCI images, is the directory structure when `imgpkg pull` writes the nested bundle's content to disk.
 
+Bundles can be nested repeatedly without limits on depth or breadth.
+Imgpkg optimizes both network requests and storage on the destination, so we
+would not expect any issues short of hard storage limits at the destination
+repository.
+
 For further details refer to [pulling a nested bundle.](commands.md#pulling-nested-bundles)
 
 ---
