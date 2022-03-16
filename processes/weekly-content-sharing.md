@@ -17,8 +17,8 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | March 10, 2022 | [Yash Sethiya](https://github.com/sethiyash)          | Multi environment deployment with ytt and kapp | Blog | N/A |
 | March 17, 2022 | [Joao Pereira](https://github.com/joaopapereira)      | imgpkg image collocation and tagging           | Blog | N/A |
 | March 24, 2022 | [John Ryan](https://github.com/pivotaljohn)           | Managing YAML | Blog/Vlog | [@jtigger](https://twitter.com/jtigger)
-| March 31, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware) | ytt                                            |
-| April 7, 2022 |                                                       |                                                |
+| March 31, 2022 |                                                       |                                                |
+| April 7, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware)  | Parameterizing your Project Configuration with ytt |
 | April 14, 2022 |                                                       |                                                |
 | April 21, 2022 |                                                       |                                                |
 | April 28, 2022 |                                                       |                                                |
