@@ -138,3 +138,18 @@ $ imgpkg tag list -i index.docker.io/k8slt/image
 ```
 
 The output shows the names of all tags associated with the image, along with its digest.
+
+---
+
+## Describe
+
+`imgpkg describe` Provides a summary of all the images that are part of the provided Bundle. 
+
+An example of this is shown below:
+
+```bash-plain
+$ imgpkg describe -b carvel.dev/app1-bundle
+```
+
+This command provides 2 different types of output, `yaml` and `text`, that can be selected via the flag `--output-type`.
+By default `text` is selected.
