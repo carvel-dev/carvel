@@ -114,7 +114,7 @@ Note that usage of this flag shall not preclude your obligation to comply with t
 
 ### Image Signatures
 
-Starting on version v0.9.0 `imgpkg` can copy Signature created by [cosign](https://github.com/sigstore/cosign). By
+`imgpkg` can copy Signature created by [cosign](https://github.com/sigstore/cosign). By
 default `imgpkg` will not search for Signatures for Images. To enable the search and copy of the signatures the
 flag `--cosign-signatures` needs to be provided to copy command
 
@@ -152,3 +152,6 @@ $ imgpkg describe -b carvel.dev/app1-bundle
 
 This command provides 2 different types of output, `yaml` and `text`, that can be selected via the flag `--output-type`.
 By default `text` is selected.
+
+The flag `--cosign-artifacts` provides the user the ability to select if they want or not `imgpkg` to check and display
+any [cosign](https://github.com/sigstore/cosign) artifact that is part of the Bundle.
