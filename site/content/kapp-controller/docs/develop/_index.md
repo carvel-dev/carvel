@@ -10,6 +10,8 @@ cascade:
 
 kapp-controller provides declarative APIs to customize, install, and update your Kubernetes applications and packages. It is a part of the Carvel toolkit and follows core Carvel design principles. Get started with the [tutorial](packaging-tutorial.md)!
 
+The kapp-controller CLI `kctrl` helps users to observe and interact custom resources surfaced by kapp-controller effectively. It also allows package consumers get up and running with Carvel packages faster.
+
 #### Choice for authors; consistency for consumers
 Kubernetes configuration takes many forms -- plain YAML configurations, Helm charts, ytt templates, jsonnet templates, etc.
 Software running on Kubernetes lives in many different places: a Git repository, an archive over HTTP, a Helm repository, etc.
