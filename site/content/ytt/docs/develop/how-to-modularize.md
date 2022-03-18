@@ -110,7 +110,7 @@ Now, we can move our `calc_name()` function to a shared file.
 #! values.star
 def calc_name(name, env):
   return name + "_" + env
-  end
+end
 ```
 Import the function by loading it `load("values.star", "calc_name")` ...
 
@@ -155,8 +155,10 @@ $ tree .
 └── schema.yml
 ```
 
-Libraries can be helpful to import configuration from other projects, into one combined piece of configuration. Such as having one library per subproject. 
-Libraries can also be helpful for sharing configuration across multiple codebases. For example, having a generic library that provides helpful functions that needs to be used across multiple teams. (advanced detail: these libraries can be vendir'd into a project from one common place.)
+Libraries can be helpful 
+* to import configuration 3rd party sources, into one combined piece of configuration. Such as having one library per subproject. 
+* Libraries can also be helpful for sharing configuration across multiple codebases. For example, having a generic library that provides helpful functions that needs to be used across multiple teams. (advanced detail: these libraries can be vendir'd into a project from one common place.)
+* When you have a shared template used by two different applications like frontend and backend, there is a need to update one application with an evaluated value from the other. [Playground example here](https://carvel.dev/ytt/#example:example-ytt-library-module).
 
 [This ^ section is missing some detail on how these libraries are helpful]
 
