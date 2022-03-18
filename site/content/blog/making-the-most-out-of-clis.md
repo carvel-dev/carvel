@@ -1,7 +1,7 @@
 ---
 title: "Making the most out of CLIs"
 slug: making-the-most-out-of-clis
-date: 2022-03-11
+date: 2022-03-21
 author: Soumik Majumder
 excerpt: "Find out how different Carvel CLIs interacting with resources on the cluster and kubectl fit together like pieces of a jigsaw puzzle"
 image: /img/logo.svg
@@ -10,10 +10,10 @@ tags: ['Soumik Majumder', 'carvel', 'kctrl']
 
 Carvel is glad to have `kapp` and the (brand new!) `kctrl` as a part of our arsenal. In this blog, we will see how these powerful CLIs, along with our good old friend `kubectl`, fit into our day-to-day workflows.
 
-Let's look at what each one of them is super good at!
+We often see our users leverage all three of them in their workflows. Let's look at what each one of them is super good at!
 
 ## `kubectl`
-`kubectl` is a CLI tool built by the Kubernetes team. It let's users interact with the cluster and resources on it. It is the most widely used tool for the same.
+`kubectl` is a CLI built by the Kubernetes team. It let's users interact with the cluster and resources on it.
 
 ### Viewing resources current state on the cluster
 `kubectl` lets you fetch and view the current state of a resource on the cluster in it's entirety. This is quite useful while exploring resources on a cluster and debugging faulty resources.
@@ -32,17 +32,17 @@ Learn more about these commands [here](https://kubernetes.io/docs/reference/gene
 Proxying and port-forwarding options let a pod or the K8s API server serve HTTP content to localhost. Letting users debug their applications easily
 
 ## `kapp`
-`kapp` is a CLI tool we use for deploying resources grouped into "applications" onto clusters, modifying them and observing them.
+`kapp` CLI helps users manage their workloads effectively on the cluster. This involves defining interactions between resources declaratively and deploying and updating them confidently.
 
 But wait isn't this something `kubectl apply` or `kubectl patch` will help us do for resource manifests?
 
-Well yes, but `kapp` goes a step further, it helps users order resources in their manifests, apply changes safely and predictably, an then goes on to wait for the resources to reach their desired state. (You could take a deep dive into this over [here](https://carvel.dev/kapp/docs/latest/))
+Well yes, but `kapp` goes a step further, it helps users order resources in their manifests, apply changes safely and predictably, and then goes on to wait for the resources to reach their desired state. (You could take a deep dive into this over [here](https://carvel.dev/kapp/docs/latest/))
 
 Let's see how `kapp` makes our lives easier.
 
 ### Grouping related resources
 `kapp` lets users group and [order multiple resources](https://carvel.dev/kapp/docs/latest/apply-ordering/#example) easily. This lets us do tasks like "create a Deployment after a Job has finished" declaratively in our manifests.
-`kapp` also caters to other use cases, like [versioning resources](https://carvel.dev/kapp/docs/latest/diff/#versioned-resources) and defining [create/update/delete strategies](https://carvel.dev/kapp/docs/latest/apply/#controlling-apply-via-resource-annotations) for resources in the abstract "application". These features allow users to efficiently, declaratively and effectively manage resources to be deployed on clusters.
+`kapp` also caters to other use cases, like [versioning resources](https://carvel.dev/kapp/docs/latest/diff/#versioned-resources) and defining [create/update/delete strategies](https://carvel.dev/kapp/docs/latest/apply/#controlling-apply-via-resource-annotations) for resources in the abstract "application". These features allow users to efficiently and declaratively manage resources to be deployed on clusters.
 
 ### Applying changes safely and confidently
 While applying changes to the cluster, `kapp` shows a diff against the resources on the cluster (as seen [here](https://carvel.dev/kapp/docs/latest/)), this lets the user be more aware of the changes a patch or a deploy has on the cluster.
@@ -53,7 +53,7 @@ The `kapp inspect` command enables users to view resources that have been groupe
 
 ## `kctrl`
 So what does our newest ally bring to the table?
-`kctrl` allows our users to interact with easily with `kapp-controllers` custom resources. It allows users to easily consume published Carvel packages and (will eventually help) interact with and debug [AppCRs](https://carvel.dev/kapp-controller/docs/latest/app-overview/) in a comprehensive manner.
+`kctrl` allows users to interact easily with `kapp-controllers` custom resources. It allows users to easily consume published Carvel packages and (will eventually help) interact with and debug [AppCRs](https://carvel.dev/kapp-controller/docs/latest/app-overview/) in a comprehensive manner.
 
 ### Get up and running with Carvel packages easily
 Initially, installing a package would require the consumer to author a PackageInstall CR which would refer to a particular Package and a version, along with Secrets or ConfigMaps defining values consumed by the PackageInstall and an assigned service account it uses to make changes.
@@ -64,12 +64,12 @@ This enables package consumers to be up and running, even if they are not ready 
 As we discussed earlier, some packages accept configuration in the form of a YAML file defining certain values. The structure of such files for a package is defined using an OpenAPI schema while authoring these packages. `kctrl` let's user surface details about the values accepted along with short descriptions of the effect they have.
 
 ### Re-configure and fix installations with ease
-`kctrl` also allows users to update the values supplied to a PackageInstall and bump versions for an installation easily as well. Of course, without the user having to author resources themselves.
+`kctrl` also allows users to update the values supplied to a PackageInstall and bump versions for an installation easily. Of course, without the user having to author resources themselves.
 
 ### What is coming up for `kctrl`?
-AppCRs are at the heart of Carvel's Packaging API. Different versions of a Package, are essentially different different workflows defined in an AppCR style so that they can be distributed - grouped as a PackageRepository if needed. And each PackageInstall resource decides which version of the AppCR should be running on a cluster.
+AppCRs are at the heart of Carvel's Packaging API. Different versions of a Package, are essentially different workflows defined in an AppCR style so that they can be distributed - multiple packages can be grouped together and distributed as a PackageRepository. And each PackageInstall resource decides which version of the AppCR should be running on a cluster.
 
-`kctrl` will be making it easier for users to interact with and managing AppCRs. This helps users better debug AppCRs defining GitOps (or other single-source-of-truth) workflows - which might have been authored by users or created due to a package installation.
+`kctrl` will be making it easier for users to interact with and managing AppCRs. This helps users better debug AppCRs defining GitOps (or other single-source-of-truth) workflows - which might have been authored by them or created due to a package installation.
 
 `kctrl` will:
 - Surface information essential for debugging erroneous AppCRs in a comprehensive manner to the user
