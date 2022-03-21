@@ -49,10 +49,14 @@ Some of the upcoming improvements aimed at demystifying what goes on under the h
 
 This [blog](/blog/making-the-most-out-of-clis/) illustrates how `kctrl` fits in with other CLIs interacting with resources on the cluster and enhances workflows.
 
+## Are you using Carvel?
+
+If you are using any of the Carvel tools, first we would like to thank you! Our goal is to grow the community, improve Carvel and help each other. One of the best ways that helps us do that is to know how others are using the tools. Please add a comment to [this pinned issue](https://github.com/vmware-tanzu/carvel/issues/213) with details on your use case with any of the Carvel tools.
+
 ## Join the Carvel Community
 
-How does you use App CRs and packages in your environments? How can we help you manage them better? We would love to build better experiences with you!
+Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community. Interested in joining this amazing community? There are several ways to get involved:
 
  * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
- * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+ * Find us on GitHub in the main [Carvel repo](https://github.com/vmware-tanzu/carvel), or, go to any of the Carvel [tool-specific repos](https://github.com/vmware-tanzu/carvel#carvel) that may interest you in contributing. Feel free to suggest how we can improve the project, the docs, or share any other feedback, as well as provide code contributions. 
  * Attend our Community Meetings, happening every Thursday at 10:30 am PT / 1:30 pm ET. Check out the [Community page](/community/) for full details on how to attend.
