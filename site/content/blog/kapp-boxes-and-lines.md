@@ -4,7 +4,7 @@ slug: kapp-boxes-and-lines-blog-post
 date: 2021-04-08
 author: Garrett Cheadle and Nanci Lancaster
 excerpt: "Interested in learning about or contributing to kapp? Take a behind the scenes look into how kapp deploys a simple application to kubernetes..."
-image: /img/logo.svg
+image: /img/kapp.svg
 tags: ['Garrett Cheadle', 'Nanci Lancaster', 'Garrett Cheadle and Nanci Lancaster']
 ---
 

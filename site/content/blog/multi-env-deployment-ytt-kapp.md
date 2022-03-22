@@ -4,7 +4,7 @@ slug: multi-env-deployment-ytt-kapp
 date: 2022-03-10
 author: Yash Sethiya
 excerpt: "Managing Multi-environments configuration with ytt and kapp"
-image: /img/logo.svg
+image: /img/kapp.svg
 tags: ['carvel', 'kapp', 'ytt']
 
 ---

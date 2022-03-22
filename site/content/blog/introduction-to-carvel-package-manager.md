@@ -4,7 +4,7 @@ slug: introduction-to-carvel-package-manager-for-kubernetes
 date: 2021-07-28
 author: Vibhas Kumar and Eli Wrenn
 excerpt: "In this blog post we will introduce you to kapp-controller as a Package Manager for Kubernetes..."
-image: /img/logo.svg
+image: /img/kapp-controller.svg
 tags: ['Vibhas Kumar', 'Eli Wrenn', 'Vibhas Kumar and Eli Wrenn']
 ---
 
