@@ -25,7 +25,7 @@ But before we can do this, lets try to establish some common terms
 - Image: content stored within OCI registry
 - Bundle: OCI Image that contains configuration and OCI images
 - OCI Terminology
-  ![OCI Terminology](../../static/images/blog/OCITerminology.png)
+  ![OCI Terminology](/images/blog/OCITerminology.png)
 
 ## Creating a Bundle and pushing it to the registry
 
@@ -45,7 +45,7 @@ In broad strokes it just means to create an OCI image from your filesystem in a 
 
 Let us see `imgpkg` in action:
 
-```shell
+```bash
 $ imgpkg push -b localhost:5000/cool-new-bundle:my-tag -f examples/basic-step-2
 dir: .
 dir: .imgpkg
@@ -79,7 +79,7 @@ contain some metadata they also can aggregate other OCI images. Let us look at t
 ImagesLock file we can see that it contains a reference to a different OCI
 image `index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0`
 
-```shell
+```bash
 $ cat examples/basic-step-2/.imgpkg/images.yml
 apiVersion: imgpkg.carvel.dev/v1alpha1
 kind: ImagesLock
@@ -93,7 +93,7 @@ So whenever we are copying a bundle, `imgpkg` does the leg work and copies all t
 by the bundle being copied. This way with a single command you can copy all the OCI images associated with the bundle to
 the destination. Let us see `imgpkg` in action
 
-```shell
+```bash
 $ imgpkg copy -b localhost:5000/cool-new-bundle:my-tag --to-repo my-company.repo.io:5000/destination-repo
 copy | exporting 2 images...
 copy | will export index.docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
@@ -149,7 +149,7 @@ The design decision tries to address the above constraints but causes some other
 
 Let us look at the Tags present in the Repository we pushed our bundle to
 
-```shell
+```bash
 $ imgpkg tag list -i localhost:5000/cool-new-bundle
 Tags
 
@@ -176,8 +176,8 @@ garbage collector of the registry would not remove this OCI image because of the
 
 Let us look at the tags present in the repository we copied the bundle into
 
-```shell
-imgpkg tag list -i my-company.repo.io:5000/destination-repo --registry-insecure
+```bash
+$ imgpkg tag list -i my-company.repo.io:5000/destination-repo --registry-insecure
 Tags
 
 Name
