@@ -12,7 +12,7 @@ use case. We will detail our guidance below.
 
 ## Starlark variables and functions
 ### Variables
-Notice how the values for `name`, `labels` are duplicated.
+Notice how the values for `name` and `labels` are duplicated.
 
 ```yaml
 apiVersion: apps/v1
@@ -48,6 +48,7 @@ To improve the maintainability of this code, we extract these values in Starlark
 #! config.yml
 #@ name = "frontend"
 #@ namespace = "default"
+#@ version = 0.1.0
 #@ replicas = 1
 
 apiVersion: apps/v1
@@ -56,7 +57,7 @@ metadata:
   name: #@ name
   namespace: #@ namespace
   labels:
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: #@ version
     app.kubernetes.io/name: #@ name
 spec:
   selector:
@@ -66,12 +67,12 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/version: 0.1.0
+        app.kubernetes.io/version: #@ version
         app.kubernetes.io/name: #@ name
     spec:
       containers:
         - name: #@ name
-          image: user/frontend
+          image: user/@ name
 ```
 Execute this template by running `ytt -f config.yml`.
 The result looks like the original template.
@@ -109,13 +110,17 @@ Limitation:
 We have duplicated logic using starlark variables in our code. Let's place that in a function.
 ```yaml
 #! config.yml
-
 #@ name = "frontend"
+#@ version = "0.1.0"
 #@ namespace = "default"
 #@ replicas = 1
 
-#@ def labels():
-#@   return ["app.kubernetes.io/component: controller","app.kubernetes.io/name:"]
+#@ def labels(name, version):
+#@   return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
+#@ end
+
+#@ def image(name):
+#@   return ["user/"+ name]
 #@ end
 
 apiVersion: apps/v1
@@ -123,7 +128,7 @@ kind: Deployment
 metadata:
   name: #@ name
   namespace: #@ namespace
-  labels: #@ labels()
+  labels: #@ labels(name, version)
 spec:
   selector:
     matchLabels:
@@ -131,11 +136,11 @@ spec:
   replicas: #@ replicas
   template:
     metadata:
-      labels: #@ labels()
+      labels: #@ labels(name, version)
     spec:
       containers:
         - name: #@ name
-          image: user/frontend
+          image: #@ image(name)
 ```
 Execute this template by running `ytt -f config.yml`.
 The result looks like the original template.
@@ -156,8 +161,8 @@ metadata:
   name: frontend
   namespace: default
   labels:
-    - 'app.kubernetes.io/component: controller'
-    - 'app.kubernetes.io/name:'
+    - app.kubernetes.io/version: 0.1.0
+    - app.kubernetes.io/name: frontend
 spec:
   selector:
     matchLabels:
@@ -166,15 +171,14 @@ spec:
   template:
     metadata:
       labels:
-        - 'app.kubernetes.io/component: controller'
-        - 'app.kubernetes.io/name:'
+      - app.kubernetes.io/version: 0.1.0
+      - app.kubernetes.io/name: frontend
     spec:
       containers:
         - name: frontend
           image: user/frontend
 
 ```
-
 ---
 ## Externalize a value with data values schema
 
@@ -186,19 +190,22 @@ In this case, `name`, `namespace` and `replicas` are values we want as data valu
 #! schema.yml
 #@data/values-schema
 ---
-#! implicitly ensures that any value for 'frontend' must be a string
 name: "frontend"
 namespace: "default"
 replicas: 1
+version: 0.1.0
 ```
-
 ```yaml
 #! config.yml
 ---
 #@ load("@ytt:data", "data")
 
-#@ def labels():
-#@   return ["app.kubernetes.io/component: controller","app.kubernetes.io/name:"]
+#@ def labels(name, version):
+#@   return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
+#@ end
+
+#@ def image(name):
+#@   return ["user/"+ name]
 #@ end
 
 apiVersion: apps/v1
@@ -206,24 +213,25 @@ kind: Deployment
 metadata:
   name: #@ data.values.name
   namespace: #@ data.values.namespace
-  labels: #@ labels()
+  labels: #@ labels(data.values.name, data.values.version)
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app:  #@ data.values.name
   replicas: #@ data.values.replicas
   template:
     metadata:
-      labels:  #@ labels()
+      labels: #@ labels(data.values.name, data.values.version)
     spec:
       containers:
-        - name: frontend
-          image: user/frontend
+        - name:  #@ data.values.name
+          image: #@ image(data.values.name)
 ```
 Execute ytt via `ytt -f config.yml -f schema.yml`.
+The result is identical to our original yaml.
 
 [explain what data values are best used for]
-[Limitation of this approach is function is part of same config can be externalized to use with multip[le configs]]
+[Limitation of this approach is that the function is part of same config can be externalized to use with multip[le configs]]
 [mention that data values should only be used for values that should be set by a configuration consumer]
 
 ## Starlark and library modules
@@ -235,8 +243,12 @@ Now, we can move our `labels()` function to a shared file.
 
 ```yaml
 #! values.star
-def labels():
-   return ["app.kubernetes.io/component: controller","app.kubernetes.io/name:"]
+def labels(name, version):
+  return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
+end
+
+def image(name):
+  return ["user/"+ name]
 end
 ```
 Import the function by loading it `load("values.star", "labels")` ...
@@ -247,36 +259,36 @@ Import the function by loading it `load("values.star", "labels")` ...
 #! config.yml
 ---
 #@ load("@ytt:data", "data")
-#@ load("values.star", "labels")
+#@ load("values.star", "labels", "image")
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: #@ data.values.name
   namespace: #@ data.values.namespace
-  labels: #@ labels()
+  labels: #@ labels(data.values.name, data.values.version)
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app:  #@ data.values.name
   replicas: #@ data.values.replicas
   template:
     metadata:
-      labels:  #@ labels()
+      labels: #@ labels(data.values.name, data.values.version)
     spec:
       containers:
-        - name: frontend
-          image: user/frontend
+        - name:  #@ data.values.name
+          image: #@ image(data.values.name)
 ```
 
 ```yaml
-#! schema.yml
 #@data/values-schema
 ---
-#! implicitly ensures that any value for 'frontend' must be a string
+#! implicitly ensures that any value for 'frontend' and `namespace`  must be a string
 name: "frontend"
 namespace: "default"
 replicas: 1
+version: 0.1.0
 ```
 Execute ytt via `ytt -f config.yml -f values.star -f schema.yml`
 
@@ -316,7 +328,7 @@ Libraries can be helpful
 more than 1 apps with common stuff similar template
 2. overlays applying to certain set of files..pull files and overlays in private library so that they would be evaluated seperately.
 3. In order to collect set of yamls that are about one component in a system of multiple components
-4. 
+
 [This ^ section is missing some detail on how these libraries are helpful]
 
 We want to place our function `labels()` in a library, we can add it under the `_ytt_lib` directory so that it can be easily imported using the name of the folder it is in: `library.get("helper_func")`.
@@ -329,32 +341,35 @@ We want to place our function `labels()` in a library, we can add it under the `
 #! _ytt_lib/app/config.yml
 #@ load("@ytt:data", "data")
 
-#@ def app_labels():
-#@ return ["app.kubernetes.io/component: controller","app.kubernetes.io/name:"]
+#@ def labels(name, version):
+#@   return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
 #@ end
 
-#@ def labels():
-app: #@ data.values.name
+#@ def app_labels(name):
+app: #@ name
 #@ end
 
+#@ def image(name):
+#@   return ["user/"+ name]
+#@ end
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: #@ data.values.name
   namespace: #@ data.values.namespace
-  labels: #@ app_labels()
+  labels: #@ labels(data.values.name, data.values.version)
 spec:
   selector:
-    matchLabels: #@ labels()
+    matchLabels: #@ app_labels(data.values.name)
   replicas: #@ data.values.replicas
   template:
     metadata:
-      labels: #@ app_labels()
+      labels: #@ labels(data.values.name, data.values.version)
     spec:
       containers:
         - name: default
-          image: #@ data.values.image
+          image: #@ image(data.values.name)
 ---
 apiVersion: v1
 kind: Service
@@ -365,10 +380,8 @@ spec:
   ports:
     - port: #@ data.values.port
       protocol: TCP
-  selector: #@ labels()
-
+  selector: #@ app_labels(data.values.name)
 ```
-
 ```yaml
 #! _ytt_lib/app/schema.yml
 #@data/values-schema
@@ -380,6 +393,7 @@ replicas: 1
 port: 80
 #@schema/nullable
 image: ""
+version: 0.1.0
 ```
 ```yaml
 #! config.yml
@@ -411,7 +425,7 @@ Run ytt with `.` to include all files in this directory.
 ```shell
 $ ytt -f .
 ```
-The result is the same as our original template:
+The result is the similar to  our original template with two different apps frontend and backend updated through library :
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -419,8 +433,8 @@ metadata:
   name: backend
   namespace: default
   labels:
-    - 'app.kubernetes.io/component: controller'
-    - 'app.kubernetes.io/name:'
+    - 'app.kubernetes.io/version: 0.1.0'
+    - 'app.kubernetes.io/name: backend'
 spec:
   selector:
     matchLabels:
@@ -429,12 +443,13 @@ spec:
   template:
     metadata:
       labels:
-        - 'app.kubernetes.io/component: controller'
-        - 'app.kubernetes.io/name:'
+        - 'app.kubernetes.io/version: 0.1.0'
+        - 'app.kubernetes.io/name: backend'
     spec:
       containers:
         - name: default
-          image: user/backend
+          image:
+            - user/backend
 ---
 apiVersion: v1
 kind: Service
@@ -454,8 +469,8 @@ metadata:
   name: frontend
   namespace: default
   labels:
-    - 'app.kubernetes.io/component: controller'
-    - ' app.kubernetes.io/name:'
+    - 'app.kubernetes.io/version: 0.1.0'
+    - 'app.kubernetes.io/name: frontend'
 spec:
   selector:
     matchLabels:
@@ -464,12 +479,13 @@ spec:
   template:
     metadata:
       labels:
-        - 'app.kubernetes.io/component: controller'
-        - ' app.kubernetes.io/name:'
+        - 'app.kubernetes.io/version: 0.1.0'
+        - 'app.kubernetes.io/name: frontend'
     spec:
       containers:
         - name: default
-          image: user/frontend
+          image:
+            - user/frontend
 ---
 apiVersion: v1
 kind: Service
