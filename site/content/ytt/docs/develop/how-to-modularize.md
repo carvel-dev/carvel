@@ -6,159 +6,18 @@ title: Modularity in ytt
 
 ytt offers a few approaches to code reuse: simple functions and variables, starlark modules, data values, or a private library.
 
-When users of `ytt` need to reuse code across more than one file, a common question that arises is, “Which approach I would choose, data values, function, starlark module or a private library?” While these features do address a similar
-problem space, we recommend using one feature versus the other depending on the
-use case. We will detail our guidance below.
+## Simple variable and function reuse
 
-## Starlark variables and functions
-### Variables
-Notice how the values for `name` and `labels` are duplicated.
+A foundational concept in ytt is using Starlark code to create variables or functions. Inside a YAML file, prefix Starlark code with `#@ ` (including a space afterwards) to use it inline.
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: frontend
-  namespace: default
-  labels:
-    app.kubernetes.io/version: 0.1.0
-    app.kubernetes.io/name: frontend
-spec:
-  selector:
-    matchLabels:
-      app: frontend
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: 0.1.0
-        app.kubernetes.io/name: frontend
-    spec:
-      containers:
-        - name: frontend
-          image: user/frontend
-```
-To improve the maintainability of this code, we extract these values in Starlark variables using ytt annotations. 
-
-[add some details about how starlark works in ytt]
-
-[mention that `#!` is a ytt comment, and that yaml comments won't work]
-
-```yaml
-#! config.yml
-#@ name = "frontend"
-#@ namespace = "default"
-#@ version = 0.1.0
-#@ replicas = 1
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: #@ name
-  namespace: #@ namespace
-  labels:
-    app.kubernetes.io/version: #@ version
-    app.kubernetes.io/name: #@ name
-spec:
-  selector:
-    matchLabels:
-      app: #@ name
-  replicas: #@ replicas
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: #@ version
-        app.kubernetes.io/name: #@ name
-    spec:
-      containers:
-        - name: #@ name
-          image: user/@ name
-```
-Execute this template by running `ytt -f config.yml`.
-The result looks like the original template.
+### Starlark variables
+In the code block below there are duplicated values for `name: frontend`, and other values that we may want to modify often.
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: default
-  labels:
-    app.kubernetes.io/version: 0.1.0
-    app.kubernetes.io/name: frontend
-spec:
-  selector:
-    matchLabels:
-      app: frontend
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: 0.1.0
-        app.kubernetes.io/name: frontend
-    spec:
-      containers:
-        - name: frontend
-          image: user/frontend
-```
-### Starlark functions
-[Functions](lang-ref-def.md) provide a way to extract common code into a seperate executable fragment/code snippet.
-
-[we need a more complelling use case for a function, currently our example can be done with only variables. I added the `label` key for this.]
-
-Limitation:
-We have duplicated logic using starlark variables in our code. Let's place that in a function.
-```yaml
-#! config.yml
-#@ name = "frontend"
-#@ version = "0.1.0"
-#@ namespace = "default"
-#@ replicas = 1
-
-#@ def labels(name, version):
-#@   return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
-#@ end
-
-#@ def image(name):
-#@   return ["user/"+ name]
-#@ end
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: #@ name
-  namespace: #@ namespace
-  labels: #@ labels(name, version)
-spec:
-  selector:
-    matchLabels:
-      app: #@ name
-  replicas: #@ replicas
-  template:
-    metadata:
-      labels: #@ labels(name, version)
-    spec:
-      containers:
-        - name: #@ name
-          image: #@ image(name)
-```
-Execute this template by running `ytt -f config.yml`.
-The result looks like the original template.
-
-### YAML fragment functions
-
-[[open question] I did not write this section yet. Our example doesn't have a use case for this either, but it is just another way to write a function so maybe we want to put it here]
-
-Execute this template by running `ytt -f config.yml`.
-
-[explain what is happening]
-
-The result is identical to our original yaml:
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: frontend
+  name: frontend-deployment
   namespace: default
   labels:
     - app.kubernetes.io/version: 0.1.0
@@ -171,14 +30,185 @@ spec:
   template:
     metadata:
       labels:
-      - app.kubernetes.io/version: 0.1.0
-      - app.kubernetes.io/name: frontend
+        - app.kubernetes.io/version: 0.1.0
+        - app.kubernetes.io/name: frontend
     spec:
       containers:
         - name: frontend
-          image: user/frontend
-
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    - app.kubernetes.io/version: 0.1.0
+    - app.kubernetes.io/name: frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 38080
+      targetPort: 8080
 ```
+
+Extract these values into Starlark variables. Starlark is a Python-like language. The code defined can be used in the same file.
+
+This is a ytt comment `#!`, use these instead of YAML comments `#` which are discouraged to ensure that all comments are intentional. ytt comments will be consumed during execution.
+
+```yaml
+#! config.yml
+
+#@ name = "frontend"
+#@ namespace = "default"
+#@ replicas = 1
+#@ version = 0.1.0
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #@ name + "-deployment"
+  namespace: #@ namespace
+  labels:
+    - app.kubernetes.io/version: #@ version
+    - app.kubernetes.io/name: #@ name
+spec:
+  selector:
+    matchLabels:
+      app: #@ name
+  replicas: #@ replicas
+  template:
+    metadata:
+      labels:
+        - app.kubernetes.io/version: #@ version
+        - app.kubernetes.io/name: #@ name
+    spec:
+      containers:
+        - name: #@ name
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ name + "-service"
+  labels:
+    - app.kubernetes.io/version: #@ version
+    - app.kubernetes.io/name: #@ name
+spec:
+  type: ClusterIP
+  ports:
+    - port: 38080
+      targetPort: 8080
+```
+Execute this template by running `ytt -f config.yml`.
+
+The result is identical to our original template, and we can be sure all our repeated values will be consistent and easier to modify.
+
+### Functions
+[Functions](lang-ref-def.md) provide a way to extract common code into a separate executable fragment/code snippet.
+
+There are two ways to define a function in ytt, a Starlark function, or a yaml fragment function. We will use both here.
+
+Starlark functions make use of a `return` statement. Because of this they can be great for returning a value that must be transformed in some way.
+
+YAML fragment functions differ in that they are YAML structure wrapped in a Starlark function definition. Everything inside the function will be the return value. They can be great when needing to return nested YAML structure, or key and value pairs.
+
+Going back to the previous solution, we can see each `labels` key is duplicated YAML, like `app.kubernetes.io/version: #@ version`.
+```yaml
+#! config.yml
+
+#@ name = "frontend"
+#@ namespace = "default"
+#@ version = 0.1.0
+#@ replicas = 1
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #@ name + "-deployment"
+  namespace: #@ namespace
+  labels:
+    - app.kubernetes.io/version: #@ version
+    - app.kubernetes.io/name: #@ name
+spec:
+  selector:
+    matchLabels:
+      app: #@ name
+  replicas: #@ replicas
+  template:
+    metadata:
+      labels:
+        - app.kubernetes.io/version: #@ version
+        - app.kubernetes.io/name: #@ name
+    spec:
+      containers:
+        - name: #@ name
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ name + "-service"
+  labels:
+    - app.kubernetes.io/version: #@ version
+    - app.kubernetes.io/name: #@ name
+spec:
+  type: ClusterIP
+  ports:
+    - port: 38080
+      targetPort: 8080
+```
+
+Move the duplicated `labels` keys into a YAML fragment function, and move name calculation into a Starlark function.
+
+```yaml
+#! config.yml
+
+#@ name = "frontend"
+#@ namespace = "default"
+#@ version = "0.1.0"
+#@ replicas = 1
+
+#! Starlark function
+
+#@ def fmt_name(name, type):
+#@   return "{}-{}".format(name, type)
+#@ end
+
+#! YAML fragment function 
+
+#@ def labels(name, version):
+app.kubernetes.io/version: #@ version
+app.kubernetes.io/name: #@ name
+#@ end
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #@ fmt_name(name, "deployment)
+  namespace: #@ namespace
+  labels: #@ labels(name, version)
+spec:
+  replicas: #@ replicas
+  template:
+    spec:
+      containers:
+        - name: #@ name
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ fmt_name(name, "service")
+  labels: #@ labels(name, version)
+spec:
+  type: ClusterIP
+  ports:
+    - port: 38080
+      targetPort: 8080
+```
+Execute this template by running `ytt -f config.yml`.
+Again, the result is identical to our original template, and we can be sure all our repeated sections of code will be consistent.
+
 ---
 ## Externalize a value with data values schema
 
