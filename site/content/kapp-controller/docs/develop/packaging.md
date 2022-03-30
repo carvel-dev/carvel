@@ -119,7 +119,7 @@ spec:
   # Name of the entity distributing the package (optional; string)
   providerName: VMware
   # List of maintainer info for the package.
-  # Currently only supports the name key. (optional; array of maintner info)
+  # Currently only supports the name key. (optional; array of maintainer info)
   maintainers:
   - name: "Person 1"
   - name: "Person 2"
@@ -146,7 +146,7 @@ metadata:
   # The namespace to make packages available to
   namespace: my-ns
 spec:
-  # pauses _future_ reconcilation; does _not_ affect
+  # pauses _future_ reconciliation; does _not_ affect
   # currently running reconciliation (optional; default=false)
   paused: true
   # specifies the length of time to wait, in time + unit
