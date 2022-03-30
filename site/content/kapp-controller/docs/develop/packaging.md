@@ -45,6 +45,15 @@ spec:
   - "MIT"
   # Timestamp of release (iso8601 formatted string; optional)
   releasedAt: 2021-05-05T18:57:06Z
+  # IncludedSoftware can be used to show the software contents of a Package.
+  # This is especially useful if the underlying versions do not match the Package version
+  includedSoftware:
+  - displayName: fluent-bit
+    version: 1.5.3
+    description: fluent bit
+  - displayName: fluent-webhook
+    version: 2.3.4
+    description: a fluent webhook
   # valuesSchema can be used to show template values that
   # can be configured by users when a Package is installed.
   # These values should be specified in an OpenAPI schema format. (optional)
