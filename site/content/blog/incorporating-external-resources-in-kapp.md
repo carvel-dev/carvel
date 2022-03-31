@@ -4,7 +4,7 @@ slug: incorporating-external-resources-in-kapp
 date: 2022-01-31
 author: Praveen Rewar
 excerpt: "How to use kapp's exists annotation to wait for resources created outside of direct configuration"
-image: /img/logo.svg
+image: /img/kapp.svg
 tags: ['Praveen', 'kapp', 'exists']
 ---
 

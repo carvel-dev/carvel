@@ -4,7 +4,7 @@ slug: migrate-existing-resources-to-a-new-kapp-app
 date: 2022-03-03
 author: Praveen Rewar
 excerpt: "Migrate from kubectl apply to kapp or move resources across apps"
-image: /img/logo.svg
+image: /img/kapp.svg
 tags: ['carvel', 'kapp']
 
 ---
