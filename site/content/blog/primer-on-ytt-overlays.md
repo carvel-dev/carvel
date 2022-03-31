@@ -29,4 +29,4 @@ If you have any further questions, we're a mere Slack message away: [Kubernetes#
 Without further ado, let's get overlayin'!
 
 <!-- https://gohugo.io/content-management/shortcodes/#youtube -->
-{{< youtube id="3IDetDhoC34" title="Primer on ytt Overlays" >}}
+{{< youtube id="15YGMYZ7Vv0" title="Primer on ytt Overlays" >}}
