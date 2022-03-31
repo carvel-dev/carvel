@@ -26,4 +26,7 @@ Feel free to just sit back and take it all in. Some learn better by doing; here'
 
 If you have any further questions, we're a mere Slack message away: [Kubernetes#carvel](https://kubernetes.slack.com/archives/CH8KCCKA5) (if you need one, grab an invite here: http://slack.k8s.io).
 
-Without further ado... [let's get overlayin'](https://youtu.be/15YGMYZ7Vv0)!
+Without further ado, let's get overlayin'!
+
+<!-- https://gohugo.io/content-management/shortcodes/#youtube -->
+{{< youtube id="15YGMYZ7Vv0" title="Primer on ytt Overlays" >}}
