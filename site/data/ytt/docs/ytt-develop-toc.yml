@@ -13,6 +13,8 @@ toc:
         url: /yaml-primer
   - title: How To
     subfolderitems:
+      - page: Get Started & Modularize code
+        url: /how-to-modularize
       - page: Use Data Values
         url: /how-to-use-data-values
       - page: Write Schema

@@ -1,19 +1,22 @@
 ---
-title: Modularity in ytt
+title: Getting started
 ---
 
 ## Overview
 
-ytt offers a few approaches to code reuse: simple functions and variables, starlark modules, data values, or a private library.
+Configuration authors looking for examples of how to use functions and variables, [modules](/ytt/docs/develop/lang-ref-load/#files), [data values schema](/ytt/docs/develop/how-to-write-schema/), or a [custom library](/ytt/docs/develop/lang-ref-ytt-library/), will see concrete examples in this guide. Language reference introduces concepts of basic syntax like ytt directives and ytt annotations [definitions](/ytt/docs/develop/faq/#when-should-i-include-a-space-in-my-ytt-comment-does-it-matter-is-it-load-or--load-overlaymatch-or--overlaymatch) (ie:`#@`). See the ytt playground ['getting started'](/ytt/#example:example-hello-world) section for additional examples.
 
-## Simple variable and function reuse
+## Variable and function reuse
 
-A foundational concept in ytt is using Starlark code to create variables or functions. Inside a YAML file, prefix Starlark code with `#@ ` (including a space afterwards) to use it inline.
+A foundational concept in ytt is using Starlark code to create variables or functions. Inside a YAML file, prefix Starlark code with a ytt annotation `#@ ` (including a space afterwards) to use it inline.
 
 ### Starlark variables
 In the code block below there are duplicated values for `name: frontend`, and other values that we may want to modify often.
 
+This is a ytt comment `#!`, use these instead of YAML comments `#` which are [discouraged](/ytt/docs/develop/faq/#why-is-ytt-complaining-about-unknown-comment-syntax-cant-i-write-standard-yaml-comments-) to ensure that all comments are intentional. Comments will be consumed during execution.
 ```yaml
+#! config.yml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -51,17 +54,15 @@ spec:
       targetPort: 8080
 ```
 
-Extract these values into Starlark variables. Starlark is a Python-like language. The code defined can be used in the same file.
-
-This is a ytt comment `#!`, use these instead of YAML comments `#` which are discouraged to ensure that all comments are intentional. ytt comments will be consumed during execution.
+Using Starlark's Python-like syntax, extract these values into Starlark variables. All the code defined here can be used in the same file.
 
 ```yaml
 #! config.yml
 
 #@ name = "frontend"
 #@ namespace = "default"
-#@ replicas = 1
 #@ version = 0.1.0
+#@ replicas = 1
 
 apiVersion: apps/v1
 kind: Deployment
@@ -101,10 +102,10 @@ spec:
 ```
 Execute this template by running `ytt -f config.yml`.
 
-The result is identical to our original template, and we can be sure all our repeated values will be consistent and easier to modify.
+The result is identical to our original template, and now we can be sure all our repeated values will be consistent and easier to modify.
 
 ### Functions
-[Functions](lang-ref-def.md) provide a way to extract common code into a separate executable fragment/code snippet.
+[Functions](lang-ref-def.md) provide a way to extract common code into a separate fragment or code snippet.
 
 There are two ways to define a function in ytt, a Starlark function, or a yaml fragment function. We will use both here.
 
@@ -112,7 +113,7 @@ Starlark functions make use of a `return` statement. Because of this they can be
 
 YAML fragment functions differ in that they are YAML structure wrapped in a Starlark function definition. Everything inside the function will be the return value. They can be great when needing to return nested YAML structure, or key and value pairs.
 
-Going back to the previous solution, we can see each `labels` key is duplicated YAML, like `app.kubernetes.io/version: #@ version`.
+Going back to the previous solution, we can see each `labels` key is duplicated YAML, like `app.kubernetes.io/version: #@ version`. There is also some duplicated string manipulation in the `metadata.name` key.
 ```yaml
 #! config.yml
 
@@ -170,7 +171,7 @@ Move the duplicated `labels` keys into a YAML fragment function, and move name c
 
 #! Starlark function
 
-#@ def fmt_name(name, type):
+#@ def name(name, type):
 #@   return "{}-{}".format(name, type)
 #@ end
 
@@ -184,7 +185,7 @@ app.kubernetes.io/name: #@ name
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ fmt_name(name, "deployment)
+  name: #@ name(name, "deployment)
   namespace: #@ namespace
   labels: #@ labels(name, version)
 spec:
@@ -198,7 +199,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ fmt_name(name, "service")
+  name: #@ name(name, "service")
   labels: #@ labels(name, version)
 spec:
   type: ClusterIP
@@ -212,244 +213,210 @@ Again, the result is identical to our original template, and we can be sure all 
 ---
 ## Externalize a value with data values schema
 
-Use [Data values schema](how-to-write-schema.md) to externalize a configuration value. When externalizing a value, you can also set a default value for it, and provide implicit or explicit type validation. Data values schema are used by configuration authors to declare a data value it as an input to templates by naming it in a schema file. It can then be used in templates, and configuration consumers can modify it by providing a separate [Data Value](how-to-use-data-values.md) file.
+Use [Data values schema](how-to-write-schema.md) to externalize a configuration value. When externalizing a value, you can also set a default value for it, and provide implicit type validation. Data values schema are used by configuration authors to declare a data value it as an input to templates by naming it in a schema file. It can then be used in templates, and configuration consumers can modify it by providing a separate [Data Value](how-to-use-data-values.md) file.
 
-In this case, `name`, `namespace` and `replicas` are values we want as data values input, so that we can easily change them for different applications.
+Building on the previous solution, `name`, `namespace` and `replicas` are values we want as data values input, so that we can easily change them for different applications or environments.
 
 ```yaml
 #! schema.yml
 #@data/values-schema
 ---
-name: "frontend"
-namespace: "default"
-replicas: 1
-version: 0.1.0
+name: "frontend"     #! ensures that any value for 'frontend' must be a string
+namespace: "default" #! ensures that any value for 'default' must be a string
+version: 0.1.0       #! ensures that any value for 'version' must be a string
+replicas: 1          #! ensures that any value for 'replicas' must be a int
 ```
 ```yaml
 #! config.yml
----
+
 #@ load("@ytt:data", "data")
+---
+#@ def name(name, type):
+#@   return "{}-{}".format(name, type)
+#@ end
 
 #@ def labels(name, version):
-#@   return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
-#@ end
-
-#@ def image(name):
-#@   return ["user/"+ name]
+app.kubernetes.io/version: #@ version
+app.kubernetes.io/name: #@ name
 #@ end
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ data.values.name
+  name: #@ name(name, "deployment")
   namespace: #@ data.values.namespace
   labels: #@ labels(data.values.name, data.values.version)
 spec:
-  selector:
-    matchLabels:
-      app:  #@ data.values.name
   replicas: #@ data.values.replicas
   template:
-    metadata:
-      labels: #@ labels(data.values.name, data.values.version)
     spec:
       containers:
-        - name:  #@ data.values.name
-          image: #@ image(data.values.name)
+        - name:  #@ name(name, "service")
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ name(data.values.name, "service")
+  labels: #@ labels(data.values.name, version)
+spec:
+  type: ClusterIP
+  ports:
+    - port: 38080
+      targetPort: 8080
 ```
+
 Execute ytt via `ytt -f config.yml -f schema.yml`.
-The result is identical to our original yaml.
+The result is identical to our original template.
 
-[explain what data values are best used for]
-[Limitation of this approach is that the function is part of same config can be externalized to use with multip[le configs]]
-[mention that data values should only be used for values that should be set by a configuration consumer]
+## Extract code into modules
 
-## Starlark and library modules
+Modules contain code in a file that can be imported and used in templates. 
 
-Starlark modules are used to extract code into a module that can be imported into templates. Starlark modules are Starlark files with `.star` extension.
-Library modules use `.lib.yml` extension. These two files are imported indentically, and the main difference is that Starlark modules contain pure starlark, and library modules are YAML structures with Starlark code contained in `#@` annotations, just like the code we have seen thus far.
+Starlark modules have the `.star` extension.
 
-Now, we can move our `labels()` function to a shared file.
+Library modules have the `.lib.yml` extension. 
+
+These two files are imported identically, and the main difference is that Starlark modules contain only starlark, and library modules are YAML structures with Starlark code contained in `#@` annotations, just like the code we have seen thus far.
+
+### Starlark module
+Following the last solution, move the `name()` function to a separate Starlark file.
+```yaml
+#! format.star
+
+#@ def name(name, type):
+#@   return "{}-{}".format(name, type)
+#@ end
+```
+Import the module by loading it `#@ load("format.star", "name")`.
+
+### Library module
+Move the `labels()` function to a separate YAML file.
 
 ```yaml
-#! values.star
-def labels(name, version):
-  return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
-end
+#! labels.lib.yml
 
-def image(name):
-  return ["user/"+ name]
-end
+#@ def labels(name, version):
+app.kubernetes.io/version: #@ version
+app.kubernetes.io/name: #@ name
+#@ end
 ```
-Import the function by loading it `load("values.star", "labels")` ...
+Import the module by loading it `#@ load("labels.lib.yml", "name")`.
 
-[Explain how load works here. What is the first param, and what is the second?]
+The load function takes a module file path, and secondly the name of the symbol to export from the module. For multiple symbols, use a comma separated list of strings. If your module has many symbols to export, consider putting them in a list, and exporting the list.
 
 ```yaml
 #! config.yml
----
-#@ load("@ytt:data", "data")
-#@ load("values.star", "labels", "image")
 
+#@ load("@ytt:data", "data")
+
+#@ load("labels.lib.yml", "labels")
+#@ load("format.star", "name")
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ data.values.name
+  name: #@ name(name, "deployment")
   namespace: #@ data.values.namespace
   labels: #@ labels(data.values.name, data.values.version)
 spec:
-  selector:
-    matchLabels:
-      app:  #@ data.values.name
   replicas: #@ data.values.replicas
   template:
-    metadata:
-      labels: #@ labels(data.values.name, data.values.version)
     spec:
       containers:
-        - name:  #@ data.values.name
-          image: #@ image(data.values.name)
+        - name:  #@ name(name, "service")
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ name(data.values.name, "service")
+  labels: #@ labels(data.values.name, version)
+spec:
+  type: ClusterIP
+  ports:
+    - port: 38080
+      targetPort: 8080
 ```
 
 ```yaml
 #@data/values-schema
 ---
-#! implicitly ensures that any value for 'frontend' and `namespace`  must be a string
 name: "frontend"
 namespace: "default"
 replicas: 1
 version: 0.1.0
 ```
-Execute ytt via `ytt -f config.yml -f values.star -f schema.yml`
+```shell
+$ tree .
+.
+├── config.yml
+├── schema.yml
+├── format.star
+└── labels.lib.yml
+```
 
-[[open question] Currently this example only uses a `.star` file, do we want to also show how to use a `.lib.yml` file?]
+Execute ytt via `ytt -f config.yml -f schema.yml -f labels.lib.yml -f format.star`
 
-When someone would prefer .lib.yml over .star?
-1.One can only write sharable fragment functions in .lib.yml.
-(There is no return statement)
-2.star functions return values
-functions that don't involve yaml processing
+## Extract functionality into custom library
+You can extract a whole set of input files (i.e. templates, overlays, data values, etc.) into a "Library" in the `_ytt_lib/` folder. A library can be thought of as a separate self-contained ytt invocation. Libraries are _not_ automatically included in `ytt` output. They must be programmatically imported using the [`library` module](/ytt/docs/develop/lang-ref-ytt-library/), configured, evaluated, and inserted into a template that is part of the output.
 
+### Uses of a custom library
+Libraries are helpful when
+* importing 3rd party configuration into one combined piece of configuration. Such as from a division of responsibility or shared configuration.
+  * For example, having a library that provides helpful functions that needs to be used across multiple teams. Authors may use a tool to ensure these stay in sync.
+* A template is needed by two distinct applications like frontend and backend.
+* There is a need to update one application with an evaluated value from the other. [Playground example here](/ytt/#example:example-ytt-library-module).
 
-[[open question] We may want to add an example of how to export multiple functions from a module here. That is once our example has a use case for it.]
-
-## private library
-You can extract a whole set of input files (i.e. templates, overlays, data values, etc.) into a "Library" in the `_ytt_lib/` folder. A library or sometimes called a 'private library' can be thought of as a separate self-contained ytt invocation. Libraries are _not_ automatically included in `ytt` output. They must be programmatically loaded, configured, evaluated, and inserted into a template that is part of the output.
-
-The directory structure may look like:
+All the previous section's files have moved to `_ytt_lib/resources`:
 
 ```shell
 config/
 $ tree .
 ├── _ytt_lib/
-│   └── helper_func/
-│       └── config.lib.yml
+│   └── resources/
+│       ├── config.yml
+│       ├── schema.yml
+│       ├── labels.lib.yml
+│       └── format.star
 ├── config.yml
-└── schema.yml
+└── values.yml
 ```
+In this example we want the resources from the library for a frontend application, and also for a backend application. We will use this library to create both of these.
 
-Libraries can be helpful 
-* to import configuration 3rd party sources, into one combined piece of configuration. Such as having one library per subproject. 
-* Libraries can also be helpful for sharing configuration across multiple codebases. For example, having a generic library that provides helpful functions that needs to be used across multiple teams. (advanced detail: these libraries can be vendir'd into a project from one common place.)
-* When you have a shared template used by two different applications like frontend and backend, a library can be used...
-* Also it can provide additional capabilities like dynamically updating values in one template there is a need to update one application with an evaluated value from the other. [Playground example here](https://carvel.dev/ytt/#example:example-ytt-library-module).
+Focusing on only the two top level files, `config.yml`, and `values.yml`, we import the custom library, provide it data values for a frontend and separately for a backend, and use `#@ template.replace()` to insert it inline so it shows in the output.
 
-1. more than 1 instance of collection of files 
-more than 1 apps with common stuff similar template
-2. overlays applying to certain set of files..pull files and overlays in private library so that they would be evaluated seperately.
-3. In order to collect set of yamls that are about one component in a system of multiple components
-
-[This ^ section is missing some detail on how these libraries are helpful]
-
-We want to place our function `labels()` in a library, we can add it under the `_ytt_lib` directory so that it can be easily imported using the name of the folder it is in: `library.get("helper_func")`.
-
-[Our example is lacking of a real life reason to be used in a library here]
-
-[Mention that in order to import a function from a file in a private library, it must be named .lib.yml or .star.]
-
-```yaml
-#! _ytt_lib/app/config.yml
-#@ load("@ytt:data", "data")
-
-#@ def labels(name, version):
-#@   return ["app.kubernetes.io/version: "+ version, "app.kubernetes.io/name: " + name]
-#@ end
-
-#@ def app_labels(name):
-app: #@ name
-#@ end
-
-#@ def image(name):
-#@   return ["user/"+ name]
-#@ end
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: #@ data.values.name
-  namespace: #@ data.values.namespace
-  labels: #@ labels(data.values.name, data.values.version)
-spec:
-  selector:
-    matchLabels: #@ app_labels(data.values.name)
-  replicas: #@ data.values.replicas
-  template:
-    metadata:
-      labels: #@ labels(data.values.name, data.values.version)
-    spec:
-      containers:
-        - name: default
-          image: #@ image(data.values.name)
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: #@ data.values.name
-  namespace: #@ data.values.namespace
-spec:
-  ports:
-    - port: #@ data.values.port
-      protocol: TCP
-  selector: #@ app_labels(data.values.name)
-```
-```yaml
-#! _ytt_lib/app/schema.yml
-#@data/values-schema
----
-namespace: default
-#@schema/nullable
-name: app
-replicas: 1
-port: 80
-#@schema/nullable
-image: ""
-version: 0.1.0
-```
 ```yaml
 #! config.yml
-#@ load("@ytt:template", "template")
-#@ load("@ytt:library", "library")
 #@ load("@ytt:data", "data")
+#@ load("@ytt:library", "library")
+#@ load("@ytt:template", "template")
 
-#@ default_app = library.get("app")
+#@ resources_lib = library.get("resources")
 
-#@ def backend():
-name: backend
-image: user/backend
-#@ end
+#@ backend = resources_lib.with_data_values(data.values.backend)
 
-#@ backend = default_app.with_data_values(backend())
-
-#@ def frontend():
-name: frontend
-image: user/frontend
-#@ end
-
-#@ frontend = default_app.with_data_values(frontend())
+#@ frontend = resources_lib.with_data_values(data.values.frontend)
 
 --- #@ template.replace(backend.eval())
 --- #@ template.replace(frontend.eval())
 ```
+Provide the values that we pass to the library.
+```yaml
+#@data/values-schema
+---
+backend:
+  name: "frontend"
+  namespace: "dev"
+  replicas: 1
+  version: 0.5.0
+frontend:
+  name: "backend"
+  namespace: "dev"
+  replicas: 1
+  version: 0.2.0
+```
+
 Run ytt with `.` to include all files in this directory.
 
 ```shell
@@ -460,73 +427,55 @@ The result is the similar to  our original template with two different apps fron
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
-  namespace: default
+  name: frontend-deployment
+  namespace: dev
   labels:
-    - 'app.kubernetes.io/version: 0.1.0'
-    - 'app.kubernetes.io/name: backend'
+    - 'app.kubernetes.io/version: 0.5.0'
+    - 'app.kubernetes.io/name: frontend'
 spec:
-  selector:
-    matchLabels:
-      app: backend
   replicas: 1
   template:
-    metadata:
-      labels:
-        - 'app.kubernetes.io/version: 0.1.0'
-        - 'app.kubernetes.io/name: backend'
     spec:
       containers:
-        - name: default
-          image:
-            - user/backend
+        - name: frontend
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
-  namespace: default
+  name: frontend-service
+  namespace: dev
 spec:
+  type: ClusterIP
   ports:
-    - port: 80
-      protocol: TCP
-  selector:
-    app: backend
+    - port: 38080
+      targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: default
+  name: backend-deployment
+  namespace: dev
   labels:
-    - 'app.kubernetes.io/version: 0.1.0'
-    - 'app.kubernetes.io/name: frontend'
+    - 'app.kubernetes.io/version: 0.2.0'
+    - 'app.kubernetes.io/name: backend'
 spec:
-  selector:
-    matchLabels:
-      app: frontend
   replicas: 1
   template:
-    metadata:
-      labels:
-        - 'app.kubernetes.io/version: 0.1.0'
-        - 'app.kubernetes.io/name: frontend'
     spec:
       containers:
-        - name: default
-          image:
-            - user/frontend
+        - name: backend
+          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
-  namespace: default
+  name: backend-service
+  namespace: dev
 spec:
+  type: ClusterIP
   ports:
-    - port: 80
-      protocol: TCP
-  selector:
-    app: frontend
+    - port: 38080
+      targetPort: 8080
 ```
 
