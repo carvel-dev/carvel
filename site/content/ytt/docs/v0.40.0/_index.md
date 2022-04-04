@@ -35,7 +35,8 @@ example on the playground
 For more around overlaying...
 - see overlaying in action through a progressive set of examples in [the `ytt` Playground](/ytt/#example:example-match-all-docs);
 - learn more about Overlays in [ytt Overlays overview](ytt-overlays.md);
-- for a reference of all Overlay functionality, see [Overlay module](lang-ref-ytt-overlay.md).
+- for a reference of all Overlay functionality, see [Overlay module](lang-ref-ytt-overlay.md);
+- for a screencast-formatted in-depth introduction to writing and using overlays, watch [Primer on `ytt` Overlays](/blog/primer-on-ytt-overlays/).
 
 ## Modularizing
 

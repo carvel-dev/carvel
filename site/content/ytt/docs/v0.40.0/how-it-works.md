@@ -212,3 +212,4 @@ To learn more about...
     1. go to the [ytt Playground](/ytt/#example:example-match-all-docs)
     2. find the "Overlays" group header, click on it to reveal the group _(you can close the "Basics" group by clicking on it)_.
   - read an introduction at "[Using Overlays](ytt-overlays.md)"
+  - watch [Primer on `ytt` Overlays](/blog/primer-on-ytt-overlays/) for a screencast-formatted in-depth introduction to writing and using overlays.
