@@ -73,3 +73,4 @@ contents:
 - [Overlay example](/ytt/#example:example-overlay-files) in the ytt Playground to try it out, yourself.
 - [ytt Library: Overlay module](lang-ref-ytt-overlay.md) for reference of all overlay annotations and functions.
 - [Data Values vs Overlays](data-values-vs-overlays.md) for when to use one mechanism over the other.
+- [Primer on `ytt` Overlays](/blog/primer-on-ytt-overlays/) for a screencast-formatted in-depth introduction to writing and using overlays.

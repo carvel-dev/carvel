@@ -16,9 +16,13 @@ Each modification is composed of:
 - an action (via an [`@overlay/(action)`](#action-annotations) annotation), describing the edit.
 
 Once written, an overlay can be applied in one of two ways:
+- on all rendered templates, [**declaratively**, via YAML documents annotated with `@overlay/match`](#overlays-as-files); this is the most common approach.
+- on selected documents, [**programmatically**, via `overlay.apply()`](#programmatic-access).
 
-- on all rendered templates, [declaratively, via YAML documents annotated with `@overlay/match`](#overlays-as-files); this is the most common approach.
-- on selected documents, [programmatically, via `overlay.apply()`](#programmatic-access).
+Programmatic overlays are applied immediately (while the contained template is being evaluated).
+Declarative overlays are applied in the "Apply Overlays" step as described in [How it works](how-it-works.md).
+
+_(For a step-by-step primer on writing and using overlays, watch [Primer on `ytt` Overlays](/blog/primer-on-ytt-overlays/).)_
 
 ---
 ## Overlays as files
