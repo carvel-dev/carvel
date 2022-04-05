@@ -23,8 +23,8 @@ metadata:
   name: frontend-deployment
   namespace: default
   labels:
-    - app.kubernetes.io/version: 0.1.0
-    - app.kubernetes.io/name: frontend
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/name: frontend
 spec:
   selector:
     matchLabels:
@@ -33,25 +33,24 @@ spec:
   template:
     metadata:
       labels:
-        - app.kubernetes.io/version: 0.1.0
-        - app.kubernetes.io/name: frontend
+        app.kubernetes.io/version: 0.1.0
+        app.kubernetes.io/name: frontend
     spec:
       containers:
         - name: frontend
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
   labels:
-    - app.kubernetes.io/version: 0.1.0
-    - app.kubernetes.io/name: frontend
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/name: frontend
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
 ```
 
 Using Starlark's Python-like syntax, extract these values into Starlark variables. All the code defined here can be used in the same file.
@@ -97,8 +96,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
 ```
 Execute this template by running `ytt -f config.yml`.
 
@@ -107,7 +105,7 @@ The result is identical to our original template, and now we can be sure all our
 ### Functions
 [Functions](lang-ref-def.md) provide a way to extract common code into a separate fragment or code snippet.
 
-There are two ways to define a function in ytt, a Starlark function, or a yaml fragment function. We will use both here.
+There are two ways to define a function in ytt, a Starlark function, or a YAML fragment function.
 
 Starlark functions make use of a `return` statement. Because of this they can be great for returning a value that must be transformed in some way.
 
@@ -119,7 +117,7 @@ Going back to the previous solution, we can see each `labels` key is duplicated 
 
 #@ name = "frontend"
 #@ namespace = "default"
-#@ version = 0.1.0
+#@ version = "0.1.0"
 #@ replicas = 1
 
 apiVersion: apps/v1
@@ -143,7 +141,7 @@ spec:
     spec:
       containers:
         - name: #@ name
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
@@ -155,8 +153,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
 ```
 
 Move the duplicated `labels` keys into a YAML fragment function, and move name calculation into a Starlark function.
@@ -170,13 +167,11 @@ Move the duplicated `labels` keys into a YAML fragment function, and move name c
 #@ replicas = 1
 
 #! Starlark function
-
-#@ def name(name, type):
+#@ def fmt(name, type):
 #@   return "{}-{}".format(name, type)
 #@ end
 
 #! YAML fragment function 
-
 #@ def labels(name, version):
 app.kubernetes.io/version: #@ version
 app.kubernetes.io/name: #@ name
@@ -185,7 +180,7 @@ app.kubernetes.io/name: #@ name
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ name(name, "deployment)
+  name: #@ fmt(name, "deployment")
   namespace: #@ namespace
   labels: #@ labels(name, version)
 spec:
@@ -194,18 +189,17 @@ spec:
     spec:
       containers:
         - name: #@ name
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ name(name, "service")
+  name: #@ fmt(name, "service")
   labels: #@ labels(name, version)
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
 ```
 Execute this template by running `ytt -f config.yml`.
 Again, the result is identical to our original template, and we can be sure all our repeated sections of code will be consistent.
@@ -213,9 +207,9 @@ Again, the result is identical to our original template, and we can be sure all 
 ---
 ## Externalize a value with data values schema
 
-Use [Data values schema](how-to-write-schema.md) to externalize a configuration value. When externalizing a value, you can also set a default value for it, and provide implicit type validation. Data values schema are used by configuration authors to declare a data value it as an input to templates by naming it in a schema file. It can then be used in templates, and configuration consumers can modify it by providing a separate [Data Value](how-to-use-data-values.md) file.
+Use [Data values schema](how-to-write-schema.md) to externalize a configuration value. When externalizing a value, you can also set a default value for it, and provide implicit type validation. Data values schema are used by configuration authors to declare a data value as an input to templates by naming it in a schema file. It can then be used in templates, and configuration consumers can modify it by providing a separate [Data Value](how-to-use-data-values.md) file.
 
-Building on the previous solution, `name`, `namespace` and `replicas` are values we want as data values input, so that we can easily change them for different applications or environments.
+Building on the previous solution, `name`, `namespace`, `version`, and `replicas` are values we want as data values input, so that we can easily change them for different applications or environments.
 
 ```yaml
 #! schema.yml
@@ -223,15 +217,15 @@ Building on the previous solution, `name`, `namespace` and `replicas` are values
 ---
 name: "frontend"     #! ensures that any value for 'frontend' must be a string
 namespace: "default" #! ensures that any value for 'default' must be a string
-version: 0.1.0       #! ensures that any value for 'version' must be a string
+version: "0.1.0"     #! ensures that any value for 'version' must be a string
 replicas: 1          #! ensures that any value for 'replicas' must be a int
 ```
 ```yaml
 #! config.yml
 
 #@ load("@ytt:data", "data")
----
-#@ def name(name, type):
+
+#@ def fmt(name, type):
 #@   return "{}-{}".format(name, type)
 #@ end
 
@@ -243,7 +237,7 @@ app.kubernetes.io/name: #@ name
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ name(name, "deployment")
+  name: #@ fmt(data.values.name, "deployment")
   namespace: #@ data.values.namespace
   labels: #@ labels(data.values.name, data.values.version)
 spec:
@@ -251,19 +245,18 @@ spec:
   template:
     spec:
       containers:
-        - name:  #@ name(name, "service")
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+        - name:  #@ data.values.name
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ name(data.values.name, "service")
-  labels: #@ labels(data.values.name, version)
+  name: #@ fmt(data.values.name, "deployment")
+  labels: #@ labels(data.values.name, data.values.version)
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
 ```
 
 Execute ytt via `ytt -f config.yml -f schema.yml`.
@@ -275,22 +268,22 @@ Modules contain code in a file that can be imported and used in templates.
 
 Starlark modules have the `.star` extension.
 
-Library modules have the `.lib.yml` extension. 
+YAML modules have the `.lib.yml` extension. 
 
-These two files are imported identically, and the main difference is that Starlark modules contain only starlark, and library modules are YAML structures with Starlark code contained in `#@` annotations, just like the code we have seen thus far.
+These two files are imported identically, and the main difference is that Starlark modules contain only starlark, and YAML modules are YAML structures with Starlark code contained in `#@` annotations, just like the code we have seen thus far.
 
 ### Starlark module
 Following the last solution, move the `name()` function to a separate Starlark file.
-```yaml
+```python
 #! format.star
 
-#@ def name(name, type):
-#@   return "{}-{}".format(name, type)
-#@ end
+def fmt(name, type):
+  return "{}-{}".format(name, type)
+end
 ```
-Import the module by loading it `#@ load("format.star", "name")`.
+Import the module by loading it `#@ load("format.star", "fmt")`.
 
-### Library module
+### YAML module
 Move the `labels()` function to a separate YAML file.
 
 ```yaml
@@ -309,14 +302,13 @@ The load function takes a module file path, and secondly the name of the symbol 
 #! config.yml
 
 #@ load("@ytt:data", "data")
-
 #@ load("labels.lib.yml", "labels")
-#@ load("format.star", "name")
----
+#@ load("format.star", "fmt")
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ name(name, "deployment")
+  name: #@ fmt(data.values.name, "deployment")
   namespace: #@ data.values.namespace
   labels: #@ labels(data.values.name, data.values.version)
 spec:
@@ -324,19 +316,18 @@ spec:
   template:
     spec:
       containers:
-        - name:  #@ name(name, "service")
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+        - name:  #@ data.values.name
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ name(data.values.name, "service")
-  labels: #@ labels(data.values.name, version)
+  name: #@ fmt(data.values.name, "service")
+  labels: #@ labels(data.values.name, data.values.version)
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
 ```
 
 ```yaml
@@ -344,8 +335,8 @@ spec:
 ---
 name: "frontend"
 namespace: "default"
+version: "0.1.0"
 replicas: 1
-version: 0.1.0
 ```
 ```shell
 $ tree .
@@ -356,7 +347,7 @@ $ tree .
 └── labels.lib.yml
 ```
 
-Execute ytt via `ytt -f config.yml -f schema.yml -f labels.lib.yml -f format.star`
+Execute ytt via `ytt -f .` to include all files in this directory.
 
 ## Extract functionality into custom library
 You can extract a whole set of input files (i.e. templates, overlays, data values, etc.) into a "Library" in the `_ytt_lib/` folder. A library can be thought of as a separate self-contained ytt invocation. Libraries are _not_ automatically included in `ytt` output. They must be programmatically imported using the [`library` module](/ytt/docs/develop/lang-ref-ytt-library/), configured, evaluated, and inserted into a template that is part of the output.
@@ -393,9 +384,7 @@ Focusing on only the two top level files, `config.yml`, and `values.yml`, we imp
 #@ load("@ytt:template", "template")
 
 #@ resources_lib = library.get("resources")
-
 #@ backend = resources_lib.with_data_values(data.values.backend)
-
 #@ frontend = resources_lib.with_data_values(data.values.frontend)
 
 --- #@ template.replace(backend.eval())
@@ -405,12 +394,12 @@ Provide the values that we pass to the library.
 ```yaml
 #@data/values-schema
 ---
-backend:
+frontend:
   name: "frontend"
   namespace: "dev"
   replicas: 1
   version: 0.5.0
-frontend:
+backend:
   name: "backend"
   namespace: "dev"
   replicas: 1
@@ -422,60 +411,62 @@ Run ytt with `.` to include all files in this directory.
 ```shell
 $ ytt -f .
 ```
-The result is the similar to  our original template with two different apps frontend and backend updated through library :
+The result is the similar to  our original template with resources configured for two different applications.
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: frontend-deployment
-  namespace: dev
-  labels:
-    - 'app.kubernetes.io/version: 0.5.0'
-    - 'app.kubernetes.io/name: frontend'
-spec:
-  replicas: 1
-  template:
-    spec:
-      containers:
-        - name: frontend
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-service
-  namespace: dev
-spec:
-  type: ClusterIP
-  ports:
-    - port: 38080
-      targetPort: 8080
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
   namespace: dev
   labels:
-    - 'app.kubernetes.io/version: 0.2.0'
-    - 'app.kubernetes.io/name: backend'
+    app.kubernetes.io/version: 0.2.0
+    app.kubernetes.io/name: backend
 spec:
   replicas: 1
   template:
     spec:
       containers:
         - name: backend
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
-  namespace: dev
+  labels:
+    app.kubernetes.io/version: 0.2.0
+    app.kubernetes.io/name: backend
 spec:
   type: ClusterIP
   ports:
-    - port: 38080
-      targetPort: 8080
+    - port: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: dev
+  labels:
+    app.kubernetes.io/version: 0.5.0
+    app.kubernetes.io/name: frontend
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: frontend
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    app.kubernetes.io/version: 0.5.0
+    app.kubernetes.io/name: frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
 ```
 
