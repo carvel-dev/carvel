@@ -1,5 +1,12 @@
-# ytt blog post
-
+---
+title: "Parameterizing Project Configuration with ytt"
+slug: parameterizing-project-config-with-ytt
+date: 2022-04-05
+author: Garrett Cheadle
+excerpt: "Want to start using ytt to manage your project's yaml files? Check out how to convert the config of a Spring Boot Application."
+image: /img/ytt.svg
+tags: ['Garrett Cheadle', 'ytt', 'data values', 'introduction', 'getting started']
+---
 
 If you’ve spent time learning `ytt`, you might know how extremely powerful it is, but if you are new to `ytt`, using it as your templating engine can be a daunting experience.
 
