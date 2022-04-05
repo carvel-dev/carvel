@@ -23,7 +23,7 @@ When using software out of the box, it will usually come with a set of default s
 
 Imagine you are developing a [blog application with Spring Boot](https://github.com/skarware/spring-boot-blog-app). Spring Boot is used to build stand-alone and production ready spring applications. Spring Boot applications come with many properties set by default; one common way to override them and set additional properties is through the `application.properties` file:
 
-```protobuf
+```
 server.port = 8080
 
 ### H2 DataSource properties
