@@ -91,8 +91,8 @@ kind: Service
 metadata:
   name: #@ name + "-service"
   labels:
-    - app.kubernetes.io/version: #@ version
-    - app.kubernetes.io/name: #@ name
+    app.kubernetes.io/version: #@ version
+    app.kubernetes.io/name: #@ name
 spec:
   type: ClusterIP
   ports:
