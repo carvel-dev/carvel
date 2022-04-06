@@ -69,8 +69,8 @@ metadata:
   name: #@ name + "-deployment"
   namespace: #@ namespace
   labels:
-    - app.kubernetes.io/version: #@ version
-    - app.kubernetes.io/name: #@ name
+    app.kubernetes.io/version: #@ version
+    app.kubernetes.io/name: #@ name
 spec:
   selector:
     matchLabels:
