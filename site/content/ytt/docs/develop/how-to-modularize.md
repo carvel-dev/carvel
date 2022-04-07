@@ -270,7 +270,7 @@ Starlark modules have the `.star` extension.
 
 YAML modules have the `.lib.yml` extension. 
 
-These two files are imported identically, and the main difference is that Starlark modules contain only starlark, and YAML modules are YAML structures with Starlark code contained in `#@` annotations, just like the code we have seen thus far.
+These two files are imported identically. The main difference is that Starlark modules contain only Starlark code, and YAML modules are YAML structures with Starlark code contained in `#@` annotations, just like the code we have seen thus far.
 
 ### Starlark module
 Following the last solution, move the `name()` function to a separate Starlark file.
