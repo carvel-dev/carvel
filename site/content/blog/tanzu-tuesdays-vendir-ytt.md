@@ -29,10 +29,10 @@ or looking for a better way to manage your upstream-managed Kubernetes config, w
  
 
 Video Outline:
-- (Start - 06:48) Introduction & miscellaneous 
-- (06:48 - 11:01) What is happening with all this YAML config
-- (11:01 - 28:52) Taking a look at other tools in the ecosystem
-- (28:52 - 1:19:07) Taking a look at `ytt` + `vendir`
-- (1:19:07 - End) Outro
+- [0:00](https://www.youtube.com/watch?v=0WT7O3kJwjw)- Introduction & miscellaneous
+- [06:48](https://www.youtube.com/watch?v=0WT7O3kJwjw&t=408s) - What is happening with all this YAML config
+- [11:01](https://www.youtube.com/watch?v=0WT7O3kJwjw&t=661s) - Taking a look at other tools in the ecosystem
+- [28:52](https://www.youtube.com/watch?v=0WT7O3kJwjw&t=1732s) - Taking a look at `ytt` + `vendir`
+- [1:19:07](https://www.youtube.com/watch?v=0WT7O3kJwjw&t=4747s) - Outro
 <!-- https://gohugo.io/content-management/shortcodes/#youtube -->
 {{< youtube id="0WT7O3kJwjw" title="Tanzu Tuesdays 92: Carvel: vendir + ytt with Leigh Capili" >}}
