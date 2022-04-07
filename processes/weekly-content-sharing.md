@@ -17,8 +17,8 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | March 10, 2022 | [Yash Sethiya](https://github.com/sethiyash)          | Multi environment deployment with ytt and kapp | Blog | N/A |
 | March 17, 2022 | [Soumik Majumder](https://github.com/100mik)      | Introducing kctrl, kapp-controller’s native CLI           | Blog | N/A |
 | March 24, 2022 | [Joao Pereira](https://github.com/joaopapereira)      | imgpkg image collocation and tagging           | Blog | N/A |
-| March 31, 2022 | [John Ryan](https://github.com/pivotaljohn)           | Introduction to ytt overlays | Blog/Vlog | [@jtigger](https://twitter.com/jtigger)
-| April 7, 2022 | [Leigh Capili](https://github.com/stealthybox)  | Manage Kubernetes configs with vendir + ytt | Video | [@capileigh] |
+| March 31, 2022 | [John Ryan](https://github.com/pivotaljohn)           | Introduction to ytt overlays | Blog/Vlog | [@jtigger](https://twitter.com/jtigger) |
+| April 7, 2022 | [Leigh Capili](https://github.com/stealthybox)  | Manage Kubernetes configs with vendir + ytt | Video | [@capileigh](https://twitter.com/capileigh) |
 | April 14, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware)  | Parameterizing your Project Configuration with ytt | Blog | N/A |
 | April 21, 2022 |                                                       |                                                |
 | April 28, 2022 |                                                       |                                                |
