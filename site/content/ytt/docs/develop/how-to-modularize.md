@@ -107,9 +107,9 @@ The result is identical to our original template, and now we can be sure all our
 
 There are two ways to define a function in ytt, a Starlark function, or a YAML fragment function.
 
-Starlark functions make use of a `return` statement. Because of this they can be great for returning a value that must be transformed in some way.
+[Starlark functions](https://github.com/google/starlark-go/blob/master/doc/spec.md#functions) make use of a `return` statement. Because of this they can be great for returning a value that must be transformed in some way.
 
-YAML fragment functions differ in that they are YAML structure wrapped in a Starlark function definition. Everything inside the function will be the return value. They can be great when needing to return nested YAML structure, or key and value pairs.
+[YAML fragment functions](lang-ref-yaml-fragment/#docs) differ in that they are YAML structure wrapped in a Starlark function definition. Everything inside the function will be the return value. They can be great when needing to return nested YAML structure, or key and value pairs.
 
 Going back to the previous solution, we can see each `labels` key is duplicated YAML, like `app.kubernetes.io/version: #@ version`. There is also some duplicated string manipulation in the `metadata.name` key.
 ```yaml
