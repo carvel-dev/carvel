@@ -202,7 +202,7 @@ spec:
     - port: 80
 ```
 Execute this template by running `ytt -f config.yml`.
-Again, the result is identical to our original template, and we can be sure all our repeated sections of code will be consistent.
+Again, the result is identical to our original template, and we can be sure all our repeated sections of YAML will be consistent.
 
 ---
 ## Externalize a value with data values schema
