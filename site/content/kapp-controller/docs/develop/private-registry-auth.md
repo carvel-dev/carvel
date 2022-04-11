@@ -169,7 +169,7 @@ spec:
 ```
 
 This secret will need to be located in the namespace where the PackageRepository
-is created and be in the format described in the [fetch docs](config.md#image-authentication).
+is created and be in the format described in the [fetch docs](app-overview.md/#specfetch).
 
 ### PackageInstall
 
@@ -213,4 +213,4 @@ spec:
 
 The annotation shown above `ext.packaging.carvel.dev/fetch-0-secret-name: simple-app-secret` has a format that allows users to specify the specific fetch stage by how it is defined in the Package definition. In this case, the PackageInstall being created will add a secretRef to the App's first fetch stage (i.e. `fetch-0-secret-name`) for the imgpkg bundle. If the Package definition had an additional fetch stage, the secret annotation could be added in the following format: `ext.packaging.carvel.dev/fetch-1-secret-name: simple-app-additional-secret`.
 
-To use this annotation with a PackageInstall, associated secrets will need to be located in the namespace where the PackageInstall is created and be in the format described in the [fetch docs](config.md#image-authentication).
+To use this annotation with a PackageInstall, associated secrets will need to be located in the namespace where the PackageInstall is created and be in the format described in the [fetch docs](app-overview.md/#specfetch).
