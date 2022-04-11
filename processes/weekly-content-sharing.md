@@ -21,4 +21,8 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | April 7, 2022 | [Leigh Capili](https://github.com/stealthybox)  | Manage Kubernetes configs with vendir + ytt | Video | [@capileigh](https://twitter.com/capileigh) |
 | April 14, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware)  | Parameterizing your Project Configuration with ytt | Blog | N/A |
 | April 21, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Identify ghost diff during kapp controller reconcilliation | Blog |N/A |
-| April 28, 2022 |                                                       |                                                |
+| April 28, 2022 |                                                       |                                                | |
+| May 5, 2022 |                                                       |                                                | |
+| May 12, 2022 |                                                       |                                                | |
+| May 19, 2022 |                                                       |                                                | |
+| May 26, 2022 |                                                       |                                                | |
