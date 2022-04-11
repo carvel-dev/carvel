@@ -20,5 +20,5 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | March 31, 2022 | [John Ryan](https://github.com/pivotaljohn)           | Introduction to ytt overlays | Blog/Vlog | [@jtigger](https://twitter.com/jtigger) |
 | April 7, 2022 | [Leigh Capili](https://github.com/stealthybox)  | Manage Kubernetes configs with vendir + ytt | Video | [@capileigh](https://twitter.com/capileigh) |
 | April 14, 2022 | [Garrett Cheadle](https://github.com/gcheadle-vmware)  | Parameterizing your Project Configuration with ytt | Blog | N/A |
-| April 21, 2022 |                                                       |                                                |
+| April 21, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020) | Identify ghost diff during kapp controller reconcilliation | Blog |N/A |
 | April 28, 2022 |                                                       |                                                |
