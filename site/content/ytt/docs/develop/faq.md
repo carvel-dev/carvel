@@ -181,7 +181,7 @@ See the [text templating doc](ytt-text-templating.md). Additionally, see this [p
 ## How can I use files that are symlinks?
 ytt takes a secure by default approach to symlinks. It disables use of symlinks to avoid [the risk](security.md#attack-vectors) of malicious template code loading symlinked file contents from sensitive locations.
 
-If you would like to override this behavior, use `--allow-symlink-destination` flag for allowing specific symlink directories, or `--dangerous-allow-all-symlink-destinations` to allow all symlinks.
+If you would like to override this behavior, use `--allow-symlink-destination` flag for allowing symlinks in specific directories or files, or `--dangerous-allow-all-symlink-destinations` to allow all symlinks.
 
 ## What templating language does ytt use?
 
