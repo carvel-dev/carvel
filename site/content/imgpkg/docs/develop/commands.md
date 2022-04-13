@@ -88,6 +88,8 @@ $ imgpkg copy --tar=/Volumes/secure-thumb/bundle.tar --to-repo registry.corp.com
 
 In either case, the bundle image and all dependent images are copied to the destination location `registry.corp.com/user2/sample-bundle-name`.
 
+**Note:** To generate tags that provide information on the origin of the images use the flag `--repo-based-tags`
+
 ### Copying via lock file
 
 [BundleLock configuration](resources.md#bundlelock-configuration) can be used as input to the copy command via the `--lock` flag.
