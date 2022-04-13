@@ -291,7 +291,7 @@ app.kubernetes.io/name: #@ name
 ```
 Import the module by loading it `#@ load("labels.lib.yml", "labels")`.
 
-The load function takes a module file path, and secondly the name of the function or variable to export from the module. For multiple symbols, use a comma separated list of strings. If your module has many symbols that are usually all exported together, consider putting them in a [struct](ytt/docs/v0.40.0/faq/#can-i-load-multiple-functions-without-having-to-name-each-one), and load that struct.
+The load function takes a module file path, and secondly the name of the function or variable to export from the module. For multiple symbols, use a comma separated list of strings. If your module has many symbols that are usually all exported together, consider putting them in a [struct](faq/#can-i-load-multiple-functions-without-having-to-name-each-one), and load that struct.
 
 ```yaml
 #! config.yml
