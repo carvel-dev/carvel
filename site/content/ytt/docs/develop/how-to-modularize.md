@@ -60,7 +60,7 @@ Using Starlark's Python-like syntax, extract these values into Starlark variable
 
 #@ name = "frontend"
 #@ namespace = "default"
-#@ version = 0.1.0
+#@ version = "0.1.0"
 #@ replicas = 1
 
 apiVersion: apps/v1
