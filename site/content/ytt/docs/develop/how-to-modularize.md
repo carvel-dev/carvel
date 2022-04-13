@@ -396,12 +396,12 @@ frontend:
   name: "frontend"
   namespace: "dev"
   replicas: 1
-  version: 0.5.0
+  version: "0.5.0"
 backend:
   name: "backend"
   namespace: "dev"
   replicas: 1
-  version: 0.2.0
+  version: "0.2.0"
 ```
 
 Run ytt with `.` to include all files in this directory.
