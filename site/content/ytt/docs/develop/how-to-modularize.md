@@ -13,7 +13,6 @@ A foundational concept in ytt is using Starlark code to create variables or func
 ### Starlark variables
 In the code block below there are duplicated values for `name: frontend`, and other values that we may want to modify often.
 
-This is a ytt comment `#!`, use these instead of YAML comments `#` which are [discouraged](/ytt/docs/develop/faq/#why-is-ytt-complaining-about-unknown-comment-syntax-cant-i-write-standard-yaml-comments-) to ensure that all comments are intentional. Comments will be consumed during execution.
 ```yaml
 #! config.yml
 
@@ -31,10 +30,6 @@ spec:
       app: frontend
   replicas: 1
   template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: 0.1.0
-        app.kubernetes.io/name: frontend
     spec:
       containers:
         - name: frontend
@@ -52,6 +47,8 @@ spec:
   ports:
     - port: 80
 ```
+
+_(This is a ytt comment `#!`, use these instead of YAML comments `#` which are [discouraged](/ytt/docs/develop/faq/#why-is-ytt-complaining-about-unknown-comment-syntax-cant-i-write-standard-yaml-comments-) to ensure that all comments are intentional. Comments will be consumed during execution.)_
 
 Using Starlark's Python-like syntax, extract these values into Starlark variables. All the code defined here can be used in the same file.
 
@@ -77,14 +74,10 @@ spec:
       app: #@ name
   replicas: #@ replicas
   template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: #@ version
-        app.kubernetes.io/name: #@ name
     spec:
       containers:
         - name: #@ name
-          image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
+          image: index.docker.io/k14s/image@sha256:6ab29951e0207fde6760f6db227f218f20e875f45b22e8ca0ee06c0c8cab32cd
 ---
 apiVersion: v1
 kind: Service
@@ -134,10 +127,6 @@ spec:
       app: #@ name
   replicas: #@ replicas
   template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: #@ version
-        app.kubernetes.io/name: #@ name
     spec:
       containers:
         - name: #@ name
@@ -156,7 +145,7 @@ spec:
     - port: 80
 ```
 
-Move the duplicated `labels` keys into a YAML fragment function, and move name calculation into a Starlark function.
+Move the duplicated `labels` keys into a YAML fragment function, and move name formatting into a Starlark function.
 
 ```yaml
 #! config.yml
@@ -184,6 +173,9 @@ metadata:
   namespace: #@ namespace
   labels: #@ labels(name, version)
 spec:
+  selector:
+    matchLabels:
+      app: #@ name
   replicas: #@ replicas
   template:
     spec:
@@ -241,6 +233,9 @@ metadata:
   namespace: #@ data.values.namespace
   labels: #@ labels(data.values.name, data.values.version)
 spec:
+  selector:
+    matchLabels:
+      app: #@ data.values.name
   replicas: #@ data.values.replicas
   template:
     spec:
@@ -251,7 +246,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ fmt(data.values.name, "deployment")
+  name: #@ fmt(data.values.name, "service")
   labels: #@ labels(data.values.name, data.values.version)
 spec:
   type: ClusterIP
@@ -296,7 +291,7 @@ app.kubernetes.io/name: #@ name
 ```
 Import the module by loading it `#@ load("labels.lib.yml", "labels")`.
 
-The load function takes a module file path, and secondly the name of the function or variable to export from the module. For multiple symbols, use a comma separated list of strings. If your module has many symbols that are usually all exported together, consider putting them in a list, and export that list.
+The load function takes a module file path, and secondly the name of the function or variable to export from the module. For multiple symbols, use a comma separated list of strings. If your module has many symbols that are usually all exported together, consider putting them in a [struct](ytt/docs/v0.40.0/faq/#can-i-load-multiple-functions-without-having-to-name-each-one), and load that struct.
 
 ```yaml
 #! config.yml
@@ -312,6 +307,9 @@ metadata:
   namespace: #@ data.values.namespace
   labels: #@ labels(data.values.name, data.values.version)
 spec:
+  selector:
+    matchLabels:
+      app: #@ data.values.name
   replicas: #@ data.values.replicas
   template:
     spec:
@@ -422,6 +420,9 @@ metadata:
     app.kubernetes.io/version: 0.2.0
     app.kubernetes.io/name: backend
 spec:
+  selector:
+    matchLabels:
+      app: backend
   replicas: 1
   template:
     spec:
@@ -450,6 +451,9 @@ metadata:
     app.kubernetes.io/version: 0.5.0
     app.kubernetes.io/name: frontend
 spec:
+  selector:
+    matchLabels:
+      app: frontend
   replicas: 1
   template:
     spec:
