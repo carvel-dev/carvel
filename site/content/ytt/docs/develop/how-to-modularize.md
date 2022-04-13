@@ -105,7 +105,7 @@ The result is identical to our original template, and now we can be sure all our
 ### Functions
 [Functions](lang-ref-def.md) provide a way to extract common code into a separate fragment or code snippet.
 
-There are two ways to define a function in ytt, a Starlark function, or a YAML fragment function.
+There are two ways to define a function in ytt: as a Starlark function; as a YAML fragment function.
 
 [Starlark functions](https://github.com/google/starlark-go/blob/master/doc/spec.md#functions) make use of a `return` statement. Because of this they can be great for returning a value that must be transformed in some way.
 
