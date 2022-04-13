@@ -10,6 +10,11 @@ The controller configuration was originally only available in a ConfigMap
 format, but as of v0.22.0 it is recommended to use a Secret since there 
 may be sensitive information stored in the config (e.g. proxy information including passwords).
 
+In this configuration the user can provide the following:
+- Trusted Custom CA Certificates
+- Proxy configuration
+- List of domains that imgpkg should interact with and should skip TLS verification
+
 ## Controller Configuration Spec
 
 ```yaml
