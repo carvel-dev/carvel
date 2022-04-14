@@ -1,9 +1,9 @@
 ---
 title: "Parameterizing Project Configuration with ytt"
 slug: parameterizing-project-config-with-ytt
-date: 2022-04-05
+date: 2022-04-13
 author: Garrett Cheadle
-excerpt: "Want to start using ytt to manage your project's yaml files? Check out how to convert the configuration for an example Application."
+excerpt: "Want to start using ytt to manage your project's yaml files? Check out how to convert the configuration for an example application."
 image: /img/ytt.svg
 tags: ['Garrett Cheadle', 'ytt', 'data values', 'introduction', 'getting started']
 ---
@@ -168,11 +168,11 @@ homepage:
     - label: TYO
       timezone: Asia/Tokyo
 ```
-This YAML is long, repetitive, and could be difficult to adjust during the development process. We can ease the pain when working YAML by converting the file into `ytt` templates.
+This YAML is long, repetitive, and tedious to adjust during the development process.
 
 ### Applying `ytt` Templating
 
-`ytt` is a powerful tool. You can to annotate your YAML with annotations that are interpreted as code. `ytt` annotations begin with `#@`, and they allow you to escape into a pythonic language called starlark within your YAML templates.
+`ytt` is a powerful tool. You can to annotate your YAML with annotations that are interpreted as code. `ytt` annotations begin with `#@`, and they allow you to escape into a pythonic language, called starlark, within your YAML templates.
 This allows you to write code inline with your yaml! We can use loops, conditionals, functions, and much more to organize our YAML into configurable pieces. Let's show some examples using the YAML above:
 
 - The map contained in `auth.providers` has a repetitive structure, we can write a function to help the construction of these environment variables references. 
