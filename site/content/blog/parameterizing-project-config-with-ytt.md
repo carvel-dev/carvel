@@ -177,14 +177,14 @@ This allows you to write code inline with your yaml! We can use loops, condition
 
 - The map contained in `auth.providers` has a repetitive structure, we can write a function to help the construction of these environment variables references. 
 ```yaml
-#@ def CreateAuthEnvVar(domain, varName):
+#@ def create_auth_env_var(domain, varName):
   #@ return 'AUTH_' + domain.upper() + '_' + varName.replace(' ', '_').upper()
 #@ end
 ```
 
 - There are also several URLs that follow the format: `localhost:port`. We can extract the creation of these URLs into a function call, making them easy to change in the future.  
 ```yaml
-#@ def buildLocalURL(port):
+#@ def build_local_URL(port):
   #@ return "http://localhost:" + str(port)
 #@ end 
 ```
@@ -221,9 +221,10 @@ catalogLocations:
   - ../catalog-model/examples/acme-corp.yaml
   - ../../cypress/e2e-fixture.catalog.info.yaml
 
+providersEnvironment: development
 providers:
   google: ['client Id', 'client Secret']
-  github: ['client Id', 'client Secret', 'enterpriseInstanceUrl']
+  github: ['client Id', 'client Secret', 'enterprise Instance Url']
   gitlab: ['client Id', 'client Secret']
   okta: ['client Id', 'client Secret', 'audience']
   oauth2: ['client Id', 'client Secret', 'token Url']
@@ -245,13 +246,13 @@ This is done by loading the data values into the configuration file (`#@ load("@
 
 #@ load("@ytt:data", "data")
 
-#@ def buildLocalURL(port):
+#@ def build_local_URL(port):
 #@   return "http://localhost:" + str(port)
 #@ end 
 
 app:
   title: Backstage Example App
-  baseUrl: #@ buildLocalURL(3000)
+  baseUrl: #@ build_local_URL(3000)
   support:
     url: https://github.com/backstage/backstage/issues
     items:
@@ -274,7 +275,7 @@ techdocs:
   publisher:
     type: local
 lighthouse:
-  baseUrl: #@ buildLocalURL(3003)
+  baseUrl: #@ build_local_URL(3003)
 kubernetes:
   serviceLocatorMethod:
     type: multiTenant
@@ -286,7 +287,7 @@ kafka:
   clusters:
     - name: cluster
       brokers:
-        - #@ buildLocalURL(9092)
+        - #@ build_local_URL(9092)
 catalog:
   import:
     entityFilename: catalog-info.yaml
@@ -306,31 +307,22 @@ catalog:
     #@ for c in data.values.catalogLocations:
     - type: file
       target: #@ c
-      #@ end
+    #@ end
 
-#@ def CreateAuthEnvVar(name, variable):
-  #@ return '${AUTH_' + name.upper() + '_' + variable.replace(' ', '_').upper() + "}"
+#@ def create_auth_env_var(name, variable):
+#@   return '${AUTH_' + name.upper() + '_' + variable.replace(' ', '_').upper() + "}"
 #@ end
 
-#@ def CreateAuthVars(name, variables):
-  #@ auths = {}
-  #@ for var in variables:
-    #@ key = var.replace(' ','')
-    #@ auths[key] = CreateAuthEnvVar(name, var)  
-  #@ end
-  #@ return {'development': auths}
-#@ end
-
-#@ def CreateProviders(providersMap):
-  #@ providers = {}
-  #@ for key in providersMap:
-    #@ providers[key] = CreateAuthVars(key, providersMap[key])
-  #@ end
-  #@ return providers
-#@ end
 auth:
-  environment: development
-  providers: #@ CreateProviders(data.values.providers)
+  environment: #@ data.values.providersEnvironment
+  providers:
+    #@ for/end pr in data.values.providers:
+    #@yaml/text-templated-strings
+    (@= pr @):
+      #@yaml/text-templated-strings
+      (@= data.values.providersEnvironment @):
+        #@ for/end val in data.values.providers[pr]:
+        (@= val.replace(' ','') @): #@ create_auth_env_var(pr, val)
 
 homepage:
   clocks:
@@ -342,8 +334,9 @@ homepage:
 ```
 
 We can now use `ytt` to template the `dataValues.yaml` and `config.yaml` files into a single configuration YAML file. 
-The command `ytt -f config.yaml -f dataValues.yaml` outputs the original YAML configuration from before.  
+The command `ytt -f config.yaml -f dataValues.yaml` outputs the original YAML configuration from before. [Take a look at these `ytt` templates in the playground.](https://carvel.dev/ytt/#gist:https://gist.github.com/gcheadle-vmware/fe08e00eb2d1b3328375879e4a98437b)
 
-As you continue to work with this application, it will be easier to go into the `dataValues.yaml` file, and change the parameterized values.
-One way that we could further extract the configuration into `ytt` templates is through the use of [`ytt` libraries](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/).
-Each `ytt` library can have its own set of data values, and then be compiled, templated, and combined into a single `config.yaml`.
+As you continue to work with this application, it will be easier to go into the `dataValues.yaml` file and change the parameterized values.
+To ensure that our edits to the Data Values are made correctly, we could add a [Data Values Schema file](https://carvel.dev/ytt/docs/latest/how-to-write-schema/).
+A Data Values Schema file declares a Data Value's name, default value, and type.
+To learn more about the power of `ytt`, you can [see documentation about how to modularize with ytt.](https://carvel.dev/ytt/docs/develop/how-to-modularize/)
