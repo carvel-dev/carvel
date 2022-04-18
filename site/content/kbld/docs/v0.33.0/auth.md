@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/auth]
 title: Authentication
 ---
 
