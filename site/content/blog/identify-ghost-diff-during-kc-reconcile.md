@@ -1,16 +1,16 @@
 ---
-title: "Identify ghost diff during Kapp Controller reconciliation"
+title: "Identify ghost diff during kapp Controller reconciliation"
 slug: identify-ghost-diff-during-kapp-controller-reconciliation
 date: 2022-04-21
 author: Rohit Aggarwal
-excerpt: "Identify ghost diff during Kapp Controller reconciliation "
+excerpt: "Identify ghost diff during kapp Controller reconciliation "
 image: /img/logo.svg
 tags: ['carvel', 'kapp-controller', 'gitops', 'diffs', 'diff']
 ---
 
-# Identify ghost diff during Kapp Controller reconciliation
+# Identify ghost diff during kapp Controller reconciliation
 
-Kapp controller, a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `SyncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of Kapp. Kapp tries to do a diff of the current live state of the resources with the desired state. Sometimes, even though there is no change in the desired state by the user explicitly, Kapp still thinks some resources have changed and tries to redeploy them as part of the reconciliation. We call them `ghost` diffs. 
+[kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). kapp, another carvel tool, tries to do a diff of the current live state of the resources with the desired state. Sometimes, even though there is no change in the desired state by the user explicitly, kapp still thinks some resources have changed and tries to redeploy them as part of the reconciliation. We call them `ghost` diffs. 
 
 Since Package consumers are aware of the `Package` configuration only, it becomes difficult for them to identify which part of the underlying resource configuration is causing these diffs.
 
@@ -22,7 +22,7 @@ In this blog, we will see how to identify the resources causing these ghost diff
 * carvel tool set
 * Kubernetes cluster(I'm using minikube)
 
-Since this blog will be using `HorizontalPodAutoscaler`, we have to enable `metrics-server` on minikube.
+Ensure that kapp-controller is installed on your K8s cluster. Since this blog will be using `HorizontalPodAutoscaler`, we have to enable `metrics-server` on minikube.
 
 ```bash
 $ minikube addons enable metrics-server
@@ -92,7 +92,7 @@ simple-app-8648457765-p5lzp   1/1     Running   0          56s
 
 ## Identify ghost diffs exist or not
 
-In our package, we have set `syncPeriod` to 10 min. This means after every 10 min, Kapp controller will try to reconcile the package. Kapp creates a configmap every time it sees that there are some resources that needs to be redeployed. Thus, if we see new configmaps appearing, it means ghost diffs are being generated. To identify the configmaps related to an installed package, we have to look at the configmap with Installed Package Prefix. Let's check the configmaps.
+In our package, we have set `syncPeriod` to 10 min. This means after every 10 min, kapp controller will try to reconcile the package. kapp creates a configmap every time it sees that there are some resources that needs to be redeployed. Thus, if we see new configmaps appearing, it means ghost diffs are being generated. To identify the configmaps related to an installed package, we have to look at the configmap with Installed Package Prefix. Let's check the configmaps.
 
 ```bash 
 $ kubectl get configmaps | grep pkg-demo
@@ -125,13 +125,13 @@ As a Package consumer, I can see that there are ghost diff's appearing.
 
 ## Identify actual configuration causing the diffs
 
-To identify what is causing them, we will make a copy of the package. We will modify the deploy section of the Package. It will help us to get the configuration applied by `Kapp`. Let's start:
+To identify what is causing them, we will make a copy of the package. We will modify the deploy section of the Package. It will help us to get the configuration applied by `kapp`. Let's start:
 
 ```bash
 $ kubectl get pkg simple-app.corp.com.1.0.0 -oyaml > copy-simple-app-package.yaml
 ```
 
-Open copy-simple-app-package.yaml. Remove labels starting with `Kapp`. Add the below snippet to the Kapp section. Setting the `diff-changes` to true will enable the `Kapp` to show changes.
+Open copy-simple-app-package.yaml. Remove labels starting with `kapp`. Add the below snippet to the kapp section. Setting the `diff-changes` to true will enable the `kapp` to show changes.
 ```
 ...
 - kapp:
@@ -195,7 +195,7 @@ Waiting for PackageInstall reconciliation for 'pkg-demo'
 
 Succeeded
 ```
-After the Package is deployed successfully, let's see what the initial configuration of the resources looks like. We can get that by describing App(link to the app section) linked to the Package. Similar to configmap, the package creates `App` with the same name as its name. As the output is long, I have added only a small snippet.
+After the Package is deployed successfully, let's see what the initial configuration of the resources looks like. We can get that by describing [App](https://carvel.dev/kapp-controller/docs/v0.34.0/app-overview/#app) linked to the Package. Similar to configmap, the package creates `App` with the same name as its name. As the output is long, I have added only a small snippet.
 
 ```bash
 $ kubectl describe app pkg-demo
