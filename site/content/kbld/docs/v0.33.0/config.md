@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/config]
 title: Configuration
 ---
 
@@ -213,7 +213,7 @@ where:
   - `nginx@sha256:a05b0cd...`
   - `index.docker.io/library/nginx@sha256:a05b0cd...`
 - `preresolved` (optional; bool) specifies if `newImage` should be used as is (rather than be [re]resolved to a digest reference).
-- `tagSelection` (optional; [VersionSelection](https://carvel.dev/vendir/docs/latest/versions/#versionselection-type)) when `newImage` _is_ being resolved, specifies how to select the tag part of the reference before resolving to a digest reference. (Available as of v0.28.0+)
+- `tagSelection` (optional; [VersionSelection](/vendir/docs/latest/versions/#versionselection-type)) when `newImage` _is_ being resolved, specifies how to select the tag part of the reference before resolving to a digest reference. (Available as of v0.28.0+)
   - In this case, `newImage` must not have a tag or digest part (e.g. `gcr.io/my-corp/app`).
 
 **Example: Static Rewrite**
