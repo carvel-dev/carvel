@@ -10,7 +10,9 @@ tags: ['carvel', 'kapp-controller', 'gitops', 'diffs', 'diff']
 
 # Identify ghost diff during kapp Controller reconciliation
 
-[kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). kapp, another carvel tool, tries to do a diff of the current live state of the resources with the desired state. Sometimes, even though there is no change in the desired state by the user explicitly, kapp still thinks some resources have changed and tries to redeploy them as part of the reconciliation. We call them `ghost` diffs. `Ghost` diffs can appear due to different reasons: controller can change some configuration of the resource, `HorizontalPodAutoscaler` influencing the no. of replicas for a deployment, etc. Everytime a `ghost` diff is detected, a new configMap gets created. kapp store its exit status and summary of operations(e.g. no. of updated/deleted/created resources) done in this configmap. If you have many packages creating `ghost` diffs in the Kubernetes(K8s) cluster, you will end up having large no. of unnecessary configMaps which can slow the K8s API server response time.
+[kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). 
+
+kapp, another carvel tool, tries to do a diff of the current live state of the resources with the desired state. Sometimes, even though there is no change in the desired state by the user explicitly, kapp still thinks some resources have changed and tries to redeploy them as part of the reconciliation. We call them `ghost` diffs. `Ghost` diffs can appear due to different reasons: controller can change some configuration of the resource, `HorizontalPodAutoscaler` influencing the no. of replicas for a deployment, etc. Everytime a `ghost` diff is detected, a new configMap gets created. kapp store its exit status and summary of operations(e.g. no. of updated/deleted/created resources) done in this configmap. If you have many packages creating `ghost` diffs in the Kubernetes(K8s) cluster, you will end up having large no. of unnecessary configMaps which can slow the K8s API server response time.
 
 Since Package consumers are aware of the `Package` configuration only, it becomes difficult for them to identify which part of the underlying resource configuration is causing these diffs.
 
@@ -30,11 +32,11 @@ $ minikube addons enable metrics-server
   The 'metrics-server' addon is enabled
 ```
 
-I will be using [kctrl](https://carvel.dev/kapp-controller/docs/v0.34.0/install/#installing-kapp-controller-cli-kctrl) to interact with `kapp-controller` resources. 
+I will be using [kctrl](https://carvel.dev/kapp-controller/docs/latest/install/#installing-kapp-controller-cli-kctrl) to interact with `kapp-controller` resources. 
 
 ## Install the Package
 
-For the purpose of this blog, I have already created a Carvel package `simple-app-package`. This Package is part of the package repository `my-pkg-repo`.  If you are interested in how to create package and package repository, I would recommend to go over [packaging-tutorial](https://carvel.dev/kapp-controller/docs/v0.34.0/packaging-tutorial/).
+For the purpose of this blog, I have already created a Carvel package `simple-app-package`. This Package is part of the package repository `my-pkg-repo`.  If you are interested in how to create package and package repository, I would recommend to go over [packaging-tutorial](https://carvel.dev/kapp-controller/docs/latest/packaging-tutorial/).
 
 First, we need to install the Package Repository. 
 
@@ -195,7 +197,7 @@ Waiting for PackageInstall reconciliation for 'pkg-demo'
 
 Succeeded
 ```
-After the Package is deployed successfully, let's see what the initial configuration of the resources looks like. We can get that by describing [App](https://carvel.dev/kapp-controller/docs/v0.34.0/app-overview/#app) linked to the Package. Similar to configmap, the package creates `App` with the same name as its name. As the output is long, I have added only a small snippet.
+After the Package is deployed successfully, let's see what the initial configuration of the resources looks like. We can get that by describing [App](https://carvel.dev/kapp-controller/docs/latest/app-overview/#app) linked to the Package. Similar to configmap, the package creates `App` with the same name as its name. As the output is long, I have added only a small snippet.
 
 ```bash
 $ kubectl describe app pkg-demo
@@ -261,7 +263,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 
 Here, as we can see, the change in the number of replicas has resulted in the creation of ghost diffs. This is because HPA has reduced the no. of Replicas since there is no load on the server.
 
-This is how a Package consumer can discover the reason for ghost diffs and take appropriate action. In this case, adding a [rebase rule](https://carvel.dev/kapp/docs/v0.46.0/hpa-deployment-rebase/#docs) will remove the ghost diffs.
+This is how a Package consumer can discover the reason for ghost diffs and take appropriate action. In this case, adding a [rebase rule](https://carvel.dev/kapp/docs/latest/hpa-deployment-rebase/#docs) will remove the ghost diffs.
 
 
 
