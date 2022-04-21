@@ -24,7 +24,7 @@ Everytime a diff is detected, kapp creates a new configMap to track [app-change]
 
 #### How to resolve 
 
-To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/latest/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a consicious decision to avoid 3 way merge [here](https://carvel.dev/kapp/docs/latest/merge-method/)
+To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/latest/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a consicious decision to avoid basic 3 way merge [here](https://carvel.dev/kapp/docs/latest/merge-method/).
 
 ## Detection and Resolution in Packages
 
