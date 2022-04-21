@@ -8,7 +8,7 @@ image: /img/logo.svg
 tags: ['carvel', 'kapp-controller', 'gitops', 'diffs', 'diff']
 ---
 
-[kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). 
+[kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It ensures that the cluster is or converging towards the desired state all the time. It achieve this by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). 
 
 kapp, another carvel tool, performs a diff by comparing `current state` of the resource on the cluster with the `desired state` during a `deploy` or `delete`. If there is any mismatch, `kapp deploy` will try to update the resources on the cluster to bring them to the desired state. The desired state is provided via manifest. If the user wants to change the resource, they should update the manifest and redeploy using kapp. It is not a good practice to update the deployed resource directly on the cluster. 
 
@@ -16,9 +16,9 @@ kapp, another carvel tool, performs a diff by comparing `current state` of the r
 
 However, sometimes some resources can get updated on the cluster by controller, operator, mutating Webhook, etc. These changes are not explicitly requested. Since these updates are dynamically added to a resource on the cluster, kapp is unaware of them. In the subsequent `kapp deploy`, kapp will see these updates as divergence from the desired state. Diffs arising out of it is what we call as `ghost` diffs. For example, based on load, `HorizontalPodAutoscalar` can increase the no. of replicas for a deployment. Thus your actual replicas will be different from what is specified in the deployment manifest.
 
-#### Why we should avoid 
+#### Why we should avoid ghost diffs
 
-Everytime a diff is detected, kapp creates a new configMap to track [app-change](https://carvel.dev/kapp/docs/latest/state-namespace/#app-changes) history. These configmaps store the exit status and summary of operations( e.g. no. of updated/deleted/created resources) performed in that `kapp deploy`. If packages create `ghost` diffs in the Kubernetes(K8s) cluster, we will end up with large no. of configMaps. Good news is kapp allows you to cap (default 200) the number of app-changes to be stored. 
+Everytime a diff is detected, kapp redeploys the apps even though there is no need in case of ghost diffs. It also creates a new configMap to track [app-change](https://carvel.dev/kapp/docs/latest/state-namespace/#app-changes) history. These configmaps store the exit status and summary of operations( e.g. no. of updated/deleted/created resources) performed in that `kapp deploy`. If packages create `ghost` diffs in the Kubernetes(K8s) cluster, we will end up with large no. of configMaps. Good news is kapp allows you to cap (default 200) the number of app-changes to be stored. 
 
 #### How to resolve 
 
