@@ -8,11 +8,9 @@ image: /img/logo.svg
 tags: ['carvel', 'kapp-controller', 'gitops', 'diffs', 'diff']
 ---
 
-# Identify ghost diff during kapp Controller reconciliation
-
 [kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). 
 
-kapp, another carvel tool, performs a diff by comparing `current state` of the resource on the cluster with the `desired state` during a `deploy` or `delete`. The desired state is provided via manifest. If the user wants to change the resource, they should update the manifest and redeploy using kapp. It is not a good practice to update the deployed resource directly on the cluster. 
+kapp, another carvel tool, performs a diff by comparing `current state` of the resource on the cluster with the `desired state` during a `deploy` or `delete`. If there is any mismatch, `kapp deploy` will try to update the resources on the cluster to bring them to the desired state. The desired state is provided via manifest. If the user wants to change the resource, they should update the manifest and redeploy using kapp. It is not a good practice to update the deployed resource directly on the cluster. 
 
 ## What are `ghost` diffs
 
@@ -24,13 +22,13 @@ Everytime a diff is detected, kapp creates a new configMap to track [app-change]
 
 #### How to resolve 
 
-To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/latest/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a consicious decision to avoid basic 3 way merge [here](https://carvel.dev/kapp/docs/latest/merge-method/).
+To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/latest/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a conscious decision to avoid basic 3 way merge [here](https://carvel.dev/kapp/docs/latest/merge-method/).
 
 ## Detection and Resolution in Packages
 
-Since Package consumers are aware of the `Package` configuration only, it becomes difficult for them to identify which part of the underlying resource configuration is causing these diffs.
+Since Package consumers are aware of the `Package` configuration only, it becomes difficult for them to identify which part of the underlying resource configuration is causing `ghost` diffs.
 
-In this blog, we will see how to identify the resources causing these ghost diffs and also what part of their configuration is participating in it.
+In this blog, we will see how to identify the resources causing these diffs and also what part of their configuration is participating in it.
 
 #### Prerequisites
 
@@ -221,7 +219,7 @@ $ kubectl describe app pkg-demo
 
 You will see that it is creating a deployment, service and HPA.
 
-Let the reconcilliation loop run once. After the reconcilliation loop is run, we will see that another configmap has been generated. Now, if we will run `app describe` again, we will see the exact diff.
+Let the reconciliation loop run once. After the reconcilliation loop is run, we will see that another configmap has been generated. Now, if we will run `app describe` again, we will see the exact diff.
 
 ```bash
 $ kubectl get configmaps | grep pkg-demo
