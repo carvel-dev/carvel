@@ -20,11 +20,11 @@ However, sometimes some resources can get updated on the cluster by controller, 
 
 #### Why we should avoid 
 
-Everytime a diff is detected, kapp creates a new configMap to track [app-change](https://carvel.dev/kapp/docs/v0.46.0/state-namespace/#app-changes) history. These configmaps store the exit status and summary of operations( e.g. no. of updated/deleted/created resources) performed in that `kapp deploy`. If packages create `ghost` diffs in the Kubernetes(K8s) cluster, we will end up with large no. of configMaps. Good news is kapp allows you to cap (default 200) the number of app-changes to be stored. 
+Everytime a diff is detected, kapp creates a new configMap to track [app-change](https://carvel.dev/kapp/docs/latest/state-namespace/#app-changes) history. These configmaps store the exit status and summary of operations( e.g. no. of updated/deleted/created resources) performed in that `kapp deploy`. If packages create `ghost` diffs in the Kubernetes(K8s) cluster, we will end up with large no. of configMaps. Good news is kapp allows you to cap (default 200) the number of app-changes to be stored. 
 
 #### How to resolve 
 
-To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/v0.46.0/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a consicious decision to avoid 3 way merge [here](https://carvel.dev/kapp/docs/v0.46.0/merge-method/)
+To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/latest/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a consicious decision to avoid 3 way merge [here](https://carvel.dev/kapp/docs/latest/merge-method/)
 
 ## Detection and Resolution in Packages
 
