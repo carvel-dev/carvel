@@ -19,10 +19,10 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 |---|---|---|
 | Easy to Get Started | **[kapp-controller]** kapp-controller CLI Milestone 3: [app commands & more](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | April 2022 |
 | Easy to Get Started | **[ytt]** [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314): Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/board?epics=173207060_314&filterLogic=any&repos=173207060) | May 2022 |
-| Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents): Configuration authors can specify the valid range or format of the data values. | Q2 (Apr - Jun) |
-| Package Author Improvements | **[carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). | Q2 (Apr - Jun)|
 | Package Author Improvements | **[wizard]** Wizard for package authors. | May 2022
 | Stability | **[kapp]** Experimental feature to add suffix to app's config map to avoid name collision. This is an opt-in behaviour   | May 2022|
+| Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents): Configuration authors can specify the valid range or format of the data values. | Q2 (May - Jun) |
+| Package Author Improvements | **[carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). | Q2 (May - Jun)|
 
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
