@@ -12,14 +12,27 @@ tags: ['carvel', 'kapp-controller', 'gitops', 'diffs', 'diff']
 
 [kapp controller](https://carvel.dev/kapp-controller/), a Package manager, is compatible with Gitops philosophy. It is continuously ensuring that the cluster is or converging towards the desired state. It does so by running the reconciliation loop after every `syncPeriod` duration. In each reconciliation cycle, it monitors the current state of the resources on the cluster and tries to bring it to the desired state if there is any mismatch. It does so with the help of [kapp](https://carvel.dev/kapp/). 
 
-kapp, another carvel tool, tries to do a diff of the current live state of the resources with the desired state. Sometimes, even though there is no change in the desired state by the user explicitly, kapp still thinks some resources have changed and tries to redeploy them as part of the reconciliation. We call them `ghost` diffs. `Ghost` diffs can appear due to different reasons: controller can change some configuration of the resource, `HorizontalPodAutoscaler` influencing the no. of replicas for a deployment, etc. Everytime a `ghost` diff is detected, a new configMap gets created. kapp store its exit status and summary of operations(e.g. no. of updated/deleted/created resources) done in this configmap. If you have many packages creating `ghost` diffs in the Kubernetes(K8s) cluster, you will end up having large no. of unnecessary configMaps which can slow the K8s API server response time.
+kapp, another carvel tool, performs a diff by comparing `current state` of the resource on the cluster with the `desired state` during a `deploy` or `delete`. The desired state is provided via manifest. If the user wants to change the resource, they should update the manifest and redeploy using kapp. It is not a good practice to update the deployed resource directly on the cluster. 
+
+## What are `ghost` diffs
+
+However, sometimes some resources can get updated on the cluster by controller, operator, mutating Webhook, etc. These changes are not explicitly requested. Since these updates are dynamically added to a resource on the cluster, kapp is unaware of them. In the subsequent `kapp deploy`, kapp will see these updates as divergence from the desired state. Diffs arising out of it is what we call as `ghost` diffs. For example, based on load, `HorizontalPodAutoscalar` can increase the no. of replicas for a deployment. Thus your actual replicas will be different from what is specified in the deployment manifest.
+
+#### Why we should avoid 
+
+Everytime a diff is detected, kapp creates a new configMap to track [app-change](https://carvel.dev/kapp/docs/v0.46.0/state-namespace/#app-changes) history. These configmaps store the exit status and summary of operations( e.g. no. of updated/deleted/created resources) performed in that `kapp deploy`. If packages create `ghost` diffs in the Kubernetes(K8s) cluster, we will end up with large no. of configMaps. Good news is kapp allows you to cap (default 200) the number of app-changes to be stored. 
+
+#### How to resolve 
+
+To avoid these diffs from appearing, users can add [rebase rules](https://carvel.dev/kapp/docs/v0.46.0/config/#rebaserules) to specify exactly what information to retain from current state of deployed resource. Read more about why kapp made a consicious decision to avoid 3 way merge [here](https://carvel.dev/kapp/docs/v0.46.0/merge-method/)
+
+## Detection and Resolution in Packages
 
 Since Package consumers are aware of the `Package` configuration only, it becomes difficult for them to identify which part of the underlying resource configuration is causing these diffs.
 
 In this blog, we will see how to identify the resources causing these ghost diffs and also what part of their configuration is participating in it.
 
-
-## Prerequisites
+#### Prerequisites
 
 * carvel tool set
 * Kubernetes cluster(I'm using minikube)
@@ -34,11 +47,11 @@ $ minikube addons enable metrics-server
 
 I will be using [kctrl](https://carvel.dev/kapp-controller/docs/latest/install/#installing-kapp-controller-cli-kctrl) to interact with `kapp-controller` resources. 
 
-## Install the Package
+#### Install the Package
 
-For the purpose of this blog, I have already created a Carvel package `simple-app-package`. This Package is part of the package repository `my-pkg-repo`.  If you are interested in how to create package and package repository, I would recommend to go over [packaging-tutorial](https://carvel.dev/kapp-controller/docs/latest/packaging-tutorial/).
+For the purpose of this blog, I have already created a Carvel package `simple-app-package`. This package is part of the package repository `my-pkg-repo`.  If you are interested in how to create package and package repository, I would recommend to go over [packaging-tutorial](https://carvel.dev/kapp-controller/docs/latest/packaging-tutorial/).
 
-First, we need to install the Package Repository. 
+First, we need to install the package repository. 
 
 ```bash
 $ kctrl package repository add -r demo-pkg-repo --url docker.io/rohitagg2020/my-pkg-repo:1.0.0
@@ -52,7 +65,7 @@ Waiting for package repository to be added
 Succeeded
 ```
 
-Once the Package Repository is installed, we can check the list of available Packages.
+Once the package repository is installed, we can check the list of available packages.
 ```bash
 $ kctrl package available list --summary=false
 Target cluster 'https://192.168.64.82:8443' (nodes: minikube)
@@ -65,7 +78,7 @@ simple-app.corp.com  1.0.0    0001-01-01 00:00:00 +0000 UTC
 Succeeded
 ```
 
-Let's install the Package.
+Let's install the package.
 
 ```bash
 $ kctrl package install -i pkg-demo -p simple-app.corp.com --version 1.0.0
@@ -83,7 +96,7 @@ Waiting for PackageInstall reconciliation for 'pkg-demo'
 Succeeded
 ```
 
-After the deploy has finished, kapp-controller would have installed the Package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show two running pods which is part of simple-app:
+After the deploy has finished, kapp-controller would have installed the package in the cluster. We can verify this by checking the pods to see that we have a workload pod running. The output should show two running pods which is part of simple-app:
 
 ```bash
 $ kubectl get pods
@@ -92,9 +105,9 @@ simple-app-8648457765-8jtpq   1/1     Running   0          56s
 simple-app-8648457765-p5lzp   1/1     Running   0          56s
 ```
 
-## Identify ghost diffs exist or not
+#### Identify ghost diffs exist or not
 
-In our package, we have set `syncPeriod` to 10 min. This means after every 10 min, kapp controller will try to reconcile the package. kapp creates a configmap every time it sees that there are some resources that needs to be redeployed. Thus, if we see new configmaps appearing, it means ghost diffs are being generated. To identify the configmaps related to an installed package, we have to look at the configmap with Installed Package Prefix. Let's check the configmaps.
+In our package, we have set `syncPeriod` to 10 min. This means after every 10 min, kapp controller will try to reconcile the package. kapp creates a configmap every time it sees that there are some resources that needs to be redeployed. Thus, if we see new configmaps appearing, it means ghost diffs are being generated. To identify the configmaps related to an installed package, we have to look at the configmap with installed package Prefix. Let's check the configmaps.
 
 ```bash 
 $ kubectl get configmaps | grep pkg-demo
@@ -123,11 +136,11 @@ kind: ConfigMap
 ...
 ```
 
-As a Package consumer, I can see that there are ghost diff's appearing. 
+As a package consumer, I can see that there are ghost diff's appearing. 
 
-## Identify actual configuration causing the diffs
+#### Identify actual configuration causing the diffs
 
-To identify what is causing them, we will make a copy of the package. We will modify the deploy section of the Package. It will help us to get the configuration applied by `kapp`. Let's start:
+To identify what is causing them, we will make a copy of the package. We will modify the deploy section of the package. It will help us to get the configuration applied by `kapp`. Let's start:
 
 ```bash
 $ kubectl get pkg simple-app.corp.com.1.0.0 -oyaml > copy-simple-app-package.yaml
@@ -142,14 +155,14 @@ Open copy-simple-app-package.yaml. Remove labels starting with `kapp`. Add the b
 ...
 ```
 
-I would recommend not to tinker with the original package. Hence, let's change the Package version. Lets change it from 1.0.0 to 2.0.0. Specifically, change the `spec.Version` and `metadata.labels.name`. Now, apply this Package in the cluster so that it will be available for install.
+I would recommend not to tinker with the original package. Hence, let's change the package version. Lets change it from 1.0.0 to 2.0.0. Specifically, update in the `spec.version` and `metadata.name`. Now, apply this package in the cluster so that it will be available for install.
 
 ```bash 
 $ kubectl apply -f copy-simple-app-package.yaml
 package.data.packaging.carvel.dev/simple-app.corp.com.2.0.0 created
 ```
 
-Now, if we will see list of available Packages, we can see our locally created Package as well. 
+Now, if we will see list of available packages, we can see our locally created package as well. 
 
 ```bash
 $ kctrl package available list --summary=false
@@ -164,40 +177,22 @@ simple-app.corp.com  2.0.0    0001-01-01 00:00:00 +0000 UTC
 Succeeded
 ```
 
-Let's uninstall the previous package and deploy locally created package.
+Let's update the package to the version `2.0.0`
 
 ```bash
-$ kctrl package installed delete -i pkg-demo -y
+$ kctrl package installed update -i pkg-demo -p simple-app.corp.com --version 2.0.0
+Target cluster 'https://192.168.64.84:8443' (nodes: minikube)
 
-Delete package install 'pkg-demo' from namespace 'default'
-Target cluster 'https://192.168.64.82:8443' (nodes: minikube)
-Deleting package install 'pkg-demo' from namespace 'default'
-Waiting for deletion of package install 'pkg-demo' from namespace 'default'
-
-2:08:42PM: packageinstall/pkg-demo (packaging.carvel.dev/v1alpha1) namespace: default: Deleting
-2:08:43PM: packageinstall/pkg-demo (packaging.carvel.dev/v1alpha1) namespace: default: DeletionSucceeded
-
-Deleting 'ClusterRole': pkg-demo-default-cluster-role
-Deleting 'ClusterRoleBinding': pkg-demo-default-cluster-rolebinding
-Deleting 'ServiceAccount': pkg-demo-default-sa
-
-Succeeded
-
-$ kctrl package install -i pkg-demo -p simple-app.corp.com --version 2.0.0
-
-Target cluster 'https://192.168.64.82:8443' (nodes: minikube)
-Creating service account 'pkg-demo-default-sa'
-Creating cluster admin role 'pkg-demo-default-cluster-role'
-Creating cluster role binding 'pkg-demo-default-cluster-rolebinding'
-Creating package install resource
+Getting package install for 'pkg-demo'
+Updating package install for 'pkg-demo'
 Waiting for PackageInstall reconciliation for 'pkg-demo'
 
-2:12:19PM: packageinstall/pkg-demo (packaging.carvel.dev/v1alpha1) namespace: default: Reconciling
-2:12:28PM: packageinstall/pkg-demo (packaging.carvel.dev/v1alpha1) namespace: default: ReconcileSucceeded
+11:31:28AM: packageinstall/pkg-demo (packaging.carvel.dev/v1alpha1) namespace: default: ReconcileSucceeded
 
 Succeeded
 ```
-After the Package is deployed successfully, let's see what the initial configuration of the resources looks like. We can get that by describing [App](https://carvel.dev/kapp-controller/docs/latest/app-overview/#app) linked to the Package. Similar to configmap, the package creates `App` with the same name as its name. As the output is long, I have added only a small snippet.
+
+After the package is deployed successfully, let's see what the initial configuration of the resources looks like. We can get that by describing [App](https://carvel.dev/kapp-controller/docs/latest/app-overview/#app) linked to the package. Similar to configmap, the package creates `App` with the same name as its name. As the output is long, I have added only a small snippet.
 
 ```bash
 $ kubectl describe app pkg-demo
@@ -262,6 +257,8 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 ```
 
 Here, as we can see, the change in the number of replicas has resulted in the creation of ghost diffs. This is because HPA has reduced the no. of Replicas since there is no load on the server.
+
+Note: There is already an opened [issue](https://github.com/vmware-tanzu/carvel-kapp/issues/338) in kapp which will allow users to view the diff information by running `app-change`. Once it is available, users can directly see the diff information in the config map and they can skip the whole process of creating a new package and adding `diff-changes=true` to kapp.
 
 This is how a Package consumer can discover the reason for ghost diffs and take appropriate action. In this case, adding a [rebase rule](https://carvel.dev/kapp/docs/latest/hpa-deployment-rebase/#docs) will remove the ghost diffs.
 
