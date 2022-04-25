@@ -7,7 +7,7 @@ This article could be helpful for anyone who runs `kapp deploy -a …`, but espe
 
 ### Why
 
-Here’s one example of a recent question in our OSS slack:
+Here’s one example of a recent question in [#carvel](https://kubernetes.slack.com/archives/CH8KCCKA5), our community channel in the Kubernetes Slack:
 
     _Is there a way to use an annotation for kapp to somehow ignore immutable fields? [...] somehow get the immutable field current values and pull them into the patch we are applying with kapp?_
 
