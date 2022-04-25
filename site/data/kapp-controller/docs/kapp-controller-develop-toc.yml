@@ -55,6 +55,8 @@ toc:
     subfolderitems:
       - page: Package Command Reference
         url: /package-command 
+      - page: App Command Reference
+        url: /app-command 
   - title: FAQ
     subfolderitems:
       - page: kapp-controller FAQ
