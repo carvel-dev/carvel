@@ -33,7 +33,7 @@ A ytt rebase rule goes even further, allowing you to run ytt templating steps ac
 
 #### Examples
 
-There are rebase-rules in `kapp deploy-config` that are applied by default everytime to you run `kapp deploy …` in order to make the experience sane and consistent with user expectations. For example, the first two rebase rules match all resources and act to preserve the existing metadata on the cluster and then to apply the user’s new metadata fields over that:
+There are rebase-rules in `kapp deploy-config` that are applied by default every time you run `kapp deploy …` in order to make the experience sane and consistent with user expectations. For example, the first two rebase rules match all resources and act to preserve the existing metadata on the cluster and then to apply the user’s new metadata fields over that:
 
 ```
 # Copy over all metadata (with resourceVersion, etc.)
