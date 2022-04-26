@@ -1,4 +1,12 @@
-## Kapp Rebase Rules
+---
+title: "kapp rebase rules"
+slug: kapp-rebase-rules
+date: 2022-04-26
+author: Joe Kimmel
+excerpt: "Use kapp rebase rules to preserve or change some fields when updating a resource"
+image: /img/logo.svg
+tags: ['kapp', 'rebase-rules', 'rebaserules']
+---
 
 
 ### Who
