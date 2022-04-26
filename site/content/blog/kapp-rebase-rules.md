@@ -17,7 +17,7 @@ This article could be helpful for anyone who runs `kapp deploy -a …`, but espe
 
 Here’s one example of a recent question in [#carvel](https://kubernetes.slack.com/archives/CH8KCCKA5), our community channel in the Kubernetes Slack:
 
-    _Is there a way to use an annotation for kapp to somehow ignore immutable fields? [...] somehow get the immutable field current values and pull them into the patch we are applying with kapp?_
+_Is there a way to use an annotation for kapp to somehow ignore immutable fields? [...] somehow get the immutable field current values and pull them into the patch we are applying with kapp?_
 
 You might expect we would solve this like `kubectl apply` or git with a 3 way merge, but that approach can be inflexible or require manual steps for some kinds of conflicts.
 
