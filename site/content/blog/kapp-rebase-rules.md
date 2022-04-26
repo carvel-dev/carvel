@@ -33,7 +33,7 @@ A ytt rebase rule goes even further, allowing you to run ytt templating steps ac
 
 #### Examples
 
-There are rebase-rules in `kapp deploy-config` that are applied by default everytime to you run `kapp deploy …` in order to make the experience sane and consistent with user expectations. For example, the first two rebase rules match all resources and act to preserve the existing metadata on the cluster and then to apply the user’s new metadata fields over that:  \
+There are rebase-rules in `kapp deploy-config` that are applied by default everytime to you run `kapp deploy …` in order to make the experience sane and consistent with user expectations. For example, the first two rebase rules match all resources and act to preserve the existing metadata on the cluster and then to apply the user’s new metadata fields over that:
 
 ```
 # Copy over all metadata (with resourceVersion, etc.)
@@ -80,7 +80,7 @@ Rebase rules aren’t persisted anywhere on the cluster, so they have to be supp
 
 ### When
 
-Original flavor rebase rules have been in kapp nearly since the dawn of time, but were substantially updated in kapp 0.6.0 and evolved to their fully modern form sometime around kapp 0.27.0.
+Copy/remove flavor rebase rules have been in kapp nearly since the dawn of time, but were substantially updated in kapp 0.6.0 and evolved to their fully modern form sometime around kapp 0.27.0.
 
 Ytt rebase rules were introduced in kapp v0.38.0 (August 2021).
 
