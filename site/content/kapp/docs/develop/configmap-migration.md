@@ -90,7 +90,7 @@ App 'my-app' (namespace: default) does not exist
 
 ### Caveats
 
-1. Migrated apps will not show up via `kapp` if `KAPP_FQ_CONFIGMAP_NAMES=false` or not set:
+1. Migrated apps will show up with the suffix with previous versions of kapp (0.46.0-):
 
 ```bash
 export KAPP_FQ_CONFIGMAP_NAMES=true
@@ -101,8 +101,10 @@ $ kapp ls
 Namespace  Name        Namespaces  Lcs   Lca
 default    my-app      default     true  7s
 
-$ KAPP_FQ_CONFIGMAP_NAMES=false kapp ls
-Namespace  Name        Namespaces  Lcs   Lca
+# With old kapp versions
+$ kapp ls
+Namespace  Name                     Namespaces  Lcs   Lca
+default    my-app.apps.k14s.io      default     true  7s
 ```
 
 ### Opting out after migration
@@ -111,10 +113,12 @@ To return to the previous configmap naming convention, the following steps must 
 
 1. `kubectl get configmap my-app.apps.k14s.io -o yaml > app.yml`
 
-1. Find the `metadata.name` field in `app.yml` and remove the suffix `.apps.k14s.io`
+2. Find the `metadata.name` field in `app.yml` and remove the suffix `.apps.k14s.io`
 
-1. `kubectl create -f app.yml`
+3. Find the annotation named `kapp.k14s.io/is-configmap-migrated` in `metadata.annotations` and remove it
 
-1. `kubectl delete configmap my-app.apps.k14s.io`
+4. `kubectl create -f app.yml`
+
+5. `kubectl delete configmap my-app.apps.k14s.io`
 
 *Important Note: Ensure the configmap with suffix `apps.k14s.io` is deleted after opting-out!*   
