@@ -3,7 +3,7 @@ title: App Command Reference
 ---
 
 ## Overview
-The app commands let users observe and interacrt with Apps conveniently.
+The app commands let users observe and interact with Apps conveniently.
 
 ## Listing apps
 The `kctrl app list` command can be used to list apps.
@@ -15,7 +15,7 @@ Supported flags:
 - `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
 
 ## Geting details for an app
-The `kctrl app get` command can be used to get dertails for an app.
+The `kctrl app get` command can be used to get details for an app.
 ```bash
 $ kctrl app get -a simple-app
 ```

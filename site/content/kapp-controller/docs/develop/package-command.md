@@ -164,7 +164,7 @@ $ kctrl package installed get --package-install cert-man --values-file-output ou
 ```
 
 ### Pausing reconciliation for a package install
-The `kctrl package installed pause` ciommand can be used to pause reconciliation fora package intallation.
+The `kctrl package installed pause` command can be used to pause reconciliation for a package installation.
 ```bash
 $ kctrl package installed pause -i cert-man
 ```
