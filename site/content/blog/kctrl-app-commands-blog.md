@@ -247,7 +247,7 @@ Succeeded
 ```
 Now that we know how we can talk to our App CRs, let's see how observing them improves the package consumption experience.
 # Enhanced package consumption workflow
-When a user installs a package, kapp-controller observes the PackageInstall resource created and creates an App CR which syncs periodically to ensure that the state on the cluster is the same as the one defined by the package. Since, `kctrl` tails the status of the underlying App CR providing more information about the stages of the reconciliation process. The experience is similar to the tailing behaviour iun the app commands.
+When a user installs a package, kapp-controller observes the PackageInstall resource created and creates an App CR which syncs periodically to ensure that the state on the cluster is the same as the one defined by the package. Since, `kctrl` tails the status of the underlying App CR providing more information about the stages of the reconciliation process. The experience is similar to the tailing behaviour in the app commands.
 
 This lets the users be more aware of what is happening while the installation reconciles, and analyse any erroneous behaviour better.
 
