@@ -96,6 +96,7 @@ params:
     versions:
     - develop
     - v0.36.1
+    - v0.35.0
     - v0.34.0
     - v0.33.1
     - v0.32.0
