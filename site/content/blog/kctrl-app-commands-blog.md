@@ -70,7 +70,7 @@ Succeeded
 ```
 It highlights that the deploy stage failed, while displaying the error message.
 
-The `pause` and `kick` commands help users trigger and pause reconciliations for their apps.
+The `pause` and `kick` commands help users pause and trigger reconciliations for their apps.
 
 Pausing an app stops reconciliation for that particular app, which means that kapp-controller will not try to periodically reconcile the app to ensure the desired state on the cluster.
 ```bash
