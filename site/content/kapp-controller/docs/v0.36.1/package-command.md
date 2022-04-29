@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/package-command]
 title: Package Command Reference
 ---
 
@@ -163,6 +163,32 @@ Or to download the values file consumed by the installation.
 ```bash
 $ kctrl package installed get --package-install cert-man --values-file-output output-values.yml
 ```
+
+### Pausing reconciliation for a package install
+The `kctrl package installed pause` command can be used to pause reconciliation for a package installation.
+```bash
+$ kctrl package installed pause -i cert-man
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+
+### Triggering reconciliation for package installation
+The `kctrl package installed kick` command can be used to trigger reconciliation for an installed package.
+```bash
+$ kctrl package installed kick -i cert-man
+```
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `--wait` _boolean_, Wait for reconciliation to complete (default true)
+- `--wait-check-interval` _duration_, Amount of time to sleep between checks while waiting (default 1s)
+- `--wait-timeout` _duration_, Maximum amount of time to wait in wait phase (default 5m0s)
+
+### Observing status of app created by package installation
+The `kctrl package installed status` command can be used to observe the status of the app created by the package installation with information from the last reconciliation. The command tails and streams app status updates till the app reconciles or fails if the command is run while the installation is reconciling.
+```bash
+$ kctrl package installed status -i cert-man
+```
+Supported flags:
+- `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
 
 ### Deleting package installatiions
 The `package installed delete` command can be used to delete package installations and resources created along with it by `kctrl`.
