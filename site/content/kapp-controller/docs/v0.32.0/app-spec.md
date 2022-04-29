@@ -235,12 +235,18 @@ spec:
 
     # use sops to decrypt *.sops.yml files (optional; v0.11.0+)
     - sops:
-        # use PGP to decrypt files (required)
+        # use PGP to decrypt files (pgp or age is required)
         pgp:
           # secret with private armored PGP private keys (required)
           privateKeysSecretRef:
             # (required)
             name: pgp-secrets
+        # use age to decrypt files (v0.28.0+) (pgp or age is required)
+        age:
+          # secret with private armored PGP private keys (required)
+          privateKeysSecretRef:
+            # (required)
+            name: age-secrets
         # lists paths to decrypt explicitly (optional; v0.13.0+)
         paths:
         - all-secrets/
