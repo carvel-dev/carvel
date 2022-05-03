@@ -1,6 +1,18 @@
 [build]
 publish = "public"
-command = "hugo --gc --minify"
+command = "hugo --gc --minify && make build"
+functions = "/netlify/functions"
+
+
+[build.environment]
+GO_VERSION = "1.14.5"
+HUGO_CACHEDIR = "/tmp/"
+GO_IMPORT_PATH = "example_internal_templating"
+
+[context.development.environment]
+HUGO_VERSION = "0.78.0"
+HUGO_ENV = "development"
+GO_VERSION = "1.17.3"
 
 [context.production.environment]
 HUGO_VERSION = "0.78.0"
