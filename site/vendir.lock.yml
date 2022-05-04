@@ -1,0 +1,11 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: Update go mod example
+      sha: 894983afed8ac3363e22b6827a5848bf27c30a60
+      tags:
+      - v0.40.1
+    path: github.com/wmware-tanzu/carvel-ytt
+  path: playground-src
+kind: LockConfig

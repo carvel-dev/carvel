@@ -1,0 +1,9 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+  - path: playground-src
+    contents:
+      - path: github.com/wmware-tanzu/carvel-ytt
+        git:
+          url: https://github.com/vmware-tanzu/carvel-ytt.git
+          ref: v0.40.1
