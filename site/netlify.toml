@@ -5,7 +5,7 @@ functions = "/netlify/functions"
 
 
 [build.environment]
-GO_VERSION = "1.14.5"
+GO_VERSION = "1.17.3"
 GO_IMPORT_PATH = "github.com/vmware-tanzu/carvel-ytt"
 
 [context.development.environment]
