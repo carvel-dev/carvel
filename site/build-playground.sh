@@ -5,8 +5,8 @@ set -e -x -u
 mkdir -p local-bin/
 curl -L https://carvel.dev/install.sh | K14SIO_INSTALL_BIN_DIR=local-bin bash
 export PATH=$PWD/local-bin/:$PATH
-vendir version
-vendir sync
+local-bin/vendir version
+local-bin/vendir sync
 
 mkdir -p netlify/functions
 GOOS=linux
