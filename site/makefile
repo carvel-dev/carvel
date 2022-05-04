@@ -1,6 +1,7 @@
 build:
-	wget -O- https://carvel.dev/install.sh > install.sh
-	bash install.sh
+	mkdir local-bin/
+	curl -L https://carvel.dev/install.sh | K14SIO_INSTALL_BIN_DIR=local-bin bash
+	export PATH=$PWD/local-bin/:$PATH
 	vendir version
 	vendir sync
 
