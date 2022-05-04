@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "hugo --gc --minify && make build"
+command = "hugo --gc --minify && ./build-playground.sh"
 functions = "/netlify/functions"
 
 
@@ -26,7 +26,7 @@ HUGO_VERSION = "0.78.0"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
-command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL && make build"
+command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL && ./build-playground.sh"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.78.0"
