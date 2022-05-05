@@ -146,24 +146,11 @@ waitRules:
   - type: Ready
     status: "True"
     success: true
+    supportsObservedGeneration: true    # available from v0.47.0+
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
 ```
 
-If supportsObservedGeneration is enabled for any resource at condition level, kapp will match observedGeneration for that condition with generation before matching the condition matcher against resource's condition.
-
-```yaml
-waitRules:
-- resourceMatchers:
-  - apiVersionKindMatcher:
-      apiVersion: cert-manager.io/v1
-      kind: Certificate
-  conditionMatchers:
-  - type: Ready
-    status: "False"
-    failure: true
-    supportsObservedGeneration: true
-```
 ### templateRules
 
 `templateRules` specify how versioned resources affect other resources. In above example, versioned config maps are said to affect deployments. [Read more about versioned resources](diff.md#versioned-resources).
