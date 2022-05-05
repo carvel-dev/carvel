@@ -12,4 +12,6 @@ mkdir -p netlify/functions
 GOOS=linux
 GOARCH=amd64
 (cd playground-src/github.com/wmware-tanzu/carvel-ytt && ./hack/build.sh)
-cp playground-src/github.com/wmware-tanzu/carvel-ytt/tmp/ytt-lambda-website.zip netlify/functions
+cp playground-src/github.com/wmware-tanzu/carvel-ytt/tmp/main netlify/functions
+cp playground-src/github.com/wmware-tanzu/carvel-ytt/tmp/ytt netlify/functions
+
