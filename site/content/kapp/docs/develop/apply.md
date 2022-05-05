@@ -24,9 +24,11 @@ Related: [ownership label rules](config.md#ownershiplabelrules) and [label scopi
 
 `kapp.k14s.io/create-strategy` annotation controls create behaviour (rarely necessary)
 
-Possible values: "" (default), `fallback-on-update`.
+Possible values: "" (default), `fallback-on-update`, `fallback-on-update-or-noop`.
 
-In some cases creation of a resource may conflict with that resource being created in the cluster by other means (often automated). An example of that is creation of default ServiceAccount by kapp racing with Kubernetes service accounts controller doing the same thing. By specifying `fallback-on-update` value, kapp will catch resource creation conflicts and apply resource as an update.
+In some cases creation of a resource may conflict with that resource being created in the cluster by other means (often automated). An example of that is creation of default ServiceAccount by kapp racing with Kubernetes service accounts controller doing the same thing. By specifying `fallback-on-update` value, kapp will catch resource creation conflicts and apply resource as an update. 
+
+`fallback-on-update-or-noop` (Available in v0.47.0+) also allows to use `noop` operation if `kapp.k14.io/noop` is added through rebase rules, else it behaves the same way as `fallback-on-update`.
 
 ### kapp.k14s.io/update-strategy
 
