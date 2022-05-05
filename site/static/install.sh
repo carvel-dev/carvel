@@ -26,7 +26,7 @@ install() {
     ytt_checksum=d46dba5e729e2fe36c369e96eaa2eb5354fb1bf7cf9184f9bfa829b8e5558b94
     imgpkg_checksum=e43142fdb197a62844acb29cb619d513346aac3c23732a4d180c0ad974d9562e
     kbld_checksum=181ac8be5652b54344617d90aa8e83fbb41756d1b4b99168fec85d8813b3c1b2
-    kapp_checksum=7a3e5235689a9cc6d0e85ba66db3f1e57ab65323d3111e0867771111d2b0c1a3
+    kapp_checksum=ed0a7a86828517e7aa3d4bede659ac725806b0201692f2d574beb71785220406
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     vendir_checksum=c26547097d67f21e129a25557d9d36c7c0e109afe130adff63d3c83ce9459ecc
     kctrl_checksum=4f4037ab7537db4a4518354dd0372ff5aedeea5491a08ddcc23aa477274e15a1
@@ -36,7 +36,7 @@ install() {
     ytt_checksum=11222665c627b8f0a1443534a3dde3c9b3aac08b322d28e91f0e011e3aeb7df5
     imgpkg_checksum=8d22423dd6d13efc0e580443d8f88d2183c52c6f851ba51e3e54f25bf140be58
     kbld_checksum=38a5dad7ed478d209c8206d95546989b2730c7fed914c78d85eed68a2233688e
-    kapp_checksum=130f648cd921761b61bb03d7a0f535d1eea26e0b5fc60e2839af73f4ea98e22f
+    kapp_checksum=2b1bd5e3a35ed63045be80a7cc8cbc054fe4e98c89c55f9006c8fec2243658a4
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
     vendir_checksum=1aa12d070f2e91fcb0f4d138704c5061075b0821e6f943f5a39676d7a4709142
     kctrl_checksum=d68f7400483950c0fc3190e637d2ecd644752ba577ad0164e05b575ff8c135f0
@@ -67,11 +67,11 @@ install() {
   echo "Installed ${dst_dir}/kbld v0.33.0"
   
   echo "Installing kapp..."
-  $dl_bin https://github.com/vmware-tanzu/carvel-kapp/releases/download/v0.46.0/kapp-${binary_type} > /tmp/kapp
+  $dl_bin github.com/vmware-tanzu/carvel-kapp/releases/download/v0.47.0/kapp-${binary_type} > /tmp/kapp
   echo "${kapp_checksum}  /tmp/kapp" | shasum -c -
   mv /tmp/kapp ${dst_dir}/kapp
   chmod +x ${dst_dir}/kapp
-  echo "Installed ${dst_dir}/kapp v0.46.0"
+  echo "Installed ${dst_dir}/kapp v0.47.0"
   
   echo "Installing kwt..."
   $dl_bin https://github.com/vmware-tanzu/carvel-kwt/releases/download/v0.0.6/kwt-${binary_type} > /tmp/kwt
