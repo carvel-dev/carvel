@@ -146,6 +146,7 @@ waitRules:
   - type: Ready
     status: "True"
     success: true
+    supportsObservedGeneration: true    # available from v0.47.0+
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
 ```
