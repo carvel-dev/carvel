@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/hpa-deployment-rebase]
 title: HPA and Deployment rebase
 ---
 ## HPA and Deployment rebase
