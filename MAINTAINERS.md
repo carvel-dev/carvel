@@ -24,6 +24,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Soumik Majumder | [100mik](https://github.com/100mik) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 | Rohit Aggarwal | [rohitagg2020](https://github.com/rohitagg2020) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 | John Brunton | [jbrunton](https://github.com/jbrunton) | [converge.io](https://converge.io/) | [carvel-setup-action](https://github.com/vmware-tanzu/carvel-setup-action) (Approver) |
+| Kumari Tanushree | [kumaritanushree](https://github.com/kumaritanushree) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 
 
 ## Emeritus Maintainers
