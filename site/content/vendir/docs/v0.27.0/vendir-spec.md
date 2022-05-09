@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-spec]
 title: vendir.yml spec
 ---
 
@@ -167,6 +167,12 @@ directories:
       secretRef:
         # (required)
         name: my-gh-auth
+      # Used to create the URL of the asset to download the metadata
+      # from the Github Release. (optional)
+      # The url parameter of http can interpolate the tag of the GitHub release using the {tag} token.
+      http:
+        # The url parameter of http can interpolate the tag of the GitHub release using the {tag} token.
+        url: https://dl.k8s.io/release/{tag}/bin/linux/amd64/kubectl
 
     # fetch Helm chart contents (optional; v0.11.0+)
     helmChart:
