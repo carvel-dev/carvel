@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/github-release]
 title: Github Release
 ---
 
