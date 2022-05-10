@@ -7,10 +7,10 @@ Below is a signup for individuals to reserve weeks in advance.
 
 And, as a thank you for sharing your knowledge with the community, we would love to send a t-shirt to anyone who is a not a maintainer of Carvel that participates. Please send an email to [Nanci Lancaster](mailto:nancil@vmware.com) with your contact information so that we can get the right sized t-shirt shipped to you.
 
-| Date | Author(s)                                             | Topic                                          | Type of Medium (Blog, Video, etc.) | Twitter handle |
-| --- |-------------------------------------------------------|------------------------------------------------| --- | --- |
-| February 2, 2022 | [Nanci Lancaster](https://github.com/microwavables)   | Example                                        | Blog | [@microwavables](https://twitter.com/microwavables) |
-| February 9, 2022 | [Daniel Helfand](https://github.com/danielhelfand)    | Using vclusters with Carvel                    | Blog | [@danielhelfand](https://twitter.com/danielhelfand) |
+| Date              | Author(s)                                             | Topic                                          | Type of Medium (Blog, Video, etc.) | Twitter handle |
+|-------------------|-------------------------------------------------------|------------------------------------------------| --- | --- |
+| February 2, 2022  | [Nanci Lancaster](https://github.com/microwavables)   | Example                                        | Blog | [@microwavables](https://twitter.com/microwavables) |
+| February 9, 2022  | [Daniel Helfand](https://github.com/danielhelfand)    | Using vclusters with Carvel                    | Blog | [@danielhelfand](https://twitter.com/danielhelfand) |
 | February 17, 2022 | [Rohit Aggarwal](https://github.com/rohitagg2020)     | Carvelizing Helm Charts                        | Blog | N/A |
 | February 24, 2022 | [Cari Lynn](https://github.com/cari-lynn)             | Argo CD + ytt                                  | Blog | N/A |
 | March 3, 2022 | [Praveen Rewar](https://github.com/praveenrewar)      | Moving existing resources to a new kapp app    | Blog | [@praveen_rewar](https://twitter.com/praveen_rewar) |
@@ -26,3 +26,8 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | May 12, 2022 |                                                       |                                                | |
 | May 19, 2022 | [Neil Hickey](https://github.com/neil-hickey) | DRY'ing up Concourse pipelines courtesy of ytt | Blog| N/A |                                                       |                                                | |
 | May 26, 2022 |                                                       |                                                | |
+| June 2, 2022      |                                                       |                                                         | |
+| June 9, 2022      | [Varsha Munishwar](https://github.com/vmunishwar)     | Getting started with contributing to open-source projects like ytt | Blog| N/A |                                                       |                                                | |
+| June 16, 2022     |                                                       |                                                         | |
+| June 23, 2022     |                                                       |                                                         | |
+| June 30, 2022     |                                                       |                                                         | |
