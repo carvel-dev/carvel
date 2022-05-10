@@ -24,5 +24,5 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | April 28, 2022 | [Joe Kimmel](https://github.com/joe-kimmel-vmw) | kapp Rebase Rules | Blog | N/A |
 | May 5, 2022 | [Soumik Majumder](https://github.com/100mik) | Getting to know App resources better with kctrl | Blog| [@\_100mik\_](https://twitter.com/_100mik_) |
 | May 12, 2022 |                                                       |                                                | |
-| May 19, 2022 |                                                       |                                                | |
+| May 19, 2022 | [Neil Hickey](https://github.com/neil-hickey) | DRY'ing up Concourse pipelines courtesy of ytt | Blog| N/A |                                                       |                                                | |
 | May 26, 2022 |                                                       |                                                | |
