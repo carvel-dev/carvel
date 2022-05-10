@@ -10,7 +10,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Dmitriy Kalinin | [cppforlife](https://github.com/cppforlife) | [VMware](https://www.github.com/vmware/) | All Tools (Approver) |
 | Aaron Hurley | [aaronshurley](https://github.com/aaronshurley) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt), [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | John Ryan | [pivotaljohn](https://github.com/pivotaljohn) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) (Approver) |
-| Cari Lynn | [cari-lynn](https://github.com/cari-lynn) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) (Reviewer) |
 | João Pereira | [joaopapereira](https://github.com/joaopapereira) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Approver), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Garrett Cheadle | [gcheadle-vmware](https://github.com/gcheadle-vmware) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Dennis Leon | [DennisDenuto](https://github.com/DennisDenuto)| [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Reviewer), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
@@ -31,6 +30,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Eli Wrenn, [ewrenn8](https://github.com/ewrenn8)
 * Steven Locke, [StevenLocke](https://github.com/StevenLocke)
 * Daniel Helfand, [danielhelfand](https://github.com/danielhelfand)
+* Cari Lynn, [cari-lynn](https://github.com/cari-lynn)
 
 ## Carvel Stakeholders
 **Deployment Lifecycle Tools:** imgpkg, kapp, kbld, ytt
@@ -41,7 +41,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | All | Dmitriy Kalinin (cppforlife), Project Tech Lead |
 | Deployment Lifecycle & Package Management | Aaron Hurley (aaronshurley), Engineering Manager |
 | Deployment Lifecycle | Renu Yarday (renuy), Engineering Manager |
-| Deployment Lifecycle | Helen George (iamhsk), Product Manager |
 | Deployment Lifecycle | John Ryan (jtigger), Tech Lead |
 | [Windows Application Packages Contributor](https://github.com/adriens?tab=repositories&q=chocolatey-&type=&language=powershell&sort=stargazers) | Adrien Sales (adriens) |
 | Community Management | Nanci Lancaster (microwavables) |
