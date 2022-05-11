@@ -69,15 +69,16 @@ params:
     name: imgpkg
     short_name: imgpkg
     root_link: /imgpkg/
-    latest_docs_link: /imgpkg/docs/v0.28.0/
+    latest_docs_link: /imgpkg/docs/v0.29.0/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
     search: true
     search_index_name: carvel-imgpkg
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.28.0
+    version_latest: v0.29.0
     versions:
     - develop
+    - v0.29.0
     - v0.28.0
     - v0.27.0
     - v0.26.0
