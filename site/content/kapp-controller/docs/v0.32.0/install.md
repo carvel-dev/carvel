@@ -65,6 +65,11 @@ version of kapp-controller).
    variable](/imgpkg/docs/latest/auth/#via-iaas) to false.
 
 
+### Kubernetes versions >= 1.24
+All kapp-controller versions <= v0.36.1 will be unable to reconcile
+PackageInstall and App CRs with the `LegacyServiceAccountTokenNoAutoGeneration`
+feature gate, which is enabled by default in Kubernetes starting in v1.24.
+
 ### Kubernetes versions < 1.20
 Starting in kapp-controller 0.31.0 we have upgraded our underlying kubernetes
 libraries which will try to use APIs that don't exist on clusters v1.19 and
