@@ -1,0 +1,3 @@
+[submodule "site/carvel-ytt"]
+	path = site/carvel-ytt
+	url = https://github.com/vmware-tanzu/carvel-ytt

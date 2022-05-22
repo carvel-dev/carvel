@@ -207,7 +207,7 @@ function NewExamples(parentEl, templates, exampleLocation, blocker) {
     var exampleSets = JSON.parse(data);
 
     exampleSets.forEach(exampleSet => {
-      
+
       $(".button-container").append(
           '<p>' +
             '<button type="button" class="button example-set-button" name="' + exampleSet.id + '">' +
