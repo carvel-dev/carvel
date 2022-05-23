@@ -134,7 +134,7 @@ _Example 3: HTTP URL_
 Given https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml
 
 ```console
-ytt --data-values-file https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml --data-values-inspect
+$ ytt --data-values-file https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml --data-values-inspect
 ```
 yields
 ```yaml
@@ -377,14 +377,14 @@ Data value flags support attaching values to libraries for use during [library m
 export STR_VALS_key6=true # will be string 'true'
 export YAML_VALS_key6=true # will be boolean true
 
-ytt -f . \
-  --data-value @lib1:key1=val1-arg \
-  --data-value-yaml @lib2:key2.nested=123 \ # will be int 123
-  --data-value-yaml '@lib3:key3.other={"nested": true}' \
-  --data-value-file @lib4:key4=/path \
-  --data-values-env @lib5:STR_VALS \
-  --data-values-env-yaml @lib6:YAML_VALS
-  --data-values-file @lib6:/path
+$ ytt -f . \
+   --data-value @lib1:key1=val1-arg \
+   --data-value-yaml @lib2:key2.nested=123 \ # will be int 123
+   --data-value-yaml '@lib3:key3.other={"nested": true}' \
+   --data-value-file @lib4:key4=/path \
+   --data-values-env @lib5:STR_VALS \
+   --data-values-env-yaml @lib6:YAML_VALS
+   --data-values-file @lib6:/path
 ```
 
 ```console

@@ -12,7 +12,7 @@ Configuration Consumers then set values for those variables in any combination o
 - one or more of the `--data-value...` flag(s) and/or
 - Data Values Overlay(s) through the `--file` flag
 
-This guide illustrates this flow.
+This guide illustrates how to declare and configure data values.
 
 _(for a higher-level overview of `ytt`, see [How it works](how-it-works.md).)_
 
@@ -96,7 +96,7 @@ which is a plain YAML file (i.e. _cannot_ contain any `ytt` templating). This fi
 Using the example files from above, `ytt` produces this output:
 
 ```console
-ytt -f schema.yml -f config.yml --data-values-file values.yml
+$ ytt -f schema.yml -f config.yml --data-values-file values.yml
 name: observer
 spec:
   virtualhost: observer.system.example
