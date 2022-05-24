@@ -11,13 +11,13 @@ Let's get an idea of how `ytt` works by looking at the high-level concepts and f
 When you invoke `ytt` ...
 
 ```console
-$ ytt -f values/ -f config/
+$ ytt -f config/ --data-values-file values/
 ```
 
 ... you can think of it as a pipeline in four stages, looking something like this:
 
 ![ytt pipeline overview](/images/ytt/ytt-pipeline-overview.jpg)
-<!-- source: https://miro.com/app/board/o9J_lIfcKZY=/?moveToWidget=3074457357774380591&cot=14 --> 
+<!-- source: https://miro.com/app/board/o9J_lIfcKZY=/?moveToWidget=3074457361130201021&cot=14 --> 
 
 _(Configuration documents (grey, pale yellow and blue) flow through four pipeline steps (black), into evaluated intermediary documents (bright yellow and blue), and combined ultimately into plain YAML output (green).)_
 
@@ -61,7 +61,6 @@ bar:
 The top-left section of the diagram shows the configuration files: the templated configuration and supporting files.
 
 These files are written and maintained those who understand how the final result should be shaped. We refer to these folks as Configuration Authors.
-
 
 Followed by a description of each kind of configuration file:
 
@@ -146,13 +145,13 @@ Note that most configuration files can contain any combination of "Plain Documen
 
 The exceptions are "Data Values Schema Documents" and "Data Values Documents". These documents must be in their own file, as illustrated [above](#the-ytt-pipeline).
 
-### Customization Input
+### Custom Values Input
 
-The top-middle section of the diagram shows the customization inputs. 
+The top-middle section of the diagram shows where custom values are injected.
 
 These are values supplied by those who use `ytt` to generate the final output. We refer to these people as Configuration Consumers.
 
-They customize the result by supplying their situation-specific settings for "Data Values". This can be done as command-line arguments, OS environment variables, and/or plain YAML files. In all cases, these override Data Values that were declared in [Data Values Schema Documents](#data-value-schema-documents).
+They customize the result by supplying their situation-specific settings for "Data Values". This can be done as command-line arguments, OS environment variables, and/or plain YAML files. In all cases, these override Data Values that must first be declared in [Data Values Schema Documents](#data-value-schema-documents).
 
 ### Step 1: Calculate Data Values
 
