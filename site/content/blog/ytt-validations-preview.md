@@ -15,7 +15,7 @@ We are excited to announce that in `ytt` v0.41.0, we are including a _preview_ o
 
 ### What are `ytt` Validations?
 
-Validations are constraints that you can declare on your Data Values to ensure that what's supplied is not just well-formed, but in the expected range of values.
+Validations are constraints that you can define on Data Values via an annotation. A Validation ensures that a Data Value is in the expected range of values.
 
 Like this:
 
@@ -37,7 +37,7 @@ While we plan on delivering a host of useful named rules, out of the box, there 
 
 For all the juicy details, check out the [Validations Proposal/Specification](https://github.com/vmware-tanzu/carvel/blob/004-schema-validation/proposals/ytt/004-schema-validation/README.md).
 
-This kind of thing is very useful for situations where a mis-configured deployment could waste a lot of resources and be much more difficult to troubleshoot than getting an immediate error message that the configuration value was wrong.
+`ytt` Validations are very useful for situations where a mis-configured deployment could waste a lot of resources and be much more difficult to troubleshoot than getting an immediate error message that the configuration value was wrong.
 
 ### 🔬 It's an Experiment! 🧪
 
@@ -55,7 +55,7 @@ We're doing this so that you have a voice in making sure features like this meet
 
 `ytt` v0.41.0 will be released soon. When it does, grab yourself the latest.
 
-Then, to enable Validations, and start including validation rules in a copy of _your_ schema:
+Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](how-to-write-schema.md):
 
 ```yaml
 #@data/values-schema
@@ -99,7 +99,7 @@ We're including light documentation as we go, so check out `[link to @schema/val
 
 ### How can I give feedback?
 
-We would love to tell you, thank you for asking!
+We would love to tell you, thank you for asking! 😁 
 
 Delightfully, any format that is most convenient for you, we're happy to hear your thoughts!
 
