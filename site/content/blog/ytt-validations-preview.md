@@ -29,7 +29,7 @@ volumeSnapshotLocation:
 ```
 
 That one new annotation — `@schema/validation` — will:
-- validate the final data value against that rule (`provider:` set to one of the three values),
+- validate the final data value against that rule (`provider:` is set to one of the three values),
 - when exporting schema, translate the rule to OpenAPI v3 / JSON Schema validation.
 - automatically include documentation describing the rule.
 
