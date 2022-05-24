@@ -87,7 +87,27 @@ dex:
   username: ""
   namespace: default
   provider: ""
-  ```
+```
+
+If you want to verify you've switched on the right experiment(s), use the `version` command:
+
+```console
+$ YTTEXPERIMENTS=validations ytt version
+ytt version 0.40.1
+- experiment "validations" enabled.
+```
+
+#### Experiments on `ytt` Playground
+
+The hosted Playground instance (https://carvel.dev/ytt/#playground) is based on the latest version of `ytt`. However, all experiments are switched off.
+
+To get the REPL-like Playground experience while exploring experimental features, launch it locally:
+
+```console
+$ YTTEXPERIMENTS=validations ytt website
+Listening on http://localhost:8080
+```
+
 
 ### What is implemented so far? 🛠
 
