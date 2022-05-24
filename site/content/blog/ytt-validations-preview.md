@@ -8,12 +8,12 @@ image: /img/ytt.svg
 tags: ['ytt', 'data values', 'validation', 'preview', 'experiments']
 ---
 
-### 📣 Announcing! 📣
+### Announcing! 📣
 We are excited to announce that in `ytt` v0.41.0, we are including a _preview_ of a powerful new feature:
 
 **`ytt` Validations!**
 
-### What are `ytt` Validations?
+### What are `ytt` Validations? 🤔
 
 Validations are constraints that you can define on Data Values via an annotation. A Validation ensures that a Data Value is in the expected range of values.
 
@@ -39,7 +39,7 @@ For all the juicy details, check out the [Validations Proposal/Specification](ht
 
 `ytt` Validations are very useful for situations where a mis-configured deployment could waste a lot of resources and be much more difficult to troubleshoot than getting an immediate error message that the configuration value was wrong.
 
-### 🔬 It's an Experiment! 🧪
+### It's an Experiment! 🧪
 
 To make a preview possible, we're also introducing a feature for enabling "**experiments**" in v0.41.0.
 
@@ -51,11 +51,11 @@ So, `ytt` Validations is the first of these such experiments.
 
 We're doing this so that you have a voice in making sure features like this meet _your_ needs.
 
-### How do I get started?
+### How do I get started? 🏇
 
 `ytt` v0.41.0 will be released soon. When it does, grab yourself the latest.
 
-Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](how-to-write-schema.md):
+Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](../ytt/docs/v0.40.0/how-to-write-schema.md/):
 
 ```yaml
 #@data/values-schema
@@ -72,7 +72,7 @@ dex:
 ... and set the OS environment variable, `YTTEXPERIMENTS`...
 
 ```console
-$ YTTEXPERIMENTS=validations yttt -f schema.yml -v dex.namespace=default
+$ YTTEXPERIMENTS=validations ytt -f schema.yml -v dex.namespace=default
 ytt: Error: One or more data values were invalid:
 - "username" (schema.yml:5) requires "non-empty value" (by schema.yml:4)
 - "namespace" ((data-value arg):1) requires "not 'default'" (by schema.yml:6)
@@ -82,14 +82,14 @@ ytt: Error: One or more data values were invalid:
 You'll notice that with the validations experiment turned off, `ytt` doesn't recognize those annotations.
 
 ```console
-$  yttt -f schema.yml -v dex.namespace=default --data-values-inspect
+$  ytt -f schema.yml -v dex.namespace=default --data-values-inspect
 dex:
   username: ""
   namespace: default
   provider: ""
   ```
 
-### What is implemented so far?
+### What is implemented so far? 🛠
 
 As of v0.41.0, we've implemented the core behavior of recognizing, parsing, and checking validations in schema.
 
@@ -97,7 +97,7 @@ In essence, we've introduced the `@schema/validation` annotation and wired it in
 
 We're including light documentation as we go, so check out `[link to @schema/validation in schema reference]` for the exact details of what's available.
 
-### How can I give feedback?
+### How can I give feedback? 🗣
 
 We would love to tell you, thank you for asking! 😁 
 
@@ -107,8 +107,13 @@ The likely easiest/best way is by popping by our channel on the Kubernetes Slack
 
 That said, if you prefer the long-form, feel free to [create a GitHub Issue in our repo](https://github.com/vmware-tanzu/carvel-ytt/issues/new?assignees=&labels=carvel+triage&template=other-issue.md&title=Feedback+for+ytt+Validations).
 
+We would love to hear any and all thoughts you have. Here are some prompts:
+- what could be changed that would make it easier to use?
+- what could we do to improve the formatting and/or content of the error messages?
+- what validation rules do you find yourself repeatedly writing?
 
-### Why are Validations Useful?
+
+### Why are Validations Useful? 💡
 
 To date, ytt Library / Carvel Package authors have had to "roll their own" logic to check that customer's inputs are valid: that data values are present/non-empty and within acceptable values.
 
