@@ -164,13 +164,10 @@ waitRules:
           def is_done(resource):
               state = resource.status.currentState
               if state == "Failed":
-                # don't wait and consider the operation as failure
                 return {"done": True, "successful": False, "message": "Current state as Failed"}
               elif state == "Running":
-                # don't wait and consider the operation as successful
                 return {"done": True, "successful": True, "message": "Current state as Running"}
               else:
-                # will wait until the state changes or kapp timeouts
                 return {"done": False, "successful": False, "message": "Not in Failed or Running state"}
               end
           end
