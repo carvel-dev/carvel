@@ -114,14 +114,14 @@ To allow this use case, imgpkg supports the `--include-non-distributable-layers`
 
 Note that usage of this flag shall not preclude your obligation to comply with the terms of the image license(s).
 
-### Image Signatures
+### Image Signatures, SBOM and Attestations
 
-`imgpkg` can copy Signature created by [cosign](https://github.com/sigstore/cosign). By
-default `imgpkg` will not search for Signatures for Images. To enable the search and copy of the signatures the
-flag `--cosign-signatures` needs to be provided to copy command
+`imgpkg` can copy Signature, SBOM and Attestations created/added by [cosign](https://github.com/sigstore/cosign). By
+default `imgpkg` will not search for these artifacts for Images. To enable the search and copy of the artifacts the
+flag `--cosign-artifacts` needs to be provided to copy command
 
 ```bash-plain
-$ imgpkg copy -b index.docker.io/k8slt/sample-bundle --to-repo some.repo.io/some-bundle --cosign-signatures
+$ imgpkg copy -b index.docker.io/k8slt/sample-bundle --to-repo some.repo.io/some-bundle --cosign-artifacts
 ```
 
 This feature will work while copying to a different repository as well as copying to a tarball.
