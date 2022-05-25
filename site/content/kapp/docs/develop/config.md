@@ -160,8 +160,7 @@ Provides a way to add `waitRules` for Custom Resources that don't have `conditio
 waitRules:
   - ytt:
       funcContractV1:
-        resource.star: |        # starlark file
-          ```
+        resource.star: |
           def is_done(resource):
               state = resource.status.currentState
               if state == "Failed":
@@ -175,7 +174,6 @@ waitRules:
                 return {"done": False, "successful": False, "message": "Not in Failed or Running state"}
               end
           end
-          ```
   resourceMatchers:
     - apiVersionKindMatcher: {apiVersion: <resource-api-version>, kind: <resource-kind>}
 ```
