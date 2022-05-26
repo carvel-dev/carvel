@@ -419,3 +419,49 @@ ytt: Error:
     = found: @schema/type, @schema/default annotation(s)
     = expected: no '@schema/...' on nodes within a node annotated '@schema/type any=True'
 ```
+
+### @schema/validation
+
+⚠️ **This is an experimental feature: interfaces and behavior will change.** ⚠️
+
+Attaches a validation to the type being declared by the annotated node.
+
+```
+@schema/validation rule0, rule1, ... [,when=] [,when_null_skip=]
+```
+
+where:
+- `ruleX` — any number of custom rules, each a 2-item tuple `(description, assertion)`
+  - `description` (`string`) — a description of what a valid value is.
+  - `assertion` (`function(value) : None` | `function(value) : bool`) — that either `fail()`s or returns `False` when `value` is not valid.
+    - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+- `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
+  - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+- `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
+  - if the data value is also annotated `@schema/nullable`, this becomes `True`, by default.
+
+The criteria in `when=` and `when_null_skip=` are evaluated (if present). The validation is run if _both_ are `True`.
+
+Each rule is evaluated, in the order they appear in the annotation (left-to-right):
+- if all rules pass (either returns `True` or `None`), then the value is valid.
+- if a rule returns `False` (not `None`) or `fail()`'s, then the value is invalid.
+
+_Example 1: Custom assertion-based rule_
+
+```yaml
+#@data/values-schema
+---
+#@ def is_dynamic_port(port):
+#@   port in range(49142, 65535) or fail("is {}".format(port))
+#@ end
+#@schema/validation ("a TCP/IP port in the dynamic range: 49142 and 65535, inclusive", is_dynamic_port)
+adminPort: 1024
+```
+
+If not overridden will produce the following error message:
+
+```console
+$ YTTEXPERIMENTS=validations ytt -f schema.yml
+ytt: Error: One or more data values were invalid:
+- "adminPort" (schema.yml:7) requires "a TCP/IP port in the dynamic range: 49142 and 65535, inclusive"; fail: is 1024 (by schema.yml:6)
+```
