@@ -1,7 +1,7 @@
 ---
 title: "Preview of ytt Validations"
 slug: ytt-validations-preview
-date: 2022-05-23
+date: 2022-05-26
 author: John Ryan
 excerpt: "Announcing a pre-release preview of a new ytt feature: Validations. We show about how to enable this 'experiment', take it for a spin, and influence how it all shakes out."
 image: /img/ytt.svg
