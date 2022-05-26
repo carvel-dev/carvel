@@ -53,7 +53,7 @@ We're doing this so that you have a voice in making sure features like this meet
 
 ### How do I get started? 🏇
 
-`ytt` v0.41.0 will be released soon. When it does, grab yourself the latest.
+`ytt` v0.41.0 will be released soon. When it does, grab yourself [the latest](https://github.com/vmware-tanzu/carvel-ytt/releases/latest).
 
 Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](../ytt/docs/v0.41.0/how-to-write-schema.md/):
 
