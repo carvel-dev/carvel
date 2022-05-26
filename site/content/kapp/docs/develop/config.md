@@ -172,9 +172,8 @@ waitRules:
           end
   resourceMatchers:
     - apiVersionKindMatcher: {apiVersion: <resource-api-version>, kind: <resource-kind>}
-```
-Here as per the above implementation when `currentState` is `Failed` it will not wait for resource but consider the operation as failure.  
-
+``` 
+ 
 ### templateRules
 
 `templateRules` specify how versioned resources affect other resources. In above example, versioned config maps are said to affect deployments. [Read more about versioned resources](diff.md#versioned-resources).
