@@ -150,11 +150,10 @@ waitRules:
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
 ```
-#### waitRules for Custom Resources
 
 Available in v0.48.0+.
 
-Provides a way to add `waitRules` for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. For example [this](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/test/e2e/custom_wait_rules_test.go#L79-L88) CR which has `currentState` field inside `status` we can define `waitRule` as shown below, `is_done(resource)` method signature and return type should always remain same while the method implementation can be changes as per the usecase. 
+Provides a way to add `waitRules` for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. For example [this](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/test/e2e/custom_wait_rules_test.go#L79-L88) CR which has `currentState` field inside `status` we can define `waitRule` as shown below, `is_done(resource)` method signature and return type should always remain same while the method implementation can be changes as per the usecase.
 
 ```yaml
 waitRules:
@@ -174,6 +173,7 @@ waitRules:
   resourceMatchers:
     - apiVersionKindMatcher: {apiVersion: <resource-api-version>, kind: <resource-kind>}
 ```
+Here as per the above implementation when `currentState` is `Failed` it will not wait for resource but consider the operation as failure.  
 
 ### templateRules
 
