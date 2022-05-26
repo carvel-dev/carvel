@@ -21,110 +21,239 @@ Data Values can be configured in one of two ways:
 - on the command-line via the family of [command-line `--data-value...` flags](#configuring-data-values-via-command-line-flags),
 - in a ["Data Values Overlay" document](#configuring-data-values-via-data-values-overlays) and included via the `--file` flag,
 
-
 ### Configuring Data Values via command line flags
 
 The `--data-value...` family of command-line flags provides a means of configuring Data Values from:
-- the command-line, itself;
-- OS environment variables;
-- "data values file"s — plain YAML files containing values for multiple Data Values 
 
-Those flags are:
+- the command-line, multiple values:
+    - [`--data-values-file`](#--data-values-file) — multiple values from a file, directory, URL, or standard in.
+- the command-line, directly, one at a time:
+  - [`--data-value`](#--data-value) — single value as a string.
+  - [`--data-value-yaml`](#--data-value-yaml) — single value decoded a YAML.
+  - [`--data-value-file`](#--data-value-file) — a single value to the contents of a file, URL, or standard in.
+- OS environment variables:
+  - [`--data-values-env`](#--data-values-env) — all OS variables with a named prefix, all as strings.
+  - [`--data-values-env-yaml`](#--data-values-env-yaml) — all OS variables with a named prefix, decoded as YAML.
 
-`--data-value [@lib:]key=value` — sets a Data Value to a _string_ value
+**Quick Example**
+
+```bash
+export STR_VALS_key6=true
+export YAML_VALS_key7=true
+
+$ cat dev/values.yml
+key1: values.yml-key1
+key2:
+  original: from values.yml
+
+$ ytt \
+  --data-value key1=val1-arg        \  # overrides key1 from dev/values.yml
+  --data-value-yaml key2.nested=123 \  # merges into key2 from dev/values.yml
+  --data-value-yaml 'key3.other={"nested": true}' \  # decoded to a map
+  --data-value-file key4=client.crt \  # contains contents of client.crt
+  --data-values-env STR_VALS        \  # decodes STR_VALS_key6 to a string
+  --data-values-env-yaml YAML_VALS  \  # decodes YAML_VALS_key7 to a boolean
+  --data-values-file dev/           \  # finds and uses dev/values.yml
+  --data-values-inspect
+```
+
+yields:
+```yaml
+key2:
+  original: from values.yml
+  nested: 123
+key6: "true"
+key7: true
+key1: val1-arg
+key3:
+  other:
+    nested: true
+key4: <contents of client.crt>
+```
+
+**Notes**
+- the `--data-value...` flags can be repeated multiple times and used in any combination. The do not necessarily combine in the order supplied on the command-line; see [Data Values merge order](#data-values-merge-order) for details.
+- Where schema is used, `--data-value...` flags can only _override_ values allowed by schema. Once schema is in use, _all_ Data Values must be declared in schema files.
+- Where schema is _not_ used, (as of v0.34.0) Data Values can be _declared_ via `--data-value...` flags (previously, these flags could only _override_ previously declared values). This is useful for ad-hoc templating situations (usually a shell script one-liner) involving one or two Data Values — where type checks and validations are less useful.
+
+
+#### `--data-values-file`
+
+Sets one or more Data Values from a plain YAML file, a directory containing YAML files, an HTTP URL, or standard input.
+
+```
+--data-values-file [@lib:]path
+```
+
+- `path` — one of: a filesystem path; an HTTP URL; or the dash character `-`.
+  - filesystem path can either be the path to a single YAML file _or_ a directory that (recursively) contains one or more files that have either the `.yaml` or `.yml` extension. If a directory is specified, all non-YAML files are ignored.
+  - HTTP URL is expected to resolve to a stream of one or more YAML document(s).
+  - `-` is the UNIX convention for referring to standard input. When specified, stdin is expected to contain a plain YAML document.
+    - The `-` file can only be used once in a `ytt` invocation.
+    - this input is given the name `stdin.yml`.
+- `@lib:` — (optional) names the library whose data values to configure (details [below](#setting-library-values-via-command-line-flags)) rather than the root library.
+
+Not to be confused with [`--data-value-file`](#--data-value-file) which sets the value of exactly one Data Value.
+
+**Plain YAML Data Values**
+
+Regardless the source, the inputs for this flag must be plain YAML. It must not contain `ytt` templating (i.e. comments that start with `#@`.
+
+When multiple YAML documents are given, they are merged:
+- each document is merged into the previous;
+- map values are merged (values for entries that were previously defined are merged within the same key, recursively; values for new keys are added to the map);
+- array values are replaced (last wins)
+
+**Examples:**
+
+_Example 1: Single File_
+
+`prod-values.yml`
+```yaml
+domain: example.com
+client_opts:
+  timeout: 10
+  retry: 5
+```
+
+```console
+$ ytt ... --data-values-file prod-values.yml
+```
+
+sets all three Data Values:
+- `domain=example.com` (a string value)
+- `client_opts.timeout=10` (an integer value)
+- `client_opts.retry=5` (an integer value)
+
+_Example 2: Directory_
+
+See https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-directory for a complete example and explanation.
+
+_Example 3: HTTP URL_
+
+Given https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml
+
+```console
+$ ytt --data-values-file https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml --data-values-inspect
+```
+yields
+```yaml
+nothing: something
+string: str
+bool: true
+int: 124
+new_thing: new
+```
+
+(Note the merged value of `int:`)
+
+#### `--data-value`
+
+Sets a single Data Value to a _string_ value.
+
+```
+--data-value [@lib:]key=value
+```
+
 - `key` — name of Data Value. Use dot notation for nested values (e.g. `key2.nested=val`)
 - `value` — value to set (always interpreted as a string)
 - `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
 - examples: `instance.count=123`, `key=string`, `input=true`, all set to strings
 
-`--data-value-yaml [@lib:]key=value`) — sets a Data Value to a YAML-parsed value
+#### `--data-value-yaml`
+
+Sets a single Data Value to a YAML-parsed value.
+
+```
+--data-value-yaml [@lib:]key=value
+```
 - `key` — name of Data Value.
 - `value` — value to set (decoded as a YAML value)
 - `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
 - examples: `instance.count=123` sets as integer, `key=string` as string, `input=true` as bool
-    
-`--data-value-file [@lib:]key=file-path` — sets a single Data Value to the _contents_ of a given file.
+
+#### `--data-value-file`
+
+Sets a single Data Value to the _contents_ of: a given file, an HTTP URL, or standard input.
+
+```
+--data-value-file [@lib:]key=path
+```
 - `key` — name of Data Value.
-- `file-path` — file-system path to a file whose contents will become the value of `key`.
+- `path` — one of: a file path; an HTTP URL; or the dash character `-`.
+    - `-` is the UNIX convention for referring to standard input. The `-` file can only be used once in a `ytt` invocation.
 - `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
-- particularly useful for loading multi-line string values from files such as private and public key files, certificates, etc.
-- not to be confused with `--data-values-file` (described below).
 
-`--data-values-env [@lib:]PREFIX` — sets one or more Data Values to _string_ values from OS environment variables that start with the given prefix.
+This flag is particularly useful for loading multi-line string values from files such as private and public key files, certificates, etc.
+
+Not to be confused with [`--data-values-file`](#--data-values-file) which sets the values of multiple Data Values.
+
+
+#### `--data-values-env`
+
+Sets one or more Data Values to _string_ values from OS environment variables that start with the given prefix.
+
+```
+--data-values-env [@lib:]PREFIX
+```
 - `PREFIX` — the literal prefix used to select the set of environment variables from which to configure Data Values.
 - `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
+
+**Setting Environment Variables**
 - for nested values, use double-underscore (i.e. `__`) in environment variable names to denote a "dot".
-- example: \
-    with environment variables...
-    ```shell
-    DVAL_key1=blue
-    DVAL_key2__nested=1337
-    ```
-    ... and the parameter ...
-    ```console
-    $ ytt ... --data-values-env DVAL ...
-    ```
-    ... would set two Data Values: \
-    `key1=blue` and \
-    `key2.nested="1337"`. (both as _strings_)
+
+**Examples**
+
+_Example: With Nested Values_
+
+```shell
+$ env
+...
+DVAL_key1=blue
+DVAL_key2__nested=1337
+...
+```
+
+```console
+$ ytt ... --data-values-env DVAL
+```
+
+would set two Data Values:
+- `key1=blue` (the string "blue")
+- `key2.nested="1337"` (the string "1337")
     
-`--data-values-env-yaml [@lib:]PREFIX` — sets one or more Data Values to the YAML-parsed values from OS environment variables that start with the given prefix.
+#### `--data-values-env-yaml`
+
+
+Sets one or more Data Values to the YAML-decoded values from OS environment variables that start with the given prefix.
+
+```
+--data-values-env-yaml [@lib:]PREFIX
+```
+
 - `PREFIX` — the literal prefix used to select the set of environment variables from which to configure Data Values.
 - `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
 - for nested values, use double-underscore (i.e. `__`) in environment variable names to denote a "dot".
-- example: \
-  with environment variables...
-    ```shell
-    DVAL_key1=blue
-    DVAL_key2__nested=1337
-    ```
-  ... and the parameter ...
-    ```console
-    $ ytt ... --data-values-env DVAL ...
-    ```
-  ... would set two Data Values: \
-  `key1=blue` (a string value) and \
-  `key2.nested=1337` (an integer value).
 
+**Examples**
 
-`--data-values-file [@lib:]file-path` — sets one or more Data Values from a plain YAML file.
-- `file-path` — file-system path to a file which will be parsed as YAML structured identically to expected Data Values.
-  - file must be plain YAML (i.e. not a `ytt` template or Data Values Overlay); it cannot contain YAML comments starting with `#@`.
-  - array values _replace_ (rather than append to) any existing value.
-  - if there are more than one YAML documents in such a file, they are merged from top to bottom (last wins)
-- `@lib:` — (optional) specify library whose data values to configure (details [below](#setting-library-values-via-command-line-flags))
-- example: \
-  with the file `prod-values.yml`
-  ```yaml
-  domain: example.com
-  client_opts:
-    timeout: 10
-    retry: 5
-  ```
-  ... and the parameter ...
-  ```console
-  $ ytt ... --data-values-file prod-values.yml ...
-  ```
-  ... would set all three Data Values: \
-  `domain=example.com` (a string value) \
-  `client_opts.timeout=10` (an integer value) \
-  `client_opts.retry=5` (an integer value).
- 
-Notes:
-- As of v0.34.0+ Data Values passed via `--data-value...` flags do not _necessarily_ need to be declared beforehand. In prior versions of `ytt`, a Data Value _must_ be declared (back then, specified in a `@data/values` overlay, typically), before it could be configured through a flag.
-- the `--data-value...` flags can be repeated multiple times and used in any combination. See [Data Values merge order](#data-values-merge-order) for details on how they combine.
-  ```bash
-  export STR_VALS_key6=true # will be string 'true'
-  export YAML_VALS_key6=true # will be boolean true
+_Example: With Nested Values_
 
-  ytt -f . \
-    --data-value key1=val1-arg \
-    --data-value-yaml key2.nested=123 \ # will be int 123
-    --data-value-yaml 'key3.other={"nested": true}' \
-    --data-value-file key4=/path \
-    --data-values-env STR_VALS \
-    --data-values-env-yaml YAML_VALS
-  ```
+```shell
+$ env
+...
+DVAL_key1=blue
+DVAL_key2__nested=1337
+...
+```
+
+```console
+$ ytt ... --data-values-env DVAL
+```
+
+would set two Data Values:
+- `key1=blue` (a string value)
+- `key2.nested=1337` (an integer value)
 
 
 ### Configuring Data Values via Data Values Overlays
@@ -205,7 +334,7 @@ Data values are merged in following order (latter one wins):
 
 1. default values from `@data/values-schema` files
 2. `@data/values` overlays (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
-3. `--data-values-file` specified files (left to right)
+3. `--data-values-file` (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
 4. `--data-values-env` specified values (left to right)
 5. `--data-values-env-yaml` specified values (left to right)
 6. `--data-value` specified value (left to right)
@@ -248,15 +377,51 @@ Data value flags support attaching values to libraries for use during [library m
 export STR_VALS_key6=true # will be string 'true'
 export YAML_VALS_key6=true # will be boolean true
 
-ytt -f . \
-  --data-value @lib1:key1=val1-arg \
-  --data-value-yaml @lib2:key2.nested=123 \ # will be int 123
-  --data-value-yaml '@lib3:key3.other={"nested": true}' \
-  --data-value-file @lib4:key4=/path \
-  --data-values-env @lib5:STR_VALS \
-  --data-values-env-yaml @lib6:YAML_VALS
-  --data-values-file @lib6:/path
+$ ytt -f . \
+   --data-value @lib1:key1=val1-arg \
+   --data-value-yaml @lib2:key2.nested=123 \ # will be int 123
+   --data-value-yaml '@lib3:key3.other={"nested": true}' \
+   --data-value-file @lib4:key4=/path \
+   --data-values-env @lib5:STR_VALS \
+   --data-values-env-yaml @lib6:YAML_VALS
+   --data-values-file @lib6:/path
 ```
+
+```console
+export STR_VALS_key6=true
+export YAML_VALS_key7=true
+
+$ cat dev/values.yml
+key1: values.yml-key1
+key2:
+  original: from values.yml
+
+$ ytt \
+  --data-value @lib1:key1=val1-arg        \  # overrides key1 from dev/values.yml
+  --data-value-yaml @lib1:key2.nested=123 \  # merges into key2 from dev/values.yml
+  --data-value-yaml '@lib2:key3.other={"nested": true}' \  # decoded to a map
+  --data-value-file @lib2:key4=client.crt \  # contains contents of client.crt
+  --data-values-env @lib2:STR_VALS        \  # decodes STR_VALS_key6 to a string
+  --data-values-env-yaml @lib1:YAML_VALS  \  # decodes YAML_VALS_key7 to a boolean
+  --data-values-file @lib1:dev/              # finds and uses dev/values.yml
+```
+sends the following Data Values to library `lib1`:
+```yaml
+key2:
+  original: from values.yml
+  nested: 123
+key7: true
+key1: val1-arg
+```
+and the following Data Values to library `lib2`:
+```yaml
+key6: "true"
+key3:
+  other:
+    nested: true
+key4: <contents of client.crt>
+```
+
 
 ### Library Data Values merge order
 
@@ -272,7 +437,7 @@ For a given library instance, data values are merged in following order (latter 
    2. `@data/values` overlays [externally referenced in](#setting-library-values-via-files)
    3. specified using [`instance.with_data_values()`](lang-ref-ytt-library.md#instancewith_data_values)
    4. `@data/values` overlays [externally referenced in `after_library_module=True`](#setting-library-values-via-files)
-   5. `--data-values-file` specified files [referenced in](#setting-library-values-via-command-line-flags) (left to right)
+   5. `--data-values-file` specified files [referenced in](#setting-library-values-via-command-line-flags) (same ordering as [overlays](lang-ref-ytt-overlay.md#overlay-order))
    6. `--data-values-env` specified values [referenced in](#setting-library-values-via-command-line-flags) (left to right)
    7. `--data-values-env-yaml` specified values [referenced in](#setting-library-values-via-command-line-flags) (left to right)
    8. `--data-value` specified value [referenced in](#setting-library-values-via-command-line-flags) (left to right)
