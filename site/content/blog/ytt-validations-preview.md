@@ -55,7 +55,7 @@ We're doing this so that you have a voice in making sure features like this meet
 
 `ytt` v0.41.0 will be released soon. When it does, grab yourself the latest.
 
-Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](../ytt/docs/v0.40.0/how-to-write-schema.md/):
+Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](../ytt/docs/v0.41.0/how-to-write-schema.md/):
 
 ```yaml
 #@data/values-schema
@@ -93,7 +93,7 @@ If you want to verify you've switched on the right experiment(s), use the `versi
 
 ```console
 $ YTTEXPERIMENTS=validations ytt version
-ytt version 0.40.1
+ytt version 0.41.0
 - experiment "validations" enabled.
 ```
 
@@ -113,9 +113,9 @@ Listening on http://localhost:8080
 
 As of v0.41.0, we've implemented the core behavior of recognizing, parsing, and checking validations in schema.
 
-In essence, we've introduced the `@schema/validation` annotation and wired it in to [the `ytt` pipeline](../ytt/docs/v0.40.0/how-it-works/) — specifically, at the end of the "Calculate Data Values" step.
+In essence, we've introduced the `@schema/validation` annotation and wired it in to [the `ytt` pipeline](../ytt/docs/v0.41.0/how-it-works/) — specifically, at the end of the "Calculate Data Values" step.
 
-We're including light documentation as we go, so check out [Data Values Schema Reference > @schema/validation](../ytt/docs/develop/lang-ref-ytt-schema/#schemavalidation) for the exact details of what's available.
+We're including light documentation as we go, so check out [Data Values Schema Reference > @schema/validation](../ytt/docs/v0.41.0/lang-ref-ytt-schema/#schemavalidation) for the exact details of what's available.
 
 You can peek into our backlog to see what we plan to do next: [Schema Validation #561](https://github.com/vmware-tanzu/carvel-ytt/issues/561).
 
