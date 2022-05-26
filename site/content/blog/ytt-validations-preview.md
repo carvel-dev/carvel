@@ -115,7 +115,7 @@ As of v0.41.0, we've implemented the core behavior of recognizing, parsing, and 
 
 In essence, we've introduced the `@schema/validation` annotation and wired it in to [the `ytt` pipeline](../ytt/docs/v0.40.0/how-it-works/) — specifically, at the end of the "Calculate Data Values" step.
 
-We're including light documentation as we go, so check out [Data Values Schema Reference > @schema/validation](../ytt/docs/v0.41.0/lang-ref-ytt-schema/#schemavalidation) for the exact details of what's available.
+We're including light documentation as we go, so check out [Data Values Schema Reference > @schema/validation](../ytt/docs/develop/lang-ref-ytt-schema/#schemavalidation) for the exact details of what's available.
 
 You can peek into our backlog to see what we plan to do next: [Schema Validation #561](https://github.com/vmware-tanzu/carvel-ytt/issues/561).
 
