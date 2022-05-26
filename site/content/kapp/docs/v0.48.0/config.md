@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/config]
 title: Configuration
 ---
 
@@ -152,6 +152,29 @@ waitRules:
   - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
 ```
 
+Available in v0.48.0+.
+
+Provides a way to add `waitRules` for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. For example [this](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/test/e2e/custom_wait_rules_test.go#L79-L88) CR which has `currentState` field inside `status` we can define `waitRule` as shown below, `is_done(resource)` method signature and return type should always remain same while the method implementation can be changes as per the usecase.
+
+```yaml
+waitRules:
+  - ytt:
+      funcContractV1:
+        resource.star: |
+          def is_done(resource):
+              state = resource.status.currentState
+              if state == "Failed":
+                return {"done": True, "successful": False, "message": "Current state as Failed"}
+              elif state == "Running":
+                return {"done": True, "successful": True, "message": "Current state as Running"}
+              else:
+                return {"done": False, "successful": False, "message": "Not in Failed or Running state"}
+              end
+          end
+  resourceMatchers:
+    - apiVersionKindMatcher: {apiVersion: <resource-api-version>, kind: <resource-kind>}
+``` 
+ 
 ### templateRules
 
 `templateRules` specify how versioned resources affect other resources. In above example, versioned config maps are said to affect deployments. [Read more about versioned resources](diff.md#versioned-resources).
