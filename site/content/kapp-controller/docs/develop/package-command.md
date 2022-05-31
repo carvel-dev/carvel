@@ -139,6 +139,7 @@ Supported flags:
 - `--wait` _boolean_, Wait for reconciliation to complete (default `true`)
 - `--wait-check-interval` _duration_, Amount of time to sleep between checks while waiting (default 1s)
 - `--wait-timeout` _duration_, Maximum amount of time to wait in wait phase (default 30m0s)
+- `--values` _boolean_, Add or keep values supplied to package install, optional (default `true`)
 
 ### Listing package installs
 The `package install list` command can be used to list all installed packages.
