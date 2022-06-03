@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/controller-config]
 title: Configuring the Controller
 ---
 
@@ -63,7 +63,6 @@ stringData:
   # requests (optional)
   httpProxy: proxy-svc.proxy-server.svc.cluster.local:80
 
-
   # The url/ip of a tls capable proxy for kapp controller to use when
   # making network requests (optional)
   httpsProxy: ""
@@ -75,6 +74,11 @@ stringData:
   # A comma delimited list of domain names for which kapp controller, when
   # fetching images or imgpkgBundles, will skip TLS verification. (optional)
   dangerousSkipTLSVerify: "private-registry.com,insecure-registry.com"
+
+  # JSON encoded array of kapp deploy rawOptions that are applied to all App CRs.
+  # App CR specified rawOptions take precedence over what's specified here.
+  # (optional; v0.37.0+)
+  kappDeployRawOptions: "[\"--diff-changes=true\"]"
 ```
 
 ## Config Shorthands
