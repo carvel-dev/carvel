@@ -1,4 +1,5 @@
 ---
+aliases: [/kapp-controller/docs/latest/controller-config]
 title: Configuring the Controller
 ---
 
