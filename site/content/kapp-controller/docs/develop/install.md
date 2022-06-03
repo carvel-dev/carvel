@@ -118,7 +118,7 @@ Based on [github.com/vmware-tanzu/homebrew-carvel](https://github.com/vmware-tan
 ```bash
 $ brew tap vmware-tanzu/carvel
 $ brew install kctrl
-$ kapp version
+$ kctrl version
 ```
 
 #### Specific version from a GitHub release
