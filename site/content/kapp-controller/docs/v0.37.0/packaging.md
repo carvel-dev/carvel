@@ -25,13 +25,21 @@ metadata:
   # The namespace this package is available in
   namespace: my-ns
 spec:
-  # The name of the PackageMetadata associated with this version
-  # Must be a valid PackageMetadata name (see PackageMetadata CR for details)
-  # Cannot be empty
+  # Package name; referenced by PackageInstall;
+  # - must be a valid DNS subdomain name (https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names)
+  # - at least three segments separated by a '.', no trailing '.'
+  # - only use subdomain names under your direct or your organization's control
+  #   to avoid any future naming conflicts with domain owners.
+  # Examples (assuming you own "corp.com" or its subdomains):
+  # - fluent-bit.packages.corp.com
+  # - frontend.corp.com
+  # - frontend.apps.corp.com
+  # - app1.team-x.corp.com
+  # (required; string)
   refName: fluent-bit.carvel.dev
-  # Package version; Referenced by PackageInstall;
-  # Must be valid semver (required)
-  # Cannot be empty
+  # Package version; referenced by PackageInstall;
+  # Must be valid semver as specified by https://semver.org/spec/v2.0.0.html
+  # Cannot be empty (required; string)
   version: 1.5.3
   # Version release notes (optional; string)
   releaseNotes: "Fixed some bugs"
@@ -103,8 +111,7 @@ It is represented in kapp-controller by a PackageMetadata CR. A PackageMetadata 
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
-  # Must consist of at least three segments separated by a '.'
-  # Cannot have a trailing '.'
+  # Package name (spec.refName) used by associated Package CRs
   name: fluent-bit.vmware.com
   # The namespace this package metadata is available in
   namespace: my-ns
