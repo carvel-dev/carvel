@@ -19,8 +19,8 @@ rebaseRules:
       namespace: my-ns
       name: my-app
 ---
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: my-app
   namespace: my-ns
