@@ -1,7 +1,7 @@
 ---
 title: "YTT Tutorial: Converting Concourse pipeline to YTT"
 slug: concourse-ytt-101
-date: 2022-03-08
+date: 2022-06-08
 author: Neil Hickey
 excerpt: "Tutorial: Concourse to YTT 101"
 tags: ['ytt', 'concourse']
