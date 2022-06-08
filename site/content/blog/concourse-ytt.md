@@ -38,11 +38,20 @@ wget https://raw.githubusercontent.com/concourse/examples/master/pipelines/golan
 
 ## What does this pipeline do?
 
+This pipeline tests our component (https://github.com/golang/mock in this case) against various versions of GoLang. This is common task of a CI/CD system, running our tests against multiple inputs and validating that we are compatible across our supported platforms.
 
+This pipeline is broken into two main sections, `resources` and `jobs`. See [concourse docs](https://concourse-ci.org/docs.html) for more on these.
+
+- There are four `resources`
+  - One of these is our component under test - https://github.com/golang/mock
+  - The remaining three reference a docker image that contains the platform we want to test against, GoLang versions 1.11 -> 1.13
+
+- There are three `jobs`. 
+  - Each of these are testing our component (https://github.com/golang/mock in this case) against a different version of GoLang.
 
 ## Time to refactor
 
-1. Notice the follow resources look very similar! Let's remove some of this duplication
+Notice that the following resources look very similar? This looks like a good place to start, let's remove some of this duplication!
 
 ```
 - name: golang-1.11.x-image
@@ -80,7 +89,7 @@ source:
 #@ end
 ```
 
-Now our pipeline.yml looks like:
+Now our pipeline looks like:
 
 ```yaml
 #@ def registry_image(repository, name, tag="latest"):
@@ -101,9 +110,9 @@ resources:
 
 Pretty neat huh? We were able to reduce 20 lines of YAML into just 3. And adding another image will be as simple as adding another call to `registry_image()`. 
 
-2. Let's have a look at the `jobs` section
+Looking good so far, now let's have a look at the `jobs` section
 
-   Convert these YAML anchors to using YTT.
+Convert these YAML anchors to using YTT instead
 
 ```yaml
 jobs:
@@ -120,8 +129,7 @@ jobs:
         << : *task-config
 ```
 
-<details>
-<summary>Converting YAML anchors to YTT</summary>
+### Converting YAML anchors to YTT
 
 ```yaml
 #@ def lint_and_test_golang_mock():
@@ -183,26 +191,22 @@ jobs:
       image: golang-1.13.x-image
       config: #@ lint_and_test_golang_mock()
 ```
-</details>
 
-   Now that we have most of the jobs and resources refactored, let's draw our attention to all these version numbers. Versions 1.11 to 1.13.
+Now that we have most of the jobs and resources refactored, let's draw our attention to all these version numbers. Versions 1.11 to 1.13.
 
-   The first step is to extract these out into a [ytt data value file](https://carvel.dev/ytt/docs/latest/ytt-data-values/#docs). This allows us to have a single place to configurable data.
+The first step is to extract these out into a [ytt data value file](https://carvel.dev/ytt/docs/latest/ytt-data-values/#docs). This allows us to have a single place to configurable data.
 
-<details>
-<summary>Values file - values.yml</summary>
+### Values file - values.yml
 
 ```yaml
 #@data/values
 ---
 versions: ["1.11", "1.12", "1.13"]
 ```
-</details>
 
-   Once we have our data values file, let's go ahead and import the 'data' module so we can use them in our pipeline.yml
+Once we have our data values file, let's go ahead and import the 'data' module so we can use them in our pipeline.yml
 
-<details>
-<summary>Convert to using data.values</summary>
+### Convert to using data.values
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -231,14 +235,10 @@ jobs:
       image: #@ "golang-" + version + ".x-image"
       config: #@ lint_and_test_golang_mock()
 ```
-</details>
 
 ### Final Pipeline 
 
-Original pipeline 
-
-<details>
-<summary>YTT template for our pipeline</summary>
+Nice job! We have make it to the end of this refactoring, let's have a look at what we ended up with.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -304,6 +304,18 @@ jobs:
       config: #@ lint_and_test_golang_mock()
 ```
   
+### What's next?
+
+We have refactored a simple Concourse pipeline using the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+
+Our file has gone from 89 lines of YAML to 61. Ok not that impressive, however we have made this pipeline simple to extend, removed duplication, and set ourselves up with a solid template to build on. 
+
+This tutorial just scratches the surface of the power of ytt, be sure to check out some of our other blogs and the ytt playground to really dig into some of the more advanced concepts.
+
+Checkout:
+- [Garrett's fantastic blog about paramaterizing project config using ytt](https://carvel.dev/blog/parameterizing-project-config-with-ytt/)
+- [Getting started with Ytt overlays](https://carvel.dev/blog/primer-on-ytt-overlays/)
+- [Ytt's Interactve Playground](https://carvel.dev/ytt/)
   
 ## Join the Carvel Community
 
