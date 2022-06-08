@@ -36,6 +36,8 @@ directories:
             identifiers: [beta, rc]
       # skip downloading lfs files (optional)
       lfsSkipSmudge: false
+      # skip initializing any git submodules (optional; v0.28.0+)
+      skipInitSubmodules: false
       # verify gpg signatures on commits or tags (optional; v0.12.0+)
       verification:
         publicKeysSecretRef:
