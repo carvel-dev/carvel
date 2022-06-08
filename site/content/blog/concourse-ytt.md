@@ -110,6 +110,10 @@ resources:
 
 Pretty neat huh? We were able to reduce 20 lines of YAML into just 3. And adding another image will be as simple as adding another call to `registry_image()`. 
 
+### Let's run it
+
+`fly --target tutorial set-pipeline --pipeline testing-pipeline --config <(ytt -f pipeline.yml)`
+
 Looking good so far, now let's have a look at the `jobs` section
 
 Convert these YAML anchors to using YTT instead
@@ -303,7 +307,19 @@ jobs:
       image: #@ "golang-" + version + ".x-image"
       config: #@ lint_and_test_golang_mock()
 ```
+
+Final Values file - values.yml
+
+```yaml
+#@data/values
+---
+versions: ["1.11", "1.12", "1.13"]
+```
   
+### Let's run it
+
+`fly --target tutorial set-pipeline --pipeline testing-pipeline --config <(ytt -f pipeline.yml -f values.yml)`  
+
 ### What's next?
 
 We have refactored a simple Concourse pipeline using the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
