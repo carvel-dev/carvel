@@ -26,8 +26,8 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | May 12, 2022 |                                                       |                                                | |
 | May 19, 2022 | | | |                                                       |  
 | May 26, 2022 |  [John Ryan](https://github.com/pivotaljohn)  |  Preview of `ytt` Valdations (and Experiments)  | Blog | [@jtigger](https://twitter.com/jtigger) |
-| June 2, 2022      | [Neil Hickey](https://github.com/neil-hickey) | DRY'ing up Concourse pipelines courtesy of ytt | Blog| N/A 
+| June 2, 2022      |  |  | | N/A 
 | June 9, 2022      | [Varsha Munishwar](https://github.com/vmunishwar)     | Getting started with contributing to open-source projects like ytt | Blog| N/A |                                                       |                                                | |
-| June 16, 2022     |                                                       |                                                         | |
+| June 16, 2022     | [Neil Hickey](https://github.com/neil-hickey)|  How to template a Concourse pipeline using ytt | Blog | N/A 
 | June 23, 2022     |                                                       |                                                         | |
 | June 30, 2022     |                                                       |                                                         | |
