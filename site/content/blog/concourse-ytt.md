@@ -83,7 +83,7 @@ source:
 Now our pipeline.yml looks like:
 
 ```yaml
-#@ def registry_image(name, repository, tag="latest"):
+#@ def registry_image(repository, name, tag="latest"):
 name: #@ name
 type: registry-image
 icon: docker
@@ -93,9 +93,9 @@ source:
 #@ end
 
 resources:
-- #@ registry_image("golang-1.11.x-image", "golang", "1.11-stretch")
-- #@ registry_image("golang-1.12.x-image", "golang", "1.12-stretch")
-- #@ registry_image("golang-1.13.x-image", "golang", "1.13-stretch")
+- #@ registry_image("golang", "golang-1.11.x-image", "1.11-stretch")
+- #@ registry_image("golang", "golang-1.12.x-image", "1.12-stretch")
+- #@ registry_image("golang", "golang-1.13.x-image", "1.13-stretch")
 ...
 ```
 
@@ -210,7 +210,7 @@ versions: ["1.11", "1.12", "1.13"]
 ---
 resources:
 #@ for/end version in data.values.versions:
-- #@ registry_image("golang-" + version + ".x-image", "golang", version + "-stretch")
+- #@ registry_image("golang", "golang-" + version + ".x-image", version + "-stretch")
 
 - name: golang-mock-git
   type: git
@@ -243,7 +243,7 @@ Original pipeline
 ```yaml
 #@ load("@ytt:data", "data")
 
-#@ def registry_image(name, repository, tag="latest"):
+#@ def registry_image(repository, name, tag="latest"):
 name: #@ name
 type: registry-image
 icon: docker
@@ -282,7 +282,7 @@ run:
 ---
 resources:
 #@ for/end version in data.values.versions:
-- #@ registry_image("golang-" + version + ".x-image", "golang", version + "-stretch")
+- #@ registry_image("golang", "golang-" + version + ".x-image", version + "-stretch")
 
 - name: golang-mock-git
   type: git
