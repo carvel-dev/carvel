@@ -303,3 +303,12 @@ jobs:
       image: #@ "golang-" + version + ".x-image"
       config: #@ lint_and_test_golang_mock()
 ```
+  
+  
+## Join the Carvel Community
+
+Thanks for following along! We are excited to hear from you and learn with you! Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
+* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Attend our Community Meetings, happening every Thursday at 10:30am PT / 1:30pm ET. Check out the [Community page](/community/) for full details on how to attend.
