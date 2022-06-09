@@ -24,7 +24,6 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | April 28, 2022 | [Joe Kimmel](https://github.com/joe-kimmel-vmw) | kapp Rebase Rules | Blog | N/A |
 | May 5, 2022 | [Soumik Majumder](https://github.com/100mik) | Getting to know App resources better with kctrl | Blog| [@\_100mik\_](https://twitter.com/_100mik_) |  
 | May 26, 2022 |  [John Ryan](https://github.com/pivotaljohn)  |  Preview of `ytt` Valdations (and Experiments)  | Blog | [@jtigger](https://twitter.com/jtigger) |
-| June 2, 2022      |  |  | | N/A 
 | June 9, 2022      | [Varsha Munishwar](https://github.com/vmunishwar)     | Getting started with contributing to open-source projects like ytt | Blog| N/A |                                                       |                                                | |
 | June 16, 2022     | [Neil Hickey](https://github.com/neil-hickey)|  How to template a Concourse pipeline using ytt | Blog | N/A 
 | June 23, 2022     | | | |
