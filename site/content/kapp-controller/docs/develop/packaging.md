@@ -312,7 +312,10 @@ though we intend to improve this experience in later releases.
 
 ## Combinations and Special Cases
 
-### Overlapping Package Repositories (since kapp-controller v0.38.0)
+### Overlapping Package Repositories 
+
+Available as of v0.38.0
+
 Multiple Package Repositories (PKGRs) are trivially supported, but it gets more complicated if
 they include the same Package or PackageMetadata (Package[Metadata]). The rules are:
 
