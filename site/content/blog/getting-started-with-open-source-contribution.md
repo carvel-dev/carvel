@@ -9,7 +9,7 @@ tags: ['ytt', 'open-source', 'devops']
 ---
 
 
-Contributing to open source projects like **Carvel** for the first time can be overwhelming and difficult to know where to begin. Few years back, I was working as a software engineer building enterprise applications using Java, Spring Framework, and REST APIs. We would deploy the applications using Jenkins and Maven configurations along with other CI/CD tools.
+Contributing to open-source projects like **Carvel** for the first time can be overwhelming and difficult to know where to begin. Few years back, I was working as a software engineer building enterprise applications using Java, Spring Framework, and REST APIs. We would deploy the applications using Jenkins and Maven configurations along with other CI/CD tools.
 
 I took a break for family reasons. After a couple of years, I returned to work through a returnship opportunity at VMware (Carvel team). My new work was in a completely different domain, and I needed to start from the basics. I was overwhelmed and a bit lost in the myriad of information. With the new technologies, programming and configuration languages, and the new open-source community experience, I was not sure where to start and had so many questions. I can share my experience and a few ideas with you to help you get started with contributing to open source projects.
 
@@ -27,7 +27,7 @@ Diving into open source was entirely out of my comfort zone. I took a first step
 
 It was all new and yes, too much to digest all at once. Fortunately, I got a very knowledgeable mentor who enjoyed teaching. Alongside, I got help from my manager to put together a plan to ramp up. He also provided helpful resources such as [kube academy](https://kube.academy/courses) courses and tutorials.
 
-But, if you do not have a mentor, fear not! The **Open Source Community** is very welcoming and happy to help new contributors learn how to contribute.
+But, if you do not have a mentor, fear not! The **Open-Source Community** is very welcoming and happy to help new contributors learn how to contribute.
 
 
 #### What I learned about “**learning**” in this journey
@@ -47,7 +47,7 @@ When I started exploring Carvel and its features, I found a couple of places in 
 
 #### **Why** 
 
-It is not easy to get started contributing to Open Source Software. But there are a number of benefits:
+It is not easy to get started contributing to Open-Source Software. But there are a number of benefits:
 - Open-source contributions help you **get feedback** to improve your technical skills
 - **Learn the programming patterns** used by experienced developers
 - **Get hands on experience** with the code
