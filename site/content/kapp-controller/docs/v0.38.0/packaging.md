@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/packaging]
 title: Package Management
 ---
 
@@ -310,3 +310,42 @@ status:
 
 **Note:** Values will only be included in the first templating step of the package,
 though we intend to improve this experience in later releases.
+
+## Combinations and Special Cases
+
+### Overlapping Package Repositories 
+
+Available as of v0.38.0
+
+Multiple Package Repositories (PKGRs) are trivially supported, but it gets more complicated if
+they include the same Package or PackageMetadata (Package[Metadata]). The rules are:
+
+- Any Package[Metadata] with completely identical name (and version,
+  for Packages), spec, annotations[1], and labels[1] that appears in multiple PKGRs
+  will be associated to the first PKGR that reconciles. Subsequent PKGRs will
+  reconcile without conflicts.
+- If an identical Package[Metadata] is provided by multiple PKGRs, and the PKGR that owns it is
+  deleted, there may be a transient period (corresponding to the PKGR sync
+  period) when that package is unavailable,
+  until the other PKGR that provides it reconciles again.
+- If a Package[Metadata] is provided by multiple PKGRs, and while the
+  name/refname match, the rest of the resource is _not_
+  identical, then only the first PKGR to reconcile on the system will reconcile
+  successfully. Subseuent PKGRs will fail with a nominally helpful error message
+  indicating which Package[Metadata] failed to match and providing a top-level
+  key (e.g. "annotations failed to match" or "spec.template failed to match").
+- If a Package[Metadata] is provided by multiple PKGRs and despite having the
+  same name/refname/version it is known that one of the resources is an update
+  or later revision, the annotation key "packaging.carvel.dev/revision" can be
+  used to provide an ordering.
+  - Resources without the annotation are considered to have version -1
+  - Resources with the revision annotation should have a value of the form "int"
+    or "int.int" or "int.int.int.int.int...."
+  - Revision 0 will be considered < revision 0.0 (longer revision is "greater
+    than" shorter revision of the same numbers)
+  - Revision 1.1.0 will be considered < revision 1.2.0 (semver sensibilities,
+    but we don't parse '+' or other extensions)
+
+
+[1] comparisons of annotations and labels exclude those annotations and labels
+that are added or used by kapp or kapp-controller.
