@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/config]
 title: Configuration
 ---
 
@@ -281,7 +281,7 @@ where:
 - `image` (required; string) exact value found while searching for container image references.
 - `path` (required; string) filesystem path to the source for the to-be-built image
 - a builder configuration (optional; choose one) — name/configure a specific image builder tool:
-  - `docker:` (default) use [Docker](#docker) to build from source.
+  - `docker:` (default) use [Docker](#docker) or [Docker buildx](#docker-buildx) to build from source.
   - `pack:` use [Pack](#pack) to build the image via buildpacks from source.
   - `kubectlBuildkit:` use [Buildkit CLI for kubectl](#buildkit-cli-for-kubectl) to build the image via a Kubernetes cluster form source.
   - `ko:` use [ko](#ko) to build the image from Go source.
@@ -312,13 +312,46 @@ sources:
       buildkit: true
       rawOptions: ["--squash", "--build-arg", "ARG_IN_DOCKERFILE=value"]
 ```
-where:
+where (all options are optional):
 - `target` (string): the target build stage to build (no default)
 - `pull` (bool): always attempt to pull a newer version of the image (default is false)
 - `noCache` (bool): do not use cache when building the image (default is false)
 - `file` (string): name of the Dockerfile (default is Dockerfile)
-- `buildkit` (bool): enable [Builtkit](https://docs.docker.com/develop/develop-images/build_enhancements) for this build.
+- `buildkit` (bool): enable [Builtkit](https://docs.docker.com/develop/develop-images/build_enhancements) for this build. (Also see [Docker buildx](#docker-buildx) integration.)
 - `rawOptions` ([]string): Refer to [`docker build` reference](https://docs.docker.com/engine/reference/commandline/build/) for all available options
+
+### Docker buildx
+
+Available as of v0.34.0+
+
+Using this integration requires:
+- Docker - https://docs.docker.com/get-docker
+- Docker buildx plugin
+
+The [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/) must be on the `$PATH`.
+
+To configure an image to be built via Docker buildx, include a `docker:`-flavored [Source](#sources):
+```yaml
+---
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+- image: image1
+  path: src/
+  docker:
+    buildx:
+      target: some-target
+      pull: true
+      noCache: true
+      file: hack/Dockerfile.dev
+      rawOptions: ["--platform=linux/amd64,linux/arm64,linux/arm/v7"]
+```
+where (all options are optional):
+- `target` (string): the target build stage to build (no default)
+- `pull` (bool): always attempt to pull a newer version of the image (default is false)
+- `noCache` (bool): do not use cache when building the image (default is false)
+- `file` (string): name of the Dockerfile (default is Dockerfile)
+- `rawOptions` ([]string): Refer to [`docker buildx build` reference](https://docs.docker.com/engine/reference/commandline/buildx_build/) for all available options
 
 ### Pack
 
