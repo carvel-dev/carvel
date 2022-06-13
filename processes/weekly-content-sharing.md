@@ -26,7 +26,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | May 26, 2022 |  [John Ryan](https://github.com/pivotaljohn)  |  Preview of `ytt` Valdations (and Experiments)  | Blog | [@jtigger](https://twitter.com/jtigger) |
 | June 9, 2022      | [Varsha Munishwar](https://github.com/vmunishwar)     | Getting started with contributing to open-source projects like ytt | Blog| N/A |                                                       |                                                | |
 | June 16, 2022     | [Neil Hickey](https://github.com/neil-hickey)|  How to template a Concourse pipeline using ytt | Blog | N/A 
-| June 23, 2022     | | | |
+| June 23, 2022     | [Kumari Tanushree](https://github.com/kumaritanushree) | Blogs targeting the practical scenarios e.g. update deployment when configmap is updated, etc. | Blog |N/A| 
 | June 30, 2022     | | | |
 | July 7, 2022      | | | |
 | July 14, 2022     | | | |
