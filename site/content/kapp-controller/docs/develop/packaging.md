@@ -280,8 +280,7 @@ spec:
   packageRef:
     # Specifies the name of the package to install (required)
     refName: fluent-bit.vmware.com
-    # Selects version of a package based on constraints provided (optional)
-    # Either version or versionSelection is required.
+    # Selects version of a package based on constraints provided (required)
     versionSelection:
       # Constraint to limit acceptable versions of a package;
       # Latest version satisfying the constraint is chosen;
