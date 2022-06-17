@@ -45,6 +45,8 @@ toc:
         url: /lang-ref-ytt
       - page: Struct module
         url: /lang-ref-ytt-struct
+      - page: Assert module
+        url: /lang-ref-ytt-assert
       - page: Overlay module
         url: /lang-ref-ytt-overlay
       - page: Library module

@@ -427,14 +427,20 @@ ytt: Error:
 Attaches a validation to the type being declared by the annotated node.
 
 ```
-@schema/validation rule0, rule1, ... [,when=] [,when_null_skip=]
+@schema/validation rule0, rule1, ... [,<named-rules>] [,when=] [,when_null_skip=]
 ```
 
 where:
 - `ruleX` — any number of custom rules, each a 2-item tuple `(description, assertion)`
   - `description` (`string`) — a description of what a valid value is.
   - `assertion` (`function(value) : None` | `function(value) : bool`) — that either `fail()`s or returns `False` when `value` is not valid.
-    - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+    - `value` (`string` | `number` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+- `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios
+  - `min` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided 
+  - `max` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided
+  - `min_length` (`int`) — length of node's value must be >= the minimum length provided
+  - `max_length` (`int`) — length of node's value must be <= the maximum length provided
+  - `not_null` (`bool`) — if set to `true`, the node's value must not be null.
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
@@ -446,7 +452,34 @@ Each rule is evaluated, in the order they appear in the annotation (left-to-righ
 - if all rules pass (either returns `True` or `None`), then the value is valid.
 - if a rule returns `False` (not `None`) or `fail()`'s, then the value is invalid.
 
-_Example 1: Custom assertion-based rule_
+The `named-rules` provide access to a set of built-in assertion functions that correspond to functions defined in the [`@ytt:assert` module](lang-ref-ytt-assert.md)
+
+_Example 1: Out-of-the-box assertion rules_
+
+```yaml
+#@data/values-schema
+---
+#@schema/validation min={"username": "", "password": ""}
+login: 
+  username: admin
+  password: password
+
+#@schema/validation max=10
+concurrent_threads: 3
+
+#@schema/validation min_length=1
+secret: my-secret
+
+#@schema/validation max_length=15
+ipv4: "123.456.789.000"
+
+#@schema/validation not_null=True
+database: SQL
+```
+
+All values provided in the example schema pass the assertions, resulting in no error message.    
+
+_Example 2: Custom assertion-based rule_
 
 ```yaml
 #@data/values-schema

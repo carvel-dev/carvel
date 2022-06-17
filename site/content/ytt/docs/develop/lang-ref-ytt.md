@@ -10,25 +10,7 @@ See [@ytt:struct module docs](lang-ref-ytt-struct.md).
 
 ### assert
 
-```python
-load("@ytt:assert", "assert")
-
-# stop execution and report a failure
-assert.fail("expected value foo, but was {}".format(value)) # stops execution
-x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
-
-# invoke a function value, catching failure if it occurs
-x, err = assert.try_to(lambda : json.decode('{"key": "value"}'))
-x     # { "key" = "value" }    (i.e. dict with one entry)
-err   # None
-
-x, err = assert.try_to(lambda : json.decode("(not JSON)"))
-x     # None
-err   # "json.decode: invalid character '(' looking for beginning of value"
-
-# stop execution if two values are not equal
-assert.equals("not", "equal") # stops execution
-```
+See [@ytt:assert module docs](lang-ref-ytt-assert.md).
 
 ### data
 
