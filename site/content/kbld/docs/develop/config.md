@@ -278,7 +278,10 @@ sources:
 
 where:
 - `image` (required; string) exact value found while searching for container image references.
-- `path` (required; string) filesystem path to the source for the to-be-built image
+- `path` (required; string) filesystem path to the source for the to-be-built image.
+  This path also acts as the container file context; therefore, any paths in the
+  container file (when one is present) must be relative to the value of the field
+  `path`.
 - a builder configuration (optional; choose one) — name/configure a specific image builder tool:
   - `docker:` (default) use [Docker](#docker) or [Docker buildx](#docker-buildx) to build from source.
   - `pack:` use [Pack](#pack) to build the image via buildpacks from source.
