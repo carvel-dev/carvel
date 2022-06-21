@@ -4,10 +4,6 @@ title: Built-in ytt Library
 
 ## General modules
 
-### struct
-
-See [@ytt:struct module docs](lang-ref-ytt-struct.md).
-
 ### assert
 
 ```python
@@ -163,6 +159,10 @@ See the [RE2 docs](https://github.com/google/re2/wiki/Syntax) for more on regex 
 When calling `replace` you can pass either a string or a lambda function as the third parameter. When given a string, `$` symbols are expanded, so that `$1` expands to the first submatch. When given a lambda function, the match is directly replaced by the result of the function.
 
 While `match` and `replace` are currently the only regexp verbs supported, it is possible to mimic `find` by using `replace` to replace all its input with a capture group (see example above).
+
+### struct
+
+See [@ytt:struct module docs](lang-ref-ytt-struct.md).
 
 ### url
 
