@@ -438,8 +438,8 @@ where:
 - `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios
   - `min` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided 
   - `max` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided
-  - `min_length` (`int`) — length of node's value must be >= the minimum length provided
-  - `max_length` (`int`) — length of node's value must be <= the maximum length provided
+  - `min_len` (`int`) — length of node's value must be >= the minimum length provided
+  - `max_len` (`int`) — length of node's value must be <= the maximum length provided
   - `not_null` (`bool`) — if set to `true`, the node's value must not be null.
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
@@ -467,10 +467,10 @@ login:
 #@schema/validation max=10
 concurrent_threads: 3
 
-#@schema/validation min_length=1
+#@schema/validation min_len=1
 secret: my-secret
 
-#@schema/validation max_length=15
+#@schema/validation max_len=15
 ipv4: "123.456.789.000"
 
 #@schema/validation not_null=True

@@ -66,26 +66,26 @@ assert.max(4).check(3)
 assert.max(4).check(5) # stops execution
 ```
 
-### assert.min_length
+### assert.min_len
  - Checks that values have length greater than or equal to the minimum length.
  - Minimum length argument is an integer. 
- - `x = assert.min_length(1)` creates an object, `x` that can `check()` if the length of values are greater than or equal to 1.
+ - `x = assert.min_len(1)` creates an object, `x` that can `check()` if the length of values are greater than or equal to 1.
  - Checks the length of strings, lists, dictionaries, and starlark fragments.
 ```python
-assert.min_length(1).check(["some","list","of","values"])
+assert.min_len(1).check(["some","list","of","values"])
 
-assert.min_length(1).check("") # stops execution
+assert.min_len(1).check("") # stops execution
 ```
 
-### assert.max_length
+### assert.max_len
 - Checks that values have length less than or equal to the maximum length.
 - Maximum length argument is an integer.
-- `x = assert.max_length(4)` creates an object, `x` that can `check()` if the length of values are less than or equal to 4.
+- `x = assert.max_len(4)` creates an object, `x` that can `check()` if the length of values are less than or equal to 4.
 - Checks the length of strings, lists, dictionaries, and starlark fragments.
 ```python
-assert.max_length(4).check({'foo': 0, 'bar': 1})
+assert.max_len(4).check({'foo': 0, 'bar': 1})
 
-assert.max(4)_length.check("123.45.67.89") # stops execution
+assert.max(4)_len.check("123.45.67.89") # stops execution
 ```
 
 ### assert.not_null
