@@ -88,6 +88,59 @@ net.addr().is_ipv4()  # False
 net.addr().is_ipv6()  # True
 ```
 
+### math
+
+Module math is a Starlark module of math-related functions and constants.
+The module defines the following functions:
+
+_(All functions accept both int and float values as arguments.)_
+
+```python
+math.ceil(x)         # the ceiling of x, the smallest integer greater than or equal to x.
+math.copysign(x, y)  # a value with the magnitude of x and the sign of y.
+math.fabs(x)         # the absolute value of x as float.
+math.floor(x)        # the floor of x, the largest integer less than or equal to x.
+math.mod(x, y)       # the floating-point remainder of x/y. The magnitude of the result is less than y and its sign agrees with that of x.
+math.pow(x, y)       # x**y, the base-x exponential of y.
+math.remainder(x, y) # the IEEE 754 floating-point remainder of x/y.
+math.round(x)        # the nearest integer, rounding half away from zero.
+
+math.exp(x)      # e raised to the power x, where e = 2.718281… is the base of natural logarithms.
+math.sqrt(x)     # the square root of x.
+
+math.acos(x)     # the arc cosine of x, in radians.
+math.asin(x)     # the arc sine of x, in radians.
+math.atan(x)     # the arc tangent of x, in radians.
+math.atan2(y, x) # atan(y / x), in radians.
+                 # The result is between -pi and pi.
+                 # The vector in the plane from the origin to point (x, y) makes this angle with the positive X axis.
+                 # The point of atan2() is that the signs of both inputs are known to it, so it can compute the correct
+                 # quadrant for the angle.
+                 # For example, atan(1) and atan2(1, 1) are both pi/4, but atan2(-1, -1) is -3*pi/4.
+
+math.cos(x)      # the cosine of x, in radians.
+math.hypot(x, y) # the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to point (x, y).
+math.sin(x)      # the sine of x, in radians.
+math.tan(x)      # the tangent of x, in radians.
+
+math.degrees(x)  # Converts angle x from radians to degrees.
+math.radians(x)  # Converts angle x from degrees to radians.
+
+math.acosh(x) # the inverse hyperbolic cosine of x.
+math.asinh(x) # the inverse hyperbolic sine of x.
+math.atanh(x) # the inverse hyperbolic tangent of x.
+math.cosh(x)  # the hyperbolic cosine of x.
+math.sinh(x)  # the hyperbolic sine of x.
+math.tanh(x)  # the hyperbolic tangent of x.
+
+math.log(x, base) # the logarithm of x in the given base, or natural logarithm by default.
+
+math.gamma(x) # the Gamma function of x.
+
+math.e  # The base of natural logarithms, approximately 2.71828.
+math.pi # The ratio of a circle's circumference to its diameter, approximately 3.14159.
+```
+
 ### regexp
 
 ```python
