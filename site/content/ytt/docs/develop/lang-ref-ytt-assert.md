@@ -8,9 +8,7 @@ title: Assert Module
 
 ## Functions
 
-The `@ytt:assert` module provides several built-in assertion functions. 
-You can define custom assertion functions written in starlark and run using ___. 
-
+The `@ytt:assert` module provides several built-in assertion functions.
 To use these functions, include the `@ytt:assert` module:
 
 ```python
