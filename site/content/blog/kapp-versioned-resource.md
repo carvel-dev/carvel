@@ -68,27 +68,6 @@ Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-4:08:11PM: ---- applying 1 changes [0/2 done] ----
-4:08:11PM: create configmap/simple-config (v1) namespace: default
-4:08:11PM: ---- waiting on 1 changes [0/2 done] ----
-4:08:11PM: ok: reconcile configmap/simple-config (v1) namespace: default
-4:08:11PM: ---- applying 1 changes [1/2 done] ----
-4:08:11PM: create deployment/simple-app (apps/v1) namespace: default
-4:08:11PM: ---- waiting on 1 changes [1/2 done] ----
-4:08:11PM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
-4:08:11PM:  ^ Waiting for generation 2 to be observed
-4:08:12PM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
-4:08:12PM:  ^ Waiting for 1 unavailable replicas
-4:08:12PM:  L ok: waiting on replicaset/simple-app-657f9c8494 (apps/v1) namespace: default
-4:08:12PM:  L ongoing: waiting on pod/simple-app-657f9c8494-t2pw9 (v1) namespace: default
-4:08:12PM:     ^ Pending: ContainerCreating
-4:08:13PM: ok: reconcile deployment/simple-app (apps/v1) namespace: default
-4:08:13PM: ---- applying complete [2/2 done] ----
-4:08:13PM: ---- waiting complete [2/2 done] ----
-
-Succeeded
-
 ```
 
 Let's check the value of `MSG_KEY` in the `simple-app` pods.
@@ -126,15 +105,6 @@ Op:      0 create, 0 delete, 1 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-4:16:22PM: ---- applying 1 changes [0/1 done] ----
-4:16:22PM: update configmap/simple-config (v1) namespace: default
-4:16:22PM: ---- waiting on 1 changes [0/1 done] ----
-4:16:22PM: ok: reconcile configmap/simple-config (v1) namespace: default
-4:16:22PM: ---- applying complete [1/1 done] ----
-4:16:22PM: ---- waiting complete [1/1 done] ----
-
-Succeeded
 ```
 
 Now will verify again the value for `MSG_KEY` in the `simple-app` pods.
@@ -153,7 +123,7 @@ hello-carvel
 Here, the value for env `MSG_KEY` is still not updated. To reflect the new changes of configmap we have to re-start the pod manually.
 
 ```bash
-$kubectl delete pod simple-app-cc794fc5-2r2lm 
+$kubectl delete pod simple-app-657f9c8494-t2pw9 
 pod "simple-app-657f9c8494-t2pw9" deleted
 
 $kubectl get pod 
@@ -224,7 +194,38 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
   0     - apiVersion: v1
   1     - data:
   2     -   hello_msg: hello-carvel-india
-  3     - kind: ConfigMap...
+  3     - kind: ConfigMap
+  4     - metadata:
+  5     -   creationTimestamp: "2022-06-17T21:19:07Z"
+  6     -   labels:
+  7     -     kapp.k14s.io/app: "1655807854822326000"
+  8     -     kapp.k14s.io/association: v1.de4bd280dda780c018846ab8dbccf4f0
+  9     -   managedFields:
+ 10     -   - apiVersion: v1
+ 11     -     fieldsType: FieldsV1
+ 12     -     fieldsV1:
+ 13     -       f:data:
+ 14     -         .: {}
+ 15     -         f:hello_msg: {}
+ 16     -       f:metadata:
+ 17     -         f:annotations:
+ 18     -           .: {}
+ 19     -           f:kapp.k14s.io/identity: {}
+ 20     -           f:kapp.k14s.io/original: {}
+ 21     -           f:kapp.k14s.io/original-diff-md5: {}
+ 22     -         f:labels:
+ 23     -           .: {}
+ 24     -           f:kapp.k14s.io/app: {}
+ 25     -           f:kapp.k14s.io/association: {}
+ 26     -     manager: kapp
+ 27     -     operation: Update
+ 28     -     time: "2022-06-17T21:27:59Z"
+ 29     -   name: simple-config
+ 30     -   namespace: default
+ 31     -   resourceVersion: "102821"
+ 32     -   uid: c45dc89e-2eea-4c2a-800d-2513d94246c7
+ 33     - 
+
   
 Changes
 
@@ -239,30 +240,8 @@ Wait to: 2 reconcile, 1 delete, 0 noop
 Continue? [yN]: y
 ```
 
-As we have added annotation `kapp.k14s.io/versioned: ""` to configmap we can see a configmap with name `simple-config-ver-1` has been created. And `kapp` is updating deployment `simple-app` with new configmap name i.e. `simple-config-ver-1`.
+As we have added annotation `kapp.k14s.io/versioned: ""` to configmap we can see configmap `simple-config` is getting deleted and a new resource with name `simple-config-ver-1` has been created. Also `kapp` is updating deployment `simple-app` with new configmap name i.e. `simple-config-ver-1`.
 
-The new set of resources in our `app`:
-
-```bash
-$kapp inspect -a app
-Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
-
-Resources in app 'app'
-
-Namespace  Name                         Kind        Owner    Rs  Ri  Age  
-default    simple-app                   Deployment  kapp     ok  -   3d  
-^          simple-app-657f9c8494        ReplicaSet  cluster  ok  -   3d  
-^          simple-app-79d8d56b8d        ReplicaSet  cluster  ok  -   3d  
-^          simple-app-79d8d56b8d-tdszn  Pod         cluster  ok  -   3d  
-^          simple-config-ver-1          ConfigMap   kapp     ok  -   3d  
-
-Rs: Reconcile state
-Ri: Reconcile information
-
-5 resources
-
-Succeeded
-```
 
 Let's verify the value for env `MSG_KEY` in the running pod of the deployment `simple-app`.
 
@@ -312,26 +291,6 @@ Op:      1 create, 0 delete, 1 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-1:12:16PM: ---- applying 1 changes [0/2 done] ----
-1:12:16PM: create configmap/simple-config-ver-2 (v1) namespace: default
-1:12:16PM: ---- waiting on 1 changes [0/2 done] ----
-1:12:16PM: ok: reconcile configmap/simple-config-ver-2 (v1) namespace: default
-1:12:16PM: ---- applying 1 changes [1/2 done] ----
-1:12:17PM: update deployment/simple-app (apps/v1) namespace: default
-1:12:17PM: ---- waiting on 1 changes [1/2 done] ----
-1:12:17PM: ongoing: reconcile deployment/simple-app (apps/v1) namespace: default
-1:12:17PM:  ^ Waiting for generation 4 to be observed
-1:12:17PM:  L ok: waiting on replicaset/simple-app-6757478ff5 (apps/v1) namespace: default
-1:12:17PM:  L ok: waiting on replicaset/simple-app-5f94df997b (apps/v1) namespace: default
-1:12:17PM:  L ok: waiting on pod/simple-app-6757478ff5-xbq2c (v1) namespace: default
-1:12:17PM:  L ongoing: waiting on pod/simple-app-5f94df997b-g76d9 (v1) namespace: default
-1:12:17PM:     ^ Deleting
-1:12:18PM: ok: reconcile deployment/simple-app (apps/v1) namespace: default
-1:12:18PM: ---- applying complete [2/2 done] ----
-1:12:18PM: ---- waiting complete [2/2 done] ----
-
-Succeeded
 ```
 
 As already mentioned above, for the resource with annotations `kapp.k14s.io/versioned: ""` kapp will create entirely new resource on every update. Here also we can see kapp is creating a new resource for `configmap` with name `simple-config-ver-2` .
@@ -389,40 +348,9 @@ Will deploy it using `kapp` and see the changes:
 $kapp deploy -a ver-app -f ver-config.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
-@@ create configmap/config-example-ver-1 (v1) namespace: default @@
-      0 + apiVersion: v1
-      1 + data:
-      2 +   hello_msg: hello-carvel
-      3 + kind: ConfigMap
-      4 + metadata:
-      5 +   annotations:
-      6 +     kapp.k14s.io/versioned: ""
-      7 +     kapp.k14s.io/versioned-keep-original: ""
-      8 +   labels:
-      9 +     kapp.k14s.io/app: "1655729729870606000"
-     10 +     kapp.k14s.io/association: v1.de4bd280dda780c018846ab8dbccf4f0
-     11 +   name: simple-config-ver-1
-     12 +   namespace: default
-     13 + 
-@@ create configmap/config-example (v1) namespace: default @@
-      0 + apiVersion: v1
-      1 + data:
-      2 +   hello_msg: hello-carvel
-      3 + kind: ConfigMap
-      4 + metadata:
-      5 +   annotations:
-      6 +     kapp.k14s.io/versioned: ""
-      7 +     kapp.k14s.io/versioned-keep-original: ""
-      8 +   labels:
-      9 +     kapp.k14s.io/app: "1655729729870606000"
-     10 +     kapp.k14s.io/association: v1.de4bd280dda780c018846ab8dbccf4f0
-     11 +   name: simple-config
-     12 +   namespace: default
-     13 + 
-
 Changes
 
-Namespace  Name                 Kind       Age  Op      Op st.  Wait to    Rs  Ri  
+Namespace  Name                  Kind       Age  Op      Op st.  Wait to    Rs  Ri  
 default    config-example        ConfigMap  -    create  -       reconcile  -   -  
 ^          config-example-ver-1  ConfigMap  -    create  -       reconcile  -   -  
 
@@ -430,17 +358,6 @@ Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-6:25:36PM: ---- applying 2 changes [0/2 done] ----
-6:25:36PM: create configmap/config-example (v1) namespace: default
-6:25:36PM: create configmap/config-example-ver-1 (v1) namespace: default
-6:25:36PM: ---- waiting on 2 changes [0/2 done] ----
-6:25:36PM: ok: reconcile configmap/config-example (v1) namespace: default
-6:25:36PM: ok: reconcile configmap/config-example-ver-1 (v1) namespace: default
-6:25:36PM: ---- applying complete [2/2 done] ----
-6:25:36PM: ---- waiting complete [2/2 done] ----
-
-Succeeded
 ```
 As we have used annotation`kapp.k14s.io/versioned-keep-original: ""` with `kapp.k14s.io/versioned: ""`, kapp is creating both `original` with name `config-example` and `versioned` resource with name `config-example-ver-1`.
 
@@ -475,17 +392,6 @@ Op:      1 create, 0 delete, 1 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-6:33:40PM: ---- applying 2 changes [0/2 done] ----
-6:33:40PM: create configmap/config-example-ver-2 (v1) namespace: default
-6:33:40PM: update configmap/config-example (v1) namespace: default
-6:33:40PM: ---- waiting on 2 changes [0/2 done] ----
-6:33:40PM: ok: reconcile configmap/config-example-ver-2 (v1) namespace: default
-6:33:40PM: ok: reconcile configmap/config-example (v1) namespace: default
-6:33:40PM: ---- applying complete [2/2 done] ----
-6:33:40PM: ---- waiting complete [2/2 done] ----
-
-Succeeded
 ```
 Kapp is updating the new changes in original resource and creating new versioned resource as well. 
 
@@ -562,21 +468,6 @@ Op:      3 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 3 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-5:18:05PM: ---- applying 2 changes [0/3 done] ----
-5:18:05PM: create configmap/crd-config-ver-1 (v1) namespace: default
-5:18:06PM: create customresourcedefinition/simplecrds.example.com (apiextensions.k8s.io/v1) cluster
-5:18:06PM: ---- waiting on 2 changes [0/3 done] ----
-5:18:06PM: ok: reconcile customresourcedefinition/simplecrds.example.com (apiextensions.k8s.io/v1) cluster
-5:18:06PM: ok: reconcile configmap/crd-config-ver-1 (v1) namespace: default
-5:18:06PM: ---- applying 1 changes [2/3 done] ----
-5:18:08PM: create simplecrd/first-cr (example.com/v1beta1) namespace: default
-5:18:08PM: ---- waiting on 1 changes [2/3 done] ----
-5:18:08PM: ok: reconcile simplecrd/first-cr (example.com/v1beta1) namespace: default
-5:18:08PM: ---- applying complete [3/3 done] ----
-5:18:08PM: ---- waiting complete [3/3 done] ----
-
-Succeeded
 ```
 Let's update the value of `data.hello_msg` to `hello-carvel` in configmap `crd-config` and redeploy the app `crd-app` with the updated configmap.
 
@@ -601,15 +492,6 @@ Op:      1 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 Continue? [yN]:y
-
-5:34:49PM: ---- applying 1 changes [0/1 done] ----
-5:34:49PM: create configmap/crd-config-ver-2 (v1) namespace: default
-5:34:49PM: ---- waiting on 1 changes [0/1 done] ----
-5:34:49PM: ok: reconcile configmap/crd-config-ver-2 (v1) namespace: default
-5:34:49PM: ---- applying complete [1/1 done] ----
-5:34:49PM: ---- waiting complete [1/1 done] ----
-
-Succeeded
 ```
 
 
@@ -645,15 +527,6 @@ Op:      0 create, 0 delete, 1 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-5:41:59PM: ---- applying 1 changes [0/1 done] ----
-5:41:59PM: update simplecrd/first-cr (example.com/v1beta1) namespace: default
-5:41:59PM: ---- waiting on 1 changes [0/1 done] ----
-5:41:59PM: ok: reconcile simplecrd/first-cr (example.com/v1beta1) namespace: default
-5:41:59PM: ---- applying complete [1/1 done] ----
-5:41:59PM: ---- waiting complete [1/1 done] ----
-
-Succeeded
 ```
 
 Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap `crd-config` and re-deploy the app `crd-app` with the updated configmap.
@@ -687,19 +560,6 @@ Op:      1 create, 0 delete, 1 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
-
-5:43:10PM: ---- applying 1 changes [0/2 done] ----
-5:43:10PM: create configmap/crd-config-ver-3 (v1) namespace: default
-5:43:10PM: ---- waiting on 1 changes [0/2 done] ----
-5:43:10PM: ok: reconcile configmap/crd-config-ver-3 (v1) namespace: default
-5:43:10PM: ---- applying 1 changes [1/2 done] ----
-5:43:10PM: update simplecrd/first-cr (example.com/v1beta1) namespace: default
-5:43:10PM: ---- waiting on 1 changes [1/2 done] ----
-5:43:10PM: ok: reconcile simplecrd/first-cr (example.com/v1beta1) namespace: default
-5:43:10PM: ---- applying complete [2/2 done] ----
-5:43:10PM: ---- waiting complete [2/2 done] ----
-
-Succeeded
 ```
 
 After adding annotion `kapp.k14s.io/versioned-explicit-ref:` to the custom resource `first-cr`, kapp is able to make update to it when there is any new changes in configmap `crd-config`.
