@@ -4,7 +4,7 @@ slug: updating-resources-automatically-when-their-referenced-resources-are-updat
 date: 2022-06-23
 author: Kumari Tanushree
 excerpt: "Automatic update to the resources by kapp when their referenced resources get updated"
-image: /img/kapp.svg
+image: /img/logo.svg
 tags: ['carvel', 'kapp', 'versioned-resource']
 
 ---
@@ -18,8 +18,7 @@ In this blog, we are going to learn how to use [kapp](https://carvel.dev/kapp/) 
 ## Deploy resources where one resource is being referenced by other:
 
 Let's consider a ConfigMap and a Deployment, where the ConfigMap is being referenced by the Deployment's container.
-```bash=
-$cat app.yaml 
+```yaml 
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -55,8 +54,8 @@ spec:
  
 Let's deploy them to the cluster using `kapp`
 
-```bash=
-$kapp deploy -a app -f  test-versioned-blog/app.yaml
+```bash
+$kapp deploy -a app -f  app.yaml
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 Changes
@@ -93,7 +92,7 @@ Succeeded
 ```
 
 Let's check the value of `MSG_KEY` in the `simple-app` pods.
-```bash=
+```bash
 $kubectl get pods            
 NAME                        READY   STATUS    RESTARTS   AGE
 simple-app-657f9c8494-t2pw9   1/1     Running   0          99s
@@ -106,8 +105,8 @@ hello-carvel
 ```
 
 Let's update the value of `hello_msg` to `hello-carvel-india` in configmap `simple-config` and re-deploy the app:
-```bash=
-$kapp deploy -a app -f  test-versioned-blog/app.yaml --diff-changes
+```bash
+$kapp deploy -a app -f  app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ update configmap/simple-config (v1) namespace: default @@
@@ -140,7 +139,7 @@ Succeeded
 
 Now will verify again the value for `MSG_KEY` in the `simple-app` pods.
 
-```bash=
+```bash
 $kubectl get pods            
 NAME                        READY   STATUS    RESTARTS   AGE
 simple-app-657f9c8494-t2pw9   1/1     Running   0          6m40s
@@ -153,7 +152,7 @@ hello-carvel
 ```
 Here, the value for env `MSG_KEY` is still not updated. To reflect the new changes of configmap we have to re-start the pod manually.
 
-```bash=
+```bash
 $kubectl delete pod simple-app-cc794fc5-2r2lm 
 pod "simple-app-657f9c8494-t2pw9" deleted
 
@@ -178,8 +177,7 @@ kapp has a concept of [versioned resources](https://carvel.dev/kapp/docs/v0.49.0
 
 Let's try to use this annotation for the ConfigMap from our previous example and see what happens when we make a change to it.
 
-```bash=
-$cat versioned.yml
+```yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -197,8 +195,8 @@ kind: Deployment
 ```
 Now deploy the updated manifest and see the changes.
 
-```bash=
-$kapp deploy -a app -f  test-versioned-blog/app.yaml --diff-changes
+```bash
+$kapp deploy -a app -f  app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/simple-config-ver-1 (v1) namespace: default @@
@@ -245,7 +243,7 @@ As we have added annotation `kapp.k14s.io/versioned: ""` to configmap we can see
 
 The new set of resources in our `app`:
 
-```bash=
+```bash
 $kapp inspect -a app
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -268,7 +266,7 @@ Succeeded
 
 Let's verify the value for env `MSG_KEY` in the running pod of the deployment `simple-app`.
 
-```bash=
+```bash
 $kubectl get pods
 NAME                          READY   STATUS    RESTARTS   AGE
 simple-app-5f94df997b-g76d9   1/1     Running   0          25s
@@ -285,8 +283,8 @@ Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap and red
 **Note:-** We will not make any changes to the deployment this time.
 
 
-```bash=
-$kapp deploy -a app -f versioned.yml --diff-changes
+```bash
+$kapp deploy -a app -f app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/simple-config-ver-2 (v1) namespace: default @@
@@ -340,7 +338,7 @@ As already mentioned above, for the resource with annotations `kapp.k14s.io/vers
 Also, kapp is updating the new configmap name to the deployment so that the new changes get reflected to the deployment as well.
 
 The new set of resources in our `app`:
-```bash=
+```bash
 $kapp inspect -a app
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -374,8 +372,7 @@ Annotation [kapp.k14s.io/versioned-keep-original](https://carvel.dev/kapp/docs/v
 2. **Versioned resourced:** kapp will create resource with the naming convention `<original_name>-ver-n` where `n` increament by `1` on every new update. On every new change a new resource will get created.
 
 Example:
-```bash=
-$cat ver-config.yaml 
+```yaml 
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -388,7 +385,7 @@ data:
   hello_msg: hello-carvel
 ```
 Will deploy it using `kapp` and see the changes:
-```bash=
+```bash
 $kapp deploy -a ver-app -f ver-config.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -449,7 +446,7 @@ As we have used annotation`kapp.k14s.io/versioned-keep-original: ""` with `kapp.
 
 Let's make some change in `configmap` and re-deploy the app.
 
-```bash=
+```bash
 $kapp deploy -a ver-app -f ver-config.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -501,8 +498,7 @@ Kapp is updating the new changes in original resource and creating new versioned
 For resources which are not part of built-in `workload resources` can use annotaion [kapp.k14s.io/versioned-explicit-ref](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources) to have explicit relationship with `versioned` resources if you want them to automatic re-start whenever there is a change in versioned resources.
 
 Let's play with some example:
-```bash=
-$cat version-crd.yaml 
+```yaml 
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -551,7 +547,7 @@ spec:
 ```
 
 Let's deploy them using `kapp`:
-```bash=
+```bash
 $kapp deploy -a crd-app -f version-crd.yaml                           
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -584,7 +580,7 @@ Succeeded
 ```
 Let's update the value of `data.hello_msg` to `hello-carvel` in configmap `crd-config` and redeploy the app `crd-app` with the updated configmap.
 
-```bash=
+```bash
 $kapp deploy -a crd-app -f version-crd.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -620,7 +616,7 @@ Succeeded
 Now what we want is whenever there is any change happen in configmap `crd-config` the custom resource `first-cr` should get updated or restarted. To achive this we have to add annotation `kapp.k14s.io/versioned-explicit-ref:` to the custom resource so that on every update in configmap `crd-config` kapp will make update to custom resource as well.
 
 After adding `kapp.k14s.io/versioned-explicit-ref:` to custom resource `first-cr`, it will be something like:
-```bash=
+```yaml
 apiVersion: "example.com/v1beta1"
 kind: simplecrd
 metadata:
@@ -636,7 +632,7 @@ spec:
 ```
 
 Let's deploy the new YAML and see the difference.
-```bash=
+```bash
 $kapp deploy -a crd-app -f version-crd.yaml               
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
@@ -662,8 +658,8 @@ Succeeded
 
 Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap `crd-config` and re-deploy the app `crd-app` with the updated configmap.
 
-```bash=
-kapp deploy -a app1 -f version-crd.yaml --diff-changes
+```bash
+$kapp deploy -a app1 -f version-crd.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/crd-config-ver-3 (v1) namespace: default @@
