@@ -422,7 +422,8 @@ ytt: Error:
 
 ### @schema/validation
 
-⚠️ **This is an experimental feature: interfaces and behavior will change.** ⚠️
+⚠️ **This is an experimental feature: interfaces and behavior will change.** ⚠️\
+ℹ️ Refer to our [announcement blog post](/blog/ytt-validations-preview/) for details on how to get started.
 
 Attaches a validation to the type being declared by the annotated node.
 
