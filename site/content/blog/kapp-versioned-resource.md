@@ -11,13 +11,11 @@ tags: ['carvel', 'kapp', 'versioned-resource']
 
 Have you ever wanted your deployments or pods to automatically get redeployed when their referenced configmaps or secrets are updated?
 
+In this blog, we are going to learn how to use [kapp](https://carvel.dev/kapp/) to re-start or re-deploy the resources when their referenced resources get updated.
 
-In this blog, we are going to learn how to use [kapp](https://carvel.dev/kapp/) re-start or re-deploy the resources when their referenced resources get updated.
-
- 
 ## Deploy resources where one resource is being referenced by other:
 
-Let's consider a ConfigMap and a Deployment, where the ConfigMap is being referenced by the Deployment's container.
+Let's consider a ConfigMap and a Deployment, where the ConfigMap is being referenced by the Deployment.
 ```yaml 
 ---
 apiVersion: v1
@@ -43,7 +41,7 @@ spec:
     spec:
       containers:
       - name: simple-app
-        image: nginx:1.21.6
+        image: docker.io/dkalinin/k8s-simple-app:latest
         env:
           - name: MSG_KEY
             valueFrom:
@@ -83,7 +81,7 @@ hello-carvel
 #
 ```
 
-Let's update the value of `hello_msg` to `hello-carvel-india` in configmap `simple-config` and re-deploy the app:
+Let's update the value of `hello_msg` to `hello-kapp` in configmap `simple-config` and re-deploy the app:
 ```bash
 $kapp deploy -a app -f  app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
@@ -92,7 +90,7 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
   ...
   1,  1   data:
   2     -   hello_msg: hello-carvel
-      2 +   hello_msg: hello-carvel-india
+      2 +   hello_msg: hello-kapp
   3,  3   kind: ConfigMap
   4,  4   metadata:
 
@@ -107,7 +105,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 Continue? [yN]: y
 ```
 
-Now will verify again the value for `MSG_KEY` in the `simple-app` pods.
+Now let's verify again the value of environment variable `MSG_KEY` in the running pod of deployment `simple-app`.
 
 ```bash
 $kubectl get pods            
@@ -120,7 +118,7 @@ hello-carvel
 # exit
 #
 ```
-Here, the value for env `MSG_KEY` is still not updated. To reflect the new changes of configmap we have to re-start the pod manually.
+Here, the value of environment variable `MSG_KEY` is still not updated. To reflect the new changes of configmap we have to re-start the pod manually.
 
 ```bash
 $kubectl delete pod simple-app-657f9c8494-t2pw9 
@@ -132,7 +130,7 @@ simple-app-797ff748db-mqx97   1/1     Running   0          6s
 
 $kubectl exec -it simple-app-797ff748db-mqx97 sh
 # echo $MSG_KEY
-hello-carvel-india
+hello-kapp
 # 
 ```
 After restarting the pod we can see the new changes we made in configmap.
@@ -141,9 +139,9 @@ In above example, we saw that to reflect the changes of a configmap we need to r
 
 ## Versioned resource in `kapp`:
 
-kapp provides a [solution](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources) for such scenarios, by offering a way to create uniquely named resources based on an original resource. Whenever we make a change to a resource marked as versioned, entirely new resource will get created by the kapp instead of updating the existing one. Also, it will update the new name to the referencing resource and re-start them to reflect the new changes.
+kapp has a concept of [versioned resources](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources), where it creates a new version for resource whenever a change is made to it. To enable versioning we just need to add the annotation `kapp.k14s.io/versioned: ""` to the resource. Resources which are using this annotaion will follow the naming convention `{resource-name}-ver-{n}` where `n` will start with `1` and will get increamented by `1` on every update.
 
-kapp has a concept of [versioned resources](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources), where it creates a new version for resource whenever a change is made to it. To enable versioning we just need to add the annotation `kapp.k14s.io/versioned: ""` to the resource. Resources which are using this annotaion will follow the naming convention `{resource-name}-ver-{n}` where `n` will start with `1` and will get increamented by `1` after each update.
+Whenever we make a change to a resource marked as versioned, entirely new resource will get created by the kapp instead of updating the existing one. Also, it will update the new name to the referencing resource and re-start them to reflect the new changes.
 
 Let's try to use this annotation for the ConfigMap from our previous example and see what happens when we make a change to it.
 
@@ -156,7 +154,7 @@ metadata:
   annotations:
     kapp.k14s.io/versioned: ""
 data:
-  hello_msg: hello-carvel
+  hello_msg: hello-kapp
 
 ---
 apiVersion: apps/v1
@@ -172,7 +170,7 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 @@ create configmap/simple-config-ver-1 (v1) namespace: default @@
       0 + apiVersion: v1
       1 + data:
-      2 +   hello_msg: hello-carvel-india
+      2 +   hello_msg: hello-kapp
       3 + kind: ConfigMap
       4 + metadata:
       5 +   annotations:
@@ -188,12 +186,12 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 123,123                 key: hello_msg
 124     -               name: simple-config
     124 +               name: simple-config-ver-1
-125,125           image: nginx:1.21.6
+125,125           image: docker.io/dkalinin/k8s-simple-app:latest
 126,126           name: simple-app
 @@ delete configmap/simple-config (v1) namespace: default @@
   0     - apiVersion: v1
   1     - data:
-  2     -   hello_msg: hello-carvel-india
+  2     -   hello_msg: hello-kapp
   3     - kind: ConfigMap
   4     - metadata:
   5     -   creationTimestamp: "2022-06-17T21:19:07Z"
@@ -243,7 +241,7 @@ Continue? [yN]: y
 As we have added annotation `kapp.k14s.io/versioned: ""` to configmap we can see configmap `simple-config` is getting deleted and a new resource with name `simple-config-ver-1` has been created. Also `kapp` is updating deployment `simple-app` with new configmap name i.e. `simple-config-ver-1`.
 
 
-Let's verify the value for env `MSG_KEY` in the running pod of the deployment `simple-app`.
+Let's verify the value of environment variable `MSG_KEY` in the running pod of the deployment `simple-app`.
 
 ```bash
 $kubectl get pods
@@ -253,13 +251,12 @@ simple-app-5f94df997b-g76d9   1/1     Running   0          25s
 $kubectl exec -it simple-app-5f94df997b-g76d9 sh
 # 
 # echo $MSG_KEY
-hello-carvel-india
+hello-kapp
 # 
 ```
-The value for env `MSG_KEY` is same as we defined in configmap `simple-config`, so the changes got updated to deployment without restarting it's pod manually.
+The value of environment variable `MSG_KEY` is same as we defined in configmap `simple-config`, so the changes got updated to the deployment without restarting it's pod manually.
 
-Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap and redeploy the app `app` with the updated configmap. 
-**Note:-** We will not make any changes to the deployment this time.
+Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap and redeploy the app `app` with the updated configmap.
 
 
 ```bash
@@ -269,7 +266,7 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 @@ create configmap/simple-config-ver-2 (v1) namespace: default @@
   ...
   1,  1   data:
-  2     -   hello_msg: hello-carvel-india
+  2     -   hello_msg: hello-kapp
       2 +   hello_msg: hello-tanzu
   3,  3   kind: ConfigMap
   4,  4   metadata:
@@ -278,7 +275,7 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 123,123                 key: hello_msg
 124     -               name: simple-config-ver-1
     124 +               name: simple-config-ver-2
-125,125           image: nginx:1.21.6
+125,125           image: docker.io/dkalinin/k8s-simple-app:latest
 126,126           name: simple-app
 
 Changes
@@ -320,7 +317,7 @@ Succeeded
 ```
 If you look carefully the new set of resources having:
 1. **two configmaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes
-2. **two replicasets:**`simple-app-5f94df997b` with no running pods (older one, kapp deleted it's pod) and `simple-app-6757478ff5` with one running pod and it has the news chnages of configmap as well.
+2. **two replicasets:**`simple-app-5f94df997b` with no running pods (older one, kapp deleted it's pod) and `simple-app-6757478ff5` with one running pod and it has the news changes of configmap as well.
 
 **From above two different examples of deploying resurces with `kubectl` and `kapp` we observed that to reflect the new changes of configmap in the deployment we have to manually delete the running pod in the case of `kubectl` while `kapp` does this for us by itself by marking resources as versioned.**
 
@@ -371,14 +368,14 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
   ...
   1,  1   data:
   2     -   hello_msg: hello-carvel
-      2 +   hello_msg: hello-carvel-india
+      2 +   hello_msg: hello-kapp
   3,  3   kind: ConfigMap
   4,  4   metadata:
 @@ update configmap/config-example (v1) namespace: default @@
   ...
   1,  1   data:
   2     -   hello_msg: hello-carvel
-      2 +   hello_msg: hello-carvel-india
+      2 +   hello_msg: hello-kapp
   3,  3   kind: ConfigMap
   4,  4   metadata:
 
@@ -413,7 +410,7 @@ metadata:
   annotations:
     kapp.k14s.io/versioned: ""
 data:
-  hello_msg: hello-carvel-india
+  hello_msg: hello-kapp
 
 ---
 apiVersion: apiextensions.k8s.io/v1
@@ -449,7 +446,7 @@ metadata:
   name: first-cr
 spec:
   name: simple-app
-  image: nginx:1.21.6
+  image: docker.io/dkalinin/k8s-simple-app:latest
 ```
 
 Let's deploy them using `kapp`:
@@ -478,7 +475,7 @@ Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 @@ create configmap/crd-config-ver-2 (v1) namespace: default @@
   ...
   1,  1   data:
-  2     -   hello_msg: hello-carvel-india
+  2     -   hello_msg: hello-kapp
       2 +   hello_msg: hello-carvel
   3,  3   kind: ConfigMap
   4,  4   metadata:
@@ -510,7 +507,7 @@ metadata:
       name: crd-config
 spec:
   name: simple-app
-  image: nginx:1.21.6
+  image: docker.io/dkalinin/k8s-simple-app:latest
 ```
 
 Let's deploy the new YAML and see the difference.
