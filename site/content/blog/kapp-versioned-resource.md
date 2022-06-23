@@ -53,7 +53,7 @@ spec:
 Let's deploy them to the cluster using `kapp`
 
 ```bash
-$kapp deploy -a app -f  app.yaml
+$ kapp deploy -a app -f app.yaml
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 Changes
@@ -70,11 +70,11 @@ Continue? [yN]: y
 
 Let's check the value of environment variable `MSG_KEY` in the running pod of deployment `simple-app`.
 ```bash
-$kubectl get pods            
+$ kubectl get pods            
 NAME                        READY   STATUS    RESTARTS   AGE
 simple-app-657f9c8494-t2pw9   1/1     Running   0          99s
 
-$kubectl exec -it simple-app-657f9c8494-t2pw9 sh
+$ kubectl exec -it simple-app-657f9c8494-t2pw9 sh
 # echo $MSG_KEY
 hello-carvel
 # exit
@@ -83,7 +83,7 @@ hello-carvel
 
 Let's update the value of `data.hello_msg ` to `hello-kapp` in configmap `simple-config` and re-deploy the app:
 ```bash
-$kapp deploy -a app -f  app.yaml --diff-changes
+$ kapp deploy -a app -f app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ update configmap/simple-config (v1) namespace: default @@
@@ -108,11 +108,11 @@ Continue? [yN]: y
 Now let's verify again the value of environment variable `MSG_KEY` in the running pod of deployment `simple-app`.
 
 ```bash
-$kubectl get pods            
+$ kubectl get pods            
 NAME                        READY   STATUS    RESTARTS   AGE
 simple-app-657f9c8494-t2pw9   1/1     Running   0          6m40s
 
-$kubectl exec -it simple-app-657f9c8494-t2pw9 sh
+$ kubectl exec -it simple-app-657f9c8494-t2pw9 sh
 # echo $MSG_KEY
 hello-carvel
 # exit
@@ -121,14 +121,14 @@ hello-carvel
 Here, the value of environment variable `MSG_KEY` is still not updated. To reflect the new changes of configmap we have to re-start the pod manually.
 
 ```bash
-$kubectl delete pod simple-app-657f9c8494-t2pw9 
+$ kubectl delete pod simple-app-657f9c8494-t2pw9 
 pod "simple-app-657f9c8494-t2pw9" deleted
 
-$kubectl get pod 
+$ kubectl get pod 
 NAME                          READY   STATUS    RESTARTS   AGE
 simple-app-797ff748db-mqx97   1/1     Running   0          6s
 
-$kubectl exec -it simple-app-797ff748db-mqx97 sh
+$ kubectl exec -it simple-app-797ff748db-mqx97 sh
 # echo $MSG_KEY
 hello-kapp
 # 
@@ -164,7 +164,7 @@ kind: Deployment
 Now deploy the updated manifest and see the changes.
 
 ```bash
-$kapp deploy -a app -f  app.yaml --diff-changes
+$ kapp deploy -a app -f app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/simple-config-ver-1 (v1) namespace: default @@
@@ -244,11 +244,11 @@ As we have added annotation `kapp.k14s.io/versioned: ""` to configmap we can see
 Let's verify the value of environment variable `MSG_KEY` in the running pod of the deployment `simple-app`.
 
 ```bash
-$kubectl get pods
+$ kubectl get pods
 NAME                          READY   STATUS    RESTARTS   AGE
 simple-app-5f94df997b-g76d9   1/1     Running   0          25s
 
-$kubectl exec -it simple-app-5f94df997b-g76d9 sh
+$ kubectl exec -it simple-app-5f94df997b-g76d9 sh
 # 
 # echo $MSG_KEY
 hello-kapp
@@ -260,7 +260,7 @@ Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap and red
 
 
 ```bash
-$kapp deploy -a app -f app.yaml --diff-changes
+$ kapp deploy -a app -f app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/simple-config-ver-2 (v1) namespace: default @@
@@ -289,13 +289,9 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
 ```
-
-As already mentioned above, for the resource with annotations `kapp.k14s.io/versioned: ""` kapp will create entirely new resource on every update. Here also we can see kapp is creating a new resource for `configmap` with name `simple-config-ver-2` .
-Also, kapp is updating the new configmap name to the deployment so that the new changes get reflected to the deployment as well.
-
 The new set of resources in our `app`:
 ```bash
-$kapp inspect -a app
+$ kapp inspect -a app
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 Resources in app 'app'
@@ -343,7 +339,7 @@ data:
 ```
 Will deploy it using `kapp` and see the changes:
 ```bash
-$kapp deploy -a ver-app -f ver-config.yaml --diff-changes
+$ kapp deploy -a ver-app -f ver-config.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 Changes
@@ -362,7 +358,7 @@ As we have used annotation`kapp.k14s.io/versioned-keep-original: ""` with `kapp.
 Let's make some change in `configmap` and re-deploy the app.
 
 ```bash
-$kapp deploy -a ver-app -f ver-config.yaml --diff-changes
+$ kapp deploy -a ver-app -f ver-config.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/config-example-ver-2 (v1) namespace: default @@
@@ -452,7 +448,7 @@ spec:
 
 Let's deploy them using `kapp`:
 ```bash
-$kapp deploy -a crd-app -f version-crd.yaml                           
+$ kapp deploy -a crd-app -f version-crd.yaml                           
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 Changes
@@ -470,7 +466,7 @@ Continue? [yN]: y
 Let's update the value of `data.hello_msg` to `hello-carvel` in configmap `crd-config` and redeploy the app `crd-app`.
 
 ```bash
-$kapp deploy -a crd-app -f version-crd.yaml --diff-changes
+$ kapp deploy -a crd-app -f version-crd.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/crd-config-ver-2 (v1) namespace: default @@
@@ -513,7 +509,7 @@ spec:
 
 Let's deploy updated YAML `version-crd.yaml`.
 ```bash
-$kapp deploy -a crd-app -f version-crd.yaml               
+$ kapp deploy -a crd-app -f version-crd.yaml               
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 Changes
@@ -530,7 +526,7 @@ Continue? [yN]: y
 Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap `crd-config` and re-deploy the app `crd-app`.
 
 ```bash
-$kapp deploy -a app1 -f version-crd.yaml --diff-changes
+$ kapp deploy -a app1 -f version-crd.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
 
 @@ create configmap/crd-config-ver-3 (v1) namespace: default @@
