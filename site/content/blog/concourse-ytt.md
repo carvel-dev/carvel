@@ -28,9 +28,9 @@ Ytt is Carvel's tool of choice when it comes to managing YAML, and in this tutor
 
 1. Grab a simple pipeline to start working on
 
-```
-wget https://raw.githubusercontent.com/concourse/examples/master/pipelines/golang-lib.yml -O pipeline.yml
-```
+    ```console
+    wget https://raw.githubusercontent.com/concourse/examples/master/pipelines/golang-lib.yml -O pipeline.yml
+    ```
 
 1. Set the pipeline
 
