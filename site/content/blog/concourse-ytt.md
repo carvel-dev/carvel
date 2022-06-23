@@ -322,6 +322,8 @@ versions: ["1.11", "1.12", "1.13"]
 
 `fly --target tutorial set-pipeline --pipeline testing-pipeline --config <(ytt -f pipeline.yml -f values.yml)`  
 
+The final pipeline can be found in the ytt playground [here](https://carvel.dev/ytt/#gist:https://gist.github.com/neil-hickey/5ef41f1df3a4bb63962fc2d577cb32d0) / [github gist](https://gist.github.com/neil-hickey/5ef41f1df3a4bb63962fc2d577cb32d0).
+
 ### What's next?
 
 We have refactored a simple Concourse pipeline using the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
