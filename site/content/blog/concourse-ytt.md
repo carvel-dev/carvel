@@ -34,7 +34,9 @@ Ytt is Carvel's tool of choice when it comes to managing YAML, and in this tutor
 
 1. Set the pipeline
 
-`fly --target tutorial set-pipeline --pipeline testing-pipeline --config pipeline.yml`
+    ```console
+    fly --target tutorial set-pipeline --pipeline testing-pipeline --config pipeline.yml
+    ```
 
 ## What does this pipeline do?
 
