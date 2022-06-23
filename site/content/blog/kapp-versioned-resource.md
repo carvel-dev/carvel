@@ -68,7 +68,7 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 Continue? [yN]: y
 ```
 
-Let's check the value of `MSG_KEY` in the `simple-app` pods.
+Let's check the value of environment variable `MSG_KEY` in the running pod of deployment `simple-app`.
 ```bash
 $kubectl get pods            
 NAME                        READY   STATUS    RESTARTS   AGE
@@ -81,7 +81,7 @@ hello-carvel
 #
 ```
 
-Let's update the value of `hello_msg` to `hello-kapp` in configmap `simple-config` and re-deploy the app:
+Let's update the value of `data.hello_msg ` to `hello-kapp` in configmap `simple-config` and re-deploy the app:
 ```bash
 $kapp deploy -a app -f  app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
@@ -319,13 +319,14 @@ If you look carefully the new set of resources having:
 1. **two configmaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes
 2. **two replicasets:**`simple-app-5f94df997b` with no running pods (older one, kapp deleted it's pod) and `simple-app-6757478ff5` with one running pod and it has the news changes of configmap as well.
 
-**From above two different examples of deploying resurces with `kubectl` and `kapp` we observed that to reflect the new changes of configmap in the deployment we have to manually delete the running pod in the case of `kubectl` while `kapp` does this for us by itself by marking resources as versioned.**
+**From above two different examples of deploying `non-versioned resources` and `versioned resources`, we observed that to reflect the new changes of configmap in the deployment we have to manually delete the running pod in the case of `non-versioned resources` while `kapp` does this for us by itself in the case of `versioned resources`.**
 
 
     
 Annotation [kapp.k14s.io/versioned-keep-original](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources) can be used in conjuction with the annotation `kapp.k14s.io/versioned` to create two type of resource for versioned resources.
-1. **Original resource:** kapp will create resource with original name. And whenever new change will happen this resource will get updated as well.
-2. **Versioned resourced:** kapp will create resource with the naming convention `<original_name>-ver-n` where `n` increament by `1` on every new update. On every new change a new resource will get created.
+1. **Versioned resource:** kapp will create resource with the naming convention `<original_name>-ver-n` where `n` increament by `1` on every new update. On every new change a new resource will get created.
+2. **Original resource:** kapp will create resource with original name. And whenever new change will happen this resource will get updated as well.
+
 
 Example:
 ```yaml 
@@ -392,7 +393,7 @@ Continue? [yN]: y
 ```
 Kapp is updating the new changes in original resource and creating new versioned resource as well. 
 
-**Use case:** Assume a versioned resource is being referenced by a resource `res1` which is owned by `kapp` and another resource `res2` which is not owned by `kapp`. In this case having both `original` and `versioned resource` is necessary as `res1` can use versioned resources while `res2` can continue with original one.
+**Use case:** Assume a versioned resource is being referenced by a resource `res1` which is owned by `kapp` and another resource `res2` which is not owned by `kapp`. In this case having both `original` and `versioned` resource is necessary as `res1` can use versioned resources while `res2` can continue with original one.
 
 ### Automatic update to non-workload reasources 
 
@@ -466,7 +467,7 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
 ```
-Let's update the value of `data.hello_msg` to `hello-carvel` in configmap `crd-config` and redeploy the app `crd-app` with the updated configmap.
+Let's update the value of `data.hello_msg` to `hello-carvel` in configmap `crd-config` and redeploy the app `crd-app`.
 
 ```bash
 $kapp deploy -a crd-app -f version-crd.yaml --diff-changes
@@ -492,9 +493,9 @@ Continue? [yN]:y
 ```
 
 
-Now what we want is whenever there is any change happen in configmap `crd-config` the custom resource `first-cr` should get updated or restarted. To achive this we have to add annotation `kapp.k14s.io/versioned-explicit-ref:` to the custom resource so that on every update in configmap `crd-config` kapp will make update to custom resource as well.
+Now what we want is whenever there is any change happen in configmap `crd-config` the custom resource `first-cr` should get updated or restarted. To achive this we have to add annotation `kapp.k14s.io/versioned-explicit-ref` to the custom resource so that on every update in configmap `crd-config` kapp will make update to custom resource as well.
 
-After adding `kapp.k14s.io/versioned-explicit-ref:` to custom resource `first-cr`, it will be something like:
+After adding `kapp.k14s.io/versioned-explicit-ref` to custom resource `first-cr`, it will be something like:
 ```yaml
 apiVersion: "example.com/v1beta1"
 kind: simplecrd
@@ -510,7 +511,7 @@ spec:
   image: docker.io/dkalinin/k8s-simple-app:latest
 ```
 
-Let's deploy the new YAML and see the difference.
+Let's deploy updated YAML `version-crd.yaml`.
 ```bash
 $kapp deploy -a crd-app -f version-crd.yaml               
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
@@ -526,7 +527,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 Continue? [yN]: y
 ```
 
-Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap `crd-config` and re-deploy the app `crd-app` with the updated configmap.
+Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap `crd-config` and re-deploy the app `crd-app`.
 
 ```bash
 $kapp deploy -a app1 -f version-crd.yaml --diff-changes
@@ -559,7 +560,7 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 Continue? [yN]: y
 ```
 
-After adding annotion `kapp.k14s.io/versioned-explicit-ref:` to the custom resource `first-cr`, kapp is able to make update to it when there is any new changes in configmap `crd-config`.
+After adding annotion `kapp.k14s.io/versioned-explicit-ref` to the custom resource `first-cr`, kapp is able to make update to it whenever there is any new changes in configmap `crd-config`.
 
 
 
