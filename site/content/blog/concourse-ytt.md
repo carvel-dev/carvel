@@ -20,11 +20,11 @@ Ytt is Carvel's tool of choice when it comes to managing YAML, and in this tutor
 
 1. Install a local Concourse server (optional)
 
-```
-wget https://concourse-ci.org/docker-compose.yml && docker-compose up -d
-
-fly --target tutorial login --concourse-url http://localhost:8080 -u test -p test
-```
+    ```console
+    wget https://concourse-ci.org/docker-compose.yml && docker-compose up -d
+    
+    fly --target tutorial login --concourse-url http://localhost:8080 -u test -p test
+    ```
 
 1. Grab a simple pipeline to start working on
 
