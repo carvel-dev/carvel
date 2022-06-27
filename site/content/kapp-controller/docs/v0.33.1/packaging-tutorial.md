@@ -5,11 +5,8 @@ title: "Tutorial: Create and Install a Package"
 
 [//]: # (Generated from katacoda content using 'carvel/tutorials/copy-katacoda-to-static.sh')
 
-## Get Started With Katacoda
-Make a katacoda account and take our interactive tutorial [here](https://katacoda.com/carvel/scenarios/kapp-controller-package-management)
-## Or Follow Our Tutorial Below
-You can spin up your favorite [playground](https://www.katacoda.com/courses/kubernetes/playground) and follow the steps below.
-Note the below steps are from the linked katacoda tutorial so your environment may differ slightly.
+## Follow Our Tutorial Below
+Note the below steps are from a former katacoda tutorial (RIP katacoda) so your environment may differ slightly.
 
 ## Installing kapp-controller dependencies
 
