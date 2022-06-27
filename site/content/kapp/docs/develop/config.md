@@ -146,14 +146,14 @@ waitRules:
   - type: Ready
     status: "True"
     success: true
-    supportsObservedGeneration: true    # available from v0.47.0+
+    supportsObservedGeneration: true    # available at condition level from v0.47.0+
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
 ```
 
 Available in v0.48.0+.
 
-Provides a way to add `waitRules` for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. For example [this](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/test/e2e/custom_wait_rules_test.go#L79-L88) CR which has `currentState` field inside `status` we can define `waitRule` as shown below, `is_done(resource)` method signature and return type should always remain same while the method implementation can be changes as per the usecase.
+ytt `waitRules` can be for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. `is_done(resource)` method can be defined as part of a ytt waitRule to return the done state based on resource fields.
 
 ```yaml
 waitRules:
@@ -173,6 +173,20 @@ waitRules:
   resourceMatchers:
     - apiVersionKindMatcher: {apiVersion: <resource-api-version>, kind: <resource-kind>}
 ``` 
+
+Available in v0.50.0+
+
+`unblockChanges` can be used for conditions to unblock any dependent resources. These conditions are treated as non success/failure conditions. It can also be used along with ytt waitRules.
+
+```yaml
+waitRules:
+- conditionMatchers:
+  - type: Progressing
+    status: "True"
+    unblockChanges: true
+  resourceMatchers:
+  - apiVersionKindMatcher: {apiVersion: corp.com/v1, kind: Application}
+```
  
 ### templateRules
 
