@@ -435,12 +435,13 @@ where:
   - `description` (`string`) — a description of what a valid value is.
   - `assertion` (`function(value) : None` | `function(value) : bool`) — that either `fail()`s or returns `False` when `value` is not valid.
     - `value` (`string` | `number` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
-- `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios
-  - `min=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided 
-  - `max=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided
-  - `min_len=` (`number`) — length of node's value must be >= the minimum length provided
-  - `max_len=` (`number`) — length of node's value must be <= the maximum length provided
-  - `not_null=` (`bool`) — if set to `true`, the node's value must not be null.
+- `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios.
+  - `min=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided.
+  - `max=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided.
+  - `min_len=` (`number`) — length of node's value must be >= the minimum length provided.
+  - `max_len=` (`number`) — length of node's value must be <= the maximum length provided.
+  - `not_null=` (`bool`) — if set to `True`, the node's value must not be null.
+  - `one_not_null=` (`bool`) — if set to `True`, the node's value must be a map (dict), and all but one key must have a null value.
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
@@ -459,22 +460,27 @@ _Example 1: Out-of-the-box assertion rules_
 ```yaml
 #@data/values-schema
 ---
-#@schema/validation min={"username": "", "password": ""}
-login: 
+login:
+  #@schema/validation min_len=1
   username: admin
+  #@schema/validation min_len=1
   password: password
-
-#@schema/validation max=10
-concurrent_threads: 3
-
-#@schema/validation min_len=1
-secret: my-secret
 
 #@schema/validation max_len=15
 ipv4: "123.456.789.000"
 
+#@schema/nullable
 #@schema/validation not_null=True
-database: SQL
+database:
+  driver: ""
+  #@overlay/validation min_len=1
+  username: ""
+  db_name: ""
+  #@overlay/validation min=1025
+  port: 0
+
+#@schema/validation max=10
+concurrent_threads: 3
 ```
 
 All values provided in the example schema pass the assertions, resulting in no error message.    
