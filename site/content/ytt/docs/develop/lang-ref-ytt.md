@@ -4,10 +4,6 @@ title: Built-in ytt Library
 
 ## General modules
 
-### struct
-
-See [@ytt:struct module docs](lang-ref-ytt-struct.md).
-
 ### assert
 
 See [@ytt:assert module docs](lang-ref-ytt-assert.md).
@@ -32,7 +28,7 @@ data.read("/data/data.txt") # read file
 
 ### ip
 
-Parse and inspect Internet Protocol values. 
+Parse and inspect Internet Protocol values.
 
 (available in v0.37.0+)
 
@@ -93,6 +89,10 @@ When calling `replace` you can pass either a string or a lambda function as the 
 
 While `match` and `replace` are currently the only regexp verbs supported, it is possible to mimic `find` by using `replace` to replace all its input with a capture group (see example above).
 
+### struct
+
+See [@ytt:struct module docs](lang-ref-ytt-struct.md).
+
 ### url
 
 ```python
@@ -122,6 +122,25 @@ Allowing semicolons in query strings can [lead to cache poisoning attacks](https
 ### version
 
 `load("@ytt:version", "version")` (see [version module doc](lang-ref-ytt-version.md))
+
+---
+## Hashing modules
+
+### md5
+
+```python
+load("@ytt:md5", "md5")
+
+md5.sum("data") # "8d777f385d3dfec8815d20f7496026dc"
+```
+
+### sha256
+
+```python
+load("@ytt:sha256", "sha256")
+
+sha256.sum("data") # "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+```
 
 ---
 ## Serialization modules
@@ -173,27 +192,9 @@ yaml.decode('{"a":[1,2,3,{"c":456}],"b":"str"}')
 ```
 
 ---
-## Hashing modules
+## Library module
 
-### md5
-
-```python
-load("@ytt:md5", "md5")
-
-md5.sum("data") # "8d777f385d3dfec8815d20f7496026dc"
-```
-
-### sha256
-
-```python
-load("@ytt:sha256", "sha256")
-
-sha256.sum("data") # "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
-```
----
-## Schema Module
-
-See [Schema specific docs](lang-ref-ytt-schema.md).
+See [Library specific docs](lang-ref-ytt-library.md).
 
 ---
 ## Overlay module
@@ -201,9 +202,9 @@ See [Schema specific docs](lang-ref-ytt-schema.md).
 See [Overlay specific docs](lang-ref-ytt-overlay.md).
 
 ---
-## Library module
+## Schema Module
 
-See [Library specific docs](lang-ref-ytt-library.md).
+See [Schema specific docs](lang-ref-ytt-schema.md).
 
 ---
 ## Template module
