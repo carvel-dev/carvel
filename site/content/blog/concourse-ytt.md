@@ -1,13 +1,13 @@
 ---
-title: "YTT Tutorial: Converting Concourse pipeline to YTT"
+title: "ytt Tutorial: Converting Concourse pipeline to ytt"
 slug: concourse-ytt-101
 date: 2022-06-16
 author: Neil Hickey
-excerpt: "Tutorial: Concourse to YTT 101"
+excerpt: "Tutorial: Concourse to ytt 101"
 tags: ['ytt', 'concourse']
 ---
 
-Concourse is an automation system written in Go. It is most commonly used for CI/CD, and is built to scale to any kind of automation pipeline, from simple to complex. Each pipeline in Concourse is a declarative YAML file which represents input, tasks and output. Concourse pipelines often grow more complex as time goes on, and you may quickly find yourself overwhelmed trying to manage these large, complex pipelines. 
+[Concourse](https://concourse-ci.org/) is an open source automation system written in Go. It is most commonly used for CI/CD, and is built to scale to any kind of automation pipeline, from simple to complex. Each pipeline in Concourse is a declarative YAML file which represents input, tasks and output. Concourse pipelines often grow more complex as time goes on, and you may quickly find yourself overwhelmed trying to manage these large, complex pipelines. 
 
 Ytt is Carvel's tool of choice when it comes to managing YAML, and in this tutorial we will work through a few ways I like to think about making YAML more maintainable and readable using a simple Concourse pipeline.
 
@@ -44,12 +44,12 @@ This pipeline tests our component (https://github.com/golang/mock in this case) 
 
 This pipeline is broken into two main sections, `resources` and `jobs`. See [concourse docs](https://concourse-ci.org/docs.html) for more on these.
 
-- There are four `resources`
+- There are four `resources`:
   - One of these is our component under test - https://github.com/golang/mock
-  - The remaining three reference a docker image that contains the platform we want to test against, GoLang versions 1.11 -> 1.13
+  - The remaining three reference a docker image that contains the platform we want to test against, Golang versions 1.11 -> 1.13
 
-- There are three `jobs`. 
-  - Each of these are testing our component (https://github.com/golang/mock in this case) against a different version of GoLang.
+- There are three `jobs`:
+  - Each of these are testing our component (https://github.com/golang/mock in this case) against a different version of Golang.
 
 ## Time to refactor
 
@@ -78,7 +78,7 @@ Notice that the following resources look very similar? This looks like a good pl
     tag: 1.13-stretch
 ```
 
-Let's pull this out into a function, so we can compose as many `registry-image` resources as we need
+Let's pull this out into a function, so we can compose as many `registry-image` resources as we need.
 
 ```yaml
 #@ def registry_image(repository, name, tag="latest"):
@@ -116,9 +116,9 @@ Pretty neat huh? We were able to reduce 20 lines of YAML into just 3. And adding
 
 `fly --target tutorial set-pipeline --pipeline testing-pipeline --config <(ytt -f pipeline.yml)`
 
-Looking good so far, now let's have a look at the `jobs` section
+Looking good so far, now let's have a look at the `jobs` section.
 
-Convert these YAML anchors to using YTT instead
+Convert these YAML anchors to using ytt instead:
 
 ```yaml
 jobs:
@@ -135,7 +135,7 @@ jobs:
         << : *task-config
 ```
 
-### Converting YAML anchors to YTT
+### Converting YAML anchors to ytt
 
 ```yaml
 #@ def lint_and_test_golang_mock():
@@ -198,7 +198,7 @@ jobs:
       config: #@ lint_and_test_golang_mock()
 ```
 
-Now that we have most of the jobs and resources refactored, let's draw our attention to all these version numbers. Versions 1.11 to 1.13.
+Now that we have most of the jobs and resources refactored, let's draw our attention to all these version numbers: Versions 1.11 to 1.13.
 
 The first step is to extract these out into a [ytt data value file](https://carvel.dev/ytt/docs/latest/ytt-data-values/#docs). This allows us to have a single place to configurable data.
 
@@ -210,7 +210,7 @@ The first step is to extract these out into a [ytt data value file](https://carv
 versions: ["1.11", "1.12", "1.13"]
 ```
 
-Once we have our data values file, let's go ahead and import the 'data' module so we can use them in our pipeline.yml
+Once we have our data values file, let's go ahead and import the 'data' module so we can use them in our pipeline.yml.
 
 ### Convert to using data.values
 
@@ -244,7 +244,7 @@ jobs:
 
 ### Final Pipeline 
 
-Nice job! We have make it to the end of this refactoring, let's have a look at what we ended up with.
+Nice job! We have made it to the end of this refactoring; let's have a look at what we ended up with.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -330,12 +330,11 @@ We have refactored a simple Concourse pipeline using the [DRY principle](https:/
 
 Our file has gone from 89 lines of YAML to 61. Ok not that impressive, however we have made this pipeline simple to extend, removed duplication, and set ourselves up with a solid template to build on. 
 
-This tutorial just scratches the surface of the power of ytt, be sure to check out some of our other blogs and the ytt playground to really dig into some of the more advanced concepts.
+This tutorial just scratches the surface of the power of ytt, be sure to check out some of our other blogs and the ytt playground to really dig into some of the more advanced concepts:
 
-Checkout:
 - [Garrett's fantastic blog about paramaterizing project config using ytt](https://carvel.dev/blog/parameterizing-project-config-with-ytt/)
-- [Getting started with Ytt overlays](https://carvel.dev/blog/primer-on-ytt-overlays/)
-- [Ytt's Interactve Playground](https://carvel.dev/ytt/)
+- [Getting started with ytt overlays](https://carvel.dev/blog/primer-on-ytt-overlays/)
+- [ytt's interactive playground](https://carvel.dev/ytt/)
   
 ## Join the Carvel Community
 
@@ -343,4 +342,4 @@ Thanks for following along! We are excited to hear from you and learn with you! 
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings, happening every Thursday at 10:30am PT / 1:30pm ET. Check out the [Community page](/community/) for full details on how to attend.
+* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how and when to attend.
