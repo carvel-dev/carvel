@@ -87,6 +87,12 @@ net.addr().is_ipv6()  # True
 ### math
 
 Module math is a Starlark module of math-related functions and constants.
+
+> ⚠️ **Non-Deterministic Results** \
+> The functions in this module do not guarantee bit-identical results across CPU architectures.
+> Using one or more of these functions may produce different output on different machines.
+
+
 The module defines the following functions:
 
 _(All functions accept both int and float values as arguments.)_
