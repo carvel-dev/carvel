@@ -1,7 +1,7 @@
 ---
 title: "Updating resources automatically when their referenced resources are updated"
 slug: updating-resources-automatically-when-their-referenced-resources-are-updated
-date: 2022-06-23
+date: 2022-06-30
 author: Kumari Tanushree
 excerpt: "Automatic update to the resources by kapp when their referenced resources get updated"
 image: /img/logo.svg
@@ -312,8 +312,7 @@ Ri: Reconcile information
 Succeeded
 ```
 If you look carefully the new set of resources having:
-1. **two configmaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes
-2. **two replicasets:**`simple-app-5f94df997b` with no running pods (older one, kapp deleted it's pod) and `simple-app-6757478ff5` with one running pod and it has the news changes of configmap as well.
+**two configmaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes.
 
 **From above two different examples of deploying `non-versioned resources` and `versioned resources`, we observed that to reflect the new changes of configmap in the deployment we have to manually delete the running pod in the case of `non-versioned resources` while `kapp` does this for us by itself in the case of `versioned resources`.**
 
@@ -389,13 +388,11 @@ Continue? [yN]: y
 ```
 Kapp is updating the new changes in original resource and creating new versioned resource as well. 
 
-**Use case:** Assume a versioned resource is being referenced by a resource `res1` which is owned by `kapp` and another resource `res2` which is not owned by `kapp`. In this case having both `original` and `versioned` resource is necessary as `res1` can use versioned resources while `res2` can continue with original one.
+### Automatic update to resources by having explicit reference of versioned resource
 
-### Automatic update to non-workload reasources 
+*On every update to a `versioned` resources `kapp` re-start only those resources which are refrencing `versioned` resources and are listed under default rule set in `kapp` ([workload resources](https://kubernetes.io/docs/concepts/workloads/).*
 
-*On every update to a `versioned` resources `kapp` re-start only those resources which are refrencing `versioned` resources and are built-in [workload resources](https://kubernetes.io/docs/concepts/workloads/).*
-
-For resources which are not part of built-in `workload resources` can use annotaion [kapp.k14s.io/versioned-explicit-ref](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources) to have explicit relationship with `versioned` resources if you want them to automatic re-start whenever there is a change in versioned resources.
+For resources which are not part of default rule set of `kapp` can use annotaion [kapp.k14s.io/versioned-explicit-ref](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources) to have explicit relationship with `versioned` resources if you want them to automatic re-start whenever there is a change in versioned resources.
 
 Let's play with some example:
 ```yaml 
