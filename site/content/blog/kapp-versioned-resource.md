@@ -3,7 +3,7 @@ title: "Updating resources automatically when their referenced resources are upd
 slug: updating-resources-automatically-when-their-referenced-resources-are-updated
 date: 2022-06-30
 author: Kumari Tanushree
-excerpt: "Automatic update to the resources by kapp when their referenced resources get updated"
+excerpt: "In this blog, we are going to learn how to use kapp to automatically re-start or re-deploy the resources when their referenced resources get updated."
 image: /img/logo.svg
 tags: ['carvel', 'kapp', 'versioned-resource']
 
@@ -13,9 +13,9 @@ Have you ever wanted your deployments or pods to automatically get redeployed wh
 
 In this blog, we are going to learn how to use [kapp](https://carvel.dev/kapp/) to re-start or re-deploy the resources when their referenced resources get updated.
 
-## Deploy resources where one resource is being referenced by other:
+## Deploy resources where one resource is being referenced by other
 
-Let's consider a ConfigMap and a Deployment, where the ConfigMap is being referenced by the Deployment.
+Let's consider a ConfigMap and a deployment, where the ConfigMap is being referenced by the deployment.
 ```yaml 
 ---
 apiVersion: v1
@@ -50,7 +50,7 @@ spec:
                  key: hello_msg
 ```
  
-Let's deploy them to the cluster using `kapp`
+Let's deploy them to the cluster using `kapp`.
 
 ```bash
 $ kapp deploy -a app -f app.yaml
@@ -133,11 +133,11 @@ $ kubectl exec -it simple-app-797ff748db-mqx97 sh
 hello-kapp
 # 
 ```
-After restarting the pod we can see the new changes we made in configmap.
+After restarting the pod we can see the new changes we made in ConfigMap.
 
-In above example, we saw that to reflect the changes of a configmap we need to restart the pod manually.
+In above example, we saw that to reflect the changes of a ConfigMap we need to restart the pod manually.
 
-## Versioned resource in `kapp`:
+## Versioned resource in `kapp`
 
 kapp has a concept of [versioned resources](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources), where it creates a new version for resource whenever a change is made to it. To enable versioning we just need to add the annotation `kapp.k14s.io/versioned: ""` to the resource. Resources which are using this annotaion will follow the naming convention `{resource-name}-ver-{n}` where `n` will start with `1` and will get increamented by `1` on every update.
 
@@ -486,7 +486,7 @@ Continue? [yN]:y
 ```
 
 
-Now what we want is whenever there is any change happen in configmap `crd-config` the custom resource `first-cr` should get updated or restarted. To achive this we have to add annotation `kapp.k14s.io/versioned-explicit-ref` to the custom resource so that on every update in configmap `crd-config` kapp will make update to custom resource as well.
+Now what we want is whenever there is any change happen in ConfigMap `crd-config` the custom resource `first-cr` should get updated or restarted. To achieve this we have to add annotation `kapp.k14s.io/versioned-explicit-ref` to the custom resource so that on every update in ConfigMap `crd-config` kapp will make update to custom resource as well.
 
 After adding `kapp.k14s.io/versioned-explicit-ref` to custom resource `first-cr`, it will be something like:
 ```yaml
@@ -520,7 +520,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 Continue? [yN]: y
 ```
 
-Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap `crd-config` and re-deploy the app `crd-app`.
+Let's update the value of `data.hello_msg` to `hello-tanzu` in ConfigMap `crd-config` and re-deploy the app `crd-app`.
 
 ```bash
 $ kapp deploy -a app1 -f version-crd.yaml --diff-changes
@@ -553,9 +553,9 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 Continue? [yN]: y
 ```
 
-After adding annotion `kapp.k14s.io/versioned-explicit-ref` to the custom resource `first-cr`, kapp is able to make update to it whenever there is any new changes in configmap `crd-config`.
+After adding annotion `kapp.k14s.io/versioned-explicit-ref` to the custom resource `first-cr`, kapp is able to make update to it whenever there is any new changes in ConfigMap `crd-config`.
 
-
+Congratulations! We now know how we can leverage `kapp` to manage inter-dependent resources better and help us get more done declaratively.
 
 ## Join us on Slack and GitHub
 
@@ -563,4 +563,4 @@ We are excited to hear from you and learn with you! Here are several ways you ca
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings, happening every Thursday at 10:30am PT / 1:30pm ET. Check out the [Community page](/community/) for full details on how to attend.
+* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how and when to attend.
