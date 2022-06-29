@@ -4,6 +4,7 @@ slug: concourse-ytt-101
 date: 2022-06-16
 author: Neil Hickey
 excerpt: "Tutorial: Concourse to ytt 101"
+image: /img/ytt.svg
 tags: ['ytt', 'concourse']
 ---
 
