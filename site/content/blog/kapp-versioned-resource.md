@@ -312,6 +312,7 @@ Ri: Reconcile information
 Succeeded
 ```
 If you look carefully the new set of resources having:
+
 **Two ConfigMaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes.
 
 **From above two different examples of deploying `non-versioned resources` and `versioned resources`, we observed that to reflect the new changes of ConfigMap in the deployment we have to manually delete the running pod in the case of `non-versioned resources` while `kapp` does this for us by itself in the case of `versioned resources`.**
@@ -390,7 +391,7 @@ Kapp is updating the new changes in original resource and creating new versioned
 
 ### Automatic update to resources by having explicit reference of versioned resource
 
-*On every update to a `versioned` resources `kapp` re-start only those resources which are refrencing `versioned` resources and are listed under default rule set in `kapp` ([workload resources](https://kubernetes.io/docs/concepts/workloads/).*
+*On every update to a `versioned` resources `kapp` re-start only those resources which are refrencing `versioned` resources and are listed under default rule set in `kapp` ([workload resources](https://kubernetes.io/docs/concepts/workloads/)).*
 
 For resources which are not part of default rule set of `kapp` can use annotaion [kapp.k14s.io/versioned-explicit-ref](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources) to have explicit relationship with `versioned` resources if you want them to automatic re-start whenever there is a change in versioned resources.
 
