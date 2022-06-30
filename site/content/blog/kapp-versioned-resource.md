@@ -9,7 +9,7 @@ tags: ['carvel', 'kapp', 'versioned-resource']
 
 ---
 
-Have you ever wanted your deployments or pods to automatically get redeployed when their referenced configmaps or secrets are updated?
+Have you ever wanted your deployments or pods to automatically get redeployed when their referenced ConfigMaps or secrets are updated?
 
 In this blog, we are going to learn how to use [kapp](https://carvel.dev/kapp/) to re-start or re-deploy the resources when their referenced resources get updated.
 
@@ -81,7 +81,7 @@ hello-carvel
 #
 ```
 
-Let's update the value of `data.hello_msg ` to `hello-kapp` in configmap `simple-config` and re-deploy the app:
+Let's update the value of `data.hello_msg ` to `hello-kapp` in ConfigMap `simple-config` and re-deploy the app:
 ```bash
 $ kapp deploy -a app -f app.yaml --diff-changes
 Target cluster 'https://127.0.0.1:33907' (nodes: minikube)
@@ -118,7 +118,7 @@ hello-carvel
 # exit
 #
 ```
-Here, the value of environment variable `MSG_KEY` is still not updated. To reflect the new changes of configmap we have to re-start the pod manually.
+Here, the value of environment variable `MSG_KEY` is still not updated. To reflect the new changes of ConfigMap we have to re-start the pod manually.
 
 ```bash
 $ kubectl delete pod simple-app-657f9c8494-t2pw9 
@@ -139,9 +139,9 @@ In above example, we saw that to reflect the changes of a ConfigMap we need to r
 
 ## Versioned resource in `kapp`
 
-kapp has a concept of [versioned resources](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources), where it creates a new version for resource whenever a change is made to it. To enable versioning we just need to add the annotation `kapp.k14s.io/versioned: ""` to the resource. Resources which are using this annotaion will follow the naming convention `{resource-name}-ver-{n}` where `n` will start with `1` and will get increamented by `1` on every update.
+Kapp has a concept of [versioned resources](https://carvel.dev/kapp/docs/v0.49.0/diff/#versioned-resources), where it creates a new version for resource whenever a change is made to it. To enable versioning we just need to add the annotation `kapp.k14s.io/versioned: ""` to the resource. Resources which are using this annotation will follow the naming convention `{resource-name}-ver-{n}` where `n` will start with `1` and will get incremented by `1` on every update.
 
-Whenever we make a change to a resource marked as versioned, entirely new resource will get created by the kapp instead of updating the existing one. Also, it will update the new name to the referencing resource and re-start them to reflect the new changes.
+Whenever we make a change to a resource marked as versioned, an entirely new resource will get created by kapp instead of updating the existing one. Also, it will update the new name to the referencing resource and re-start them to reflect the new changes.
 
 Let's try to use this annotation for the ConfigMap from our previous example and see what happens when we make a change to it.
 
@@ -238,7 +238,7 @@ Wait to: 2 reconcile, 1 delete, 0 noop
 Continue? [yN]: y
 ```
 
-As we have added annotation `kapp.k14s.io/versioned: ""` to configmap we can see configmap `simple-config` is getting deleted and a new resource with name `simple-config-ver-1` has been created. Also `kapp` is updating deployment `simple-app` with new configmap name i.e. `simple-config-ver-1`.
+As we have added annotation `kapp.k14s.io/versioned: ""` to ConfigMap we can see ConfigMap `simple-config` is getting deleted and a new resource with name `simple-config-ver-1` has been created. Also `kapp` is updating deployment `simple-app` with new ConfigMap name i.e. `simple-config-ver-1`.
 
 
 Let's verify the value of environment variable `MSG_KEY` in the running pod of the deployment `simple-app`.
@@ -254,9 +254,9 @@ $ kubectl exec -it simple-app-5f94df997b-g76d9 sh
 hello-kapp
 # 
 ```
-The value of environment variable `MSG_KEY` is same as we defined in configmap `simple-config`, so the changes got updated to the deployment without restarting it's pod manually.
+The value of environment variable `MSG_KEY` is same as we defined in ConfigMap `simple-config`, so the changes got updated to the deployment without restarting it's pod manually.
 
-Let's update the value of `data.hello_msg` to `hello-tanzu` in configmap and redeploy the app `app` with the updated configmap.
+Let's update the value of `data.hello_msg` to `hello-tanzu` in ConfigMap and redeploy the app `app` with the updated ConfigMap.
 
 
 ```bash
@@ -312,9 +312,9 @@ Ri: Reconcile information
 Succeeded
 ```
 If you look carefully the new set of resources having:
-**two configmaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes.
+**Two ConfigMaps:** `simple-config-ver-1` with older changes and `simple-config-ver-2` with new changes.
 
-**From above two different examples of deploying `non-versioned resources` and `versioned resources`, we observed that to reflect the new changes of configmap in the deployment we have to manually delete the running pod in the case of `non-versioned resources` while `kapp` does this for us by itself in the case of `versioned resources`.**
+**From above two different examples of deploying `non-versioned resources` and `versioned resources`, we observed that to reflect the new changes of ConfigMap in the deployment we have to manually delete the running pod in the case of `non-versioned resources` while `kapp` does this for us by itself in the case of `versioned resources`.**
 
 
     
@@ -354,7 +354,7 @@ Continue? [yN]: y
 ```
 As we have used annotation`kapp.k14s.io/versioned-keep-original: ""` with `kapp.k14s.io/versioned: ""`, kapp is creating both `original` with name `config-example` and `versioned` resource with name `config-example-ver-1`.
 
-Let's make some change in `configmap` and re-deploy the app.
+Let's make some change in `ConfigMap` and re-deploy the app.
 
 ```bash
 $ kapp deploy -a ver-app -f ver-config.yaml --diff-changes
@@ -460,7 +460,7 @@ Wait to: 3 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: y
 ```
-Let's update the value of `data.hello_msg` to `hello-carvel` in configmap `crd-config` and redeploy the app `crd-app`.
+Let's update the value of `data.hello_msg` to `hello-carvel` in ConfigMap `crd-config` and redeploy the app `crd-app`.
 
 ```bash
 $ kapp deploy -a crd-app -f version-crd.yaml --diff-changes
