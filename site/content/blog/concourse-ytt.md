@@ -1,7 +1,7 @@
 ---
 title: "Converting Concourse pipeline to ytt"
 slug: concourse-ytt-101
-date: 2022-06-16
+date: 2022-06-30
 author: Neil Hickey
 excerpt: "Concourse to ytt 101"
 image: /img/ytt.svg
