@@ -15,6 +15,7 @@ $ kctrl package repository add -r test-repo --url index.docker.io/k8slt/kc-e2e-t
 ```
 Supported flags:
 - `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
+- `--dangerous-allow-use-of-shared-namespace` _boolean_, Allow addition of package repositories in shared namespaces (`default`, `kube-public`)
 - `-r`, `--repository`, _string_, Set package repository name (required)
 - `--url`, _string_, OCI registry url for package repository bundle (required)
 - `--wait`, _boolean_, Wait for reconciliation to complete (default true)
@@ -118,6 +119,7 @@ Supported flags:
 - `--version` _string_, version of package that the package install should consume
 - ` --service-account-name` _string_, Name of an existing service account used to install underlying package contents, optional
 - `--namespace` _string_, Specified namespace for package installation
+- `--dangerous-allow-use-of-shared-namespace` _boolean_, Allow installation of packages in shared namespaces (`default`, `kube-public`)
 - `--wait` _boolean_, Wait for reconciliation to complete (default `true`)
 - `--wait-check-interval` _duration_, Amount of time to sleep between checks while waiting (default 1s)
 - `--wait-timeout` _duration_, Maximum amount of time to wait in wait phase (default 30m0s)
@@ -142,7 +144,7 @@ Supported flags:
 - `--values` _boolean_, Add or keep values supplied to package install, optional (default `true`)
 
 ### Listing package installs
-The `package install list` command can be used to list all installed packages.
+The `package installed list` command can be used to list all installed packages.
 ```bash
 $ kctrl package installed list
 ```
