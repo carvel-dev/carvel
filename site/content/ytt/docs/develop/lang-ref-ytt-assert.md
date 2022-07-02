@@ -35,6 +35,11 @@ x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
 ```
 
 ### assert.max()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
 - Checks that values are less than or equal to the maximum value.
 - `x = assert.max(4)` returns an object, `x`, that can `x.check()` if values are less than or equal to 4.
 - Is able to compare numbers, strings, lists, dictionaries, and [YAML fragments](lang-ref-yaml-fragment).
@@ -47,6 +52,11 @@ assert.max(4).check(5) # stops execution
 ```
 
 ### assert.max_len()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
 - Checks that values have length less than or equal to the maximum length.
 - Maximum length argument is an integer.
 - `x = assert.max_len(4)` creates an object, `x` that can `check()` if the length of values are less than or equal to 4.
@@ -60,6 +70,11 @@ assert.max(4)_len.check("123.45.67.89") # stops execution
 ```
 
 ### assert.min()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
 - Checks that values are greater than or equal to the minimum value.
 - `x = assert.min(2)` returns an object, `x`, that can `x.check()` if values are greater than or equal to 2.
 - Is able to compare numbers, strings, lists, dictionaries, and [YAML fragments](lang-ref-yaml-fragment).
@@ -72,6 +87,11 @@ assert.min(2).check(1) # stops execution
 ```
 
 ### assert.min_len()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
  - Checks that values have length greater than or equal to the minimum length.
  - Minimum length argument is an integer. 
  - `x = assert.min_len(1)` creates an object, `x` that can `check()` if the length of values are greater than or equal to 1.
@@ -85,6 +105,11 @@ assert.min_len(1).check("") # stops execution
 ```
 
 ### assert.not_null()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
  - Checks that a value is not null or none.
 ```python
 load("@ytt:assert", "assert")
@@ -96,6 +121,11 @@ assert.not_null().check(v) # stops execution
 ```
 
 ### assert.one_not_null()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
 - Checks that a dictionary's value has one and only one not-null item.
 ```python
 load("@ytt:assert", "assert")
