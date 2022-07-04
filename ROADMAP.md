@@ -18,7 +18,7 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 |Theme|Description|Timeline|
 |---|---|---|
 | Stability | Package Management API Enhancements (inluding [supporting layering of package repositories](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/428), [handling name collisions](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/376)) | June 2022 |
-| Package Author Improvements | **[wizard]** Wizard for package authors. | June 2022 |
+| Package Author Improvements | **[kctrl]** kctrl commands for package authors. | Jul 2022 |
 | Stability | **[kapp]** Experimental feature to add suffix to app's config map to avoid name collision. This is an opt-in behaviour   | June 2022|
 | Easy to Get Started | **[kapp-controller]** kapp-controller CLI Milestone 4: [UX Enhancements](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | July 2022 |
 | Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents): Configuration authors can specify the valid range or format of the data values. | Q3 (Jul - Sep) |
