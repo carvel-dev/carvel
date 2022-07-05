@@ -11,7 +11,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Aaron Hurley | [aaronshurley](https://github.com/aaronshurley) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt), [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | John Ryan | [pivotaljohn](https://github.com/pivotaljohn) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) (Approver) |
 | João Pereira | [joaopapereira](https://github.com/joaopapereira) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Approver), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
-| Garrett Cheadle | [gcheadle-vmware](https://github.com/gcheadle-vmware) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Dennis Leon | [DennisDenuto](https://github.com/DennisDenuto)| [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Reviewer), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Varsha Munishwar | [vmunishwar](https://github.com/vmunishwar)| [VMware](https://www.github.com/vmware/) |[ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Joe Kimmel | [joel-kimmel-vmw](https://github.com/joel-kimmel-vmw) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
@@ -31,6 +30,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Steven Locke, [StevenLocke](https://github.com/StevenLocke)
 * Daniel Helfand, [danielhelfand](https://github.com/danielhelfand)
 * Cari Lynn, [cari-lynn](https://github.com/cari-lynn)
+* Garrett Cheadle, [gcheadle-vmware](https://github.com/gcheadle-vmware)
 
 ## Carvel Stakeholders
 **Deployment Lifecycle Tools:** imgpkg, kapp, kbld, ytt
