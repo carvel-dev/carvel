@@ -1,9 +1,9 @@
 ---
-title: Ddagger and kapp"
+title: kapp and dagger"
 slug: dagger-and-cloak
 date: 2022-07-30
 author: Renu Yarday
-excerpt: "Concourse to ytt 101"
+excerpt: "kapp package for dagger"
 image: /img/kapp.svg
 tags: ['kapp', 'dagger']
 ---
@@ -16,15 +16,17 @@ In this article we will explore how to leverage kapp in a Dagger pipeline.
 Dagger is a portable devkit to build powerful CI/CD pipelines quickly and run them anywhere. Read more about Dagger [here](https://dagger.io/)
 
 ### Introducing kapp package for dagger
-Do you want to observe your kubernetes deployments are going smoothly in your dagger pipeline? Then we highly recommend trying out [kapp deploy](https://github.com/dagger/dagger/tree/main/pkg/universe.dagger.io/alpha/kubernetes/kapp). Below are the steps that one could use to add kapp to a dagger pipeline.
+Do you want to observe your kubernetes deployments are going smoothly in your dagger pipeline? Then we highly recommend trying out [kapp deploy](https://github.com/dagger/dagger/tree/main/pkg/universe.dagger.io/alpha/kubernetes/kapp). kapp is now available as an alpha package with dagger and can be easily consumed in your CI/CD. 
+
+Below are the steps that one could use to add kapp to a dagger pipeline.
 
 ### The micro services demo project
-Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create dagger plan  to deploy. The cloned and updated project to run in a local kind cluster is present [here](https://github.com/renuy/microservices-demo).
+Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create dagger plan to deploy. The cloned and updated project to run in a local kind cluster is present [here](https://github.com/renuy/microservices-demo).
 
 This project's deployment manifest(configuration) for kubernetes is available as ./release/kubernetes-manifests.yaml
 
 ### Build and run locally using dagger plan
-We need to have a dagger plan in place to deploy the application in the cluster. In this blog since the project is already created and build available as image, will extend the project using the dagger plan to deploy it to a kind cluster.
+We need to have a dagger plan in place to deploy the application in the cluster. In this blog since the project is already created and build available as image, we will extend the project using the dagger plan to deploy it to a cluster (kind cluster).
 
 #### Deploy.cue
 The dagger plan is written in cue allowing it to be simple and readable. Lets look at the anatomy of the plan.
@@ -79,7 +81,15 @@ The plan itself consisits of action you would want to perform, in this case `tes
 We have supplied the required resources - kube-config and deployment manifest - via the client. 
 The parameters needed to run the kapp commands have been made available in each of the commands.
 
-Try out the following command:
+Initialize the project
+```
+$ dagger project init
+```
+Install the required dagger packages
+```
+$ dagger project update
+```
+Now, try out the following command:
 ```
 $dagger do --help
 
@@ -154,16 +164,13 @@ Since this is a local deployment use port-forwarding to access the application
 $ kubectl port-forward service/frontend-external 8081:80
 ```
 
-And thats it! Go ahead and access your application on http://localhost:8081/.
+And thats it! Go ahead and access your application on http://localhost:8081/. Its simple and nothing cloak and dagger about it!
 
 #### Clean up
 Delete the boutique app locally, using dagger:
 ```
 $ dagger do test deploy
 ```
-
-
-Would like to hear of your use case on dagger and how kapp deploy helped you. Drop in your comments on the [Carvel slack channel](https://kubernetes.slack.com/archives/CH8KCCKA5)
 
 
 ## Join the Carvel Community
@@ -173,4 +180,5 @@ Thanks for following along! We are excited to hear from you and learn with you! 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](/community/) for full details on how and when to attend.
+
 
