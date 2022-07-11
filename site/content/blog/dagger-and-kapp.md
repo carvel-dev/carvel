@@ -167,7 +167,7 @@ $ kubectl port-forward service/frontend-external 8081:80
 And that's it! Go ahead and access your application on http://localhost:8081/. It's simple and nothing cloak and dagger about it!
 
 #### Clean up
-Delete the boutique app locally, using dagger:
+Delete the boutique app locally, using Dagger:
 ```
 $ dagger do test deploy
 ```
