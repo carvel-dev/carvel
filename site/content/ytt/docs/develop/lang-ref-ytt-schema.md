@@ -443,7 +443,10 @@ where:
   - `min_len=` (`number`) — length of node's value must be >= the minimum length provided.
   - `max_len=` (`number`) — length of node's value must be <= the maximum length provided.
   - `not_null=` (`bool`) — if set to `True`, the node's value must not be null.
-  - `one_not_null=` (`bool`) — if set to `True`, the node's value must be a map (dict), and all but one key must have a null value.
+  - `one_not_null=` (`bool` | `list`) — exactly one item in a map is not null.
+    - the node's value must be a map
+    - if a list of keys are given, only those keys are considered
+    - if `True` is given, all keys are considered
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`

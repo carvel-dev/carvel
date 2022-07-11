@@ -126,16 +126,18 @@ assert.not_null().check(v) # stops execution
 > ⚠️ Its interface and behavior are subject to change.** \
 > _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
 
-- Checks that a dictionary's value has one and only one not-null item.
+- Checks that a map (or dictionary)'s value has one and only one not-null item.
 ```python
 load("@ytt:assert", "assert")
 
-assert.one_not_null({"foo": 1, "bar": None})
+# passes
+assert.one_not_null().check({"foo": 1, "bar": None})
 
-v = {"foo": 1, "bar": 2}
-assert.one_not_null(v) # stops execution
-# is syntactic sugar for
-assert.one_not_null().check(v) # stops execution
+# fails: two values are not null (stops execution)
+assert.one_not_null().check({"foo": 1, "bar": 2})
+
+# passes: one of named values is not null
+assert.one_not_null(["foo", "bar"]).check({"foo": 1, "bar": None, "baz": 3})
 ```
 
 ### assert.try_to()
