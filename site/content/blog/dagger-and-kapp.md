@@ -85,7 +85,7 @@ Initialize the project
 ```
 $ dagger project init
 ```
-Install the required dagger packages
+Install the required Dagger packages:
 ```
 $ dagger project update
 ```
