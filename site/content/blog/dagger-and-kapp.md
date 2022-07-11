@@ -1,5 +1,5 @@
 ---
-title: kapp and dagger"
+title: Kapp and Dagger"
 slug: dagger-and-cloak
 date: 2022-07-30
 author: Renu Yarday
