@@ -3,7 +3,7 @@ title: kapp and dagger"
 slug: dagger-and-cloak
 date: 2022-07-30
 author: Renu Yarday
-excerpt: "kapp package for dagger"
+excerpt: "In this article, we will explore how to leverage kapp in a Dagger pipeline."
 image: /img/kapp.svg
 tags: ['kapp', 'dagger']
 ---
