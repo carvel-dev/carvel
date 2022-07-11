@@ -110,7 +110,7 @@ Available Actions:
 Dagger will list out the actions available as defined by your plan. 
 
 #### Dagger do
-In our case, we want to deploy the application locally using the dagger pipeline. To do the same use
+In our case, we want to deploy the application locally using the Dagger pipeline. To do the same use:
 
 ``` 
 $dagger do test deploy  --log-format plain
