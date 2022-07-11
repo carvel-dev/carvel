@@ -159,7 +159,7 @@ $dagger do test deploy  --log-format plain
 ```
 Was happy to see the good old `Succeeded` as part of kapp deploy. Now on to next steps.
 
-Since this is a local deployment use port-forwarding to access the application
+Since this is a local deployment use port-forwarding to access the application:
 ```
 $ kubectl port-forward service/frontend-external 8081:80
 ```
