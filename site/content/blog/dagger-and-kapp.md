@@ -91,9 +91,9 @@ $ dagger project update
 ```
 Now, try out the following command:
 ```
-$dagger do --help
+$ dagger do --help
 
-$dagger do test --help
+$ dagger do test --help
 Usage: 
   dagger do test [flags]
 
@@ -113,7 +113,7 @@ Dagger will list out the actions available as defined by your plan.
 In our case, we want to deploy the application locally using the Dagger pipeline. To do the same use:
 
 ``` 
-$dagger do test deploy  --log-format plain
+$ dagger do test deploy  --log-format plain
 # output
 ➜  microservices-demo git:(main) ✗ dagger do test deploy  --log-format plain
 12:34PM INFO  actions.test.deploy._image.build._dag."0"._pull | computing
@@ -169,7 +169,7 @@ And that's it! Go ahead and access your application on http://localhost:8081/. I
 #### Clean up
 Delete the boutique app locally, using Dagger:
 ```
-$ dagger do test deploy
+$ dagger do test delete
 ```
 
 
