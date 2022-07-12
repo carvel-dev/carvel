@@ -150,7 +150,6 @@ $ dagger do deploy  --log-format plain
 12:11PM INFO  actions.deploy.container._exec | #6 111.6 6:41:57AM: ok: reconcile deployment/recommendationservice (apps/v1) namespace: default
 12:11PM INFO  actions.deploy.container._exec | #6 111.6 6:41:57AM: ---- waiting on 3 changes [21/24 done] ----
 ...snip...
-
 12:12PM INFO  actions.deploy.container._exec | #6 142.2 6:42:27AM: ---- waiting on 1 changes [23/24 done] ----
 12:12PM INFO  actions.deploy.container._exec | completed    duration=2m45.7s
 12:12PM INFO  actions.deploy.container._exec | #6 165.6 6:42:51AM: ok: reconcile deployment/loadgenerator (apps/v1) namespace: default
