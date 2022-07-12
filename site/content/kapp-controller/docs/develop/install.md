@@ -62,7 +62,27 @@ version of kapp-controller).
     ```
 
 3. Set the `IMGPKG_ENABLE_IAAS_AUTH` [environment
-   variable](/imgpkg/docs/latest/auth/#via-iaas) to false.
+   variable](/imgpkg/docs/latest/auth/#via-iaas) to false on the sidecar container.
+   To do this you can use the following ytt command using the downloaded release from `kapp-controller`
+   in `~/Downloads/release.yml`
+
+    ```shell
+    $ ytt -f ~/Downloads/release.yml -fconfigOverlay.yml=<(cat <<<'
+    #@ load("@ytt:overlay", "overlay")
+
+    #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata":{"name":"kapp-controller"}})
+    ---
+    spec:
+      template:
+        spec:
+          containers:
+          #@overlay/match by=overlay.subset({"name":"kapp-controller-sidecarexec"})
+          - env:
+            #@overlay/append
+             - name: IMGPKG_ENABLE_IAAS_AUTH
+               value: false
+    ')
+    ```
 
 
 ### Kubernetes versions >= 1.24
