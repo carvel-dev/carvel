@@ -1,6 +1,6 @@
 ---
-title: Kapp and Dagger"
-slug: dagger-and-cloak
+title: Kapp and Dagger
+slug: kapp-and-dagger
 date: 2022-07-30
 author: Renu Yarday
 excerpt: "In this article, we will explore how to leverage kapp in a Dagger pipeline."
@@ -16,7 +16,7 @@ In this article we will explore how to leverage kapp in a Dagger pipeline.
 Dagger is a portable devkit to build powerful CI/CD pipelines quickly and run them anywhere. Read more about Dagger [here](https://dagger.io/).
 
 ### Introducing kapp package for Dagger
-Do you want to observe your Kubernetes deployments are going smoothly in your Dagger pipeline? Then we highly recommend trying out [kapp deploy](https://github.com/dagger/dagger/tree/main/pkg/universe.dagger.io/alpha/kubernetes/kapp). Kapp is now available as an alpha package with Dagger and can be easily consumed in your CI/CD. 
+Do you want to deploy your Kubernetes configuration from your Dagger pipeline? Along with applying changes safely and predictably, watching resources as they converge. Then we highly recommend trying out [kapp deploy](https://github.com/dagger/dagger/tree/main/pkg/universe.dagger.io/alpha/kubernetes/kapp). Kapp is available as an alpha package with Dagger and can be easily consumed in your CI/CD.
 
 Below are the steps that one could use to add kapp to a dagger pipeline.
 
@@ -26,11 +26,14 @@ Leveraging the well known [microservices demo](https://github.com/GoogleCloudPla
 This project's deployment manifest(configuration) for kubernetes is available as ./release/kubernetes-manifests.yaml
 
 ### Build and run locally using dagger plan
-We need to have a dagger plan in place to deploy the application in the cluster. In this blog since the project is already created and build available as image, we will extend the project using the dagger plan to deploy it to a cluster (kind cluster).
+We need to have a dagger plan in place to deploy the application in the cluster. In this blog since the project is already created and build available as image, we will extend the project using the dagger plan to deploy it to a cluster [(kind cluster)](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). Please ensure your cluster is up and running:
+```
+$ kind create cluster
+```
 
-#### Deploy.cue
+#### Writing our dagger plan
 The dagger plan is written in cue allowing it to be simple and readable. Lets look at the anatomy of the plan.
-
+File: deploy.cue
 ``` yaml
 import (
 	"dagger.io/dagger"
@@ -38,7 +41,7 @@ import (
 )
 
 dagger.#Plan & {
-	actions: test: {
+	actions: {
 		deploy: kapp.#Deploy & {
 			app:        "boutique"
 			fs:         client.filesystem."./".read.contents
@@ -92,10 +95,8 @@ $ dagger project update
 Now, try out the following command:
 ```
 $ dagger do --help
-
-$ dagger do test --help
 Usage: 
-  dagger do test [flags]
+  dagger do [flags]
 
 Options
 
@@ -109,53 +110,54 @@ Available Actions:
 ```
 Dagger will list out the actions available as defined by your plan. 
 
-#### Dagger do
+#### Execute the dagger plan
 In our case, we want to deploy the application locally using the Dagger pipeline. To do the same use:
 
 ``` 
-$ dagger do test deploy  --log-format plain
+$ dagger do deploy  --log-format plain
 # output
-➜  microservices-demo git:(main) ✗ dagger do test deploy  --log-format plain
-12:34PM INFO  actions.test.deploy._image.build._dag."0"._pull | computing
-12:34PM INFO  client.commands.kc | computing
-12:34PM INFO  client.filesystem."./".read | computing
-12:34PM INFO  client.commands.kc | completed    duration=100ms
-12:34PM INFO  client.filesystem."./".read | completed    duration=100ms
-12:34PM INFO  actions.test.deploy._image.build._dag."0"._pull | completed    duration=1.4s
-12:34PM INFO  actions.test.deploy._image.build._dag."1"._copy | computing
-12:34PM INFO  actions.test.deploy._image.build._dag."1"._copy | completed    duration=0s
-12:34PM INFO  actions.test.deploy.container._exec | computing
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.370 Target cluster 'https://127.0.0.1:58013' (nodes: kind-control-plane)
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.512
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.512 Changes
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.512
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.512 Namespace  Name                   Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.513 default    adservice              Deployment  -       -    create  -       reconcile  -   -
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.513 ^          adservice              Service     -       -    create  -       reconcile  -   -
-12:34PM INFO  actions.test.deploy.container._exec | #6 0.513 ^          cartservice            Deployment  -       -    create  -       reconcile  -   -
-.
-.
-.
-12:35PM INFO  actions.test.deploy.container._exec | #6 67.39 7:05:49AM: ok: reconcile deployment/recommendationservice (apps/v1) namespace: default
-12:35PM INFO  actions.test.deploy.container._exec | #6 67.40 7:05:49AM: ---- waiting on 8 changes [16/24 done] ----
-12:35PM INFO  actions.test.deploy.container._exec | #6 74.65 7:05:56AM: ok: reconcile deployment/redis-cart (apps/v1) namespace: default
-12:35PM INFO  actions.test.deploy.container._exec | #6 74.66 7:05:56AM: ---- waiting on 7 changes [17/24 done] ----
-12:36PM INFO  actions.test.deploy.container._exec | #6 77.76 7:06:00AM: ok: reconcile deployment/adservice (apps/v1) namespace: default
-12:36PM INFO  actions.test.deploy.container._exec | #6 77.77 7:06:00AM: ok: reconcile deployment/currencyservice (apps/v1) namespace: default
-12:36PM INFO  actions.test.deploy.container._exec | #6 77.77 7:06:00AM: ---- waiting on 5 changes [19/24 done] ----
-.
-.
-.
-12:37PM INFO  actions.test.deploy.container._exec | #6 150.7 7:07:13AM:  ^ Waiting for 1 unavailable replicas
-12:37PM INFO  actions.test.deploy.container._exec | #6 150.7 7:07:13AM:  L ok: waiting on replicaset/loadgenerator-64f67cd465 (apps/v1) namespace: default
-12:37PM INFO  actions.test.deploy.container._exec | #6 150.7 7:07:13AM:  L ongoing: waiting on pod/loadgenerator-64f67cd465-lhp6l (v1) namespace: default
-12:37PM INFO  actions.test.deploy.container._exec | #6 150.7 7:07:13AM:     ^ Pending: PodInitializing
-12:37PM INFO  actions.test.deploy.container._exec | #6 162.3 7:07:24AM: ok: reconcile deployment/loadgenerator (apps/v1) namespace: default
-12:37PM INFO  actions.test.deploy.container._exec | #6 162.3 7:07:24AM: ---- applying complete [24/24 done] ----
-12:37PM INFO  actions.test.deploy.container._exec | #6 162.3 7:07:24AM: ---- waiting complete [24/24 done] ----
-12:37PM INFO  actions.test.deploy.container._exec | completed    duration=2m42.4s
-12:37PM INFO  actions.test.deploy.container._exec | #6 162.3
-12:37PM INFO  actions.test.deploy.container._exec | #6 162.3 Succeeded
+12:10PM INFO  actions.deploy._image.build._dag."0"._pull | computing
+12:10PM INFO  client.commands.kc | computing
+12:10PM INFO  client.filesystem."./".read | computing
+12:10PM INFO  client.filesystem."./".read | completed    duration=100ms
+12:10PM INFO  client.commands.kc | completed    duration=300ms
+12:10PM INFO  actions.deploy._image.build._dag."0"._pull | completed    duration=1.4s
+12:10PM INFO  actions.deploy._image.build._dag."1"._copy | computing
+12:10PM INFO  actions.deploy._image.build._dag."1"._copy | completed    duration=0s
+12:10PM INFO  actions.deploy.container._exec | computing
+12:10PM INFO  actions.deploy.container._exec | #6 0.350 Target cluster 'https://127.0.0.1:61389' (nodes: kind-control-plane)
+12:10PM INFO  actions.deploy.container._exec | #6 0.456
+12:10PM INFO  actions.deploy.container._exec | #6 0.456 Changes
+12:10PM INFO  actions.deploy.container._exec | #6 0.456
+12:10PM INFO  actions.deploy.container._exec | #6 0.456 Namespace  Name                   Kind        Conds.  Age  Op      Op st.  Wait to    Rs  Ri
+12:10PM INFO  actions.deploy.container._exec | #6 0.456 default    adservice              Deployment  -       -    create  -       reconcile  -   -
+12:10PM INFO  actions.deploy.container._exec | #6 0.456 ^          adservice              Service     -       -    create  -       reconcile  -   -
+12:10PM INFO  actions.deploy.container._exec | #6 0.456 ^          cartservice            Deployment  -       -    create  -       reconcile  -   -
+...snip...
+12:10PM INFO  actions.deploy.container._exec | #6 0.458 Op:      24 create, 0 delete, 0 update, 0 noop, 0 exists
+12:10PM INFO  actions.deploy.container._exec | #6 0.458 Wait to: 24 reconcile, 0 delete, 0 noop
+12:10PM INFO  actions.deploy.container._exec | #6 0.484
+12:10PM INFO  actions.deploy.container._exec | #6 0.484 6:40:05AM: ---- applying 24 changes [0/24 done] ----
+12:10PM INFO  actions.deploy.container._exec | #6 0.528 6:40:06AM: create service/currencyservice (v1) namespace: default
+12:10PM INFO  actions.deploy.container._exec | #6 0.558 6:40:06AM: create service/recommendationservice (v1) namespace: default
+12:10PM INFO  actions.deploy.container._exec | #6 0.575 6:40:06AM: create service/adservice (v1) namespace: default
+...snip...
+12:11PM INFO  actions.deploy.container._exec | #6 107.5 6:41:52AM:  ^ Waiting for 1 unavailable replicas
+12:11PM INFO  actions.deploy.container._exec | #6 107.5 6:41:52AM:  L ok: waiting on replicaset/recommendationservice-8897f4647 (apps/v1) namespace: default
+12:11PM INFO  actions.deploy.container._exec | #6 107.5 6:41:52AM:  L ongoing: waiting on pod/recommendationservice-8897f4647-wd2bt (v1) namespace: default
+12:11PM INFO  actions.deploy.container._exec | #6 107.5 6:41:52AM:     ^ Condition Ready is not True (False)
+12:11PM INFO  actions.deploy.container._exec | #6 107.5 6:41:52AM: ---- waiting on 4 changes [20/24 done] ----
+12:11PM INFO  actions.deploy.container._exec | #6 111.6 6:41:57AM: ok: reconcile deployment/recommendationservice (apps/v1) namespace: default
+12:11PM INFO  actions.deploy.container._exec | #6 111.6 6:41:57AM: ---- waiting on 3 changes [21/24 done] ----
+...snip...
+
+12:12PM INFO  actions.deploy.container._exec | #6 142.2 6:42:27AM: ---- waiting on 1 changes [23/24 done] ----
+12:12PM INFO  actions.deploy.container._exec | completed    duration=2m45.7s
+12:12PM INFO  actions.deploy.container._exec | #6 165.6 6:42:51AM: ok: reconcile deployment/loadgenerator (apps/v1) namespace: default
+12:12PM INFO  actions.deploy.container._exec | #6 165.6 6:42:51AM: ---- applying complete [24/24 done] ----
+12:12PM INFO  actions.deploy.container._exec | #6 165.6 6:42:51AM: ---- waiting complete [24/24 done] ----
+12:12PM INFO  actions.deploy.container._exec | #6 165.7
+12:12PM INFO  actions.deploy.container._exec | #6 165.7 Succeeded
 ```
 Was happy to see the good old `Succeeded` as part of kapp deploy. Now on to next steps.
 
