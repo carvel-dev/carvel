@@ -28,7 +28,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | June 30, 2022     | [Kumari Tanushree](https://github.com/kumaritanushree) | Blogs targeting the practical scenarios e.g. update deployment when configmap is updated, etc. | Blog |N/A| 
 | July 7, 2022      | [Neil Hickey](https://github.com/neil-hickey)|  How to template a Concourse pipeline using ytt | Blog | N/A |
 | July 14, 2022     | [Yash Sethiya](https://github.com/sethiyash) | Setup kapp deploy with OIDC Github + GKE/AWS | Blog | N/A |
-| July 21, 2022     | | | |
+| July 21, 2022     | [Renu Yarday](https://github.com/renuy)| Using kapp in dagger pipeline| Blog | [@renu_yarday](https://twitter.com/renu_yarday) |
 | July 28, 2022     | | | |
 | August 4, 2022    | | | |
 | August 11, 2022   | | | |
