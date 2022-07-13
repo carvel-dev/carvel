@@ -114,7 +114,7 @@ Dagger will list out the actions available as defined by your plan.
 In our case, we want to deploy the application locally using the Dagger pipeline. To do the same use:
 
 ``` 
-$ dagger do deploy  --log-format plain
+$ dagger do deploy --log-format plain
 # output
 12:10PM INFO  actions.deploy._image.build._dag."0"._pull | computing
 12:10PM INFO  client.commands.kc | computing
