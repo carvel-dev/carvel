@@ -170,7 +170,7 @@ And that's it! Go ahead and access your application on http://localhost:8081/. I
 #### Clean up
 Delete the boutique app locally, using Dagger:
 ```
-$ dagger do test delete
+$ dagger do delete
 ```
 
 ## Join the Carvel Community
