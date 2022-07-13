@@ -81,9 +81,8 @@ dagger.#Plan & {
 
 ```
 
-The plan itself consisits of action you would want to perform, in this case `test`, which has four sub-actions. 
-We have supplied the required resources - kube-config and deployment manifest - via the client. 
-The parameters needed to run the kapp commands have been made available in each of the commands.
+The plan consists of a list of actions we want to perform. Each action represents the commands that we want to run and has the parameters that are required to run the command.
+The required resources - kube-config and deployment manifest - are provided via the client. 
 
 Initialize the project
 ```
