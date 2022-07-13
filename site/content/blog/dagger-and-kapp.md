@@ -92,7 +92,7 @@ Install the required Dagger packages:
 ```
 $ dagger project update
 ```
-Now, try out the following command:
+Once kapp package is installed, we can list the available actions using the following command:
 ```
 $ dagger do --help
 Usage: 
