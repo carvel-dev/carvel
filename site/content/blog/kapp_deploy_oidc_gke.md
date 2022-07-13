@@ -3,14 +3,14 @@ title: "kapp deploy on GCP using keyless authentication(OIDC)"
 slug: kapp-deploy-oidc-gke
 date: 2022-07-14
 author: Yash Sethiya
-excerpt: "Use github action OIDC token to authenticate on GCP and deploy using kapp on GKE"
+excerpt: "Use Github Action OIDC token to authenticate on GCP and deploy using kapp on GKE"
 image: /img/logo.svg
 tags: ['kapp', 'oidc', 'keyless-authentication']
 ---
 
 ### Who
 
-This article can be helpful for anyone who wants to create the Github Action workflow to authenticate with GCP and how to deploy Kubernetes manifest on GKE using kapp. 
+This article can be helpful for anyone who wants to create the Github Action workflow to authenticate with GCP and to deploy Kubernetes manifest on GKE using kapp. 
 
 ### Why
 
@@ -20,11 +20,11 @@ But now, with GitHub's introduction of OIDC tokens into GitHub Actions Workflows
 
 ### Benefits
 
-By updating workflows to use OIDC tokens, we can adopt the following good security practices:
+By updating workflows to use OIDC tokens, we can adopt the following recommended security practices:
 
-- No cloud secrets: No need to duplicate cloud credentials as long-lived GitHub secrets. Instead, you can configure the OIDC trust on GCP, and then update workflows to request a short-lived access token from the cloud provider through OIDC.
-- Authentication and authorization management: Will have more granular control over how workflows can use credentials and also you can control access to cloud resources.
-- Rotating credentials: With OIDC, cloud provider issues a short-lived access token that is only valid for a single job, and then automatically expires.
+- **No cloud secrets**: No need to duplicate cloud credentials as long-lived GitHub secrets. Instead, you can configure the OIDC trust on GCP, and then update workflows to request a short-lived access token from the cloud provider through OIDC.
+- **Authentication and authorization management**: Will have more granular control over how workflows can use credentials and also you can control access to cloud resources.
+- **Rotating credentials**: With OIDC, cloud provider issues a short-lived access token that is only valid for a single job, and then automatically expires.
 
 ### How
 
@@ -32,9 +32,9 @@ Now we will see how we can use GitHub Action – [auth](https://github.com/googl
 
 1. Create a new Workload Identity Pool (IAM -> Workload Identity Federation -> Workload Identity Pool) and add an OIDC Provider to it with Issuer URL as `https://token.actions.githubusercontent.com`.
 2. Configure the Attribute mapping and conditions of the provider.
-3. Create a service account and connect Workload Identity Pool you just created to the service account by assigned to the Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation?_ga=2.114275588.-285296507.1634918453#conditions).
+3. Create a service account and connect Workload Identity Pool you just created to the service account by assigning Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation?_ga=2.114275588.-285296507.1634918453#conditions).
 
-To update workflows for OIDC, you will need to make two changes to your YAML:
+To update workflows for OIDC, you will need to make two changes to your Github Action YAML:
 
 1. Add permissions settings for the token. The job or workflow run requires a permissions setting with `id-token: write`. You won't be able to request the OIDC JWT ID token if the permissions setting for `id-token` is set to `read` or `none`.
 
@@ -59,7 +59,7 @@ This will use the configured workload_identity_provider and service_account to a
 
 ### Example
 
-Here is a sample Github action which gets triggered when a new tag is created on the repo. It authenticates with GCP, gets the GKE credentials, install carvel tools on the GKE cluster and deploy a simple app using kapp. 
+Here is a sample Github Action which gets triggered when a new tag is created on the repo. It authenticates with GCP, gets the GKE credentials, install carvel tools on the GKE cluster and deploy a simple app using kapp. 
 
 ```yaml
 name: OIDC auth GCP
@@ -75,7 +75,6 @@ jobs:
 
     permissions:
       id-token: 'write'
-      contents: 'read'
 
     steps:
       # actions/checkout MUST come before auth
@@ -106,7 +105,7 @@ jobs:
           kapp ls
 ```
 
-Please refer to this [Github Repo](https://github.com/sethiyash/carvel-kapp-oidc-github) which contains a Github action and simple-app.yml which we will deploy on GKE using kapp. 
+Please refer to this [Github Repo](https://github.com/sethiyash/carvel-kapp-oidc-github) which contains a Github Action and simple-app.yml which we will deploy on GKE using kapp. 
 
 ## Join us on Slack and GitHub
 
