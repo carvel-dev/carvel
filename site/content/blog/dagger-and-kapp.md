@@ -20,7 +20,7 @@ Do you want to deploy your Kubernetes configuration from your Dagger pipeline? A
 
 Below are the steps that one could use to add kapp to a Dagger pipeline.
 
-### The micro services demo project
+### The microservices demo project
 Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create dagger plan to deploy. The cloned and updated project to run in a local kind cluster is present [here](https://github.com/renuy/microservices-demo).
 
 This project's deployment manifest(configuration) for Kubernetes is available at `./release/kubernetes-manifests.yaml`
