@@ -23,7 +23,7 @@ Below are the steps that one could use to add kapp to a dagger pipeline.
 ### The micro services demo project
 Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create dagger plan to deploy. The cloned and updated project to run in a local kind cluster is present [here](https://github.com/renuy/microservices-demo).
 
-This project's deployment manifest(configuration) for kubernetes is available as ./release/kubernetes-manifests.yaml
+This project's deployment manifest(configuration) for Kubernetes is available at `./release/kubernetes-manifests.yaml`
 
 ### Build and run locally using dagger plan
 We need to have a dagger plan in place to deploy the application in the cluster. Since the project is already created and build is available as an image, we will extend it using the dagger plan to deploy it to a cluster [(kind cluster)](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). Please ensure your cluster is up and running:
