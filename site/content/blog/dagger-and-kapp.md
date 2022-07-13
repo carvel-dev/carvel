@@ -25,7 +25,7 @@ Leveraging the well known [microservices demo](https://github.com/GoogleCloudPla
 
 This project's deployment manifest(configuration) for Kubernetes is available at `./release/kubernetes-manifests.yaml`
 
-### Build and run locally using dagger plan
+### Build and run locally using Dagger plan
 We need to have a dagger plan in place to deploy the application in the cluster. Since the project is already created and build is available as an image, we will extend it using the dagger plan to deploy it to a cluster [(kind cluster)](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). Please ensure your cluster is up and running:
 ```
 $ kind create cluster
