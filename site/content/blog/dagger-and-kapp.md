@@ -18,7 +18,7 @@ In this article, we will explore how to leverage kapp in a Dagger pipeline.
 ### Introducing kapp package for Dagger
 Do you want to deploy your Kubernetes configuration from your Dagger pipeline? Along with applying changes safely and predictably, watching resources as they converge. Then we highly recommend trying out [kapp deploy](https://github.com/dagger/dagger/tree/main/pkg/universe.dagger.io/alpha/kubernetes/kapp). Kapp is available as an alpha package with Dagger and can be easily consumed in your CI/CD.
 
-Below are the steps that one could use to add kapp to a dagger pipeline.
+Below are the steps that one could use to add kapp to a Dagger pipeline.
 
 ### The micro services demo project
 Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create dagger plan to deploy. The cloned and updated project to run in a local kind cluster is present [here](https://github.com/renuy/microservices-demo).
