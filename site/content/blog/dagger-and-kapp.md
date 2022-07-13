@@ -10,7 +10,7 @@ tags: ['kapp', 'dagger']
 
 # Running kapp in a Dagger pipeline
 
-In this article we will explore how to leverage kapp in a Dagger pipeline.
+In this article, we will explore how to leverage kapp in a Dagger pipeline.
 
 ### What is Dagger?
 [Dagger]((https://dagger.io/)) is a portable devkit to build powerful CI/CD pipelines quickly and run them anywhere.
