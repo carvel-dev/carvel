@@ -84,7 +84,7 @@ dagger.#Plan & {
 The plan consists of a list of actions we want to perform. Each action represents the commands that we want to run and has the parameters that are required to run the command.
 The required resources - kube-config and deployment manifest - are provided via the client. 
 
-Initialize the project
+Initialize the project:
 ```
 $ dagger project init
 ```
