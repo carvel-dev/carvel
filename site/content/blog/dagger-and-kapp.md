@@ -32,7 +32,7 @@ $ kind create cluster
 ```
 
 #### Writing our dagger plan
-The dagger plan is written in cue allowing it to be simple and readable. Lets look at the anatomy of the plan.
+The Dagger plan is written in CUE allowing it to be simple and readable. Let's look at the anatomy of the plan.
 
 File: deploy.cue
 ```cue
