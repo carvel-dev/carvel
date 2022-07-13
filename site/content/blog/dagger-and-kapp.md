@@ -13,7 +13,7 @@ tags: ['kapp', 'dagger']
 In this article, we will explore how to leverage kapp in a Dagger pipeline.
 
 ### What is Dagger?
-[Dagger]((https://dagger.io/)) is a portable devkit to build powerful CI/CD pipelines quickly and run them anywhere.
+[Dagger](https://dagger.io/) is a portable devkit to build powerful CI/CD pipelines quickly and run them anywhere.
 
 ### Introducing kapp package for Dagger
 Do you want to deploy your Kubernetes configuration from your Dagger pipeline? Along with applying changes safely and predictably, watching resources as they converge. Then we highly recommend trying out [kapp deploy](https://github.com/dagger/dagger/tree/main/pkg/universe.dagger.io/alpha/kubernetes/kapp). Kapp is available as an alpha package with Dagger and can be easily consumed in your CI/CD.
