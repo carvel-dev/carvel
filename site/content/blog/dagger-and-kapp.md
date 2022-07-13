@@ -33,10 +33,11 @@ $ kind create cluster
 
 #### Writing our dagger plan
 The dagger plan is written in cue allowing it to be simple and readable. Lets look at the anatomy of the plan.
+
 File: deploy.cue
-``` yaml
+```cue
 import (
-	"dagger.io/dagger"
+    "dagger.io/dagger"
     "universe.dagger.io/alpha/kubernetes/kapp"
 )
 
