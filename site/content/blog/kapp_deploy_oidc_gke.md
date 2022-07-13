@@ -10,7 +10,7 @@ tags: ['kapp', 'oidc', 'keyless-authentication']
 
 ### Who
 
-This article can helpful for any one who wants to create the Github Action workflow to authenticate with GCP and how to deploy kubernetes manifest on GKE using kapp. 
+This article can be helpful for anyone who wants to create the Github Action workflow to authenticate with GCP and how to deploy Kubernetes manifest on GKE using kapp. 
 
 ### Why
 
@@ -30,9 +30,9 @@ By updating workflows to use OIDC tokens, we can adopt the following good securi
 
 Now we will see how we can use GitHub Action – [auth](https://github.com/google-github-actions/auth) to set up and configure authentication to Google Cloud. We need to perform the following configurations on GCP - 
 
-1. Create new Workload Identity Pool (IAM -> Workload Identity Federation -> Workload Indentity Pool) and add a OIDC Provider to it with Issuer URL as `https://token.actions.githubusercontent.com`.
-2. Configure the Attribute mapping and conditions of provider.
-3. Create a service account and connect Workload Identity Pool you just creted to the service account by assigned to the Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation?_ga=2.114275588.-285296507.1634918453#conditions).
+1. Create a new Workload Identity Pool (IAM -> Workload Identity Federation -> Workload Identity Pool) and add an OIDC Provider to it with Issuer URL as `https://token.actions.githubusercontent.com`.
+2. Configure the Attribute mapping and conditions of the provider.
+3. Create a service account and connect Workload Identity Pool you just created to the service account by assigned to the Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation?_ga=2.114275588.-285296507.1634918453#conditions).
 
 To update workflows for OIDC, you will need to make two changes to your YAML:
 
@@ -59,7 +59,7 @@ This will use the configured workload_identity_provider and service_account to a
 
 ### Example
 
-Here is a sample github action which get triggered when new tag is created on the repo. It authenticate with GCP, get the GKE credentials, install carvel tools on the GKE cluster and deploy a simple app using kapp. 
+Here is a sample Github action which gets triggered when a new tag is created on the repo. It authenticates with GCP, gets the GKE credentials, install carvel tools on the GKE cluster and deploy a simple app using kapp. 
 
 ```yaml
 name: OIDC auth GCP
@@ -106,7 +106,7 @@ jobs:
           kapp ls
 ```
 
-Please refer to this [Github Repo](https://github.com/sethiyash/carvel-kapp-oidc-github) which contain a github action and simple-app.yml which we will deploy on GKE using kapp. 
+Please refer to this [Github Repo](https://github.com/sethiyash/carvel-kapp-oidc-github) which contains a Github action and simple-app.yml which we will deploy on GKE using kapp. 
 
 ## Join us on Slack and GitHub
 
