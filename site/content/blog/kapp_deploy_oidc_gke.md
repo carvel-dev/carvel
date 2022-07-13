@@ -62,7 +62,7 @@ This will use the configured workload_identity_provider and service_account to a
 Here is a sample github action which get triggered when new tag is created on the repo. It authenticate with GCP, get the GKE credentials, install carvel tools on the GKE cluster and deploy a simple app using kapp. 
 
 ```yaml
-name: oidc action GCP
+name: OIDC auth GCP
 
 on:
   push:
@@ -103,7 +103,7 @@ jobs:
       - id: 'deploy-with-kapp'
         run: |-
           kapp deploy -a app -f simple-app.yml -y
-
+          kapp ls
 ```
 
 Please refer to this [Github Repo](https://github.com/sethiyash/carvel-kapp-oidc-github) which contain a github action and simple-app.yml which we will deploy on GKE using kapp. 
