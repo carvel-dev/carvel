@@ -1,7 +1,7 @@
 ---
 title: Kapp and Dagger
 slug: kapp-and-dagger
-date: 2022-07-30
+date: 2022-07-14
 author: Renu Yarday
 excerpt: "In this article, we will explore how to leverage kapp in a Dagger pipeline."
 image: /img/kapp.svg
@@ -21,12 +21,12 @@ Do you want to deploy your Kubernetes configuration from your Dagger pipeline? A
 Below are the steps that one could use to add kapp to a Dagger pipeline.
 
 ### The microservices demo project
-Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create Dagger plan to deploy. The cloned and updated project to run in a local kind cluster is present [here](https://github.com/renuy/microservices-demo).
+Leveraging the well known [microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo) to create Dagger plan to deploy. The cloned and updated project to run in a local cluster is present [here](https://github.com/renuy/microservices-demo).
 
 This project's deployment manifest(configuration) for Kubernetes is available at `./release/kubernetes-manifests.yaml`
 
 ### Build and run locally using Dagger plan
-We need to have a Dagger plan in place to deploy the application in the cluster. Since the project is already created and build is available as an image, we will extend it using the Dagger plan to deploy it to a cluster [(kind cluster)](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). Please ensure your cluster is up and running:
+We need to have a Dagger plan in place to deploy the application in the cluster. Since the project is already created and build is available as an image, we will extend it using the Dagger plan to deploy it to a cluster [(kind cluster)[^1] ](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). Please ensure your cluster is up and running:
 ```
 $ kind create cluster
 ```
@@ -172,6 +172,8 @@ Delete the boutique app locally, using Dagger:
 ```
 $ dagger do delete
 ```
+
+[^1]: This has been tested with kind cluster 
 
 ## Join the Carvel Community
 
