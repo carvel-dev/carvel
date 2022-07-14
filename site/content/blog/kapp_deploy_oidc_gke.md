@@ -16,7 +16,7 @@ This article can be helpful for anyone who wants to create the Github Action wor
 
 Earlier, we use to authenticate to Google Cloud from Github Actions by storing JSON service account key in Github Secrets.
 
-Now, that GitHub introduced OIDC tokens into GitHub Actions Workflows, you can authenticate from GitHub Actions to Google Cloud using OIDC (Workload Identity Federation), removing the need to export a long lived JSON service account key. Please refer [here](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#benefits-of-using-oidc) to know more about the benefits using OIDC. 
+Now, that GitHub introduced OIDC tokens into GitHub Actions Workflows, you can authenticate from GitHub Actions to Google Cloud using OIDC (Workload Identity Federation), removing the need to export a long lived JSON service account key. Please refer [here](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#benefits-of-using-oidc) to know more about the benefits of using OIDC. 
 
 ### How
 
@@ -96,7 +96,7 @@ jobs:
           kapp ls
 ```
 
-Please refer to this [Github Repo](https://github.com/sethiyash/carvel-kapp-oidc-github) which contains a Github Action and simple-app.yml which we will deploy on GKE using kapp. 
+Please refer to this [Github Repo](https://github.com/sethiyash/kaap-deploy-oidc) which contains a Github Action and simple-app.yml which we will deploy on GKE using kapp. 
 
 ## Join us on Slack and GitHub
 
