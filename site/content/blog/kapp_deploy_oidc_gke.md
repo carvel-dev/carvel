@@ -12,19 +12,11 @@ tags: ['kapp', 'oidc', 'keyless-authentication']
 
 This article can be helpful for anyone who wants to create the Github Action workflow to authenticate with GCP and to deploy Kubernetes manifest on GKE using kapp. 
 
-### Why
+### Why 
 
-Traditionally, authenticating from GitHub Actions to Google Cloud required exporting and storing a long-lived JSON service account key, turning an identity management problem into a secrets management problem. 
+Earlier, we use to authenticate to Google Cloud from Github Actions by storing JSON service account key in Github Secrets.
 
-But now, with GitHub's introduction of OIDC tokens into GitHub Actions Workflows, you can authenticate from GitHub Actions to Google Cloud using OIDC (Workload Identity Federation), removing the need to export a long-lived JSON service account key.
-
-### Benefits
-
-By updating workflows to use OIDC tokens, we can adopt the following recommended security practices:
-
-- **No cloud secrets**: No need to duplicate cloud credentials as long-lived GitHub secrets. Instead, you can configure the OIDC trust on GCP, and then update workflows to request a short-lived access token from the cloud provider through OIDC.
-- **Authentication and authorization management**: Will have more granular control over how workflows can use credentials and also you can control access to cloud resources.
-- **Rotating credentials**: With OIDC, cloud provider issues a short-lived access token that is only valid for a single job, and then automatically expires.
+Now, that GitHub introduced OIDC tokens into GitHub Actions Workflows, you can authenticate from GitHub Actions to Google Cloud using OIDC (Workload Identity Federation), removing the need to export a long lived JSON service account key. Please refer [here](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#benefits-of-using-oidc) to know more about the benefits using OIDC. 
 
 ### How
 
@@ -32,7 +24,7 @@ Now we will see how we can use GitHub Action – [auth](https://github.com/googl
 
 1. Create a new Workload Identity Pool (IAM -> Workload Identity Federation -> Workload Identity Pool) and add an OIDC Provider to it with Issuer URL as `https://token.actions.githubusercontent.com`.
 2. Configure the Attribute mapping and conditions of the provider.
-3. Create a service account and connect Workload Identity Pool you just created to the service account by assigning Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation?_ga=2.114275588.-285296507.1634918453#conditions).
+3. Create a service account and connect Workload Identity Pool you just created to the service account by assigning Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
 
 To update workflows for OIDC, you will need to make two changes to your Github Action YAML:
 
@@ -62,7 +54,7 @@ This will use the configured workload_identity_provider and service_account to a
 Here is a sample Github Action which gets triggered when a new tag is created on the repo. It authenticates with GCP, gets the GKE credentials, install carvel tools on the GKE cluster and deploy a simple app using kapp. 
 
 ```yaml
-name: OIDC auth GCP
+name: Deploy using kapp
 
 on:
   push:
@@ -94,11 +86,10 @@ jobs:
           location: us-central1-a
 
       - id: install-kapp
-        run: |-
-          wget -O- https://carvel.dev/install.sh > install.sh
-          sudo bash install.sh
-          kapp version
-
+        uses: vmware-tanzu/carvel-setup-action@v1
+        with:
+          only: kapp
+         
       - id: 'deploy-with-kapp'
         run: |-
           kapp deploy -a app -f simple-app.yml -y
