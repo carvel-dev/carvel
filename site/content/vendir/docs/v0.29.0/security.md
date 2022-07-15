@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/security]
 title: Security
 ---
 

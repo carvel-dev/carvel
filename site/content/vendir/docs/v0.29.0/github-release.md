@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/github-release]
 title: Github Release
 ---
 
@@ -10,7 +10,7 @@ vendir supports downloading software stored as a Github release. See [`vendir.ym
 If your public IP address is shared by multiple machines (e.g. workstations in an office), you may run into [Github rate limiting errors](https://docs.github.com/en/free-pro-team@latest/rest/overview/resources-in-the-rest-api#rate-limiting). vendir as of v0.8.0 supports providing "Personal access token" to increase Github API rate limits. You can specify it via an environment variable:
 
 ```bash
-$ export VENDIR_GITHUB_API_TOKEN=8c0a3...
+$ export VENDIR_GITHUB_API_TOKEN=ghp_8c0a3...
 $ vendir sync
 ```
 
