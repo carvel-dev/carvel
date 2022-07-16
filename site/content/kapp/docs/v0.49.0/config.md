@@ -84,6 +84,10 @@ For examples of rebase rules in use, see [HPA and Deployment rebase](hpa-deploym
   - `ytt` specifies choice as [ytt](https://carvel.dev/ytt/) for rebase rule. Available in v0.38.0+.
     - `overlayContractV1` allows to use ytt overlay to modify provided resource based on existing resource. 
       - `overlay.yml` overlay YAML file. 
+    - Following fields are accessible via `data.values` inside ytt:
+      - `data.values.existing` resource from live cluster
+      - `data.values.new` resource from config (post-prep)
+      - `data.values._current` resource after previous rebase rules already applied
   
 Rebase rule to `copy` the `clusterIP` field value to `Service`/`v1` resources; if `clusterIp` is present in the `new` user input, use that value, otherwise use the value in `existing` resource on cluster:
 ```yaml
