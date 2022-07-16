@@ -102,7 +102,7 @@ Namespace  Name        Kind        Conds.  Age  Op      Op st.  Wait to    Rs  R
 default    simple-app  Deployment  -       -    create  -       reconcile  -   -
 ^          simple-app  Service     -       -    create  -       reconcile  -   -
 
-Op:      2 create, 0 delete, 0 update, 0 noop
+Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 2:12:59PM: ---- applying 2 changes [0/2 done] ----
 2:13:00PM: create service/simple-app (v1) namespace: default
@@ -218,7 +218,7 @@ default    simple-app       ConfigMap   -       -    create  -       reconcile  
 ^          simple-app       Service     -       2m   delete  -       delete     ok  -
 ^          simple-app-node  Service     -       -    create  -       reconcile  -   -
 
-Op:      2 create, 1 delete, 1 update, 0 noop
+Op:      2 create, 1 delete, 1 update, 0 noop, 0 exists
 Wait to: 3 reconcile, 1 delete, 0 noop
 Continue? [yN]:
 
@@ -296,7 +296,7 @@ default    simple-app                   ConfigMap   -       1m   delete  -      
 ^          simple-app-node              Endpoints   -       1m   -       -       delete   ok  -
 ^          simple-app-node              Service     -       1m   delete  -       delete   ok  -
 
-Op:      0 create, 3 delete, 0 update, 5 noop
+Op:      0 create, 3 delete, 0 update, 5 noop, 0 exists
 Wait to: 0 reconcile, 8 delete, 0 noop
 
 Continue? [yN]: y
