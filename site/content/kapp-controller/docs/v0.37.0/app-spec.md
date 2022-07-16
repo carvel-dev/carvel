@@ -316,7 +316,7 @@ status:
     stdout: |-
       Changes
       Namespace  Name  Kind  Conds.  Age  Op  Wait to  Rs  Ri
-      Op:      0 create, 0 delete, 0 update, 0 noop
+      Op:      0 create, 0 delete, 0 update, 0 noop, 0 exists
       Wait to: 0 reconcile, 0 delete, 0 noop
       Succeeded
     updatedAt: "2019-11-07T16:37:23Z"
