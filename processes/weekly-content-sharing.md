@@ -30,7 +30,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | July 14, 2022     | [Renu Yarday](https://github.com/renuy)| Using kapp in dagger pipeline| Blog | [@renu_yarday](https://twitter.com/renu_yarday) |
 | July 21, 2022     | [Yash Sethiya](https://github.com/sethiyash) | Setup kapp deploy with OIDC Github + GKE/AWS | Blog | N/A |
 | July 28, 2022     | | | |
-| August 4, 2022    | | | |
+| August 4, 2022    | Joe Kimmel | Carvel: July In Review | blog | N/A |
 | August 11, 2022   | | | |
 | August 18, 2022   | | | |
 | August 25, 2022   | | | |
