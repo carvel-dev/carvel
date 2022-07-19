@@ -43,16 +43,18 @@ toc:
     subfolderitems:
       - page: All modules
         url: /lang-ref-ytt
-      - page: Struct module
-        url: /lang-ref-ytt-struct
-      - page: Overlay module
-        url: /lang-ref-ytt-overlay
+      - page: Assert module
+        url: /lang-ref-ytt-assert
       - page: Library module
         url: /lang-ref-ytt-library
-      - page: Version module
-        url: /lang-ref-ytt-version
+      - page: Overlay module
+        url: /lang-ref-ytt-overlay
+      - page: Struct module
+        url: /lang-ref-ytt-struct
       - page: Template module
         url: /lang-ref-ytt-template
+      - page: Version module
+        url: /lang-ref-ytt-version
   - title: Language
     subfolderitems:
       - page: General
