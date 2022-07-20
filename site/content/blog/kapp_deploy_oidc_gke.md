@@ -1,9 +1,9 @@
 ---
-title: "kapp deploy on GCP using keyless authentication(OIDC)"
+title: "Kapp deploy on GCP using keyless authentication(OIDC)"
 slug: kapp-deploy-oidc-gke
 date: 2022-07-14
 author: Yash Sethiya
-excerpt: "Use Github Action OIDC token to authenticate on GCP and deploy using kapp on GKE"
+excerpt: "Learn how to create the GitHub Action workflow to authenticate with GCP and to deploy Kubernetes manifest on GKE using kapp."
 image: /img/logo.svg
 tags: ['kapp', 'oidc', 'keyless-authentication']
 ---
@@ -14,7 +14,7 @@ This article can be helpful for anyone who wants to create the Github Action wor
 
 ### Why 
 
-Earlier, we used to authenticate to Google Cloud from Github Actions by storing JSON service account key in Github Secrets.
+Earlier, we used to authenticate to Google Cloud from GitHub Actions by storing JSON service account key in GitHub Secrets.
 
 Now, that GitHub introduced OIDC tokens into GitHub Actions Workflows, you can authenticate from GitHub Actions to Google Cloud using OIDC (Workload Identity Federation), removing the need to export a long lived JSON service account key. Please refer [here](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#benefits-of-using-oidc) to know more about the benefits of using OIDC. 
 
@@ -26,7 +26,7 @@ Now we will see how we can use GitHub Action – [auth](https://github.com/googl
 2. Configure the Attribute mapping and conditions of the provider.
 3. Create a service account and connect Workload Identity Pool you just created to the service account by assigning Workload Identity User role. For more information, see the [GCP documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
 
-To update workflows for OIDC, you will need to make two changes to your Github Action YAML:
+To update workflows for OIDC, you will need to make two changes to your GitHub Action YAML:
 
 1. Add permissions settings for the token. The job or workflow run requires a permissions setting with `id-token: write`. You won't be able to request the OIDC JWT ID token if the permissions setting for `id-token` is set to `read` or `none`.
 
@@ -51,7 +51,7 @@ This will use the configured workload_identity_provider and service_account to a
 
 ### Example
 
-Here is a sample Github Action which gets triggered when a new tag is created on the repo. It authenticates with GCP, gets the GKE credentials, installs Carvel tools on the GKE cluster, and deploys a simple app using kapp.  
+Here is a sample GitHub Action which gets triggered when a new tag is created on the repo. It authenticates with GCP, gets the GKE credentials, installs Carvel tools on the GKE cluster, and deploys a simple app using kapp.  
 
 ```yaml
 name: Deploy using kapp
@@ -96,7 +96,7 @@ jobs:
           kapp ls
 ```
 
-Please refer to this [Github Repo](https://github.com/sethiyash/kaap-deploy-oidc) which contains a Github Action and simple-app.yml which we will deploy on GKE using kapp. 
+We created this [sample GitHub repo](https://github.com/sethiyash/kaap-deploy-oidc) for reference to help guide you, which contains a GitHub Action and simple-app.yml which we deploy on GKE using kapp as mentioned above. Thanks for following along! We hope you found this helpful.
 
 ## Join us on Slack and GitHub
 
