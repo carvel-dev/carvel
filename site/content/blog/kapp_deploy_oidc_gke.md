@@ -1,7 +1,7 @@
 ---
 title: "Kapp deploy on GCP using keyless authentication(OIDC)"
 slug: kapp-deploy-oidc-gke
-date: 2022-07-14
+date: 2022-07-21
 author: Yash Sethiya
 excerpt: "Learn how to create the GitHub Action workflow to authenticate with GCP and to deploy Kubernetes manifest on GKE using kapp."
 image: /img/logo.svg
