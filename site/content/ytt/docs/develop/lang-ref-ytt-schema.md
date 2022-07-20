@@ -447,6 +447,8 @@ where:
     - the node's value must be a map
     - if a list of keys are given, only those keys are considered
     - if `True` is given, all keys are considered
+  - `one_of=` (`list`) — node's value must be one of those in the supplied list.
+    - values can be of any type
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`

@@ -140,6 +140,33 @@ assert.one_not_null().check({"foo": 1, "bar": 2})
 assert.one_not_null(["foo", "bar"]).check({"foo": 1, "bar": None, "baz": 3})
 ```
 
+### assert.one_of()
+
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
+
+- Checks that the value is one in the specified list
+```python
+load("@ytt:assert", "assert")
+
+# passes
+assert.one_of(["debug", "info", "warn"]).check("warn")
+
+# fails: value not in the list.
+assert.one_of(["aws", "azure", "gcp"]).check("digitalocean")
+
+# An assertion can be used multiple times against different values
+valid_ports = assert.one_of([1433, 1434, 1521, 1830, 3306, 5432])
+
+# all pass
+valid_ports.check(3306)
+valid_ports.check(5432)
+
+# fails: items in enumeration are integers, value is a string
+valid_ports.check("5432")
+```
+
 ### assert.try_to()
 - Invokes a function, catching failure if one occurs.
 - Takes single function as argument.
