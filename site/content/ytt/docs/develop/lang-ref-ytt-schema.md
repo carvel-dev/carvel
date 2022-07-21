@@ -438,15 +438,24 @@ where:
   - `assertion` (`function(value) : None` | `function(value) : bool`) — that either `fail()`s or returns `False` when `value` is not valid.
     - `value` (`string` | `number` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios.
-  - `min=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided.
+  - `min=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided. 
+    - equivalent to [@ytt:assert.min()](lang-ref-ytt-assert.md#assertmin)
   - `max=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided.
+    - equivalent to [@ytt:assert.max()](lang-ref-ytt-assert.md#assertmax)
   - `min_len=` (`number`) — length of node's value must be >= the minimum length provided.
+    - equivalent to [@ytt:assert.min_len()](lang-ref-ytt-assert.md#assertmin_len)
   - `max_len=` (`number`) — length of node's value must be <= the maximum length provided.
+    - equivalent to [@ytt:assert.max_len()](lang-ref-ytt-assert.md#assertmax_len)
   - `not_null=` (`bool`) — if set to `True`, the node's value must not be null.
+    - equivalent to [@ytt:assert.not_null()](lang-ref-ytt-assert.md#assertnot_null)
   - `one_not_null=` (`bool` | `list`) — exactly one item in a map is not null.
     - the node's value must be a map
     - if a list of keys are given, only those keys are considered
     - if `True` is given, all keys are considered
+    - equivalent to [@ytt:assert.one_not_null()](lang-ref-ytt-assert.md#assertone_not_null)
+  - `one_of=` (`list`) — node's value must be one of those in the supplied list.
+    - values can be of any type
+    - equivalent to [@ytt:assert.one_of()](lang-ref-ytt-assert.md#assertone_of)
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
