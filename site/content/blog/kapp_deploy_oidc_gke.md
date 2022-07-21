@@ -62,7 +62,7 @@ on:
       - "v*"
 
 jobs:
-  Get_OIDC_ID_token:
+  deploy:
     runs-on: ubuntu-latest
 
     permissions:
@@ -96,7 +96,7 @@ jobs:
           kapp ls
 ```
 
-We created this [sample GitHub repo](https://github.com/sethiyash/kaap-deploy-oidc) for reference to help guide you, which contains a GitHub Action and simple-app.yml which we deploy on GKE using kapp as mentioned above. Thanks for following along! We hope you found this helpful.
+We created this [sample GitHub repo](https://github.com/k14s/kaap-deploy-oidc) for reference to help guide you, which contains a GitHub Action and simple-app.yml which we deploy on GKE using kapp as mentioned above. Thanks for following along! We hope you found this helpful.
 
 ## Join us on Slack and GitHub
 
