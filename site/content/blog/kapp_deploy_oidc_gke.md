@@ -1,5 +1,5 @@
 ---
-title: "Kapp deploy on GCP using keyless authentication(OIDC)"
+title: "Kapp deploy on GKE using keyless authentication (OIDC)"
 slug: kapp-deploy-oidc-gke
 date: 2022-07-21
 author: Yash Sethiya
