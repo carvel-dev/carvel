@@ -54,15 +54,16 @@ params:
     name: kapp
     short_name: kapp
     root_link: /kapp/
-    latest_docs_link: /kapp/docs/v0.49.0/
+    latest_docs_link: /kapp/docs/v0.50.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
     search: true
     search_index_name: carvel-kapp
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.49.0
+    version_latest: v0.50.0
     versions:
     - develop
+    - v0.50.0
     - v0.49.0
     - v0.48.0
     - v0.47.0
