@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/dangerous-flags]
 title: Dangerous Flags
 ---
 
