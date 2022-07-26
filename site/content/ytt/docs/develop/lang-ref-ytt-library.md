@@ -106,13 +106,24 @@ dvs = instance.data_values()
 
 ### instance.eval()
 
-Calculates the library's final data values (i.e. the net result of [all configured data values](ytt-data-values.md#library-data-values)), evaluates its templates into a document set, and applies its overlays on that document set (i.e. executes the pipeline described in [How it works](how-it-works.md) for this library instance's inputs and contents).
+Calculates the library's final data values (i.e. the net result of [all configured data values](ytt-data-values.md#library-data-values)), evaluates its templates into a document set, and applies its overlays on that document set (i.e. executes the pipeline described in [How it works](how-it-works.md) for this library instance's inputs and contents. The output of that execution — rather than rendered automatically — is returned in a variable).
 
 ```python
 document_set = instance.eval()
 ```
 
 - **`document_set`** ([`yamlfragment`](lang-ref-yaml-fragment.md#yaml-document-set)) — the YAML document set resulting from the evaluation of this instance.
+
+Note: the resulting Document Set is _**not**_ automatically included in output. A common way to include this result in the output is to use [`template.replace()`](lang-ref-ytt-template.md#templatereplace):
+
+```yaml
+#@ load("@ytt:template", "template")
+#@ load("@ytt:library", "library")
+
+--- #@ template.replace(library.get("cert-manager").eval())
+```
+
+See also, [Playground: ytt library module](/ytt/#example:example-ytt-library-module) example.
 
 ### instance.export()
 
