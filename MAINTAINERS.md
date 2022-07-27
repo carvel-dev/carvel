@@ -19,7 +19,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Renu Yarday | [renuy](https://github.com/renuy) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) |
 | Praveen Rewar | [praveenrewar](https://github.com/praveenrewar) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) |
 | Yash Sethiya | [sethiyash](https://github.com/sethiyash) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
-| Soumik Majumder | [100mik](https://github.com/100mik) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) |
+| Soumik Majumder | [100mik](https://github.com/100mik) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) (Reviewer), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) (Approver)|
 | Rohit Aggarwal | [rohitagg2020](https://github.com/rohitagg2020) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 | John Brunton | [jbrunton](https://github.com/jbrunton) | [converge.io](https://converge.io/) | [carvel-setup-action](https://github.com/vmware-tanzu/carvel-setup-action) (Approver) |
 | Kumari Tanushree | [kumaritanushree](https://github.com/kumaritanushree) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
