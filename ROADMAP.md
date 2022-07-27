@@ -22,7 +22,7 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 | Provide Stability | **[kapp-controller]** Version safeguards: To provide safeguards and visibility for cluster and kubernetes versions. | Early August |
 | Package Author Improvements | **[kctrl]** kctrl commands for package authors. | Aug 2022 |
 | Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents) GA: Configuration authors can specify the valid range or format of the data values. | Late August |
-| Provide Stability | **[imgpkg]** Minimize registry communications: To provide a more performant experience for users leveraging large PackageRepos. | Late August |
+| Provide Stability | **[kapp-controller]** Minimize registry communications: To provide a more performant experience for users leveraging large PackageRepos. | Late August |
 
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
