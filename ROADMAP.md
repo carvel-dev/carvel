@@ -27,4 +27,4 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
 
-`Last Updated: June 2022`
+`Last Updated: July 2022`
