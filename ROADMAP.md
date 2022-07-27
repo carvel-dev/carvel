@@ -17,13 +17,13 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 
 |Theme|Description|Timeline|
 |---|---|---|
-| Stability | Package Management API Enhancements (inluding [supporting layering of package repositories](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/428), [handling name collisions](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/376)) | June 2022 |
 | Package Author Improvements | **[kctrl]** kctrl commands for package authors. | Jul 2022 |
-| Stability | **[kapp]** Experimental feature to add suffix to app's config map to avoid name collision. This is an opt-in behaviour   | June 2022|
 | Easy to Get Started | **[kapp-controller]** kapp-controller CLI Milestone 4: [UX Enhancements](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | July 2022 |
-| Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents): Configuration authors can specify the valid range or format of the data values. | Q3 (Jul - Sep) |
-| Package Author Improvements | **[carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). | Q3 (Jul - Sep)|
-| Easy to Get Started | **[ytt]** [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314): Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. [Epic](https://app.zenhub.com/workspaces/carvel-backlog-6013063a24147d0011410709/board?epics=173207060_314&filterLogic=any&repos=173207060) | TBD |
+| Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents) Experimental: Configuration authors can specify the valid range or format of the data values. | Late July |
+| Provide Stability | **[kapp-controller]** [Surface namespaces for deployed resources](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/535) | Early August |
+| Provide Stability | **[kapp-controller]** Version safeguards: To provide safeguards and visibility for cluster and kubernetes versions. | Early August |
+| Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents) GA: Configuration authors can specify the valid range or format of the data values. | Late August |
+| Provide Stability | **[imgpkg]** Minimize registry communications: To provide a more performant experience for users leveraging large PackageRepos. | Late August |
 
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
