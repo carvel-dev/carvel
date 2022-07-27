@@ -17,8 +17,7 @@ Please take the timelines & dates as proposals and goals. Priorities and require
 
 |Theme|Description|Timeline|
 |---|---|---|
-| Package Author Improvements | **[kctrl]** kctrl commands for package authors. | Jul 2022 |
-| Easy to Get Started | **[kapp-controller]** kapp-controller CLI Milestone 4: [UX Enhancements](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/412) | July 2022 |
+| Package Author Improvements | **[kctrl]** kctrl commands for package authors. | Aug 2022 |
 | Package Author Improvements | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents) Experimental: Configuration authors can specify the valid range or format of the data values. | Late July |
 | Provide Stability | **[kapp-controller]** [Surface namespaces for deployed resources](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/535) | Early August |
 | Provide Stability | **[kapp-controller]** Version safeguards: To provide safeguards and visibility for cluster and kubernetes versions. | Early August |
