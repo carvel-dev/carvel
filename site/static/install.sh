@@ -26,7 +26,7 @@ install() {
     ytt_checksum=c792f769e61bbd1322783c04603f443bf1f2a079a840d406ec2c91160534e49e
     imgpkg_checksum=80dc36566ed41638a120434091490d6d46ee68422592f8003025211b16009c13
     kbld_checksum=5fd3afbe09a66fc9e91252c57448045eeeab1ee3f6d305da6f9885186b744e67
-    kapp_checksum=5d424f735cdef6ced3f3256312a4dcc99de14a294a5c82cd98a8e470f8b36dee
+    kapp_checksum=1da812a536d80f7b0aefb2155ac6903df2f92c9ec5c204d6b985a0c51a88041c
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     vendir_checksum=f0d84f30c5fe34fb15554db4e27768a3738f0f697fd35b3186499a2ab3607205
     kctrl_checksum=063963dc5957426ea67ab9e3d604e1a2eb35c1057836509457cfba6010fe830f
@@ -36,7 +36,7 @@ install() {
     ytt_checksum=aa7074d08dc35e588ab0e014f53e98aec0cfed6c3babf8a953c4225007e49ae7
     imgpkg_checksum=0b067b406775ce3b3b4ac668a6d1b89184b8339480f07a48de74a338b334e7b4
     kbld_checksum=67c86ece94a3747b2e011a5b72044b69f2594ca807621b1e1e4c805f6abcaeef
-    kapp_checksum=a9bcebef169ba759ba24b341f42022edef5b234b8ba61116df2305b3c8c5f2fb
+    kapp_checksum=58443df4200c683597f5c8a43ea8f5b7110bbcb1fbd8ca3f2061e9eff1a10e0e
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
     vendir_checksum=83b1cd15c6e4f69dc8daed9e38a202f16be7c6130a41adfbf6a5233da6148cb4
     kctrl_checksum=4442f03491aca0299adad3b44061930dccf57eea47cc8289319cb1fc4d9b4029
@@ -67,11 +67,11 @@ install() {
   echo "Installed ${dst_dir}/kbld v0.34.0"
   
   echo "Installing kapp..."
-  $dl_bin github.com/vmware-tanzu/carvel-kapp/releases/download/v0.50.0/kapp-${binary_type} > /tmp/kapp
+  $dl_bin github.com/vmware-tanzu/carvel-kapp/releases/download/v0.51.0/kapp-${binary_type} > /tmp/kapp
   echo "${kapp_checksum}  /tmp/kapp" | shasum -c -
   mv /tmp/kapp ${dst_dir}/kapp
   chmod +x ${dst_dir}/kapp
-  echo "Installed ${dst_dir}/kapp v0.50.0"
+  echo "Installed ${dst_dir}/kapp v0.51.0"
   
   echo "Installing kwt..."
   $dl_bin https://github.com/vmware-tanzu/carvel-kwt/releases/download/v0.0.6/kwt-${binary_type} > /tmp/kwt
