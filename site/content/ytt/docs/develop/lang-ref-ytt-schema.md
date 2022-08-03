@@ -487,10 +487,10 @@ ipv4: "123.456.789.000"
 #@schema/validation not_null=True
 database:
   driver: ""
-  #@overlay/validation min_len=1
+  #@schema/validation min_len=1
   username: ""
   db_name: ""
-  #@overlay/validation min=1025
+  #@schema/validation min=1025
   port: 0
 
 #@schema/validation max=10
