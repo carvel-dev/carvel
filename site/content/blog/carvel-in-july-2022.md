@@ -31,7 +31,7 @@ Kapp celebrated its 50th release with luminous features such as:
 
 ### Ytt
 
-Have you ever seen bad data just make a mess out of everything? No longer must you cower in fear that your data might be invalid!
+Have you ever seen an innocently wrong piece of configuration blow up a deployment? Wish that simple mistake could have been caught sooner — before a bunch of resources were snarled!?? No longer must you cower in fear that your data might be invalid!
 Go forth boldly, young padawan, ensuring that your data is valid with our new feature[^2], available starting in ytt 0.42.0.
 
     * [Blog: Preview of ytt Validations](https://carvel.dev/blog/ytt-validations-preview/) on how to get setup with this feature.
