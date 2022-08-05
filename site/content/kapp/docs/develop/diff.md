@@ -45,7 +45,7 @@ This will create versioned resource named `secret-sa-sample-ver-1`
 Namespace  Name                    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    secret-sa-sample-ver-1  Secret  -       -    create  -       reconcile  -   -  
 
-Op:      1 create, 0 delete, 0 update, 0 noop
+Op:      1 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 ```
 
@@ -123,7 +123,7 @@ Namespace  Name                    Kind    Conds.  Age  Op      Op st.  Wait to 
 default    secret-sa-sample        Secret  -       -    create  -       reconcile  -   -  
 ^          secret-sa-sample-ver-1  Secret  -       -    create  -       reconcile  -   -  
 
-Op:      2 create, 0 delete, 0 update, 0 noop
+Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 ```
 
@@ -275,7 +275,7 @@ Changes
 Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    sample  Secret  -       -    create  -       reconcile  -   -  
 
-Op:      1 create, 0 delete, 0 update, 0 noop
+Op:      1 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: 
@@ -325,7 +325,7 @@ Changes
 Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    sample  Secret  -       7m   update  -       reconcile  ok  -  
 
-Op:      0 create, 0 delete, 1 update, 0 noop
+Op:      0 create, 0 delete, 1 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 Continue? [yN]: 
@@ -362,7 +362,7 @@ Changes
 Namespace  Name    Kind    Conds.  Age  Op      Op st.  Wait to    Rs  Ri  
 default    sample  Secret  -       -    create  -       reconcile  -   -
 
-Op:      1 create, 0 delete, 0 update, 0 noop
+Op:      1 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop
 
 kapp: Error: Exiting after diffing with pending changes (exit status 3)

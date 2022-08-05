@@ -25,6 +25,8 @@ directories:
       # branch, tag, commit; origin is the name of the remote (required)
       # optional if refSelection is specified (available in v0.11.0+)
       ref: origin/master
+      # depth of commits to fetch; 0 (default) means everything (optional; v0.29.0+)
+      depth: 1
       # specifies a strategy to resolve to an explicit ref (optional; v0.11.0+)
       refSelection:
         semver:

@@ -6,25 +6,7 @@ title: Built-in ytt Library
 
 ### assert
 
-```python
-load("@ytt:assert", "assert")
-
-# stop execution and report a failure
-assert.fail("expected value foo, but was {}".format(value)) # stops execution
-x = data.values.env.mysql_password or assert.fail("missing env.mysql_password")
-
-# invoke a function value, catching failure if it occurs
-x, err = assert.try_to(lambda : json.decode('{"key": "value"}'))
-x     # { "key" = "value" }    (i.e. dict with one entry)
-err   # None
-
-x, err = assert.try_to(lambda : json.decode("(not JSON)"))
-x     # None
-err   # "json.decode: invalid character '(' looking for beginning of value"
-
-# stop execution if two values are not equal
-assert.equals("not", "equal") # stops execution
-```
+See [@ytt:assert module docs](lang-ref-ytt-assert.md).
 
 ### data
 
@@ -46,7 +28,7 @@ data.read("/data/data.txt") # read file
 
 ### ip
 
-Parse and inspect Internet Protocol values. 
+Parse and inspect Internet Protocol values.
 
 (available in v0.37.0+)
 
@@ -201,6 +183,25 @@ Allowing semicolons in query strings can [lead to cache poisoning attacks](https
 `load("@ytt:version", "version")` (see [version module doc](lang-ref-ytt-version.md))
 
 ---
+## Hashing modules
+
+### md5
+
+```python
+load("@ytt:md5", "md5")
+
+md5.sum("data") # "8d777f385d3dfec8815d20f7496026dc"
+```
+
+### sha256
+
+```python
+load("@ytt:sha256", "sha256")
+
+sha256.sum("data") # "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+```
+
+---
 ## Serialization modules
 
 ### base64
@@ -250,27 +251,9 @@ yaml.decode('{"a":[1,2,3,{"c":456}],"b":"str"}')
 ```
 
 ---
-## Hashing modules
+## Library module
 
-### md5
-
-```python
-load("@ytt:md5", "md5")
-
-md5.sum("data") # "8d777f385d3dfec8815d20f7496026dc"
-```
-
-### sha256
-
-```python
-load("@ytt:sha256", "sha256")
-
-sha256.sum("data") # "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
-```
----
-## Schema Module
-
-See [Schema specific docs](lang-ref-ytt-schema.md).
+See [Library specific docs](lang-ref-ytt-library.md).
 
 ---
 ## Overlay module
@@ -278,9 +261,9 @@ See [Schema specific docs](lang-ref-ytt-schema.md).
 See [Overlay specific docs](lang-ref-ytt-overlay.md).
 
 ---
-## Library module
+## Schema Module
 
-See [Library specific docs](lang-ref-ytt-library.md).
+See [Schema specific docs](lang-ref-ytt-schema.md).
 
 ---
 ## Template module

@@ -21,15 +21,16 @@ params:
   ytt:
     name: ytt
     root_link: /ytt/
-    latest_docs_link: /ytt/docs/v0.41.0/
+    latest_docs_link: /ytt/docs/v0.42.0/
     github_url: https://github.com/vmware-tanzu/carvel-ytt
     search: true
     search_index_name: carvel-ytt
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.41.0
+    version_latest: v0.42.0
     versions:
     - develop
+    - v0.42.0
     - v0.41.0
     - v0.40.0
     - v0.39.0
@@ -54,15 +55,16 @@ params:
     name: kapp
     short_name: kapp
     root_link: /kapp/
-    latest_docs_link: /kapp/docs/v0.49.0/
+    latest_docs_link: /kapp/docs/v0.50.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp
     search: true
     search_index_name: carvel-kapp
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.49.0
+    version_latest: v0.50.0
     versions:
     - develop
+    - v0.50.0
     - v0.49.0
     - v0.48.0
     - v0.47.0
@@ -113,15 +115,16 @@ params:
     name: vendir
     short_name: vendir
     root_link: /vendir/
-    latest_docs_link: /vendir/docs/v0.27.0/
+    latest_docs_link: /vendir/docs/v0.29.0/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
     search: true
     search_index_name: carvel-vendir
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.27.0
+    version_latest: v0.29.0
     versions:
     - develop
+    - v0.29.0
     - v0.27.0
     - v0.26.0
     - v0.25.0

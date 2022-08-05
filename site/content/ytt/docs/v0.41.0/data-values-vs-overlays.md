@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/data-values-vs-overlays]
+
 title: "Data Values vs Overlays"
 ---
 

@@ -58,7 +58,7 @@ Allowed secret keys:
 App CR supports multiple templating, overlaying, and data transformation tools to give developers flexibility.
 
 - `helmTemplate`: uses `helm template` command to render chart
-- `ytt`: uses [ytt](/ytt) to rended templates
+- `ytt`: uses [ytt](/ytt) to render templates
 - `kbld`: uses [kbld](/kbld) to resolve image URLs to include digests
 - `kustomize`: (not implemented yet) uses kustomize to render configuration
 - `jsonnnet`: (not implemented yet) renders jsonnet files

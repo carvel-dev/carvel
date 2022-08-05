@@ -422,19 +422,40 @@ ytt: Error:
 
 ### @schema/validation
 
-⚠️ **This is an experimental feature: interfaces and behavior will change.** ⚠️
+> ⚠️ **This function is part of the experimental "validations" feature.\
+> ⚠️ Its interface and behavior are subject to change.** \
+> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
 
 Attaches a validation to the type being declared by the annotated node.
 
 ```
-@schema/validation rule0, rule1, ... [,when=] [,when_null_skip=]
+@schema/validation rule0, rule1, ... [,<named-rules>] [,when=] [,when_null_skip=]
 ```
 
 where:
 - `ruleX` — any number of custom rules, each a 2-item tuple `(description, assertion)`
   - `description` (`string`) — a description of what a valid value is.
   - `assertion` (`function(value) : None` | `function(value) : bool`) — that either `fail()`s or returns `False` when `value` is not valid.
-    - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+    - `value` (`string` | `number` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+- `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios.
+  - `min=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided. 
+    - equivalent to [@ytt:assert.min()](lang-ref-ytt-assert.md#assertmin)
+  - `max=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided.
+    - equivalent to [@ytt:assert.max()](lang-ref-ytt-assert.md#assertmax)
+  - `min_len=` (`number`) — length of node's value must be >= the minimum length provided.
+    - equivalent to [@ytt:assert.min_len()](lang-ref-ytt-assert.md#assertmin_len)
+  - `max_len=` (`number`) — length of node's value must be <= the maximum length provided.
+    - equivalent to [@ytt:assert.max_len()](lang-ref-ytt-assert.md#assertmax_len)
+  - `not_null=` (`bool`) — if set to `True`, the node's value must not be null.
+    - equivalent to [@ytt:assert.not_null()](lang-ref-ytt-assert.md#assertnot_null)
+  - `one_not_null=` (`bool` | `list`) — exactly one item in a map is not null.
+    - the node's value must be a map
+    - if a list of keys are given, only those keys are considered
+    - if `True` is given, all keys are considered
+    - equivalent to [@ytt:assert.one_not_null()](lang-ref-ytt-assert.md#assertone_not_null)
+  - `one_of=` (`list`) — node's value must be one of those in the supplied list.
+    - values can be of any type
+    - equivalent to [@ytt:assert.one_of()](lang-ref-ytt-assert.md#assertone_of)
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
 - `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
@@ -446,7 +467,39 @@ Each rule is evaluated, in the order they appear in the annotation (left-to-righ
 - if all rules pass (either returns `True` or `None`), then the value is valid.
 - if a rule returns `False` (not `None`) or `fail()`'s, then the value is invalid.
 
-_Example 1: Custom assertion-based rule_
+The `named-rules` provide access to a set of built-in assertion functions that correspond to functions defined in the [`@ytt:assert` module](lang-ref-ytt-assert.md)
+
+_Example 1: Out-of-the-box assertion rules_
+
+```yaml
+#@data/values-schema
+---
+login:
+  #@schema/validation min_len=1
+  username: admin
+  #@schema/validation min_len=1
+  password: password
+
+#@schema/validation max_len=15
+ipv4: "123.456.789.000"
+
+#@schema/nullable
+#@schema/validation not_null=True
+database:
+  driver: ""
+  #@schema/validation min_len=1
+  username: ""
+  db_name: ""
+  #@schema/validation min=1025
+  port: 0
+
+#@schema/validation max=10
+concurrent_threads: 3
+```
+
+All values provided in the example schema pass the assertions, resulting in no error message.    
+
+_Example 2: Custom assertion-based rule_
 
 ```yaml
 #@data/values-schema

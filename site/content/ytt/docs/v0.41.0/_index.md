@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/]
+
 title: "About ytt"
 cascade:
   version: v0.41.0

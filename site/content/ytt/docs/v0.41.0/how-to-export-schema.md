@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/how-to-export-schema]
+
 title: Export Schema in OpenAPI Format
 ---
 

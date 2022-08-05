@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/file-marks]
+
 title: File Marks
 ---
 
