@@ -16,7 +16,7 @@ The following table includes the current roadmap for Carvel. If you have any que
 Please take the timelines & dates as proposals and goals. Priorities and requirements change based on community feedback, roadblocks encountered, community contributions, etc. If you depend on a specific item, we encourage you to attend community meetings to get updated status information, or help us deliver that feature by contributing to Carvel.
 
 `Last Updated: Aug 2022`
-|Theme|Description|Stage|Timeline|
+|Theme|Feature|Stage|Timeline|
 |---|---|---|---|
 | Package Author Experience | **[kctrl]** [kctrl commands for package authors.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/632): CLI-based Package Author commands to enable  Package Authors easily create a Carvel package of their software | Build | Q3 (Jul-Sep) |
 | Package Author Experience | **[kctrl]** [kctrl dev deploy.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/2): Enable quick iteration on Package CRs and App CRs using kapp-controller CLI for local development | Build | Q3 (Jul-Sep) |
