@@ -505,9 +505,9 @@ _Example 2: Custom assertion-based rule_
 #@data/values-schema
 ---
 #@ def is_dynamic_port(port):
-#@   port in range(49142, 65535) or fail("is {}".format(port))
+#@   return port in range(49142, 65536) or fail("is {}".format(port))
 #@ end
-#@schema/validation ("a TCP/IP port in the dynamic range: 49142 and 65535, inclusive", is_dynamic_port)
+#@schema/validation ("a TCP/IP port in the dynamic range: 49142 and 65536, inclusive", is_dynamic_port)
 adminPort: 1024
 ```
 
@@ -516,5 +516,5 @@ If not overridden will produce the following error message:
 ```console
 $ YTTEXPERIMENTS=validations ytt -f schema.yml
 ytt: Error: One or more data values were invalid:
-- "adminPort" (schema.yml:7) requires "a TCP/IP port in the dynamic range: 49142 and 65535, inclusive"; fail: is 1024 (by schema.yml:6)
+- "adminPort" (schema.yml:7) requires "a TCP/IP port in the dynamic range: 49142 and 65536, inclusive"; fail: is 1024 (by schema.yml:6)
 ```
