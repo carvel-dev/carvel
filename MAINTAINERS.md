@@ -14,7 +14,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Dennis Leon | [DennisDenuto](https://github.com/DennisDenuto)| [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Reviewer), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Varsha Munishwar | [vmunishwar](https://github.com/vmunishwar)| [VMware](https://www.github.com/vmware/) |[ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Joe Kimmel | [joel-kimmel-vmw](https://github.com/joel-kimmel-vmw) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
-| Ben Moss | [benmoss](https://github.com/benmoss) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Neil Hickey | [neil-hickey](https://github.com/neil-hickey) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Renu Yarday | [renuy](https://github.com/renuy) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) |
 | Praveen Rewar | [praveenrewar](https://github.com/praveenrewar) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) (Reviewer), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) (Approver)|
@@ -31,6 +30,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Daniel Helfand, [danielhelfand](https://github.com/danielhelfand)
 * Cari Lynn, [cari-lynn](https://github.com/cari-lynn)
 * Garrett Cheadle, [gcheadle-vmware](https://github.com/gcheadle-vmware)
+* Ben Moss, [benmoss](https://github.com/benmoss)
 
 ## Carvel Stakeholders
 **Deployment Lifecycle Tools:** imgpkg, kapp, kbld, ytt
