@@ -40,12 +40,9 @@ We just provide a image registry that `kctrl` can push OCI images to. Ensure tha
 
 `kctrl` first tries to build any images that are necessary, however, in our case we do not have any images that need to be built as we are consuming a released artifact.
 
-It then creates the required artifact in the `carvel-artifacts` directory.
-```bash
-$ ls carvel-artifacts/packages/certmanager.carvel.dev
-metadata.yml package.yml
-
-$ cat carvel-artifacts/packages/certmanager.carvel.dev/package.yaml
+It then creates the required artifacts in the `carvel-artifacts` directory.
+```yaml
+# carvel-artifacts/packages/certmanager.carvel.dev/package.yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -75,7 +72,7 @@ spec:
       nullable: true
   version: 1.9.0
 
-$ cat carvel-artifacts/packages/certmanager.carvel.dev/metadata.yaml
+# carvel-artifacts/packages/certmanager.carvel.dev/metadata.yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
@@ -139,7 +136,7 @@ spec:
           - ytt:
               paths:
               - upstream
-              - overlays
+              - overlays   # <= addition to package template
           - kbld: {}
       export:
       - imgpkgBundle:
@@ -147,7 +144,7 @@ spec:
           useKbldImagesLock: true
         includePaths:
         - upstream
-        - overlays
+        - overlays    # <= ensure additional files are included in imgpkg bundle
 ```
 This is to ensure that the package is aware of the additional files, while `includePaths` ensures that the folder is a part of the `imgpkg` bundle created by `kctrl`.
 
@@ -156,4 +153,4 @@ The template section in `package-resources.yml` should be updated in a similar f
 `kctrl` generates the OpenAPI schema for a package if a values schema is provided.
 
 ### How can packages be tested without releasing them?
-`kctrl` creates a "mock" Package and PackageMetadata resources in the file `package-resources.yml`. This enables users to run `kctrl dev deploy` to deploy resources a package installation would create without having to release the package or installing `kapp-controller` on the cluster.
+`kctrl` creates "mock" Package and PackageMetadata resources in the file `package-resources.yml`. This enables users to run `kctrl dev deploy` to deploy resources a package installation would create without having to release the package or installing `kapp-controller` on the cluster.
