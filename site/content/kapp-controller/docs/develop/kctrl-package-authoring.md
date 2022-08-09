@@ -1,8 +1,9 @@
 ---
-title: Building packages from source with kctrl
+title: Authoring packages with kctrl
 ---
 
-This tutorial is a walk-through of how you use `kctrl` to build and package your project as a Carvel package.
+## Building packages from source
+This tutorial is a walk-through of how `kctrl` can be used to build and package your project as a Carvel package.
 
 For this tutorial we will start off with a [simple web server](https://github.com/cppforlife/simple-app).
 We create resources to deploy the application on Kubernetes and then release a Carvel package for the same using `kctrl`.
@@ -13,7 +14,7 @@ $ git clone https://github.com/cppforlife/simple-app
 $ cd simple-app
 ```
 
-## Putting together some configuration
+### Putting together some configuration
 
 We can add a `config` directory to store our Kubernetes config.
 ```bash
@@ -75,12 +76,12 @@ destinations:
 Here, we are expressing that the image referred to as `simple-app` needs to be built from the root of the project (the path being `.`).
 And pushed to container registry `100mik/simple-app`.
 
-When `kctrl` builds images and resolves image references it uses the tool [`kbld`](/kbld) under the hood.
+`kctrl` builds images and resolves image references using the tool [`kbld`](/kbld) under the hood.
 More details about `kbld` configuration can be found [here](/kbld/docs/latest/config/).
 
 Great! We now have our configuration in place.
 
-## Setting up `kctrl` 
+### Setting up `kctrl` 
 We can get `kctrl` up and running using the `init` command.
 ```bash
 $ kctrl package init
@@ -94,7 +95,7 @@ The configuration for the same can be found in the `config` directory. The inter
 
 This command generates some files that tell `kctrl` how it should put the package together!
 
-## Releasing the package
+### Releasing the package
 
 We can release the first version of our carvel package using the `release` command now!
 ```bash
@@ -152,19 +153,19 @@ spec:
 ```
 We can add these packages to the cluster using `kapp`.
 ```bash
-kapp deplot -a simple-app-package -f carvel-artifacts/packages/simple-app.carvel.dev
+kapp deploy -a simple-app-package -f carvel-artifacts/packages/simple-app.carvel.dev
 ```
 (`kubectl apply` would yield the same result)
 
 We should now be able to see our package on the cluster
 ```bash
-$ kctrl package list
-Target cluster 'https://127.0.0.1:49841' (nodes: minikube)
+$ kctrl package available list
+Target cluster 'https://127.0.0.1:62733' (nodes: minikube)
 
-Installed packages in namespace 'default'
+Available summarized packages in namespace 'default'
 
-Name  Package Name           Package Version  Status  
-simp  simple-app.carvel.dev  1.9.0            Reconcile succeeded  
+Name                    Display name  
+simple-app.carvel.dev   simple-app  
 
 Succeeded
 ```
@@ -176,9 +177,100 @@ $ kctrl package install -i simple-app -p simple-app.carvel.dev --version 1.0.0
 
 Congratulations! `simple-app`s first Carvel package has been published using `kctrl`.
 
-## FAQs
+## Packaging upstream artifacts
+This tutorial explores how `kctrl` allows us to create Carvel packages using existing artifacts like manifests released as a part of a GitHub release or a Helm chart.
+For this tutorial we will package a release of `cert-manager` as a Carvel package.
 
-### Can `kctrl` be used to publish packages in a CI pipeline?
-Yes! `kctrl` remembers the answers to questions that have been answered.
-The `--yes` flag can be used to run the `release` command while using previously supplied
-values if `package-resources.yml` and `package-metadata.yml` are committed to a repository with the source code.
+### Getting started
+
+To start off, let's create a directory which acts like our working directory.
+
+```bash
+$ mkdir certman-package
+$ cd certman-package
+```
+
+Next we run the `init` command to set the stage!
+
+`kctrl` asks a few quick questions to gather what it needs to know.
+We know that `cert-manager` lives on the GitHub repository _cert-manager/cert-manager_ and that it's releases have a manifest `cert-manager.yaml` which let's users deploy cert-manager on cluster. Our goal would be to build a package around this artifact.
+
+If we want to package `cert-manager v1.9.0`, we interact with package init somewhat like this:
+
+![Package Init for Cert Manager](/images/kctrl/pkg-init-certman.png)
+
+In the first step, we can see that the artifact could have been a helm chart or another artifact residing in the repository itself.
+
+Once, `kctrl` knows where to find our config, it uses `vendir` to make a copy of the required artifacts in the upstream folder.
+```bash
+$ ls upstream
+cert-manager.yaml
+```
+
+### Releasing packages
+
+Now that `kctrl` knows what it is dealing with, we can use the release command to make a publish Package and PackageMetadata resources.
+
+We just provide a image registry that `kctrl` can push OCI images to. Ensure that your host is authorised to push to the registry.
+
+![Package Release for Cert Manager](/images/kctrl/pkg-release-certman.png)
+
+`kctrl` first tries to build any images that are necessary, however, in our case we do not have any images that need to be built as we are consuming a released artifact.
+
+It then creates the required artifacts in the `carvel-artifacts` directory.
+```yaml
+# carvel-artifacts/packages/certmanager.carvel.dev/package.yaml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: certmanager.carvel.dev.1.9.0
+spec:
+  refName: certmanager.carvel.dev
+  releasedAt: "2022-08-03T22:40:06Z"
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - imgpkgBundle:
+          image: index.docker.io/100mik/certman-carvel-package@sha256:93a4e6d0577a0c56b69f7d7b24621d98bd205f69846a683a4dc5bcdd53879da5
+      template:
+      - ytt:
+          paths:
+          - upstream
+      - kbld:
+          paths:
+          - '-'
+          - .imgpkg/images.yml
+  valuesSchema:
+    openAPIv3:
+      default: null
+      nullable: true
+  version: 1.9.0
+
+# carvel-artifacts/packages/certmanager.carvel.dev/metadata.yaml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  creationTimestamp: null
+  name: certmanager.carvel.dev
+spec:
+  displayName: certmanager
+```
+These artifacts can be used to create the necessary resources on the cluster.
+```bash
+$ kapp deploy -a cert-manager-package -f carvel-artifacts/packages/certmanager.carvel.dev
+```
+Once we have created these resources using `kapp`, we should be able to find these packages on the cluster using `kctrl`.
+```bash
+$ kctrl package available list
+Target cluster 'https://127.0.0.1:62733' (nodes: minikube)
+
+Available summarized packages in namespace 'default'
+
+Name                    Display name  
+certmanager.carvel.dev  certmanager  
+
+Succeeded
+```

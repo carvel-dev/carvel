@@ -27,10 +27,8 @@ toc:
         url: /packaging-tutorial
       - page: "Consuming Packages using the CLI"
         url: /kctrl-package-tutorial
-      - page: Packaging upstream artifacts with CLI
-        url: /kctrl-package-authoring-of-upstream
-      - page: Building packages from source using kctrl
-        url: /kctrl-package-authoring-from-source
+      - page: Authoring packages with the CLI
+        url: /kctrl-package-authoring
       - page: OSS Carvel Packages
         url: /oss-packages
       - page: Artifact Formats
