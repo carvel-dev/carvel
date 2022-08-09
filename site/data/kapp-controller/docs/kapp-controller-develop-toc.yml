@@ -63,5 +63,7 @@ toc:
     subfolderitems:
       - page: kapp-controller FAQ
         url: /faq
+      - page: kctrl FAQ
+        url: /kctrl-faq
       - page: Security
         url: /security
