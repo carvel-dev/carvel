@@ -137,6 +137,7 @@ spec:
       default: null
       nullable: true
   version: 1.0.0
+
 # carvel-artifacts/packages/simple-app.carvel.dev/metadata.yml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
@@ -175,7 +176,7 @@ We can install the package on the cluster to create the packaged resources.
 $ kctrl package install -i simple-app -p simple-app.carvel.dev --version 1.0.0
 ```
 
-Congratulations! `simple-app`s first Carvel package has been published using `kctrl`.
+Congratulations! `simple-app`s first Carvel package has been created using `kctrl`.
 
 ## Packaging upstream artifacts
 This tutorial explores how `kctrl` allows us to create Carvel packages using existing artifacts like manifests released as a part of a GitHub release or a Helm chart.
@@ -274,3 +275,82 @@ certmanager.carvel.dev  certmanager
 
 Succeeded
 ```
+
+## Creating a package repository
+`kctrl` can be used to release packages grouped together as a PackageRepository.
+In this tutorial, let's bundle the two packages created in the previous tutorial into a PackageRepository.
+
+Let us create a folder for out repository, in the same directory where the other two projects exist.
+```bash
+$ mkdir demo-repo
+$ tree -L 1
+.
+├── certman-package
+├── demo-repo
+└── simple-app
+```
+
+The `--repo-output` flag can be used while releasing a package to create artifacts in the prescribed [PackageRepository bumdle](http://localhost:1313/kapp-controller/docs/develop/packaging-artifact-formats/#package-repository-bundle) format at a specified location.
+Let us make releases for both these packages while creating a repo bundle in the `demo-repo` folder.
+```bash
+# Releasiong package for cert-manager
+$ cd certmanager-package
+$ kctrl package release --version 1.0.0 --repo-output ../demo-repo
+
+# Releasing package for simple-app
+$ cd ../simple-app
+$ kctrl package release --version 1.0.0 --repo-output ../demo-repo
+```
+
+Let's verify that the artifacts created in the `demo-repo` folder are in the desired bundle format.
+```bash
+$ cd ../demo-repo
+$ tree
+└── packages
+    ├── certmanager.carvel.dev
+    │   ├── 1.0.0.yml
+    │   └── metadata.yml
+    └── simple-app.carvel.dev
+        ├── 1.0.0.yml
+        └── metadata.yml
+```
+`kctrl` can now be used to create a repository bundle and publish it on an OCI registry.
+```bash
+$ kctrl package repo release
+```
+`kctrl` first asks us to name our repository. We will be calling ours `demo.carvel.dev`.
+![Package Release Step 1](/images/kctrl/pkg-repo-release-1.png)
+
+We are then required to specify the OCI registry we want to push our repository bundle to.
+This bundle will contain all config required by the PackageRepositopry to create the required Packages on the cluster.
+![Package Release Step 2](/images/kctrl/pkg-repo-release-2.png)
+
+Once `kctrl` has the required details it builds an `imgpkg` bundle and publishes it on an OCI registry.
+![Package Release Step 3](/images/kctrl/pkg-repo-release-3.png)
+
+Two files are created when a PackageRepository is released successfully. 
+
+`pkgrepo-build.yml` stores some metadata generated using the user inputs during the first release.
+This can be comitted to a `git` repository, if users want to do releases in their CI pipelines.
+
+`package-repository.yml` has a PackageRepository resource that can be applied to the cluster directly.
+
+Let's use `kctrl` to add the repository to the cluster. We can use the bundle location that we can see in the output.
+This location is also stored in the `package-repository.yml` artifact.
+```bash
+$ kctrl package repository add -r demo-repo --url index.docker.io/100mik/demo-repo@sha256:f726d5d5264183c7cd6503237e25c641b1d5b41d5df6128174cea5931ff27df0
+```
+Once the repository is added successfully we should be able to see our packages on the cluster.
+```bash
+$ kctrl package available list
+Target cluster 'https://127.0.0.1:49841' (nodes: minikube)
+
+Available summarized packages in namespace 'default'
+
+Name                    Display name  
+certmanager.carvel.dev  certmanager  
+simple-app.carvel.dev   simple-app  
+
+Succeeded
+```
+Great! We have now bundled and published two of our packages together as a PackageRepository.
