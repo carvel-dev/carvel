@@ -51,12 +51,12 @@ toc:
         url: /startup   
       - page: Debugging kapp-controller
         url: /debugging-kc
-  - title: CLI (kctrl)
+  - title: Kctrl (CLI) Command Reference
     subfolderitems:
-      - page: Package Command Reference
-        url: /package-command 
-      - page: App Command Reference
-        url: /app-command 
+      - page: Management
+        url: /management-command 
+      - page: Authoring
+        url: /authoring-command
   - title: FAQ
     subfolderitems:
       - page: kapp-controller FAQ

@@ -2,14 +2,19 @@
 title: Package Authoring Command Reference
 ---
 
+# Package
+
 ## Overview
-Package authoring commands are introduced to smoothens the journey of packaging your manifest as a Carvel Package. As a end result this commands generate required YAML files to consume the Package or PackageRepository. By default this all commands runs in an interactive flow which can be disabled using `-y`, `--yes`.
+As of `kctrl` version `v0.40.0+`. Package authoring commands are introduced to smoothen the journey of packaging your manifest as a Carvel Package. As a end result this commands generate required YAML files to consume the Package or PackageRepository. By default this all commands runs in an interactive flow which can be disabled using `-y`, `--yes` flag.
 
 ## Package Init
 The `package init` command takes some inputs and initialise package creation. It generates `package-build.yml` and `package-resources.yml` which get used to create a Carvel Package and PackageMetadata during `package release` stage. 
 ```bash
 $ kctrl package init
 ```
+Supported flags:
+- `--chdir` _string_, Working directory with package-build and other config
+
 Note: We always suggest to run `pkg init` in an interactive flow.
  
 ## Package Release
@@ -33,6 +38,8 @@ Supported flags:
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
 - `--chdir` _string_, Working directory with package-build and other config
 - `--debug` Include debug output
+
+# Dev
 
 ## Some Other Useful Flags
 - `--debug` _boolean_, Include debug output
