@@ -311,6 +311,65 @@ status:
 **Note:** Values will only be included in the first templating step of the package,
 though we intend to improve this experience in later releases.
 
+### Package Build
+
+A PackageBuild resource is created by running `kctrl package init` to store information about how users would like to build and publish
+their projects as Packages. This format is used to store configuration on the hosts filesystem, rather than on the cluster.
+
+```yaml
+apiVersion: kctrl.carvel.dev/v1alpha1
+kind: PackageBuild
+metadata:
+  # The name of the PackageBuild (is the same as the 'spec.refName' of the Package it generates)
+  name: samplepackage.corp.com
+spec:
+  # Describes the steps to be followed while building and releasing the project
+  template:
+    spec:
+      # Specifies app template that will be used by the generated Package
+      # NOTE: The fetch section is not included as the generated Package always
+      # fetches from an 'imgpkg' bundle which is created and published when a package is released.
+      app:
+        spec:
+          # The deploy section is copied over to the generated Package and might be used
+          # to specify any additional 'rawOptions'
+          deploy:
+          - kapp: {}
+          # Specifies how the generated Package will template the fetched config
+          # The section should include paths to a `kbld` Config that describes
+          # how images should be built and where they should be pushed, if images should be built
+          # as a part of the release.
+          # 'kctrl' will build and push images if 'kbld's Config tells it to - before 
+          # 'kctrl' generates the ImagesLock file bundled into the 'imgpkg' bundle created by a release.
+          template:
+          # Options specified here will be used in the 'ytt' section of generated Package
+          - ytt:
+              paths:
+              - config
+          # Required (even if it does not specify paths) as 'kctrl' uses this step to generate lock
+          # files and build images.
+          # Paths pointing to the lockfile and piping output from the 'ytt' stage are added by 'kctrl'
+          - kbld: {}
+      # Describes any resources a release would have to publish
+      export:
+        # Publishes an 'imgpkg' bundle
+      - imgpkgBundle:
+          # The OCI registry the bundle should be pushed to
+          image: 100mik/simple-package
+          # Specifies whether or not 'kctrl' should use the ImagesLock generated while building the project
+          # true, by default (when generated with 'kctrl package init')
+          # NOTE: The user MUST include a path to a custom ImagesLock file in 'includePaths' if they
+          # set this value to 'false'
+          useKbldImagesLock: true
+        # Paths to be included as a part of the published resource
+        includePaths:
+        - config
+  # Describes the end product of the release process
+  release:
+  # Creates and stores Package and PackageMetadata resources on the hosts file system
+  - resource: {}
+```
+
 ## Combinations and Special Cases
 
 ### Overlapping Package Repositories 
