@@ -1,5 +1,5 @@
 ---
-title: Package and App Management Command Reference
+title: Management Command Reference
 ---
 
 ## Package
@@ -275,7 +275,7 @@ Supported flags:
 - `--wait-check-interval` _duration_, Amount of time to sleep between checks while waiting (default 1s)
 - `--wait-timeout` _duration_, Maximum amount of time to wait in wait phase (default 5m0s)
 
-### Global Flags
+## Global Flags
 - `--color` _boolean_, Set color output (default true)
 - `--column` _string_, Filter to show only given columns
 - `--debug` _boolean_, Include debug output

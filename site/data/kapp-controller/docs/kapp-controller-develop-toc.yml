@@ -53,9 +53,9 @@ toc:
         url: /debugging-kc
   - title: Kctrl (CLI) Command Reference
     subfolderitems:
-      - page: Management
+      - page: Management Command
         url: /management-command 
-      - page: Authoring
+      - page: Authoring Command
         url: /authoring-command
   - title: FAQ
     subfolderitems:
