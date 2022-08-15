@@ -22,8 +22,11 @@ Today, package authors are supposed to know all the Carvel tools as they are bei
 
 
 **kctrl pkg init**: To initialize the App/Package and create the App/PackageInstall.
+
 **kctrl dev**: To deploy App/PackageInstall CR locally.
+
 **kctrl pkg release**: Create, upload the imgpkg bundle and Package to be released.
+
 **kctrl pkg repo release**: Create the repo bundle so that it can be consumed by Package consumers.
 
 Lets, try to create a `Dynatrace` package by using the above commands.
@@ -43,7 +46,11 @@ This command asks a few basic questions regarding how we want to initialize our 
 
 ![Simplifying package authoring - pkg init basic details](/images/blog/simplifying-package-authoring-package-details.png)
 
+* In this question, we need to enter the package name which will be a valid DNS subdomain name.
+
 ![Simplifying package authoring - pkg init content option](/images/blog/simplifying-package-authoring-package-content-option.png)
+
+* Here, we need to enter the 
 
 ![Simplifying package authoring - pkg init dynatrace repository details](/images/blog/simplifying-package-authoring-dynatrace-repository-details.png)
 
