@@ -20,6 +20,7 @@ Today, package authors are supposed to know all the Carvel tools as they are bei
 
 ![Kctrl flow for simplifying-package-authoring](/images/blog/simplifying-package-authoring-kctrl-flow.png)
 
+
 **kctrl pkg init**: To initialize the App/Package and create the App/PackageInstall.
 **kctrl dev**: To deploy App/PackageInstall CR locally.
 **kctrl pkg release**: Create, upload the imgpkg bundle and Package to be released.
@@ -42,8 +43,8 @@ This command asks a few basic questions regarding how we want to initialize our 
 
 ![Simplifying package authoring - pkg init basic details](/images/blog/simplifying-package-authoring-package-details.png)
 
-![Simplifying package authoring - pkg init content option](/images/blog/simplifying-package-authoring-package-details.png)
+![Simplifying package authoring - pkg init content option](/images/blog/simplifying-package-authoring-package-content-option.png)
 
-![Simplifying package authoring - pkg init dynatrace repository details](/images/blog/simplifying-package-authoring-package-details.png)
+![Simplifying package authoring - pkg init dynatrace repository details](/images/blog/simplifying-package-authoring-dynatrace-repository-details.png)
 
-![Simplifying package authoring - pkg init vendir sync](/images/blog/simplifying-package-authoring-package-details.png)
+![Simplifying package authoring - pkg init vendir sync](/images/blog/simplifying-package-authoring-vendir-sync.png)
