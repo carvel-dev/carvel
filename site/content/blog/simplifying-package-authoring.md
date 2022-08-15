@@ -18,7 +18,7 @@ Package Authoring is an iterative process and below are the steps authors go thr
 
 Today, package authors are supposed to know all the Carvel tools as they are being used in the package authoring journey. Learning the Carvel tools before package authoring is a bit of learning curve. As part of simplifying package authoring, we wanted to reduce this learning curve so that authors can focus on package authoring. As part of this, few commands have been added to the `kctrl` cli.
 
-![Kctrl flow for simplifying-package-authoring](/images/blog/simplifying-package-authoring-kctrl-flow.png]
+![Kctrl flow for simplifying-package-authoring](/images/blog/simplifying-package-authoring-kctrl-flow.png)
 
 **kctrl pkg init**: To initialize the App/Package and create the App/PackageInstall.
 **kctrl dev**: To deploy App/PackageInstall CR locally.
@@ -40,10 +40,10 @@ Lets, try to create a `Dynatrace` package by using the above commands.
 
 This command asks a few basic questions regarding how we want to initialize our package. Lets go through the question together:
 
-![Simplifying package authoring - pkg init basic details](/images/blog/simplifying-package-authoring-package-details.png]
+![Simplifying package authoring - pkg init basic details](/images/blog/simplifying-package-authoring-package-details.png)
 
-![Simplifying package authoring - pkg init content option](/images/blog/simplifying-package-authoring-package-details.png]
+![Simplifying package authoring - pkg init content option](/images/blog/simplifying-package-authoring-package-details.png)
 
-![Simplifying package authoring - pkg init dynatrace repository details](/images/blog/simplifying-package-authoring-package-details.png]
+![Simplifying package authoring - pkg init dynatrace repository details](/images/blog/simplifying-package-authoring-package-details.png)
 
-![Simplifying package authoring - pkg init vendir sync](/images/blog/simplifying-package-authoring-package-details.png]
+![Simplifying package authoring - pkg init vendir sync](/images/blog/simplifying-package-authoring-package-details.png)
