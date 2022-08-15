@@ -44,14 +44,16 @@ Lets, try to create a `Dynatrace` package by using the above commands.
 
 This command asks a few basic questions regarding how we want to initialize our package. Lets go through the question together:
 
-![Simplifying package authoring - pkg init basic details](/images/blog/simplifying-package-authoring-package-details.png)
+![Simplifying package authoring - pkg init basic details](/images/blog/simplifying-package-authoring-package-basic-details.png)
 
 * In this question, we need to enter the package name which will be a valid DNS subdomain name.
 
 ![Simplifying package authoring - pkg init content option](/images/blog/simplifying-package-authoring-package-content-option.png)
 
-* Here, we need to enter the 
+* Here, we need to enter from where to get the K8s manifest which needs to be packages. As mentioned earlier, `dynatrace` releases `kubernetes.yaml` as part of their github release artifacts. Hence, we will select `Option 2`.
 
 ![Simplifying package authoring - pkg init dynatrace repository details](/images/blog/simplifying-package-authoring-dynatrace-repository-details.png)
+
+* 
 
 ![Simplifying package authoring - pkg init vendir sync](/images/blog/simplifying-package-authoring-vendir-sync.png)
