@@ -35,7 +35,7 @@ Lets, try to create a `Dynatrace` package by using the above commands.
 
 ### Prerequisites
 
-1. Install Carvel tools using [`install.sh`](https://carvel.dev/install.sh) script.
+1. Install Carvel tools - [imgpkg](https://carvel.dev/imgpkg/docs/latest/install/), [kapp](https://carvel.dev/kapp/docs/latest/install/), [kbld](https://carvel.dev/kbld/docs/latest/install/), [vendir](https://carvel.dev/vendir/docs/latest/install/), [ytt](https://carvel.dev/ytt/docs/latest/install/).
 2. [`Dynatrace`](https://github.com/Dynatrace/dynatrace-operator) releases the [`kubernetes.yaml`](https://github.com/Dynatrace/dynatrace-operator/releases) which can be packaged and be available for distribution.
 3. K8s cluster (I will be using minikube).
 4. OCI registry where the package bundle and repository bundles will be pushed (I will be using my DockerHub account).
@@ -202,7 +202,54 @@ This command will create an imgpkg bundle, upload it to the OCI registry and cre
 
 While entering the registry URL, ensure to change the value from `docker.io/rohitagg2020/dynatrace-bundle` to `docker.io/<YOUR_DOCKERHUB_ACCOUNT>/dynatrace-bundle`. Alternatively, you can enter other valid OCI registry URL.
 
-Now, we have created our package and packageMetadata. Next step is to add it to package repository. 
+Now, we have created our package and packageMetadata. 
+
+Let's see how the package and packageMetadata files look like:
+
+```bash
+$ cat carvel-artifacts/packages/dynatrace.carvel.dev/package.yml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: dynatrace.carvel.dev.1.0.0
+spec:
+  refName: dynatrace.carvel.dev
+  releasedAt: "2022-08-15T11:54:50Z"
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - imgpkgBundle:
+          image: index.docker.io/rohitagg2020/dynatrace-bundle@sha256:d3fd67881ccba75134061451348130577ad0b2034d0a65b44b965b56e7d1c939
+      template:
+      - ytt:
+          paths:
+          - upstream
+      - kbld:
+          paths:
+          - '-'
+          - .imgpkg/images.yml
+  valuesSchema:
+    openAPIv3:
+      default: null
+      nullable: true
+  version: 1.0.0
+
+$ cat carvel-artifacts/packages/dynatrace.carvel.dev/metadata.yml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  creationTimestamp: null
+  name: dynatrace.carvel.dev
+spec:
+  displayName: dynatrace
+  longDescription: dynatrace.carvel.dev
+  shortDescription: dynatrace.carvel.dev
+```
+
+Next step is to add it to package repository. 
 
 ### kctrl pkg repo release - Create repository bundle for consumption
 
@@ -210,10 +257,36 @@ Now, we have created our package and packageMetadata. Next step is to add it to 
 
 Let's create a folder for our repository.
 ```bash
-cd ../
-mkdir pkg-repo && cd pkg-repo
-mkdir packages && cd packages
+$ cd ../
+$ mkdir pkg-repo && cd pkg-repo
+$ mkdir packages && cd packages
 ```
 
 `kctrl` will create a repo bundle from all the packages and metadata present in the `packages` folder. 
-Now, we will copy the `package.yml` and `metadata.yml` created above into the `packages` folder. We will follow the bundle format as mentioned [here](). Alternatively, while running `pkg release`, `--repo-output` flag can be used to copy the `package.yml` and `metadata.yml` in the prescribed PackageRepository bundle format at a specified location.
+We will copy the `package.yml` and `metadata.yml` created above into the `packages` folder. We will follow the bundle format as mentioned [here](). Alternatively, while running `pkg release`, `--repo-output` flag can be used to copy the `package.yml` and `metadata.yml` in the prescribed PackageRepository bundle format at a specified location.
+
+```bash
+$ mkdir dynatrace.carvel.dev && cd dynatrace.carvel.dev
+$ cp ../../../dynatrace/carvel-artifacts/packages/dynatrace.carvel.dev/package.yml 1.0.0.yml
+$ cp ../../../dynatrace/carvel-artifacts/packages/dynatrace.carvel.dev/metadata.yml .
+$ cd ../..
+$ tree
+.
+└── packages
+    └── dynatrace.carvel.dev
+        ├── 1.0.0.yml
+        └── metadata.yml
+```
+
+Now, we will run `kctrl pkg repo release` to create and release the repository bundle. This repository bundle can be distributed to the the Package Consumer.
+
+```bash
+$ kctrl pkg repo release -v 1.0.0
+```
+
+In this command, it will ask for package repository name and only 1 question about where to push our repository bundle. Also, we are versioning our package repository with `-v` flag.
+
+![Simplifying package authoring - pkg repo release](/images/blog/simplifying-package-authoring-package-repo-release.png)
+
+While entering the registry URL, ensure to change the value from `docker.io/rohitagg2020/dynatrace-bundle` to `docker.io/<YOUR_DOCKERHUB_ACCOUNT>/dynatrace-bundle`. Alternatively, you can enter other valid OCI registry URL.
+
