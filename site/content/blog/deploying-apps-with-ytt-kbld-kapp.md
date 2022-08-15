@@ -665,4 +665,10 @@ Succeeded
 
 We've seen how [ytt](/ytt), [kbld](/kbld), and [kapp](/kapp) can be used together to deploy and iterate on an application running on Kubernetes. Each one of these tools has been designed to be single-purpose and composable with other tools in the larger Kubernetes ecosystem.
 
-We are eager to hear your thoughts and feedback in [#carvel in Kubernetes slack]({{% named_link_url "slack_url" %}}) and/or via Github issues, PRs and discussions (see [GitHub]({{% named_link_url "github_url" %}}) for a list of associated repositories). Don't hesitate to reach out!
+## Join the Carvel Community
+
+We are excited to hear from you and learn with you! Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
+* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.

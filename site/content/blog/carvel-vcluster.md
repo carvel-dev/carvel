@@ -308,3 +308,11 @@ I do want to call out some considerations for using these tools together. There 
 Additionally, while it's intruiging to be able to install vclusters via kapp-controller, it is probably not recommended to continuously reconcile vclusters like kapp-controller does. This is because configuration changes can end up breaking the vcluster if not introduced properly. You can always pause the reconciliation by setting `paused: true` as part of the PackageInstall spec to keep the vcluster in a stable state. 
 
 Thanks for reading, and looking forward to your thoughts!
+
+## Join the Carvel Community
+
+We are excited to hear from you and learn with you! Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
+* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
