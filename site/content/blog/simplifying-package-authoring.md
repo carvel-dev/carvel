@@ -1,46 +1,46 @@
 ---
 title: "Simplifying Package Authoring"
 slug: simplifying-package-authoring
-date: 2022-08-16
+date: 2022-08-17
 author: Rohit Aggarwal
 excerpt: "Simplifying Package Authoring with kctrl"
 image: /img/logo.svg
 tags: ['carvel', 'package', 'author', 'kctrl', 'create']
 ---
 
-In Carvel, Kubernetes(K8s) manifest are distributed and consumed via the concept of Package. A package Author encapsulates, version, and distribute K8s manifest for others to install on a Kubernetes cluster. A package author can choose to create a package by using third party manifest e.g. they can choose to create a package from cert-manager or they want to distribute their own project configurations by creating a Package.
+In Carvel, Kubernetes(K8s) manifest are distributed and consumed via the concept of Package. A package Author encapsulates, version, and distribute K8s manifest for package consumers to install on a Kubernetes cluster. A package author can choose to create a package by using third party manifest e.g. they can choose to create a package from cert-manager, dynatrace etc. or they can distribute their own project K8s manifest by creating a Package.
 
-Package Authoring is an iterative process and below are the steps authors go through:
+Package Authoring is an iterative process and below are the steps authors generally go through:
 1. Authors know about the K8s manifest they want to package.
-2. Add/change the manifest by adding ytt overlay/template and test the package. This is the iterative part where authors want to make the changes and test them quickly.
-3. Once all the manifest are in place, create the imgpkg bundle(to be mentioned in the package) and package.
+2. Add/change the manifest by adding additional overlay/template and test the package. This is the iterative part where authors want to make the changes and test them quickly.
+3. Once all the manifest are in place, create the imgpkg bundle(to be mentioned in the package) and the package itself.
 4. Add the package to the package repository for distribution.
 
-Today, package authors are supposed to know all the Carvel tools as they are being used in the package authoring journey. Learning the Carvel tools before package authoring is a bit of learning curve. As part of simplifying package authoring, we wanted to reduce this learning curve so that authors can focus on package authoring. As part of this, few commands have been added to the `kctrl` cli.
+Today, package authors are supposed to know all the Carvel tools as they are being used in the package authoring journey. Learning the Carvel tools before package authoring has a learning curve off itself. As part of simplifying package authoring, we wanted to reduce this learning curve so that authors can focus on package authoring. As part of this, few commands have been added to the already existing `kctrl` cli.
 
 ![Kctrl flow for simplifying-package-authoring](/images/blog/simplifying-package-authoring-kctrl-flow.png)
 
 
-**kctrl pkg init**: To initialize the App/Package and create the App/PackageInstall.
+* **kctrl pkg init**: To initialize the Package and create the PackageInstall.
 
-**kctrl dev**: To deploy App/PackageInstall CR locally.
+* **kctrl dev**: To deploy PackageInstall CR locally.
 
-**kctrl pkg release**: Create, upload the imgpkg bundle and Package to be released.
+* **kctrl pkg release**: Create and upload the imgpkg bundle. Also, create the package to be released.
 
-**kctrl pkg repo release**: Create the repo bundle so that it can be consumed by Package consumers.
+* **kctrl pkg repo release**: Create the repo bundle so that it can be consumed by package consumers.
 
-Lets, try to create a `Dynatrace` package by using the above commands.
+Lets, try to create a `Dynatrace Operator` package by using the above commands.
 
 ## Create a package
 
 ### Prerequisites
 
 1. Install Carvel tools - [imgpkg](https://carvel.dev/imgpkg/docs/latest/install/), [kapp](https://carvel.dev/kapp/docs/latest/install/), [kbld](https://carvel.dev/kbld/docs/latest/install/), [vendir](https://carvel.dev/vendir/docs/latest/install/), [ytt](https://carvel.dev/ytt/docs/latest/install/).
-2. [`Dynatrace`](https://github.com/Dynatrace/dynatrace-operator) releases the [`kubernetes.yaml`](https://github.com/Dynatrace/dynatrace-operator/releases) which can be packaged and be available for distribution.
+2. Identify K8s manifest which needs to be packaged. [`Dynatrace Operator`](https://github.com/Dynatrace/dynatrace-operator) releases the [`kubernetes.yaml`](https://github.com/Dynatrace/dynatrace-operator/releases) which can be packaged and be available for distribution.
 3. K8s cluster (I will be using minikube).
 4. OCI registry where the package bundle and repository bundles will be pushed (I will be using my DockerHub account).
 
-### kctrl pkg init - Initialize the package
+### kctrl pkg init
 
 ```bash
 $ mkdir dynatrace 
@@ -66,11 +66,11 @@ This command asks a few basic questions regarding how we want to initialize our 
 
 * After entering all the above details, tool will download all the mentioned manifest locally and create two files - package-build.yml and pacakge-resources.yml. `Package-resources.yml` file contain Package, PackageInstall and PackageMetadata while `package-build.yml` contains PackageBuild. More information on PackageBuild can be found in this [link](). All the values entered above have been recorded in these files. These files will be used by the `dev` and `pkg release` command subsequently. 
 
-### kctrl dev - Test the package locally
+### kctrl dev
 
 To keep the blog short, I am not going to add any additional overlay/manifest. To add them, please follow this [link]().
 
-`kctrl dev` command is used to deploy the package locally. Local means that on the K8s cluster, there is no need to install the `kapp-controller`. But still the package can be deployed and see how the K8s resources behave as if it is being deployed on the cluster with `kapp-controller` installed. This helps you to get a quick feedback on the changes so that users can iterate quickly. As the `Package` and `PackageInstall` are present in the package-resources, we will provide `package-resources.yml` file to `kctrl dev`.
+`kctrl dev` command is used to deploy the package locally. Local means that on the K8s cluster, there is no need to install the `kapp-controller`. But still the package will be deployed in a similar manner as by the `kapp-controller` and see how the K8s resources behave. This will help authors to get a quick feedback on the changes so that users can iterate over them quickly. As the `Package` and `PackageInstall` are present in the package-resources, we will provide `package-resources.yml` file to `kctrl dev`.
 
 If we look into the `PackageInstall`, it mention `dynatrace-sa` service account(SA). This SA needs to be created for `dev` cmd to run properly. Lets create this SA first. Also, `dynatrace` namespace needs to be created [separately](https://github.com/Dynatrace/dynatrace-operator#installation) as it is not part of the manifest (NOTE: This can be a perfect opportunity to create the additional manifest). 
 
@@ -190,7 +190,7 @@ dynatrace-webhook-6df6fc6f6c-7dqkz    1/1     Running   0          4m43s
 
 As we can see that `dynatrace-operator` pod is up, it means the package is behaving as expected. Now, we will use `kctrl pkg release` to create the package which will be released.
 
-### kctrl pkg release - Create package to release
+### kctrl pkg release
 
 ```bash
 $ kctrl pkg release -v 1.0.0
@@ -251,7 +251,7 @@ spec:
 
 Next step is to add it to package repository. 
 
-### kctrl pkg repo release - Create repository bundle for consumption
+### kctrl pkg repo release
 
 `kctrl` can be used to release packages grouped together as a `PackageRepository`. Let’s bundle the `dynatrace` package created above into the PackageRepository.
 
@@ -288,5 +288,14 @@ In this command, it will ask for package repository name and only 1 question abo
 
 ![Simplifying package authoring - pkg repo release](/images/blog/simplifying-package-authoring-package-repo-release.png)
 
-While entering the registry URL, ensure to change the value from `docker.io/rohitagg2020/dynatrace-bundle` to `docker.io/<YOUR_DOCKERHUB_ACCOUNT>/dynatrace-bundle`. Alternatively, you can enter other valid OCI registry URL.
+While entering the registry URL, ensure to change the value from `docker.io/rohitagg2020/demo-repo-bundle` to `docker.io/<YOUR_DOCKERHUB_ACCOUNT>/demo-repo-bundle`. Alternatively, you can enter other valid OCI registry URL.
 
+Thus, we can see that package authors need not be worried about creating imgpkg bundle, running the kbld, vendir sync etc. They can focus on writing additional manifest/overlay. More information on package authoring can be found [here]().
+
+## Join the Carvel Community
+
+We are excited to hear from you and learn with you! Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
+* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Attend our Community Meetings, happening every Thursday at 10:30 am PT / 1:30 pm ET. Check out the [Community page](/community/) for full details on how to attend.
