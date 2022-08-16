@@ -70,7 +70,7 @@ template:
 ```
 This is to ensure that the package is aware of the additional files, while `includePaths` ensures that the folder is a part of the `imgpkg` bundle created by `kctrl`.
 
-The template section in `package-resources.yml` should be updated in a similar fashion to ensure that `kctrl dev deploy` yields accurate results.
+The template section in `package-resources.yml` should be updated in a similar fashion to ensure that `kctrl dev` yields accurate results.
 
 `kctrl` generates the OpenAPI schema for a package if a values schema is provided.
 

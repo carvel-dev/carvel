@@ -347,7 +347,7 @@ Great! We have now bundled and published two of our packages together as a Packa
 `kctrl` enables users authoring Apps and Packages using `kapp-controller`'s APIs to test their resources effectively.
 Let us test our `simple-app` package locally. 
 
-This can be done by using the `dev deploy` command, and it does not require `kapp-controller` to be installed
+This can be done by using the `dev` command, and it does not require `kapp-controller` to be installed
 on the cluster. The fetch and template steps are done locally on the host running the command before
 using `kapp` to deploy the resources on the cluster.
 
@@ -408,17 +408,17 @@ status:
   friendlyDescription: ""
   observedGeneration: 0
 ```
-The `dev deploy` command will process these resources just like they would on the cluster.
+The `dev` command will process these resources just like they would on the cluster.
 However, we would like to build an image from source and use the configuration in the root of the directory.
 We use the `--local` and `--build` flags to indicate this.
 
 `kctrl` needs to be informed where it can find the folder `config`. This is done by using the annotation 
-`kctrl.carvel.dev/local-fetch-0: .` on the PackageInstall resource. It tells `dev deploy` that
+`kctrl.carvel.dev/local-fetch-0: .` on the PackageInstall resource. It tells `dev` that
 the files `kapp-controller` would otherwise fetch, is available in the root of the project.
 
 Let's build and deploy from source.
 ```bash
-$ kctrl dev deploy -f package-resources.yml
+$ kctrl dev -f package-resources.yml
 Target cluster 'https://192.168.64.10:8443' (nodes: minikube)
 
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -499,7 +499,7 @@ Succeeded
 We can see the result of the steps `kapp-controller` would perform while creating resources when
 the package is installed.
 
-`dev deploy` has created a `kapp` app (`simple-app-ctrl`) on the cluster.
+`dev` has created a `kapp` app (`simple-app-ctrl`) on the cluster.
 The resources that are a part of the app can be inspected,
 ```bash
 $ kapp inspect -a simple-app-ctrl
