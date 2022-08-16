@@ -302,3 +302,11 @@ As mentioned in the [increased productivity result](#increased-developer-and-ope
 Applying manifests to all clusters is one thing, but additionally, the team is able to roll out specific upgrades to critical capabilities installed on a single cluster, like Harbor or [kpack](https://buildpacks.io/docs/tools/kpack/).  Harbor serves up containers for multiple application development teams, and Harbor itself is dependent on secondary systems like PostgreSQL and Redis. The team is able to upgrade these specific clusters, in an automated fashion, without introducing downtime to the services they provide.
 
 Because of these results, CReATE is also able to support elements of [Army Materiel Command](https://www.amc.army.mil/) (AMC), [Army Forces Command](https://www.army.mil/FORSCOM) (FORSCOM), [Army Training and Doctrine Command (TRADOC)](https://www.tradoc.army.mil/), and is iterating towards [helping all legacy software development efforts](https://www.afcea.org/content/software-sustainment-evolves-pony-express-automation) throughout the Department of Defense (DoD).
+
+## Join the Carvel Community
+
+We are excited to hear from you and learn with you! Here are several ways you can get involved:
+
+* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
+* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.

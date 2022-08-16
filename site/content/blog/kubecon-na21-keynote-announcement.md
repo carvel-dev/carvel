@@ -36,8 +36,8 @@ You can register for KubeCon + CloudNativeCon at their [website](https://events.
 We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
 
 
-* Join Carvel’s slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 900+ Carvel users.
+* Join Carvel’s slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings, happening every Thursday at 10:30am PT / 1:30pm ET. Check out the [Community page](https://carvel.dev/community/) for full details on how to attend.
+* Attend our Community Meetings! Check out the [Community page](https://carvel.dev/community/) for full details on how to attend.
 
 We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!
