@@ -1,9 +1,9 @@
 ---
-title: Management Command Reference
+title: Management Commands Reference
 ---
 
 ## Package
-Package command provides options to interact with package repositories, available packages and package installs.
+Package commands provides options to interact with package repositories, available packages and package installs.
 
 ### Available packages
 The `package available` group of commands can be used to get or list packages available in a namespace or all namespaces.

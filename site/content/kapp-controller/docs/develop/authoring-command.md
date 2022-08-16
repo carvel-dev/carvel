@@ -1,5 +1,5 @@
 ---
-title: Authoring Command Reference
+title: Authoring Commands Reference
 ---
 
 ## Package
@@ -7,57 +7,55 @@ title: Authoring Command Reference
 `kctrl` authoring commands help users generate resources that interact with `kapp-controllers` packaging layer.
 
 ### Initialising the package
-The `package init` command takes some user inputs and creates boilerplate for package creation.  It should be run before using the `release` command. 
+The `package init` command takes user inputs and creates a boilerplate for package creation.  It should be run before using the `package release` or `dev` command.
 ```bash
 $ kctrl package init
 ```
 Supported flags:
-- `--chdir` _string_, Working directory with package-build and other config
+- `--chdir` _string_, Location of the working directory
+- `--tty` Force TTY-like output
 
-Note: We always suggest to run `pkg init` in an interactive flow.
+Note: We suggest to run `pkg init` in an interactive flow.
  
 ### Releasing the Package
 The `package release` command is used to generate Package and PackageMetadata resources.
 ```bash
-$ kctrl package release -v v1.0.0 --repo-output packages
+$ kctrl package release -v 1.0.0 --repo-output packages
 ```
 Supported flags:
 - `-v`, `--version` _string_, Version to be released
 - `--repo-output` _string_, Output location for artifacts in repository bundle format
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
-- `--chdir` _string_, Working directory with package-build and other config
+- `--chdir` _string_, Location of the working directory
+- `--tty` Force TTY-like output
 
 ## Package Repository
 ### Releasing a Package Repository
 The `package repository release` command publishes a PackageRepository using the output of `--repo-output` flag from the `package release` command.
 ```bash
-$ kctrl package repository release 
+$ kctrl package repository release -v 1.0.0
 ```
 Supported flags:
 - `-v`, `--version` _string_, Version to be released
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
-- `--chdir` _string_, Working directory with package-build and other config
-- `--debug` Include debug output
+- `--chdir` _string_, Location of the working directory
+- `--tty` Force TTY-like output
 
 ## Dev
-`kctrl dev` is set of command to test the packages locally.
-
-### Deploying locally
-`kctrl dev deploy` command help in testing the package locally using `kapp-controller`'s APIs.
+`kctrl dev` command help in testing the package locally using `kapp-controller`'s APIs.
 ```bash
-$ kctrl dev deploy
+$ kctrl dev
 ```
 Supported flags:
 - `--delete` Delete deployed app
-- `-f`, `--file strings` Set App CR file (required)
+- `-f`, `--file strings` Set App CR, Package CR, PackageInstall CR file (required)
 - `-b`, `--kbld-build` Allow kbld build
 - `-l`, `--local` Use local fetch source
 - `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
-
-## Some Other Useful Flags
-- `--debug` _boolean_, Include debug output
-- `-h`, `--help` _boolean_, help for kctrl
 - `--tty` Force TTY-like output
+
+## Global Flags
+- `--debug` _boolean_, Include debug output
 - `--color` _boolean_, Set color output (default true)
 - `--column` _string_, Filter to show only given columns
 - `--json` _boolean_, Output as JSON
