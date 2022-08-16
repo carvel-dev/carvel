@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for carvel.dev
+about: Suggest an idea for carvel
 labels: enhancement, carvel triage
 ---
 
