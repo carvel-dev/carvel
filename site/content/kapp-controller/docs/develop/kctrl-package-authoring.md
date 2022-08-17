@@ -3,12 +3,14 @@ title: Authoring packages with kctrl
 ---
 
 ## Packaging upstream artifacts
-This tutorial explores how `kctrl` allows us to create Carvel packages using existing artifacts like manifests released as a part of a GitHub release or a Helm chart.
+This tutorial explores how `kctrl` (from v0.40.0 onwards) allows us to create Carvel packages using existing artifacts like manifests released as a part of a GitHub release or a Helm chart.
 For this tutorial we will package a release of `cert-manager` as a Carvel package.
+
+This tutorial requires `kapp-controller` to be installed on the cluster.
 
 ### Getting started
 
-To start off, let's create a directory which acts like our working directory.
+To start off, let's create a directory which acts as our working directory.
 
 ```bash
 $ mkdir certman-package
@@ -18,7 +20,7 @@ $ cd certman-package
 Next we run the `init` command to set the stage!
 
 `kctrl` asks a few quick questions to gather what it needs to know.
-We know that `cert-manager` lives on the GitHub repository _cert-manager/cert-manager_ and that it's releases have a manifest `cert-manager.yaml` which let's users deploy cert-manager on cluster. Our goal would be to build a package around this artifact.
+We know that `cert-manager` lives on the GitHub repository [_cert-manager/cert-manager_](https://github.com/cert-manager/cert-manager) and that it's releases have a manifest `cert-manager.yaml` which let's users deploy cert-manager on cluster. Our goal would be to build a package around this artifact.
 
 If we want to package `cert-manager v1.9.0`, we interact with package init somewhat like this:
 
@@ -40,7 +42,7 @@ We just provide a image registry that `kctrl` can push OCI images to. Ensure tha
 
 ![Package Release for Cert Manager](/images/kctrl/pkg-release-certman.png)
 
-`kctrl` first tries to build any images that are necessary, however, in our case we do not have any images that need to be built as we are consuming a released artifact.
+`kctrl` first tries to build any images that are necessary, however, in our case we do not have any images that need to be built as we are consuming a released artifact. It bundles the fetched upstream config into an `imgpkg` bundle that is consumed by the Package.
 
 It then creates the required artifacts in the `carvel-artifacts` directory.
 ```yaml
@@ -101,14 +103,14 @@ Succeeded
 ```
 
 ### Relevant FAQs
-- [How can we add additional configuration to an upstream release artifact?](/kapp-controller/docs/develop/kctrl-faq/#how-can-we-add-ytt-overlays-or-additional-configuration-to-upstream-release-artifacts)
-- [How can we go about updating packages dependent on an upstream release?](http://localhost:1313/kapp-controller/docs/develop/kctrl-faq/#how-can-we-go-about-updating-a-package-dependent-on-an-upstream-release)
+- [How can we add additional configuration to an upstream release artifact?](/kapp-controller/docs/latest/kctrl-faq/#how-can-we-add-ytt-overlays-or-additional-configuration-to-upstream-release-artifacts)
+- [How can we go about updating packages dependent on an upstream release?](/kapp-controller/docs/latest/kctrl-faq/#how-can-we-go-about-updating-a-package-dependent-on-an-upstream-release)
 
 ## Building packages from source
 This tutorial is a walk-through of how `kctrl` can be used to build and package your project as a Carvel package.
 
 For this tutorial we will start off with a [simple web server](https://github.com/cppforlife/simple-app).
-We create resources to deploy the application on Kubernetes and then release a Carvel package for the same using `kctrl`.
+We will create resources to deploy the application on Kubernetes and then release a Carvel package for the same using `kctrl`.
 
 First, the playground can be set up by cloning the project we are working with.
 ```bash
@@ -126,7 +128,7 @@ $ mkdir config
 We will need a Deployment and a Service pointing to it to deploy this project. We can define these in `config/config.yml`.
 The image defined by the `Dockerfile` must be built and pushed to an OCI registry (`100mik/simple-app` in this case).
 
-(See [here](/kapp-controller/docs/develop/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl) to see how
+(See [here](/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl) to see how
 we can have `kctrl` build images while releasing)
 ```yaml
 # config/config.yml
@@ -139,7 +141,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8080
   selector:
     simple-app: ""
 ---
@@ -161,13 +163,13 @@ spec:
       - name: simple-app
         image: 100mik/simple-app
         env:
-        - name: HELLO_MSG
+        - name: SIMPLE_MSG
           value: stranger
 ```
 Great! We now have our configuration in place.
 
 ### Setting up `kctrl` 
-We can get `kctrl` up and running using the `init` command.
+We can run the `init` command to initialise the process.
 ```bash
 $ kctrl package init
 ```
@@ -178,7 +180,7 @@ The configuration for the same can be found in the `config` directory. The inter
 
 ![Package Init for Simple App](/images/kctrl/pkg-init-simple-app.png)
 
-This command generates some files that tell `kctrl` how it should put the package together!
+This command generates `package-build.yml` and `package-reources.yml` files that tell `kctrl` how it should put the package together!
 
 ### Releasing the package
 
@@ -258,17 +260,17 @@ $ kctrl package install -i simple-app -p simple-app.carvel.dev --version 1.0.0
 Congratulations! `simple-app`s first Carvel package has been created using `kctrl`.
 
 ### Relevant FAQs
-- [How can I build images while releasing a package with `kctrl`?](/kapp-controller/docs/develop/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl)
-- [How can we add information to PackageMetadata generated by `kctrl package release`?](/kapp-controller/docs/develop/kctrl-faq/#how-can-we-add-information-to-packagemetadata-generated-by-kctrl-pacakge-release)
-- [Can kctrl be used to publish packages in a CI pipeline?](/kapp-controller/docs/develop/kctrl-faq/#can-kctrl-be-used-to-publish-packages-in-a-ci-pipeline)
--[Can we provide our own ImagesLock resource?](/kapp-controller/docs/develop/kctrl-faq/#can-we-provide-our-own-imageslock-resource-instead-of-it-being-generated-when-we-run-the-pkg-release-command)
+- [How can I build images while releasing a package with `kctrl`?](/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl)
+- [How can we add information to PackageMetadata generated by `kctrl package release`?](/kapp-controller/docs/latest/kctrl-faq/#how-can-we-add-information-to-packagemetadata-generated-by-kctrl-packge-release)
+- [Can kctrl be used to publish packages in a CI pipeline?](/kapp-controller/docs/latest/kctrl-faq/#can-kctrl-be-used-to-publish-packages-in-a-ci-pipeline)
+- [Can we provide our own ImagesLock resource?](/kapp-controller/docs/latest/kctrl-faq/#can-we-provide-our-own-imageslock-resource-instead-of-it-being-generated-when-we-run-the-pkg-release-command)
 
 
 ## Creating a package repository
 `kctrl` can be used to release packages grouped together as a PackageRepository.
 In this tutorial, let's bundle the two packages created in the previous tutorial into a PackageRepository.
 
-Let us create a folder for out repository, in the same directory where the other two projects exist.
+Let us create a folder for our repository, in the same directory where the other two projects exist.
 ```bash
 $ mkdir demo-repo
 $ tree -L 1
@@ -278,10 +280,10 @@ $ tree -L 1
 └── simple-app
 ```
 
-The `--repo-output` flag can be used while releasing a package to create artifacts in the prescribed [PackageRepository bumdle](http://localhost:1313/kapp-controller/docs/develop/packaging-artifact-formats/#package-repository-bundle) format at a specified location.
+The `--repo-output` flag can be used while releasing a package to create artifacts in the prescribed [PackageRepository bumdle](/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) format at a specified location.
 Let us make releases for both these packages while creating a repo bundle in the `demo-repo` folder.
 ```bash
-# Releasiong package for cert-manager
+# Releasing package for cert-manager
 $ cd certmanager-package
 $ kctrl package release --version 1.0.0 --repo-output ../demo-repo
 
@@ -304,7 +306,7 @@ $ tree
 ```
 `kctrl` can now be used to create a repository bundle and publish it on an OCI registry.
 ```bash
-$ kctrl package repo release
+$ kctrl package repo release -v 1.0.0
 ```
 `kctrl` first asks us to name our repository. We will be calling ours `demo.carvel.dev`.
 ![Package Release Step 1](/images/kctrl/pkg-repo-release-1.png)
@@ -324,9 +326,10 @@ This can be comitted to a `git` repository, if users want to do releases in thei
 `package-repository.yml` has a PackageRepository resource that can be applied to the cluster directly.
 
 Let's use `kctrl` to add the repository to the cluster. We can use the bundle location that we can see in the output.
-This location is also stored in the `package-repository.yml` artifact.
+This location is also stored in the `package-repository.yml` artifact. We can use the version of the repository as a 
+tag while adding the PackageRepository bundle if specified using the `-v` flag.
 ```bash
-$ kctrl package repository add -r demo-repo --url index.docker.io/100mik/demo-repo@sha256:f726d5d5264183c7cd6503237e25c641b1d5b41d5df6128174cea5931ff27df0
+$ kctrl package repository add -r demo-repo --url index.docker.io/100mik/demo-repo:1.0.0
 ```
 Once the repository is added successfully we should be able to see our packages on the cluster.
 ```bash
@@ -418,7 +421,7 @@ the files `kapp-controller` would otherwise fetch, is available in the root of t
 
 Let's build and deploy from source.
 ```bash
-$ kctrl dev -f package-resources.yml
+$ kctrl dev -f package-resources.yml -l -b
 Target cluster 'https://192.168.64.10:8443' (nodes: minikube)
 
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -434,7 +437,7 @@ spec:
     refName: simple-app.carvel.dev
     versionSelection:
       constraints: 0.0.0
-  serviceAccountName: cluster-admin-sa
+  serviceAccountName: simple-app-sa
 status:
   conditions: null
   friendlyDescription: ""

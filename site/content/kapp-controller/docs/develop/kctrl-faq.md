@@ -77,7 +77,7 @@ The template section in `package-resources.yml` should be updated in a similar f
 ### How can we go about updating a package dependent on an upstream release?
 This can be done by running `kctrl package init` again and using the new tag/version. Alternatively, the value can be updated in the `vendir.yml` file and the new changes can be fetched by running `vendir sync`.
 
-WARNING: This will overwrite any changes to the `/upstream` directory. It is recommended that any additional configuration or overlays in a separate folder.
+WARNING: This will overwrite any changes to the `/upstream` directory. It is recommended that any additional configuration or overlays should reside in a separate folder.
 
 ### Can `kctrl` be used to publish packages in a CI pipeline?
 Yes! `kctrl` remembers the answers to questions that have been answered.

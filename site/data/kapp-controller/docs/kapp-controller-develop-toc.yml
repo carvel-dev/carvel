@@ -27,7 +27,7 @@ toc:
         url: /packaging-tutorial
       - page: "Consuming Packages using the CLI"
         url: /kctrl-package-tutorial
-      - page: Authoring packages with the CLI
+      - page: Authoring packages using the CLI
         url: /kctrl-package-authoring
       - page: OSS Carvel Packages
         url: /oss-packages
