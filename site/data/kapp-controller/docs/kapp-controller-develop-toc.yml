@@ -27,6 +27,8 @@ toc:
         url: /packaging-tutorial
       - page: "Consuming Packages using the CLI"
         url: /kctrl-package-tutorial
+      - page: Authoring packages using the CLI
+        url: /kctrl-package-authoring
       - page: OSS Carvel Packages
         url: /oss-packages
       - page: Artifact Formats
@@ -61,5 +63,7 @@ toc:
     subfolderitems:
       - page: kapp-controller FAQ
         url: /faq
+      - page: kctrl FAQ
+        url: /kctrl-faq
       - page: Security
         url: /security
