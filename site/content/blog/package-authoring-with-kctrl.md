@@ -37,7 +37,7 @@ Today, package authors are supposed to know tools like [imgpkg](https://carvel.d
 
 * [**kctrl package repo release**](/kapp-controller/docs/latest/authoring-command/#releasing-a-package-repository): This command will create and push the package repository bundle consisting of all the package and packageMetadata files present in the `packages` folder in the working directory. This repository bundle can later on be consumed by package consumers.
 
-![Kctrl flow for kubernetes-package-authoring2](/images/blog/introducing-kctrl-package-authoring-commands2.png)
+![Kctrl flow for kubernetes-package-authoring](/images/blog/introducing-kctrl-package-authoring-commands.png)
 
 All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/latest/kctrl-package-authoring.md)!
 
