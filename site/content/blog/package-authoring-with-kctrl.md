@@ -26,7 +26,7 @@ Package Authoring is an iterative process and below are the most common steps pe
 ## How does `kctrl` help package authors?
 Today, package authors are supposed to know tools like [imgpkg](https://carvel.dev/imgpkg/), [kbld](https://carvel.dev/kbld/), [vendir](https://carvel.dev/vendir/), etc. before they start on the package authoring journey. These Carvel tools has a learning curve of itself. We wanted to introduce a set of CLI commands that guide users in performing most common packaging steps so that they are able to create and release the package without knowing these tools.
 
-{{< asciinema key="authoring-commands-blog" rows="10" preload="1" >}}
+{{< asciinema key="authoring-commands-blog" rows="30" preload="1" >}}
 
 ## What are `kctrl` package authoring commands?
 * [**kctrl package init**](/kapp-controller/docs/latest/authoring-command/#initialising-the-package): To initialize the Package, PackageInstall and other resources. These resources will be used by the subsequent commands.

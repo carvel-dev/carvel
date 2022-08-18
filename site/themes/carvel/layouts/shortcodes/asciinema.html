@@ -2,7 +2,7 @@
     <asciinema-player
         src="/casts/{{ with .Get "key" }}{{ . }}{{ end }}.cast"
         cols="{{ if .Get "cols" }}{{ .Get "cols" }}{{ else }}640{{ end }}"
-        rows="50"
+        rows="{{ if .Get "rows" }}{{ .Get "rows" }}{{ else }}50{{ end }}"
         {{ if .Get "autoplay" }}autoplay="{{ .Get "autoplay" }}"{{ end }}
         {{ if .Get "preload" }}preload="{{ .Get "preload" }}"{{ end }}
         {{ if .Get "loop" }}loop="{{ .Get "loop" }}"{{ end }}
