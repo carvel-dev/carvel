@@ -38,7 +38,7 @@ Today, package authors are supposed to know tools like [imgpkg](https://carvel.d
 
 ![Kctrl flow for kubernetes-package-authoring2](/images/blog/introducing-kctrl-package-authoring-commands2.png)
 
-All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find tutorial with end to end workflow for package authoring [here]()!
+All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/develop/kctrl-package-authoring.md)!
 
 ## What is next for `kctrl` package authoring?
 Some of the upcoming features in pipeline are:
