@@ -1,6 +1,6 @@
 ---
-title: "Introducing Kubernetes package authoring with kctrl"
-slug: pkg-authoring-cmds-kctrl-release-blog
+title: "Introducing kctrl package authoring commands"
+slug: kctrl-pkg-authoring-cmds
 date: 2022-08-19
 author: Rohit Aggarwal, Soumik Majumder
 excerpt: "Learn about the package authoring commands introduced in kctrl and how it makes it easier for package authors to create Carvel packages."
