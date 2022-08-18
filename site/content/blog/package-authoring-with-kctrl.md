@@ -49,8 +49,6 @@ Some of the upcoming features in pipeline are:
 ## Provide Feedback
 We are excited to hear from you about your experience with the tool. There is a github [issue](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/831) created to collect the feedback/feature request/suggestion which you would like to see in the future releases. We encourage you to post it there. Alternatively, you can post it in the [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) slack channel.
 
-This [blog](/blog/making-the-most-out-of-clis/) illustrates how `kctrl` fits in with other CLIs interacting with resources on the cluster and enhances workflows.
-
 ## Are you using Carvel?
 
 If you are using any of the Carvel tools, first we would like to thank you! Our goal is to grow the community, improve Carvel and help each other. One of the best ways that helps us do that is to know how others are using the tools. Please add a comment to [this pinned issue](https://github.com/vmware-tanzu/carvel/issues/213) with details on your use case with any of the Carvel tools.
