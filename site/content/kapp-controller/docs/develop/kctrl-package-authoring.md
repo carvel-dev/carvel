@@ -37,6 +37,9 @@ cert-manager.yaml
 ### Releasing packages
 
 Now that `kctrl` knows what it is dealing with, we can use the release command to make a publish Package and PackageMetadata resources.
+```
+$ kctrl package release --version 1.0.0
+```
 
 We just provide a image registry that `kctrl` can push OCI images to. Ensure that your host is authorised to push to the registry.
 
@@ -414,6 +417,9 @@ status:
 The `dev` command will process these resources just like they would on the cluster.
 However, we would like to build an image from source and use the configuration in the root of the directory.
 We use the `--local` and `--build` flags to indicate this.
+
+We need to ensure that the service account referred to in the file is created on the cluster.
+Alternatively, it can be replaced by a service account that has already been created.
 
 `kctrl` needs to be informed where it can find the folder `config`. This is done by using the annotation 
 `kctrl.carvel.dev/local-fetch-0: .` on the PackageInstall resource. It tells `dev` that
