@@ -90,6 +90,15 @@ In either case, the bundle image and all dependent images are copied to the dest
 
 **Note:** To generate tags that provide information on the origin of the images use the flag `--repo-based-tags`
 
+
+### Resume copy of image or bundle to tar
+
+If the copy to tar was interrupted by a network problem it can be resumed by providing the flag `--resume` to the `copy` command
+
+```bash-plain
+$ imgpkg copy -b index.docker.io/k8slt/sample-bundle --to-tar=/Volumes/secure-thumb/bundle.tar --resume
+```
+
 ### Copying via lock file
 
 [BundleLock configuration](resources.md#bundlelock-configuration) can be used as input to the copy command via the `--lock` flag.

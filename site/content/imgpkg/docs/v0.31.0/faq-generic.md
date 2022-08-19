@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/faq-generic]
 title: FAQ
 ---
 
