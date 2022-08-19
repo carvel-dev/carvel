@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/packaging]
 title: Package Management
 ---
 
@@ -265,6 +265,8 @@ spec:
   # specifies the length of time to wait, in time + unit
   # format, before reconciling.(optional; default=10m)
   syncPeriod: 1m
+  # specifies service account that will be used to install underlying package contents
+  serviceAccountName: fluent-bit-sa
   # specifies that Package should be deployed to destination cluster;
   # by default, cluster is same as where this resource resides (optional)
   # NOTE: if you provide a serviceAccountName then the cluster block will be ignored.
@@ -278,8 +280,6 @@ spec:
       # specifies key that contains kubeconfig (optional - by default kubeconfig
       # will be expected under a key named "value")
       key: value
-  # specifies service account that will be used to install underlying package contents
-  serviceAccountName: fluent-bit-sa
   packageRef:
     # Specifies the name of the package to install (required)
     refName: fluent-bit.vmware.com
