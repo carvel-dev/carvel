@@ -13,7 +13,7 @@ In today's post, we are going to see how the kctrl CLI eases the process of pack
 
 A [package](https://carvel.dev/kapp-controller/docs/latest/packaging/#package) is a combination of configuration metadata and OCI images. It informs the package manager what software it holds and how to install itself onto a Kubernetes cluster.
 
-A package author encapsulates, versions and distributes Kubernetes manifests as package for package consumers to install on a Kubernetes cluster. They can choose to create a package by using a third party manifest, e.g. they can choose to create a package from [cert-manager](https://cert-manager.io/), [Dynatrace](https://www.dynatrace.com/), etc., or they can distribute their own project Kubernetes manifest by creating a package.
+A package author encapsulates, versions and distributes Kubernetes manifests as package for package consumers to install on a Kubernetes cluster. They can choose to create a package by using a third party manifest like ones released by [cert-manager](https://cert-manager.io/), [Dynatrace](https://www.dynatrace.com/), etc., or they can distribute their own project Kubernetes manifest by creating a package.
 
 
 ## Typical Package Authoring journey
@@ -21,10 +21,10 @@ Package Authoring is an iterative process and below are the most common steps pe
 1. Authors know about the Kubernetes manifest they want to package.
 2. Add/change the manifest by adding additional [overlay](https://carvel.dev/ytt/docs/latest/ytt-overlays/)/[template](https://carvel.dev/ytt/docs/latest/#templating) and test the package. This is the iterative part where authors want to make the changes and test them quickly.
 3. Once all the manifest are in place, create the [imgpkg](https://carvel.dev/imgpkg/) bundle (to be mentioned in the package) and the package itself.
-4. Add the package to the package repository for distribution.
+4. Add the package to a package repository for distribution.
 
 ## How does `kctrl` help package authors?
-Today, package authors are supposed to know tools like [imgpkg](https://carvel.dev/imgpkg/), [kbld](https://carvel.dev/kbld/), [vendir](https://carvel.dev/vendir/), etc. before they start on the package authoring journey. These Carvel tools has a learning curve of itself. We wanted to introduce a set of CLI commands that guide users in performing most common packaging steps so that they are able to create and release the package without knowing these tools.
+Today, before package authors start on their authoring journey, are required to know about tools like [imgpkg](https://carvel.dev/imgpkg/), [kbld](https://carvel.dev/kbld/), [vendir](https://carvel.dev/vendir/), etc. which are building blocks for Carvel packages. Our intention is to introduce a set of CLI commands that would guide authors through the common packaging steps to enable them to create and release the packages without being familiar with these tools, while also learning about them in the process. We aim to achieve most of the scenarios using kctrl. For more complex use cases authors can always leverage these tools.
 
 {{< asciinema key="authoring-commands-blog" rows="30" preload="1" speed="2">}}
 
@@ -33,13 +33,13 @@ Today, package authors are supposed to know tools like [imgpkg](https://carvel.d
 
 * [**kctrl dev**](/kapp-controller/docs/latest/authoring-command/#dev): This command will use the Package and PackageInstall generated above and deploy them locally. By locally, we mean that kapp-controller need not be installed on the Kubernetes cluster. Also, it will eliminate the need to push the imgpkg bundle to an OCI registry during the development stage. This will be useful when you are develping the additional overlay/template.
 
-* [**kctrl package release**](/kapp-controller/docs/latest/authoring-command/#releasing-the-package): This command will create and upload the imgpkg bundle with all the Kuberentes manifest of the software. Also, it will create the `package.yml` and `metadata.yml` which can be either checkin to the package repository or released as part of the release artifacts.
+* [**kctrl package release**](/kapp-controller/docs/latest/authoring-command/#releasing-the-package): This command will create and upload the imgpkg bundle with all the Kubernetes manifest of the software. Also, it will create the `package.yml` and `metadata.yml` files which can be either checked in to the package repository or released as part of the release artifacts.
 
-* [**kctrl package repo release**](/kapp-controller/docs/latest/authoring-command/#releasing-a-package-repository): This command will create and push the package repository bundle consisting of all the package and packageMetadata files present in the `packages` folder in the working directory. This repository bundle can later on be consumed by package consumers.
+* [**kctrl package repo release**](/kapp-controller/docs/latest/authoring-command/#releasing-a-package-repository): This command will create and push the package repository bundle consisting of all the Package and PackageMetadata files present in the `packages` folder of the working directory. This repository bundle can later on be consumed by package consumers.
 
 ![Kctrl flow for kubernetes-package-authoring](/images/blog/introducing-kctrl-package-authoring-commands.png)
 
-All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/latest/kctrl-package-authoring.md)!
+All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find a tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/latest/kctrl-package-authoring.md)!
 
 `kctrl` [v0.40.0](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.40.0) is an alpha release of the package authoring commands. We are excited for you to try out the tool. We are eager to hear about your experiences and how it solves your use-case. There is a github [issue](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/831) created to collect the feedback/feature request/suggestion which you would like to see in the future releases. We encourage you to post it there. Alternatively, you can post it in the [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) slack channel.
 
