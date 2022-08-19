@@ -33,7 +33,7 @@ Today, before package authors start on their authoring journey, are required to 
 
 * [**kctrl dev**](/kapp-controller/docs/develop/authoring-command/#dev): This command will use the Package and PackageInstall generated above and deploy them locally. By locally, we mean that kapp-controller need not be installed on the Kubernetes cluster. Also, it will eliminate the need to push the imgpkg bundle to an OCI registry during the development stage. This will be useful when you are develping the additional overlay/template.
 
-* [**kctrl package release**](/kapp-controller/docs/develop/authoring-command/#releasing-the-package): This command will create and upload the imgpkg bundle with all the Kubernetes manifest of the software. Also, it will create the `package.yml` and `metadata.yml` files which can be either checked in to the package repository or released as part of the release artifacts.
+* [**kctrl package release**](/kapp-controller/docs/develop/authoring-command/#releasing-the-package): This command will create and upload the imgpkg bundle with all the Kubernetes manifests of the software. Also, it will create the `package.yml` and `metadata.yml` files which can be either checked in to the package repository or released as part of the release artifacts.
 
 * [**kctrl package repo release**](/kapp-controller/docs/develop/authoring-command/#releasing-a-package-repository): This command will create and push the package repository bundle consisting of all the Package and PackageMetadata files present in the `packages` folder of the working directory. This repository bundle can later on be consumed by package consumers.
 
