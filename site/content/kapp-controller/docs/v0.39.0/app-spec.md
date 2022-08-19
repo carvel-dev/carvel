@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-spec]
 title: App CR spec
 ---
 
@@ -210,6 +210,17 @@ spec:
           - configMapRef:
               name: cfgmap-name
           - path: values/shared.yml
+          # downwardAPI allows passing info about App CR as values into templates (v0.39.0+)
+          - downwardAPI:
+            items:
+              # name specifies the key used when the downwardAPI values are rendered. 
+              # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
+              # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
+              - name: namespace
+                # fieldPath accepts relaxed jsonpath to select metadata fields from the AppCR (name, namespace, uid, labels, annotations)
+                fieldPath: metadata.namespace
+              - name: specificAnnotation
+                fieldPath: metadata.annotations['specificAnnotation']
 
     # use kbld to resolve image references to use digests
     - kbld:
@@ -227,13 +238,42 @@ spec:
         name: custom-name
         # set namespace explicitly, default is App CR's namespace (optional; v0.13.0+)
         namespace: custom-ns
-        # one or more secrets, config maps, paths that provide values (optional)
+        # one or more secrets, config maps, paths, downwardAPI that provide values (optional)
         valuesFrom:
           - secretRef:
               name: secret-name
           - configMapRef:
               name: cfgmap-name
           - path: values/shared.yml
+          # downwardAPI allows passing info about App CR as values into templates (v0.39.0+)
+          - downwardAPI:
+            items:
+            # name specifies the key used when the downwardAPI values are rendered. 
+            # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
+            # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
+            - name: namespace
+            # fieldPath accepts relaxed jsonpath to select metadata fields from the AppCR (name, namespace, uid, labels, annotations)
+              fieldPath: metadata.namespace
+            - name: specificAnnotation
+              fieldPath: metadata.annotations['specificAnnotation']
+
+    # use cue to template configuration
+    - cue:
+        inputExpression: "data:"
+        valuesFrom:
+          - secretRef:
+              name: secret-values
+          # downwardAPI allows passing info about App CR as values into templates (v0.39.0+)
+          - downwardAPI:
+            items:
+              # name specifies the key used when the downwardAPI values are rendered. 
+              # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
+              # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
+              - name: namespace
+                # fieldPath accepts relaxed jsonpath to select metadata fields from the AppCR (name, namespace, uid, labels, annotations)
+                fieldPath: metadata.namespace
+              - name: specificAnnotation
+                fieldPath: metadata.annotations['specificAnnotation']
 
     # use sops to decrypt *.sops.yml files (optional; v0.11.0+)
     - sops:
