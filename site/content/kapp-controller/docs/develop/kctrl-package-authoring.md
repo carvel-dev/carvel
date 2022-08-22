@@ -1,4 +1,5 @@
 ---
+aliases: [/kapp-controller/docs/latest/kctrl-package-authoring]
 title: Authoring packages with kctrl
 ---
 
@@ -18,6 +19,10 @@ $ cd certman-package
 ```
 
 Next we run the `init` command to set the stage!
+
+```bash
+kctrl package init
+```
 
 `kctrl` asks a few quick questions to gather what it needs to know.
 We know that `cert-manager` lives on the GitHub repository [_cert-manager/cert-manager_](https://github.com/cert-manager/cert-manager) and that it's releases have a manifest `cert-manager.yaml` which let's users deploy cert-manager on cluster. Our goal would be to build a package around this artifact.
@@ -427,7 +432,7 @@ the files `kapp-controller` would otherwise fetch, is available in the root of t
 
 Let's build and deploy from source.
 ```bash
-$ kctrl dev -f package-resources.yml -l -b
+$ kctrl dev -f package-resources.yml --local --build
 Target cluster 'https://192.168.64.10:8443' (nodes: minikube)
 
 apiVersion: packaging.carvel.dev/v1alpha1
