@@ -15,6 +15,7 @@ params:
   - kapp
   - kbld
   - imgpkg
+  - secretgen-controller
   - vendir
   search:
     app_id: BSVMS0V37R
@@ -117,6 +118,19 @@ params:
     - v0.33.1
     - v0.32.0
     - v0.31.0
+  secretgen-controller:
+    name: secretgen-controller
+    short_name: secretgen-controller
+    root_link: https://github.com/vmware-tanzu/carvel-secretgen-controller
+    latest_docs_link: https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/README.md
+    github_url: https://github.com/vmware-tanzu/carvel-secretgen-controller
+    search: true
+    search_index_name: carvel-secretgen-controller
+    search_api_key: a38560864c2e9128ae57d5734df438ff
+    versioning: false
+    versions:
+    - develop
+
   vendir:
     name: vendir
     short_name: vendir
