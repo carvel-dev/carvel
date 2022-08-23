@@ -89,3 +89,10 @@ values if `package-resources.yml` and `package-build.yml` are committed to a rep
 
 ### Can we provide our own `ImagesLock` resource instead of it being generated when we run the `pkg release` command?
 Yes, the path containing the file will need to be added [here](/kapp-controller/docs/develop/kctrl-faq/#how-can-we-add-ytt-overlays-and-values-schema-for-upstream-release-artifacts), before updating `package-build.yml` and setting the key `useKbldImagesLock` in the `export` section to false.
+
+### Can I build images from source while using `kctrl dev`?
+Yes, if the `--kbld-build` command is supplied to the `dev` command, it will build images if a `kbld` config (similar to the one seen [here](https://carvel.dev/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl)) defines it.
+
+NOTE: If your cluster points to the same `docker` daemon using used by `kbld` while building images. The images need not be pushed to a registry (only `sources` need to be defined).
+This is useful in some development environments, for example, if you are using a `minikube` cluster, and your local enironment points to the 
+`docker` daemon inside the `minikube` cluster, this can be set up by doing something like (`eval $(minikube docker-env)`)
