@@ -65,6 +65,32 @@
                     }
                 }
             }
+            .grid.four {
+                padding-bottom: 60px;
+                .card {
+                    position: relative;
+                    padding: 15px 10px;
+                    box-shadow: 0px 2px 6px rgba(0, 0, 0, .2);
+                    background-color: $white;
+                    text-align: center;
+                    .image {
+                        min-height: 60px;
+                        min-height: 60px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    h3 {
+                        color: $darkgrey;
+                        font-size: 18px;
+                    }
+                    p {
+                        color: $grey;
+                        font-family: $metropolis-light;
+                    }
+                }
+            }
+
         }
     }
     @include breakpoint(small) {
@@ -130,6 +156,28 @@
     &.wrapper {
         padding-bottom: 0px;
     }
+    .grid.four .col {
+        border: 1px solid $lightgrey;
+        padding: 15px;
+        column-gap: 15px;
+        h3 {
+            font-size: 20px;
+            margin: 0px;
+            a {
+                font-weight: 300;
+                font-size: 20px;
+                font-family: $metropolis-regular;
+            }
+        }
+        p {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+    }
+    &.wrapper {
+        padding-bottom: 0px;
+    }
+
 }
 
 .team {
@@ -146,8 +194,12 @@
         row-gap: 40px;
         margin-top: 40px;
     }
+    .grid.four {
+        row-gap: 40px;
+        margin-top: 40px;
+    }
     .bio {
-        display: grid;  
+        display: grid;
         grid-template-columns: 120px 1fr;
         column-gap: 20px;
         .info {
