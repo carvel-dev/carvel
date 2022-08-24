@@ -29,6 +29,11 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | July 7, 2022      | [Neil Hickey](https://github.com/neil-hickey)|  How to template a Concourse pipeline using ytt | Blog | N/A |
 | July 14, 2022     | [Renu Yarday](https://github.com/renuy)| Using kapp in dagger pipeline| Blog | [@renu_yarday](https://twitter.com/renu_yarday) |
 | July 21, 2022     | [Yash Sethiya](https://github.com/sethiyash) | Setup kapp deploy with OIDC Github + GKE/AWS | Blog | N/A |
-| August 11, 2022    | Joe Kimmel | Carvel: July In Review | blog | N/A |
-| August 18, 2022   | | | |
-| August 25, 2022   | | | |
+| August 11, 2022    | [Joe Kimmel](https://github.com/joe-kimmel-vmw) | Carvel: July In Review | Blog | N/A |
+| August 17, 2022    | [Ollie Hughes](https://github.com/ojhughes) | Local development workflow with Tilt and Carvel | Blog | N/A |
+| August 19, 2022    | [Rohit Aggarwal](https://github.com/rohitagg2020), [Soumik Majumder](https://github.com/100mik) | Introducing kctrl package authoring commands | Blog | N/A |
+| August 31, 2022   | | | |
+| September 7, 2022   | | | |
+| September 14, 2022   | | | |
+| September 21, 2022   | | | |
+| September 28, 2022   | | | |
