@@ -371,6 +371,23 @@ _(Also considered: [programmatically invoking multiple validations](#programmati
 > - [ ] detail how rule descriptions are included in documentation.
 > - [x] for each OpenAPI/JSON Schema validation keyword, show exactly how that would be expressed in `ytt` validation.
 > - [ ] describe the fallback strategy where authors can represent their rule where there _is_ no OpenAPI equivalent.
+> - [ ] Incorporate feedback about key schema needs
+>       > Maybe these have already been added and I haven't been paying attention, but are there equivalents for the following in OpenAPI schema:
+>       > ```yaml
+>       > labelSelector:
+>       >   type: object
+>       >     properties:
+>       >       matchLabels:
+>       >         type: object
+>       >         x-kubernetes-preserve-unknown-fields: true
+>       >         additionalProperties:
+>       >           type: string
+>       > ```
+>       > 
+>       > That is:
+>       > additionalProperties so can force values must be of certain type in an object.
+>       > x-kubernetes-preserve-unknown-fields so can allow any number of keys in object.
+>       > These are the two main things I would care about.
 
 When the user inspects the schema:
 
@@ -380,8 +397,7 @@ $ ytt ... --data-values-schema-inspect -o openapi-v3
 
 Validations defined on schema are included in that export.
 
-
-OpenAPI v3 / JSON Schema validation keywords:
+##### OpenAPI v3 / JSON Schema validation keywords:
 
 Supported (ytt rule ==> OpenAPI v3 / JSON Schema property):
 - `max=` / `@ytt:assert.max()` ==> [maximum](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00#section-5.2)
