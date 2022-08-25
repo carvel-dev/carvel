@@ -120,6 +120,19 @@ strong {
     color: $green;
 }
 
+.grid.four {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 15px;
+    @include breakpoint(medium) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @include breakpoint(small) {
+        grid-template-columns: 1fr;
+    }
+}
+
 .grid.three {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

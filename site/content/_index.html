@@ -11,7 +11,7 @@ title: "Home"
 	</div>
 	<div class="grid-container">
 		<div class="wrapper">
-			<div class="grid three">
+			<div class="grid four">
                 <a class="card" href="{{% subproject_prop "kapp-controller" "root_link" %}}">
 					<div class="image"><img src="/img/kapp-controller.svg" /></div>
 					<h3>kapp-controller</h3>
@@ -37,11 +37,16 @@ title: "Home"
                     <h3>imgpkg</h3>
                     <p>Bundle and relocate application configuration (with images) via Docker registries. Be assured app contents are immutable.</p>
                 </a>
-				<a class="card" href="{{% subproject_prop "vendir" "root_link" %}}">
-					<div class="image"><img src="/img/vendir.svg" /></div>
-					<h3>vendir</h3>
-					<p>Declaratively state what files should be in a directory.</p>
-				</a>
+                <a class="card" href="{{% subproject_prop "vendir" "root_link" %}}">
+                    <div class="image"><img src="/img/vendir.svg" /></div>
+                    <h3>vendir</h3>
+                    <p>Declaratively state what files should be in a directory.</p>
+                </a>
+                <a class="card" href="{{% subproject_prop "secretgen-controller" "root_link" %}}">
+                    <div class="image"><img src="/img/sgc.svg" style="height: 80px" /></div>
+                    <h3>secretgen-controller</h3>
+                    <p>Generate various types of Secrets in-cluster as well as export and import Secrets across namespaces.</p>
+                </a>
 			</div>
 		</div>
 	</div>
@@ -62,7 +67,7 @@ title: "Home"
 
 <div class="wrapper tools">
     <h2>Experimental Tools</h2>
-    <div class="grid three">
+    <div class="grid two">
         <div class="col">
             <h3><a href="https://github.com/vmware-tanzu/carvel-kwt" target="_blank">kwt</a></h3>
             <p>Expose Kubernetes overlay network to your machine. No more port mapping, or starting multiple proxies.</p>
@@ -70,10 +75,6 @@ title: "Home"
         <div class="col">
             <h3><a href="https://github.com/vmware-tanzu/terraform-provider-carvel" target="_blank">terraform-provider-carvel</a></h3>
             <p>Use ytt, kbld, and/or kapp in your Terraform module.</p>
-        </div>
-        <div class="col">
-            <h3><a href="https://github.com/vmware-tanzu/carvel-secretgen-controller" target="_blank">secretgen-controller</a></h3>
-            <p>Generate various types of Secrets in-cluster as well as export and import Secrets across namespaces.</p>
         </div>
     </div>
 </div>
