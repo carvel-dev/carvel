@@ -62,6 +62,16 @@ spec:
   - displayName: fluent-webhook
     version: 2.3.4
     description: a fluent webhook
+  # KappControllerVersionSelection specifies the versions of kapp-controller which can install this package.
+  # PackageInstall will fail if this constraint is not met.
+  kappControllerVersionSelection: 
+    # Constraint to limit acceptable versions for this package.
+    constraints: ">0.40.0 <1.0.0"
+  # KubernetesVersionSelection specifies the versions of kubernetes which this package can be installed on.
+  # PackageInstall will fail if this constraint is not met.
+  kubernetesVersionSelection: 
+    # Constraint to limit acceptable versions for this package.
+    constraints: ">0.20.5"
   # valuesSchema can be used to show template values that
   # can be configured by users when a Package is installed.
   # These values should be specified in an OpenAPI schema format. (optional)
