@@ -50,11 +50,10 @@
 }
 
 /* Content */
-.content .playground-wrapper {
+.content {
   margin: 0 auto;
   padding: 0 50px;
   width: 980px;
- 
 }
 
 /* Use to hide required elements that are not ready */
@@ -264,8 +263,8 @@
 }
 
 .playground-wrapper {
-  margin: 0px -50px;
-  padding: 12px 36px 36px;
+  margin: 0px 0px;
+  padding: 12px 0px 36px;
   background: inherit;
   clear: both;
 }
