@@ -11,6 +11,10 @@ toc:
     subfolderitems:
       - page: YAML and Annotations
         url: /yaml-primer
+  - title: Cheat Sheets
+    subfolderitems:
+      - page: Schema Validations
+        url: /schema-validations-cheat-sheet
   - title: How To
     subfolderitems:
       - page: Get Started & Modularize code
