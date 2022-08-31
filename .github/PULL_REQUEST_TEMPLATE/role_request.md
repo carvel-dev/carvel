@@ -6,7 +6,7 @@ labels: role, community
 ---
 
 ### Summary
-This issue is a formal request for consideration of a role change in the Carvel project by a member of the community. 
+This is a formal request for consideration of a role change in the Carvel project by a member of the community. 
 
 Each role is defined in our contribution model document. If you would like to request mutliple roles / multiple subprojects, 
 please open a new issue for each request.
