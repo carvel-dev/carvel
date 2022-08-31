@@ -138,6 +138,9 @@ assert.one_not_null().check({"foo": 1, "bar": 2})
 
 # passes: one of named values is not null
 assert.one_not_null(["foo", "bar"]).check({"foo": 1, "bar": None, "baz": 3})
+
+# passes: missing keys are ok
+assert.one_not_null(["foo", "not-present"]).check({"foo": 1, "bar": 2})
 ```
 
 ### assert.one_of()
