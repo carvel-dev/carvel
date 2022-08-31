@@ -542,6 +542,9 @@ This keyword is equivalent to:
 Where:
 - `nullable` (`bool`) — whether `null` is a valid value.
 
+When present, this rule is checked before any other; this allows other rules (including custom rules) to assume the value is not null.
+
+
 This keyword is equivalent to:
 
 ```
