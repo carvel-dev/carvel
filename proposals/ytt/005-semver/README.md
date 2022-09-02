@@ -2,7 +2,7 @@
 title: "Semver support in the standard library"
 authors: [ "Max Brauer <mbrauer@vmware.com>" ]
 status: "draft"
-approvers: [ ? ]
+approvers: [ "Dmitriy Kalinin <dkalinin@vmware.com>", "John Ryan <ryanjo@vmware.com>" ]
 ---
 
 # Semver
