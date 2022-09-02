@@ -52,54 +52,35 @@ Note: Credentials provided via an env variable for a specific registry will take
 
 ## Via IaaS
 
-As of v0.18.0+, `imgpkg` will attempt to authenticate itself via the underlying IaaS:
+By default, `imgpkg` will **NOT** attempt to authenticate itself via the underlying IaaS:
 
-This auth feature can be enabled/disabled via a feature flag (enabled by default): `IMGPKG_ENABLE_IAAS_AUTH=true|false`
+To activate this behavior you can set the environment variable `IMGPKG_ACTIVE_KEYCHAINS` with the keychains to the IaaS that you are currently using.
 
-Below is a list of IaaS providers that imgpkg will authenticate with:
+*Note:* To mimic the old behavior of `imgpkg` set the environment variable as follows `export IMGPKG_ACTIVE_KEYCHAINS=gke,aks,ecr`
+
+Below is a list of IaaS providers that `imgpkg` can authenticate with:
 
 - [GCP](https://cloud.google.com/compute/docs/metadata/overview)
-- [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) Note: If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value the shared config file (~/.aws/config) will
-also be loaded in addition to the shared credentials file (~/.aws/credentials).
+
+  To activate it use `export IMGPKG_ACTIVE_KEYCHAINS=gke`
+
+- [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+
+  To activate it use `export IMGPKG_ACTIVE_KEYCHAINS=ecr`
+  For more information [check the helper](https://github.com/awslabs/amazon-ecr-credential-helper#configuration)
+
 - [Azure](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-managed-identities-work-vm)
 
-Note: When using Azure, a required configuration file needs to be provided via the flag `--registry-azure-cr-config <path-to-config>` or via the env variable `IMGPKG_REGISTRY_AZURE_CR_CONFIG=<path-to-config>`
+  To activate it use `export IMGPKG_ACTIVE_KEYCHAINS=aks`
+  For more information check [this library](https://github.com/chrismellard/docker-credential-acr-env)
 
-See below the various configuration options allowed:
-```yaml
-{
-  # The cloud environment identifier. Takes values from https://github.com/Azure/go-autorest/blob/ec5f4903f77ed9927ac95b19ab8e44ada64c1356/autorest/azure/environments.go#L13
-  "cloud": "",
-  # The AAD Tenant ID for the Subscription that the cluster is deployed in
-  "tenantId": "TenantID",
-  # The ClientID for an AAD application with RBAC access to talk to Azure RM APIs
-  "aadClientId": "AADClientID",
-  # The ClientSecret for an AAD application with RBAC access to talk to Azure RM APIs
-  "aadClientSecret": "AADClientSecret",
-  # The path of a client certificate for an AAD application with RBAC access to talk to Azure RM APIs
-  "aadClientCertPath": "AADClientCertPath",
-  # The password of the client certificate for an AAD application with RBAC access to talk to Azure RM APIs
-  "aadClientCertPassword": "AADClientCertPassword",
-  # Use managed service identity for the virtual machine to access Azure ARM APIs
-  "useManagedIdentityExtension": false,
-  # UserAssignedIdentityID contains the Client ID of the user assigned MSI which is assigned to the underlying VMs. If empty the user assigned identity is not used.
-  # More details of the user assigned identity can be found at: https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview
-  # For the user assigned identity specified here to be used, the UseManagedIdentityExtension has to be set to true.
-  "userAssignedIdentityID": "UserAssignedIdentityID",
-  # The ID of the Azure Subscription that the cluster is deployed in
-  "subscriptionId": "SubscriptionID",
-  # IdentitySystem indicates the identity provider. Relevant only to hybrid clouds (Azure Stack).
-  # Allowed values are 'azure_ad' (default), 'adfs'.
-  "identitySystem": "IdentitySystem",
-  # ResourceManagerEndpoint is the cloud's resource manager endpoint. If set, cloud provider queries this endpoint
-  # in order to generate an autorest.Environment instance instead of using one of the pre-defined Environments.
-  "resourceManagerEndpoint": "ResourceManagerEndpoint",
-  # The AAD Tenant ID for the Subscription that the network resources are deployed in
-  "networkResourceTenantID": "NetworkResourceTenantID",
-  # The ID of the Azure Subscription that the network resources are deployed in
-  "networkResourceSubscriptionID": "NetworkResourceSubscriptionID"
-}
-```
+- Github
+
+  To activate use `export IMGPKG_ACTIVE_KEYCHAINS=github`
+  Requires the environment variable `GITHUB_TOKEN` to be set to connect to ghcr.io
+
+**Deprecation:** The environment variable `IMGPKG_ENABLE_IAAS_AUTH` can be used only to activate all the keychains.
+This behavior will be removed in a future version.
 
 
 ## Via Command Flags
