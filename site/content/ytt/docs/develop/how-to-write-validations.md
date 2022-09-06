@@ -184,7 +184,7 @@ out of the box, the Consumer receives this message:
 ```console
 $ ytt -f schema.yaml
 ytt: Error: One or more data values were invalid:
-- "port" (schema.yaml:4) requires "a value greater or equal to 1024"; fail: 0 is less than 1024 (by schema.yaml:3)
+- "port" (schema.yaml:4) requires "a value greater or equal to 1024"; fail: value is less than 1024 (by schema.yaml:3)
 ```
 
 Where there are not "natural" limits, one might be able to use the zero or empty value...
