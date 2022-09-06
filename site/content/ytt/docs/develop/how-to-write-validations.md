@@ -14,7 +14,7 @@ One might do this for a number of reasons:
 
 This guide explains how to do all that with Validations.
 
-_(Looking for a quick start? see the [Validations Cheat Sheet](quick-ref-validations.md))_
+_(Looking for a quick start? see the [Validations Cheat Sheet](schema-validations-cheat-sheet.md))_
 
 ## What Validations Look Like
 
@@ -79,7 +79,7 @@ Here:
   - be at least one character long, _and_
   - be no more than 63 characters in length.
 
-_(For a list of the most common rules, see [Validations Cheat Sheet](quick-ref-validations.md))_
+_(For a list of the most common rules, see [Validations Cheat Sheet](schema-validations-cheat-sheet.md))_
 
 _(For details on the use and shape of individual rules, see [About Rules](#about-rules), below)_
 
