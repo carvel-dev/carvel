@@ -425,7 +425,7 @@ ytt: Error:
 Attaches a validation to the type being declared by the annotated node.
 
 ```
-@schema/validation rule0, rule1, ... [,<named-rules>] [,when=] [,when_null_skip=]
+@schema/validation rule0, rule1, ... [,<named-rules>] [,when=]
 ```
 
 where:
@@ -439,12 +439,8 @@ where:
   - for the complete list, see [Named Validation Rules](#named-validation-rules), below.
 - `when=` (`function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
-- `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
-  - if the data value is also annotated `@schema/nullable`, this becomes `True`, by default.
 
-#### Conditional Validation
-
-The criteria in `when=` and `when_null_skip=` are evaluated (if present). The validation is run if _both_ are `True`. For guidance on writing these conditions, see [How To Write Validations](how-to-write-validations.md#conditional-validations).
+When present, the predicate given for `when=` is run. If it evaluates to `True`, the validation is run. For guidance on writing these conditions, see [How To Write Validations](how-to-write-validations.md#conditional-validations).
 
 #### Validation Rule Evaluation
 
