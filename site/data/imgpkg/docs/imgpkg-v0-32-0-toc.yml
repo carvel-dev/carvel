@@ -29,8 +29,14 @@ toc:
     subfolderitems:
       - page: General
         url: /faq-generic
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
       - page: Security
-        url: /security
+        shared_url: /security-policy
       - page: CA Certs on Windows
         url: /ca-certs-windows
       - page: Debugging
