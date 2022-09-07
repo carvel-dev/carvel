@@ -422,99 +422,178 @@ ytt: Error:
 
 ### @schema/validation
 
-> ⚠️ **This function is part of the experimental "validations" feature.\
-> ⚠️ Its interface and behavior are subject to change.** \
-> _To enable this feature, see [Blog: "Preview of ytt Validations"](/blog/ytt-validations-preview/)._
-
 Attaches a validation to the type being declared by the annotated node.
 
 ```
-@schema/validation rule0, rule1, ... [,<named-rules>] [,when=] [,when_null_skip=]
+@schema/validation rule0, rule1, ... [,<named-rules>] [,when=]
 ```
 
 where:
 - `ruleX` — any number of custom rules, each a 2-item tuple `(description, assertion)`
   - `description` (`string`) — a description of what a valid value is.
-  - `assertion` (`function(value) : None` | `function(value) : bool`) — that either `fail()`s or returns `False` when `value` is not valid.
+  - `assertion` (`function(value) : bool`) — returns `True` is the value is valid; returns `False` or `fail()`s if the value is invalid.
     - `value` (`string` | `number` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
-- `named-rules` — any number of built-in keywords that provide assertion functions for common scenarios.
-  - `min=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be >= the minimum provided. 
-    - equivalent to [@ytt:assert.min()](lang-ref-ytt-assert.md#assertmin)
-  - `max=` (`string` | `number` | `bool` | `list` | `dict` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — node's value must be <= the maximum provided.
-    - equivalent to [@ytt:assert.max()](lang-ref-ytt-assert.md#assertmax)
-  - `min_len=` (`number`) — length of node's value must be >= the minimum length provided.
-    - equivalent to [@ytt:assert.min_len()](lang-ref-ytt-assert.md#assertmin_len)
-  - `max_len=` (`number`) — length of node's value must be <= the maximum length provided.
-    - equivalent to [@ytt:assert.max_len()](lang-ref-ytt-assert.md#assertmax_len)
-  - `not_null=` (`bool`) — if set to `True`, the node's value must not be null.
-    - equivalent to [@ytt:assert.not_null()](lang-ref-ytt-assert.md#assertnot_null)
-  - `one_not_null=` (`bool` | `list`) — exactly one item in a map is not null.
-    - the node's value must be a map
-    - if a list of keys are given, only those keys are considered
-    - if `True` is given, all keys are considered
-    - equivalent to [@ytt:assert.one_not_null()](lang-ref-ytt-assert.md#assertone_not_null)
-  - `one_of=` (`list`) — node's value must be one of those in the supplied list.
-    - values can be of any type
-    - equivalent to [@ytt:assert.one_of()](lang-ref-ytt-assert.md#assertone_of)
-- `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. 
+    - the message given in the `fail()` will be incorporated in the violation message.
+- `<named-rules>` — a combination of one or more built-in keywords that provide assertion functions for common scenarios. 
+  - for a quick reference, see [Validations Cheat Sheet](quick-ref-validations.md).
+  - for the complete list, see [Named Validation Rules](#named-validation-rules), below.
+- `when=` (`function(value) : bool`) — criteria for when the validation rules should be checked. 
   - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
-- `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`. default: `False`
-  - if the data value is also annotated `@schema/nullable`, this becomes `True`, by default.
 
-The criteria in `when=` and `when_null_skip=` are evaluated (if present). The validation is run if _both_ are `True`.
+When present, the predicate given for `when=` is run. If it evaluates to `True`, the validation is run. For guidance on writing these conditions, see [How To Write Validations](how-to-write-validations.md#conditional-validations).
 
-Each rule is evaluated, in the order they appear in the annotation (left-to-right):
-- if all rules pass (either returns `True` or `None`), then the value is valid.
-- if a rule returns `False` (not `None`) or `fail()`'s, then the value is invalid.
+#### Validation Rule Evaluation
 
-The `named-rules` provide access to a set of built-in assertion functions that correspond to functions defined in the [`@ytt:assert` module](lang-ref-ytt-assert.md)
+When a validation runs, _all_ rules are evaluated. Rules are evaluated in the order they appear in the annotation (left-to-right).
 
-_Example 1: Out-of-the-box assertion rules_
+The one exception is the `not_null=` rule:
+- when present, this rule is evaluated _first_ — regardless of its position on the annotation.
+- if this rule is not satisfied, no other rules are evaluated.
 
-```yaml
-#@data/values-schema
+`not_null=` behaves this way so that all other rules can assume they are validating a non-null value. This simplifies all other rules as they need not perform a null-check.
+
+Validity:
+- if _all_ rules pass (i.e. returns `True`), then the value is valid.
+- if _any_ rule returns `False` or `fail()`'s, then the value is invalid.
+
+
+#### Named Validation Rules
+
+There are seven (7) built-in (so-called "named") rules:
+
+- [`max=`](#max) — the node's value must be <= the maximum given
+- [`max_len=`](#max_len) — the length of node's value must be <= the maximum given
+- [`min=`](#min) — the node's value must be >= the minimum given
+- [`min_len=`](#min_len) — the length of node's value must be >= the minimum given
+- [`not_null=`](#not_null) — the node's value must not be `null`
+- [`one_not_null=`](#one_not_null) — _exactly_ one (1) item in the map is not `null`.
+- [`one_of=`](#one_of) — the node's value must be one from the given set.
+
+Note: every named rule is also available as a function in the [`@ytt:assert` module](lang-ref-ytt-assert.md).
+
 ---
-login:
-  #@schema/validation min_len=1
-  username: admin
-  #@schema/validation min_len=1
-  password: password
 
-#@schema/validation max_len=15
-ipv4: "123.456.789.000"
+##### max=
 
-#@schema/nullable
-#@schema/validation not_null=True
-database:
-  driver: ""
-  #@schema/validation min_len=1
-  username: ""
-  db_name: ""
-  #@schema/validation min=1025
-  port: 0
-
-#@schema/validation max=10
-concurrent_threads: 3
+```
+@schema/validation max=maximum
 ```
 
-All values provided in the example schema pass the assertions, resulting in no error message.    
+Where:
+- `maximum` (`int` | `float` | `string` | `bool` | `list` ) — the largest allowable valid value (inclusive); see [Starlark: Comparisons](https://github.com/google/starlark-go/blob/master/doc/spec.md#comparisons) for how different values compare.
 
-_Example 2: Custom assertion-based rule_
+This keyword is equivalent to:
 
-```yaml
-#@data/values-schema
----
-#@ def is_dynamic_port(port):
-#@   return port in range(49142, 65536) or fail("is {}".format(port))
-#@ end
-#@schema/validation ("a TCP/IP port in the dynamic range: 49142 and 65536, inclusive", is_dynamic_port)
-adminPort: 1024
+```
+@schema/validation ("a value less than or equal to", lambda v: v <= maximum)
 ```
 
-If not overridden will produce the following error message:
+##### max_len=
 
-```console
-$ YTTEXPERIMENTS=validations ytt -f schema.yml
-ytt: Error: One or more data values were invalid:
-- "adminPort" (schema.yml:7) requires "a TCP/IP port in the dynamic range: 49142 and 65536, inclusive"; fail: is 1024 (by schema.yml:6)
+```
+@schema/validation max_len=maximum
+```
+
+Where:
+- `maximum` (`int`) — the longest allowable length (inclusive)
+
+This keyword is equivalent to:
+
+```
+@schema/validation ("length less than or equal to", lambda v: len(v) <= maximum)
+```
+
+##### min=
+
+```
+@schema/validation min=minimum
+```
+
+Where:
+- `minimum` (`int` | `float` | `string` | `bool` | `list` ) — the smallest allowable value (inclusive); see [Starlark: Comparisons](https://github.com/google/starlark-go/blob/master/doc/spec.md#comparisons) for how different values compare.
+
+This keyword is equivalent to:
+
+```
+@schema/validation ("a value greater than or equal to", lambda v: v >= minimum)
+```
+
+##### min_len=
+
+```
+@schema/validation min_len=(minimum)
+```
+
+Where:
+- `minimum` (`int`) — the shortest allowable length (inclusive)
+
+This keyword is equivalent to:
+
+```
+@schema/validation ("length greater than or equal to", lambda v: len(v) >= minimum)
+```
+
+##### not_null=
+
+```
+@schema/validation not_null=(nullable)
+```
+
+Where:
+- `nullable` (`bool`) — whether `null` is a valid value.
+
+This keyword is equivalent to:
+
+```
+@schema/validation ("not null", lambda v: v != None)
+```
+
+##### one_not_null=
+
+Requires a map to contain exactly one (1) item that has a non-null value.
+
+```
+@schema/validation one_not_null=([key0, key1,...] | True)
+```
+
+Where:
+- `keyX` (`string`) — keys within the annotated map to check for null/non-null; other map items are ignored.
+- `True` — check all contained map items for null/non-null.
+
+Each item that is referenced by this rule is almost always annotated as nullable:
+
+```yaml
+#@schema/validation one_not_null=["item1", "item2", "item3"]
+map:
+  #@schema/nullable
+  item1: ""
+  #@schema/nullable
+  item2: ""
+  #@schema/nullable
+  item3: ""
+  otherConfig: true
+```
+
+This keyword is equivalent to:
+
+```
+@schema/validation ("exactly one child not null", lambda v: assert.one_not_null([key0, key1,...]))
+```
+(see also [@ytt:assert.one_not_null()](lang-ref-ytt-assert.md#assertone_not_null))
+
+##### one_of=
+
+Requires value to be exactly one of the given enumeration.
+
+```
+@schema/validation one_of=[val0, val1, ...]
+```
+
+Where:
+- `[val1, val2, ...]` (list/tuple of any type) — the exhaustive set of valid values.
+
+This keyword is equivalent to:
+
+```
+@schema/validation ("one of [val0, val1, ...]", lambda v: v in [val0, val1, ...])
 ```

@@ -19,6 +19,8 @@ toc:
         url: /how-to-use-data-values
       - page: Write Schema
         url: /how-to-write-schema
+      - page: Write Validations
+        url: /how-to-write-validations
       - page: Export Schema in OpenAPI format
         url: /how-to-export-schema
       - page: Use Overlays
