@@ -295,18 +295,19 @@ Whenever a node is annotated `@schema/nullable`, then its default value is `null
 foo: 13
 ```
 
-The author may opt to short-circuit validations when the actual value is `null`:
+By default, validations are skipped when the actual value is `null`. Authors can insist that validations are run by including the `not_null=` rule:
 
 ```yaml
 #@data/values-schema
 ---
-#@schema/validation min=42, max=42, when_null_skip=True
+#@schema/validation min=42, max=42, not_null=True
 #@schema/nullable
 foo: 13
 ```
 
-(This is preferred instead of requiring _all_ validators to perform a null check to keep the overall complexity of the system to a minimum.)
+When present, the `not_null=` rule runs first. If it fails, all other rules are guaranteed to fail, so they are not run.
 
+_(also considered: [Opt-out of skipping validations when value is `null`](#opt-out-of-skipping-validations-when-value-is-null))_
 _(also considered: [automatically including `when_null_skip` when Data Value is nullable](#automatically-including-when_null_skip-for-nullable-data-values))._
 
 When the author has set the Data Value as "nullable" with the intent to require the consumer to supply their own value, this is the [Required Input (for types with no empty value)](#required-input-for-types-with-no-empty-value) use case.
@@ -503,7 +504,7 @@ Sources:
 Defines validity for the value of the annotated node.
 
 ```
-@assert/validate [rule0, rule1, ...] [,<named-rules>] [,when=] [,when_null_skip=]
+@assert/validate [rule0, rule1, ...] [,<named-rules>] [,when=]
 ```
 
 where:
@@ -518,7 +519,6 @@ where:
     - `{failure}` — when `assertion` fails, the message from that `assert.fail()` or empty string.
 - `<named-rules>` — any of the keyword arguments described in [Named Rules](#named-rules), below.
 - `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. If the criteria is met (function either returns `True` or `None`), the validations are checked; otherwise (function either returns `False` or `assert.fail()`s, none of the validations are checked.
-- `when_null_skip=` (`bool`) — a special-case of `when=` that checks if the value of the annotated node is `null`.
 
 Each rule is evaluated, in the order they appear in the annotation (left-to-right):
 - if all rules pass (either returns `True` or `None`), then the value is valid.
@@ -673,7 +673,7 @@ Note: if an author wishes to provide a custom violation message, they would use 
 Programmatically asserts that a given value is valid based on the set of supplied rules.
 
 ```python
-assert.validate(key, value, rule0, rule1, ... [,<named-rules>] [,when=] [,when_null_skip=])
+assert.validate(key, value, rule0, rule1, ... [,<named-rules>] [,when=]
 ```
 where:
 - `key` (`string`) — the name of the value being validated.
@@ -761,7 +761,7 @@ When present, this validator is always checked first.
 Attaches a validation to the type being declared by the annotated node.
 
 ```
-@schema/validation [rule0, rule1, ...] [,<named-rules>] [,when=] [,when_null_skip=]
+@schema/validation [rule0, rule1, ...] [,<named-rules>] [,when=]
 ```
 
 When the schema base document is generated, the corresponding node is annotated with `@assert/validate` with the same configuration provide _this_ annotation.
@@ -776,7 +776,7 @@ See [@assert/validate](#assertvalidate) for details about arguments to this anno
 Defines what a valid value is for all descendants which hold a "string" value.
 
 ```
-@schema/validation-defaults-for-strings [rule0, rule1...] [,<named-rules>] [,when=] [,when_null_skip=]
+@schema/validation-defaults-for-strings [rule0, rule1...] [,<named-rules>] [,when=]
 ```
 
 See also: [Consideration: Setting validation defaults for strings in a schema overlay](#consideration-setting-validation-defaults-for-strings-in-a-schema-overlay).
@@ -1089,7 +1089,7 @@ persistence:
       #@schema/nullable
       multipartcopythresholdsize: 0
     
-    #@schema/validation one_of=["1", "10"], when_null_skip=True
+    #@schema/validation one_of=["1", "10"]
     #@schema/nullable
     swift:
       #@schema/examples ("Example", "https://storage.myprovider.com/v3/auth")
@@ -1112,7 +1112,7 @@ persistence:
       #@schema/nullable
       insecureskipverify: false
       #@schema/nullable
-      #@schema/validation format="quantity", when_null_skip=True
+      #@schema/validation format="quantity"
       #@schema/examples ("Five meg chunks", "5M")
       chunksize: ""
       #@schema/nullable
@@ -1216,6 +1216,14 @@ https_proxy: ""
 no_proxy: ""
 ```
 (src: [tomkennedy513/carvel-package-kpack:/config/schema.yaml](https://github.com/tomkennedy513/carvel-package-kpack/blob/2d7ffd7276db244c6a574019ebb80603115d1009/config/schema.yaml))
+
+#### Opt-out of skipping validations when value is `null`
+
+Initially, the design included a keyword argument — `when_null_skip=`. This flag allowed the user to opt-out of skipping validations when the value was `null`.
+
+The rationale for including the keyword is documented in [Automatically including `when_null_skip` for nullable data values](#automatically-including-when_null_skip-for-nullable-data-values).
+
+However, the implementation turned out not to rely on any schema features. Further, after [conducting usability testing](https://github.com/vmware-tanzu/carvel-ytt/issues/707), it became clear that this was an unnecessary feature.
 
 #### Automatically including `when_null_skip` for nullable data values
 
