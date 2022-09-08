@@ -100,7 +100,7 @@ While code review is focused on code quality and correctness, approval is focuse
 Approver status is scoped to a subproject’s codebase.
 
 ### Requirements
-The following apply to the part of the codebase for which one would be an approver in an MAINTAINERS file.
+The following apply to the part of the codebase for which one would be an approver in a MAINTAINERS file.
 - Reviewer for or author of several substantial PRs to the codebase, with the definition of substantial subject to the lead's discretion (e.g. refactors, enhancements rather than grammar correction or trivial pull requests).
 - Demonstrated the ability to plan and execute a track of work.
 - Sponsored by a subproject lead
