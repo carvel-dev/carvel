@@ -79,7 +79,7 @@ Reviewer status is scoped to a subproject’s codebase.
 - May either self-nominate or be nominated by an approver in the subproject
 
 ### Responsibilities and privileges
-- The following apply to the part of codebase for which one would be a reviewer in an MAINTAINERS file.
+- The following apply to the part of codebase for which one would be a reviewer in a MAINTAINERS file.
 - Respond to new PRs and Issues by asking clarifying questions
 - Organize the backlog by applying labels, milestones, assignees, and projects
 - Responsible for project quality control via code reviews
