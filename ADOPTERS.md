@@ -13,8 +13,6 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
 
-<a href="https://tanzucommunityedition.io/" border="0" target="_blank"><img alt="Tanzu Community Edition" src="logos/tce.png" height="50"></a>
-
 <a href="https://www.terasky.com/" border="0" target="_blank"><img alt="TERASKY" src="logos/terasky.png" height="50"></a>
 
 <a href="https://www.twilio.com/" border="0" target="_blank"><img alt="Twilio, Inc." src="logos/twilio.svg" height="50"></a>
@@ -38,10 +36,6 @@ Office des Postes et Télécommunications de Nouvelle-Calédonie uses vendir to 
 **[Revng](https://rev.ng/)**
 
 Revng is a small company with expertise in compilers, emulation and binary analysis. Revng uses ytt as a flexible templating tool to generate the configuration for [orchestra](https://github.com/revng/orchestra), their meta build system/package manager.
-
-**[Tanzu Community Edition](https://tanzucommunityedition.io/)**
-
-Tanzu Community Edition provides package management to users via the Tanzu CLI. Package management is defined as the discovery, installation, upgrading, and deletion of software that runs on Tanzu clusters. Each package is created using Carvel tools and following their packaging process.
 
 **[TeraSky](https://terasky.com/)**
 
