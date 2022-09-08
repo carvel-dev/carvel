@@ -2,6 +2,116 @@
 title: FAQ
 ---
 
+## Sticking Points
+
+`ytt` has some rough edges. 
+
+Answers in this section aim to soften the most common:
+
+### When is there a space after the `#@`?
+
+### 
+
+
+### What's the difference between a dictionary (dict), YAML Fragment, and a struct?
+- https://kubernetes.slack.com/archives/CH8KCCKA5/p1661866059223099
+
+
+## Error Messages
+
+### `Expected number of matched nodes to be 1, but was 0`
+
+```console
+ytt: Error: Overlaying data values (in following order: values.yaml):
+  Document on line values.yaml:2:
+    Map item (key 'accounts') on line fake-values.yaml:117:
+      Expected number of matched nodes to be 1, but was 0
+```
+
+### `got identifier, want ')'`
+
+```console
+ytt: Error:
+- got identifier, want ')'
+  template.yaml:3 | name: #@ data.values.name  #! name goes here
+```
+
+Known issue: https://github.com/vmware-tanzu/carvel-ytt/issues/668
+
+
+### `struct has no (field-name) field or method`
+
+```console
+ytt: Error:
+- struct has no .replica field or method
+```
+
+---
+
+### `undefined: data`
+
+This error message comes up in a couple of common situations...
+
+**Possible missing `load("@ytt:data", "data")`**
+
+This can commonly happen when attempting to reference a Data Value:
+
+```console
+ytt: Error:
+- undefined: data
+    template.yaml:2 | name: #@ data.values.name
+```
+
+Was the `@ytt:data` module loaded at the top of the template?
+
+```yaml
+#@ load("@ytt:data", "data")
+---
+name: #@ data.values.name
+```
+_(the `load()` statement imports the `@ytt:data` module into the variable `data`)_
+
+For the gory details see [Load](lang-ref-load.md).
+
+...
+
+**Extra space in an annotation**
+
+```console
+ytt: Error:
+- undefined: data
+    schema.yaml:1 | #@ data/values-schema
+```
+
+Does the annotation have a space in the name?
+
+Annotations (like `@data/values`, `@data/values-schema`, `@overlay/match`, etc.) do not have a leading space:
+
+```yaml
+#@data/values-schema
+---
+name: foo
+```
+
+See also [When is there a space after the `#@`?](#when-is-there-a-space-after-the-).
+
+
+---
+
+### `yamlfragment has no (field-name) field or method`
+
+```console
+ytt: Error: 
+- yamlfragment has no .pinniped field or method
+```
+
+
+## Getting Things Done
+
+### How do I create and use utility/helper/common libraries?
+- https://kubernetes.slack.com/archives/CH8KCCKA5/p1662024350242189
+
+
 ## Data Values
 
 [Data values doc](ytt-data-values.md)

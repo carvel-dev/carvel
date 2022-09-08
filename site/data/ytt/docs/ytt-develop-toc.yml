@@ -1,14 +1,18 @@
 toc:
   - title: Introduction
     subfolderitems:
-      - page: About ytt
+      - page: Welcome
         url: /
       - page: Install
         url: /install
-      - page: How it Works
-        url: /how-it-works
+      - page: Getting Started
+        url: /getting-started
   - title: Concepts
     subfolderitems:
+      - page: About ytt
+        url: /about
+      - page: How it Works
+        url: /how-it-works
       - page: YAML and Annotations
         url: /yaml-primer
   - title: Quick References
