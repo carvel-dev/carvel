@@ -520,27 +520,26 @@
         float: right;
       
         .cheat-sheet {
-          table, tr, td {
+           border-collapse: collapse;
+           table, tr, td {
             border: 0.1px solid black;
             font-size: 15px;
             text-align: left;
-            padding-left: 10px;  
-            padding-right: 10px; 
-            cell-padding: 15px
-            tr:hover {
-            background-color:#AFDBF5;
-            }
+            padding-left: 10px; 
+            code{
+            margin-bottom: 0px;
+           }
          }
            table, th{
             border: 0.1px solid black;
-            background-color:#AFDBF5;
+            background-color:#CAE9F5;
             font-size: 15px;
             text-align: center;
-               padding-top: 10px;  
-                padding-bottom: 10px; 
+            padding-top: 5px;  
+            padding-bottom: 5px;
            }
-         }
-    }
+          }
+        }
     @include breakpoint(small) {
         .side-nav {
             width: 100%;
