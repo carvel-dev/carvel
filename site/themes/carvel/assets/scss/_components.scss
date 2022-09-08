@@ -518,22 +518,28 @@
     .docs-content {
         width: 72%;
         float: right;
-        
+      
         .cheat-sheet {
-          table, td, th {
-            
-            border: 1px solid black;
-            border-collapse: collapse;
-            font-size: 14px;
+          table, tr, td {
+            border: 0.1px solid black;
+            font-size: 15px;
             text-align: left;
-            padding-top: 10px;
-            padding-bottom: 20px;
-            padding-left: 30px;
-            border-spacing: 10px;
-            tr:hover {background-color: #D6EEEE;}
-           
+            padding-left: 10px;  
+            padding-right: 10px; 
+            cell-padding: 15px
+            tr:hover {
+            background-color:#AFDBF5;
             }
-          }
+         }
+           table, th{
+            border: 0.1px solid black;
+            background-color:#AFDBF5;
+            font-size: 15px;
+            text-align: center;
+               padding-top: 10px;  
+                padding-bottom: 10px; 
+           }
+         }
     }
     @include breakpoint(small) {
         .side-nav {

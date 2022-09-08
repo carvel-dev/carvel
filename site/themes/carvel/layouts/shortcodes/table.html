@@ -2,9 +2,19 @@
 # Original table shortcode
 # https://github.com/kubernetes/website/blob/master/layouts/shortcodes/table.html
 -->
-{{ $hasCaption := isset .Params "caption" }}
-{{ $caption    := .Get "caption" }}
-{{ $captionEl  := printf "<table><caption style=\"display: none;\">%s</caption>" $caption }}
-{{ $table      := .Inner | markdownify }}
-{{ $html       := cond $hasCaption ($table | replaceRE "<table>" $captionEl) $table | safeHTML }}
-{{ $html }}
+{{ $table := .Inner | markdownify }}
+
+{{ $table := replace $table "(tr)" "<tr >" }}
+{{ $table := replace $table "(/tr)" "</tr>" }}
+{{ $table := replace $table "(th)" "<th>" }}
+{{ $table := replace $table "(/th)" "</th>" }}
+{{ $table := replace $table "(br)" "<br />" }}
+{{ $table := replace $table "(td)" "<td nowrap>" }} 
+{{ $table := replace $table "(/td)" "</td>" }}
+
+{{ $html := $table | safeHTML }}
+
+{{ $class := .Get "class" }}
+<table class="{{ $class }}">
+   {{ $html }}
+</table>
