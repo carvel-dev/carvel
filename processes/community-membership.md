@@ -34,7 +34,7 @@ Members are continuously active contributors in the community. They can have iss
 - Actively contributing to 1 or more subprojects.
 - Sponsored by an approver or a lead. Note the following requirements for sponsors:
     - Sponsors must have close interactions with the prospective member - e.g. code/design/proposal review, coordinating on issues, etc.
-    - Sponsors must be approvers in at least 1 MAINTAINERS file.
+    - Sponsors must be approvers in at least one MAINTAINERS file.
     - With no objections from other approvers or leads.
 - Open an issue against the carvel repo.
     - Ensure your sponsors are @mentioned on the issue.
