@@ -113,7 +113,7 @@ The following apply to the part of the codebase for which one would be an approv
         - Once your sponsors have responded, your request will be reviewed by the project leads. Any missing information will be requested.
 
 ### Responsibilities and privileges
-The following apply to the part of the codebase for which one would be an approver in an MAINTAINERS file.
+The following apply to the part of the codebase for which one would be an approver in a MAINTAINERS file.
 - Demonstrate sound technical judgment
 - Responsible for project quality control via code reviews
     - Focus on holistic acceptance of contribution such as dependencies with other features, backwards / forwards compatibility, API and flag definitions, etc
