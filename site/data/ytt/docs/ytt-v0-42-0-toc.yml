@@ -103,3 +103,5 @@ toc:
         shared_url: /security-policy
       - page: Known Limitations
         url: /known-limitations
+      - page: Playground Examples
+        url: /index-playground-examples
