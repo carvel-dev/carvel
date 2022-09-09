@@ -358,9 +358,11 @@ Substitutes matched "left" node with the value of the "right" node (or by that o
 **Valid on:** Document, Map Item, Array Item.
 
 ```
-@overlay/replace [via=Function]
+@overlay/replace [or_add=Bool, via=Function]
 ```
 
+- **`or_add`**`Bool` _(optional)_ determines what should be done in case matched node is not found
+   - `or_add=True` indicates that node should be added. Can be used in combination with `@overlay/match missing_ok=True`.
 - **`via=`**`Function(left, right): (any)` _(optional)_ determines the value to substitute in. If omitted, the value is `right`.
    - `left` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the matched node's value
    - `right` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the value of the annotated node
