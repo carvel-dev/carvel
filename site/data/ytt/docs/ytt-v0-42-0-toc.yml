@@ -93,7 +93,13 @@ toc:
         url: /ytt-vs-x
       - page: Schema Migration Guide
         url: /data-values-schema-migration-guide
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
       - page: Security
-        url: /security
+        shared_url: /security-policy
       - page: Known Limitations
         url: /known-limitations

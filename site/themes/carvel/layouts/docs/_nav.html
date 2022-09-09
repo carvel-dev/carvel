@@ -18,6 +18,9 @@
           <li>
             {{ if .github }}
               <a href="{{ $gh }}{{ .url }}" target="_blank">{{ .page }}</a>
+            {{ else if .shared_url}}
+              {{ $url :=  (replace (index (print "/shared/docs/latest" .shared_url "/")) "//" "/")  }}
+              <a href="{{ $url }}" target="_blank">{{ .page }}</a>
             {{ else }}
               {{ $url :=  (replace (index (print "/" $product "/docs/" $version .url "/")) "//" "/")  }}
               <a href="{{ $url }}" {{ if (eq  $.Page.RelPermalink $url) }}class="active"{{ end }}>{{ .page }}</a>

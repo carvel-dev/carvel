@@ -3,6 +3,14 @@ aliases: [/kapp-controller/docs/latest/kctrl-package-authoring]
 title: Authoring packages with kctrl
 ---
 
+Before we jump in, we will create a namespace which will act as our playground and point our `kubeconfig` towards it.
+```bash
+$ kubectl create ns kctrl-tutorial
+$ kubectl config set-context --current --namespace=kctrl-tutorial
+```
+This must be done as installation of packages in public namespaces is a bad practice and disallowed by `kctrl`.
+
+This set of tutorials cover how `kctrl` helps authors release their configuration packaged as Carvel packages and test them.
 ## Packaging upstream artifacts
 This tutorial explores how `kctrl` (from v0.40.0 onwards) allows us to create Carvel packages using existing artifacts like manifests released as a part of a GitHub release or a Helm chart.
 For this tutorial we will package a release of `cert-manager` as a Carvel package.
@@ -19,6 +27,10 @@ $ cd certman-package
 ```
 
 Next we run the `init` command to set the stage!
+
+```bash
+$ kctrl package init
+```
 
 `kctrl` asks a few quick questions to gather what it needs to know.
 We know that `cert-manager` lives on the GitHub repository [_cert-manager/cert-manager_](https://github.com/cert-manager/cert-manager) and that it's releases have a manifest `cert-manager.yaml` which let's users deploy cert-manager on cluster. Our goal would be to build a package around this artifact.
@@ -38,7 +50,7 @@ cert-manager.yaml
 ### Releasing packages
 
 Now that `kctrl` knows what it is dealing with, we can use the release command to make a publish Package and PackageMetadata resources.
-```
+```bash
 $ kctrl package release --version 1.0.0
 ```
 
@@ -140,7 +152,6 @@ we can have `kctrl` build images while releasing)
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: default
   name: simple-app
 spec:
   ports:
@@ -152,7 +163,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: default
   name: simple-app
 spec:
   selector:
@@ -415,20 +425,23 @@ status:
   friendlyDescription: ""
   observedGeneration: 0
 ```
-The `dev` command will process these resources just like they would on the cluster.
-However, we would like to build an image from source and use the configuration in the root of the directory.
-We use the `--local` and `--build` flags to indicate this.
-
 We need to ensure that the service account referred to in the file is created on the cluster.
 Alternatively, it can be replaced by a service account that has already been created.
 
-`kctrl` needs to be informed where it can find the folder `config`. This is done by using the annotation 
+To create `simple-app-sa` referred to in the config along with required RBAC resources run,
+```bash
+$ kapp deploy -a simple-app-rbac -f https://carvel.dev/files/simple-app-rbac.yml
+```
+
+We want to use the configuration on our host instead of fetching it, this is indicated by the `--local` flag.
+
+`kctrl` needs to be informed where it can find the folder `config` on the host. This is done by using the annotation 
 `kctrl.carvel.dev/local-fetch-0: .` on the PackageInstall resource. It tells `dev` that
 the files `kapp-controller` would otherwise fetch, is available in the root of the project.
 
 Let's build and deploy from source.
 ```bash
-$ kctrl dev -f package-resources.yml -l -b
+$ kctrl dev -f package-resources.yml --local
 Target cluster 'https://192.168.64.10:8443' (nodes: minikube)
 
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -438,7 +451,7 @@ metadata:
     kctrl.carvel.dev/local-fetch-0: .
   creationTimestamp: null
   name: simple-app
-  namespace: default
+  namespace: kctrl-tutorial
 spec:
   packageRef:
     refName: simple-app.carvel.dev
@@ -478,9 +491,9 @@ Reconciling in-memory app/simple-app (namespace: default) ...
 1:56:56AM: Deploying 
 	    | Target cluster 'https://192.168.64.10:8443' (nodes: minikube)
 	    | Changes
-	    | Namespace  Name        Kind        Age  Op      Op st.  Wait to    Rs  Ri
-	    | default    simple-app  Deployment  -    create  -       reconcile  -   -
-	    | ^          simple-app  Service     -    create  -       reconcile  -   -
+	    | Namespace         Name        Kind        Age  Op      Op st.  Wait to    Rs  Ri
+	    | kctrl-tutorial    simple-app  Deployment  -    create  -       reconcile  -   -
+	    | ^                 simple-app  Service     -    create  -       reconcile  -   -
 	    | Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
 	    | Wait to: 2 reconcile, 0 delete, 0 noop
 	    | 1:56:54AM: ---- applying 2 changes [0/2 done] ----
@@ -509,21 +522,21 @@ Succeeded
 We can see the result of the steps `kapp-controller` would perform while creating resources when
 the package is installed.
 
-`dev` has created a `kapp` app (`simple-app-ctrl`) on the cluster.
+`dev` has created a `kapp` app (`simple-app.app`) on the cluster.
 The resources that are a part of the app can be inspected,
 ```bash
-$ kapp inspect -a simple-app-ctrl
-Target cluster 'https://192.168.64.10:8443' (nodes: minikube)
+$ kapp inspect -a simple-app.app
+Target cluster 'https://127.0.0.1:50423' (nodes: minikube)
 
-Resources in app 'simple-app-ctrl'
+Resources in app 'simple-app.app'
 
-Namespace  Name                         Kind           Owner    Rs  Ri  Age  
-default    simple-app                   Deployment     kapp     ok  -   18m  
-^          simple-app                   Endpoints      cluster  ok  -   18m  
-^          simple-app                   Service        kapp     ok  -   18m  
-^          simple-app-6b69449d66        ReplicaSet     cluster  ok  -   18m  
-^          simple-app-6b69449d66-4gv8m  Pod            cluster  ok  -   18m  
-^          simple-app-shzpj             EndpointSlice  cluster  ok  -   18m  
+Namespace       Name                         Kind           Owner    Rs  Ri  Age  
+kctrl-tutorial  simple-app                   Deployment     kapp     ok  -   8m  
+^               simple-app                   Endpoints      cluster  ok  -   8m  
+^               simple-app                   Service        kapp     ok  -   8m  
+^               simple-app-2v6s5             EndpointSlice  cluster  ok  -   8m  
+^               simple-app-5b97676c94        ReplicaSet     cluster  ok  -   8m  
+^               simple-app-5b97676c94-h8hgw  Pod            cluster  ok  -   8m  
 
 Rs: Reconcile state
 Ri: Reconcile information
@@ -534,6 +547,9 @@ Succeeded
 ```
 We can delete the app created once we are satisfied with the results,
 ```bash
-$ kapp delete -a simple-app-ctrl --yes
+$ kapp delete -a simple-app.app --yes
 ```
 Thus, we can reproduce the state that a package installation would create reliably!
+
+### Relevant FAQs
+- [Can I build images from source while using `kctrl dev`?](/kapp-controller/docs/develop/kctrl-faq/#can-i-build-images-from-source-while-using-kctrl-dev)

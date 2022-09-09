@@ -19,6 +19,8 @@ toc:
         url: /how-to-use-data-values
       - page: Write Schema
         url: /how-to-write-schema
+      - page: Write Validations
+        url: /how-to-write-validations
       - page: Export Schema in OpenAPI format
         url: /how-to-export-schema
       - page: Use Overlays
@@ -93,7 +95,13 @@ toc:
         url: /ytt-vs-x
       - page: Schema Migration Guide
         url: /data-values-schema-migration-guide
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
       - page: Security
-        url: /security
+        shared_url: /security-policy
       - page: Known Limitations
         url: /known-limitations
