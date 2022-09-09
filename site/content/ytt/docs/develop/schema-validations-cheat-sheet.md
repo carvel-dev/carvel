@@ -121,17 +121,6 @@ config:
 (/tr)
 
 (tr)
-(td)When null, skip validations(/td)
-(td)
-```yaml
-#@schema/validation max=5, when_null_skip=True
-#@schema/nullable
-replicas: 3
-```
-(/td)
-(/tr)
-
-(tr)
 (td)Conditionally run validations (/td)
 (td)
 ```yaml
@@ -167,7 +156,7 @@ username: ""
 (td)Disable validations flag(/td)
 (td)
 ```yaml
---dangerous-data-values-disable-validation
+$ ytt ... --dangerous-data-values-disable-validation
 ```
 (/td)
 (/tr)
