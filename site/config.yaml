@@ -17,6 +17,7 @@ params:
   - imgpkg
   - secretgen-controller
   - vendir
+  - Shared Docs
   search:
     app_id: BSVMS0V37R
   ytt:
@@ -78,15 +79,16 @@ params:
     name: imgpkg
     short_name: imgpkg
     root_link: /imgpkg/
-    latest_docs_link: /imgpkg/docs/v0.31.0/
+    latest_docs_link: /imgpkg/docs/v0.32.0/
     github_url: https://github.com/vmware-tanzu/carvel-imgpkg
     search: true
     search_index_name: carvel-imgpkg
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.31.0
+    version_latest: v0.32.0
     versions:
     - develop
+    - v0.32.0
     - v0.31.0
     - v0.30.0
     - v0.29.0
@@ -130,7 +132,16 @@ params:
     versioning: false
     versions:
     - develop
-
+  Shared Docs:
+    name: Shared Docs
+    short_name: shared
+    root_link: /shared/docs/latest/
+    github_url: https://github.com/vmware-tanzu/carvel
+    latest_docs_link: /shared/docs/latest/
+    search: false
+    versioning: false
+    versions:
+    - develop
   vendir:
     name: vendir
     short_name: vendir

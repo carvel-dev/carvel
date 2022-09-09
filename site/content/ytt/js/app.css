@@ -268,3 +268,13 @@
   background: inherit;
   clear: both;
 }
+
+/*below are to make the "Features" grid.three display correctly after changing the playground div
+ * Note I have no idea why changing the layout of the playground div affects the grid above it.  */
+.experimental .grid.three .col {
+  width: 313.33px;
+}
+
+.experimental .grid.three .col p {
+  width: 25%;
+}
