@@ -76,8 +76,22 @@ stringData:
 
   # JSON encoded array of kapp deploy rawOptions that are applied to all App CRs.
   # App CR specified rawOptions take precedence over what's specified here.
+  # Value is parsed via go's json.Unmarshal.
   # (optional; v0.37.0+)
   kappDeployRawOptions: "[\"--diff-changes=true\"]"
+
+  # Time duration value used as a default for App CR's spec.syncPeriod
+  # if one is not specified explicitly. Minimum is 30s.
+  # Value is parsed via go's time.ParseDuration.
+  # (optional; v0.41.0+)
+  appDefaultSyncPeriod: "30s"
+
+  # Time duration value to force a minimum for App CR's spec.syncPeriod.
+  # If this value is greater than explicitly specified syncPeriod,
+  # this value value will be used instead. Minimum is 30s.
+  # Value is parsed via go's time.ParseDuration.
+  # (optional; v0.41.0+)
+  appMinimumSyncPeriod: "30s"
 ```
 
 ## Config Shorthands
