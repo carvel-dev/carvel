@@ -403,7 +403,7 @@ See also:
 
 ### @overlay/insert
 
-Inserts "right" node before/after the matched "left" node.
+Inserts "right" node before/after the matched "left" node. The inserted node is either the "right" node or that provided by a function.
 
 **Valid on:** Document, Array Item.
 
@@ -412,6 +412,26 @@ Inserts "right" node before/after the matched "left" node.
 ```
 - **`before=`**`Bool` whether to insert the "right" node immediately in front of the matched "left" node.
 - **`after=`**`Bool` whether to insert the "right" node immediately following the matched "left" node.
+- **`via=`**`Function(left, right): (any)` _(optional)_ determines the value to substitute in. If omitted, the value is `right`.
+  - `left` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the matched node's value
+  - `right` ([`yamlfragment`](lang-ref-yaml-fragment.md) or scalar) — the value of the annotated node
+
+**Examples:**
+
+Add a `ConfigMap` into each `Namespace`:
+```yaml
+#@ def configMap(namespace):
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: insert
+  namespace: #@ namespace.metadata.name
+#@ end
+
+#@overlay/match overlay.subset({"kind": "Namespace"})
+#@overlay/insert after=True, via=lambda namespace, _: configMap(namespace)
+---
+```
 
 ### @overlay/append
 
