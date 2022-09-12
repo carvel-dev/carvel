@@ -8,8 +8,7 @@
 {{ $table := replace $table "(/tr)" "</tr>" }}
 {{ $table := replace $table "(th)" "<th>" }}
 {{ $table := replace $table "(/th)" "</th>" }}
-{{ $table := replace $table "(br)" "<br />" }}
-{{ $table := replace $table "(td)" "<td nowrap>" }} 
+{{ $table := replace $table "(td)" "<td>" }} 
 {{ $table := replace $table "(/td)" "</td>" }}
 
 {{ $html := $table | safeHTML }}

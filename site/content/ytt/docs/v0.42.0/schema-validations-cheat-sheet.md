@@ -5,15 +5,14 @@ title: "Schema Validations Cheat Sheet"
 ---
 {{< table class="cheat-sheet" >}}
 
-
 (th)**Use Case**(/th)
 (th)**Syntax**(/th)
 (tr)
 (td) Required string(/td)
 (td)
 ```yaml
-  #@schema/validation min_len=1
-  username: ""
+#@schema/validation min_len=1
+username: ""
 ```
 (/td)
 (/tr)
@@ -22,8 +21,8 @@ title: "Schema Validations Cheat Sheet"
 (td)Required integer(/td)
 (td)
 ```yaml
-  #@schema/validation min=1
-  replicas: 0
+#@schema/validation min=1
+replicas: 0
 ```
 (/td)
 (/tr)
@@ -103,7 +102,7 @@ provider: ""
 (/tr)
 
 (tr)
-(td)Exactly one is specified(br)
+(td)Exactly one is specified\
 (mutually exclusive config)
 (/td)
 (td)
@@ -116,17 +115,6 @@ config:
   #@schema/nullable
   ldap:
     host: “”
-```
-(/td)
-(/tr)
-
-(tr)
-(td)When null, skip validations(/td)
-(td)
-```yaml
-#@schema/validation max=5, when_null_skip=True
-#@schema/nullable
-replicas: 3
 ```
 (/td)
 (/tr)
@@ -167,7 +155,7 @@ username: ""
 (td)Disable validations flag(/td)
 (td)
 ```yaml
---dangerous-data-values-disable-validation
+$ ytt ... --dangerous-data-values-disable-validation
 ```
 (/td)
 (/tr)

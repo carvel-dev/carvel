@@ -522,6 +522,7 @@
         .cheat-sheet {
            border-collapse: collapse;
            table, tr, td {
+            white-space: nowrap;
             border: 0.1px solid black;
             font-size: 15px;
             text-align: left;
