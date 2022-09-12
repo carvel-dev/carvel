@@ -212,7 +212,7 @@ spec:
           - path: values/shared.yml
           # downwardAPI allows passing info about App CR as values into templates (v0.39.0+)
           - downwardAPI:
-            items:
+              items:
               # name specifies the key used when the downwardAPI values are rendered. 
               # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
               # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
@@ -247,15 +247,15 @@ spec:
           - path: values/shared.yml
           # downwardAPI allows passing info about App CR as values into templates (v0.39.0+)
           - downwardAPI:
-            items:
-            # name specifies the key used when the downwardAPI values are rendered. 
-            # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
-            # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
-            - name: namespace
-            # fieldPath accepts relaxed jsonpath to select metadata fields from the AppCR (name, namespace, uid, labels, annotations)
-              fieldPath: metadata.namespace
-            - name: specificAnnotation
-              fieldPath: metadata.annotations['specificAnnotation']
+              items:
+              # name specifies the key used when the downwardAPI values are rendered. 
+              # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
+              # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
+              - name: namespace
+                # fieldPath accepts relaxed jsonpath to select metadata fields from the AppCR (name, namespace, uid, labels, annotations)
+                fieldPath: metadata.namespace
+              - name: specificAnnotation
+                fieldPath: metadata.annotations['specificAnnotation']
 
     # use cue to template configuration
     - cue:
@@ -265,7 +265,7 @@ spec:
               name: secret-values
           # downwardAPI allows passing info about App CR as values into templates (v0.39.0+)
           - downwardAPI:
-            items:
+              items:
               # name specifies the key used when the downwardAPI values are rendered. 
               # nested keys are supported by using a '.'. for e.g. `name: parent.child`. 
               # keys requiring a '.' can escape using '\\.'. for e.g. `name: key\\.with\\.dots`
