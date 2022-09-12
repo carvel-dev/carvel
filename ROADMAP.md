@@ -18,8 +18,7 @@ Please take the timelines & dates as proposals and goals, not commitments. Prior
 `Last Updated: Aug 2022`
 |Theme|Feature|Stage|Timeline|
 |---|---|---|---|
-| Package Author Experience | **[kctrl]** [kctrl commands for package authors - Alpha Release.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/632): CLI-based Package Author commands to enable  Package Authors easily create a Carvel package of their software | Build | August 2022|
-| Package Author Experience | **[kctrl]** [kctrl dev deploy.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/2): Enable quick iteration on Package CRs and App CRs using kapp-controller CLI for local development | Build | August 2022 |
+| Package Author Experience | **[kctrl]** [kctrl commands for package authors - Alpha Release Milestone 2.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/632): CLI-based Package Author commands to enable  Package Authors easily create a Carvel package of their software | Build | September 2022|
 | Package Author Experience | **[ytt]** [Schema Validations](https://hackmd.io/pODV3wzbT56MbQTxbQOOKQ#Part-7-Validating-Documents): Configuration authors can specify the valid range or format of the data values. | Test | September 2022  |
 | Stability and Delight | **[kapp-controller]** [Resilient to network failures](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/664): kapp-controller continues to reconcile despite a lost connection to a registry. | Build | September 2022 |
 | Stability and Delight | **[kapp-controller]** [Version safeguards](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/781): Expose cluster versions and capabilities to templating steps. | Build | September 2022  |
