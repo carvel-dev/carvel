@@ -1,8 +1,10 @@
 ---
-title: Writing Validations
+title: Writing Schema Validations
 ---
 
 ## Overview
+
+_(Looking for a quick start? see the [Validations Cheat Sheet](schema-validations-cheat-sheet.md))_
 
 A Configuration Author can constraint their users' Data Value inputs via `ytt` Validations.
 
@@ -13,8 +15,6 @@ One might do this for a number of reasons:
 - **make a Data Values "required"** — force the user to supply values for Data Values that you — as the author — can't possibly know (e.g. credentials, connection info to services, etc.).
 
 This guide explains how to do all that with Validations.
-
-_(Looking for a quick start? see the [Validations Cheat Sheet](schema-validations-cheat-sheet.md))_
 
 ## What Validations Look Like
 

@@ -133,8 +133,11 @@ secretRef:
 
 In order to override the default of the array, _itself_, within schema see [Setting a Default Value for Arrays](#setting-a-default-value-for-an-array).
 
+## Constraining values with Validations
 
----
+To learn about writing schema validations, please refer to [How to Write Schema Validations](how-to-write-validations.md)\
+To get started quickly - [Schema validations Cheat Sheet](schema-validations-cheat-sheet.md)
+
 ## Specific Use-Cases
 
 A few less common, but real-world scenarios:
@@ -194,6 +197,12 @@ load_balancer:
 which indicates that `load_balancer` is `null`, by default. However, if a value _is_ provided for `load_balancer`, it must be the `static_ip` and have a value that is a **string**.
 
 For more details see [Data Values Schema Reference: `@schema/nullable`](lang-ref-ytt-schema.md#schemanullable).
+
+### Marking a Data Value as Required
+
+In `ytt`, a data value can be marked as "Required" using schema validations.  
+Please refer to
+["Required" Data Values](/ytt/docs/develop/how-to-write-validations/#required-data-values)
 
 ### Allowing Multiple Types of Maps or Arrays
 

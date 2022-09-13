@@ -62,6 +62,16 @@ password: ""
 (/tr)
 
 (tr)
+(td)Ensure string exact length(/td)
+(td)
+```yaml
+#@schema/validation min_len=8, max_len=8
+password: ""
+```
+(/td)
+(/tr)
+
+(tr)
 (td)Ensure a min value(/td)
 (td)
 ```yaml

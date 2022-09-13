@@ -39,7 +39,7 @@ responseTypes:
 (/tr)
 
 (tr)
-(td)Required map(/td)
+(td)Required map  [(Mark as ‘nullable’ and ‘not_null’)](/ytt/docs/develop/how-to-write-validations.md#mark-as-nullable-and-not_null)(/td)
 (td)
 ```yaml
 #@schema/nullable
@@ -56,6 +56,16 @@ credential:
 (td)
 ```yaml
 #@schema/validation min_len=8
+password: ""
+```
+(/td)
+(/tr)
+
+(tr)
+(td)Ensure string exact length(/td)
+(td)
+```yaml
+#@schema/validation min_len=8, max_len=8
 password: ""
 ```
 (/td)
