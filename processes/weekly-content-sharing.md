@@ -32,8 +32,7 @@ And, as a thank you for sharing your knowledge with the community, we would love
 | August 11, 2022    | [Joe Kimmel](https://github.com/joe-kimmel-vmw) | Carvel: July In Review | Blog | N/A |
 | August 17, 2022    | [Ollie Hughes](https://github.com/ojhughes) | Local development workflow with Tilt and Carvel | Blog | N/A |
 | August 19, 2022    | [Rohit Aggarwal](https://github.com/rohitagg2020), [Soumik Majumder](https://github.com/100mik) | Introducing kctrl package authoring commands | Blog | N/A |
-| August 31, 2022   | | | |
-| September 7, 2022   | | | |
+| September 7, 2022   | [Aaron Hurley](https://github.com/aaronshurley) | Carvel in August | Blog | [@AarHurley](https://twitter.com/AarHurley)|
 | September 14, 2022   | | | |
 | September 21, 2022   | | | |
 | September 28, 2022   | | | |
