@@ -332,6 +332,17 @@ If `false`, then none of the other validations are checked and the value is assu
 
 Here, the contents of the `service:` are validated (via `valid_service_config()`) only if `service.enabled` is `true`.
 
+Similarly, the validation can be dependent on _other_ data values.
+
+```yaml
+#@data/values-schema
+---
+service:
+  enabled: true
+  #@schema/validation one_of=["NodePort", "LoadBalancer"], when=lambda _, ctx: ctx.parent["enabled"]
+  type: NodePort
+```
+
 #### Use Case: Disable Validations
 
 A consumer can skip validating Data Values:
@@ -518,7 +529,7 @@ where:
     - `{desc}` — the description supplied in the 0th item in this rule.
     - `{failure}` — when `assertion` fails, the message from that `assert.fail()` or empty string.
 - `<named-rules>` — any of the keyword arguments described in [Named Rules](#named-rules), below.
-- `when=` (`function(value) : None` | `function(value) : bool`) — criteria for when the validation rules should be checked. If the criteria is met (function either returns `True` or `None`), the validations are checked; otherwise (function either returns `False` or `assert.fail()`s, none of the validations are checked.
+- `when=` (`function(value[, context]) : bool`) — criteria for when the validation rules should be checked. If the criteria is met (function returns `True`), the validations are checked; otherwise (function either returns `False` or `assert.fail()`s, none of the validations are checked.
 
 Each rule is evaluated, in the order they appear in the annotation (left-to-right):
 - if all rules pass (either returns `True` or `None`), then the value is valid.
