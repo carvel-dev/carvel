@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for carvel
-labels: enhancement, carvel triage
+labels: enhancement, carvel-triage
 ---
 
 **Describe the problem/challenge you have**

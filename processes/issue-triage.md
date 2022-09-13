@@ -29,7 +29,7 @@ Some good practices:
 3. [Define Priority](#3-define-priority)
 
 ### 1. Respond to Newly Created PRs and Issues
-Labels are the primary tools for triaging. New issues are automatically assigned a `carvel triage` label. Issues with the `carvel triage` label indicate that the issue is awaiting triage.
+Labels are the primary tools for triaging. New issues are automatically assigned a `carvel-triage` label. Issues with the `carvel-triage` label indicate that the issue is awaiting triage.
 
 1. Respond to new _PRs_ for the repos you're focused on. If you're using the [GitHub Project board](https://github.com/orgs/vmware-tanzu/projects/16), these will show up in the Needs Review column.
 1. If a PR has not been acknowledged,
@@ -38,20 +38,20 @@ Labels are the primary tools for triaging. New issues are automatically assigned
     1. assign a `priority` label ([see these steps](#3-define-priority))
     1. assign a reviewer (found in MAINTAINERS.md)
     1. @-mention the reviewer in a comment
-    1. remove the `carvel triage` label
+    1. remove the `carvel-triage` label
     1. set the GitHub Project column, accordingly
 1. If a PR has been acknowledged,
     1. ensure that the submitter is not waiting on a reviewer, @-mention the reviewer if needed
     1. ensure that `kind` and `priority` labels are assigned
-    1. remove the `carvel triage` label
+    1. remove the `carvel-triage` label
     1. set the GitHub Project column, accordingly
-1. Filter the _issues_ with a `carvel triage` label. If you're using the GitHub Project board, these will show up in the New Issues column.
+1. Filter the _issues_ with a `carvel-triage` label. If you're using the GitHub Project board, these will show up in the New Issues column.
 1. If an issue has not yet been assigned `kind` and `priority` labels,
     1. thank the submitter for their contribution
     1. attempt to understand the issue being raised
-        1. if you understand the issue, assign `kind` and `priority` labels and remove `carvel triage`
+        1. if you understand the issue, assign `kind` and `priority` labels and remove `carvel-triage`
         1. if you do not understand, ask the submitter questions to clarify
-        1. if you're not sure which questions to ask, ask a reviewer for assistance and leave the `carvel triage` label in place
+        1. if you're not sure which questions to ask, ask a reviewer for assistance and leave the `carvel-triage` label in place
 
 ### 2. Triage Issues by Type
 For all issues, `kind` labels are generally supplied by the submitter. Ensure that the correct label is applied and update it when necessary.
@@ -62,7 +62,7 @@ For all issues, `kind` labels are generally supplied by the submitter. Ensure th
 1. If the issue looks like a good improvement for the tool,
     1. add a comment explaining your reasoning
     1. define its priority
-    1. change the label to `carvel accepted` from `carvel triage`
+    1. change the label to `carvel accepted` from `carvel-triage`
     1. if appropriate, add the `good first issue` label
     1. set the GitHub Project column, accordingly
 1. If the issue does not look like a good fit for the tool, add a comment explaining your reasoning and close the issue.
@@ -71,7 +71,7 @@ For all issues, `kind` labels are generally supplied by the submitter. Ensure th
 1. Try to replicate the issue.
 1. If you're able to replicate the issue,
     1. Define its priority
-    1. change the label to `carvel accepted` from `carvel triage`
+    1. change the label to `carvel accepted` from `carvel-triage`
     1. set the GitHub Project column, accordingly
 1. If you're unable to replicate the issue,
     1. add the `triage/not-reproducible` label
