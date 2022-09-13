@@ -39,7 +39,7 @@ responseTypes:
 (/tr)
 
 (tr)
-(td)Required map  [(Mark as ‘nullable’ and ‘not_null’)](/ytt/docs/develop/how-to-write-validations.md#mark-as-nullable-and-not_null)(/td)
+(td)Required map  [(Mark as ‘nullable’ and ‘not_null’)](/ytt/docs/develop/how-to-write-validations#mark-as-nullable-and-not_null)(/td)
 (td)
 ```yaml
 #@schema/nullable
