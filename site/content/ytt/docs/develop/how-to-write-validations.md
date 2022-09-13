@@ -366,6 +366,8 @@ Here:
 - if `service.enabled` is false, the validation is _not_ run;
 - when `service.enabled` is true, `service.instances` is required to be non-negative.
 
+_(For more details, see [Reference for `@schema/validation`](lang-ref-ytt-schema.md#schemavalidation).)_
+
 ## About Rules
 
 A validation is made up of one or more rules.
@@ -398,6 +400,14 @@ Authors are encouraged to use named rules whenever possible:
 
 
 ### Writing Custom Rules
+
+The ["Named" rules](#using-named-rules) will not cover _all_ possible validation cases. One might opt to write a custom rule for a number of reasons:
+- the desired constraint can't be expressed through a named rule
+- the description supplied by a named rule is inadequate
+
+
+- [Complex Custom Rules](#complex-custom-rules)
+- [About `null` values](#about-null-values)
 
 A validation rule has two parts:
 - a description of a valid value;

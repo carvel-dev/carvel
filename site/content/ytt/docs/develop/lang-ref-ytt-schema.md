@@ -437,10 +437,105 @@ where:
 - `<named-rules>` — a combination of one or more built-in keywords that provide assertion functions for common scenarios. 
   - for a quick reference, see [Validations Cheat Sheet](quick-ref-validations.md).
   - for the complete list, see [Named Validation Rules](#named-validation-rules), below.
-- `when=` (`function(value) : bool`) — criteria for when the validation rules should be checked. 
-  - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node.
+- `when=` (`function(value[, context]) : bool`) — criteria for when the validation rules should be checked. 
+  - `value` (`string` | `int` | `float` | `bool` | [`yamlfragment`](lang-ref-yaml-fragment.md)) — the value of the annotated node
+  - `context` (_optional_) — a struct with two attributes (both of the same _type_ as `value`).
+    - `parent` — the node directly containing the annotated node (in other words, its parent)
+    - `root` — the document in which the annotated node is contained (that is, the root of document resulting from the merge of all data values)
 
 When present, the predicate given for `when=` is run. If it evaluates to `True`, the validation is run. For guidance on writing these conditions, see [How To Write Validations](how-to-write-validations.md#conditional-validations).
+
+For a quick reference of various rules and idioms, see [Schema Validation Cheat Sheet](schema-validations-cheat-sheet.md).
+
+Below:
+- [Example 1: Using "named" rules](#example-1-using-named-rules)
+- [Example 2: Using `when=`](#example-2-using-when)
+- [Example 3: Accessing other data values within `when=`](#example-3-accessing-other-data-values-within-when)
+- [Validation Rule Evaluation](#validation-rule-evaluation)
+- [Named Validation Rules](#named-validation-rules)
+
+
+#### Example 1: Using "named" rules
+
+```yaml
+#@data/values-schema
+---
+#@schema/validation min_len=1
+namespace: ""
+
+#@schema/validation min_len=1
+hostname: ""
+
+port:
+  #@schema/validation min=1, max=32767
+  https: 443
+
+#@schema/validation one_of=["debug", "info", "warning", "error", "fatal"]
+logLevel: info
+
+#@schema/nullable
+tlsCertificate:
+  #@schema/validation min_len=1
+  tls.crt: ""
+  #@schema/validation min_len=1
+  tls.key: ""
+  #@schema/nullable
+  ca.crt: ""
+```
+where:
+- `namespace` and `hostname` are "required" —  they will require overrides from the user to pass validation.
+  - see [How to Write Validations: "Required" Data Values](how-to-write-validations.md#required-data-values)
+- `port.https` must be between 1 and 32767, inclusive.
+- `logLevel` can _only_ be one of the values given
+- `tlsCertificate` is optional, by default (and is `null`)
+  - however, if one or more of its values are set, _then_ both `tls.crt` and `tls.key` are "required".
+  - `ca.crt` is optional (and defaults to `null`)
+
+#### Example 2: Using `when=`
+
+```yaml
+#@data/values-schema
+---
+#@schema/validation ("have 1+ response type", lambda v: len(v["responseTypes"]) > 0), when=lambda v: v["enabled"] == True
+oauth2:
+  enabled: true
+  responseTypes:
+    - ""
+```
+where:
+- validation on `oauth2` will only be run if `oauth2.enabled` is true.
+- `v` is a [YAML Fragment](lang-ref-yaml-fragment.md) (hence the need for index notation to traverse the tree).
+
+#### Example 3: Accessing other data values within `when=`
+
+```yaml
+#@data/values-schema
+---
+credential:
+  useDefaultSecret: true
+  #@schema/nullable
+  #@schema/validation not_null=True, when=lambda _, ctx: ctx.parent["useDefaultSecret"]
+  secretContents:
+    cloud: ""
+backupStorageLocation:
+  spec:
+    #@schema/nullable
+    #@schema/validation not_null=True, when=lambda _, ctx: not ctx.root["credential"]["useDefaultSecret"]
+    existingSecret: ""
+#@schema/validation ("have 1+ response type", lambda v: len(v["responseTypes"]) > 0), when=lambda v: v["enabled"] == True
+oauth2:
+  enabled: true
+  responseTypes:
+    - ""
+```
+where:
+- `secretContents` validation is dependent on its sibling `useDefaultSecret` value.
+  - the value of `when=` is a lambda expression  making it possible to define a function value in-place.
+    - Lambda expressions start with the keyword `lambda`, followed by a parameter list, then a `:`, and a single expression that is the body of the function. For more detail see [Starlark Spec: lambda expression](https://github.com/google/starlark-go/blob/master/doc/spec.md#lambda-expressions).
+  - the `_` is an idiom for an ignored parameter. Here, the value of `secretContents` is not being used.
+  - the optional second parameter `ctx` where the `.parent` attribute refers to the value of `credential`
+- `existingSecret` validation is dependent on `secretContents` which resides in a whole different subset of the data values.
+  - `ctx.root` refers to the top-most node of the document resulting from merging of all data values (as described in [How It Works: Calculating Data Values](how-it-works.md#step-1-calculate-data-values)).
 
 #### Validation Rule Evaluation
 
@@ -469,7 +564,10 @@ There are seven (7) built-in (so-called "named") rules:
 - [`one_not_null=`](#one_not_null) — _exactly_ one (1) item in the map is not `null`.
 - [`one_of=`](#one_of) — the node's value must be one from the given set.
 
-Note: every named rule is also available as a function in the [`@ytt:assert` module](lang-ref-ytt-assert.md).
+Every named rule is also available as a function in the [`@ytt:assert` module](lang-ref-ytt-assert.md). Having a function that behaves identically to the named rule makes it easier to transition to more customized experience.
+
+
+What follows is a reference for each named rule.
 
 ---
 
