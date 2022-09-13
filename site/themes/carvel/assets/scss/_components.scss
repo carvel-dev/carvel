@@ -514,10 +514,33 @@
             }
         }
     }
+    
     .docs-content {
         width: 72%;
         float: right;
-    }
+      
+        .cheat-sheet {
+           border-collapse: collapse;
+           table, tr, td {
+            white-space: nowrap;
+            border: 0.1px solid black;
+            font-size: 15px;
+            text-align: left;
+            padding-left: 10px; 
+            code{
+            margin-bottom: 0px;
+           }
+         }
+           table, th{
+            border: 0.1px solid black;
+            background-color:#CAE9F5;
+            font-size: 15px;
+            text-align: center;
+            padding-top: 5px;  
+            padding-bottom: 5px;
+           }
+          }
+        }
     @include breakpoint(small) {
         .side-nav {
             width: 100%;
