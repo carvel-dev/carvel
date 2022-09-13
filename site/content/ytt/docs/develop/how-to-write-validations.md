@@ -263,6 +263,47 @@ Some values must be from a discrete and specific set.
 provider: vsphere
 ```
 
+### Conditional Validations
+
+Sometimes, a Data Value should be validated only when some _other_ configuration has been set.
+
+In `ytt` Validations, this is achieved through the `when=` keyword.
+
+For example:
+
+```yaml
+#@data/values-schema
+---
+#@schema/validation ("at least 1 instance", lambda v: v["instances"] >= 1), when=lambda v: v["enabled"]
+service:
+  enabled: true
+  instances: 1
+```
+Here:
+- if `service.enabled` is false, the validation is _not_ run;
+- when `service.enabled` is true, `service.instances` is required to be non-negative.
+
+_(For more details, see [Reference for `@schema/validation`](lang-ref-ytt-schema.md#schemavalidation).)_
+
+#### Making Validations Dependent on Other Data Values
+
+In some situations, a Data Values's final value is only relevant (i.e. worth validating) if some _other_ data value has a specific setting.
+For these situations, the `@schema/validation ... when=` can accept an optional second parameter.
+
+For example, the previous example could be rewritten as:
+
+```yaml
+#@data/values-schema
+---
+service:
+  enabled: true
+  #@schema/validation min=1, when=lambda _, ctx: ctx.parent["enabled"]
+  instances: 6
+```
+where:
+- the `when=` now has a function value that accepts two (2) arguments; the second of which is named `ctx`.
+  - see [Reference for `@schema/validation`](lang-ref-ytt-schema.md#schemavalidation) for details of the value assigned to `ctx`.
+- `instances` will only be validated if `enabled` is `true`
 
 ### Mutually Exclusive Sections 
 
@@ -290,6 +331,12 @@ Here:
 - both structures are present and `null` values are used.
 
 Essential is that the Consumer can configure _either_ OIDC _or_ LDAP _but not both._
+
+There are at least a couple of approaches possible:
+- [Using `one_not_null=`](#using-one_not_null) to enforce that only one section can be populated.
+- [Using a Discriminator as the Condition](#using-a-discriminator-as-the-condition) to trigger validations only on the currently selected section.
+
+#### Using `one_not_null=`
 
 With `ytt` the Author can more clearly enforce this structure and validate only the active configuration:
 
@@ -346,25 +393,40 @@ dex:
     ldap: null
 ```
 
-### Conditional Validations
+#### Using a Discriminator as the Condition
 
-Sometimes, a Data Value should be validated only when some _other_ configuration has been set.
+In some cases, it may be desirable to keep the discriminator.
 
-In `ytt` Validations, this is achieved through the `when=` keyword.
-
-For example:
+Reworking the example from above...
 
 ```yaml
 #@data/values-schema
 ---
-#@schema/validation ("at least 1 instance", lambda v: v["instances"] >= 1), when=lambda v: v["enabled"]
-service:
-  enabled: true
-  instances: 1
+dex:
+  config:
+    #@schema/validation one_of=["oidc", "ldap"]
+    type: "oidc"
+    oidc:
+      #@schema/validation min_len=1, when=lambda _, ctx: ctx.root["dex"]["config"]["type"] == "oidc"
+      CLIENT_ID: ""
+      #@schema/validation min_len=1, when=lambda _, ctx: ctx.root["dex"]["config"]["type"] == "oidc"
+      CLIENT_SECRET: ""
+      #@schema/validation min_len=1, when=lambda _, ctx: ctx.root["dex"]["config"]["type"] == "oidc"
+      issuer: ""
+    ldap:
+      #@schema/validation min_len=1, when=lambda _, ctx: ctx.root["dex"]["config"]["type"] == "ldap"
+      host: ""
+      #@schema/validation min_len=1, when=lambda _, ctx: ctx.root["dex"]["config"]["type"] == "ldap"
+      bindDN: ""
+      #@schema/validation min_len=1, when=lambda _, ctx: ctx.root["dex"]["config"]["type"] == "ldap"
+      bindPW: ""
 ```
-Here:
-- if `service.enabled` is false, the validation is _not_ run;
-- when `service.enabled` is true, `service.instances` is required to be non-negative.
+where:
+- `dex.config.type` can only be _either_ "oidc" or "ldap"
+- `dex.config.oidc` values will only be validated if `type` is "oidc"
+- `dex.config.ldap` values, likewise, will only be validated if `type` is "ldap"
+
+_(See also [Making Validations Dependent on Other Data Values](#making-validations-dependent-on-other-data-values).)_
 
 ## About Rules
 
@@ -398,6 +460,14 @@ Authors are encouraged to use named rules whenever possible:
 
 
 ### Writing Custom Rules
+
+The ["Named" rules](#using-named-rules) will not cover _all_ possible validation cases. One might opt to write a custom rule for a number of reasons:
+- the desired constraint can't be expressed through a named rule
+- the description supplied by a named rule is inadequate
+
+
+- [Complex Custom Rules](#complex-custom-rules)
+- [About `null` values](#about-null-values)
 
 A validation rule has two parts:
 - a description of a valid value;

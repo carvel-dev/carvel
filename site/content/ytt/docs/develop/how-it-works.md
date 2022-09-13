@@ -163,11 +163,12 @@ As the first pipeline step (black box) shows, [above](#the-ytt-pipeline) :
 2. merge those documents, [in order](lang-ref-ytt-schema.md#multiple-schema-documents), generating a "Data Values Schema" document populated with default values and type information.
 3. process all the "Data Values" documents (light grey input) — evaluating any templating in them;
 4. merge those documents, [in order](ytt-data-values.md#splitting-data-values-overlays-into-multiple-files). That is, start with the first document and then overlay the second one onto it; then overlay the third document on top of _that_, and so on...
-5. finally, override values with the "Custom Values" input, as described in [How to Use Data Values > Configuring Data Values](how-to-use-data-values.md#configuring-data-values).
+5. finally, override values with the "Custom Values" input, as described in [How to Use Data Values > Configuring Data Values](how-to-use-data-values.md#configuring-data-values). \
+   The result of all this is the final set of values that will be available to templates: the dark grey "final Data Values".
+6. lastly, if there are any [validations declared in the schema](how-to-write-validations.md), all such rules are evaluated over this final result.
 
 _(Note the data in-flow arrows into this pipeline step are deliberately ordered, left-to-right, reinforcing the sequence in which values are set: defaults from schema, data values documents, and custom values; last source wins.)_
 
-The result of all this is the final set of values that will be available to templates: the dark grey "final Data Values".
 
 ### Step 2: Evaluate Templates
 
