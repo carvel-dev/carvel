@@ -11,9 +11,9 @@ toc:
     subfolderitems:
       - page: YAML and Annotations
         url: /yaml-primer
-  - title: Cheat Sheets
+  - title: Quick References
     subfolderitems:
-      - page: Schema Validations
+      - page: Schema Validations Cheat Sheet
         url: /schema-validations-cheat-sheet
   - title: How To
     subfolderitems:
