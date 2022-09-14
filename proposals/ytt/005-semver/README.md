@@ -64,7 +64,31 @@ its `tools sort-semver` subcommand.
 
 * Education around and proliferation of the semver scheme is not considered to be `ytt`'s responsibility.
 
-### Specification / Use Cases
+### Specification
+
+The built-in `@ytt:semver` library exposes the following API:
+
+* [semver·version](#semverversion)
+* [semver·from_str](#semverfrom_str)
+* [version·to_str](#versionto_str)
+* [version·cmp](#versioncmp)
+* [version·(lt, lte, gt, gte)](#versioneq-lt-lte-gt-gte)
+* [version·(next_major, next_minor, next_patch)](#versionnext_major-next_minor-next_patch)
+* [semver·range](#semverrange)
+* [range·contains](#rangecontains)
+* [range·to_str](#rangeto_str)
+
+The library can be loaded like so:
+
+```yaml
+#! config.yaml
+#@ load("@ytt:semver", "semver")
+```
+
+```star
+# config.star
+load("@ytt:semver", "semver")
+```
 
 #### semver·version
 
@@ -133,6 +157,31 @@ is malformed, it is a dynamic error.
 #@ semver.from_str("Homer Simpson")                        #! ⚡️ error
 ```
 
+#### version·to_str
+
+`version.to_str()` returns the string representation of the `version` struct.
+
+```yaml
+#@ load("@ytt:semver", "semver")
+
+#@ semver.version().to_str()                               #! "0.0.0"
+#@ semver.version(1, 2, 3).to_str()                        #! "1.2.3"
+#@ semver.version(1, 2, 3, "beta").to_str()                #! "1.2.3-beta"
+#@ semver.version(1, 2, 3, metadata="build.5").to_str()    #! "1.2.3+build.5"
+#@ semver.version(1, 2, 3, "next", "nightly").to_str()     #! "1.2.3-next+nightly"
+#@ semver.version(minor=1, prerelease="alpha").to_str()    #! "0.1.0-alpha"
+```
+
+Use cases:
+
+```yaml
+#@ load("@ytt:semver", "semver")
+
+#@ all_the_minor_versions = [semver.version(minor=i).to_str() for i in range(10)]
+---
+allowed_versions: #@ all_the_minor_versions
+```
+
 #### version·cmp
 
 `version.cmp(other)` compares two semantic versions and returns `0` if they are equal, `-1` if `other` is greater
@@ -174,30 +223,82 @@ ye_olde_confyg: they don't make 'em like this any more
 #@ end
 ```
 
-#### version·to_str
+#### version·(next_major, next_minor, next_patch)
 
-`version.to_str()` returns the string representation of the `version` struct.
-
-```yaml
-#@ load("@ytt:semver", "semver")
-
-#@ semver.version().to_str()                               #! "0.0.0"
-#@ semver.version(1, 2, 3).to_str()                        #! "1.2.3"
-#@ semver.version(1, 2, 3, "beta").to_str()                #! "1.2.3-beta"
-#@ semver.version(1, 2, 3, metadata="build.5").to_str()    #! "1.2.3+build.5"
-#@ semver.version(1, 2, 3, "next", "nightly").to_str()     #! "1.2.3-next+nightly"
-#@ semver.version(minor=1, prerelease="alpha").to_str()    #! "0.1.0-alpha"
-```
-
-Use cases:
+All of `version.next_major()`, `version.next_minor()` and `version.next_patch()` return a new `version` and bump the
+respective components. Existing `prerelease` and `metadata` are reset.
 
 ```yaml
 #@ load("@ytt:semver", "semver")
 
-#@ all_the_minor_versions = [semver.version(minor=i).to_str() for i in range(10)]
----
-allowed_versions: #@ all_the_minor_versions
+#@ semver.from_str("1.2.3").next_patch()                   #! semver.version(1, 2, 4)
+#@ semver.from_str("1.2.3").next_minor()                   #! semver.version(1, 3, 0)
+#@ semver.from_str("1.2.3").next_major()                   #! semver.version(2, 0, 0)
+#@ semver.from_str("1.2.3-alpha").next_major()             #! semver.version(2, 0, 0)
+#@ semver.from_str("1.2.3+nightly").next_minor()           #! semver.version(1, 3, 0)
+#@ semver.from_str("1.2.3-beta+dev").next_patch()          #! semver.version(1, 2, 4)
 ```
+
+#### semver·range
+
+`semver.range(range=string)` returns a struct representing a range of semantic versions. The struct has no fields. If
+the range argument is not a `string` or cannot be parsed as a range of semantic versions, it is a dynamic error.
+
+Valid ranges are all strings which are accepted
+by [blang/semver@v4.range.ParseRange](https://pkg.go.dev/github.com/blang/semver/v4?utm_source=godoc#ParseRange) without
+error.
+
+```yaml
+#@ load("@ytt:semver", "semver")
+
+#@ semver.range("<1.0.0")                                  #! less than 1.0.0 
+#@ semver.range("<=1.0.0")                                 #! less than or equal 1.0.0 
+#@ semver.range(">1.0.0")                                  #! larger than 1.0.0
+#@ semver.range(">=1.0.0")                                 #! larger than or equal 1.0.0
+#@ semver.range("1.0.0")                                   #! equal 1.0.0
+#@ semver.range("=1.0.0")                                  #! equal 1.0.0
+#@ semver.range("==1.0.0")                                 #! equal 1.0.0
+#@ semver.range("!1.0.0")                                  #! not equal 1.0.0
+#@ semver.range("!=1.0.0")                                 #! not equal 1.0.0
+#@ semver.range(">1.0.0 <2.0.0")                           #! between 1.0.0 and 2.0.0
+#@ semver.range(">1.0.0 <3.0.0 !2.0.3-beta.2")             #! between 1.0.0 and 3.0.0 but not equal 2.0.3-beta.2
+#@ semver.range("<2.0.0 || >=3.0.0")                       #! less than 2.0.0 or larger than or equal 3.0.0
+#@ semver.range(">1.0.0 <2.0.0 || >3.0.0 !4.2.1")          #! ...
+#@ semver.range("~1.2.3")                                  #! ⚡️ error
+#@ semver.range("not a range")                             #! ⚡️ error
+```
+
+#### range·contains
+
+`range.contains(version=version)` returns `True` if `range` contains the given `version` and `False` otherwise.
+
+```yaml
+#@ load("@ytt:semver", "semver")
+
+#@ semver.range("<1.0.0").contains(semver.from_str("0.1.0))                               #! True 
+#@ semver.range("<1.0.0").contains(semver.from_str("1.0.0))                               #! False 
+#@ semver.range(">1.0.0 <2.0.0").contains(semver.from_str("1.23.45))                      #! True
+#@ semver.range(">1.0.0 <3.0.0 !2.0.3-beta.2").contains(semver.from_str("2.0.3-beta.2"))  #! False
+#@ semver.range(">1.0.0 <3.0.0 !2.0.3-beta.2").contains(semver.from_str("2.0.3"))         #! True
+```
+
+#### range·to_str
+
+`range.to_str()` returns the initially given string representation of `range`.
+
+```yaml
+#@ load("@ytt:semver", "semver")
+
+#@ semver.range("<1.0.0").to_str()                          #! "<1.0.0" 
+#@ semver.range(">=1.0.0").to_str()                         #! ">=1.0.0" 
+#@ semver.range("1.0.0").to_str()                           #! "1.0.0" 
+#@ semver.range("=1.0.0").to_str()                          #! "=1.0.0"
+#@ semver.range("==1.0.0").to_str()                         #! "==1.0.0"
+#@ semver.range(">1.0.0 <2.0.0").to_str()                   #! ">1.0.0 <2.0.0"
+#@ semver.range(">1.0.0 <3.0.0 !2.0.3-beta.2").to_str()     #! ">1.0.0 <3.0.0 !2.0.3-beta.2"
+```
+
+### Use Cases
 
 ### Other Approaches Considered
 
@@ -207,9 +308,10 @@ allowed_versions: #@ all_the_minor_versions
 
 ## Open Questions
 
-* There's a host of conceivable additional operations available for semver, e.g. test against range, sort list of
-  versions, bumping, etc. It is debatable if that should be part of the standard library. Testing against a range and
-  sorting are likelier candidates for a standard library. Bumping is possible with the primitives presented.
+* There's a host of conceivable additional operations available for semver, e.g. sort list of
+  versions, bumping prereleases (1.2.3-build.5 → 1.2.3-build.6), etc. It is debatable if that should be part of the
+  built-in library. If the primitives provided by the library are expressive enough, then authors should be able to
+  cover these use cases by themselves.
 * Maybe configuration authors would benefit from a `version.to_dict()`(or even `version.to_list()`
   and `version.to_tuple()`) to ease the transformation into a serializable data structure. On the other hand, at least
   in the case of `version.to_dict()` the author may disagree with the keys.
