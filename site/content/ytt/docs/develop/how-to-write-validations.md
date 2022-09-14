@@ -111,17 +111,22 @@ When the validations are run, instead of rendering templates, `ytt` reports the 
 
 ```console
 $ ytt -f schema.yaml
-ytt: Error: One or more data values were invalid:
-- "namespace" (schema.yaml:5) requires "length greater or equal to 1"; fail: length of 0 is less than 1 (by schema.yaml:4)
-- "username" (schema.yaml:7) requires "length greater or equal to 1"; fail: length of 0 is less than 1 (by schema.yaml:6)
+ytt: Error: Validating final data values:
+  dex.namespace
+    from: schema.yaml:5
+    - must be: length >= 1 (by: schema.yaml:4)
+      found: length = 0
+
+  dex.username
+    from: schema.yaml:7
+    - must be: length >= 1 (by: schema.yaml:6)
+      found: length = 0
 ```
 
 And if the Consumer supplies data values:
 
 ```yaml
 dex:
-  #!                  1         2         3         4         5         6
-  #!         1234567890123456789012345678901234567890123456789012345678901234
   namespace: the-longest-namespace-you-ever-did-see-in-fact-probably-too-long
   username: alice
 ```
@@ -130,8 +135,11 @@ Only _after_ those are merged with the default values are validations run:
 
 ```console
 $ ytt -f schema.yaml --data-values-file values.yaml
-ytt: Error: One or more data values were invalid:
-- "namespace" (values.yaml:4) requires "length less than or equal to 63"; fail: length of 64 is more than 63 (by schema.yaml:4)
+ytt: Error: Validating final data values:
+  dex.namespace
+    from: alues.yaml:2
+    - must be: length <= 63 (by: schema.yaml:4)
+      found: length = 64
 ```
 
 Until, finally, all Data Values have valid values:
@@ -183,8 +191,10 @@ out of the box, the Consumer receives this message:
 
 ```console
 $ ytt -f schema.yaml
-ytt: Error: One or more data values were invalid:
-- "port" (schema.yaml:4) requires "a value greater or equal to 1024"; fail: value is less than 1024 (by schema.yaml:3)
+  port
+    from: schema.yaml:4
+    - must be: a value >= 1024 (by: schema.yaml:3)
+      found: value < 1024
 ```
 
 Where there are not "natural" limits, one might be able to use the zero or empty value...
@@ -248,8 +258,11 @@ out of the box, the Consumer receives this message:
 
 ```console
 $ ytt -f schema.yaml
-ytt: Error: One or more data values were invalid:
-- "tlsCertificate" (schema.yaml:5) requires "not null"; fail: value is null (by schema.yaml:4)
+ytt: Error: Validating final data values:
+  tlsCertificate
+    from: schema.yaml:5
+    - must be: not null (by: schema.yaml:4)
+      found: value is null
 ```
 
 ### Enumerations
@@ -376,8 +389,11 @@ When validations run, the Consumer is prompted to configure one:
 
 ```console
 $ ytt -f schema.yaml --data-values-inspect
-ytt: Error: One or more data values were invalid:
-- "config" (schema.yaml:5) requires "exactly one child not null"; check: all values are null (by schema.yaml:4)
+ytt: Error: Validating final data values:
+  dex.config
+    from: schema.yaml:5
+    - must be: exactly one of ["oidc", "ldap"] to be not null (by: schema.yaml:4)
+      found: all values are null
 ```
 
 Once a value _is_ provided for one or the other, the configuration becomes valid:
@@ -493,8 +509,10 @@ Has the initial result:
 
 ```console
 $ ytt -f schema.yaml
-ytt: Error: One or more data values were invalid:
-- "quota" (schema.yaml:4) requires "a multiple of 1024" (by schema.yaml:3)
+ytt: Error: Validating final data values:
+  quota
+    from: schema.yaml:4
+    - must be: a multiple of 1024 (by: schema.yaml:3)
 ```
 
 And quietly reports nothing when the value _is_ valid.
