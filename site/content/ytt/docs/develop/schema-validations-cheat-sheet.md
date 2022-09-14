@@ -133,7 +133,8 @@ port: 1024
 (tr)
 (td)
 ##### Enumeration
-_usage: [enumerations](../how-to-write-validations#enumerations)_
+_usage: [enumerations](../how-to-write-validations#enumerations)_\
+_reference: [`one_of=`](../lang-ref-ytt-schema#one_of)_
 (/td)
 (td)
 ```yaml
@@ -185,7 +186,8 @@ service:
 (tr)
 (td)
 ##### Custom description of valid value
-_usage: [writing custom rules](../how-to-write-validations#writing-custom-rules)_
+_usage: [writing custom rules](../how-to-write-validations#writing-custom-rules)_\
+_reference: [@ytt:assert](../lang-ref-ytt-assert)_
 (/td)
 (td)
 ```yaml
