@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-spec]
 title: vendir.yml spec
 ---
 
@@ -12,7 +12,7 @@ minimumRequiredVersion: 0.8.0
 
 # one or more directories to manage with vendir
 directories:
-- # path is relative to vendir.yml location
+- # path is relative to `vendir` CLI working directory
   path: config/_ytt_lib
 
   contents:

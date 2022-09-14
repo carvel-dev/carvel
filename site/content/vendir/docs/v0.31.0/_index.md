@@ -1,9 +1,9 @@
 ---
-
+aliases: [/vendir/docs/latest/]
 title: "About vendir"
 toc: "false"
 cascade:
-  version: v0.30.0
+  version: v0.31.0
   toc: "true"
   type: docs
   layout: docs
