@@ -19,7 +19,7 @@ to read a version's constituents, mutate them and compare different versions. Fo
 templates:
 
 * I want to assert that a given string is a well-formed semver.
-* I want to change a semver's representation from string to a data structure of my choice, e.g. object or array.
+* I want to access a semver's components so that I can easily change its representation.
 * I want to compare semvers, e.g. expect a given version to be larger than a known version.
 * I want to (de,in)crement the major, minor and/or patch version of a semver.
 * I want to add, change or remove a semver's prerelease identifier or metadata.
