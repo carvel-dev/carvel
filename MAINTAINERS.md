@@ -8,13 +8,11 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Maintainer | GitHub ID | Affiliation | Carvel Tool Focus |
 | --------------- | --------- | ----------- | ----------- |
 | Dmitriy Kalinin | [cppforlife](https://github.com/cppforlife) | [VMware](https://www.github.com/vmware/) | All Tools (Approver) |
-| Aaron Hurley | [aaronshurley](https://github.com/aaronshurley) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt), [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | John Ryan | [pivotaljohn](https://github.com/pivotaljohn) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) (Approver) |
 | João Pereira | [joaopapereira](https://github.com/joaopapereira) | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Approver), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Varsha Munishwar | [vmunishwar](https://github.com/vmunishwar)| [VMware](https://www.github.com/vmware/) |[ytt](https://github.com/vmware-tanzu/carvel-ytt) |
 | Joe Kimmel | [joe-kimmel-vmw](https://github.com/joe-kimmel-vmw) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp) (Reviewer), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
 | Neil Hickey | [neil-hickey](https://github.com/neil-hickey) | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (Reviewer), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
-| Renu Yarday | [renuy](https://github.com/renuy) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) |
 | Praveen Rewar | [praveenrewar](https://github.com/praveenrewar) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) (Reviewer), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) (Approver)|
 | Yash Sethiya | [sethiyash](https://github.com/sethiyash) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) |
 | Soumik Majumder | [100mik](https://github.com/100mik) | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/vmware-tanzu/carvel-kapp) (Reviewer), [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli) (Approver)|
@@ -33,14 +31,11 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Dennis Leon, [DennisDenuto](https://github.com/DennisDenuto)
 
 ## Carvel Stakeholders
-**Deployment Lifecycle Tools:** imgpkg, kapp, kbld, ytt
-**Package Management Tools:** kapp-controller, vendir, secretgen-controller
 
 | Carvel Feature Area | Lead |
 | ----------------------------- | :---------------------: |
 | All | Dmitriy Kalinin (cppforlife), Project Tech Lead |
-| Deployment Lifecycle & Package Management | Aaron Hurley (aaronshurley), Engineering Manager |
-| Deployment Lifecycle | Renu Yarday (renuy), Engineering Manager |
-| Deployment Lifecycle | John Ryan (jtigger), Tech Lead |
+| imgpkg, kapp-controller, kbld, secretgen-controller, vendir, ytt | Aaron Hurley (aaronshurley), Engineering Manager |
+| kapp, kctrl | Renu Yarday (renuy), Engineering Manager |
 | [Windows Application Packages Contributor](https://github.com/adriens?tab=repositories&q=chocolatey-&type=&language=powershell&sort=stargazers) | Adrien Sales (adriens) |
 | Community Management | Nanci Lancaster (microwavables) |
