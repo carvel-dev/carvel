@@ -1,14 +1,19 @@
-
-
 ---
 title: "Schema Validations Cheat Sheet"
 ---
+
+_(For a more detailed guide, see [Writing Schema Validations](how-to-write-validations.md).)_
+
 {{< table class="cheat-sheet" >}}
 
 (th)**Use Case**(/th)
 (th)**Syntax**(/th)
 (tr)
-(td) Required string(/td)
+(td)
+##### Required string
+_usage: [Using the empty/zero value](../how-to-write-validations#using-the-emptyzero-value)_\
+_reference: [`min_len=`](../lang-ref-ytt-schema#min_len)_
+(/td)
 (td)
 ```yaml
 #@schema/validation min_len=1
@@ -18,7 +23,11 @@ username: ""
 (/tr)
 
 (tr)
-(td)Required integer(/td)
+(td)
+##### Required integer
+_usage: [Using the empty/zero value](../how-to-write-validations#using-the-emptyzero-value)_\
+_reference: [`min=`](../lang-ref-ytt-schema#min)_
+(/td)
 (td)
 ```yaml
 #@schema/validation min=1
@@ -28,7 +37,11 @@ replicas: 0
 (/tr)
 
 (tr)
-(td)Required array(/td)
+(td)
+##### Required array
+_usage: [Using the empty/zero value](../how-to-write-validations#using-the-emptyzero-value)_\
+_reference: [`min_len=`](../lang-ref-ytt-schema#min_len)_
+(/td)
 (td)
 ```yaml
 #@schema/validation min_len=1 
@@ -39,7 +52,12 @@ responseTypes:
 (/tr)
 
 (tr)
-(td)Required map  [(Mark as ‘nullable’ and ‘not_null’)](/ytt/docs/develop/how-to-write-validations#mark-as-nullable-and-not_null)(/td)
+(td)
+##### Required map
+_usage: [mark as "nullable" and "not_null"](../how-to-write-validations#mark-as-nullable-and-not_null)_ \
+_reference: [`@schema/nullable`](../lang-ref-ytt-schema#schemanullable) and [`not_null=`](../lang-ref-ytt-schema#not_null)_
+
+(/td)
 (td)
 ```yaml
 #@schema/nullable
@@ -52,7 +70,10 @@ credential:
 (/tr)
 
 (tr)
-(td)Ensure string minimum length(/td)
+(td)
+##### Ensure string minimum length
+_reference: [`min_len=`](../lang-ref-ytt-schema#min_len)_
+(/td)
 (td)
 ```yaml
 #@schema/validation min_len=8
@@ -62,7 +83,9 @@ password: ""
 (/tr)
 
 (tr)
-(td)Ensure string exact length(/td)
+(td)
+##### Ensure string exact length
+(/td)
 (td)
 ```yaml
 #@schema/validation min_len=8, max_len=8
@@ -72,7 +95,9 @@ password: ""
 (/tr)
 
 (tr)
-(td)Ensure a min value(/td)
+(td)
+##### Ensure a min value
+(/td)
 (td)
 ```yaml
 #@schema/validation min=3
@@ -82,7 +107,9 @@ replicas: 5
 (/tr)
 
 (tr)
-(td)Ensure a max value(/td)
+(td)
+##### Ensure a max value
+(/td)
 (td)
 ```yaml
 #@schema/validation max=5
@@ -92,7 +119,9 @@ replicas: 3
 (/tr)
 
 (tr)
-(td)Ensure a value between min and max(/td)
+(td)
+##### Ensure a value between min and max
+(/td)
 (td)
 ```yaml
 #@schema/validation min=1, max=65535
@@ -102,7 +131,10 @@ port: 1024
 (/tr)
 
 (tr)
-(td)Enumeration(/td)
+(td)
+##### Enumeration
+_usage: [enumerations](../how-to-write-validations#enumerations)_
+(/td)
 (td)
 ```yaml
 #@schema/validation one_of=["aws", "azure", "vsphere"]
@@ -112,8 +144,10 @@ provider: ""
 (/tr)
 
 (tr)
-(td)Exactly one is specified\
-(mutually exclusive config)
+(td)
+##### Exactly one is specified
+_usage: [mutually exclusive config](../how-to-write-validations#mutually-exclusive-sections)_\
+_reference: [`one_not_null=`](../lang-ref-ytt-schema#one_not_null)_
 (/td)
 (td)
 ```yaml
@@ -130,19 +164,18 @@ config:
 (/tr)
 
 (tr)
-(td)Conditionally run validations (/td)
+(td)
+##### Conditionally run validations
+_usage: [conditional validations](../how-to-write-validations#conditional-validations)_\
+_reference: [`@schema/validation ... when=`](../lang-ref-ytt-schema#schemavalidation)_
+(/td)
 (td)
 ```yaml
-#@ load("@ytt:assert", "assert")
-
-#@ isLoadBalancer = lambda v: v["type"] == "LoadBalancer"
-#@ assertNameGiven = ("be given", lambda v: assert.min_len(1).check(v["name"]))
-
 #@data/values-schema
 ---
-#@schema/validation assertNameGiven, when=isLoadBalancer
 service:
   type: LoadBalancer
+  #@schema/validation min_len=1, when=lambda _, ctx: ctx.parent["type"] == "LoadBalancer"
   name: ""
 ```
 (/td)
@@ -150,7 +183,10 @@ service:
 
 
 (tr)
-(td)Custom description of valid value (/td)
+(td)
+##### Custom description of valid value
+_usage: [writing custom rules](../how-to-write-validations#writing-custom-rules)_
+(/td)
 (td)
 ```yaml
 #@ load("@ytt:assert", "assert")
@@ -162,7 +198,9 @@ username: ""
 (/tr)
 
 (tr)
-(td)Disable validations flag(/td)
+(td)
+##### Disable validations flag
+(/td)
 (td)
 ```yaml
 $ ytt ... --dangerous-data-values-disable-validation
