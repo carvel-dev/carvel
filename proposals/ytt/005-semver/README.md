@@ -300,6 +300,11 @@ error.
 
 ### Use Cases
 
+**todo** collect ^ use cases here and make them prettier, and more specific
+
+**todo** add use cases / needs from [kapp-controller's in-development downward API](https://hackmd.io/6FQhzRIPR_uceqtTqSIXaA)
+
+
 ### Other Approaches Considered
 
 * A Github-hosted Starlark library like `awesome-ytt/semver` containing a similar API could be fetched with `vendir` and
