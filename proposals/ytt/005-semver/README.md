@@ -32,7 +32,7 @@ authors to write boilerplate code for common, industry standard operations.
 A semantic version encodes different properties about the version in a string of the
 form `<major>.<minor>.<patch>(-<pre-release>)(+<metadata>)`.
 
-Semantic versions are strictly sortable.
+Semantic versions can be sorted based on [precedence](https://semver.org/#spec-item-11).
 
 For its full specification refer to [Semantic versioning](https://semver.org/).
 
