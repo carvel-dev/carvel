@@ -22,7 +22,7 @@ templates:
 * I want to access a semver's components so that I can easily change its representation.
 * I want to compare semvers, e.g. expect a given version to be larger than a known version.
 * I want to (de,in)crement the major, minor and/or patch version of a semver.
-* I want to add, change or remove a semver's prerelease identifier or metadata.
+* I want to add, change or remove a semver's prerelease identifier or build metadata.
 
 Starlark's standard library provides the means to achieve this. However, it sets a high bar and burdens configuration
 authors to write boilerplate code for common, industry standard operations.
@@ -30,7 +30,7 @@ authors to write boilerplate code for common, industry standard operations.
 ## Terminology / Concepts
 
 A semantic version encodes different properties about the version in a string of the
-form `<major>.<minor>.<patch>(-<pre-release>)(+<metadata>)`.
+form `<major>.<minor>.<patch>(-<pre-release>)(+<build>)`.
 
 Semantic versions can be sorted based on [precedence](https://semver.org/#spec-item-11).
 
@@ -92,9 +92,9 @@ load("@ytt:semver", "semver")
 
 #### semver·version
 
-`semver.version([major=int, minor=int, patch=int, prerelease=string, metadata=string])` returns a struct representing a
+`semver.version([major=int, minor=int, patch=int, prerelease=string, build=string])` returns a struct representing a
 semantic version. The fields `major`, `minor` and `patch` are strings and default to `0`. The fields `prerelease` and
-`metadata` are strings and default to `None`. If any of the arguments are of the wrong type or contain forbidden
+`build` are strings and default to `None`. If any of the arguments are of the wrong type or contain forbidden
 characters, it is a dynamic error.
 
 ```yaml
@@ -103,7 +103,7 @@ characters, it is a dynamic error.
 #@ semver.version()                                        #! 0.0.0
 #@ semver.version(1, 2, 3)                                 #! 1.2.3
 #@ semver.version(1, 2, 3, "beta")                         #! 1.2.3-beta
-#@ semver.version(1, 2, 3, metadata="build.5")             #! 1.2.3+build.5
+#@ semver.version(1, 2, 3, build="build.5")             #! 1.2.3+build.5
 #@ semver.version(1, 2, 3, "next", "nightly")              #! 1.2.3-next+nightly
 #@ semver.version(minor=1, prerelease="alpha")             #! 0.1.0-alpha
 #@ semver.version(1, 2, -5)                                #! ⚡️ error
@@ -120,7 +120,7 @@ Use cases:
 #@ load("@ytt:assert", "assert")
 
 #@ v = semver.version(1, 2, 3)
-#@ d = dict(major=v.major, minor=v.minor, patch=v.patch, prerelease=v.prerelease, metadata=v.metadata) 
+#@ d = dict(major=v.major, minor=v.minor, patch=v.patch, prerelease=v.prerelease, build=v.build) 
 
 --- #@ d
 
@@ -136,7 +136,7 @@ version.json: #@ json.encode(d)
 #@ end
 
 #@ forbidden = ["nightly", "dev"]
-#@ if v.metadata in forbidden:
+#@ if v.build in forbidden:
 #@   assert.fail("Sorry, that version is forbidden") 
 #@ end
 ```
@@ -151,7 +151,7 @@ is malformed, it is a dynamic error.
 
 #@ semver.from_str("1.2.3")                                #! semver.version(1, 2, 3)
 #@ semver.from_str("1.2.3-pre")                            #! semver.version(1, 2, 3, "pre")
-#@ semver.from_str("1.2.3+meta")                           #! semver.version(1, 2, 3, metadata="meta")
+#@ semver.from_str("1.2.3+meta")                           #! semver.version(1, 2, 3, build="meta")
 #@ semver.from_str("1.2.3-pre+meta")                       #! semver.version(1, 2, 3, "pre", "meta")
 #@ semver.from_str("1.2.-5")                               #! ⚡️ error
 #@ semver.from_str("Homer Simpson")                        #! ⚡️ error
@@ -167,7 +167,7 @@ is malformed, it is a dynamic error.
 #@ semver.version().to_str()                               #! "0.0.0"
 #@ semver.version(1, 2, 3).to_str()                        #! "1.2.3"
 #@ semver.version(1, 2, 3, "beta").to_str()                #! "1.2.3-beta"
-#@ semver.version(1, 2, 3, metadata="build.5").to_str()    #! "1.2.3+build.5"
+#@ semver.version(1, 2, 3, build="build.5").to_str()    #! "1.2.3+build.5"
 #@ semver.version(1, 2, 3, "next", "nightly").to_str()     #! "1.2.3-next+nightly"
 #@ semver.version(minor=1, prerelease="alpha").to_str()    #! "0.1.0-alpha"
 ```
@@ -226,7 +226,7 @@ ye_olde_confyg: they don't make 'em like this any more
 #### version·(next_major, next_minor, next_patch)
 
 All of `version.next_major()`, `version.next_minor()` and `version.next_patch()` return a new `version` and bump the
-respective components. Existing `prerelease` and `metadata` are reset.
+respective components. Existing `prerelease` and `build` are reset.
 
 ```yaml
 #@ load("@ytt:semver", "semver")
