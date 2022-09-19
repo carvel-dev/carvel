@@ -380,6 +380,73 @@ spec:
   - resource: {}
 ```
 
+## Advanced Use Cases
+
+### Requiring specific versions of Kubernetes
+
+As Kubernetes APIs evolve, features can be deprecated and breaking changes can be introduced. For the contents of a
+package to be successfully installed, the target cluster will need to support those associated resource versions.
+
+kapp-controller provides a way to declare which versions of Kubernetes for which the package is compatible.
+
+This is done in the [Package](#package) resource:
+
+```yaml
+spec:
+  kubernetesVersionSelection:
+    constraints: ">0.20.5"
+```
+_(see [Package Consumer Concepts > Constraints](package-consumer-concepts.md#constraints) for syntax.)_
+
+If a PackageInstall resource is created for that package and the version of target cluster falls outside the given constraint, 
+the installation will fail.
+
+If that constraint should be ignored, this can be noted in the [PackageInstall](#package-install) resource:
+
+```yaml
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    packaging.carvel.dev/ignore-kubernetes-version-selection: true
+```
+
+When the `ignore-kubernetes-version-selection` annotation is present on the PackageInstall, kapp-controller will
+attempt to install that package, regardless of the version of the cluster.
+
+### Requiring specific versions of kapp-controller
+
+A package may rely a feature of either kapp-controller itself or one of the bundled tools (i.e. ytt, kbld, helm, ...).
+In this case, for the package to be installed successfully, the attendant version of kapp-controller must be deployed.
+
+The package can declare which versions of kapp-controller are known to be compatible.
+
+This is done in the [Package](#package) resource:
+
+```yaml
+spec:
+  kappControllerVersionSelection:
+    constraints: ">0.40.0 <1.0.0"
+```
+_(see [Package Consumer Concepts > Constraints](package-consumer-concepts.md#constraints) for syntax.)_
+
+If a PackageInstall resource is created for that package and the version of kapp-controller on that cluster falls outside 
+the given constraint, the installation will fail.
+
+If that constraint should be ignored, this can be noted in the [PackageInstall](#package-install) resource:
+
+```yaml
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    packaging.carvel.dev/ignore-kapp-controller-version-selection: true
+```
+
+When the `ignore-kapp-controller-version-selection` annotation is present on the PackageInstall, kapp-controller will
+attempt to install that package, regardless of the version of kapp-controller.
+
+
 ## Combinations and Special Cases
 
 ### Overlapping Package Repositories 
