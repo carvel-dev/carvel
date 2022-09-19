@@ -76,6 +76,8 @@ directories:
       secretRef:
         # (required)
         name: my-http-auth
+      # skip unpacking tar, tgz, and zip files; by default files are unpacked (optional)
+      disableUnpack: false
 
     # fetches asset from an image registry (optional; v0.11.0+)
     image:
