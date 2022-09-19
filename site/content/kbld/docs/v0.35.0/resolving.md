@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/resolving]
 title: Resolving images
 ---
 
@@ -66,6 +66,17 @@ pbpaste | kbld -f-
 kbld -f .
 kbld -f file.yml -f config2.yml
 ```
+
+### Resolving image references to digests
+
+Available in 0.35.0+
+
+Use `--platform` flag to resolve image indexes (a type of OCI artifact) to their particular child image based on a platform (architecture, OS, OS variant) associated with an image. If platform flag is specified and image is not an image index, no special resolution is performed.
+
+Examples:
+
+- `kbld -f ... --platform linux/386` selects based on an OS (`linux`) and an architecture (`386`)
+- `kbld -f ... --platform linux/arm/v6` selects based on an OS (`linux`), architecture (`arm`) and variant (`v6`)
 
 ### Generating resolution `imgpkg` lock output
 

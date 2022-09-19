@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/config]
 title: Configuration
 ---
 
@@ -201,6 +201,7 @@ overrides:
   newImage:
   preresolved:
   tagSelection: ...
+  platformSelection: ...
 ```
 
 where:
@@ -215,6 +216,13 @@ where:
 - `preresolved` (optional; bool) specifies if `newImage` should be used as is (rather than be [re]resolved to a digest reference).
 - `tagSelection` (optional; [VersionSelection](/vendir/docs/latest/versions/#versionselection-type)) when `newImage` _is_ being resolved, specifies how to select the tag part of the reference before resolving to a digest reference. (Available as of v0.28.0+)
   - In this case, `newImage` must not have a tag or digest part (e.g. `gcr.io/my-corp/app`).
+- `platformSelection` (optional; map) specifies a way to select particular image within an image index. Available in 0.35.0+.
+  - `architecture` (string) selects via CPU architecture. ex: `amd64`
+  - `os` (string) selects via OS name. ex: `linux`
+  - `os.version` (string) selects via OS version (commonly used for Windows). ex: `10.0.10586`
+  - `os.features` (string array) selects via OS features (commonly used for Windows). ex: `["win32k"]`
+  - `variant` (string) selects via architecture variant. ex: `armv6l`
+  - `features` (string array) selects via architecture features. ex: `["sse4"]`
 
 **Example: Static Rewrite**
 
