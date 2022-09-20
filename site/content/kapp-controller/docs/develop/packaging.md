@@ -384,6 +384,8 @@ spec:
 
 ### Requiring specific versions of Kubernetes
 
+Available as of v0.41.x
+
 As Kubernetes APIs evolve, features can be deprecated and breaking changes can be introduced. For the contents of a
 package to be successfully installed, the target cluster will need to support those associated resource versions.
 
@@ -401,6 +403,10 @@ _(see [Package Consumer Concepts > Constraints](package-consumer-concepts.md#con
 If a PackageInstall resource is created for that package and the version of target cluster falls outside the given constraint, 
 the installation will fail.
 
+> ⚠️ **Unenforced Constraints** \
+> kapp-controller installations prior to v0.41.x are unaware of this field in the Package CRD, ignore it, and therefore
+> **cannot** honor these constraints.
+
 If that constraint should be ignored, this can be noted in the [PackageInstall](#package-install) resource:
 
 ```yaml
@@ -416,8 +422,11 @@ attempt to install that package, regardless of the version of the cluster.
 
 ### Requiring specific versions of kapp-controller
 
-A package may rely a feature of either kapp-controller itself or one of the bundled tools (i.e. ytt, kbld, helm, ...).
-In this case, for the package to be installed successfully, the attendant version of kapp-controller must be deployed.
+Available as of v0.41.x
+
+A package may rely a feature of either kapp-controller itself or one of the bundled tools (or one of the bundled tools
+used to fetch, template, or deploy). In this case, for the package to be installed successfully, the attendant version 
+of kapp-controller must be deployed.
 
 The package can declare which versions of kapp-controller are known to be compatible.
 
@@ -432,6 +441,10 @@ _(see [Package Consumer Concepts > Constraints](package-consumer-concepts.md#con
 
 If a PackageInstall resource is created for that package and the version of kapp-controller on that cluster falls outside 
 the given constraint, the installation will fail.
+
+> ⚠️ **Unenforced Constraints** \
+> kapp-controller installations prior to v0.41.x are unaware of this field in the Package CRD, ignore it, and therefore
+> **cannot** honor these constraints.
 
 If that constraint should be ignored, this can be noted in the [PackageInstall](#package-install) resource:
 

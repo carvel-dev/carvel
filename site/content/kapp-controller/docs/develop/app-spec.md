@@ -224,7 +224,7 @@ spec:
               - name: kubeVersion
                 kubernetesVersion: {}
               # query for all group versions (a list of the API groups and versions in the form "group/version") supported on this cluster
-              - name: apiVersions
+              - name: apiGroupVersions
                 kubernetesAPIs: {}
               # query for the version of kapp-controller reconciling this App
               - name: kappCtrlVersion
@@ -269,7 +269,7 @@ spec:
               - name: kubeVersion
                 kubernetesVersion: {}
               # query for all group versions (a list of the API groups and versions in the form "group/version") supported on this cluster
-              - name: apiVersions
+              - name: apiGroupVersions
                 kubernetesAPIs: {}
               # query for the version of kapp-controller reconciling this App
               - name: kappCtrlVersion
@@ -296,7 +296,7 @@ spec:
               - name: kubeVersion
                 kubernetesVersion: {}
               # query for all group versions (a list of the API groups and versions in the form "group/version") supported on this cluster
-              - name: apiVersions
+              - name: apiGroupVersions
                 kubernetesAPIs: {}
               # query for the version of kapp-controller reconciling this App
               - name: kappCtrlVersion
