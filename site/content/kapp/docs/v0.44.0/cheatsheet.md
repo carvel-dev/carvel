@@ -5,11 +5,17 @@ title: Cheatsheet
 
 ## List
 
+List all app in the cluster (across all namespaces)
+
 ```bash
 kapp ls -A
 ```
 
-List all app in the cluster (across all namespaces)
+Show only specific columns while listing apps
+
+```bash
+kapp ls --column=namespace,name,label
+```
 
 ## Deploy
 
