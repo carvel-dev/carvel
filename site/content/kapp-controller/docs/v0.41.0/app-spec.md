@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-spec]
 title: App CR spec
 ---
 
@@ -221,6 +221,16 @@ spec:
                 fieldPath: metadata.namespace
               - name: specificAnnotation
                 fieldPath: metadata.annotations['specificAnnotation']
+              # query for the version of the cluster
+              - name: kubeVersion
+                kubernetesVersion: {}
+              # query for all group versions (a list of the API groups and versions in the form "group/version") supported on this cluster
+              - name: apiGroupVersions
+                kubernetesAPIs: {}
+              # query for the version of kapp-controller reconciling this App
+              - name: kappCtrlVersion
+                kappControllerVersion: {}
+
 
     # use kbld to resolve image references to use digests
     - kbld:
@@ -256,6 +266,15 @@ spec:
                 fieldPath: metadata.namespace
               - name: specificAnnotation
                 fieldPath: metadata.annotations['specificAnnotation']
+              # query for the version of the cluster
+              - name: kubeVersion
+                kubernetesVersion: {}
+              # query for all group versions (a list of the API groups and versions in the form "group/version") supported on this cluster
+              - name: apiGroupVersions
+                kubernetesAPIs: {}
+              # query for the version of kapp-controller reconciling this App
+              - name: kappCtrlVersion
+                kappControllerVersion: {}
 
     # use cue to template configuration
     - cue:
@@ -274,6 +293,15 @@ spec:
                 fieldPath: metadata.namespace
               - name: specificAnnotation
                 fieldPath: metadata.annotations['specificAnnotation']
+              # query for the version of the cluster
+              - name: kubeVersion
+                kubernetesVersion: {}
+              # query for all group versions (a list of the API groups and versions in the form "group/version") supported on this cluster
+              - name: apiGroupVersions
+                kubernetesAPIs: {}
+              # query for the version of kapp-controller reconciling this App
+              - name: kappCtrlVersion
+                kappControllerVersion: {}
 
     # use sops to decrypt *.sops.yml files (optional; v0.11.0+)
     - sops:

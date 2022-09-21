@@ -103,15 +103,16 @@ params:
     name: kapp-controller
     short_name: kc
     root_link: /kapp-controller/
-    latest_docs_link: /kapp-controller/docs/v0.40.0/
+    latest_docs_link: /kapp-controller/docs/v0.41.0/
     github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
     search: true
     search_index_name: carvel-kapp-controller
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.40.0
+    version_latest: v0.41.0
     versions:
     - develop
+    - v0.41.0
     - v0.40.0
     - v0.39.0
     - v0.38.0
