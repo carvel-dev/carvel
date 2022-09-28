@@ -1,7 +1,7 @@
 ---
 title: "The Hidden Costs of Misconfiguration"
 slug: ytt-validations-released
-date: 2022-09-28
+date: 2022-09-27
 author: John Ryan, Varsha Munishwar
 excerpt: "When your end-users give the wrong input, the best thing you can do is give them immediate, concise, and actionable feedback. Now you can, with ytt Validations!"
 image: /img/ytt.svg
