@@ -24,7 +24,7 @@ install() {
     binary_type=darwin-amd64
     
     ytt_checksum=579012ac80cc0d55c3a6dde2dfc0ff5bf8a4f74c775295be99faf691cc18595e
-    imgpkg_checksum=f6044cd0134fe94ff1117b15545e8b6063b04e6bc602eace79faecfbfa821348
+    imgpkg_checksum=7e5a95b48f2f8f674f7f5d1d0207cda6c6813734fa5bb0ed7fa6f5522ae0b5bb
     kbld_checksum=f0fa574d1dd1c4dcd6a763d38e746a918477ac61a6cd52e8e9e1bba6714259c9
     kapp_checksum=2b466b9f8bbc8719334cadf917769b27affc10c95c9ded3e76be283cfd3d4721
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
@@ -34,7 +34,7 @@ install() {
     binary_type=linux-amd64
     
     ytt_checksum=29e647beeacbcc2be5f2f481e405c73bcd6d7563bd229ff924a7997b6f2edd5f
-    imgpkg_checksum=bfc210872c18fd45e8012aadba27588f51c53cb237e397439abe5fe999e3a6fd
+    imgpkg_checksum=10a8327490ca3dbfa3d00f90ae442838d364e4d7d158786e94aa1ff0438dab27
     kbld_checksum=1c3f0e4171063eef70cdabf1730d3557af992aeafb423755e71e9d5f1aea2c9b
     kapp_checksum=c2c7381a152216c8600408b4dee26aee48390f1e23d8ef209af8d9eb1edd60fc
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
@@ -53,11 +53,11 @@ install() {
   echo "Installed ${dst_dir}/ytt v0.43.0"
   
   echo "Installing imgpkg..."
-  $dl_bin github.com/vmware-tanzu/carvel-imgpkg/releases/download/v0.32.0/imgpkg-${binary_type} > /tmp/imgpkg
+  $dl_bin github.com/vmware-tanzu/carvel-imgpkg/releases/download/v0.33.0/imgpkg-${binary_type} > /tmp/imgpkg
   echo "${imgpkg_checksum}  /tmp/imgpkg" | shasum -c -
   mv /tmp/imgpkg ${dst_dir}/imgpkg
   chmod +x ${dst_dir}/imgpkg
-  echo "Installed ${dst_dir}/imgpkg v0.32.0"
+  echo "Installed ${dst_dir}/imgpkg v0.33.0"
   
   echo "Installing kbld..."
   $dl_bin github.com/vmware-tanzu/carvel-kbld/releases/download/v0.35.0/kbld-${binary_type} > /tmp/kbld
