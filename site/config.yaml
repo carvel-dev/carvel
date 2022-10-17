@@ -151,15 +151,16 @@ params:
     name: vendir
     short_name: vendir
     root_link: /vendir/
-    latest_docs_link: /vendir/docs/v0.31.0/
+    latest_docs_link: /vendir/docs/v0.32.0/
     github_url: https://github.com/vmware-tanzu/carvel-vendir
     search: true
     search_index_name: carvel-vendir
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.31.0
+    version_latest: v0.32.0
     versions:
     - develop
+    - v0.32.0
     - v0.31.0
     - v0.30.0
     - v0.29.0
