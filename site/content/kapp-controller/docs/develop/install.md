@@ -61,8 +61,8 @@ version of kapp-controller).
       - use
     ```
 
-3. Set the `IMGPKG_ENABLE_IAAS_AUTH` [environment
-   variable](/imgpkg/docs/latest/auth/#via-iaas) to false.
+3. Remove the environment variable `IMGPKG_ACTIVE_KEYCHAINS` [environment
+   variable](/imgpkg/docs/latest/auth/#via-iaas) from the deployment yaml of the sidecar container.
 
 
 ### Kubernetes versions >= 1.24
