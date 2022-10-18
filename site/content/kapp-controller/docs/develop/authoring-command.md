@@ -28,7 +28,8 @@ Supported flags:
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
 - `--chdir` _string_, Location of the working directory
 - `--tty` Force TTY-like output
-- `--openapi-schema` Generates openapi schema for ytt and helm templated files and adds it to package.yml
+- `--openapi-schema` Generates openapi schema for ytt and helm templated files and adds it to generated package
+- `--tag` _string_, Tag pushed with imgpkg bundle (default "build-<TIMESTAMP>")
 
 ## Package Repository
 ### Releasing a Package Repository
