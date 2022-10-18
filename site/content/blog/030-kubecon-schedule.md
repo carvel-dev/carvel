@@ -1,7 +1,7 @@
 ---
 title: "Carvel @ KubeCon NA 2022"
 slug: Carvel-GitopsCon-KubeCon-NA-2022
-date: 2022-10-03
+date: 2022-10-20
 author: Renu Yarday
 excerpt: "Carvel schedule for upcoming GitopsCon and KubeCon NA 2022"
 image: /img/logo.svg
