@@ -12,7 +12,7 @@ tags: ['ytt', 'getting started', 'tutorials']
 
 #### Welcome to the series of ytt getting started tutorials!
 
-The part 1 of this series introduces you to ytt and helps you get started quickly.
+The part 1 of this series introduces you to [ytt](https://carvel.dev/ytt/) and helps you get started quickly.
 It is an easy step-by-step tutorial that you can follow along and see ytt in action on the playground as well as on the CLI.
 
 We will cover the following topics:
