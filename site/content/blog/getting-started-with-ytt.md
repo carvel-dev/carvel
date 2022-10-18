@@ -1,5 +1,5 @@
 ---
-title: "ytt Getting started tutorials, Part 1"
+title: "Getting Started With ytt, Part 1"
 slug: getting-started-with-ytt
 date: 2022-10-12
 author: Varsha Munishwar
