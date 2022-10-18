@@ -9,6 +9,8 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 <a href="https://beam.lu/" border="0" target="_blank"><img alt="BEAM" src="logos/BEAM-SARL.png" height="50"></a>
 
+<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img alt="fabrique" src="logos/fabrique.png" height="50"></a>
+
 <a href="https://www.opt.nc/" border="0" target="_blank"><img alt="OPT-NC" src="logos/OPT-NC.png" height="50"></a>
 
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
@@ -28,6 +30,10 @@ Below is a list of solutions where Carvel is being used as a component.
 **[BEAM](https://beam.lu/)**
 
 BEAM is a consulting company based in Luxembourg and specialized in DevOps, Cloud and automation. BEAM supports their customers in their workload and delivery optimizations and helps them transition from traditional IT models to DevOps.
+
+**[Fabrique Numérique des Ministères Sociaux](https://www.fabrique.social.gouv.fr/)**
+
+Fabrique Numérique des Ministères Sociaux uses kapp CLI as deployer for their CI/CD tooling that they are developing and implementing actively: [Kontinuous](https://socialgouv.github.io/kontinuous/). The project started as a wrapper around Helm and Kapp, then evolved to offer more abstraction and a rich plugins system.
 
 **[Office des Postes et Télécommunications de Nouvelle-Calédonie](https://www.opt.nc/)**
 
