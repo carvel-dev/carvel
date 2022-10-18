@@ -13,7 +13,7 @@ $ kctrl package init
 ```
 Supported flags:
 - `--chdir` _string_, Location of the working directory
-- `--tty` Force TTY-like output
+- `--tty`, _boolean_, Force TTY-like output
 
 Note: We suggest to run `pkg init` in an interactive flow.
  
@@ -27,8 +27,8 @@ Supported flags:
 - `--repo-output` _string_, Output location for artifacts in repository bundle format
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
 - `--chdir` _string_, Location of the working directory
-- `--tty` Force TTY-like output
-- `--openapi-schema` Generates openapi schema for ytt and helm templated files and adds it to generated package
+- `--tty`, _boolean_, Force TTY-like output
+- `--openapi-schema`, _boolean_, Generates openapi schema for ytt and helm templated files and adds it to generated package
 - `--tag` _string_, Tag pushed with imgpkg bundle (default "build-<TIMESTAMP>")
 
 ## Package Repository
@@ -41,7 +41,7 @@ Supported flags:
 - `-v`, `--version` _string_, Version to be released
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
 - `--chdir` _string_, Location of the working directory
-- `--tty` Force TTY-like output
+- `--tty`, _boolean_, Force TTY-like output
 
 ## Dev
 `kctrl dev` command help in testing the package locally using `kapp-controller`'s APIs.
@@ -54,7 +54,7 @@ Supported flags:
 - `-b`, `--kbld-build` Allow kbld build
 - `-l`, `--local` Use local fetch source
 - `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
-- `--tty` Force TTY-like output
+- `--tty`, _boolean_, Force TTY-like output
 
 ## Global Flags
 - `--debug` _boolean_, Include debug output
