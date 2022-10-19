@@ -13,7 +13,7 @@ Fresh off the news of being accepted as a Sandbox project to the [Cloud Native C
 #### [GitOpsCon](https://events.linuxfoundation.org/gitopscon-north-america/)
 - Tuesday, October 25 • 4:15pm–4:45pm
     - [Experimenting with CUE and Carvel to Enable GitOps for Your Applications](https://sched.co/1AR9Z) by Dmitriy Kalinin & Shatarupa Nandi, VMware
-###### **Note**: You must be [registered](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/register/) for KubeCon + CloudNativeCon North America 2022 to add co-located events to your registration.
+###### **Note**: You must be registered for KubeCon + CloudNativeCon North America 2022 to add co-located events to your registration.
 ### [KubeCon + CloudNativeCon Main Conference](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/)
 - **Presentations**
     - Tuesday, October 25 • 1:00pm–5:00pm
