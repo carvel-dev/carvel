@@ -9,15 +9,11 @@ tags: ['gitopscon', 'kubecon', 'schedule']
 ---
 Fresh off the news of being accepted as a Sandbox project to the [Cloud Native Computing Foundation](https://www.cncf.io/), Carvel is thrilled to head to Detroit next week to engage with the amazing community at [KubeCon + CloudNativeCon North America](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/). Below is the compilation of where to find us to learn more about Carvel and to say hello!
 ###### **Note**: All times mentioned below are in Eastern Daylight Time (EDT), UTC -4
-
 ### [KubeCon + CloudNativeCon Co-Located Events](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/program/colocated-events/#attendees)
-
 #### [GitOpsCon](https://events.linuxfoundation.org/gitopscon-north-america/)
 - Tuesday, October 25 • 4:15pm–4:45pm
     - [Experimenting with CUE and Carvel to Enable GitOps for Your Applications](https://sched.co/1AR9Z) by Dmitriy Kalinin & Shatarupa Nandi, VMware
-
 ###### **Note**: You must be [registered](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/register/) for KubeCon + CloudNativeCon North America 2022 to add co-located events to your registration.
-
 ### [KubeCon + CloudNativeCon Main Conference](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/)
 - **Presentations**
     - Tuesday, October 25 • 1:00pm–5:00pm
@@ -31,9 +27,7 @@ Fresh off the news of being accepted as a Sandbox project to the [Cloud Native C
         - 7:00pm – VMware addressed their platform packaging and distribution needs with Carvel (and you can too) by John Ryan
     - Friday, October 28
         - 2:00pm – How Carvel can help your application release management across networks and sites, even with COTS apps! (yes, this is a repeat) by Stuart Charlton
-
 ## Join the Carvel Community
-
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
 * Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
