@@ -1,41 +1,32 @@
 ---
-title: "Carvel @ KubeCon NA 2022"
+title: "Carvel is heading to KubeCon + CloudNativeCon North America 2022"
 slug: Carvel-GitopsCon-KubeCon-NA-2022
 date: 2022-10-20
 author: Renu Yarday
-excerpt: "Carvel schedule for upcoming GitopsCon and KubeCon NA 2022"
+excerpt: "We're excited to join the community in Detroit! Read all about the talks and places we'll be for KubeCon + CloudNativeCon North America next week."
 image: /img/logo.svg
 tags: ['gitopscon', 'kubecon', 'schedule']
 ---
-Excited to share all the events happening at GitopsCon and KubeCon NA 2022 in which Carvel is being featured. Below is the compilation of these events for easy access.
+Fresh off the news of being accepted as a Sandbox project to the [Cloud Native Computing Foundation](https://www.cncf.io/), Carvel is thrilled to head to Detroit next week to engage with the amazing community at [KubeCon + CloudNativeCon North America](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/). Below is the compilation of where to find us to learn more about Carvel and to say hello!
 ###### **Note**: All times mentioned below are in Eastern Daylight Time (EDT), UTC -4
-## [GitOpsCon](https://events.linuxfoundation.org/gitopscon-north-america/)
-**Tuesday, October 25 • 4:15pm - 4:45pm**  
-[Experimenting with CUE and Carvel to Enable GitOps for Your Applications](https://sched.co/1AR9Z)  
+### KubeCon + CloudNativeCon [Co-Located Events](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/program/colocated-events/#attendees)
+#### [GitOpsCon](https://events.linuxfoundation.org/gitopscon-north-america/)
+Tuesday, October 25 • 4:15pm–4:45pm
 -- Dmitriy Kalinin & Shatarupa Nandi, VMware
-## [KubeCon](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/)
-### Keynote
-**Wednesday, October 26 • 9:40am - 9:45am**  
-[Beyond Automation: Kubernetes Success Requires a GitOps Mindset](https://sched.co/182LA)  
--- Shatarupa Nandi, Senior Director of Engineering, VMware Tanzu
-
-### Visit the VMware Mini-Booth Theatre
-**Wednesday, October 26 • 4:00pm**  
-How I gave all my TAS developers automatic access to TAP using `YTT`  
--- by David Stevenson
-
-**Wednesday, October 26 • 4:30pm**  
-How Carvel can help your application release management across networks and sites, even with COTS apps!  
--- Stuart Charlton
-
-**Wednesday October 26 • 7:00pm**  
-Vmware addressed their platform packaging and distribution needs with Carvel (and you can too)  
--- John Ryan
-
-**Friday October 28 • 2:00pm**  
-How Carvel can help your application release management across networks and sites, even with COTS apps! (yes, this is a repeat)  
--- Stuart Charlton
-
+**Note: You must be [registered](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/register/) for KubeCon + CloudNativeCon North America 2022 to add co-located events to your registration.**
+### [KubeCon + CloudNativeCon Main Conference](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/)
+**Presentations**
+- Tuesday, October 25 • 1:00pm–5:00pm
+- [CNCF TAG App Delivery Project Meeting](https://sched.co/1BaU0) - 15-minute presentation by John Ryan, Carvel Maintainer
+- Wednesday, October 26 • 9:40am–9:45am
+- [Keynote: Beyond Automation: Kubernetes Success Requires a GitOps Mindset](https://sched.co/182LA) by Shatarupa Nandi, Senior Director of Engineering, VMware Tanzu
+- **Demos at the VMware Mini-Booth Theater in the [Solutions Showcase](https://kccncna2022.sched.com/type/Solutions+Showcase?iframe=no)**
+    - **Wednesday, October 26**
+        - 4:00pm – How I gave all my TAS developers automatic access to TAP using ytt by David Stevenson
+        - 4:30pm – How Carvel can help your application release management across networks and sites, even with COTS apps! by Stuart Charlton
+        - 7:00pm – VMware addressed their platform packaging and distribution needs with Carvel (and you can too) by John Ryan
+    - **Friday, October 28**
+        - 2:00pm – How Carvel can help your application release management across networks and sites, even with COTS apps! (yes, this is a repeat) by Stuart Charlton
 ## Join the Carvel Community
 
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
