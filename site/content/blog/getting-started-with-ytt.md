@@ -35,7 +35,7 @@ tutorials:
   title: "Hello world, welcome to ytt!"
   #! "Welcome to ytt tutorial series" 
 ```
-#### 2) Sample Configuration file 
+#### 2) Sample configuration file 
 config.yml
 ```yaml
 apiVersion: v1
@@ -51,7 +51,7 @@ spec:
   - port: 80
 ```
 
-#### 3) Extracting variables
+#### 3) Extract variables
 In this example, you will learn how to extract variables. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=418).
 
 config.yml
@@ -71,7 +71,7 @@ spec:
   - port: 80
 ```
 
-#### 4) Using functions 
+#### 4) Use functions 
 In this example, you will learn how to use functions. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=486).
 
 ```yaml
@@ -93,8 +93,8 @@ spec:
   - port: 80
 ```
 
-#### 5) Loading data values
-In this example, you will learn how load data values. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=585).
+#### 5) Load data values
+In this example, you will learn how to load data values. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=585).
 
 config.yml
 ```yaml
@@ -122,7 +122,7 @@ values.yml
 ---
 name: frontend
 ```
-#### 6) Using for loop
+#### 6) Use for loop
 In this example, you will learn how to use for loop. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=706).
 
 config.yml
@@ -156,7 +156,7 @@ services:
 - name: frontend
 - name: backend
 ```
-#### 7) Using conditionals if/end
+#### 7) Use conditionals if/end
 In this example, you will learn how to use if/end. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=908).
 
 config.yml
