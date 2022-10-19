@@ -9,7 +9,9 @@ tags: ['gitopscon', 'kubecon', 'schedule']
 ---
 Fresh off the news of being accepted as a Sandbox project to the [Cloud Native Computing Foundation](https://www.cncf.io/), Carvel is thrilled to head to Detroit next week to engage with the amazing community at [KubeCon + CloudNativeCon North America](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/). Below is the compilation of where to find us to learn more about Carvel and to say hello!
 ###### **Note**: All times mentioned below are in Eastern Daylight Time (EDT), UTC -4
+
 ### KubeCon + CloudNativeCon [Co-Located Events](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/program/colocated-events/#attendees)
+
 #### [GitOpsCon](https://events.linuxfoundation.org/gitopscon-north-america/)
 Tuesday, October 25 • 4:15pm–4:45pm
 -- Dmitriy Kalinin & Shatarupa Nandi, VMware
