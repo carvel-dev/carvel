@@ -4,79 +4,117 @@ slug: getting-started-with-ytt
 date: 2022-10-12
 author: Varsha Munishwar
 excerpt: "Are you new to ytt and wondering where to start?
-Here is an easy step-by-step tutorial that can introduce you to ytt and help you get started quickly.
-"
+Here is an easy, step-by-step tutorial that introduces ytt and gets you started quickly."
+
 image: /img/ytt.svg
-tags: ['ytt', 'getting started', 'tutorials']
+tags: ['ytt', 'ytt getting started', 'tutorials']
 ---
 
-#### Welcome to the series of ytt getting started tutorials!
+#### Welcome to the "Getting started with ytt" tutorial series!
 
-The part 1 of this series introduces you to [ytt](https://carvel.dev/ytt/) and helps you get started quickly.
-It is an easy step-by-step tutorial that you can follow along and see ytt in action on the playground as well as on the CLI.
+Part 1 of this series introduces you to [ytt](https://carvel.dev/ytt/) and helps you get started quickly.
+It is an easy, step-by-step tutorial that you can follow along and see ytt in action on the playground as well as on the CLI.
 
 We will cover the following topics:
 - Introduction to ytt
 - What problems is ytt solving?
 - See ytt in action on interactive playground and CLI
 
-####  Video link - [Getting started tutorial - Part 1](https://youtu.be/DvApsPy0IrI)
+#### [Getting started with ytt - Part 1](https://youtu.be/DvApsPy0IrI)
 {{< youtube id="DvApsPy0IrI" title="Getting started tutorial - Part 1" >}}
 
 The key moments/timestamps are available if you watch on youtube. Please click on "more" and "view all".
 
-Here is the YAML code to follow along on the [ytt playground](https://carvel.dev/ytt/#playground
-)
+If you would like to follow along with the video, you can use the YAML code snippets below on the [ytt playground](https://carvel.dev/ytt/#playground).
 
-#### 1) Simple Hello World!
+#### 1) Hello World! 
+In this example, you will learn how ytt parses input and takes care of spacing and indentation. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=360).
+
 ```yaml
-#! "Welcome to ytt tutorial series"
 tutorials:
-          title: "Hello world, welcome to ytt!"
-           #! "Welcome to ytt tutorial series" 
+  title: "Hello world, welcome to ytt!"
+  #! "Welcome to ytt tutorial series" 
 ```
-#### 2) Extracting variables
-
+#### 2) Sample configuration file 
 config.yml
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-   name: frontend
-   labels:
-      app.kubernetes.io/version: 0.1.0
-      app.kubernetes.io/name: frontend
-   spec:
-       type: ClusterIP
-       ports:
-           - port: 80
+  name: frontend
+  labels:
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/name: frontend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
 ```
-Extract to variable
+
+#### 3) Extract variables
+In this example, you will learn how to extract variables. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=418).
+
+config.yml
 ```yaml
 #@ name = "frontend-service"
+
+apiVersion: v1
+kind: Service
+metadata:
+  name:  #@ name
+  labels:
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/name: #@ name
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
 ```
-#### 3) Using functions 
+
+#### 4) Use functions 
+In this example, you will learn how to use functions. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=486).
+
 ```yaml
+#! Function definition
 #@ def name(service_name):
 #@   return service_name + "-service"
 #@ end
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ name("frontend")
+  labels:
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/name: #@ name("frontend")
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
 ```
-Call the function as below
-```yaml
-name: #@ name("frontend")
-```
-#### 4) Loading data values
+
+#### 5) Load data values
+In this example, you will learn how to load data values. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=585).
+
 config.yml
 ```yaml
 #@ load("@ytt:data","data")
-#@ def name(name):
-#@   return name+ "-service"
+
+#@ def name(service_name):
+#@   return service_name + "-service"
 #@ end
 
 apiVersion: v1
 kind: Service
 metadata:
   name: #@ name(data.values.name)
+  labels:
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/name: #@ name(data.values.name)
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
 ```
 values.yml
 ```yaml
@@ -84,7 +122,9 @@ values.yml
 ---
 name: frontend
 ```
-#### 5) Using for loop
+#### 6) Use for loop
+In this example, you will learn how to use for loop. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=706).
+
 config.yml
 ```yaml
 #@ load("@ytt:data","data")
@@ -98,14 +138,13 @@ config.yml
 apiVersion: v1
 kind: Service
 metadata:
-   name: #@ name(service.name)
-   labels:
-      app.kubernetes.io/version: #@ data.values.version
-      app.kubernetes.io/name: #@ name(service.name)
-   spec:
-     ports:
-       - port: 80
-       #@ end
+  name: #@ name(service.name)
+  labels:
+    app.kubernetes.io/version: #@ data.values.version
+    app.kubernetes.io/name: #@ name(service.name)
+spec:
+  ports:
+  - port: 80
 #@ end
 ```
 values.yml
@@ -117,7 +156,9 @@ services:
 - name: frontend
 - name: backend
 ```
-#### 6) Using conditionals if/end
+#### 7) Use conditionals if/end
+In this example, you will learn how to use if/end. [Jump to this section in the video](https://youtu.be/DvApsPy0IrI&t=908).
+
 config.yml
 ```yaml
 #@ load("@ytt:data","data")
@@ -131,22 +172,22 @@ config.yml
 apiVersion: v1
 kind: Service
 metadata:
-   name: #@ name(service.name)
-   labels:
-      app.kubernetes.io/version: #@ data.values.version
-      app.kubernetes.io/name: #@ name(service.name)
-   spec:
-     ports:
-       - name: https
-         protocol: TCP
-         port: 443
-         targetPort: 9377
-       #@ if service.allowHTTP:
-       - name: http
-         protocol: TCP
-         port: 80
-         targetPort: 9376
-       #@ end
+  name: #@ name(service.name)
+  labels:
+    app.kubernetes.io/version: #@ data.values.version
+    app.kubernetes.io/name: #@ name(service.name)
+spec:
+  ports:
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: 9377
+  #@ if service.allowHTTP:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 9376
+  #@ end
 #@ end
 ```
 values.yml
@@ -162,13 +203,13 @@ services:
 ```
 
 ### Steps to run ytt locally:
-
-- brew tap vmware-tanzu/carvel
-- brew install ytt
-- Clone the examples repo -
-  git clone https://github.com/vmware-tanzu/carvel-ytt
-- cd carvel-ytt/examples
-- ytt -f playground/basics/example-plain-yaml
+```shell
+$ brew tap vmware-tanzu/carvel
+$ brew install ytt
+$ git clone https://github.com/vmware-tanzu/carvel-ytt
+$ cd carvel-ytt/examples
+$ ytt -f playground/basics/example-plain-yaml
+```
 
 Stay tuned for upcoming tutorials in this series where we will cover Schemas and Overlays!
 
