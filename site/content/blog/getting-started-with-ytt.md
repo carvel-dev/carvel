@@ -7,12 +7,12 @@ excerpt: "Are you new to ytt and wondering where to start?
 Here is an easy, step-by-step tutorial that introduces ytt and gets you started quickly."
 
 image: /img/ytt.svg
-tags: ['ytt', 'getting started', 'tutorials']
+tags: ['ytt', 'ytt getting started', 'tutorials']
 ---
 
 #### Welcome to the "Getting started with ytt" tutorial series!
 
-Part 1 of this series introduces you to ytt and helps you get started quickly.
+Part 1 of this series introduces you to [ytt](https://carvel.dev/ytt/) and helps you get started quickly.
 It is an easy, step-by-step tutorial that you can follow along and see ytt in action on the playground as well as on the CLI.
 
 We will cover the following topics:
@@ -48,7 +48,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+  - port: 80
 ```
 
 #### 3) Extracting variables
@@ -90,7 +90,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+  - port: 80
 ```
 
 #### 5) Loading data values
@@ -114,7 +114,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+  - port: 80
 ```
 values.yml
 ```yaml
