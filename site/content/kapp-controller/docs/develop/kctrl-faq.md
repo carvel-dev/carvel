@@ -27,7 +27,7 @@ And pushed to OCI registry `100mik/simple-app`.
 This file needs to reside in the paths passed to `ytt` in the AppSpec described in the PackageBuild resource. And also be included 
 in the list of paths assigned to key `includePaths`.
 
-Along with `kbld` configuration, the container image name in the deployment should be same as the `sources.image` in the `kbld` configuration. Thus we need to change our deployment to:
+Along with `kbld` configuration, the container image name in the deployment should be same as the `sources.image` in the `kbld` configuration. e.g.:
 ```
 apiVersion: apps/v1
 kind: Deployment
