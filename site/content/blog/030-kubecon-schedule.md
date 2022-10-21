@@ -2,7 +2,7 @@
 title: "Carvel is heading to KubeCon + CloudNativeCon North America 2022"
 slug: Carvel-GitopsCon-KubeCon-NA-2022
 date: 2022-10-20
-author: Renu Yarday
+author: Renu Yarday and Nanci Lancaster
 excerpt: "We're excited to join the community in Detroit! Read all about the talks and places we'll be for KubeCon + CloudNativeCon North America next week."
 image: /img/logo.svg
 tags: ['gitopscon', 'kubecon', 'schedule']
