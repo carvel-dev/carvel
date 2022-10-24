@@ -1,6 +1,6 @@
 ---
-
-
+aliases: [/kapp-controller/docs/latest/kctrl-faq]
+aliases: [/kapp-controller/docs/latest/kctrl-faq]
 title: "`kctrl` FAQ"
 ---
 
@@ -27,6 +27,29 @@ And pushed to OCI registry `100mik/simple-app`.
 
 This file needs to reside in the paths passed to `ytt` in the AppSpec described in the PackageBuild resource. And also be included 
 in the list of paths assigned to key `includePaths`.
+
+Along with `kbld` configuration, the container image name in the deployment should be same as the `sources.image` in the `kbld` configuration. e.g.:
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-app
+spec:
+  selector:
+    matchLabels:
+      simple-app: ""
+  template:
+    metadata:
+      labels:
+        simple-app: ""
+    spec:
+      containers:
+      - name: simple-app
+        image: simple-app #! <-- should be same as `sources.image` in the kbld config
+        env:
+        - name: SIMPLE_MSG
+          value: stranger
+```
 
 ### How can we add ytt overlays or additional configuration to upstream release artifacts?
 Overlays can be created in a separate folder in the project directory. `kctrl` can be made aware of any additional folders by updating `package-build.yml` manually,

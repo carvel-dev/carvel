@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/startup]
 Title: Kapp Controller Startup
 ---
 
