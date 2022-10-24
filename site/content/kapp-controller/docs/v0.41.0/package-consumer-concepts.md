@@ -84,7 +84,7 @@ PackageInstalls offer a property called `constraints` under
 used to select a specific version of a Package CR to install or include a set of
 conditions to pick a version. This `constraints` property is based on semver
 ranges and more details on conditions that can be included with `constraints`
-can be found [here](https://github.com/blang/semver#ranges).
+can be found [here](https://github.com/k14s/semver#ranges).
 
 To select a specific version of a Package CR to use with a PackageInstall, the
 full version (i.e. `.spec.version` from a Package CR) can be included in the
