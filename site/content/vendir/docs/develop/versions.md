@@ -31,11 +31,12 @@ semver:
 ---
 ## Semver
 
-[github.com/blang/semver/v4 package](https://github.com/blang/semver) is used for parsing "semver" versions.
+[github.com/k14s/semver/v4 package](https://github.com/k14s/semver) is used for parsing "semver" versions.
+It's a fork of [k14s/semver](https://github.com/k14s/semver).
 
 For valid semver syntax refer to <https://semver.org/#backusnaur-form-grammar-for-valid-semver-versions>. (Commonly-used `v` prefix will be ignored during parsing)
 
-For constraints syntax refer to [blang/semver's Ranges section](https://github.com/blang/semver#ranges).
+For constraints syntax refer to [k14s/semver's Ranges section](https://github.com/k14s/semver#ranges).
 
 By default prerelease versions are not included in selection. See examples for details.
 
