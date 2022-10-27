@@ -300,4 +300,4 @@ Supported flags:
 ## Environment variables
 
 Environment Variables:
- - `FORCE_COLOR`: set to 1 to force colors to the printed. Useful to preserve colors when piping output such as in 'kctrl ..| less -R' 
+ - `FORCE_COLOR`: set to `1` to force colors to the printed. Useful to preserve colors when piping output such as in `kctrl app list --tty --all-namespaces |& less -R`
