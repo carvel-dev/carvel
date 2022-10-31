@@ -297,3 +297,7 @@ Supported flags:
 - `-v`, `--version` _boolean_, version for kctrl
 - `-y`, `--yes`, _boolean_, Assumes yes for any prompt
 
+## Environment variables
+
+Environment Variables:
+ - `FORCE_COLOR`: set to `1` to force colors to the printed. Useful to preserve colors when piping output such as in `kctrl app list --tty --all-namespaces |& less -R`

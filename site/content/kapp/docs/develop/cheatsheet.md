@@ -113,6 +113,11 @@ Delete resources under particular label (in this example deleting resources asso
 kapp delete -a 'label:kapp.k14s.io/app=1578599579922603000'
 ```
 
+## Environment variables
+
+Environment Variables:
+ - `FORCE_COLOR`: set to `1` to force colors to the printed. Useful to preserve colors when piping output such as in `kapp list --all-namespaces  --tty |& less -R`
+
 ## Misc
 
 See which labels are used in your cluster (add `--values` to see label values):
@@ -132,3 +137,4 @@ Delete all app changes older than 500h (v0.12.0+):
 ```bash
 kapp deploy -a label:kapp.k14s.io/is-app-change --filter-age 500h+ --dangerous-allow-empty-list-of-resources --apply-ignored
 ```
+
