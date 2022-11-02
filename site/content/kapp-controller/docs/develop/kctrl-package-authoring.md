@@ -91,8 +91,9 @@ spec:
       # Paths to be included as a part of the published resource
       - includePaths:
         - upstream
+{{< /detail-tag >}}
 
-{{< detail-tag "Understanding package-build.yml" >}}
+{{< detail-tag "Understanding package-resources.yml" >}}
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -122,7 +123,6 @@ spec:
   valuesSchema:
     openAPIv3: null
   version: 0.0.0
-
 ---
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
@@ -134,7 +134,6 @@ spec:
   displayName: certmanager
   longDescription: certmanager.carvel.dev
   shortDescription: certmanager.carvel.dev
-
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
@@ -153,6 +152,7 @@ status:
   conditions: null
   friendlyDescription: ""
   observedGeneration: 0
+{{< /detail-tag >}}
 
 ### Releasing packages
 
