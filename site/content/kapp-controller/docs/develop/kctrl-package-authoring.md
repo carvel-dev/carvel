@@ -53,6 +53,7 @@ $ ls upstream
 cert-manager.yaml
 ```
 {{< detail-tag "Understanding package-build.yml" >}}
+```yaml
 apiVersion: kctrl.carvel.dev/v1alpha1
 kind: PackageBuild
 metadata:
@@ -91,9 +92,11 @@ spec:
       # Paths to be included as a part of the published resource
       - includePaths:
         - upstream
+```
 {{< /detail-tag >}}
 
 {{< detail-tag "Understanding package-resources.yml" >}}
+```yaml
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -152,6 +155,7 @@ status:
   conditions: null
   friendlyDescription: ""
   observedGeneration: 0
+```
 {{< /detail-tag >}}
 
 ### Releasing packages
