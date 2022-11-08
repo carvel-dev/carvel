@@ -87,6 +87,8 @@ spec:
             prereleases:
               # select prerelease versions that include given identifiers (optional; v0.24.0+)
               identifiers: [beta, rc]
+      # Relative path to place the fetched artifacts
+      path: dir (optional; v0.33.1+)
 
     # pulls imgpkg bundle from Docker/OCI registry (v0.17.0+)
     - imgpkgBundle:
@@ -106,6 +108,8 @@ spec:
             prereleases:
               # select prerelease versions that include given identifiers (optional; v0.24.0+)
               identifiers: [beta, rc]
+      # Relative path to place the fetched artifacts
+      path: dir (optional; v0.33.1+)
 
     # uses http library to fetch file
     - http:
@@ -119,6 +123,8 @@ spec:
           name: secret-name
         # grab only portion of download (optional)
         subPath: inside-dir/dir2
+      # Relative path to place the fetched artifacts
+      path: dir (optional; v0.33.1+)
 
     # uses git to clone repository
     - git:
@@ -143,6 +149,8 @@ spec:
             prereleases:
               # select prerelease versions that include given identifiers (optional; v0.24.0+)
               identifiers: [beta, rc]
+      # Relative path to place the fetched artifacts
+      path: dir (optional; v0.33.1+)
 
     # uses helm fetch to fetch specified chart
     - helmChart:
@@ -158,6 +166,8 @@ spec:
           # (optional)
           secretRef:
             name: secret-name
+      # Relative path to place the fetched artifacts
+      path: dir (optional; v0.33.1+)
 
   # Template must have one or more directives
   template:
