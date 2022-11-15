@@ -1,7 +1,7 @@
 ---
 title: "Getting Started With ytt, Part 2"
 slug: getting-started-with-ytt-part-2
-date: 2022-11-13
+date: 2022-11-14
 author: Varsha Munishwar
 excerpt: "Ever needed to make the same edits in multiple places in your Kubernetes manifests? That can be error-prone. Learn how ytt can help you avoid misconfigurations." 
 image: /img/ytt.svg
@@ -29,7 +29,7 @@ In this part, we will cover the following:
 Happy Templating :)
 
 
-We would love to know if there are other Carvel topics, either ytt-specific or any of our other tools (imgpkg, kapp, kapp-controller, kbld, secretgen-controller, vendir, ytt), that you would like to see as a tutorial by reaching out to us in either in one of the channels listed in the section below, or on Twitter [@carvel_dev](https://twitter.com/carvel_dev) or [emailing us](carvel-dev@googlegroups.com) with your suggestion.
+We would love to know if there are other Carvel topics, either ytt-specific or any of our other tools (imgpkg, kapp, kapp-controller, kbld, secretgen-controller, vendir, ytt), that you would like to see as a tutorial by reaching out to us in either in one of the channels listed in the section below, or on Twitter [@carvel_dev](https://twitter.com/carvel_dev) or [emailing us](mailto:carvel-dev@googlegroups.com) with your suggestion.
 
 ## Join the Carvel Community
 
