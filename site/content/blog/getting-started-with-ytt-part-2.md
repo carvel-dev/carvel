@@ -10,7 +10,7 @@ tags: ['ytt', 'ytt getting started', 'tutorials']
 
 #### Welcome to Part 2 of the "Getting started with ytt" tutorial series!
 
-In the Part 2, we will cover the following:
+In this part, we will cover the following:
 - Summary of [Part 1](getting-started-with-ytt-part-1/)
 - Dive into a slightly more involved scenario to solve a common problem in Kubernetes
 - Learn why some set of labels are required to be in sync
