@@ -24,7 +24,7 @@ In the Part 2, we will cover the following:
 - The **key moments/timestamps** are available if you watch on youtube. Please click on "**more**" and "**view all**".
 - Here is the sample [deployment configuration](https://carvel.dev/ytt/#gist:https://gist.github.com/vmunishwar/db610648e999bebeb8743eb6eddd2d40) that is used in this tutorial to deploy the application on kubernetes cluster.
 - Visit the documentation for more information on [functions in ytt](https://carvel.dev/ytt/docs/v0.43.0/how-to-modularize/#functions).
-- In the tutorial, you might notice that we are deploying the application on kubernetes using [Carvel's](https://carvel.dev/) deployment tool. If you are interested to know more, please visit - [kapp]( https://carvel.dev/kapp/). 
+- In this tutorial, we are deploying the application on kubernetes using [Carvel's](https://carvel.dev/) deployment tool called kapp. If you are interested to know more here is the [link]( https://carvel.dev/kapp/). 
 
 
 Happy Templating :)
