@@ -26,9 +26,10 @@ In this part, we will cover the following:
 - Visit the documentation for more information on [functions in ytt](https://carvel.dev/ytt/docs/v0.43.0/how-to-modularize/#functions).
 - In this tutorial, we are deploying the application on Kubernetes using [Carvel's](https://carvel.dev/) deployment tool called kapp. If you are interested to know more, here is the [link]( https://carvel.dev/kapp/). 
 
-
 Happy Templating :)
 
+
+We would love to know if there are other Carvel topics, either ytt-specific or any of our other tools (imgpkg, kapp, kapp-controller, kbld, secretgen-controller, vendir, ytt), that you would like to see as a tutorial by reaching out to us in either in one of the channels listed in the section below, or on Twitter [@carvel_dev](https://twitter.com/carvel_dev) or [emailing us](carvel-dev@googlegroups.com) with your suggestion.
 
 ## Join the Carvel Community
 
