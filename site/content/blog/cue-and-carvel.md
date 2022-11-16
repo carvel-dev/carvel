@@ -33,7 +33,7 @@ deployment: {
             metadata: labels: "simple-app": ""
             spec: containers: [{
                 name:  "simple-app"
-                image: "docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0"
+                image: "docker.io/dkalinin/k8s-simple-app"
                 env: [{
                     name:  "HELLO_MSG"
                     value: "stranger"
@@ -135,7 +135,7 @@ Wait to: 2 reconcile, 0 delete, 0 noop
 ...snip...
 ```
 
-As you might have already figured, it's easy to incorporate other Carvel tools such as [kbld](/kbld) into such workflow once configuration is exported to YAML. For example, to build container images before getting them deployed:
+As you might have already figured, it's easy to incorporate other Carvel tools such as [kbld](/kbld) into such workflow once configuration is exported to YAML. For example, to build container images or resolve images to their digests before getting them deployed:
 
 ```bash
 $ cue eval . -e all --out yaml | kbld -f- | kapp deploy -a my-app -f- -y
@@ -264,7 +264,7 @@ deployment: appsv1.#Deployment & {
             metadata: labels: "simple-app": ""
             spec: containers: [{
                 name:  "simple-app"
-                image: "docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0"
+                image: "docker.io/dkalinin/k8s-simple-app"
                 env: [{
                     name:  "HELLO_MSG"
                     value: "stranger"
@@ -410,7 +410,7 @@ Here is what will happen once above App CR is on the cluster:
 - [Carvel's kbld](/kbld) template step ensures that all container images are referenced by their digest
 - finally, kapp deploys produced resources
 
-These were two short and sweet examples of how to use CUE and kapp-controller together as part of your GitOps workflow, and perhaps we'll publish a follow-up post describing how to turn your App CR into a Package CR so that you can easily distribute your CUE templates as Carvel packages (with help of [Carvel's imgpkg](/imgpkg)) but for now -- that's a wrap.
+These were two short and sweet examples of how to use CUE and kapp-controller together as part of your GitOps workflow. And let us know if you are interested to learn how to turn your App CR into a Package CR so that you can easily distribute your CUE templates as Carvel packages (with help of [Carvel's imgpkg](/imgpkg)) but for now -- that's a wrap.
 
 ## Join us on Slack and GitHub
 
