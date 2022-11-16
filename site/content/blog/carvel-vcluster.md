@@ -134,7 +134,7 @@ $ kapp deploy -a simple-app -f https://raw.githubusercontent.com/vmware-tanzu/ca
 
 Type in `y` to confirm you would like to deploy the Carvel sample app to the vcluster. 
 
-Once the deployment is successful, let's do another sanity check and see what apps exist on the host cluster:
+Once the deployment is successful, let's do another confidence check and see what apps exist on the host cluster:
 
 ```
 $ kapp ls 
