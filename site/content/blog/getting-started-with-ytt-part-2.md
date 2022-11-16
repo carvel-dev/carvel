@@ -1,7 +1,7 @@
 ---
 title: "Getting Started With ytt, Part 2"
 slug: getting-started-with-ytt-part-2
-date: 2022-11-14
+date: 2022-11-15
 author: Varsha Munishwar
 excerpt: "Ever needed to make the same edits in multiple places in your Kubernetes manifests? That can be error-prone. Learn how ytt can help you avoid misconfigurations." 
 image: /img/ytt.svg
