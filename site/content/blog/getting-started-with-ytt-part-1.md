@@ -211,7 +211,9 @@ $ cd carvel-ytt/examples
 $ ytt -f playground/basics/example-plain-yaml
 ```
 
-Stay tuned for upcoming tutorials in this series where we will cover Schemas and Overlays!
+### What's next: 
+Check out the [Part 2 of this tutorial series!](getting-started-with-ytt-part-2/)
+
 
 Happy Templating :)
 
