@@ -1,16 +1,16 @@
 ---
-title: "CUE and Carvel"
+title: "Using CUE and Carvel Together for Your Kubernetes Setup"
 slug: cue-and-carvel
 date: 2022-11-09
 author: Dmitriy Kalinin
-excerpt: "Learn how to use CUE and Carvel tools together"
+excerpt: "In this blog, we share examples of how to use CUE and kapp-controller together as part of your GitOps workflow."
 image: /img/logo.svg
 tags: ['cue', 'kapp', 'impgkg', 'kapp-controller', 'gitops', 'vendir']
 ---
 
-[CUE](https://cuelang.org/) is a relatively young (but promising) programming language that enables working with data -- building data structures, validating them, querying and extracting parts. More recently you might have run into CUE being used within several tools such as Dagger (we've written about [kapp and Dagger](/blog/kapp-and-dagger/) some time ago).
+[CUE](https://cuelang.org/) is a relatively young (but promising) programming language that enables working with data -- building data structures, validating them, querying and extracting parts. More recently you might have run into CUE being used within several tools, such as Dagger (we've written about [kapp and Dagger](/blog/kapp-and-dagger/) some time ago).
 
-In this post, we'll dig into a few CUE examples for Kubernetes and see how we can use CUE and Carvel tools together. And perhaps at the end of this post, you might be interested in using CUE and Carvel as part of your Kubernetes setup...
+In this post, we'll dig into a few CUE examples for Kubernetes and see how we can use CUE and Carvel tools together. And perhaps at the end of this post, you might be interested in using CUE and Carvel as part of your Kubernetes setup.
 
 ### Using CUE to build Kubernetes configuration
 
@@ -61,11 +61,11 @@ service: {
 ```
 
 There are several things to note:
-- curly braces are explicitly used to contain maps (key-value structures)
-- brackets are explicitly used to specify collections
-- strings are always quoted which is unlike YAML where it's optional until you find ambiguity with other types like integers (this is one of my favorite choices in a configuration/data language -- i've even tried to experiment with [ytt's strict mode](https://carvel.dev/ytt/docs/v0.43.0/strict/) long ago to have a similar impact within YAML)
-- there is no notion of "documents" like in YAML -- root element of a file (and a package) is a map, hence if you want to include multiple Kubernetes resources, you'll have to find a "non-document" way to make them coexist (we'll dig into this next)
-- there is a single-line shorthand syntax to specify nested maps (see Deployment's `spec.selector` line)
+- Curly braces are explicitly used to contain maps (key-value structures)
+- Brackets are explicitly used to specify collections
+- Strings are always quoted, which is unlike YAML where it's optional until you find ambiguity with other types, like integers.
+- There is no notion of "documents" like in YAML -- root element of a file (and a package) is a map, hence if you want to include multiple Kubernetes resources, you'll have to find a "non-document" way to make them coexist (we'll dig into this next). CUE provides a handy `cue import` command that may be helpful to do conversion in bulk so check out examples in its help message or in [this tutorial](https://github.com/cue-lang/cue/blob/v0.4.3/doc/tutorial/kubernetes/README.md#importing-existing-configuration).
+- There is a single-line shorthand syntax to specify nested maps (see Deployment's `spec.selector` line)
 
 By the way, as you go along these examples feel free to use interactive [CUE playground](https://cuelang.org/play/#cue@export@cue) or [install CUE binary](https://github.com/cue-lang/cue#download-and-install) to run them locally. Also you may find it useful to refer to [CUE documentation](https://cuelang.org/docs/) as you read along for more in-depth explanation on specifics.
 
@@ -82,7 +82,7 @@ deployment: {
 // ...snip...
 ```
 
-Now that we can build basic configuration, let's see how to use it with something like kubectl or [Carvel's kapp](/kapp). Neither kubectl nor kapp will look inside top level keys like `service` and `deployment` which contain Kubernetes resources, yet somehow we need to let tools know what to deploy. Fortunately we can use somewhat "rare" Kubernetes resource `List` to combine multiple resources into one:
+Now that we can build basic configuration, let's see how to use it with something like kubectl or [Carvel's kapp](/kapp). Neither kubectl nor kapp will look inside top level keys like `service` and `deployment` which contain Kubernetes resources, yet somehow we need to let tools know what to deploy. Fortunately we can use the Kubernetes resource `List` to combine multiple resources into one:
 
 `resources.cue`:
 ```
@@ -95,7 +95,7 @@ all: {
 }
 ```
 
-Notice how contents of `deployment` and `service` fields were pulled in into `items` array. CUE allows to reference other parts of the data structure being built by field names (as long as it's unambigious) even if it's split across multiple files.
+Notice how contents of `deployment` and `service` fields were pulled in into `items` array. CUE allows to reference other parts of the data structure being built by field names (as long as it's unambiguous) even if it's split across multiple files.
 
 ```bash
 $ cue eval resources.cue app.cue --expression all --out yaml
@@ -146,9 +146,9 @@ $ cue eval . -e all --out yaml | kbld -f- | kapp deploy -a my-app -f- -y
 Even within a simple Kubernetes configuration, it's possible to make silly mistakes such as specifying a wrong key and thinking that particular setting is applied whereas it's actually ignored. To solve this problem one has to validate configuration against a schema, but at which point should this schema check be done?
 
 For Kubernetes configuration specifically there are multiple possible answers:
-- configuration can be checked by the Kubernetes API server (but depending on a type of mistake server may not even catch it e.g. unknown keys are ignored with default settings though there is now a feature to enable [server side unknown field validation](https://github.com/kubernetes/enhancements/tree/master/keps/sig-api-machinery/2885-server-side-unknown-field-validation))
-- configuration can be checked after it has been generated but before it was sent to a Kubernetes server with tools such as [kubeval](https://kubeval.instrumenta.dev/)
-- configuration can be checked as part of generation (and perhaps it's worth to mention that depending on configuration tool's capabilities not all evaluation branches might be type checked potentially leaving some configuration unchecked until it's "enabled")
+- Configuration can be checked by the Kubernetes API server (but depending on a type of mistake server may not even catch it e.g. unknown keys are ignored with default settings though there is now a feature to enable [server side unknown field validation](https://github.com/kubernetes/enhancements/tree/master/keps/sig-api-machinery/2885-server-side-unknown-field-validation))
+- Configuration can be checked after it has been generated but before it was sent to a Kubernetes server with tools such as [kubeval](https://kubeval.instrumenta.dev/)
+- Configuration can be checked as part of generation (and perhaps it's worth to mention that depending on configuration tool's capabilities not all evaluation branches might be type checked potentially leaving some configuration unchecked until it's "enabled")
 
 CUE is one of the tools that allows to specify schema and use it _while_ building configuration. In fact, it even blurs the line between concept of types and values, making types valid values. Let's take a look a small example:
 
@@ -210,8 +210,8 @@ my_pod: #Pod & {
 
 Few notes on what's happening above:
 - `#` starts off definitions (take a look at how to values are "merged" together with `&` e.g. `#Pod & { ... }`)
-- embedding of definitions is Go-inspired (e.g. `#TypeMeta within #Pod`)
-- fields ending with `?` are optional
+- Embedding of definitions is Go-inspired (e.g. `#TypeMeta` within `#Pod`)
+- Fields ending with `?` are optional
 - `my_pod` value is type checked against `#Pod` definition so any deviation from what's allowed by the definition would be considered to be an error by. This ultimately means that you cannot produce configuration that's invalid if your definitions are correct.
 
 I did cheat a little bit and copy-pasted and sightly simplified definitions of `#TypeMeta` and `#ObjectMeta`, but where did I get them from? Surely, authoring Kubernetes configuration should not involve having to manually write out definitions of all Kubernetes APIs...
@@ -220,9 +220,9 @@ I did cheat a little bit and copy-pasted and sightly simplified definitions of `
 
 Now that we have a way to define various types, naturally we would want to reuse them in multiple places. Core Kubernetes APIs are defined within [https://github.com/kubernetes/api](https://github.com/kubernetes/api) as Go files. Since we are working with them from CUE we need a way to import all of these Go types as CUE definitions. The process could probably be simplified but this at least how I got what I needed:
 
-- within your configuration directory, `go mod init corp.com/api-example`
+- Within your configuration directory, `go mod init corp.com/api-example`
 
-- add `tools.go` that depends on Kubernetes APIs and run `go mod tidy` (at this point you pulled Go version of Kubernetes APIs)
+- Add `tools.go` that depends on Kubernetes APIs and run `go mod tidy` (at this point you pulled Go version of Kubernetes APIs)
 
     ```go
     package main
@@ -232,9 +232,9 @@ Now that we have a way to define various types, naturally we would want to reuse
     )
     ```
 
-- within same directory, run `cue mod init corp.com/api-example` to initialize your [CUE module](https://cuelang.org/docs/concepts/packages/#modules). Modules are quite similar to Go modules and allow to give a name to a set of configuration files. They could be later imported under that name. You also have to have be within a module to import somebody else's modules.
+- Within same directory, run `cue mod init corp.com/api-example` to initialize your [CUE module](https://cuelang.org/docs/concepts/packages/#modules). Modules are quite similar to Go modules and allow to give a name to a set of configuration files. They could be later imported under that name. You also have to have be within a module to import somebody else's modules.
 
-- now run `cue get go k8s.io/api/core/v1` and `cue get go k8s.io/api/apps/v1` to import Kubernetes API as CUE modules. You can find results of the import inside nested `cue.mod/gen/k8s.io/` directory. Take a look at `cue.mod/gen/k8s.io/api/core/v1/types_go_gen.cue` for example and find `#Pod` definition that I copy-pasted earlier.
+- Now run `cue get go k8s.io/api/core/v1` and `cue get go k8s.io/api/apps/v1` to import Kubernetes API as CUE modules. You can find results of the import inside nested `cue.mod/gen/k8s.io/` directory. Take a look at `cue.mod/gen/k8s.io/api/core/v1/types_go_gen.cue` for example and find `#Pod` definition that I copy-pasted earlier.
 
 Now that we have imported core Kubernetes APIs as CUE definitions, we can actually import these modules in our own configuration files. Let's modify our original Deployment and Service to take advantage of these new types:
 
@@ -332,11 +332,11 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 
 Since CUE is oblivious to how contents of `cue.mod` directory have been populated, one can use [Carvel's vendir](/vendir) to manage contents of `cue.mod/pkg`. For example, shared Git repository may contain generated Kubernetes APIs modules and all other projects (in their own Git repositories) just use vendir to pull in those modules into `cue.mod/pkg`. As a side note, I would strongly recommend committing entire configuration directory including `cue.mod` directory (and any downloaded content by vendir inside of it) so your Git repository always contains a complete snapshot of pieces needed to produce final configuration.
 
-### Continiously deploying CUE configuration with kapp-controller
+### Continuously deploying CUE configuration with kapp-controller
 
-Hopefully we've shared enough above on how to use CUE CLI in combination with Carvel tools locally or in your CI (e.g. take a look on how to set up [GitHub Actions with OIDC on GKE](/blog/kapp-deploy-oidc-gke/)) to easily deploy your Kubernetes workloads. For those who prefer to have an on-cluster controller continiously reconciling against a source like a Git repo or an OCI registry, CUE can be easily used with [Carvel's kapp-controller](/kapp-controller).
+Hopefully we've shared enough above on how to use CUE CLI in combination with Carvel tools locally or in your CI (e.g. take a look on how to set up [GitHub Actions with OIDC on GKE](/blog/kapp-deploy-oidc-gke/)) to easily deploy your Kubernetes workloads. For those who prefer to have an on-cluster controller continuously reconciling against a source like a Git repo or an OCI registry, CUE can be easily used with [Carvel's kapp-controller](/kapp-controller).
 
-Once you have [kapp-controller installed](/kapp-controller/docs/v0.42.0/install/), following App CR example shows how system can be configured to fetch from a Git repository (in this case GitHub Gist service), template configuration with CUE and finally deploy it with kapp (same steps we have done above but just happening on the cluster, continiously):
+Once you have [kapp-controller installed](/kapp-controller/docs/v0.42.0/install/), following App CR example shows how system can be configured to fetch from a Git repository (in this case GitHub Gist service), template configuration with CUE and finally deploy it with kapp (same steps we have done above but just happening on the cluster, continuously):
 
 ```yaml
 apiVersion: kappctrl.k14s.io/v1alpha1
@@ -404,9 +404,9 @@ stringData:
 ```
 
 Here is what will happen once above App CR is on the cluster:
-- first, Git repo is fetched
-- then, sops template step decrypts all files with `*.sops.yml` extension and just turns them into `*.yml` extension
-- next, CUE template step picks up decrypted configuration (`vals.yml`) and feeds it into CUE execution as a value under `config:` field (take a look at how [app.cue](https://gist.github.com/cppforlife/3506224cb7b681e283376cd061b5bfc8#file-app-cue-L3-L6) defines what can be accepted as input -- `#Config` defines `hello_msg` field must be a string, and no other keys are allowed)
+- First, Git repo is fetched
+- Then, sops template step decrypts all files with `*.sops.yml` extension and just turns them into `*.yml` extension
+- Next, CUE template step picks up decrypted configuration (`vals.yml`) and feeds it into CUE execution as a value under `config:` field (take a look at how [app.cue](https://gist.github.com/cppforlife/3506224cb7b681e283376cd061b5bfc8#file-app-cue-L3-L6) defines what can be accepted as input -- `#Config` defines `hello_msg` field must be a string, and no other keys are allowed)
 - [Carvel's kbld](/kbld) template step ensures that all container images are referenced by their digest
 - finally, kapp deploys produced resources
 
