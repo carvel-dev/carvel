@@ -38,7 +38,7 @@ $ chmod 600 key.txt
 
 ## Encrypt contents
 
-kapp-controller expects that encrypted files have `.sops.yml` extension (or `.sops.yml`).
+kapp-controller expects that encrypted files have `.sops.yml` extension (or `.sops.yaml`).
 
 You can start by creating an unencrypted yaml:
 ```bash
