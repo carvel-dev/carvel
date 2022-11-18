@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/schema-validations-cheat-sheet]
+
 title: "Schema Validations Cheat Sheet"
 ---
 

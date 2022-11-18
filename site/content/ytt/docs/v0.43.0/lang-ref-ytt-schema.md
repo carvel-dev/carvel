@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/lang-ref-ytt-schema]
+
 title: Data Values Schema Reference
 ---
 
