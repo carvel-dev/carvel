@@ -158,7 +158,7 @@ They customize the result by supplying their situation-specific settings for Dat
 
 Let's explore what happens at each step in the pipeline.
 
-As the first pipeline step (black box) shows, [above](#the-ytt-pipeline) :
+As the first pipeline step (black box) shows, [above](#the-ytt-pipeline): <!-- wokeignore:rule=blackbox -->
 
 1. process all the "Data Values Schema" documents (light grey input) — evaluating any templating in them;
 2. merge those documents, [in order](lang-ref-ytt-schema.md#multiple-schema-documents), generating a "Data Values Schema" document populated with default values and type information.
