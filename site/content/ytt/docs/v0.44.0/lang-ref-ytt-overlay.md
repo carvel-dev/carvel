@@ -426,10 +426,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: insert
-  namespace: #@ namespace.metadata.name
+  namespace: #@ namespace["metadata"]["name"]
 #@ end
 
-#@overlay/match overlay.subset({"kind": "Namespace"})
+#@overlay/match by=overlay.subset({"kind": "Namespace"})
 #@overlay/insert after=True, via=lambda namespace, _: configMap(namespace)
 ---
 ```
