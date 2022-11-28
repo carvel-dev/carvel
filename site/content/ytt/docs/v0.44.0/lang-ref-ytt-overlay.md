@@ -421,16 +421,18 @@ Inserts "right" node before/after the matched "left" node. The inserted node is 
 
 Add a `ConfigMap` into each `Namespace`:
 ```yaml
-#@ def configMap(namespace):
+#@ def global_config(namespace):
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: insert
+  name: global-config
   namespace: #@ namespace["metadata"]["name"]
+data:
+  important: content
 #@ end
 
 #@overlay/match by=overlay.subset({"kind": "Namespace"})
-#@overlay/insert after=True, via=lambda namespace, _: configMap(namespace)
+#@overlay/insert after=True, via=lambda namespace, _: global_config(namespace)
 ---
 ```
 
