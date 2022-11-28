@@ -419,7 +419,7 @@ Inserts "right" node before/after the matched "left" node. The inserted node is 
 
 **Examples:**
 
-Add a `ConfigMap` into each `Namespace`:
+Add a `ConfigMap` into *every* `Namespace`:
 ```yaml
 #@ def global_config(namespace):
 apiVersion: v1
