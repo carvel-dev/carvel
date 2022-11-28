@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/diff]
 title: Diff stage
 ---
 ## Overview
@@ -62,9 +62,9 @@ templateRules:
       - apiVersionKindMatcher: {apiVersion: v1, kind: ConfigMap}
     affectedResources:
       objectReferences:
-        - path: [spec, template, spec, containers, {allIndexes: true}, env, {allIndexes: true}, valueFrom, configMapKeyRef]
-      resourceMatchers:
-  - apiVersionKindMatcher: {apiVersion: apps/v1, kind: Deployment}
+        - resourceMatchers:
+            - apiVersionKindMatcher: {apiVersion: apps/v1, kind: Deployment}
+          path: [spec, template, spec, containers, {allIndexes: true}, env, {allIndexes: true}, valueFrom, configMapKeyRef]
 ---
 apiVersion: v1
 kind: ConfigMap

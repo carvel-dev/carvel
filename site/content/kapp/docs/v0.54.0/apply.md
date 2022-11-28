@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/apply]
 title: Apply stage
 ---
 
@@ -67,6 +67,20 @@ By default non-kapp owned resources are not explicitly deleted by kapp, but expe
 Possible values: "" (default).
 
 Annotation value will be replaced with a unique ID on each deploy. This allows to force resource update as value changes every time.
+
+### kapp.k14s.io/renew-duration
+
+Available in v0.54.0+
+
+`kapp.k14s.io/renew-duration` annotation allows specifying an interval which facilitates kapp to update or recreate the resource during next `kapp deploy` if this duration has lapsed.
+
+Possible values: [ParseDuration](https://pkg.go.dev/time#ParseDuration).
+
+If `kapp deploy` is run after this interval has lapsed, `kapp` will force an update irrespective of no changes to the resource's configuration by injecting an annotation with the current timestamp (`kapp.k14s.io/last-renewed-time=<current-time>`) to the resource.
+
+**Note**: For precise results use `versioned resources` or `always-replace` update strategy for `non-versioned resources`.
+
+This annotation is helpful in scenario when you want a resource (like `secret`) get updated/recreated automatically irrespective of no changes to the resource's configuration at predetermined intervals.
 
 ### kapp.k14s.io/deploy-logs
 
