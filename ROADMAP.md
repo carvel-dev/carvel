@@ -18,15 +18,13 @@ Please take the timelines & dates as proposals and goals, not commitments. Prior
 `Last Updated: October 2022`
 |Theme|Feature|Stage|Timeline|
 |---|---|---|---|
-| Package Author Experience | **[kctrl]** [kctrl commands for package authors - Milestone 3.](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/632): CLI-based Package Author commands to enable  Package Authors easily create a Carvel package of their software. Prioritized list in Milestone-3  | Build | October 2022|
-| Stability and Delight | **[kapp]** [Versioned resource based on a predetermined interval](https://github.com/vmware-tanzu/carvel-kapp/issues/224): kapp deploy to trigger a new versioned asset based on a predetermined interval | Build | October 2022|
 | Stability and Delight | **[kapp-controller]** [Resilient to network failures](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/664): kapp-controller continues to reconcile despite a lost connection to a registry. | Build | October 2022 |
 | Stability and Delight | **[ytt]** [Guides & Examples](https://github.com/vmware-tanzu/carvel-ytt/issues/314): Provide more guides and examples so that ytt is easy to get started with and details how it can be incorporate in different workflows. | Awaiting Proposal | October 2022 |
 | Stability and Delight | **[kapp-controller]** Stable when running 1,000 workloads. | Awaiting Proposal | December 2022|
 | Stability and Delight | **[carvel]** CNCF Sandbox Donation Follow-up: Perform necessary steps to align with the CNCF's guidance. | Awaiting Proposal | TBD |
 | Stability and Delight | **[Carvel]** Refreshed website to improve the "getting started" experience for new users. | Awaiting Proposal | TBD |
 | Stability and Delight | **[kapp]** [Use kapp as Go module](https://github.com/vmware-tanzu/carvel-kapp/issues/564): Use as a Go module, help improve the error handling. | Awaiting Proposal | TBD |
-| Stability and Delight | **[kapp]** [Long running: Performance enhancements](https://github.com/vmware-tanzu/carvel-kapp/issues/599): minimise the list calls. | Awaiting Proposal | TBD |
+| Stability and Delight | **[kapp]** [Long running: Performance enhancements](https://github.com/vmware-tanzu/carvel-kapp/issues/599): minimise the list calls. | Build | Jan 2023 |
 | Package Author Experience | **[carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). |Awaiting Proposal| TBD |
 
 
