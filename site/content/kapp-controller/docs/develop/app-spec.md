@@ -352,7 +352,7 @@ spec:
           # pass through options to kapp delete (optional)
           rawOptions: ["--apply-ignored=true"]
 
-# status is popuated by the controller
+# status is populated by the controller
 status:
   # populated based on metadata.generation when controller
   # observes a change to the resource; if this value is 
