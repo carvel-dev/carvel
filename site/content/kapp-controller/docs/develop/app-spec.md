@@ -192,10 +192,12 @@ spec:
           # data values are recommended to be placed in secrets (optional)
           pathsFrom:
             - secretRef:
+                # Reference to a Secret. The keys will be used as data value file names, and the values as the content of the corresponding data values file (typically a multiline yaml)
                 name: secret-name
                 # specifies where to place files found in secret (optional)
                 directoryPath: dir
             - configMapRef:
+                # Reference to a ConfigMap. The keys will be used as data value file names, and the values as the content of the corresponding data values file (typically a multiline yaml)
                 name: cfgmap-name
                 # specifies where to place files found in config map (optional)
                 directoryPath: dir
