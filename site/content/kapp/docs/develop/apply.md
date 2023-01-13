@@ -106,7 +106,7 @@ Available in v0.43.0+
 
 `kapp.k14s.io/exists` verifies that the resource exists in Kubernetes. Kapp does not consider the resource a part of the app (not labeled).
 
-If the resource is not present, then kapp uses the `exists` operation and asserts that the resource exists in Kubernetes. 
+If the resource is not present, then kapp uses the `exists` operation and asserts that the resource exists in Kubernetes.
 
 If the resource already exists, kapp does not perform any operation on it (using the `noop` operation).
 
@@ -118,7 +118,7 @@ Especially useful in scenarios where an external agency such as a controller mig
 
 Available in v0.43.0+
 
-`kapp.k14s.io/noop` ensures that kapp is aware of the resource. It will not be considered to be part of the app (not labeled). 
+`kapp.k14s.io/noop` ensures that kapp is aware of the resource. It will not be considered to be part of the app (not labeled).
 
 kapp always uses the `noop` operation for these resources.
 
