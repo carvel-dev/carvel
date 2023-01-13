@@ -106,7 +106,7 @@ Available in v0.43.0+
 
 `kapp.k14s.io/exists` will ensure that resource exists in Kubernetes. It will not be considered to be part of the app (not labeled).
 
-If the resource is not present already, then kapp uses the `exists` operation and ensures that the resource exists in Kubernetes. 
+If the resource is not present already, then kapp uses the `exists` operation and assert that the resource exists in Kubernetes. 
 
 If the resource already exists, kapp does not perform any operation on it (the `noop` operation is used).
 
