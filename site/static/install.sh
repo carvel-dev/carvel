@@ -46,49 +46,49 @@ install() {
 
   
   echo "Installing ytt..."
-  $dl_bin github.com/vmware-tanzu/carvel-ytt/releases/download/v0.44.1/ytt-${binary_type} > /tmp/ytt
+  $dl_bin github.com/carvel-dev/ytt/releases/download/v0.44.1/ytt-${binary_type} > /tmp/ytt
   echo "${ytt_checksum}  /tmp/ytt" | shasum -c -
   mv /tmp/ytt ${dst_dir}/ytt
   chmod +x ${dst_dir}/ytt
   echo "Installed ${dst_dir}/ytt v0.44.1"
   
   echo "Installing imgpkg..."
-  $dl_bin github.com/vmware-tanzu/carvel-imgpkg/releases/download/v0.34.1/imgpkg-${binary_type} > /tmp/imgpkg
+  $dl_bin github.com/carvel-dev/imgpkg/releases/download/v0.34.1/imgpkg-${binary_type} > /tmp/imgpkg
   echo "${imgpkg_checksum}  /tmp/imgpkg" | shasum -c -
   mv /tmp/imgpkg ${dst_dir}/imgpkg
   chmod +x ${dst_dir}/imgpkg
   echo "Installed ${dst_dir}/imgpkg v0.34.1"
   
   echo "Installing kbld..."
-  $dl_bin github.com/vmware-tanzu/carvel-kbld/releases/download/v0.36.1/kbld-${binary_type} > /tmp/kbld
+  $dl_bin github.com/carvel-dev/kbld/releases/download/v0.36.1/kbld-${binary_type} > /tmp/kbld
   echo "${kbld_checksum}  /tmp/kbld" | shasum -c -
   mv /tmp/kbld ${dst_dir}/kbld
   chmod +x ${dst_dir}/kbld
   echo "Installed ${dst_dir}/kbld v0.36.1"
   
   echo "Installing kapp..."
-  $dl_bin github.com/vmware-tanzu/carvel-kapp/releases/download/v0.54.1/kapp-${binary_type} > /tmp/kapp
+  $dl_bin github.com/carvel-dev/kapp/releases/download/v0.54.1/kapp-${binary_type} > /tmp/kapp
   echo "${kapp_checksum}  /tmp/kapp" | shasum -c -
   mv /tmp/kapp ${dst_dir}/kapp
   chmod +x ${dst_dir}/kapp
   echo "Installed ${dst_dir}/kapp v0.54.1"
   
   echo "Installing kwt..."
-  $dl_bin https://github.com/vmware-tanzu/carvel-kwt/releases/download/v0.0.6/kwt-${binary_type} > /tmp/kwt
+  $dl_bin github.com/carvel-dev/kwt/releases/download/v0.0.6/kwt-${binary_type} > /tmp/kwt
   echo "${kwt_checksum}  /tmp/kwt" | shasum -c -
   mv /tmp/kwt ${dst_dir}/kwt
   chmod +x ${dst_dir}/kwt
   echo "Installed ${dst_dir}/kwt v0.0.6"
   
   echo "Installing vendir..."
-  $dl_bin github.com/vmware-tanzu/carvel-vendir/releases/download/v0.32.2/vendir-${binary_type} > /tmp/vendir
+  $dl_bin github.com/carvel-dev/vendir/releases/download/v0.32.2/vendir-${binary_type} > /tmp/vendir
   echo "${vendir_checksum}  /tmp/vendir" | shasum -c -
   mv /tmp/vendir ${dst_dir}/vendir
   chmod +x ${dst_dir}/vendir
   echo "Installed ${dst_dir}/vendir v0.32.2"
   
   echo "Installing kctrl..."
-  $dl_bin github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.44.1/kctrl-${binary_type} > /tmp/kctrl
+  $dl_bin github.com/carvel-dev/kapp-controller/releases/download/v0.44.1/kctrl-${binary_type} > /tmp/kctrl
   echo "${kctrl_checksum}  /tmp/kctrl" | shasum -c -
   mv /tmp/kctrl ${dst_dir}/kctrl
   chmod +x ${dst_dir}/kctrl
