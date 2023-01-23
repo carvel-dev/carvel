@@ -29,6 +29,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Garrett Cheadle, [gcheadle-vmware](https://github.com/gcheadle-vmware)
 * Ben Moss, [benmoss](https://github.com/benmoss)
 * Dennis Leon, [DennisDenuto](https://github.com/DennisDenuto)
+* Aaron Hurley, [aaronshurley](https://github.com/aaronshurley)
 
 ## Carvel Stakeholders
 
