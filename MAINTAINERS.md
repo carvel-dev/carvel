@@ -29,13 +29,13 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Garrett Cheadle, [gcheadle-vmware](https://github.com/gcheadle-vmware)
 * Ben Moss, [benmoss](https://github.com/benmoss)
 * Dennis Leon, [DennisDenuto](https://github.com/DennisDenuto)
+* Aaron Hurley, [aaronshurley](https://github.com/aaronshurley)
 
 ## Carvel Stakeholders
 
 | Carvel Feature Area                                                                                                                             |                       Lead                       |
 |-------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------:|
 | All                                                                                                                                             | Dmitriy Kalinin (cppforlife), Project Tech Lead  |
-| imgpkg, kapp-controller, kbld, secretgen-controller, vendir, ytt                                                                                | Aaron Hurley (aaronshurley), Engineering Manager |
 | kapp, kctrl                                                                                                                                     |     Renu Yarday (renuy), Engineering Manager     |
 | [Windows Application Packages Contributor](https://github.com/adriens?tab=repositories&q=chocolatey-&type=&language=powershell&sort=stargazers) |              Adrien Sales (adriens)              |
 | Community Management                                                                                                                            |         Nanci Lancaster (microwavables)          |
