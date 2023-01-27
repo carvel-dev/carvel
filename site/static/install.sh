@@ -26,7 +26,7 @@ install() {
     ytt_checksum=fb9cc00c4b6285e04595c493df73da425a2d5f9a551630e52559dd9ee2d58252
     imgpkg_checksum=5330dfdd76865cde0db1bd54562578dc39c2fa5a9fa6ef8e97d143b4a5754bcd
     kbld_checksum=187a25bfdd4cddc9936e8f304ac54802896bd95b41d4939b8dbb92defbb46faa
-    kapp_checksum=116a32c5974fcc08bfbec5e36b3a9145ed12457b10b0d842613add2f34c0ef03
+    kapp_checksum=7349b265b327c6fb29fcf866e311029d3a5f06c18cb29d96b511fa378b245474
     kwt_checksum=555d50d5bed601c2e91f7444b3f44fdc424d721d7da72955725a97f3860e2517
     vendir_checksum=e7fb496b8e81b4b87b0076e778a384588b8e19a7b68c2c0b2ed74739c398643f
     kctrl_checksum=4b2ee6bc36a59f8710b8404529dc88885bf0396922f655ea491661b3a6e54cc4
@@ -36,7 +36,7 @@ install() {
     ytt_checksum=c047bd7084beea2b4a585b13148d7c1084ee6c4aee8a68592fc8ed7d75ecebc5
     imgpkg_checksum=de864d7c77cf1338f28c02828de7bfd3a34c0670692cb415ab0c34352c6e605b
     kbld_checksum=1d799fe491c87c18fa3b25473ee04acceea04d410cc8f806e8a6b06fa82abaee
-    kapp_checksum=436e30a34647b2d889010d08a9242b4d3954f4c84c9ca26dd30751934ecf9950
+    kapp_checksum=bb586f4ee94a8fdeea5b3fcb934b95b20bb0d502deab19e9a445a573b6a27071
     kwt_checksum=92a1f18be6a8dca15b7537f4cc666713b556630c20c9246b335931a9379196a0
     vendir_checksum=f5d3cbbd8135d2d48f4f007b8a933bd60b2a827d68f4001c5d1774392fa7b3f2
     kctrl_checksum=7b333bdffc69b21c85b0d7695d6932a2e1da96684546259aa77e272bfab1cbab
@@ -67,11 +67,11 @@ install() {
   echo "Installed ${dst_dir}/kbld v0.36.3"
   
   echo "Installing kapp..."
-  $dl_bin github.com/carvel-dev/kapp/releases/download/v0.54.1/kapp-${binary_type} > /tmp/kapp
+  $dl_bin github.com/carvel-dev/kapp/releases/download/v0.54.2/kapp-${binary_type} > /tmp/kapp
   echo "${kapp_checksum}  /tmp/kapp" | shasum -c -
   mv /tmp/kapp ${dst_dir}/kapp
   chmod +x ${dst_dir}/kapp
-  echo "Installed ${dst_dir}/kapp v0.54.1"
+  echo "Installed ${dst_dir}/kapp v0.54.2"
   
   echo "Installing kwt..."
   $dl_bin github.com/carvel-dev/kwt/releases/download/v0.0.6/kwt-${binary_type} > /tmp/kwt
