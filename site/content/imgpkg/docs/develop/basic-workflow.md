@@ -84,7 +84,7 @@ If you would like to deploy the results of this scenario to your Kubernetes clus
 1. The pushed bundle is now available at `index.docker.io/user1/simple-app-bundle:v1.0.0`
 
 ---
-## Step 3: Pulling the bundle to registry
+## Step 3: Pulling the bundle from registry
 
 Now that we have pushed a bundle to a registry, other users can pull it.
 
