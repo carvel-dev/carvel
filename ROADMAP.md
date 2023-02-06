@@ -19,8 +19,8 @@ Please take the timelines & dates as proposals and goals, not commitments. Prior
 |Feature|Stage|Timeline|
 |---|---|---|
 **[carvel]** CNCF Sandbox Donation Follow-up: Perform necessary steps to align with the CNCF's guidance. | In Progress | Mar 2023 |
+**[kapp]** [Long running: Performance enhancements](https://github.com/vmware-tanzu/carvel-kapp/issues/599): minimise the list calls. | In Progress | Apr 2023 |
 **[kapp-controller]** Stable when running 1,000 AppCRs. | Awaiting Proposal | Apr 2023|
-**[kapp]** [Long running: Performance enhancements](https://github.com/vmware-tanzu/carvel-kapp/issues/599): minimise the list calls. | Build | Apr 2023 |
 **[carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). |Awaiting Proposal| TBD |
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
