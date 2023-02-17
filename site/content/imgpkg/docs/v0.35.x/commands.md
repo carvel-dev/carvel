@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/commands]
 title: Commands
 ---
 
@@ -148,7 +148,14 @@ An example of this is shown below:
 $ imgpkg tag list -i index.docker.io/k8slt/image
 ```
 
-The output shows the names of all tags associated with the image, along with its digest.
+The output shows the names of all non-imgpkg internal tags associated with the image.
+
+Additionally, you can request to see the tag digests or all tags, to include the imgpkg internally generated tags, using the following flags.
+
+```bash-plain
+$ imgpkg tag list --digests -i index.docker.io/k8slt/image
+$ imgpkg tag list --imgpkg-internal-tags -i index.docker.io/k8slt/image
+```
 
 ---
 
