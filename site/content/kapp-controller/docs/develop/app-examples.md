@@ -34,7 +34,7 @@ apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
   name: nginx-helm
-pec:
+spec:
   fetch:
   - git:
       url: https://github.com/bitnami/charts
