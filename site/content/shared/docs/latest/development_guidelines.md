@@ -14,7 +14,9 @@ title: Coding Guidelines for Carvel
 ## General Mindset and Sensibilities
 ### Naming
 * Consistent and descriptive, without abandoning golang’s terse style.
-* Flag names should be nouns not verbs ( --warnings,  not --warn) 
+* Flag names should be nouns not verbs ( --warnings,  not --warn).
+* Prefer names that indicate behavior or effect over names that describe
+  implementation.
 
 ### Modularity
 * Each Carvel tool is modular and composable, with aggressively limited scope
@@ -68,6 +70,12 @@ Developers should feel free to add more structure as complexity grows by making 
       ```
       if err := foo(); err != nil { //…
       ```
+* Prefer to minimize empty lines:
+    * One blank line between functions or sections can be helpful, two blank
+      lines is gratuitous.
+    * Don't leave blank lines at the bottom of a function or test
+    * When defining a function with no implementation, keep the `{}` on the same
+      line as the function declaration.
 * Dependencies
     * are all vendored locally and version controlled
     * `go mod vendor; go mod tidy` are your friends; hack/build.sh runs them.
@@ -88,6 +96,7 @@ Developers should feel free to add more structure as complexity grows by making 
     * Generators can be run via hack/gen.sh
     * Kapp-controller’s aggregated API server has a separate generator: hack/gen-apiserver.sh
     * The CRD yaml is generated via[ a separate script](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/85e814cda7109169809ede1c8a4f211739ad15d2/hack/gen-crds.sh) that is run by hack/build.sh
+* Imports: use the alias `metav1` when importing `"k8s.io/apimachinery/pkg/apis/meta/v1"`
 
 ## Development Process
 ### Controller specific workflows
@@ -127,6 +136,8 @@ We write mainly e2es and units;  some tools have [performance tests](https://git
 * Test Assets:
     * If a test requires additional artifacts or assets they should live in a separate /assets subfolder.
     * Test assets should include comments describing how to generate or modify those assets. [example](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/1844e157b6de4048cec3ba0e53fc699d37e9c71e/test/e2e/assets/https-server/certs-for-custom-ca.yml#L9)
+* Names: Omit words like "fake" or "mock" from the names of variables or dummies
+  made for the test.
 
 ### Issues, Branching, Pull Requests, Approval
 * Issues (see also, [issue triaging docs](https://www.google.com/url?q=https://github.com/vmware-tanzu/carvel/blob/develop/processes/issue-triage.md&sa=D&source=docs&ust=1634161804254000&usg=AOvVaw3al0fXNnNVR7ynUf-DwcU0) for more info!)
@@ -174,5 +185,7 @@ Carvel uses semver, x.y.z version structure, with all tools at major version x=0
 * Aspirational: a single script that runs linter, no-dirty-files, and unit tests locally
 
 ### Release Process
-* OSS Releases: We’re mostly trying to use goreleaser, which relies on git tags, but this varies by repo; see the relevant dev.md for details
+* OSS Releases: varies by tool, see the relevant dev.md for details. Many of the
+  command line tools are using [shared
+  scripts](https://github.com/vmware-tanzu/carvel-release-scripts).
 * Vmware releases: have their own process; Vmware employees should see internal docs.
