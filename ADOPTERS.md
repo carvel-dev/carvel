@@ -13,7 +13,11 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 <a href="https://www.opt.nc/" border="0" target="_blank"><img alt="OPT-NC" src="logos/OPT-NC.png" height="50"></a>
 
+<a href="https://www.orange.com/" border="0" target="_blank"><img alt="Orange" src="logos/Orange.png" height="50"></a>
+
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
+
+<a href="https://dataflow.spring.io/" border="0" target="_blank"><img alt="Spring Cloud Data Flow" src="logos/spring-cloud.svg" height="50"></a>
 
 <a href="https://www.terasky.com/" border="0" target="_blank"><img alt="TERASKY" src="logos/terasky.png" height="50"></a>
 
@@ -39,9 +43,17 @@ Fabrique Numérique des Ministères Sociaux uses kapp CLI as deployer for their 
 
 Office des Postes et Télécommunications de Nouvelle-Calédonie uses vendir to sync repos to build docker images, ytt to instanciate templates and are currently working on packaging services as applications with kapp. They are prototyping on an onPrem Tanzu instance. They are using Github.com and GH Actions to automate the whole thing and are evaluating Harbor vs. Artifactory vs. Github Container Registry to store/release their images.
 
+**[Orange](https://www.orange.com/)**
+
+Orange is currently running their application in testing, not yet product. Their scenario for using Carvel is crossplane CRD templating while preserving coding assistance (See: [XRD spec.versions[0].schema.openAPIV3Schema is weakly typed as an object instead of full openapi schema crossplane/crossplane#3197 (comment)](https://github.com/crossplane/crossplane/issues/3197#issuecomment-1194624402) and [Adapt ytt syntax to leverage K8S CR completion during authoring vfarcic/devops-toolkit-crossplane#4)](https://github.com/vfarcic/devops-toolkit-crossplane/issues/4)). They are also using Carvel for triggering/scheduling execution of kuttl kests within the K8s cluster.
+
 **[Revng](https://rev.ng/)**
 
 Revng is a small company with expertise in compilers, emulation and binary analysis. Revng uses ytt as a flexible templating tool to generate the configuration for [orchestra](https://github.com/revng/orchestra), their meta build system/package manager.
+
+**[Spring Cloud Data Flow](https://dataflow.spring.io/)**
+
+In their own words: The (Spring Cloud Data Flow)[https://dataflow.spring.io/] project is using Carvel. We have been running our k8s acceptance tests using Carvel for some time and are now preparing to make it the default packaging for the Pro version. The hope is that we can provide users of OSS and Pro version a deployment experience that is as simple as Helm but more powerful when needed. The acceptance tests need to run many permutations of tests. We deploy multiple k8s clusters, then deploy the databases and message brokers needed for the permutations that will run in that cluster. Then we run all permuations in parallel which means each instance in deployed in a separate namespace and it's own configuration.
 
 **[TeraSky](https://terasky.com/)**
 
