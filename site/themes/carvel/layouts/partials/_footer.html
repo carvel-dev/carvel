@@ -1,33 +1,21 @@
 <footer>
 	<div class="wrapper footer-links">
 		<div class="top-links">
-			<ul class="left-links">
-				<li><a href="{{ .Site.Params.links.twitter_url }}" target="_blank"><img src="/img/twitter.png" />Twitter</a></li>
-				<li><a href="{{ .Site.Params.links.github_url }}" target="_blank"><img src="/img/github.svg" />GitHub</a></li>
-				<li><a href="{{ .Site.Params.links.slack_url }}" target="_blank"><img src="/img/slack.png" /><span class="desktop">Slack</span><span class="mobile">Slack</span></a></li>
-			</ul>
-			<div class="right-links">
-				<p>
-					<a target="_blank" rel="noopener" href="/"> <img src="/img/logo.svg" /></a>
-				</p>
+			<div class="left-links">
+				<a href="/"> <img src="/img/logo.svg" alt="Carvel logo" /></a>
+				<span class="copywrite">&copy; {{ now.Year }} Carvel Authors. Apache 2.0 License.</span>
 			</div>
+			<ul class="right-links">
+				<li><a href="{{ .Site.Params.twitter_url }}"><img src="/img/twitter.png" alt="Twitter logo" />Twitter</a></li>
+				<li><a href="{{ .Site.Params.github_url }}"><img src="/img/github.svg" alt="Github logo" />Github</a></li>
+				<li><a href="{{ .Site.Params.slack_url }}"><img src="/img/slack.png" alt="Slack logo" /><span class="desktop">#Slack</span><span class="mobile">Slack</span></a></li>
+			</ul>
 		</div>
 		<div class="bottom-links">
+			<a href="https://www.cncf.io/sandbox-projects/" target="_blank"><img src="/img/cncf-color1.svg" alt="Cloud Native Computing Foundation" /></a>
+			<small class="copright">We are a <a href="https://www.cncf.io/sandbox-projects/">Cloud Native Computing Foundation</a> sandbox project.</small>
 			<p>
-				<span>
-					&copy; {{ now.Year }} Carvel Authors. Apache 2.0 License.
-					<a target="_blank" rel="noopener" href="https://github.com/vmware/">A VMware-backed project.</a>
-				</span>
-				<span>
-					<a target="_blank" rel="noopener" href='https://www.vmware.com/help/legal.html'>Terms of Use</a> |
-					<a target="_blank" rel="noopener" href='https://www.vmware.com/help/privacy.html'>Privacy Policy</a> |
-					<a target="_blank" rel="noopener" href='https://www.vmware.com/help/privacy/california-privacy-rights.html'>Your California Privacy Rights</a>
-				</span>
-				<span>
-					<a target="_blank" rel="noopener" href="https://github.com/vmware/">
-						<img id="vm-logo" src="/img/vm-logo.svg" alt="VMware logo" />
-					</a>
-				</span>
+				<small class="copright">&copy; {{ now.Year }} The Linux Foundation. All Rights Reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of the Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademarks Usage</a> page.</a></small>
 			</p>
 		</div>
 	</div>
