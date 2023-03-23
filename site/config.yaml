@@ -24,7 +24,7 @@ params:
     name: ytt
     root_link: /ytt/
     latest_docs_link: /ytt/docs/v0.44.0/
-    github_url: https://github.com/vmware-tanzu/carvel-ytt
+    github_url: https://github.com/carvel-dev/ytt
     search: true
     search_index_name: carvel-ytt
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -44,7 +44,7 @@ params:
     short_name: kbld
     root_link: /kbld/
     latest_docs_link: /kbld/docs/v0.36.0/
-    github_url: https://github.com/vmware-tanzu/carvel-kbld
+    github_url: https://github.com/carvel-dev/kbld
     search: true
     search_index_name: carvel-kbld
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -62,7 +62,7 @@ params:
     short_name: kapp
     root_link: /kapp/
     latest_docs_link: /kapp/docs/v0.54.0/
-    github_url: https://github.com/vmware-tanzu/carvel-kapp
+    github_url: https://github.com/carvel-dev/kapp
     search: true
     search_index_name: carvel-kapp
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -86,7 +86,7 @@ params:
     short_name: imgpkg
     root_link: /imgpkg/
     latest_docs_link: /imgpkg/docs/v0.36.x/
-    github_url: https://github.com/vmware-tanzu/carvel-imgpkg
+    github_url: https://github.com/carvel-dev/imgpkg
     search: true
     search_index_name: carvel-imgpkg
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -112,7 +112,7 @@ params:
     short_name: kc
     root_link: /kapp-controller/
     latest_docs_link: /kapp-controller/docs/v0.43.2/
-    github_url: https://github.com/vmware-tanzu/carvel-kapp-controller
+    github_url: https://github.com/carvel-dev/kapp-controller
     search: true
     search_index_name: carvel-kapp-controller
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -137,9 +137,9 @@ params:
   secretgen-controller:
     name: secretgen-controller
     short_name: secretgen-controller
-    root_link: https://github.com/vmware-tanzu/carvel-secretgen-controller
-    latest_docs_link: https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/README.md
-    github_url: https://github.com/vmware-tanzu/carvel-secretgen-controller
+    root_link: https://github.com/carvel-dev/secretgen-controller
+    latest_docs_link: https://github.com/carvel-dev/ecretgen-controller/blob/develop/docs/README.md
+    github_url: https://github.com/carvel-dev/secretgen-controller
     search: true
     search_index_name: carvel-secretgen-controller
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -150,7 +150,7 @@ params:
     name: Shared Docs
     short_name: shared
     root_link: /shared/docs/latest/
-    github_url: https://github.com/vmware-tanzu/carvel
+    github_url: https://github.com/carvel-dev/carvel
     latest_docs_link: /shared/docs/latest/
     search: false
     versioning: false
@@ -161,7 +161,7 @@ params:
     short_name: vendir
     root_link: /vendir/
     latest_docs_link: /vendir/docs/v0.32.0/
-    github_url: https://github.com/vmware-tanzu/carvel-vendir
+    github_url: https://github.com/carvel-dev/vendir
     search: true
     search_index_name: carvel-vendir
     search_api_key: a38560864c2e9128ae57d5734df438ff
@@ -179,7 +179,7 @@ params:
     - v0.24.0
   links:
     twitter_url: https://twitter.com/carvel_dev
-    github_url: https://github.com/vmware-tanzu/carvel
+    github_url: https://github.com/carvel-dev
     slack_url: https://kubernetes.slack.com/archives/CH8KCCKA5
 markup:
   highlight:
