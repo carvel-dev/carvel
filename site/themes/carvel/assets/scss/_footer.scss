@@ -12,6 +12,15 @@ footer {
         padding-bottom: 5px;
         margin-bottom: 10px;
     }
+    li {
+        list-style-type: none;
+        display: inline;
+        padding-right: 25px;
+        font-size: 12px;
+        &:last-of-type {
+            padding-right: 0px;
+        }
+    }
     .right-links {
         padding: 0px;
         li {
