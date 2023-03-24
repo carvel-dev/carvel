@@ -138,7 +138,7 @@ params:
     name: secretgen-controller
     short_name: secretgen-controller
     root_link: https://github.com/carvel-dev/secretgen-controller
-    latest_docs_link: https://github.com/carvel-dev/ecretgen-controller/blob/develop/docs/README.md
+    latest_docs_link: https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/README.md
     github_url: https://github.com/carvel-dev/secretgen-controller
     search: true
     search_index_name: carvel-secretgen-controller
