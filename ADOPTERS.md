@@ -5,25 +5,17 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 ## Organizations using Carvel
 
-(in alphabetical order)
-
-<a href="https://beam.lu/" border="0" target="_blank"><img alt="BEAM" src="logos/BEAM-SARL.png" height="50"></a>
-
-<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img alt="fabrique" src="logos/fabrique.png" height="50"></a>
-
-<a href="https://www.opt.nc/" border="0" target="_blank"><img alt="OPT-NC" src="logos/OPT-NC.png" height="50"></a>
-
-<a href="https://www.orange.com/" border="0" target="_blank"><img alt="Orange" src="logos/Orange.png" height="50"></a>
-
-<a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
-
-<a href="https://dataflow.spring.io/" border="0" target="_blank"><img alt="Spring Cloud Data Flow" src="logos/spring-cloud.svg" height="50"></a>
-
-<a href="https://www.terasky.com/" border="0" target="_blank"><img alt="TERASKY" src="logos/terasky.png" height="50"></a>
-
-<a href="https://www.twilio.com/" border="0" target="_blank"><img alt="Twilio, Inc." src="logos/twilio.svg" height="50"></a>
-
-<a href="https://www.vmware.com" border="0" target="_blank"><img alt="VMware" src="logos/vmware.svg" height="50"></a>
+<p align="middle">
+<a href="https://beam.lu/" border="0" target="_blank"><img align="center" alt="BEAM" src="logos/BEAM-SARL.png" style="width: 20vw; border:solid transparent thick;"></a> &nbsp; &nbsp; &nbsp;
+<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img align="center" alt="fabrique" src="logos/fabrique.png" style="width: 20vw; border:solid transparent thick;"></a> &nbsp; &nbsp; &nbsp;
+<a href="https://www.opt.nc/" border="0" target="_blank"><img align="center" alt="OPT-NC" src="logos/OPT-NC.png" style="width: 20vw; border:solid transparent thick;"></a> &nbsp; &nbsp; &nbsp;
+<a href="https://www.orange.com/" border="0" target="_blank"><img align="center" alt="Orange" src="logos/Orange.png" style="width: 20vw; vertical-align: midcenterdle; horizontal-align: center; border:solid transparent thick;"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://rev.ng/" border="0" target="_blank"><img align="center" alt="Revng" src="logos/revng.svg" style="width: 20vw; border:solid transparent thick;"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://dataflow.spring.io/" border="0" target="_blank"><img align="center" alt="Spring Cloud Data Flow" src="logos/spring-cloud.svg" style="width: 20vw; border:solid transparent thick;"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://www.terasky.com/" border="0" target="_blank"><img align="center" alt="TERASKY" src="logos/terasky.png" style="width: 20vw; border:solid transparent thick;"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://www.twilio.com/" border="0" target="_blank"><img align="center" alt="Twilio, Inc." src="logos/twilio.svg" style="width: 20vw; border:solid transparent thick;"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://www.vmware.com" border="0" target="_blank"><img align="center" alt="VMware" src="logos/vmware.svg" style="width: 20vw; border:solid transparent thick;"></a>&nbsp; &nbsp; &nbsp;
+</p>
 
 ## Solutions built with Carvel
 
