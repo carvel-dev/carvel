@@ -36,7 +36,7 @@ Be sure to stop by our kiosk (#K22) in the project pavilion to grab some new swa
     - Friday, April 21
         - 10:30–14:30
 
-### Demos at the VMware Mini-Booth Theater in the [Solutions Showcase](https://kccnceu2023.sched.com/overview/type/Solutions+Showcase)
+### [Demos at the VMware Mini-Booth Theater in the Solutions Showcase](https://kccnceu2023.sched.com/overview/type/Solutions+Showcase)
 - Wednesday, April 19
     - 13:30 - Carvel: Clean Tools for Cloud-Native Problems by [Leigh Capili](https://github.com/stealthybox)
 
