@@ -1,7 +1,7 @@
 ---
 title: "Carvel in Amsterdam for KubeCon + CloudNativeCon Europe 2023"
 slug: Carvel-KubeCon-EU-2023
-date: 2023-10-20
+date: 2023-04-10
 author: Nanci Lancaster
 excerpt: "We're excited to join the community in Amsterdam as our first ever full appearance as a Cloud Native Computing Foundation Sandbox project! Read all about where you can find us next week."
 image: /img/kubeconeu2023.jpeg
@@ -9,7 +9,7 @@ tags: ['europe', 'kubecon', 'schedule']
 ---
 For the first time ever, Carvel will have a presence at KubeCon + CloudNativeCon as a Cloud Native Computing Foundation Sandbox project! Below are the opportunities you have to come engage with us and other members of the Carvel community. We can't wait to see you!
 
-###### **Note**: All times mentioned below are in Central European Summer Time (CEST), UTC +2
+**Note**: All times mentioned below are in Central European Summer Time (CEST), UTC +2.
 
 ### [KubeCon + CloudNativeCon In-Person Project Meeting](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/project-engagement/#in-person-project-meetings)
 
@@ -23,7 +23,7 @@ For the first time ever, Carvel will have a presence at KubeCon + CloudNativeCon
         - Where can the community help most, get started with helping Carvel with developing these top 3 features?
         - How to get started as a contributor and become a maintainer
 
-###### **Note**: You DO NOT need an all-access pass to attend a project meeting. A regular in-person registration is all that is required.
+**Note**: You DO NOT need an all-access pass to attend a project meeting. A regular in-person registration is all that is required.
 
 ### [KubeCon + CloudNativeCon Project Pavilion](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/project-engagement/#project-pavilion)
 Be sure to stop by our kiosk (#K22) in the project pavilion to grab some new swag!
@@ -35,7 +35,8 @@ Be sure to stop by our kiosk (#K22) in the project pavilion to grab some new swa
         - 10:30–17:30 
     - Friday, April 21
         - 10:30–14:30
-- **Demos at the VMware Mini-Booth Theater in the [Solutions Showcase](https://kccnceu2023.sched.com/overview/type/Solutions+Showcase)**
+
+### Demos at the VMware Mini-Booth Theater in the [Solutions Showcase](https://kccnceu2023.sched.com/overview/type/Solutions+Showcase)**
     - Wednesday, April 19
         - 13:30 - Carvel: Clean Tools for Cloud-Native Problems by Leigh Capili
 
