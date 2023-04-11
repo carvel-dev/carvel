@@ -2,103 +2,99 @@
 title: Security Policy
 ---
 
-# Security Release Process
+# Security Procedures
 
-Carvel provides a set of reliable, single-purpose, composable tools that aid in
-your application building, configuration, and deployment to Kubernetes.
+The Carvel community holds security in the highest regard.
 
-The community has adopted this security disclosure and response policy to ensure
-we responsibly handle critical issues.
+The community adopted this security disclosure policy to ensure vulnerabilities are responsibly handled.
 
+## Reporting a Vulnerability
 
-## Supported Versions
+If you believe you have identified a vulnerability, please work with the Carvel maintainers to fix it and disclose the issue responsibly.
 
-Only the latest version of a Carvel tool is supported.
+All security issues, confirmed or suspected, should be reported privately.
 
-## Reporting a Vulnerability - Private Disclosure Process
+Please avoid using github issues, and instead **report the vulnerability to cncf-carvel-maintainers@lists.cncf.io.**
 
-Security is of the highest importance and all security vulnerabilities or suspected security vulnerabilities should be reported to Carvel privately, to minimize attacks against current users of Carvel before they are fixed. Vulnerabilities will be investigated and patched on the next patch (or minor) release as soon as possible. This information could be kept entirely internal to the project.
+A vulnerability report should be filed if any of the following applies:
 
-If you know of a publicly disclosed security vulnerability for Carvel, please **IMMEDIATELY** contact the VMware Security Team (security@vmware.com). The use of encrypted email is encouraged. The public PGP key can be found [here](https://kb.vmware.com/kb/1055).
+* You have discovered and confirmed a vulnerability in Carvel.
+* You believe Carvel might be vulnerable to some published [CVE](https://cve.mitre.org/cve/).
+* You have found a potential security flaw in Carvel but you're not yet sure whether there's a viable attack vector.
+* You have confirmed or suspect any of Carvel's dependencies has a vulnerability.
 
-**IMPORTANT: Do not file public issues on GitHub for security vulnerabilities**
-
-To report a vulnerability or a security-related issue, please contact the VMware email address with the details of the vulnerability. The email will be fielded by the VMware Security Team and then shared with the Carvel maintainers who have committer and release permissions. Emails will be addressed within 3 business days, including a detailed plan to investigate the issue and any potential workarounds to perform in the meantime. Do not report non-security-impacting bugs through this channel. Use the GitHub issues of the impacted tool(s) instead.
-
-## Proposed Email Content
+### Vulnerability report template
 
 Provide a descriptive subject line and in the body of the email include the following information:
 
 *   Basic identity information, such as your name and your affiliation or company.
 *   Detailed steps to reproduce the vulnerability  (POC scripts, screenshots, and logs are all helpful to us).
-*   Description of the effects of the vulnerability on Carvel and the related hardware and software configurations, so that the VMware Security Team can reproduce it.
+*   Description of the effects of the vulnerability on Carvel and the related hardware and software configurations, so that the Carvel Team can reproduce it.
 *   How the vulnerability affects Carvel usage and an estimation of the attack surface, if there is one.
 *   List other projects or dependencies that were used in conjunction with Carvel to produce the vulnerability.
 
-## When to report a vulnerability
+## Responding to a vulnerability
 
-*   When you think Carvel has a potential security vulnerability.
-*   When you suspect a potential vulnerability but you are unsure that it impacts Carvel.
-*   When you know of or suspect a potential vulnerability on another project that is used by Carvel.
+A coordinator is assigned to each reported security issue. The coordinator is a member from the Carvel maintainers team, and will drive the fix and disclosure process.
 
-## Patch, Release, and Disclosure
+At the moment reports are received via email at cncf-carvel-maintainers@lists.cncf.io.
 
-The VMware Security Team will respond to vulnerability reports as follows:
+The first steps performed by the coordinator are to confirm the validity of the report and send an embargo reminder to all parties involved.
 
-1. The Security Team will investigate the vulnerability and determine its effects and criticality.
-2. If the issue is not deemed to be a vulnerability, the Security Team will follow up with a detailed reason for rejection.
-3. The Security Team will initiate a conversation with the reporter within 3 business days.
-4. If a vulnerability is acknowledged and the timeline for a fix is determined, the Security Team will work on a plan to communicate with the appropriate community, including identifying mitigating steps that affected users can take to protect themselves until the fix is rolled out.
-5. The Security Team will also create a [CVSS](https://www.first.org/cvss/specification-document) using the [CVSS Calculator](https://www.first.org/cvss/calculator/3.0). The Security Team makes the final call on the calculated CVSS; it is better to move quickly than making the CVSS perfect. Issues may also be reported to [Mitre](https://cve.mitre.org/) using this [scoring calculator](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator). The CVE will initially be set to private.
-6. The Security Team will work on fixing the vulnerability and perform internal testing before preparing to roll out the fix.
-7. The Security Team will provide early disclosure of the vulnerability by emailing the [Carvel Distributors](carvel-distributors@googlegroups.com) mailing list. Distributors can initially plan for the vulnerability patch ahead of the fix, and later can test the fix and provide feedback to the Carvel team. See the section **Early Disclosure to Carvel Distributors List** for details about how to join this mailing list.
-8. A public disclosure date is negotiated by the VMware Security Team, the bug submitter, and the distributors list. We prefer to fully disclose the bug as soon as possible once a user mitigation or patch is available. It is reasonable to delay disclosure when the bug or the fix is not yet fully understood, the solution is not well-tested, or for distributor coordination. The timeframe for disclosure is from immediate (especially if it’s already publicly known) to a few weeks. For a critical vulnerability with a straightforward mitigation, we expect the report date for the public disclosure date to be on the order of 14 business days. The VMware Security Team holds the final say when setting a public disclosure date.
-9. Once the fix is confirmed, the Security Team will patch the vulnerability in the next patch or minor release, and backport a patch release into all earlier supported releases. Upon release of the patched version of a Carvel tool, we will follow the **Public Disclosure Process**.
+Carvel maintainers and issue reporters will review the issue for confirmation of impact and determination of affected components.
 
-## Public Disclosure Process
+A public disclosure date is negotiated by the Carvel Maintainers, the bug submitter, and the distributors list. 
+We prefer to fully disclose the bug as soon as possible once a user mitigation or patch is available. 
+It is reasonable to delay disclosure when the bug or the fix is not yet fully understood, the solution is not well-tested, or for distributor coordination. 
+The timeframe for disclosure is from immediate (especially if it’s already publicly known) to a few weeks. For a critical vulnerability with a straightforward mitigation, we expect the report date for the public disclosure date to be on the order of 14 business days. 
+The Carvel Maintainers hold the final say when setting a public disclosure date.
 
-The Security Team publishes a [public advisory](https://github.com/vmware-tanzu/carvel/security/advisories) to the Carvel community via GitHub. In most cases, additional communication via Slack, Twitter, mailing lists, blog and other channels will assist in educating Carvel users and rolling out the patched release to affected users.
+With reference to the scale reported below, reported vulnerabilities will be disclosed and treated as regular issues if their issue risk is low (level 4 or higher in the scale).
 
-The Security Team will also publish any mitigating steps users can take until the fix can be applied to their Carvel instances. Carvel distributors will handle creating and publishing their own security advisories.
+For these lower-risk issues the fix process will proceed with the usual github workflow.
 
-## Mailing lists
+### Reference taxonomy for issue risk
 
-*   Use security@vmware.com to report security concerns to the VMware Security Team, who uses the list to privately discuss security issues and fixes prior to disclosure.
-*   Join the [Carvel Distributors](carvel-distributors@googlegroups.com) mailing list for early private information and vulnerability disclosure. Early disclosure may include mitigating steps and additional information on security patch releases. See below for information on how Carvel distributors or vendors can apply to join this list.
+1. Vulnerability must be fixed in main and any other supported branch.
+2. Vulnerability must be fixed in main only for next release.
+3. Vulnerability in experimental features or troubleshooting code.
+4. Vulnerability without practical attack vector (e.g.: needs GUID guessing).
+5. Not a vulnerability per se, but an opportunity to strengthen security (in code, architecture, protocols, and/or processes).
+6. Not a vulnerability or a strengthening opportunity.
+7. Vulnerability only exist in some PR or non-release branch.
 
+## Developing a patch for a vulnerability
 
-## Early Disclosure to Carvel Distributors List
+This part of the process applies only to confirmed vulnerabilities.
 
-The private list is intended to be used primarily to provide actionable information to multiple distributor projects at once. This list is not intended to inform individuals about security issues.
+The reporter and Carvel maintainers, plus anyone they deem necessary to develop and validate a fix will be included the discussion.
 
-## Membership Criteria
+**Please refrain from creating a PR for the fix!**
 
-To be eligible to join the [Carvel Distributors](carvel-distributors@googlegroups.com) mailing list, you should:
+A fix is proposed as a patch to the current main branch, formatted with:
 
-1. Be an active distributor of Carvel.
-2. Have a user base that is not limited to your own organization.
-3. Have a publicly verifiable track record up to the present day of fixing security issues.
-4. Not be a downstream or rebuild of another distributor.
-5. Be a participant and active contributor in the Carvel community.
-6. Accept the Embargo Policy that is outlined below.
-7. Have someone who is already on the list vouch for the person requesting membership on behalf of your distribution.
+```bash
+git format-patch --stdout HEAD~1 > path/to/local/file.patch
+```
 
-**The terms and conditions of the Embargo Policy apply to all members of this mailing list. A request for membership represents your acceptance to the terms and conditions of the Embargo Policy.**
+and then sent to cncf-carvel-maintainers@lists.cncf.io.
 
-## Embargo Policy
+**Please don't push the patch to the Carvel fork on your github account!**
 
-The information that members receive on the Carvel Distributors mailing list must not be made public, shared, or even hinted at anywhere beyond those who need to know within your specific team, unless you receive explicit approval to do so from the VMware Security Team. This remains true until the public disclosure date/time agreed upon by the list. Members of the list and others cannot use the information for any reason other than to get the issue fixed for your respective distribution's users.
+Patch review will be performed via email. Reviewers will suggest modifications and/or improvements, and then pre-approve it for merging.
 
-Before you share any information from the list with members of your team who are required to fix the issue, these team members must agree to the same terms, and only be provided with information on a need-to-know basis.
+Pre-approval will ensure patches can be fast-tracked through public code review later at disclosure time.
 
-In the unfortunate event that you share information beyond what is permitted by this policy, you must urgently inform the VMware Security Team (security@vmware.com) of exactly what information was leaked and to whom. If you continue to leak information and break the policy outlined here, you will be permanently removed from the list.
+## Disclosing the vulnerability
 
-## Requesting to Join
+In preparation for this, at least a maintainer must be available to help pushing the fix at disclosure time.
 
-Send new membership requests to carvel-distributors@googlegroups.com. In the body of your request please specify how you qualify for membership and fulfill each criterion listed in the Membership Criteria section above.
+At the disclosure time, one of the maintainers (or the reporter) will open an issue on github and create a PR with the patch for the main branch and any other applicable branch. Available maintainers will fast-track approvals and merge the patch.
 
-## Confidentiality, integrity and availability
+Regardless of the owner of the issue and the corresponding PR, the original reporter and the submitter of the fix will be properly credited.
 
-We consider vulnerabilities leading to the compromise of data confidentiality, elevation of privilege, or integrity to be our highest priority concerns. Availability, in particular in areas relating to DoS and resource exhaustion, is also a serious security concern. The VMware Security Team takes all vulnerabilities, potential vulnerabilities, and suspected vulnerabilities seriously and will investigate them in an urgent and expeditious manner.
+As for the git history, the commit message and author of the pre-approved patch will be preserved in the final patch submitted into the Carvel repository.
 
-Note that we do not currently consider the default settings for Carvel to be secure-by-default. It is necessary for operators to explicitly configure settings, role based access control, and other resource related features in Carvel to provide a hardened Carvel environment. We will not act on any security disclosure that relates to a lack of safe defaults. Over time, we will work towards improved safe-by-default configuration, taking into account backwards compatibility.
+### Notes
+
+At the moment the Carvel project does not have a process to assign a CVE to a confirmed vulnerability.

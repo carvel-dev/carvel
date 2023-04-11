@@ -129,7 +129,7 @@ We write mainly e2es and units;  some tools have [performance tests](https://git
     * Test assets should include comments describing how to generate or modify those assets. [example](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/1844e157b6de4048cec3ba0e53fc699d37e9c71e/test/e2e/assets/https-server/certs-for-custom-ca.yml#L9)
 
 ### Issues, Branching, Pull Requests, Approval
-* Issues (see also, [issue triaging docs](https://www.google.com/url?q=https://github.com/vmware-tanzu/carvel/blob/develop/processes/issue-triage.md&sa=D&source=docs&ust=1634161804254000&usg=AOvVaw3al0fXNnNVR7ynUf-DwcU0) for more info!)
+* Issues (see also, [issue triaging docs](hhttps://github.com/carvel-dev/carvel/blob/develop/processes/issue-triage.md) for more info!)
     * [Proposal Process](https://github.com/vmware-tanzu/carvel/tree/develop/proposals#carvel-proposals)
     * Prefer to leave issues open until documentation is complete
     * Docs typically live in a [separate
@@ -146,7 +146,7 @@ We write mainly e2es and units;  some tools have [performance tests](https://git
         * We may revisit automated release tooling and commit squashing.
     * Generally author should ping in slack after a PR is filed and ready for review
     * See our [issues/triage
-      doc](https://www.google.com/url?q=https://github.com/vmware-tanzu/carvel/blob/develop/processes/issue-triage.md&sa=D&source=docs&ust=1634161804254000&usg=AOvVaw3al0fXNnNVR7ynUf-DwcU0) for more info!
+      doc](https://github.com/carvel-dev/carvel/blob/develop/processes/issue-triage.md) for more info!
 * Refactors
     * If a new feature needs a large refactor, we prefer that refactor in a separate PR. At a minimum developers should put refactor in a separate commit. This helps scope reviews and minimize changesets.
 * Approvals
@@ -174,5 +174,5 @@ Carvel uses semver, x.y.z version structure, with all tools at major version x=0
 * Aspirational: a single script that runs linter, no-dirty-files, and unit tests locally
 
 ### Release Process
-* OSS Releases: We’re mostly trying to use goreleaser, which relies on git tags, but this varies by repo; see the relevant dev.md for details
-* Vmware releases: have their own process; Vmware employees should see internal docs.
+* Open Source Software Releases: We’re mostly trying to use goreleaser, which relies on git tags, but this varies by repo; see the relevant dev.md for details
+* VMware releases: have their own process; VMware employees should see internal docs.
