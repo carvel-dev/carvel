@@ -1,14 +1,14 @@
-# asciinema demos
+# kbld asciinema demo
 
-This folder contains assets that are used to maintain asciinema demos for Carvel tools. 
-Uploaded demos to asciinema:
-- [demo for kapp-controller](https://asciinema.org/a/hhZwxyDcXEGiPD9RDHTb3e9QL).
+
+The demo is all captured in a script called scenario.sh. In order to record an update to
+this video, you will need the following:
 
 * Install asciinema: https://asciinema.org/docs/installation
 * Create an asciinema account: https://asciinema.org/login/new
 * Install pv: https://linux.die.net/man/1/pv
-
-
+* kbld should be installed: https://carvel.dev/#whole-suite
+* pack should be installed: https://buildpacks.io/docs/tools/pack/
 
 To record a new video, run the following script:
 

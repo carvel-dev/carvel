@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kbld-nginx
+spec:
+  selector:
+    matchLabels:
+      app: kbld-nginx
+  template:
+    metadata:
+      labels:
+        app: kbld-nginx
+    spec:
+      containers:
+      - name: my-app
+        image: nginx
