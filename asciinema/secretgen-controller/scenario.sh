@@ -13,7 +13,7 @@ cat generate-secrets.yml
 
 echo ''
 echo "Apply it to the cluster using: kapp deploy -a secret -f generate-secrets.yml" | pv -qL 12
-kapp deploy -a secret -f generate-secrets.yml -y
+kapp deploy -a secret -f generate-secrets.yml -y | cat > /dev/null
 
 echo "The secret complex-password is created" | pv -qL 12
 kubectl get secret complex-password -oyaml
@@ -37,7 +37,7 @@ spec:
 "
 sleep 2
 echo "kapp deploy -a copy-secrets -f export-secrets.yml -y" | pv -qL 12
-kapp deploy -a copy-secrets -f export-secrets.yml -y
+kapp deploy -a copy-secrets -f export-secrets.yml -y | cat > /dev/null
 
 echo ''
 echo "We can import the secret to another namespace" | pv -qL 12
@@ -56,10 +56,10 @@ $pullSecret"
 sleep 2
 
 echo "kapp deploy -a import-secrets -f import-secrets.yml -y" | pv -qL 12
-echo "$pullSecret"| kapp deploy -a import-secret -f- -y
+echo "$pullSecret"| kapp deploy -a import-secret -f- -y  | cat > /dev/null
 
 sleep 5
-echo "kubectl get secret -n user3 registry1-creds -oyaml"
+echo "kubectl get secret -n user3 registry1-creds -oyaml" | pv -qL 12
 kubectl get secret -n user3 registry1-creds -oyaml
 sleep 5
 
@@ -84,7 +84,7 @@ $pullSecret"
 sleep 2
 
 echo "kapp deploy -a copy-secrets -f export-secrets.yml -y" | pv -qL 12
-echo "$pullSecret"| kapp deploy -a secret-as-pull-secret -f- -y
+echo "$pullSecret"| kapp deploy -a secret-as-pull-secret -f- -y | cat > /dev/null
 
 sleep 5
 echo "kubectl get secret -n user2 default-registry-creds -oyaml" | pv -qL 12
