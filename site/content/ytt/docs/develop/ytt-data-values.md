@@ -127,7 +127,7 @@ sets all three Data Values:
 
 _Example 2: Directory_
 
-See https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-directory for a complete example and explanation.
+See https://github.com/carvel-dev/ytt/tree/develop/examples/data-values-directory for a complete example and explanation.
 
 _Example 3: HTTP URL_
 

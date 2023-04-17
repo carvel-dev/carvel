@@ -39,10 +39,10 @@ Today, before package authors start on their authoring journey, are required to 
 
 ![Kctrl flow for kubernetes-package-authoring](/images/blog/introducing-kctrl-package-authoring-commands.png)
 
-All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find a tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/develop/kctrl-package-authoring.md)!
+All these commands are available from version [v0.40.0+](https://github.com/carvel-dev/kapp-controller/releases/latest). You can find a tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/develop/kctrl-package-authoring.md)!
 
 ## We'd love your feedback!
-`kctrl` [v0.40.0](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.40.0) is an alpha release of the package authoring commands. We are excited for you to try out the tool and eager to hear about your experiences and how it solves your use-case. There is a GitHub [issue](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/831) created to collect the feedback/feature request/suggestion which you would like to see in the future releases. We encourage you to post it there. Alternatively, you can post it in the [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) slack channel.
+`kctrl` [v0.40.0](https://github.com/carvel-dev/kapp-controller/releases/tag/v0.40.0) is an alpha release of the package authoring commands. We are excited for you to try out the tool and eager to hear about your experiences and how it solves your use-case. There is a GitHub [issue](https://github.com/carvel-dev/kapp-controller/issues/831) created to collect the feedback/feature request/suggestion which you would like to see in the future releases. We encourage you to post it there. Alternatively, you can post it in the [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) slack channel.
 
 ## Are you using Carvel?
 

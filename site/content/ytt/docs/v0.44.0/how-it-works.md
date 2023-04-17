@@ -224,12 +224,12 @@ To learn more about...
   - learn about [writing Schema](how-to-write-schema.md) for Data Values
   - read-up on the details in the "[Data Values Schema Referce](lang-ref-ytt-schema.md)" material
   - work with a complete example from the source: \
-    [vmware-tanzu/carvel-ytt/../examples/schema](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/schema)
+    [vmware-tanzu/carvel-ytt/../examples/schema](https://github.com/carvel-dev/ytt/tree/develop/examples/schema)
 - **Data Values**...
   - poke at a working example in the ytt Playground: [Load Data Values](/ytt/#example:example-load-data-values) example
   - read-up on the details in "[Using Data Values](how-to-use-data-values.md)"
   - work with a complete example from the source: \
-    [vmware-tanzu/carvel-ytt/../examples/data-values](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values)
+    [vmware-tanzu/carvel-ytt/../examples/data-values](https://github.com/carvel-dev/ytt/tree/develop/examples/data-values)
 - **Templates**...
   - learn Starlark by example in the first bunch of ["Basics" examples](/ytt/#example:example-plain-yaml).
   - read-up on [`ytt`'s built-in libraries](lang-ref-ytt.md) to encode/decode, hash, regex match over data.

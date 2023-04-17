@@ -7,7 +7,7 @@ This document provides a high-level overview of the next big features the mainta
 Discussion on the roadmap can take place during [community meetings](https://carvel.dev/community/). If you want to provide suggestions, use cases, and feedback to an item in the roadmap, please add them to the [meeting notes](https://hackmd.io/F7g3RT2hR3OcIh-Iznk2hw) and we will discuss them during community meetings. Please review the roadmap to avoid potential duplicated effort.
 
 ## How to add an item to the roadmap?
-One of the most important aspects in any open source community is the concept of proposals. Large changes to the codebase and / or new features should be preceded by a [proposal](https://github.com/vmware-tanzu/carvel-community/tree/develop/proposals) in our repo.
+One of the most important aspects in any open source community is the concept of proposals. Large changes to the codebase and / or new features should be preceded by a [proposal](https://github.com/carvel-dev/community/tree/develop/proposals) in our repo.
 For smaller enhancements, you can open an issue to track that initiative or feature request.
 We work with and rely on community feedback to focus our efforts to improve Carvel and maintain a healthy roadmap.
 

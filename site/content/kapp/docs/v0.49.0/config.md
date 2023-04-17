@@ -111,7 +111,7 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-See [ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154) (included in default configuration) for retaining cluster added token secret in ServiceAccount's secrets array.
+See [ytt rebase rule](https://github.com/carvel-dev/kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154) (included in default configuration) for retaining cluster added token secret in ServiceAccount's secrets array.
 
 ### ownershipLabelRules
 
@@ -158,7 +158,7 @@ waitRules:
 
 Available in v0.48.0+.
 
-Provides a way to add `waitRules` for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. For example [this](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/test/e2e/custom_wait_rules_test.go#L79-L88) CR which has `currentState` field inside `status` we can define `waitRule` as shown below, `is_done(resource)` method signature and return type should always remain same while the method implementation can be changes as per the usecase.
+Provides a way to add `waitRules` for Custom Resources that don't have `conditions` field in their `status`. This allows users to configure arbitrary rules. For example [this](https://github.com/carvel-dev/kapp/blob/develop/test/e2e/custom_wait_rules_test.go#L79-L88) CR which has `currentState` field inside `status` we can define `waitRule` as shown below, `is_done(resource)` method signature and return type should always remain same while the method implementation can be changes as per the usecase.
 
 ```yaml
 waitRules:

@@ -72,7 +72,7 @@ Use kapp to install kapp-controller (reconciliation may take a moment, which you
 could use to read about [kubernetes controller reconciliation loops](https://kubernetes.io/docs/concepts/architecture/controller/)):
 
 ```bash
-kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.32.0/release.yml -y
+kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/download/v0.32.0/release.yml -y
 ```
 
 Gaze upon the splendor! 

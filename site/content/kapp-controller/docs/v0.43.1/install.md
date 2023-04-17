@@ -3,18 +3,18 @@
 title: Install
 ---
 
-Grab the latest copy of YAML from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases) and use your favorite deployment tool (such as [kapp](/kapp) or kubectl) to install it.
+Grab the latest copy of YAML from the [Releases page](https://github.com/carvel-dev/kapp-controller/releases) and use your favorite deployment tool (such as [kapp](/kapp) or kubectl) to install it.
 
 Example:
 
 ```bash
-$ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+$ kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
 ```
 
 or
 
 ```bash
-$ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+$ kubectl apply -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
 ```
 
 ## Specific Environments and Distributions
@@ -124,7 +124,7 @@ $ kctrl version
 
 #### Specific version from a GitHub release
 
-To download, click on one of the assets in a [chosen GitHub release](https://github.com/vmware-tanzu/carvel-kapp-controller/releases), for example for 'kctrl-darwin-amd64'.
+To download, click on one of the assets in a [chosen GitHub release](https://github.com/carvel-dev/kapp-controller/releases), for example for 'kctrl-darwin-amd64'.
 
 ```bash
 # **Compare binary checksum** against what's specified in the release notes

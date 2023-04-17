@@ -39,7 +39,7 @@ $ kapp version
 
 ## Specific version from a GitHub release
 
-To download, click on one of the assets in a [chosen GitHub release](https://github.com/vmware-tanzu/carvel-kapp/releases), for example for 'kapp-darwin-amd64'.
+To download, click on one of the assets in a [chosen GitHub release](https://github.com/carvel-dev/kapp/releases), for example for 'kapp-darwin-amd64'.
 
 ```bash
 # **Compare binary checksum** against what's specified in the release notes

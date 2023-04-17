@@ -10,7 +10,7 @@ tags: ['carvel', 'kapp-controller', 'gitops', 'apps', 'kctrl', 'cli']
 
 Since the previous release of `kctrl`, we have been iterating over how we can help users take a closer look at what App CRs are doing on the cluster. This includes ones authored by users and those that are created as a result of package installations.
 
-As promised, the latest release of `kctrl` introduces a set of commands which allow users to observe and interact with App CRs more conveniently. [`kctrl` v0.36.1](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.36.1) also introduces a status tailing experience which surfaces relevant information while waiting for resources to reconcile.
+As promised, the latest release of `kctrl` introduces a set of commands which allow users to observe and interact with App CRs more conveniently. [`kctrl` v0.36.1](https://github.com/carvel-dev/kapp-controller/releases/tag/v0.36.1) also introduces a status tailing experience which surfaces relevant information while waiting for resources to reconcile.
 
 # The `app` commands
 These commands aim to help users manage App CRs on the cluster better. Lets dig in and see what they look like!

@@ -59,7 +59,7 @@ It is not easy to get started contributing to Open-Source Software. But there ar
 
 Here are some suggestions where you can contribute:
 - **Improve documentation** by adding information/summary/missing steps
-- **Add examples** to [repo](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples)
+- **Add examples** to [repo](https://github.com/carvel-dev/ytt/tree/develop/examples)
 - **Raise issues**/bugs
 - **Check for issues** labeled with [Good first issue](https://github.com/search?q=repo%3Avmware-tanzu%2Fcarvel-ytt+repo%3Avmware-tanzu%2Fcarvel-kapp+repo%3Avmware-tanzu%2Fcarvel-imgpkg+repo%3Avmware-tanzu%2Fvmware-tanzu%2Fcarvel-kapp-controller+repo%3Avmware-tanzu%2Fcarvel-kbld+repo%3Avmware-tanzu%2Fcarvel-vendir+repo%3Avmware-tanzu%2Fcarvel-kapp-controller+label%3A%22good+first+issue%22&type=issues)
 - **Add FAQs** or “How to” section for a common problem/scenario
@@ -73,7 +73,7 @@ Here are some suggestions where you can contribute:
 - Take the [ Product Tour](https://tanzu.vmware.com/developer/workshops/lab-getting-started-with-carvel/)
 (note: VMware's Tanzu products use Carvel, but you do not have to learn anything about Tanzu to use Carvel, yourself)
 - Visit the [Contributing Doc](https://carvel.dev/shared/docs/latest/contributing/) for reference
-- Fork and clone a repo - e.g. [carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt)
+- Fork and clone a repo - e.g. [carvel-ytt](https://github.com/carvel-dev/ytt)
 - Make the appropriate changes and raise a Pull Request (PR)  
 - Reach out to us via [Carvel's Slack Channel](https://kubernetes.slack.com/archives/CH8KCCKA5) in the Kubernetes Slack Workspace for any support you need.\
   _(visit http://slack.k8s.io/ to join the Kubernetes Slack workspace if you are not already there.)_

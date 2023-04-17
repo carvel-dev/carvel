@@ -18,13 +18,13 @@ As a package consumer you may need to provide registry credentials if you are co
     - credentials consumed by Kubelets
     - e.g. needed by Kafka cluster Pods created for KafkaInstance CR
 
-Providing credentials manually to each one of these parts of the system can become a hassle. kapp-controller v0.24.0+ when installed together with [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) v0.5.0+ allow package consumers and package authors to simplify such configuration.
+Providing credentials manually to each one of these parts of the system can become a hassle. kapp-controller v0.24.0+ when installed together with [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) v0.5.0+ allow package consumers and package authors to simplify such configuration.
 
 Note that if you are using an IaaS provided Kubernetes cluster already preauthenticated with an IaaS provided registry, then there is no need to provide credentials manually in the cluster. kapp-controller v0.25.0+ is able to automatically pick up provided credentials to satisfy first two bullet points above. Last two bullet points are already satisfied by the Kubernetes kubelet.
 
 ## secretgen-controller's placeholder secrets and SecretExport CR
 
-For this specific use case, secretgen-controller allows package consumer to specify registry credentials in one namespace and allows to export that secret to the entire cluster (or subset of namespaces) via [SecretExport CR](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md#secretexport-and-secretrequest). Registry credentials could be consumed in different namespaces via "placeholder secrets". 
+For this specific use case, secretgen-controller allows package consumer to specify registry credentials in one namespace and allows to export that secret to the entire cluster (or subset of namespaces) via [SecretExport CR](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport-and-secretrequest). Registry credentials could be consumed in different namespaces via "placeholder secrets". 
 
 A placeholder secret is:
 - plain Kubernetes Secret
@@ -84,7 +84,7 @@ If you are an owner of an operator, similar to the above section, we encourage y
 - Install secretgen-controller v0.5.0+
 
     ```bash
-    kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
+    kapp deploy -a sg -f https://github.com/carvel-dev/secretgen-controller/releases/download/v0.5.0/release.yml
     ```
 
 - Create registry credential Secret and use SecretExport CR to make it available for all namespaces (Note: if you use `kubectl create secret docker-registry` and you want to auth with DockerHub, please specify `--docker-server=index.docker.io` explicitly instead of relying on default server value.)

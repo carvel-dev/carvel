@@ -40,7 +40,7 @@ Go forth boldly, young padawan, ensuring that your data is valid with our new fe
 
 ### Secretgen-controller
 
-The previously introduced “Secret Templates” are no longer secret now that they’re fully [documented](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-template.md).
+The previously introduced “Secret Templates” are no longer secret now that they’re fully [documented](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-template.md).
 
 
 ### Farewell til Next Month!

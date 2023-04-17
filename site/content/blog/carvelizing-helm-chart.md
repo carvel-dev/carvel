@@ -38,7 +38,7 @@ $ wget -O- https://carvel.dev/install.sh > install.sh
 # Inspect install.sh before running...
 $ sudo bash install.sh
 # Install kapp-controller
-$ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+$ kubectl apply -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
 ```
 
 --------------------------

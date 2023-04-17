@@ -81,7 +81,7 @@ Examples:
 
 Available in 0.28.0+
 
-Using the `--imgpkg-lock-output` flag, users are able to create an [ImagesLock](https://github.com/vmware-tanzu/carvel-imgpkg/blob/develop/docs/resources.md#imageslock) file that can be used as input for the packaging and distribution tool: [`imgpkg`](https://github.com/vmware-tanzu/carvel-imgpkg)
+Using the `--imgpkg-lock-output` flag, users are able to create an [ImagesLock](https://github.com/carvel-dev/imgpkg/blob/develop/docs/resources.md#imageslock) file that can be used as input for the packaging and distribution tool: [`imgpkg`](https://github.com/carvel-dev/imgpkg)
 
 For example, the command `kbld -f input.yml --imgpkg-lock-output /tmp/imgpkg.lock.yml` with `input.yml`:
 

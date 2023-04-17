@@ -1234,7 +1234,7 @@ Initially, the design included a keyword argument — `when_null_skip=`. This fl
 
 The rationale for including the keyword is documented in [Automatically including `when_null_skip` for nullable data values](#automatically-including-when_null_skip-for-nullable-data-values).
 
-However, the implementation turned out not to rely on any schema features. Further, after [conducting usability testing](https://github.com/vmware-tanzu/carvel-ytt/issues/707), it became clear that this was an unnecessary feature.
+However, the implementation turned out not to rely on any schema features. Further, after [conducting usability testing](https://github.com/carvel-dev/ytt/issues/707), it became clear that this was an unnecessary feature.
 
 #### Automatically including `when_null_skip` for nullable data values
 
@@ -1295,7 +1295,7 @@ For now, we've decided to not pursue this approach until we can get clearer sign
 
 In consideration is whether another annotation would be practically useful in schema to indicate that a given data value is required.
 
-https://github.com/vmware-tanzu/carvel-ytt/issues/556
+https://github.com/carvel-dev/ytt/issues/556
 
 For now, we're deferring this approach until we get a clearer indication of how the "require non-empty" approach is working out (or not).
 
@@ -1329,7 +1329,7 @@ In this way, validation is orthogonal to, but readily composable with Schema fun
 
 Consider prior art around how functionality that's exposed through a Starlark built-in is reused in other contexts:
 
-https://github.com/vmware-tanzu/carvel-ytt/blob/c43dcf06798d3ed246e7c458f829a0d63f956e05/pkg/yttlibrary/yaml.go#L31-L69
+https://github.com/carvel-dev/ytt/blob/c43dcf06798d3ed246e7c458f829a0d63f956e05/pkg/yttlibrary/yaml.go#L31-L69
 
 For example `@ytt:assert.not_null()`'s functionality is likely literally used in implementing `@assert/validate not_null=True`.
 

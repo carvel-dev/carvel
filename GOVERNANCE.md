@@ -8,33 +8,33 @@ Carvel, an open source project, is committed to building an open, inclusive, pro
 The following code repositories are governed by the Carvel community and maintained under the `vmware-tanzu\carvel` organization. We'll do our best to maintain this list of repositories but generally any repository under the [vmware-tanzu](https://github.com/vmware-tanzu/) organization with the word "carvel" in its name or is tagged with "carvel" should be included in this governance structure.
 
 * [carvel](https://github.com/vmware-tanzu/carvel): Main Carvel Repo
-* [carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt): Template and overlay Kubernetes configuration via YAML structures, not text documents
-* [carvel-kapp](https://github.com/vmware-tanzu/carvel-kapp): Install, upgrade, and delete multiple Kubernetes resources as one "application"
-* [carvel-kbld](https://github.com/vmware-tanzu/carvel-kbld): Build or reference container images in Kubernetes configuration in an immutable way
-* [carvel-imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg): Bundle and relocate application configuration (with images) via Docker registries
-* [carvel-kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller): Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp
-* [carvel-vendir](https://github.com/vmware-tanzu/carvel-vendir): Declaratively state what files should be in a directory
-* [carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
+* [carvel-ytt](https://github.com/carvel-dev/ytt): Template and overlay Kubernetes configuration via YAML structures, not text documents
+* [carvel-kapp](https://github.com/carvel-dev/kapp): Install, upgrade, and delete multiple Kubernetes resources as one "application"
+* [carvel-kbld](https://github.com/carvel-dev/kbld): Build or reference container images in Kubernetes configuration in an immutable way
+* [carvel-imgpkg](https://github.com/carvel-dev/imgpkg): Bundle and relocate application configuration (with images) via Docker registries
+* [carvel-kapp-controller](https://github.com/carvel-dev/kapp-controller): Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp
+* [carvel-vendir](https://github.com/carvel-dev/vendir): Declaratively state what files should be in a directory
+* [carvel-secretgen-controller](https://github.com/carvel-dev/secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
 
 **Experimental:**
-* [carvel-kwt](https://github.com/vmware-tanzu/carvel-kwt)
+* [carvel-kwt](https://github.com/carvel-dev/kwt)
 * [terraform-provider-carvel](https://github.com/vmware-tanzu/terraform-provider-carvel)
 
 **Installation:**
 * [homebrew-carvel](https://github.com/vmware-tanzu/homebrew-carvel)
-* [carvel-docker-image](https://github.com/vmware-tanzu/carvel-docker-image)
+* [carvel-docker-image](https://github.com/carvel-dev/docker-image)
 * [asdf-carvel](https://github.com/vmware-tanzu/asdf-carvel)
-* [carvel-setup-action](https://github.com/vmware-tanzu/carvel-setup-action)
+* [carvel-setup-action](https://github.com/carvel-dev/setup-action)
 
 **Plugins:**
 * [ytt.vim](https://github.com/vmware-tanzu/ytt.vim)
 * [vscode-ytt](https://github.com/vmware-tanzu/vscode-ytt)
 
 **Examples:**
-* [carvel-simple-app-on-kubernetes](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes)
-* [carvel-ytt-library-for-kubernetes](https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes)
-* [carvel-ytt-library-for-kubernetes-demo](https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes-demo)
-* [carvel-guestbook-example-on-kubernetes](https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes-demo)
+* [carvel-simple-app-on-kubernetes](https://github.com/carvel-dev/simple-app-on-kubernetes)
+* [carvel-ytt-library-for-kubernetes](https://github.com/carvel-dev/ytt-library-for-kubernetes)
+* [carvel-ytt-library-for-kubernetes-demo](https://github.com/carvel-dev/ytt-library-for-kubernetes-demo)
+* [carvel-guestbook-example-on-kubernetes](https://github.com/carvel-dev/ytt-library-for-kubernetes-demo)
 
 # Community Roles
 Please see [the description of the community roles](processes/community-membership.md). For a full list of maintainers and their roles, please go to the MAINTAINERS doc.

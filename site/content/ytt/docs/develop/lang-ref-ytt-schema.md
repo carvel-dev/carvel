@@ -315,7 +315,7 @@ databases:
     name: ""
 ```
 
-Note: as the comment in the example schema indicates, it is best to declare the function prior to starting the schema document itself (see https://github.com/vmware-tanzu/carvel-ytt/issues/526 for details).
+Note: as the comment in the example schema indicates, it is best to declare the function prior to starting the schema document itself (see https://github.com/carvel-dev/ytt/issues/526 for details).
 
 ### @schema/nullable
 

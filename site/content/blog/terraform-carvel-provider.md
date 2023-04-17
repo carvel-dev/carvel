@@ -58,7 +58,7 @@ provider "carvel" {
 }
 ```
 ## Overlaying using _ytt_
-We can use [_ytt_](https://github.com/vmware-tanzu/carvel-ytt) to template and apply overlays to our manifests, this allows our manifests to be dynamic. In this blog, we will be asking _ytt_ to apply an overlay that ensures that all Deployment resources spawn one replica.
+We can use [_ytt_](https://github.com/carvel-dev/ytt) to template and apply overlays to our manifests, this allows our manifests to be dynamic. In this blog, we will be asking _ytt_ to apply an overlay that ensures that all Deployment resources spawn one replica.
 
 ```terraform
 data "carvel_ytt" "guestbook" {
@@ -76,7 +76,7 @@ data "carvel_ytt" "guestbook" {
 ```
 
 ## Deploying with _kapp_    
-[_kapp_](https://github.com/vmware-tanzu/carvel-kapp) helps us deploy resources to our clusters in a safe and predicatable manner, apply them in a certain order and then wait for the resources to reach their desired state among other things. We will be asking _kapp_ to group the resources declared in the manifest as an application called "guestbook" and deploy it to the default namespace. The manifest consumed is the one produced by the _ytt_ data source.
+[_kapp_](https://github.com/carvel-dev/kapp) helps us deploy resources to our clusters in a safe and predicatable manner, apply them in a certain order and then wait for the resources to reach their desired state among other things. We will be asking _kapp_ to group the resources declared in the manifest as an application called "guestbook" and deploy it to the default namespace. The manifest consumed is the one produced by the _ytt_ data source.
 ```terraform
 resource "carvel_kapp" "guestbook" {
   app = "guestbook"

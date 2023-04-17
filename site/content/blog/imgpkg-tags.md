@@ -57,13 +57,13 @@ Succeeded
 ```
 
 **Note:** we are using the examples provided in
-the [`imgpkg` Github repository](https://github.com/vmware-tanzu/carvel-imgpkg)
+the [`imgpkg` Github repository](https://github.com/carvel-dev/imgpkg)
 
 In this output you can see that `imgpkg` lists all the files that will be pushed to the registry as well has the fully
 qualified image reference for the OCI image created.
 
 One thing that you might notice is that despite the fact that this bundle points to another OCI
-image, [check the ImagesLock file](https://github.com/vmware-tanzu/carvel-imgpkg/blob/develop/examples/basic-step-2/.imgpkg/images.yml)
+image, [check the ImagesLock file](https://github.com/carvel-dev/imgpkg/blob/develop/examples/basic-step-2/.imgpkg/images.yml)
 , nothing happens to it.
 
 But why? As we previously stated, pushing a bundle to a registry only creates the OCI image that defines the bundle.
@@ -135,10 +135,10 @@ The design decision tries to address the above constraints but causes some other
 
   There are 2 initiatives that are trying to address this problem.
     - A new feature is being developed to allow the users to tell `imgpkg` to generate tags that are more human
-      friendly, [Github Issue](https://github.com/vmware-tanzu/carvel-imgpkg/issues/331)
+      friendly, [Github Issue](https://github.com/carvel-dev/imgpkg/issues/331)
     - A proposal was started to allow the users to tell `imgpkg` where to copy the OCI images to. This proposal is still
       being written, and we would love to have the community to read it and give their opinion about it. The initial
-      draft can be found [here](https://github.com/vmware-tanzu/carvel-community/pull/22).
+      draft can be found [here](https://github.com/carvel-dev/community/pull/22).
 - Some registries restrict the number of OCI images that can be present in each
   repository, [reference 1](https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
   , [reference 2](https://www.jfrog.com/confluence/display/JFROG/Docker+Registry#DockerRegistry-LocalDockerRepositories)

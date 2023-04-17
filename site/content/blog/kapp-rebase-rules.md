@@ -101,8 +101,8 @@ Here’s some links to rebase rules examples in our docs and tests
     * [Keep existing cluster values for a HPA deployment](https://carvel.dev/kapp/docs/v0.46.0/hpa-deployment-rebase/#docs)
     * [Use new values if provided, or fallback on existing cluster values for a PVC](https://carvel.dev/kapp/docs/latest/rebase-pvc/#docs) 
 * ytt flavor
-    * [Retain cluster added token secret in ServiceAccount’s secrets array](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
-    * [Add a kapp-noop annotation to force a resource with update conflicts not to reconcile ](https://github.com/vmware-tanzu/carvel-kapp/blob/724d714376c8835368915661b6a5ecda06bc7ed5/test/e2e/create_fallback_on_noop_test.go#L31-L47)
+    * [Retain cluster added token secret in ServiceAccount’s secrets array](https://github.com/carvel-dev/kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154)
+    * [Add a kapp-noop annotation to force a resource with update conflicts not to reconcile ](https://github.com/carvel-dev/kapp/blob/724d714376c8835368915661b6a5ecda06bc7ed5/test/e2e/create_fallback_on_noop_test.go#L31-L47)
       (effectively:  “if there’s an update conflict, keep exactly what’s on the server”) 
       
 ## Join the Carvel Community

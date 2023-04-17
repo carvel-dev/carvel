@@ -9,14 +9,14 @@ You can use `kubectl` (or another tool) to deploy the YAML examples below. We've
 
 - Start by [installing](install.md) kapp-controller onto your cluster
 
-- Install [examples/default-ns-rbac.yml](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/rbac/default-ns.yml). It creates `default-ns-sa` service account that allows to change any
+- Install [examples/default-ns-rbac.yml](https://github.com/carvel-dev/kapp-controller/blob/develop/examples/rbac/default-ns.yml). It creates `default-ns-sa` service account that allows to change any
   resource within the `default` namespace. This will be used by App CR below.
 
   ```bash-plain
   $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
   ```
 
-- Install [examples/simple-app-git/1.yml](https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/simple-app-git/1.yml) App CR. It specifies how to fetch, template, and deploy our example application.
+- Install [examples/simple-app-git/1.yml](https://github.com/carvel-dev/kapp-controller/blob/develop/examples/simple-app-git/1.yml) App CR. It specifies how to fetch, template, and deploy our example application.
 
   ```bash-plain
   $ kapp deploy -a simple-app -f https://raw.githubusercontent.com/k14s/kapp-controller/develop/examples/simple-app-git/1.yml

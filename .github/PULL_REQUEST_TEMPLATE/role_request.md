@@ -20,14 +20,14 @@ e.g. (at)example_user
 - [ ] Lead
 
 ### Applicable Subproject
-- [ ] [carvel-kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller)
-- [ ] [carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt)
-- [ ] [carvel-kapp](https://github.com/vmware-tanzu/carvel-kapp)
-- [ ] [carvel-kbld](https://github.com/vmware-tanzu/carvel-kbld)
-- [ ] [carvel-imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg)
-- [ ] [carvel-vendir](https://github.com/vmware-tanzu/carvel-vendir)
-- [ ] [carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
-- [ ] [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli)
+- [ ] [carvel-kapp-controller](https://github.com/carvel-dev/kapp-controller)
+- [ ] [carvel-ytt](https://github.com/carvel-dev/ytt)
+- [ ] [carvel-kapp](https://github.com/carvel-dev/kapp)
+- [ ] [carvel-kbld](https://github.com/carvel-dev/kbld)
+- [ ] [carvel-imgpkg](https://github.com/carvel-dev/imgpkg)
+- [ ] [carvel-vendir](https://github.com/carvel-dev/vendir)
+- [ ] [carvel-secretgen-controller](https://github.com/carvel-dev/secretgen-controller)
+- [ ] [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli)
 
 ### General Requirements
 - [ ] I have reviewed the code of conduct (https://github.com/vmware-tanzu/carvel/blob/develop/CODE_OF_CONDUCT.md).

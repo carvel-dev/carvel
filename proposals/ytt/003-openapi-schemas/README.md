@@ -1,7 +1,7 @@
 # Generate OpenAPI Schema
 
 - Status: Scoping | **Pre-Alpha** | In Alpha | In Beta | GA | Rejected
-- Originating Issue: [ytt#103](https://github.com/vmware-tanzu/carvel-ytt/issues/103)
+- Originating Issue: [ytt#103](https://github.com/carvel-dev/ytt/issues/103)
 
 # Problem Statement
 Configuration Authors want to be able to generate documentation for configuration inputs (for example, Data Values Schema, and Data Values) for their users. Additionally, Configuration Consumers want to be able to validate their configuration inputs by other tools (for example, IDE's and OpenAPI Schema validators). 

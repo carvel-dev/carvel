@@ -126,7 +126,7 @@ kube-node-lease   Active   14m
 
 You will notice there is no `host-namespace-1` namespace and the namespace AGEs are different than the host cluster.
 
-Let's do something a little more interesting now and deploy the famous [Carvel sample app](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes) to the vcluster: 
+Let's do something a little more interesting now and deploy the famous [Carvel sample app](https://github.com/carvel-dev/simple-app-on-kubernetes) to the vcluster: 
 
 ```
 $ kapp deploy -a simple-app -f https://raw.githubusercontent.com/vmware-tanzu/carvel-simple-app-on-kubernetes/develop/config-step-1-minimal/config.yml --kubeconfig=$(pwd)/kubeconfig-vcluster.yml

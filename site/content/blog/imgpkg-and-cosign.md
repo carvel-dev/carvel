@@ -21,7 +21,7 @@ These days, however, based on the amount of security breaches, dev tools could u
 
 [Imgpkg](https://carvel.dev/imgpkg/) is a way to package and distribute multiple images via a single OCI artifact known as a [Bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle). [Cosign](https://github.com/sigstore/cosign) is a way to sign container images.
 
-We at [Carvel](https://https://carvel.dev/) are always looking for opportunities to integrate with existing OSS solutions. Cosign is one such tool we have integrated with (since [imgpkg 0.9.0+](https://github.com/vmware-tanzu/carvel-imgpkg/releases/tag/v0.9.0)).
+We at [Carvel](https://https://carvel.dev/) are always looking for opportunities to integrate with existing OSS solutions. Cosign is one such tool we have integrated with (since [imgpkg 0.9.0+](https://github.com/carvel-dev/imgpkg/releases/tag/v0.9.0)).
 
 This integration aims to solve the problem of having various images representing a deployment, and propagating it from dev to production while maintaining integrity and provenance.
 
@@ -66,7 +66,7 @@ Private keys are stored as encrypted PEM files. They should be safe to put along
 
 Now let's build some images *and* sign them!
 
-Creating a simple single-layer image can be achieved using the imgpkg `push` command (with the `--image` flag). There are plenty of other ways to build images too! (using [kbld](https://github.com/vmware-tanzu/carvel-kbld), [docker](https://www.docker.com/) etc). This workflow works with all of them.
+Creating a simple single-layer image can be achieved using the imgpkg `push` command (with the `--image` flag). There are plenty of other ways to build images too! (using [kbld](https://github.com/carvel-dev/kbld), [docker](https://www.docker.com/) etc). This workflow works with all of them.
 
 
 ```bash

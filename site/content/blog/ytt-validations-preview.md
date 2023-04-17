@@ -53,7 +53,7 @@ We're doing this so that you have a voice in making sure features like this meet
 
 ### How do I get started? 🏇
 
-`ytt` v0.41.0 will be released soon. When it does, grab yourself [the latest](https://github.com/vmware-tanzu/carvel-ytt/releases/latest).
+`ytt` v0.41.0 will be released soon. When it does, grab yourself [the latest](https://github.com/carvel-dev/ytt/releases/latest).
 
 Then, to enable Validations, start including validation rules in a copy of _your_ [Data Values Schema](../ytt/docs/v0.41.0/how-to-write-schema.md/):
 
@@ -117,7 +117,7 @@ In essence, we've introduced the `@schema/validation` annotation and wired it in
 
 We're including light documentation as we go, so check out [Data Values Schema Reference > @schema/validation](../ytt/docs/v0.41.0/lang-ref-ytt-schema/#schemavalidation) for the exact details of what's available.
 
-You can peek into our backlog to see what we plan to do next: [Schema Validation #561](https://github.com/vmware-tanzu/carvel-ytt/issues/561).
+You can peek into our backlog to see what we plan to do next: [Schema Validation #561](https://github.com/carvel-dev/ytt/issues/561).
 
 ### How can I give feedback? 🗣
 
@@ -127,7 +127,7 @@ Delightfully, any format that is most convenient for you, we're happy to hear yo
 
 The likely easiest/best way is by popping by our channel on the Kubernetes Slack workspace: [#carvel](https://kubernetes.slack.com/archives/CH8KCCKA5). You can fork a thread, there; request a direct message conversation; or even a video call. If you don't yet have an account there, you can get an invite at http://slack.k8s.io/.
 
-That said, if you prefer the long-form, feel free to [create a GitHub Issue in our repo](https://github.com/vmware-tanzu/carvel-ytt/issues/new?assignees=&labels=carvel+triage&template=other-issue.md&title=Feedback+for+ytt+Validations).
+That said, if you prefer the long-form, feel free to [create a GitHub Issue in our repo](https://github.com/carvel-dev/ytt/issues/new?assignees=&labels=carvel+triage&template=other-issue.md&title=Feedback+for+ytt+Validations).
 
 We would love to hear any and all thoughts you have. Here are some prompts:
 - what could be changed that would make it easier to use?

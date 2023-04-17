@@ -206,7 +206,7 @@ services:
 ```shell
 $ brew tap vmware-tanzu/carvel
 $ brew install ytt
-$ git clone https://github.com/vmware-tanzu/carvel-ytt
+$ git clone https://github.com/carvel-dev/ytt
 $ cd carvel-ytt/examples
 $ ytt -f playground/basics/example-plain-yaml
 ```
