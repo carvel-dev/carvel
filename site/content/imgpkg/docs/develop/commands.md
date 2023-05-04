@@ -18,6 +18,8 @@ Use the `-b`/`--bundle` flag to specify the destination of the push. If the spec
 
 The `-f` flag can be used multiple times to add different files or directories to the bundle.
 
+Use the flag `--preserve-permissions=true` to preserve the current permission of the files of the image or bundle being pushed. If this flag is not present `imgpkg` will remove the Group and All permissions before uploading the image, when pull is done `imgpkg` will try to copy the User permissions to Group and All, respecting umask
+
 ### Generating a BundleLock
 
 `push` command can output a [`BundleLock` configuration](resources.md#bundlelock-configuration) for users that would like a deterministic reference to a pushed bundle. For example, running:
