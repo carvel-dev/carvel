@@ -32,3 +32,7 @@ Error: ... unable to retrieve the complete list of server APIs: <...>: the serve
 ```
 
 In cases when APIService cannot be fixed, this flag can be used to let kapp know that it is okay to proceed even though it's not able to see resources under that `APIService`. Note when this flag is used, kapp will effectively think that resources under misbehaving `APIService` do not exist.
+
+## `--dangerous-disable-gk-scoping`
+
+In `kapp deploy` resource searching is scoped to the GroupKinds used in the app, to keep the number of api requests to the api server to a minimum. This flag can be used to disable the scoping and search across all GroupKinds.
