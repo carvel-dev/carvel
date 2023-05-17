@@ -8,7 +8,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Maintainer       | GitHub ID                                             | Affiliation                              | Carvel Tool Focus                                                                                                                                                                                                                  |
 |------------------|-------------------------------------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Dmitriy Kalinin  | [cppforlife](https://github.com/cppforlife)           | [VMware](https://www.github.com/vmware/) | All Tools (Approver)                                                                                                                                                                                                               |
-| John Ryan        | [pivotaljohn](https://github.com/pivotaljohn)         | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [ytt](https://github.com/vmware-tanzu/carvel-ytt) (Approver)                                                         |
 | João Pereira     | [joaopapereira](https://github.com/joaopapereira)     | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg) (Lead), [kbld](https://github.com/vmware-tanzu/carvel-kbld), [vendir](https://github.com/vmware-tanzu/carvel-vendir)                                                       |
 | Varsha Munishwar | [vmunishwar](https://github.com/vmunishwar)           | [VMware](https://www.github.com/vmware/) | [ytt](https://github.com/vmware-tanzu/carvel-ytt)                                                                                                                                                                                  |
 | Neil Hickey      | [neil-hickey](https://github.com/neil-hickey)         | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (Reviewer), [vendir](https://github.com/vmware-tanzu/carvel-vendir), [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) |
@@ -30,6 +29,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Dennis Leon, [DennisDenuto](https://github.com/DennisDenuto)
 * Aaron Hurley, [aaronshurley](https://github.com/aaronshurley)
 * Joe Kimmel, [joe-kimmel-vmw](https://github.com/joe-kimmel-vmw)  
+* John Ryan, [pivotaljohn](https://github.com/pivotaljohn)
 
 ## Carvel Stakeholders
 
