@@ -7,23 +7,15 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 
 (in alphabetical order)
 
-<a href="https://beam.lu/" border="0" target="_blank"><img alt="BEAM" src="logos/BEAM-SARL.png" height="50"></a>
-
-<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img alt="fabrique" src="logos/fabrique.png" height="50"></a>
-
-<a href="https://www.opt.nc/" border="0" target="_blank"><img alt="OPT-NC" src="logos/OPT-NC.png" height="50"></a>
-
-<a href="https://www.orange.com/" border="0" target="_blank"><img alt="Orange" src="logos/Orange.png" height="50"></a>
-
-<a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>
-
-<a href="https://dataflow.spring.io/" border="0" target="_blank"><img alt="Spring Cloud Data Flow" src="logos/spring-cloud.svg" height="50"></a>
-
-<a href="https://www.terasky.com/" border="0" target="_blank"><img alt="TERASKY" src="logos/terasky.png" height="50"></a>
-
-<a href="https://www.twilio.com/" border="0" target="_blank"><img alt="Twilio, Inc." src="logos/twilio.svg" height="50"></a>
-
-<a href="https://www.vmware.com" border="0" target="_blank"><img alt="VMware" src="logos/vmware.svg" height="50"></a>
+<a href="https://beam.lu/" border="0" target="_blank"><img alt="BEAM" src="logos/BEAM-SARL.png" height="50"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img alt="fabrique" src="logos/fabrique.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://www.opt.nc/" border="0" target="_blank"><img alt="OPT-NC" src="logos/OPT-NC.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://www.orange.com/" border="0" target="_blank"><img alt="Orange" src="logos/Orange.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp; <br/><br/>
+<a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>&nbsp; &nbsp; &nbsp;
+<a href="https://dataflow.spring.io/" border="0" target="_blank"><img alt="Spring Cloud Data Flow" src="logos/spring-cloud.svg" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://www.terasky.com/" border="0" target="_blank"><img alt="TERASKY" src="logos/terasky.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://www.twilio.com/" border="0" target="_blank"><img alt="Twilio, Inc." src="logos/twilio.svg" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://www.vmware.com" border="0" target="_blank"><img alt="VMware" src="logos/vmware.svg" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp; <br/><br/>
 
 ## Solutions built with Carvel
 
