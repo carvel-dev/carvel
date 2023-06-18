@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/commands]
 title: Commands
 ---
 
@@ -18,6 +18,8 @@ will push a bundle contents containing in the `my-bundle/` directory to `index.d
 Use the `-b`/`--bundle` flag to specify the destination of the push. If the specified destination does not include a tag, the artifact will be pushed with the default tag `:latest`.
 
 The `-f` flag can be used multiple times to add different files or directories to the bundle.
+
+Use the flag `--preserve-permissions=true` to preserve the current permission of the files of the image or bundle being pushed. If this flag is not present `imgpkg` will remove the Group and All permissions before uploading the image, when pull is done `imgpkg` will try to copy the User permissions to Group and All, respecting umask
 
 ### Generating a BundleLock
 
