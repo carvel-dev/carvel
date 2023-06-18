@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/oss-packages]
 title: OSS Carvel Packages
 ---
 
