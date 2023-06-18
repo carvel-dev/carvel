@@ -15,6 +15,11 @@ directories:
 - # path is relative to `vendir` CLI working directory
   path: config/_ytt_lib
 
+  # set the permissions for this directory (optional; v0.33.0+)
+  # by default directories will be created with 0700
+  # can be provided as octal, in which case it needs to be prefixed with a `0`
+  permissions: 0700
+
   contents:
   - # path lives relative to directory path # (required)
     path: github.com/cloudfoundry/cf-k8s-networking
@@ -246,4 +251,9 @@ directories:
 
     # make subdirectory to be new root path within this asset (optional; v0.11.0+)
     newRootPath: cfroutesync
+
+    # set the permissions for this content directory (optional; v0.33.0+)
+    # by default content directories will be created with 0700
+    # can be provided as octal, in which case it needs to be prefixed with a `0`
+    permissions: 0700
 ```
