@@ -1,5 +1,5 @@
 ---
-aliases: [/kapp-controller/docs/latest/]
+
 title: "About kapp-controller"
 toc: "false"
 cascade:
