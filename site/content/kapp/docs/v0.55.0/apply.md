@@ -105,11 +105,11 @@ Possible values: "" (default), `containerName1`, `containerName1,containerName2`
 
 Available in v0.43.0+
 
-`kapp.k14s.io/exists` will ensure that resource exists in Kubernetes. It will not be considered to be part of the app (not labeled).
+`kapp.k14s.io/exists` verifies that the resource exists in Kubernetes. Kapp does not consider the resource a part of the app (not labeled).
 
-If the resource is not present already, then kapp uses the `exists` operation and ensures that the resource exists in Kubernetes. 
+If the resource is not present, then kapp uses the `exists` operation and asserts that the resource exists in Kubernetes. 
 
-If the resource already exists, kapp does not perform any operation on it (the `noop` operation is used).
+If the resource already exists, kapp does not perform any operation on it (using the `noop` operation).
 
 Possible values: "".
 

@@ -87,7 +87,7 @@ rebaseRules:
 ```
 
 ```bash
-$ kapp deploy -a test -f config.yml -f rules.yml -c
+$ kapp deploy -a test -f config.yml -f kapp-config.yml -c
 
 Target cluster 'https://x.x.x.x' (nodes: gke-dk-jan-9-default-pool-a218b1c9-55sl, 3+)
 

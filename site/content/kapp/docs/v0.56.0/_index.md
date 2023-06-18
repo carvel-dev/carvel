@@ -3,7 +3,7 @@
 title: "About kapp"
 toc: "false"
 cascade:
-  version: v0.54.0
+  version: v0.56.0
   toc: "true"
   type: docs
   layout: docs
