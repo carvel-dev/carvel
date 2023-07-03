@@ -92,6 +92,12 @@ stringData:
   # Value is parsed via go's time.ParseDuration.
   # (optional; v0.41.0+)
   appMinimumSyncPeriod: "30s"
+
+  # Time duration value used as a default for App CR's spec.syncPeriod created via PackageInstall
+  # if one is not specified explicitly. Minimum is 30s.
+  # Value is parsed via go's time.ParseDuration.
+  # (optional; v0.47.0+)
+  packageInstallDefaultSyncPeriod: "10m"
 ```
 
 ## Config Shorthands
