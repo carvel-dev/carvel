@@ -54,6 +54,11 @@ diffAgainstLastAppliedFieldExclusionRules:
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: apps/v1, kind: Deployment}
 
+diffAgainstExistingFieldExclusionRules:
+  - path: [status]
+    resourceMatchers:
+      - allMatcher: {}
+
 diffMaskRules:
 - path: [data]
   resourceMatchers:
@@ -204,6 +209,10 @@ waitRules:
 
 `diffAgainstLastAppliedFieldExclusionRules` specify which fields should be removed before diff-ing against last applied resource. These rules are useful for fields are "owned" by the cluster/controllers, and are only later updated. For example `Deployment` resource has an annotation that gets set after a little bit of time after resource is created/updated (not during resource admission). It's typically not necessary to use this configuration.
 
+### diffAgainstExistingFieldExclusionRules
+
+`diffAgainstExistingFieldExclusionRules` specify which fields should be removed before diff-ing against a resource. These rules are useful for fields that are "owned" by the cluster/controllers, and are only updated later. For example a `Custom Resource Definition` resource has a `status` field that gets altered now and then, especially between a diff and the actual apply step. It's typically not necessary to use this configuration.
+
 ### diffMaskRules
 
 `diffMaskRules` specify which field values should be masked in diff. By default `v1/Secret`'s `data` fields are masked. Currently only applied to `deploy` command.
@@ -223,7 +232,7 @@ Available in v0.25.0+.
 ---
 ## Resource matchers
 
-Resource matchers (as used by `rebaseRules`, `ownershipLabelRules`, `labelScopingRules`, `templateRules`, `diffAgainstLastAppliedFieldExclusionRules`, and `diffMaskRules`):
+Resource matchers (as used by `rebaseRules`, `ownershipLabelRules`, `labelScopingRules`, `templateRules`, `diffAgainstLastAppliedFieldExclusionRules`, `diffAgainstExistingFieldExclusionRules` and `diffMaskRules`):
 
 ### allMatcher
 
