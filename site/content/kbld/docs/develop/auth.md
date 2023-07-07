@@ -43,44 +43,75 @@ Currently credentials provided via environment variables do not apply when build
   - See [Advanced authentication](https://cloud.google.com/container-registry/docs/advanced-authentication#json_key_file)
 - Run `cat /tmp/key | docker login -u _json_key --password-stdin https://gcr.io` to authenticate
 
-## AWS ECR
+## Amazon Web Services Elastic Container Registry (AWS ECR)
 
-- Create ECR repository
-- Create IAM user with ECR policy that allows to read/write
-  - See [Amazon ECR Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)
-- Run `aws configure` and specify access key ID, secret access key and region
-  - To install on Ubuntu, run `apt-get install pip3` and `pip3 install awscli`
-    - See [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
-- Run `eval $(aws ecr get-login --no-include-email)` to authenticate
-  - See [get-login command](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html)
+- Create an ECR repository \
+  _(see [Amazon ECR User Guide: Getting started](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-console.html))_
+- Create an IAM user with an ECR policy that allows to read/write \
+  _(see [Amazon ECR User Guide: Private repository policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html))_ \
+  Example:
+  ```
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"
+            ],
+            "Resource": "*"
+        }
+    ]
+  }
+  ```
 
-Example ECR policy from https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html
+- To authenticate from _the command line_, use the AWS CLI to generate a docker authentication token. \
+  _(see [Amazon ECR User Guide: Private registry authentication](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html))_ \
+  Example:
+  ```
+  $ aws ecr get-login-password --region us-east-1 \
+      | docker login \
+          --username AWS \
+          --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
+  ```
+- To authenticate from _a GitHub Action_, setup Carvel, AWS authentication, and ECR login. \
+  _(see [Amazon ECR "Login" Action for GitHub Actions](https://github.com/aws-actions/amazon-ecr-login))_ \
+   Example:
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ecr:GetAuthorizationToken",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:GetRepositoryPolicy",
-        "ecr:DescribeRepositories",
-        "ecr:ListImages",
-        "ecr:DescribeImages",
-        "ecr:BatchGetImage",
-        "ecr:InitiateLayerUpload",
-        "ecr:UploadLayerPart",
-        "ecr:CompleteLayerUpload",
-        "ecr:PutImage"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
-```
+   ```
+   ...
+    - name: carvel-setup-action
+      uses: carvel-dev/setup-action@v1.3.0
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+   ...
+   ```
+
+
 
 ## Harbor
 
