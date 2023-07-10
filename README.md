@@ -38,7 +38,7 @@ Examples:
 * [carvel-ytt-library-for-kubernetes-demo](https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes-demo)
 * [carvel-guestbook-example-on-kubernetes](https://github.com/vmware-tanzu/carvel-guestbook-example-on-kubernetes)
 
-See what's planned in [our backlog](https://github.com/orgs/vmware-tanzu/projects/16).
+See what's planned in [our backlog](https://github.com/orgs/carvel-dev/projects/1).
 ---
 # Join the Community and Make Carvel Better
 
