@@ -15,7 +15,7 @@ toc:
         url: /walkthrough
       - page: Example Usage
         url: /app-examples
-      - page: Intergration with Mozilla's sops
+      - page: Integration with Mozilla's sops
         url: /sops
       - page: Security Model
         url: /security-model
