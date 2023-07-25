@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/merge-method]
 title: "Resource Merge Method"
 ---
 
