@@ -62,15 +62,16 @@ params:
     name: kapp
     short_name: kapp
     root_link: /kapp/
-    latest_docs_link: /kapp/docs/v0.57.0/
+    latest_docs_link: /kapp/docs/v0.58.x/
     github_url: https://github.com/carvel-dev/kapp
     search: true
     search_index_name: carvel-kapp
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.57.0
+    version_latest: v0.58.x
     versions:
     - develop
+    - v0.58.x
     - v0.57.0
     - v0.56.0
     - v0.55.0
