@@ -1,5 +1,5 @@
 ---
-title: "Maintaining Carvel Documentation"
+title: "Signatures for Carvel Artifacts"
 authors: [ "Thomas Vitale <ThomasVitale@users.noreply.github.com>" ]
 status: "draft"
 approvers: []
