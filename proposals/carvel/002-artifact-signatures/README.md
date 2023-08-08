@@ -139,59 +139,59 @@ The proposal is for signing all the artifacts included in the following Carvel p
 
 **imgpkg**:
 
-* imgpkg-darwin-amd64
-* imgpkg-linux-amd64
-* imgpkg-windows-amd64.exe
-* imgpkg-darwin-arm64
-* imgpkg-linux-arm64
-* checksums.txt
+* `imgpkg-darwin-amd64`
+* `imgpkg-linux-amd64`
+* `imgpkg-windows-amd64.exe`
+* `imgpkg-darwin-arm64`
+* `imgpkg-linux-arm64`
+* `checksums.txt`
 
 **kapp**:
 
-* kapp-darwin-amd64
-* kapp-linux-amd64
-* kapp-windows-amd64.exe
-* kapp-darwin-arm64
-* kapp-linux-arm64
-* checksums.txt
+* `kapp-darwin-amd64`
+* `kapp-linux-amd64`
+* `kapp-windows-amd64.exe`
+* `kapp-darwin-arm64`
+* `kapp-linux-arm64`
+* `checksums.txt`
 
 **kapp-controller**:
 
-* kctrl-darwin-amd64
-* kctrl-linux-amd64
-* kctrl-windows-amd64.exe
-* kctrl-darwin-arm64
-* kctrl-linux-arm64
-* checksums.txt
+* `kctrl-darwin-amd64`
+* `kctrl-linux-amd64`
+* `kctrl-windows-amd64.exe`
+* `kctrl-darwin-arm64`
+* `kctrl-linux-arm64`
+* `checksums.txt`
 
 **kbld**:
 
-* kbld-darwin-amd64
-* kbld-linux-amd64
-* kbld-windows-amd64.exe
-* kbld-darwin-arm64
-* kbld-linux-arm64
-* kbld-windows-arm64.exe
-* checksums.txt
+* `kbld-darwin-amd64`
+* `kbld-linux-amd64`
+* `kbld-windows-amd64.exe`
+* `kbld-darwin-arm64`
+* `kbld-linux-arm64`
+* `kbld-windows-arm64.exe`
+* `checksums.txt`
 
 **vendir**:
 
-* vendir-darwin-amd64
-* vendir-linux-amd64
-* vendir-windows-amd64.exe
-* vendir-darwin-arm64
-* vendir-linux-arm64
-* checksums.txt
+* `vendir-darwin-amd64`
+* `vendir-linux-amd64`
+* `vendir-windows-amd64.exe`
+* `vendir-darwin-arm64`
+* `vendir-linux-arm64`
+* `checksums.txt`
 
 **ytt**:
 
-* ytt-darwin-amd64
-* ytt-linux-amd64
-* ytt-windows-amd64.exe
-* ytt-darwin-arm64
-* ytt-windows-arm64.exe
-* ytt-linux-arm64
-* checksums.txt
+* `ytt-darwin-amd64`
+* `ytt-linux-amd64`
+* `ytt-windows-amd64.exe`
+* `ytt-darwin-arm64`
+* `ytt-windows-arm64.exe`
+* `ytt-linux-arm64`
+* `checksums.txt`
 
 #### Using the Sigstore GitHub Action
 
