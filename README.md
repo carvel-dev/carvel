@@ -53,3 +53,5 @@ Keep up to date on all the Carvel news by joining our [mailing list](https://lis
 Check out which organizations are using and contributing to Carvel: [Adopter's list](https://github.com/vmware-tanzu/carvel/blob/develop/ADOPTERS.md)
 
 We intend to publish new Carvel content weekly, if you're interested in contributing [please sign-up here](processes/weekly-content-sharing.md).
+---
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7746/badge)](https://bestpractices.coreinfrastructure.org/projects/7746)
