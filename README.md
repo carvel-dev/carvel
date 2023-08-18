@@ -1,4 +1,5 @@
 ![logo](https://raw.githubusercontent.com/vmware-tanzu/carvel/master/logos/CarvelLogo.png)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7746/badge)](https://bestpractices.coreinfrastructure.org/projects/7746)
 
 # Carvel
 
@@ -39,6 +40,7 @@ Examples:
 * [carvel-guestbook-example-on-kubernetes](https://github.com/vmware-tanzu/carvel-guestbook-example-on-kubernetes)
 
 See what's planned in [our backlog](https://github.com/orgs/carvel-dev/projects/1).
+
 ---
 # Join the Community and Make Carvel Better
 
@@ -53,5 +55,3 @@ Keep up to date on all the Carvel news by joining our [mailing list](https://lis
 Check out which organizations are using and contributing to Carvel: [Adopter's list](https://github.com/vmware-tanzu/carvel/blob/develop/ADOPTERS.md)
 
 We intend to publish new Carvel content weekly, if you're interested in contributing [please sign-up here](processes/weekly-content-sharing.md).
----
-[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7746/badge)](https://bestpractices.coreinfrastructure.org/projects/7746)
