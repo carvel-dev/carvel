@@ -170,7 +170,7 @@ sha256:5c2dafe3c70c13990190d643c91e9f67b8129b179257674888178868474f6511
 
 There are 2 tags and both point the same Digest. If we look at the command we used to push the
 bundle `imgpkg push -b localhost:5000/cool-new-bundle:my-tag -f examples/basic-step-2` we defined a tag to be used.
-Also `imgpkg` automatically creates a tag that contains the digest and the `.imgpkg` prefix. The main reason for this
+Also `imgpkg` automatically creates a tag that contains the digest and the `.imgpkg` suffix. The main reason for this
 Tag is to ensure that if in the future we want to move the tag `my-tag` to a different bundle, it can be done and the
 garbage collector of the registry would not remove this OCI image because of the lack of Tag point to it.
 
@@ -202,7 +202,7 @@ These are a lot of tags, lets drill down each one to understand what they are:
   image
 - `sha256-5c2dafe3c70c13990190d643c91e9f67b8129b179257674888178868474f6511.image-locations.imgpkg` This is a new OCI
   image that is created by `imgpkg` to store the location of the OCI images that are part of the bundle. The main reason
-  to create this tag is to allow `imgpkg` to later reference and use this OCI image when doing.
+  to create this tag is to allow `imgpkg` to later reference and use this OCI image when copying the bundles between registries.
 
 ## The end
 
