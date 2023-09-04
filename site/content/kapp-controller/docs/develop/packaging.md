@@ -276,6 +276,9 @@ spec:
   syncPeriod: 1m
   # specifies service account that will be used to install underlying package contents
   serviceAccountName: fluent-bit-sa
+  # Specifies the default namespace to install the Package resources, by default this is
+  # same as the PackageInstall namespace
+  defaultNamespace: ""
   # specifies that Package should be deployed to destination cluster;
   # by default, cluster is same as where this resource resides (optional)
   # NOTE: if you provide a serviceAccountName then the cluster block will be ignored.
