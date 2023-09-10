@@ -87,6 +87,10 @@ The proposal is for signing all the artifacts included in the following Carvel p
 * `ghcr.io/carvel-dev/secretgen-controller`
 * `ghcr.io/carvel-dev/secretgen-controller-package-bundle`
 
+**docker-image**:
+
+* `ghcr.io/vmware-tanzu/carvel-docker-image`
+
 #### Signing and verifying binary artifacts
 
 When signing binary artifacts, Cosign produces signature and certificate information that can be stored and distributed together with the binary artifacts either as separate files, or in a bundled text file. Sigstore recommends using a bundle in order to minimize the number of files to distribute. However, several CNCF projects that have adopted Sigstore decided to use separate files for signature and certificate for better clarity (for example, Kyverno and Knative), so we'll consider this strategy going forward to align with them.
@@ -204,6 +208,7 @@ name: Commit Stage
 on: push
 
 jobs:
+  # Sign the container image as part of the build process.
   build:
     name: Build
     runs-on: ubuntu-22.04
@@ -218,6 +223,71 @@ jobs:
         run: |
           # The --yes argument is necessary to disable the interactive mode.
           cosign sign --yes "ghcr.io/carvel-dev/kapp-controller@sha256:<digest>"
+  # At the end of the release workflow, verify the signature.
+  verify:
+    name: Verify
+    runs-on: ubuntu-22.04
+    needs: [build]
+    permissions:
+      packages: read
+    steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+      - name: Sign image
+        run: |
+          # The --yes argument is necessary to disable the interactive mode.
+          cosign verify \
+            ghcr.io/carvel-dev/kapp-controller@sha256:<digest> \
+            --certificate-identity-regexp=https://github.com/carvel-dev \
+            --certificate-oidc-issuer=https://token.actions.githubusercontent.com
+```
+
+Example using a binary artifact.
+
+```yaml
+name: Commit Stage
+on: push
+
+jobs:
+  # Sign the binary artifact as part of the build process.
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+      id-token: write # Required by Cosign to authenticate with GitHub via OIDC
+    steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+      - name: Sign binary
+        run: |
+          # The --yes argument is necessary to disable the interactive mode.
+          # Certificate and signature can then be uploaded as artifacts to the final release.
+          cosign sign-blob -y \
+            imgpkg-darwin-arm64 \
+            --output-certificate imgpkg-darwin-arm64.pem \
+            --output-signature imgpkg-darwin-arm64.sig
+  # At the end of the release workflow, verify the signature.
+  # Certificates and signatures are passed from the output of the previous step.
+  # Alternatively, the verification can be part of the same build step and share context.
+  verify:
+    name: Verify
+    runs-on: ubuntu-22.04
+    needs: [build]
+    permissions:
+      packages: read
+    steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+      - name: Verify signature
+        run: |
+          cosign verify-blob \
+            --cert ${{ needs.build.outputs.certificate }} \
+            --signature ${{ needs.build.outputs.signature }} \
+            --certificate-identity-regexp=https://github.com/carvel-dev \
+            --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+            imgpkg-darwin-arm64
 ```
 
 #### Verifying the signatures with Kyverno
