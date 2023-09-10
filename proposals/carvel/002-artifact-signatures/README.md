@@ -100,7 +100,7 @@ Each Carvel project publishing binary artifacts is also producing a `checksums.t
 > [!NOTE]
 > The alternative would be to sign each binary artifact explicitly and publish a pair of certificate and signature for each of them (for example, that's what Kyverno does). We are not suggesting that approach for Carvel as it leads to an exponential increase in the number of release artifacts and makes it more laborious for end-users to verify the artifact integrity.
 
-For example, given the binary `imgpkg-darwin-arm64`, the set of artifacts released would be the following:
+For example, considering the _imgpkg_ project, the set of artifacts released would be the following:
 
 * `imgpkg-darwin-amd64`: MacOS AMD64 binary artifact;
 * `imgpkg-darwin-arm64`: MacOS ARM64 binary artifact;
