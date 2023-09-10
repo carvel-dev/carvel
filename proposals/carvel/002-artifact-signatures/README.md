@@ -37,7 +37,7 @@ The proposed solution to cryptographically sign all released Carvel artifacts is
 
 Sigstore Cosign allows to sign software artifacts and verify signatures in _keyless_ mode relying on OpenID Connect as the authentication protocol. When the signing operation is performed as part of a pipeline using GitHub Actions, the signing identity will be the one of the specific Workflow reference.
 
-This section describes how to use Cosign to sign and verify container images and binary artifacts, and how to integrate those steps in a pipeline based on GitHub Actions. It also includes an example of signature verification on Kubernetes using the Kyverno project.
+This section describes how to use Cosign to sign and verify container images and binary artifacts, and how to integrate those steps in a pipeline based on GitHub Actions and GoReleaser. It also includes an example of signature verification on Kubernetes using the Kyverno project.
 
 #### Signing and verifying OCI artifacts
 
@@ -95,199 +95,208 @@ The proposal is for signing all the artifacts included in the following Carvel p
 
 When signing binary artifacts, Cosign produces signature and certificate information that can be stored and distributed together with the binary artifacts either as separate files, or in a bundled text file. Sigstore recommends using a bundle in order to minimize the number of files to distribute. However, several CNCF projects that have adopted Sigstore decided to use separate files for signature and certificate for better clarity (for example, Kyverno and Knative), so we'll consider this strategy going forward to align with them.
 
+Each Carvel project publishing binary artifacts is also producing a `checksums.txt` file that gathers the checksums for all the binaries part of the release. Therefore, it's enough to sign the `checksums.txt` file only. That is the strategy adopted by several CNCF projects, including Flux and Knative.
+
+> [!NOTE]
+> The alternative would be to sign each binary artifact explicitly and publish a pair of certificate and signature for each of them (for example, that's what Kyverno does). We are not suggesting that approach for Carvel as it leads to an exponential increase in the number of release artifacts and makes it more laborious for end-users to verify the artifact integrity.
+
 For example, given the binary `imgpkg-darwin-arm64`, the set of artifacts released would be the following:
 
-* `imgpkg-darwin-arm64`: the binary artifact;
-* `imgpkg-darwin-arm64.pem`: the certificate that Cosign will use to verify the signature;
-* `imgpkg-darwin-arm64.sig`: signature that Cosign will verify.
-
-The binary artifacts released by each Carvel project are currently associated with a checksum, which users should still validate after having verified the signature. The `checksums.txt` file gathers the checksums for all binaries part of the release and can also be signed with Cosign. The result would be as follows:
-
-* `checksums.txt`: a text file containing the SHA256 hashes for the binary artifacts included in the release; 
+* `imgpkg-darwin-amd64`: MacOS AMD64 binary artifact;
+* `imgpkg-darwin-arm64`: MacOS ARM64 binary artifact;
+* `imgpkg-linux-amd64`: Linux AMD64 binary artifact;
+* `imgpkg-linux-arm64`: Linux ARM64 binary artifact;
+* `imgpkg-windows-amd64.exe`: Windows AMD binary artifact;
+* `checksums.txt`: a text file containing the SHA256 hashes for all the artifacts included in the release; 
 * `checksums.txt.pem`: the certificate that Cosign will use to verify the signature;
 * `checksums.txt.sig`: signature that Cosign will verify.
 
-An example of this approach can be seen in the [Kyverno](https://github.com/kyverno/kyverno/releases/tag/v1.10.2) project.
+An example of this approach can be seen in the [Flux](https://github.com/fluxcd/flux2/releases/tag/v2.1.0) project.
 
-Using the Cosign CLI, signing a binary artifact works as follows:
+Using the Cosign CLI, signing the `checksums.txt` file works as follows:
 
 ```shell script
 cosign sign-blob \
-  imgpkg-darwin-arm64 \
-  --output-certificate imgpkg-darwin-arm64.pem \
-  --output-signature imgpkg-darwin-arm64.sig
+  checksums.txt \
+  --output-certificate checksums.txt.pem \
+  --output-signature checksums.txt.sig
 ```
 
-The command will output certificate and signature in the specified files, which must be distributed together with the binary artifact. Users can verify the signature for a given binary artifact using the Cosing CLI. The snippet assumes that the signing process has been performed as part of a pipeline based on GitHub Actions using the Workflow reference as the identity.
+The command will output certificate and signature in the specified files, which must be distributed together with the other release artifacts. Users can verify the signature for a given `checksums.txt` file using the Cosing CLI. The snippet assumes that the signing process has been performed as part of a pipeline based on GitHub Actions using the Workflow reference as the identity.
 
 ```shell script
 cosign verify-blob \
-  --cert imgpkg-darwin-arm64.pem \
-  --signature imgpkg-darwin-arm64.sig \
+  --cert checksums.txt.pem \
+  --signature checksums.txt.sig \
   --certificate-identity-regexp=https://github.com/carvel-dev \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  imgpkg-darwin-arm64
+  checksums.txt
 ```
 
-If the signature is valid for both the binary artifact and the `checksums.txt` file, users can proceed verifying the `SHA256` sums match the downloaded binary as they would usually do. For example, using the `shasum` utility.
+If the signature is valid for `checksums.txt`, it means the file has not been tampered with, so the end users can safely proceed verifying that the `SHA256` sums match the downloaded artifacts as they would usually do. For example, using the `shasum` utility.
 
 ```shell script
 shasum -a 256 imgpkg-darwin-arm64
 ```
 
-For more information about signing blobs with Cosign, refer to the [official documentation](https://docs.sigstore.dev/cosign/signing_with_blobs/).
+For more information about signing files and blobs with Cosign, refer to the [official documentation](https://docs.sigstore.dev/cosign/signing_with_blobs/).
 
 ##### Binary artifacts to sign
 
-The proposal is for signing all the artifacts included in the following Carvel projects.
+The proposal is for signing the `checksums.txt` file included in each release of the following Carvel projects:
 
-**imgpkg**:
+* imgpkg
+* kapp
+* kapp-controller
+* kbld
+* vendir
+* ytt
 
-* `imgpkg-darwin-amd64`
-* `imgpkg-linux-amd64`
-* `imgpkg-windows-amd64.exe`
-* `imgpkg-darwin-arm64`
-* `imgpkg-linux-arm64`
-* `checksums.txt`
-
-**kapp**:
-
-* `kapp-darwin-amd64`
-* `kapp-linux-amd64`
-* `kapp-windows-amd64.exe`
-* `kapp-darwin-arm64`
-* `kapp-linux-arm64`
-* `checksums.txt`
-
-**kapp-controller**:
-
-* `kctrl-darwin-amd64`
-* `kctrl-linux-amd64`
-* `kctrl-windows-amd64.exe`
-* `kctrl-darwin-arm64`
-* `kctrl-linux-arm64`
-* `checksums.txt`
-
-**kbld**:
-
-* `kbld-darwin-amd64`
-* `kbld-linux-amd64`
-* `kbld-windows-amd64.exe`
-* `kbld-darwin-arm64`
-* `kbld-linux-arm64`
-* `kbld-windows-arm64.exe`
-* `checksums.txt`
-
-**vendir**:
-
-* `vendir-darwin-amd64`
-* `vendir-linux-amd64`
-* `vendir-windows-amd64.exe`
-* `vendir-darwin-arm64`
-* `vendir-linux-arm64`
-* `checksums.txt`
-
-**ytt**:
-
-* `ytt-darwin-amd64`
-* `ytt-linux-amd64`
-* `ytt-windows-amd64.exe`
-* `ytt-darwin-arm64`
-* `ytt-windows-arm64.exe`
-* `ytt-linux-arm64`
-* `checksums.txt`
-
-#### Using the Sigstore GitHub Action
+#### Signing container images with GitHub Actions
 
 The Sigstore project provides an official Action to set up Cosign in a pipeline based on GitHub Actions: [sigstore/cosign-installer](https://github.com/sigstore/cosign-installer).
 
-Example using a container image:
+I have published a [demo project](https://github.com/ThomasVitale/scs-demo-oci) to showcase the full configuration for integrating Cosign with GitHub Actions.
+
+GitHub Actions: `release.yml`.
 
 ```yaml
-name: Commit Stage
+name: Release
 on: push
 
+env:
+  REGISTRY: <registry>
+  IMAGE_NAME: <username>/<project>
+  VERSION: ${{ github.sha }}
+
 jobs:
-  # Sign the container image as part of the build process.
-  build:
-    name: Build
+  release:
+    name: Release
     runs-on: ubuntu-22.04
     permissions:
       contents: read
       packages: write
-      id-token: write # Required by Cosign to authenticate with GitHub via OIDC
+      id-token: write
     steps:
-      - name: Install Cosign
+      - name: Check out source code
+        uses: actions/checkout@v4
+      
+      - name: Set up Cosign
         uses: sigstore/cosign-installer@v3
-      - name: Sign image
+      
+      - name: Set up OCI Tools
+        uses: buildpacks/github-actions/setup-tools@v5.4.0
+      
+      - name: Set up Buildpacks
+        uses: buildpacks/github-actions/setup-pack@v5.4.0
+      
+      - name: Log into container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Build and publish container image
         run: |
-          # The --yes argument is necessary to disable the interactive mode.
-          cosign sign --yes "ghcr.io/carvel-dev/kapp-controller@sha256:<digest>"
-  # At the end of the release workflow, verify the signature.
-  verify:
-    name: Verify
-    runs-on: ubuntu-22.04
-    needs: [build]
-    permissions:
-      packages: read
-    steps:
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@v3
-      - name: Sign image
+          pack build ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
+            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            --builder paketobuildpacks/builder-jammy-tiny \
+            --publish
+
+      - name: Sign container image
         run: |
-          # The --yes argument is necessary to disable the interactive mode.
+          IMAGE_DIGEST="$(crane digest ${REGISTRY}/${IMAGE_NAME}:${VERSION})"
+          cosign sign --yes "${REGISTRY}/${IMAGE_NAME}@${IMAGE_DIGEST}"
+
+      - name: Verify signature on container image
+        run: |
           cosign verify \
-            ghcr.io/carvel-dev/kapp-controller@sha256:<digest> \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
             --certificate-identity-regexp=https://github.com/carvel-dev \
             --certificate-oidc-issuer=https://token.actions.githubusercontent.com
 ```
 
-Example using a binary artifact.
+#### Signing binary artifacts with GitHub Actions and GoReleaser
+
+The Sigstore project provides an official Action to set up Cosign in a pipeline based on GitHub Actions: [sigstore/cosign-installer](https://github.com/sigstore/cosign-installer). After setting up Cosign, GoReleaser can be configured to perform the signing as part of the release process.
+
+I have published a [demo project](https://github.com/ThomasVitale/scs-demo-binary) to showcase the full configuration for integrating Cosign with GitHub Actions and GoReleaser.
+
+GitHub Actions: `release.yml`.
 
 ```yaml
-name: Commit Stage
-on: push
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: read
 
 jobs:
-  # Sign the binary artifact as part of the build process.
-  build:
-    name: Build
+  release:
+    name: Release
     runs-on: ubuntu-22.04
     permissions:
-      contents: read
-      packages: write
-      id-token: write # Required by Cosign to authenticate with GitHub via OIDC
+      contents: write
+      id-token: write
     steps:
-      - name: Install Cosign
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+      
+      - name: Set up Cosign
         uses: sigstore/cosign-installer@v3
-      - name: Sign binary
-        run: |
-          # The --yes argument is necessary to disable the interactive mode.
-          # Certificate and signature can then be uploaded as artifacts to the final release.
-          cosign sign-blob -y \
-            imgpkg-darwin-arm64 \
-            --output-certificate imgpkg-darwin-arm64.pem \
-            --output-signature imgpkg-darwin-arm64.sig
-  # At the end of the release workflow, verify the signature.
-  # Certificates and signatures are passed from the output of the previous step.
-  # Alternatively, the verification can be part of the same build step and share context.
-  verify:
-    name: Verify
-    runs-on: ubuntu-22.04
-    needs: [build]
-    permissions:
-      packages: read
-    steps:
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@v3
-      - name: Verify signature
+      
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v4
+        with:
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      [...]
+      
+      - name: Verify checksums signature
         run: |
           cosign verify-blob \
-            --cert ${{ needs.build.outputs.certificate }} \
-            --signature ${{ needs.build.outputs.signature }} \
+            --cert ${{ checksums_file_certificate }} \
+            --signature ${{ checksums_file_signature }} \
             --certificate-identity-regexp=https://github.com/carvel-dev \
             --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-            imgpkg-darwin-arm64
+            ${{ checksums_file }}
+      
+      - name: Verify checksums for all released artifacts
+        [...]
+```
+
+GoReleaser: `.goreleaser.yaml`.
+
+```yaml
+[...]
+checksum:
+  name_template: 'checksums.txt'
+  algorithm: sha256
+
+signs:
+  - artifacts: checksum
+    certificate: '${artifact}.pem'
+    cmd: cosign
+    args:
+      - sign-blob
+      - "--yes"
+      - '--output-certificate=${certificate}'
+      - '--output-signature=${signature}'
+      - '${artifact}'
+    output: true
+[...]
 ```
 
 #### Verifying the signatures with Kyverno
