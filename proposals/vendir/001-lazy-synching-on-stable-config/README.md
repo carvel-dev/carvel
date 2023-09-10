@@ -1,8 +1,8 @@
 ---
 title: "Lazy Synching"
 authors: [ "Fritz Duchardt <fritz.duchardt.ext@gec.io>" ]
-status: "draft"
-approvers: [ ]
+status: "In Review"
+approvers: [ @kumaritanushree, @vmunishwar, @neil-hickey, @joaopapereira ]
 ---
 
 # Make vendir lazy: don't syncing if the config has not changed
@@ -38,7 +38,7 @@ Lazily `contents` are synced under two conditions:
 - When their corresponding config section has changed. The mechanism works in a generic fashion for all repository types and reacts to any change to the `contents` config section. 
 - When the path of the parent `directory` has changed.
 
-To track changes to the config, the vendir.lock.yml is amended with a hash value that represents the state of a `contents` config section at the last sync, e.g.:
+To track changes to the config, the vendir.lock.yml is amended with a configDigest value that contains a hash representing the state of a `contents` config section at the last sync, e.g.:
 ```
 kind: LockConfig
 apiVersion: vendir.k14s.io/v1alpha1
@@ -46,12 +46,12 @@ directories:
 - path: vendor
   contents:
   - path: custom-repo-custom-version
-    hash: e8a5d1511f2eb22b160bb849e5c8be39da1c4ffa5fd56ded71ff095a8b24720b
+    configDigest: e8a5d1511f2eb22b160bb849e5c8be39da1c4ffa5fd56ded71ff095a8b24720b
     helmChart:
       appVersion: 1.20.1
       version: 7.10.1
 ```
-Hashes are only added, if vendir is run with the `lazy` setting. 
+Config digests are only added, if vendir is run with the `lazy` setting. 
 
 To force a sync despite the `lazy` setting, a new option is added to the vendir binary, e.g.
 ```
