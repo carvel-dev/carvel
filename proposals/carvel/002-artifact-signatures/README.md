@@ -330,6 +330,12 @@ spec:
               issuer: "https://token.actions.githubusercontent.com"
 ```
 
+#### Verifying the signatures with the Carvel GitHub Action
+
+The Carvel project maintains a [GitHub Action](https://github.com/carvel-dev/setup-action) which provides a convenient way to install the Carvel tools in a GitHub Workflow. 
+
+The current implementation validates the checksums for all the tools installed as part of the Action. After introducing signatures for the Carvel binary artifacts, the Action will be extended to verify the signatures as explained in the previous sections. Such verification will only be performed if the signature/certificate pair is available as artifacts in the specific release bundle. If it's not available, the signature verification will not be performed because it means the user has decided to install an older version of a Carvel tool released before introducing cryptographic signatures. Such a strategy will ensure the backward compatibility of the Action.
+
 ### Other Approaches Considered
 
 Besides keyless signing, Sigstore Cosign supports signing artifacts using key pairs. That would be a less desirable approach for:
