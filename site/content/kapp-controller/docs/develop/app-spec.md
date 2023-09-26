@@ -33,6 +33,10 @@ spec:
   # 30s is specified, 30s will be used. (optional; v0.9.0+; default=30s)
   syncPeriod: 1m
 
+  # Specifies the default namespace to install the App resources, by default this is
+  # same as the App's namespace (optional; v0.48.0+)
+  defaultNamespace: ""
+
   # specifies that app should be deployed to destination cluster;
   # by default, cluster is same as where this resource resides (optional; v0.5.0+)
   cluster:
