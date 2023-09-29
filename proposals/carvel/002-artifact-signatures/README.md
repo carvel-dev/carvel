@@ -1,7 +1,7 @@
 ---
 title: "Signatures for Carvel Artifacts"
 authors: [ "Thomas Vitale <ThomasVitale@users.noreply.github.com>" ]
-status: "in review"
+status: "accepted"
 approvers: []
 ---
 
