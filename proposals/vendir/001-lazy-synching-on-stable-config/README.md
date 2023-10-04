@@ -55,7 +55,7 @@ Config digests are only added, if vendir is run with the `lazy` setting.
 
 To force a sync despite the `lazy` setting, a new option is added to the vendir binary, e.g.
 ```
-vendir sync --eager
+vendir sync --lazy=false
 ```
 
 ### Other Approaches Considered
