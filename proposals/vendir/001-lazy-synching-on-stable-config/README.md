@@ -1,7 +1,7 @@
 ---
 title: "Lazy Synching"
 authors: [ "Fritz Duchardt <fritz.duchardt.ext@gec.io>" ]
-status: "In Review"
+status: "Accepted"
 approvers: [ @kumaritanushree, @vmunishwar, @neil-hickey, @joaopapereira ]
 ---
 
