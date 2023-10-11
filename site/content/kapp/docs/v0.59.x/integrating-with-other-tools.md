@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/integrating-with-other-tools]
 title: Integrating with Other Tools
 ---
 
