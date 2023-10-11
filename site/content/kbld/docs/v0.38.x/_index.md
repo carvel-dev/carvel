@@ -1,9 +1,9 @@
 ---
-
+aliases: [/kbld/docs/latest/]
 title: "About kbld"
 toc: "false"
 cascade:
-  version: v0.37.x
+  version: v0.38.x
   toc: "true"
   type: docs
   layout: docs
