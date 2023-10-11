@@ -1,0 +1,43 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: About imgpkg
+        url: /
+      - page: Install
+        url: /install
+  - title: Workflows
+    subfolderitems:
+      - page: Basic workflow
+        url: /basic-workflow
+      - page: Air-gapped workflow
+        url: /air-gapped-workflow
+      - page: Automation workflow
+        url: /automation-workflow
+  - title: Reference
+    subfolderitems:
+      - page: Authentication
+        url: /auth
+      - page: Resources
+        url: /resources
+      - page: Commands
+        url: /commands
+      - page: Working directly with images
+        url: /working-directly-with-images
+      - page: Proxy
+        url: /proxy
+  - title: FAQ
+    subfolderitems:
+      - page: General
+        url: /faq-generic
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
+      - page: Security
+        shared_url: /security-policy
+      - page: CA Certs on Windows
+        url: /ca-certs-windows
+      - page: Debugging
+        url: /debugging
