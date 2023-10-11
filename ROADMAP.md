@@ -18,6 +18,7 @@ Please take the timelines & dates as proposals and goals, not commitments. Prior
 `Last Updated: October 2023`
 |Feature|Stage|Timeline| 
 |---|---|---|
+**[kctrl]** [Release package repository as tar](https://github.com/carvel-dev/kapp-controller/issues/1277) | Proposal in Progress | 2023 Q4 |
 **[kctrl]** [Multiple enhancements](https://github.com/carvel-dev/kapp-controller/issues/1270) | In Progress | 2023 Q4 |
 **[vendir]** [Lazy Synching](https://github.com/carvel-dev/vendir/issues/278) | In Progress| 2023 Q4 |
 **[Carvel]** [Signature and SLSA attestation for all Carvel artefacts](https://github.com/carvel-dev/carvel/issues/619) | Proposal added| TBD |
