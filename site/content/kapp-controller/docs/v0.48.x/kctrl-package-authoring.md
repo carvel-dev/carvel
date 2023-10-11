@@ -1,6 +1,6 @@
 ---
-
-
+aliases: [/kapp-controller/docs/latest/kctrl-package-authoring]
+aliases: [/kapp-controller/docs/latest/kctrl-package-authoring]
 title: Authoring packages with kctrl
 ---
 
