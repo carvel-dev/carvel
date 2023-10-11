@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/private-registry-auth]
 title: Authenticating to Private Registries
 ---
 
@@ -47,7 +47,7 @@ Known limitation: Currently Secrets with type `kubernetes.io/dockerconfigjson` d
 
 ## kapp-controller CRs and placeholder secrets
 
-As of kapp-controller v0.24.0+, PackageRepository and PackageInstall CRs automatically create placeholder secrets for `image` and `imgpkgBunle` fetch types, if no explicit `secretRef.name` is provided. (These placeholder secrets are named as `<resource-name>-fetch-<i>`.) If secretgen-controller is present on the cluster, these secrets will be populated with combined registry credentials; otherwise, they will remain empty.
+As of kapp-controller v0.24.0+, PackageRepository and PackageInstall CRs automatically create placeholder secrets for `image` and `imgpkgBundle` fetch types, if no explicit `secretRef.name` is provided. (These placeholder secrets are named as `<resource-name>-fetch-<i>`.) If secretgen-controller is present on the cluster, these secrets will be populated with combined registry credentials; otherwise, they will remain empty.
 
 ## Package authoring and placeholder secrets
 

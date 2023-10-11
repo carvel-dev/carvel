@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/walkthrough]
 title: Install an Application
 ---
 
