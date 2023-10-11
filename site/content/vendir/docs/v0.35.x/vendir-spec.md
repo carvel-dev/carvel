@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-spec]
 title: vendir.yml spec
 ---
 
@@ -44,6 +44,8 @@ directories:
             identifiers: [beta, rc]
       # skip downloading lfs files (optional)
       lfsSkipSmudge: false
+      # skip SSL/TLS verification (optional)
+      dangerousSkipTLSVerify: false
       # skip initializing any git submodules (optional; v0.28.0+)
       skipInitSubmodules: false
       # verify gpg signatures on commits or tags (optional; v0.12.0+)
