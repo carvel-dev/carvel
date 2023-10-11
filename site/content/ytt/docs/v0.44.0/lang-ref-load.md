@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/lang-ref-load]
+
 title: Load Statements
 ---
 
