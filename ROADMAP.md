@@ -16,11 +16,11 @@ The following table includes the current roadmap for Carvel. If you have any que
 Please take the timelines & dates as proposals and goals, not commitments. Priorities and requirements change based on community feedback, roadblocks encountered, community contributions, etc. If you depend on a specific item, we encourage you to attend community meetings to get updated status information, or help us deliver that feature by contributing to Carvel.
 
 `Last Updated: October 2023`
-|Feature|Stage|Timeline|
+|Feature|Stage|Timeline| 
 |---|---|---|
+**[kctrl]** [Multiple enhancements](https://github.com/carvel-dev/kapp-controller/issues/1270) | In Progress | 2023 Q4 |
 **[vendir]** [Lazy Synching](https://github.com/carvel-dev/vendir/issues/278) | In Progress| 2023 Q4 |
 **[Carvel]** [Signature and SLSA attestation for all Carvel artefacts](https://github.com/carvel-dev/carvel/issues/619) | Proposal added| TBD |
-**[kctrl]** [Multiple enhancements](https://github.com/carvel-dev/kapp-controller/issues/1270) | In Progress | 2023 Q4 |
 **[Carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). |Awaiting Proposal| TBD |
 
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
