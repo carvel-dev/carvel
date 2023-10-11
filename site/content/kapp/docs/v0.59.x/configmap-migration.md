@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/configmap-migration]
 title: Configmap Migration (experimental)
 ---
 
