@@ -237,6 +237,9 @@ spec:
                 fieldPath: metadata.namespace
               - name: specificAnnotation
                 fieldPath: metadata.annotations['specificAnnotation']
+              - name: anotherAnnotationWithDots
+                # keys requiring `\\.`` should use "" for the filedPath value
+                fieldPath: "metadata.annotations['another\\.annotation\\.with\\.dots']"
               # query for the version of the cluster
               - name: kubeVersion
                 kubernetesVersion: {}
@@ -282,6 +285,9 @@ spec:
                 fieldPath: metadata.namespace
               - name: specificAnnotation
                 fieldPath: metadata.annotations['specificAnnotation']
+              - name: anotherAnnotationWithDots
+                # keys requiring `\\.`` should use "" for the filedPath value
+                fieldPath: "metadata.annotations['another\\.annotation\\.with\\.dots']"
               # query for the version of the cluster
               - name: kubeVersion
                 kubernetesVersion: {}
@@ -309,6 +315,9 @@ spec:
                 fieldPath: metadata.namespace
               - name: specificAnnotation
                 fieldPath: metadata.annotations['specificAnnotation']
+              - name: anotherAnnotationWithDots
+                # keys requiring `\\.`` should use "" for the filedPath value
+                fieldPath: "metadata.annotations['another\\.annotation\\.with\\.dots']"
               # query for the version of the cluster
               - name: kubeVersion
                 kubernetesVersion: {}
