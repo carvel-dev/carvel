@@ -31,6 +31,8 @@ toc:
         url: /dangerous-flags
       - page: Configmap Migration (experimental)
         url: /configmap-migration
+      - page: Command Reference
+        url: /command-reference
   - title: Integrations
     subfolderitems:
       - page: Integrating With Other Tools
