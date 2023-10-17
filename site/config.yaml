@@ -215,3 +215,7 @@ markup:
     tabWidth: 4
 permalinks:
   tags: /blog/tags/:slug
+minify:
+  tdewolff:
+    html:
+      keepQuotes: true
