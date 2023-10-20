@@ -31,13 +31,4 @@ We have tools to meet your various needs. Need help with templating or overlayin
 You can register for KubeCon + CloudNativeCon at their [website](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/register/). Registrations are open till Oct 15, and for virtual attendance you can access the keynotes for free!
 
 
-## Join us on Slack and GitHub {#community}
-
-We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
-
-
-* Join Carvel’s slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](https://carvel.dev/community/) for full details on how to attend.
-
-We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!
+{{< blog_footer >}}

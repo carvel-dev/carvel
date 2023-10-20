@@ -31,9 +31,4 @@ Happy Templating :)
 
 We would love to know if there are other Carvel topics, either ytt-specific or any of our other tools (imgpkg, kapp, kapp-controller, kbld, secretgen-controller, vendir, ytt), that you would like to see as a tutorial by reaching out to us in either in one of the channels listed in the section below, or on Twitter [@carvel_dev](https://twitter.com/carvel_dev) or [emailing us](mailto:carvel-dev@googlegroups.com) with your suggestion.
 
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

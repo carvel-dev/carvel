@@ -261,11 +261,4 @@ Note: There is already an opened [issue](https://github.com/carvel-dev/kapp/issu
 This is how a Package consumer can discover the reason for ghost diffs and take appropriate action. In this case, adding a [rebase rule](https://carvel.dev/kapp/docs/latest/hpa-deployment-rebase/#docs) will remove the ghost diffs.
 
 
-
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

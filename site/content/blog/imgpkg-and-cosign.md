@@ -192,10 +192,4 @@ I'm personally excited about the upcoming features imgpkg has lined up. View our
 
 Also, imgpkg is only a single building block. [Carvel](carvel.dev) (inspired by the [unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy)) also offers other composable, modular building blocks giving users full flexibility in how they wish to work, while still preserving extensibility in their workflow.
 
-## Join us on Slack and GitHub
-
-We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
-
-* Join Carvel’s slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](https://carvel.dev/community/) for full details on how to attend.
+{{< blog_footer >}}

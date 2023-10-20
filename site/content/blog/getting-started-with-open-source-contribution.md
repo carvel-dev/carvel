@@ -85,13 +85,4 @@ Looking forward to seeing your first contribution!
 _This is the first blog in a series on how you can contribute to open-source projects like Carvel. So, stay tuned ..._
 
 
-## Join the Carvel Community
-
-The Carvel team is very helpful and welcoming to contributions and feedback. We love users who play around with our tools and raise an issue or reach out to us in Slack. We are also eager to know how you are using our tools, which product features you love the most, and which new features you want to be included in our tools.
-Here are several ways you can get involved:
-- Join the [Carvel's Slack Channel](https://kubernetes.slack.com/archives/CH8KCCKA5) in the Kubernetes Slack Workspace.\
-  _(visit http://slack.k8s.io/ to join the Kubernetes Slack workspace if you are not already there.)_
-- Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-- We also encourage you to attend our [community meetings](https://carvel.dev/community/) to get face-to-face interaction with the maintainers and other members of the community.
-
-
+{{< blog_footer >}}

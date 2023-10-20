@@ -165,12 +165,4 @@ This stands true for other resources you would want to deploy on your cluster af
 
 We would love to know how you are using the Carvel tools and our Terraform provider on [this thread](https://github.com/carvel-dev/carvel/issues/213)!
 
-## Join us on Slack and GitHub
-
-We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
-
-We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!
+{{< blog_footer >}}

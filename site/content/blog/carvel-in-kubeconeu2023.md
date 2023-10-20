@@ -40,8 +40,4 @@ Be sure to stop by our kiosk (#K22) in the project pavilion to grab some new swa
 - Wednesday, April 19
     - 13:30 - Carvel: Clean Tools for Cloud-Native Problems by [Leigh Capili](https://github.com/stealthybox)
 
-## Join the Carvel Community
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

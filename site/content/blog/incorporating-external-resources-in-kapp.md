@@ -150,12 +150,4 @@ spec:
 Now you can deploy gatekeeper along with the Constraint CRs without having to wait for the CRDs manually. Note that you would need to add a few change rules so that the Constraints are deployed after the gatekeeper controller pods are in ready state. The updated yaml for the complete deployment of gatekeeper and Constraints can be found [here](https://gist.github.com/praveenrewar/a97820ecef7a79ef13b2f7125421c723).
 
 
-## Join us on Slack and GitHub
-
-We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
-
-We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!
+{{< blog_footer >}}
