@@ -138,7 +138,7 @@ The design decision tries to address the above constraints but causes some other
       friendly, [Github Issue](https://github.com/carvel-dev/imgpkg/issues/331)
     - A proposal was started to allow the users to tell `imgpkg` where to copy the OCI images to. This proposal is still
       being written, and we would love to have the community to read it and give their opinion about it. The initial
-      draft can be found [here](https://github.com/carvel-dev/community/pull/22).
+      draft can be found [here](https://github.com/carvel-dev/carvel-community/pull/22).
 - Some registries restrict the number of OCI images that can be present in each
   repository, [reference 1](https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
   , [reference 2](https://www.jfrog.com/confluence/display/JFROG/Docker+Registry#DockerRegistry-LocalDockerRepositories)

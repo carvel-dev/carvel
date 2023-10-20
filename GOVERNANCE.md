@@ -10,7 +10,7 @@ The following code repositories are governed by the Carvel community and maintai
 * [carvel](https://github.com/carvel-dev/carvel): Main Carvel Repo
 * [ytt](https://github.com/carvel-dev/ytt): Template and overlay Kubernetes configuration via YAML structures, not text documents
 * [kapp](https://github.com/carvel-dev/kapp): Install, upgrade, and delete multiple Kubernetes resources as one "application"
-* [kbld](https://github.com/carvel-dev/carl-kbld): Build or reference container images in Kubernetes configuration in an immutable way
+* [kbld](https://github.com/carvel-dev/kbld): Build or reference container images in Kubernetes configuration in an immutable way
 * [imgpkg](https://github.com/carvel-dev/imgpkg): Bundle and relocate application configuration (with images) via Docker registries
 * [kapp-controller](https://github.com/carvel-dev/kapp-controller): Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp
 * [vendir](https://github.com/carvel-dev/carvel-vendir): Declaratively state what files should be in a directory

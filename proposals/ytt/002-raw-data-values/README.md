@@ -268,7 +268,7 @@ With those measures in place, we believe the added complexity is worth it.
 
 #### Other Approach Considered: Introduce a new File Mark Type
 
-[A previous version of this proposal](https://github.com/carvel-dev/community/blob/2a817298f3e263438ff3767b2bc4ccfcb9dbbc1b/proposals/ytt/002-raw-data-values/README.md) centered around the idea of being able to mark an input file (i.e. a file implied by a `--file` argument) as a "Plain YAML Data Value" file.
+[A previous version of this proposal](https://github.com/carvel-dev/carvel-community/blob/2a817298f3e263438ff3767b2bc4ccfcb9dbbc1b/proposals/ytt/002-raw-data-values/README.md) centered around the idea of being able to mark an input file (i.e. a file implied by a `--file` argument) as a "Plain YAML Data Value" file.
 
 **Pros:**
 - maintains a consistent interface: all input files continue to be provided through one interface: the `--file` flag;

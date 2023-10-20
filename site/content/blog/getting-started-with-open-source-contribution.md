@@ -61,7 +61,7 @@ Here are some suggestions where you can contribute:
 - **Improve documentation** by adding information/summary/missing steps
 - **Add examples** to [repo](https://github.com/carvel-dev/ytt/tree/develop/examples)
 - **Raise issues**/bugs
-- **Check for issues** labeled with [Good first issue](https://github.com/search?q=repo%3Acarvel-dev%2Fytt+repo%3Acarvel-dev%2Fkapp+repo%3Acarvel-dev%2Fimgpkg+repo%3Acarvel-dev%2Fcarvel%2Fkapp-controller+repo%3Acarvel-dev%2Fkbld+repo%3Acarvel-dev%2Fvendir+repo%3Acarvel-dev%2Fkapp-controller+label%3A%22good+first+issue%22&type=issues)
+- **Check for issues** labeled with [Good first issue](https://github.com/search?q=repo%3Acarvel-dev%2Fytt+repo%3Acarvel-dev%2Fkapp+repo%3Acarvel-dev%2Fimgpkg+repo%3Acarvel-dev%2Fkapp-controller+repo%3Acarvel-dev%2Fkbld+repo%3Acarvel-dev%2Fvendir+repo%3Acarvel-dev%2Fkapp-controller+label%3A%22good+first+issue%22&type=issues)
 - **Add FAQs** or “How to” section for a common problem/scenario
 
 
