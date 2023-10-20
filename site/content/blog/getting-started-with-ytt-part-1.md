@@ -204,9 +204,9 @@ services:
 
 ### Steps to run ytt locally:
 ```shell
-$ brew tap vmware-tanzu/carvel
+$ brew tap carvel-dev/carvel
 $ brew install ytt
-$ git clone https://github.com/vmware-tanzu/carvel-ytt
+$ git clone https://github.com/carvel-dev/ytt
 $ cd carvel-ytt/examples
 $ ytt -f playground/basics/example-plain-yaml
 ```
@@ -222,5 +222,5 @@ Happy Templating :)
 
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.

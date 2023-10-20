@@ -13,8 +13,8 @@ install() {
 
 	wget -O- https://carvel.dev/install.sh | bash
 
-	git clone https://github.com/vmware-tanzu/carvel-kapp
-	echo "Cloned github.com/vmware-tanzu/carvel-kapp for examples"
+	git clone https://github.com/carvel-dev/kapp
+	echo "Cloned github.com/carvel-dev/kapp for examples"
 }
 
 install

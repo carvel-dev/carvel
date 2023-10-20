@@ -126,10 +126,10 @@ kube-node-lease   Active   14m
 
 You will notice there is no `host-namespace-1` namespace and the namespace AGEs are different than the host cluster.
 
-Let's do something a little more interesting now and deploy the famous [Carvel sample app](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes) to the vcluster: 
+Let's do something a little more interesting now and deploy the famous [Carvel sample app](https://github.com/carvel-dev/simple-app-on-kubernetes) to the vcluster: 
 
 ```
-$ kapp deploy -a simple-app -f https://raw.githubusercontent.com/vmware-tanzu/carvel-simple-app-on-kubernetes/develop/config-step-1-minimal/config.yml --kubeconfig=$(pwd)/kubeconfig-vcluster.yml
+$ kapp deploy -a simple-app -f https://raw.githubusercontent.com/carvel-dev/simple-app-on-kubernetes/develop/config-step-1-minimal/config.yml --kubeconfig=$(pwd)/kubeconfig-vcluster.yml
 ```
 
 Type in `y` to confirm you would like to deploy the Carvel sample app to the vcluster. 
@@ -287,7 +287,7 @@ Since this PackageInstall needs permissions to create resources, we'll need to c
 default namespace with the command below:
 
 ```
-$ kapp deploy -a rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+$ kapp deploy -a rbac -f https://raw.githubusercontent.com/carvel-dev/kapp-controller/develop/examples/rbac/default-ns.yml
 ```
 
 With the RBAC created, you can now deploy vclusters via kapp-controller by deploying the PackageInstall and Secret yaml above:
@@ -314,5 +314,5 @@ Thanks for reading, and looking forward to your thoughts!
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.

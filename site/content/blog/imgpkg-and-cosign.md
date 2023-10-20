@@ -21,7 +21,7 @@ These days, however, based on the amount of security breaches, dev tools could u
 
 [Imgpkg](https://carvel.dev/imgpkg/) is a way to package and distribute multiple images via a single OCI artifact known as a [Bundle](https://carvel.dev/imgpkg/docs/latest/resources/#bundle). [Cosign](https://github.com/sigstore/cosign) is a way to sign container images.
 
-We at [Carvel](https://https://carvel.dev/) are always looking for opportunities to integrate with existing OSS solutions. Cosign is one such tool we have integrated with (since [imgpkg 0.9.0+](https://github.com/vmware-tanzu/carvel-imgpkg/releases/tag/v0.9.0)).
+We at [Carvel](https://https://carvel.dev/) are always looking for opportunities to integrate with existing OSS solutions. Cosign is one such tool we have integrated with (since [imgpkg 0.9.0+](https://github.com/carvel-dev/imgpkg/releases/tag/v0.9.0)).
 
 This integration aims to solve the problem of having various images representing a deployment, and propagating it from dev to production while maintaining integrity and provenance.
 
@@ -66,7 +66,7 @@ Private keys are stored as encrypted PEM files. They should be safe to put along
 
 Now let's build some images *and* sign them!
 
-Creating a simple single-layer image can be achieved using the imgpkg `push` command (with the `--image` flag). There are plenty of other ways to build images too! (using [kbld](https://github.com/vmware-tanzu/carvel-kbld), [docker](https://www.docker.com/) etc). This workflow works with all of them.
+Creating a simple single-layer image can be achieved using the imgpkg `push` command (with the `--image` flag). There are plenty of other ways to build images too! (using [kbld](https://github.com/carvel-dev/kbld), [docker](https://www.docker.com/) etc). This workflow works with all of them.
 
 
 ```bash
@@ -188,7 +188,7 @@ Lastly, If you are using kubernetes there is a [good article](https://medium.com
 
 ## Whats next
 
-I'm personally excited about the upcoming features imgpkg has lined up. View our [roadmap for the latest info](https://github.com/vmware-tanzu/carvel/blob/develop/ROADMAP.md).
+I'm personally excited about the upcoming features imgpkg has lined up. View our [roadmap for the latest info](https://github.com/carvel-dev/carvel/blob/develop/ROADMAP.md).
 
 Also, imgpkg is only a single building block. [Carvel](carvel.dev) (inspired by the [unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy)) also offers other composable, modular building blocks giving users full flexibility in how they wish to work, while still preserving extensibility in their workflow.
 
@@ -197,5 +197,5 @@ Also, imgpkg is only a single building block. [Carvel](carvel.dev) (inspired by 
 We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
 
 * Join Carvel’s slack channel, [#carvel in Kubernetes](https://kubernetes.slack.com/archives/CH8KCCKA5) workspace and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](https://carvel.dev/community/) for full details on how to attend.

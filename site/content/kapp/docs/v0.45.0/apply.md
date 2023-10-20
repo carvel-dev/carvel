@@ -56,7 +56,7 @@ By default resource is deleted, however; choosing `orphan` value will make kapp 
 
 Possible values: "".
 
-By default non-kapp owned resources are not explicitly deleted by kapp, but expected to be deleted by the cluster (for example Endpoints resource for each Service). In some cases it's desired to annotate non-kapp owned resource so that it does get explicitly deleted, possibly because cluster does not plan to delete it (e.g. PVCs created by StatefulSet are not deleted by StatefulSet controller; [https://github.com/vmware-tanzu/carvel-kapp/issues/36](https://github.com/vmware-tanzu/carvel-kapp/issues/36)).
+By default non-kapp owned resources are not explicitly deleted by kapp, but expected to be deleted by the cluster (for example Endpoints resource for each Service). In some cases it's desired to annotate non-kapp owned resource so that it does get explicitly deleted, possibly because cluster does not plan to delete it (e.g. PVCs created by StatefulSet are not deleted by StatefulSet controller; [https://github.com/carvel-dev/kapp/issues/36](https://github.com/carvel-dev/kapp/issues/36)).
 
 ### kapp.k14s.io/nonce
 
@@ -77,7 +77,7 @@ Possible values:
 - `for-existing` (only existing Pods are tailed)
 - `for-new-or-existing` (both newly created and existing Pods are tailed)
 
-Especially useful when added to Jobs. For example, see [examples/resource-ordering/sync-check.yml](https://github.com/vmware-tanzu/carvel-kapp/blob/develop/examples/resource-ordering/sync-check.yml)
+Especially useful when added to Jobs. For example, see [examples/resource-ordering/sync-check.yml](https://github.com/carvel-dev/kapp/blob/develop/examples/resource-ordering/sync-check.yml)
 
 ### kapp.k14s.io/deploy-logs-container-names
 

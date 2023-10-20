@@ -26,8 +26,8 @@ Today, users primarily supply Data Values using Data Values Overlays.
 Configuration Consumers providing configuration data to a `ytt` invocation is required to do so by capturing those as a YAML document and annotating it _as_ a Data Values Overlay (i.e. `@data/values`). Further, they must resolve any merge ambiguities by annotating the document with `@overlay/...`.
 
 Examples:
-- https://github.com/vmware-tanzu/carvel-ytt/issues/81
-- https://github.com/vmware-tanzu/carvel-ytt/issues/51
+- https://github.com/carvel-dev/ytt/issues/81
+- https://github.com/carvel-dev/ytt/issues/51
 
 These requirements also make integrating `ytt` into automation tooling less than desirable: the `ytt` concepts of "data values" and "overlays" are foisted on the hapless end user of that automation tooling when all they wanted to do was customize their use of some higher-level feature.
 
@@ -132,7 +132,7 @@ This use-case is supported:
 - the file given to the flag can contain zero or more documents.
   - top-most document applied first.
 - each instance of a Data Value _replaces_ the previous value (this is already the behavior of the `--data-value[-yaml]` flag.
-- if a given Data Value had not been previously named, it is _added_ (the same behavior as if the value was supplied by `--data-value[-yaml] (key)+=(value)`, i.e. with the `+` operator as implemented at [data_values_flags.go](https://github.com/vmware-tanzu/carvel-ytt/blob/906bfe07cf1aded44f21fbdb501c76f911406fc8/pkg/cmd/template/data_values_flags.go#L234))
+- if a given Data Value had not been previously named, it is _added_ (the same behavior as if the value was supplied by `--data-value[-yaml] (key)+=(value)`, i.e. with the `+` operator as implemented at [data_values_flags.go](https://github.com/carvel-dev/ytt/blob/906bfe07cf1aded44f21fbdb501c76f911406fc8/pkg/cmd/template/data_values_flags.go#L234))
 
 See also:
 - [Example: Giving Multiple YAML Files](#example-giving-multiple-yaml-files)
@@ -268,7 +268,7 @@ With those measures in place, we believe the added complexity is worth it.
 
 #### Other Approach Considered: Introduce a new File Mark Type
 
-[A previous version of this proposal](https://github.com/vmware-tanzu/carvel-community/blob/2a817298f3e263438ff3767b2bc4ccfcb9dbbc1b/proposals/ytt/002-raw-data-values/README.md) centered around the idea of being able to mark an input file (i.e. a file implied by a `--file` argument) as a "Plain YAML Data Value" file.
+[A previous version of this proposal](https://github.com/carvel-dev/community/blob/2a817298f3e263438ff3767b2bc4ccfcb9dbbc1b/proposals/ytt/002-raw-data-values/README.md) centered around the idea of being able to mark an input file (i.e. a file implied by a `--file` argument) as a "Plain YAML Data Value" file.
 
 **Pros:**
 - maintains a consistent interface: all input files continue to be provided through one interface: the `--file` flag;

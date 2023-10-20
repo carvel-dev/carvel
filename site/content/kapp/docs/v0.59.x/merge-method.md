@@ -24,4 +24,4 @@ kapp comes with some common k8s rebase rules. you can see them via `kapp deploy-
 
 tldr: kapp takes user provided config as the only source of truth, but also allows to explicitly specify that certain fields are cluster controlled. This method guarantees that clusters don't drift, which is better than what basic 3 way merge provides.
 
-Originally answered [here](https://github.com/vmware-tanzu/carvel-kapp/issues/58#issuecomment-559214883).
+Originally answered [here](https://github.com/carvel-dev/kapp/issues/58#issuecomment-559214883).

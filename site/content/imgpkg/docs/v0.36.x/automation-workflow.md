@@ -15,7 +15,7 @@ To complete this workflow you will need access to an OCI registry like Docker Hu
 
 1. Prepare bundle contents
 
-   The [examples/basic-step-1/](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-1)
+   The [examples/basic-step-1/](https://github.com/carvel-dev/imgpkg/tree/develop/examples/basic-step-1)
    directory has a `config.yml` file, which contains a very simple Kubernetes application. Your application may have as
    many configuration files as necessary in various formats such as plain YAML, ytt templates, Helm templates, etc.
 
@@ -25,7 +25,7 @@ To complete this workflow you will need access to an OCI registry like Docker Hu
 
 1. Add `.imgpkg/` directory
 
-   [examples/basic-step-2](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-2) shows what
+   [examples/basic-step-2](https://github.com/carvel-dev/imgpkg/tree/develop/examples/basic-step-2) shows what
    a `.imgpkg/` directory may look like. It contains:
 
     - **optional** [bundle.yml](resources.md#bundle-metadata): a file which records informational metadata

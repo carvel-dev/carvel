@@ -19,7 +19,7 @@ Install the whole tool suite with the script below:
 (Note: we are temporarily overriding kapp-controller's version to jump to ytt
 0.38.0, in order to include the recent OpenAPI Schema feature in this tutorial)
 ```bash
-wget -O- https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | \
+wget -O- https://raw.githubusercontent.com/carvel-dev/kapp-controller/fc5458fe2102d67e85116c26534a35e265b28125/hack/install-deps.sh | \
 sed 's/ytt_version=v0.35.1/ytt_version=v0.38.0/' | \
 sed 's/0aa78f7b5f5a0a4c39bddfed915172880344270809c26b9844e9d0cbf6437030/2ca800c561464e0b252e5ee5cacff6aa53831e65e2fb9a09cf388d764013c40d/' | \
 bash
@@ -38,7 +38,7 @@ You can skip this step if you want to get straight to kapp-controller.
 First clone the GitHub repository for examples:
 
 ```bash
-git clone https://github.com/vmware-tanzu/carvel-kapp
+git clone https://github.com/carvel-dev/kapp
 ```
 
 Then deploy a CronJob to the Kubernetes cluster in this environment:
@@ -76,7 +76,7 @@ Use kapp to install kapp-controller (reconciliation may take a moment, which you
 could use to read about [kubernetes controller reconciliation loops](https://kubernetes.io/docs/concepts/architecture/controller/)):
 
 ```bash
-kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.21.0/release.yml -y
+kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/download/v0.21.0/release.yml -y
 ```
 
 Gaze upon the splendor! 
@@ -451,7 +451,7 @@ This yaml snippet also contains a Kubernetes secret, which is referenced by the 
 Finally, to install the above package, we will also need to create `default-ns-sa` service account (refer to [Security model](security-model.md)
 for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
 ```bash
-kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/carvel-dev/kapp-controller/develop/examples/rbac/default-ns.yml -y
 ```
 
 Apply the PackageInstall using kapp:

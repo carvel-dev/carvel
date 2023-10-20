@@ -115,7 +115,7 @@ rebaseRules:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Service}
 ```
 
-See [ytt rebase rule](https://github.com/vmware-tanzu/carvel-kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154) (included in default configuration) for retaining cluster added token secret in ServiceAccount's secrets array.
+See [ytt rebase rule](https://github.com/carvel-dev/kapp/blob/d3ee9a01b5f0d7d5632b6a157ea7d0338730d497/pkg/kapp/config/default.go#L123-L154) (included in default configuration) for retaining cluster added token secret in ServiceAccount's secrets array.
 
 ### ownershipLabelRules
 

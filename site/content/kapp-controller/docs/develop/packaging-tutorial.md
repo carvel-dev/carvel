@@ -17,8 +17,8 @@ We'll be using [Carvel](https://carvel.dev/) tools throughout this tutorial, so 
 Install the tools with the scripts below:
 
 ```bash
-wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/dependencies.yml
-wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/install-deps.sh
+wget https://raw.githubusercontent.com/carvel-dev/kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/dependencies.yml
+wget https://raw.githubusercontent.com/carvel-dev/kapp-controller/83fffcfe99a65031b4170813acf94f8d5058b346/hack/install-deps.sh
 chmod a+x ./install-deps.sh
 ./install-deps.sh
 ```
@@ -34,7 +34,7 @@ You can skip this step if you want to get straight to kapp-controller.
 First pull down the yaml for this example:
 
 ```bash
-wget https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp/5886f388900ce66e4318220025ca77d16bfaa488/examples/jobs/cron-job.yml
+wget https://raw.githubusercontent.com/carvel-dev/kapp/5886f388900ce66e4318220025ca77d16bfaa488/examples/jobs/cron-job.yml
 ```
 
 Then deploy a CronJob to the Kubernetes cluster in this environment:
@@ -72,7 +72,7 @@ Use kapp to install kapp-controller (reconciliation may take a moment, which you
 could use to read about [kubernetes controller reconciliation loops](https://kubernetes.io/docs/concepts/architecture/controller/)):
 
 ```bash
-kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.32.0/release.yml -y
+kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/download/v0.32.0/release.yml -y
 ```
 
 Gaze upon the splendor! 
@@ -447,7 +447,7 @@ This yaml snippet also contains a Kubernetes secret, which is referenced by the 
 Finally, to install the above package, we will also need to create `default-ns-sa` service account (refer to [Security model](https://carvel.dev/kapp-controller/docs/latest/security-model/)
 for explanation of how service accounts are used) that give kapp-controller privileges to create resources in the default namespace:
 ```bash
-kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/carvel-dev/kapp-controller/develop/examples/rbac/default-ns.yml -y
 ```
 
 Apply the PackageInstall using kapp:

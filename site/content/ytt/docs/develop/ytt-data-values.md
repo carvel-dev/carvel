@@ -127,14 +127,14 @@ sets all three Data Values:
 
 _Example 2: Directory_
 
-See https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-directory for a complete example and explanation.
+See https://github.com/carvel-dev/ytt/tree/develop/examples/data-values-directory for a complete example and explanation.
 
 _Example 3: HTTP URL_
 
-Given https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml
+Given https://raw.githubusercontent.com/carvel-dev/ytt/develop/examples/data-values/values-file.yml
 
 ```console
-$ ytt --data-values-file https://raw.githubusercontent.com/vmware-tanzu/carvel-ytt/develop/examples/data-values/values-file.yml --data-values-inspect
+$ ytt --data-values-file https://raw.githubusercontent.com/carvel-dev/ytt/develop/examples/data-values/values-file.yml --data-values-inspect
 ```
 yields
 ```yaml

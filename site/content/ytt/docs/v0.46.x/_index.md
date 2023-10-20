@@ -47,7 +47,7 @@ Functions in `ytt` capture either a calculation or fragment of YAML. Functions c
 For more about modular code...
 - see live examples in the `ytt` Playground around [functions](ytt/#example:example-function) and [`ytt` libraries](/ytt/#example:example-ytt-library-module);
 - read further about [functions](lang-ref-def.md), [YAML Fragments](lang-ref-yaml-fragment.md), and [loading reusable modules and libraries](lang-ref-load.md);
-- catch-up on a particularly relevant [discussion about using modules and libraries in `ytt`](https://github.com/vmware-tanzu/carvel-ytt/discussions/392#discussioncomment-766445).
+- catch-up on a particularly relevant [discussion about using modules and libraries in `ytt`](https://github.com/carvel-dev/ytt/discussions/392#discussioncomment-766445).
 
 ## Further Reading
 

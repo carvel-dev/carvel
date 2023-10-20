@@ -471,7 +471,7 @@ Here:
 - a valid `logLevel` must be one of the four values given.
 
 Authors are encouraged to use named rules whenever possible:
-- there's no code to maintain: these rules are [unit-tested](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/pkg/validations/filetests)
+- there's no code to maintain: these rules are [unit-tested](https://github.com/carvel-dev/ytt/tree/develop/pkg/validations/filetests)
 - they more succinctly document the constraints, making the schema easier to read/maintain
 - when rules are included in [OpenAPI v3 schema exports](how-to-export-schema.md), these are the first batch of such rules likely to be included.
 

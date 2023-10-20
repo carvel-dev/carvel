@@ -89,7 +89,7 @@ The proposal is for signing all the artifacts included in the following Carvel p
 
 **docker-image**:
 
-* `ghcr.io/vmware-tanzu/carvel-docker-image`
+* `ghcr.io/carvel-dev/docker-image`
 
 #### Signing and verifying binary artifacts
 

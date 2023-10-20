@@ -28,11 +28,11 @@ Let's get started by reviewing some fresh Carvel-related content:
 
 kapp had two releases in August:
 
-* [v0.52.0](https://github.com/vmware-tanzu/carvel-kapp/releases/tag/v0.52.0)
+* [v0.52.0](https://github.com/carvel-dev/kapp/releases/tag/v0.52.0)
     * Added `--default-label-scoping-rules` flag to enable or disable the default label scoping rules added during deploy
     * Bump k8s.io/client-go from v0.22.10 to v0.24.3
     * Bug fix: `--app-metadata-file-output` writes to disk even when deploy fails
-* [v0.51.0](https://github.com/vmware-tanzu/carvel-kapp/releases/tag/v0.51.0)
+* [v0.51.0](https://github.com/carvel-dev/kapp/releases/tag/v0.51.0)
     * Added `--app-metadata-file-output` flag which can be used to save recorded app metadata to a file.
     * Bump modern-go/reflect2 to v1.0.2 to fix incompatibility with Go v1.18
         * This problem became apparent with some random failures while trying to connect to GKE clusters.
@@ -40,7 +40,7 @@ kapp had two releases in August:
 
 ### kapp-controller
 
-* [v0.40.0](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.40.0)
+* [v0.40.0](https://github.com/carvel-dev/kapp-controller/releases/tag/v0.40.0)
     * kctrl
         * Introducing the package authoring commands
         * dev deploy
@@ -49,7 +49,7 @@ kapp had two releases in August:
     * Surface namespace and GK resources in AppCR status
     * Upgrade GoLang from 1.18 to 1.19
     * Bumped dependencies
-* [v0.39.0](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.39.0)
+* [v0.39.0](https://github.com/carvel-dev/kapp-controller/releases/tag/v0.39.0)
     * Add arm64 builds
     * Add downward api
     * Rename KC owned apps from x-ctrl to x.app or x.pkgr
@@ -63,14 +63,14 @@ kapp had two releases in August:
 
 ### imgpkg
 
-* [v0.31.0](https://github.com/vmware-tanzu/carvel-imgpkg/releases/tag/v0.31.0)
+* [v0.31.0](https://github.com/carvel-dev/imgpkg/releases/tag/v0.31.0)
     * Resume the download of an image/bundle to tar
     * By providing the flag `--resume` to the `copy` command, imgpkg is now able to only download the missing blobs that cannot find in the file on disk. The flag doesn't error out if the tar file does not exist
     * Check if an image or bundle is cacheable or not. Note: This feature is only available on the new API call. Let us know if you see any benefit in implementing option 1 from that story.
     * API Improvements:
         * When calling the function to push images to the registry, via API, the user can provide a progress bar logger. This will allow for the progress to be displayed in the console.
         * Create API for Pull
-        * Extracted the Pull logic to the new package that will contain imgpkg's public API, check [the package](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/pkg/imgpkg/v1). With this change, the Pull command can be changed to provide machine-readable output.
+        * Extracted the Pull logic to the new package that will contain imgpkg's public API, check [the package](https://github.com/carvel-dev/imgpkg/tree/develop/pkg/imgpkg/v1). With this change, the Pull command can be changed to provide machine-readable output.
 
 ### ytt
 
@@ -81,7 +81,7 @@ August was spent collecting and acting upon feedback for schema validations. The
 
 ### vendir
 
-* [v0.30.0](https://github.com/vmware-tanzu/carvel-vendir/releases/tag/v0.30.0)
+* [v0.30.0](https://github.com/carvel-dev/vendir/releases/tag/v0.30.0)
     * semver `HighestConstrainedVersion` takes additional constraints
 
 ## Farewell til Next Month!
@@ -93,5 +93,5 @@ Wishing you smooth deployments and painless upgrades!
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.

@@ -88,9 +88,9 @@ Note:
 
 More examples:
 - simple and complete example of declaring and using Data Values through schema: \
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/schema
+  https://github.com/carvel-dev/ytt/tree/develop/examples/schema
 - example declaring and configuring an array: \
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/schema-arrays
+  https://github.com/carvel-dev/ytt/tree/develop/examples/schema-arrays
 
 Related documentation:
 - [How To Write Schema](how-to-write-schema.md) guide

@@ -40,7 +40,7 @@ Go forth boldly, young padawan, ensuring that your data is valid with our new fe
 
 ### Secretgen-controller
 
-The previously introduced “Secret Templates” are no longer secret now that they’re fully [documented](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-template.md).
+The previously introduced “Secret Templates” are no longer secret now that they’re fully [documented](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-template.md).
 
 
 ### Farewell til Next Month!
@@ -55,5 +55,5 @@ Wishing you smooth deployments and may the pods smile upon you!
 We are excited to hear from you and learn with you! Here are several ways you can get involved:
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.

@@ -18,13 +18,13 @@ If you would like to deploy the results of this scenario to your Kubernetes clus
 
 1. Prepare bundle contents
 
-    The [examples/basic-step-1/](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-1) directory has a `config.yml` file, which contains a very simple Kubernetes application. Your application may have as many configuration files as necessary in various formats such as plain YAML, ytt templates, Helm templates, etc.
+    The [examples/basic-step-1/](https://github.com/carvel-dev/imgpkg/tree/develop/examples/basic-step-1) directory has a `config.yml` file, which contains a very simple Kubernetes application. Your application may have as many configuration files as necessary in various formats such as plain YAML, ytt templates, Helm templates, etc.
 
     In our example `config.yml` includes an image reference to `docker.io/dkalinin/k8s-simple-app`. This reference does not point to an exact image (via digest) meaning that it may change over time. To ensure we get precisely the bits we expect, we will lock it down to an exact image next.
 
 1. Add `.imgpkg/` directory
 
-    [examples/basic-step-2](https://github.com/vmware-tanzu/carvel-imgpkg/tree/develop/examples/basic-step-2) shows what a `.imgpkg/` directory may look like. It contains:
+    [examples/basic-step-2](https://github.com/carvel-dev/imgpkg/tree/develop/examples/basic-step-2) shows what a `.imgpkg/` directory may look like. It contains:
 
     - **optional** [bundle.yml](resources.md#bundle-metadata): a file which records informational metadata
     - **required** [images.yml](resources.md#imageslock): a file which records image references used by the configuration

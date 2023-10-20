@@ -67,14 +67,14 @@ In the initial release, we have provided the basic package management functional
 * Dependency management between packages
 * Supporting more sophisticated package upgrades based on package metadata
 
-If you are interested in helping us with the development/direction of kapp-controller or any of our other [roadmap](https://github.com/vmware-tanzu/carvel/blob/develop/ROADMAP.md) items, we would love to have you join us as a contributor! Please review the [CONTRIBUTING.MD doc](https://github.com/vmware-tanzu/carvel/blob/develop/CONTRIBUTING.md) on the [Carvel GitHub repo](https://github.com/vmware-tanzu/carvel) for details on how to get started.
+If you are interested in helping us with the development/direction of kapp-controller or any of our other [roadmap](https://github.com/carvel-dev/carvel/blob/develop/ROADMAP.md) items, we would love to have you join us as a contributor! Please review the [CONTRIBUTING.MD doc](https://github.com/carvel-dev/carvel/blob/develop/CONTRIBUTING.md) on the [Carvel GitHub repo](https://github.com/carvel-dev/carvel) for details on how to get started.
 
 ## Join us on Slack and GitHub {#community}
 
 We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
 
 * Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
+* Find us on [GitHub](https://github.com/carvel-dev/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
 * Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
 
 We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!

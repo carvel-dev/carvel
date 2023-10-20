@@ -151,7 +151,7 @@ This is a [known limitation](known-limitations.md) of ytt.
 ## Can I generate random strings with ytt?
 No. A design goal of ytt is determinism, which keeps randomness out of scope.
 
-If you want to generate secrets, see the [injecting secrets doc](injecting-secrets.md) or the [kubernetes secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
+If you want to generate secrets, see the [injecting secrets doc](injecting-secrets.md) or the [kubernetes secretgen-controller](https://github.com/carvel-dev/secretgen-controller)
 
 ## Can I load multiple functions without having to name each one?
 

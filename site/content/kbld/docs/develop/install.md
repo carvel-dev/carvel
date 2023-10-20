@@ -28,17 +28,17 @@ $ kbld version
 
 ## Via Homebrew (macOS or Linux)
 
-Based on [github.com/vmware-tanzu/homebrew-carvel](https://github.com/vmware-tanzu/homebrew-carvel).
+Based on [github.com/carvel-dev/homebrew](https://github.com/carvel-dev/homebrew).
 
 ```bash
-$ brew tap vmware-tanzu/carvel
+$ brew tap carvel-dev/carvel
 $ brew install kbld
 $ kbld version
 ```
 
 ## Specific version from a GitHub release
 
-To download, click on one of the assets in a [chosen GitHub release](https://github.com/vmware-tanzu/carvel-kbld/releases), for example for 'kbld-darwin-amd64'.
+To download, click on one of the assets in a [chosen GitHub release](https://github.com/carvel-dev/kbld/releases), for example for 'kbld-darwin-amd64'.
 
 ```bash
 # **Compare binary checksum** against what's specified in the release notes

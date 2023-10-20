@@ -10,7 +10,7 @@ However, kapp will try to insert a few of its labels in bodies of some resources
 
 To prevent this failure, add the [`kapp.k14s.io/disable-default-label-scoping-rules: ""` annotation](config.md#labelscopingrules) as a [kapp configuration](config.md) to prevent kapp from touching the immutable fields when adopting a resource.
 
-Additional Resources: [GitHub Issue](https://github.com/vmware-tanzu/carvel-kapp/issues/204), [Slack Thread](https://kubernetes.slack.com/archives/CH8KCCKA5/p1606079730457700)
+Additional Resources: [GitHub Issue](https://github.com/carvel-dev/kapp/issues/204), [Slack Thread](https://kubernetes.slack.com/archives/CH8KCCKA5/p1606079730457700)
 
 ## `Error: Asking for confirmation: EOF`
 
@@ -120,7 +120,7 @@ If kapp does not detect changes, it won't perform an update. To force changes ev
 
 Use `--tty=false` flag which will disable decorative output. Example: `kapp inspect --raw --tty=false`.
 
-Additional resources: [tty flag in kapp code](https://github.com/vmware-tanzu/carvel-kapp/blob/3f3e207d7198cdedd6985761ecb0d9616a84e305/pkg/kapp/cmd/ui_flags.go#L20)
+Additional resources: [tty flag in kapp code](https://github.com/carvel-dev/kapp/blob/3f3e207d7198cdedd6985761ecb0d9616a84e305/pkg/kapp/cmd/ui_flags.go#L20)
 
 ---
 ## How can I get kapp to skip waiting on some resources?
