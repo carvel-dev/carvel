@@ -19,9 +19,10 @@ For example, In order to obtain a tar of bundle image of examples/basic-step-2, 
 `imgpkg push -b index.docker.io/user1/simple-app-bundle:v1.0.0 -f examples/basic-step-2` <br>
 `imgpkg copy -b index.docker.io/user1/simple-app-bundle:v1.0.0 --to-tar /tmp/my-image.tar`
 
-This has 2 fold issues : <br>
+This has 3 fold issues : <br>
 1. Dependent on using a registry to create a tar file from a bundle image.
 2. The tar file is created from the bundle image, which is not required if the user just wants to create a tar file having a layer as tar with configurations/metadata.
+3. The bundle or image and it's tar file formed is not OCI compliant. This proposal aims to make the tar in a oci spec compliant format.
 
 ## Terminology / Concepts
 1. Definitions of terms used in the proposal with respect to imgpkg can be found [here.](https://carvel.dev/imgpkg/docs/v0.37.x/)<br>
@@ -75,6 +76,8 @@ where one of the files in sha256 is the actual file tar and others 2 are configs
 
 1. An improvement would be to have only one flag `--tar` for `imgpkg copy` making no changes to flags but making it compatible and being smart enough to understand and differentiate between both kind of tars without any need for specification. <br>
 
+2. Add an inflate option to also contain all refs images in the oci-tar as discussed [here](https://github.com/carvel-dev/imgpkg/issues/55#issuecomment-962209740). This will be useful and true to the name of the command `imgpkg copy` as it will copy all the refs images as well and create a self-sufficient oci-tar. <br>
+
 ### Specification / Use Cases
 
 Use Cases : 
@@ -93,7 +96,11 @@ The reason this was dropped was it is similar to imgpkg copy command used above,
 
 
 ## Open Questions
-_Add questions here_
+1. Do we need save command to be able to save a tar file from a bundle image or should we just use push command to do the same as it forms the tar ? <br> 
+2. If save can create a `oci-tar` and `copy` can copy/push the tar to the repo, what is the need to make it compatible with `push` command ? <br>
+3. Should we have a single flag `--tar` for `imgpkg copy` to be able to copy both kind of tars or should we have 2 flags `--tar` and `--oci-tar` ? <br>
 
 ## Answered Questions
-_A list of questions that have been answered._
+1. The usecase for save command is when a user only need the oci compliant tar file for sharing purposes and do not have a need to push to a registry. Since push will always require a registry for pushing even for oci-tar formation. <br>
+2. The idea behind the usage of `imgpkg push -b my.registry.io/some-name -f some-folder --to-oci-tar local-oci-format.tar` is to concentrate in a single command all the options to create a new image, that being to the registry or directly to disk.
+3. A single flag would be better as it would be more intuitive and easy to use. <br>
