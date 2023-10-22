@@ -5,51 +5,82 @@ status: "draft"
 approvers: [ ]
 ---
 
-# <Proposal Title>
+# <Package Repository to Tar>
 
 ## Problem Statement
 
-Presntly imgpkg does not support the creation of tar file directly.
+Presently imgpkg does not support any way of creating and storing bundles in any format directly to local disk for sharing purposes, so as to remove the need of a registry in between. This proposal aims to add this functionality to imgpkg.
+
+Consider this workflow, where a user wants to create a tar file of a bundle image and then push it to a registry. <br>
 In order to obtain a tar file, one needs to first push the bundle image to the registry and then leverage the [command](https://carvel.dev/imgpkg/docs/v0.37.x/air-gapped-workflow/#option-2-with-intermediate-tarball) for copying as tar in the air gapped workflow.
 
+For example, In order to obtain a tar of bundle image of examples/basic-step-2, we need run the following commands in succession :<br>
 
+`imgpkg push -b index.docker.io/user1/simple-app-bundle:v1.0.0 -f examples/basic-step-2` <br>
 `imgpkg copy -b index.docker.io/user1/simple-app-bundle:v1.0.0 --to-tar /tmp/my-image.tar`
 
- 
-then copy the bundle image from the registry to the tar ( by first pulling the image from the registry as tar and then pushing it).
-Kctrl depends on imgpkg to push the bundle image to the registry
-
-Presently, imgpkg allows us to Push the bundle image only to the tar
-In a scenario where the artifact that will be shared is a tar, there might not be a need to use the registry as an intermediary step.
-This would allow the users to combine the commands imgpkg push + imgpkg copy --to-tar in a single command and without storing extra images in a registry
-
-_This is a short summary of the problem that exists, why it needs to be
-solved: what specific needs are being met. Compelling problem statements
-include concrete examples (even if only by reference). How exactly the proposal
-would meet those needs should be located in the "Proposal" section, not this one.
-The goal of this section is to help readers quickly empathize with the target users'
-current experience to motivate the proposed change.
+This has 2 fold issues : <br>
+1. Dependent on using a registry to create a tar file from a bundle image.
+2. The tar file is created from the bundle image, which is not required if the user just wants to create a tar file having a layer as tar with configurations/metadata.
 
 ## Terminology / Concepts
-_Define any terms or concepts that are used throughout this proposal._
+1. Definitions of terms used in the proposal with respect to imgpkg can be found [here.](https://carvel.dev/imgpkg/docs/v0.37.x/)<br>
+2. Resources regarding docker save and docker load can be found [here.](https://docs.docker.com/engine/reference/commandline/save/)<br>
+3. A good article to understand OCI Artifacts can be found [here.](https://dlorenc.medium.com/oci-artifacts-explained-8f4a77945c13)
 
 ## Proposal
-_This is the primary content of the proposal explaining how the problem(s) will
-be addressed._
 
-### Goals and Non-goals
-_A short list of what the goals of this proposal are and are not._
+#### imgpkg
+imgpkg save command will be added to imgpkg. This command will create a tar file from the bundle image. The command will be used as follows : <br>
+`imgpkg save -f examples/basic-step-2 --to-tar /tmp/my-image.tar`<br>
+It should generate and save tar file at /tmp/my-image.
+
+Now in order to push the tar file to the registry, we can use the already existing copy command as follows : <br>
+`imgpkg copy --tar /tmp/my-image.tar --to-repo registry.example.com/simple-app-bundle`
+
+And also make it compatible to push the tar file directly to the registry as follows : <br>
+`imgpkg push --tar /tmp/my-image.tar --to-repo registry.example.com/simple-app-bundle`
+
+### Goals and Non-goals and Future-goals
+
+#### Goals
+1. Add functionality to `imgpkg save` to create and persist a tar file which in turn is compatible with `imgpkg copy` command.<br>
+2. Add a flag `--tar` to `imgpkg push`  to be able to push a tar with imgpkg push command.
+- Currently, `imgpkg push` creates a temp tar and then deletes it after pushing the bundle image to the registry. We should be able to  give it the tar file to push to the registry bypassing the tar creation step.
+
+#### Future Goals
+Please make sure to read 3rd point in terminology/concepts section to understand OCI Artifacts. <br>
+Making OCI Complaint tar and image : <br>
+1. Create and save the manifest and configs locally  along with tar creation.
+An example if i unzip the tar formed from docker save command : <br>
+```md
+├── 3b4a5115dfc889441134e2133c12305c1b2example.json
+├── e655b7ae7da0017fe871f5ec3d2d27d64e75example
+│   ├── VERSION
+│   ├── config.yml<br>
+│   ├── json<br>
+│   └── layer.tar<br>
+├── manifest.json<br>
+└── repositories<br>
+```
+where layer.tar is the actual original tar obtained in Goals[1]. This is an example and not the proposed structure.<br>
+- What we want to be able to do is to use the same approach to save the manifest generated by go-container library and configs locally along with the tar file, so that we can also extend the functionality to make the image and tar OCI compliant, similar to what other tools like skopeo do. The exact format is open to dicussion.<br>
+
+2. Since we will be able to edit the manifest on will, we can add `-oci` flag to `imgpkg save` and `imgpkg push` and leverage impkg save to create a OCI compliant image and tar and use it to push to the registry. <br>
+A good approach would be to have a directory structure similar to the one above, where the layer.tar is the tar file obtained in goals. <br>
 
 ### Specification / Use Cases
-_Detailed explanation of the proposal's design._
+Use Cases : 
+- User wants to build a local tar that can be pushed at a later point without being dependent on a registry.
+- While using a CI framework which allows users to share files between stages, user wants to pass this output so that it can be pushed/copied in the next stage rather than having a shared registry.
+- User can do the above with Package and PackageRepository bundles
 
 ### Other Approaches Considered
-_Mention of other reasonable ways that the problem(s)
-could be addressed with rationale for why they were less
-desirable than the proposed approach._
+- Add a flag to `imgpkg save` `-as-docker` which emulates the above directory structure in the future goals and makes it compatible with docker to be able to load the bundle as a image. This was dropped because our main priority is not making it docker compatible, but to be able to create a tar file from a bundle image.
 
 ## Open Questions
-_A list of questions that need to be answered._
-
+1. How does this change things for a pushed bundle?
+We are not allowing folks to derive this tar from a pushed bundle, as this is not a requirement. If we do this in the future, how do we persist signatures?
+2. Suggestions on deciding on the files and configs to be created and saved along with the tar file created by imgpkg save.
 ## Answered Questions
 _A list of questions that have been answered._
