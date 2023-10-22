@@ -23,15 +23,17 @@ params:
   ytt:
     name: ytt
     root_link: /ytt/
-    latest_docs_link: /ytt/docs/v0.44.0/
+    latest_docs_link: /ytt/docs/v0.46.x/
     github_url: https://github.com/carvel-dev/ytt
     search: true
     search_index_name: carvel-ytt
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.44.0
+    version_latest: v0.46.x
     versions:
     - develop
+    - v0.46.x
+    - v0.45.x
     - v0.44.0
     - v0.43.0
     - v0.42.0
@@ -43,15 +45,16 @@ params:
     name: kbld
     short_name: kbld
     root_link: /kbld/
-    latest_docs_link: /kbld/docs/v0.37.x/
+    latest_docs_link: /kbld/docs/v0.38.x/
     github_url: https://github.com/carvel-dev/kbld
     search: true
     search_index_name: carvel-kbld
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.37.x
+    version_latest: v0.38.x
     versions:
     - develop
+    - v0.38.x
     - v0.37.x
     - v0.36.0
     - v0.35.0
@@ -62,15 +65,16 @@ params:
     name: kapp
     short_name: kapp
     root_link: /kapp/
-    latest_docs_link: /kapp/docs/v0.58.x/
+    latest_docs_link: /kapp/docs/v0.59.x/
     github_url: https://github.com/carvel-dev/kapp
     search: true
     search_index_name: carvel-kapp
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.58.x
+    version_latest: v0.59.x
     versions:
     - develop
+    - v0.59.x
     - v0.58.x
     - v0.57.0
     - v0.56.0
@@ -90,15 +94,16 @@ params:
     name: imgpkg
     short_name: imgpkg
     root_link: /imgpkg/
-    latest_docs_link: /imgpkg/docs/v0.37.x/
+    latest_docs_link: /imgpkg/docs/v0.38.x/
     github_url: https://github.com/carvel-dev/imgpkg
     search: true
     search_index_name: carvel-imgpkg
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.37.x
+    version_latest: v0.38.x
     versions:
     - develop
+    - v0.38.x
     - v0.37.x
     - v0.36.x
     - v0.35.x
@@ -117,15 +122,16 @@ params:
     name: kapp-controller
     short_name: kc
     root_link: /kapp-controller/
-    latest_docs_link: /kapp-controller/docs/v0.47.x/
+    latest_docs_link: /kapp-controller/docs/v0.48.x/
     github_url: https://github.com/carvel-dev/kapp-controller
     search: true
     search_index_name: carvel-kapp-controller
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.47.x
+    version_latest: v0.48.x
     versions:
     - develop
+    - v0.48.x
     - v0.47.x
     - v0.46.0
     - v0.45.0
@@ -170,15 +176,16 @@ params:
     name: vendir
     short_name: vendir
     root_link: /vendir/
-    latest_docs_link: /vendir/docs/v0.34.x/
+    latest_docs_link: /vendir/docs/v0.35.x/
     github_url: https://github.com/carvel-dev/vendir
     search: true
     search_index_name: carvel-vendir
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.34.x
+    version_latest: v0.35.x
     versions:
     - develop
+    - v0.35.x
     - v0.34.x
     - v0.33.x
     - v0.32.0
@@ -208,3 +215,7 @@ markup:
     tabWidth: 4
 permalinks:
   tags: /blog/tags/:slug
+minify:
+  tdewolff:
+    html:
+      keepQuotes: true
