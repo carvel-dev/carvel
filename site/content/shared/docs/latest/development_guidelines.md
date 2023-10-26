@@ -1,3 +1,4 @@
+
 ---
 title: Coding Guidelines for Carvel
 ---
@@ -130,10 +131,9 @@ We write mainly e2es and units;  some tools have [performance tests](https://git
 
 ### Issues, Branching, Pull Requests, Approval
 * Issues (see also, [issue triaging docs](hhttps://github.com/carvel-dev/carvel/blob/develop/processes/issue-triage.md) for more info!)
-    * [Proposal Process](https://github.com/carvel-dev/carveltree/develop/proposals#carvel-proposals)
+    * [Proposal Process](https://github.com/carvel-dev/carvel/tree/develop/proposals#carvel-proposals)
     * Prefer to leave issues open until documentation is complete
-    * Docs typically live in a [separate
-      repo](https://github.com/carvel-dev/carveltree/develop/site) which
+    * Docs typically live in a [separate repo](https://github.com/carvel-dev/carvel/tree/develop/site) which
       renders to [https://carvel.dev](https://carvel.dev)
     * When closing the issue manually, comment which release includes the issue so that others can easily find it.
 * Branching
@@ -145,8 +145,7 @@ We write mainly e2es and units;  some tools have [performance tests](https://git
         * Currently open-ended: can be intentionally staged, messy with the intention of squashing them, etc.
         * We may revisit automated release tooling and commit squashing.
     * Generally author should ping in slack after a PR is filed and ready for review
-    * See our [issues/triage
-      doc](https://github.com/carvel-dev/carvel/blob/develop/processes/issue-triage.md) for more info!
+    * See our [issues/triage doc](https://github.com/carvel-dev/carvel/blob/develop/processes/issue-triage.md) for more info!
 * Refactors
     * If a new feature needs a large refactor, we prefer that refactor in a separate PR. At a minimum developers should put refactor in a separate commit. This helps scope reviews and minimize changesets.
 * Approvals
