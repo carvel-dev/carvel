@@ -20,20 +20,20 @@ e.g. (at)example_user
 - [ ] Lead
 
 ### Applicable Subproject
-- [ ] [carvel-kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller)
-- [ ] [carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt)
-- [ ] [carvel-kapp](https://github.com/vmware-tanzu/carvel-kapp)
-- [ ] [carvel-kbld](https://github.com/vmware-tanzu/carvel-kbld)
-- [ ] [carvel-imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg)
-- [ ] [carvel-vendir](https://github.com/vmware-tanzu/carvel-vendir)
-- [ ] [carvel-secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller)
-- [ ] [kctrl](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/cli)
+- [ ] [kapp-controller](https://github.com/carvel-dev/kapp-controller)
+- [ ] [ytt](https://github.com/carvel-dev/ytt)
+- [ ] [kapp](https://github.com/carvel-dev/kapp)
+- [ ] [kbld](https://github.com/carvel-dev/kbld)
+- [ ] [imgpkg](https://github.com/carvel-dev/imgpkg)
+- [ ] [vendir](https://github.com/carvel-dev/vendir)
+- [ ] [secretgen-controller](https://github.com/carvel-dev/secretgen-controller)
+- [ ] [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli)
 
 ### General Requirements
-- [ ] I have reviewed the code of conduct (https://github.com/vmware-tanzu/carvel/blob/develop/CODE_OF_CONDUCT.md).
+- [ ] I have reviewed the code of conduct (https://github.com/carvel-dev/carvel/blob/develop/CODE_OF_CONDUCT.md).
 - [ ] I have enabled 2FA on my GitHub account (https://github.com/settings/security).
 - [ ] I have active participation and provide support (such as GitHub, meetings, Slack, Stack Overflow) in the community for long enough to have demonstrated knowledge and competency (such as 3 months).
-- [ ] I have at least one sponsor (see [current maintainers list](https://github.com/vmware-tanzu/carvel/blob/develop/MAINTAINERS.md)).
+- [ ] I have at least one sponsor (see [current maintainers list](https://github.com/carvel-dev/carvel/blob/develop/MAINTAINERS.md)).
 - [ ] I have spoken to my sponsors ahead of this application, and they have agreed to sponsor my application.
 
 ### Role Specific Requirements

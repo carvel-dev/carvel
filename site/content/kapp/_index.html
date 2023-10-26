@@ -71,7 +71,7 @@ packages: ["carvel.dev/kapp"]
                 </div>
                 <div class="content">
                     <h3>GitOps friendly</h3>
-                    <p>Include in your <a href="/kapp/docs/latest/gitops">GitOps</a> flow via CLI command or <a href="https://github.com/vmware-tanzu/carvel-kapp-controller">kapp-controller</a></p>
+                    <p>Include in your <a href="/kapp/docs/latest/gitops">GitOps</a> flow via CLI command or <a href="https://github.com/carvel-dev/kapp-controller">kapp-controller</a></p>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@ $ kapp -y deploy -a my-app -f <(ytt -f ./examples/simple-app-example/config-1.ym
     <div class="text-content">
         <h2>Example Workflow</h2>
         <p>Install kapp following the install <a href="/kapp/docs/latest/install" target="_blank">instructions</a>.</p>
-        <p>In this example, we are installing an example app from the <a href="https://github.com/vmware-tanzu/carvel-kapp" target="_blank">kapp repository</a>.</p>
+        <p>In this example, we are installing an example app from the <a href="https://github.com/carvel-dev/kapp" target="_blank">kapp repository</a>.</p>
         <p>Note that in the changes summary we see that all the resources to be deployed are new.</p>
         {{< highlight bash-plain "" >}}
 $ kapp deploy -a app1 -f examples/simple-app-example/config-1.yml

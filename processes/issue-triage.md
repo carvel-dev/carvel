@@ -12,7 +12,7 @@ Triaging is important because it:
 - helps build prioritization, negotiation, and decision-making skills, which are critical to most tech roles.
 
 ## Who is responsible?
-The responsibility is open to anyone. If no one volunteers to triage issues, it falls on the maintainers of each tool/repo. Maintainers are listed in [`MAINTAINERS.md`](https://github.com/vmware-tanzu/carvel/blob/develop/MAINTAINERS.md).
+The responsibility is open to anyone. If no one volunteers to triage issues, it falls on the maintainers of each tool/repo. Maintainers are listed in [`MAINTAINERS.md`](https://github.com/carvel-dev/carvel/blob/develop/MAINTAINERS.md).
 
 ## When do we triage?
 Triage can happen asynchronously and continuously, or at regularly scheduled times. It's left up to the maintainers of each repo to figure out what's best for them.

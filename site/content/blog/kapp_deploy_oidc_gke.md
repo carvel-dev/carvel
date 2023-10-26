@@ -86,7 +86,7 @@ jobs:
           location: us-central1-a
 
       - id: install-kapp
-        uses: vmware-tanzu/carvel-setup-action@v1
+        uses: carvel-dev/setup-action@v1
         with:
           only: kapp
          
@@ -98,12 +98,4 @@ jobs:
 
 We created this [sample GitHub repo](https://github.com/k14s/kaap-deploy-oidc) for reference to help guide you, which contains a GitHub Action and simple-app.yml which we deploy on GKE using kapp as mentioned above. Thanks for following along! We hope you found this helpful.
 
-## Join us on Slack and GitHub
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how and when to attend.
-
-
+{{< blog_footer >}}

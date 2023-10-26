@@ -120,19 +120,19 @@ Documentation:
 
 Examples:
 - Declaring and using Data Values in schema: \
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/schema
+  https://github.com/carvel-dev/ytt/tree/develop/examples/schema
 - Setting a value for an _array_ in schema: \
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/schema-arrays
+  https://github.com/carvel-dev/ytt/tree/develop/examples/schema-arrays
 - Using most of the `--data-value...` flags:\
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values/
+  https://github.com/carvel-dev/ytt/tree/develop/examples/data-values/
 - Marking a data value as "required":\
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-required/
+  https://github.com/carvel-dev/ytt/tree/develop/examples/data-values-required/
 - Maintaining per-environment data value overrides:\
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-multiple-envs
+  https://github.com/carvel-dev/ytt/tree/develop/examples/data-values-multiple-envs
 - Wrapping an upstream set of templates to expose a simplified set of data values:\
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-wrap-library
+  https://github.com/carvel-dev/ytt/tree/develop/examples/data-values-wrap-library
 - Using a directory full of YAML files for data values input:\
-  https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples/data-values-directory
+  https://github.com/carvel-dev/ytt/tree/develop/examples/data-values-directory
 
 Blog Articles:
 - [Parameterizing Project Configuration with ytt](https://carvel.dev/blog/parameterizing-project-config-with-ytt/), by Garrett Cheadle

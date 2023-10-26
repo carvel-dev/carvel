@@ -67,7 +67,7 @@ spec:
   serviceAccountName: default-ns-sa
   fetch:
   - git:
-      url: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
+      url: https://github.com/carvel-dev/simple-app-on-kubernetes
       ref: origin/develop
       subPath: config-step-2-template
   template:
@@ -76,11 +76,11 @@ spec:
   - kapp: {}
 {{< / highlight>}}
 
-<p>Install <a href="https://github.com/vmware-tanzu/carvel-kapp-controller/blob/develop/examples/rbac/default-ns.yml">
+<p>Install <a href="https://github.com/carvel-dev/kapp-controller/blob/develop/examples/rbac/default-ns.yml">
     our default-ns-rbac example</a>. It creates the default-ns-sa service account that allows us to change any
   resource in the default namespace. It used as the serviceAccountName in the app spec above.</p>
 {{< highlight  bash "">}}
-  $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+  $ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/carvel-dev/kapp-controller/develop/examples/rbac/default-ns.yml
 {{< / highlight>}}
 
     <p>Apply the App CR to your cluster and verify the deployment was successful:</p>

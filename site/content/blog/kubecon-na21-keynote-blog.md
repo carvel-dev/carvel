@@ -44,12 +44,4 @@ We recommend that you get started using the below resources. For any more inform
 * [Create your first package to distribute it to your users](/kapp-controller/docs/latest/package-authoring/)
 * [Check out how the U.S. Army is using kapp-controller in production](/blog/casestudy-modernizing-the-us-army)
 
-## Join us on Slack and GitHub
-
-We are excited about this new adventure and we want to hear from you and learn with you. Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
-
-We look forward to hearing from you and hope you join us in building a strong packaging and distribution story for applications on Kubernetes!
+{{< blog_footer >}}

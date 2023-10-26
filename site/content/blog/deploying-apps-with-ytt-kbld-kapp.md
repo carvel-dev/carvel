@@ -26,7 +26,7 @@ For each stage, we have open sourced a tool that we believe addresses that stage
 - building: [kbld](/kbld) for building Docker images and resolving image references
 - deployment: [kapp](/kapp) for deploying Kubernetes resources
 
-We'll use [carvel-simple-app-on-kubernetes application](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes) as our example to showcase how these tools can work together to develop and deploy a Kubernetes application.
+We'll use [carvel-simple-app-on-kubernetes application](https://github.com/carvel-dev/simple-app-on-kubernetes) as our example to showcase how these tools can work together to develop and deploy a Kubernetes application.
 
 ## Preparation
 
@@ -39,10 +39,10 @@ Before getting too deep, let's get some basic preparations out of the way:
 ---
 ## Deploying the application
 
-To get started with our example application, clone [carvel-simple-app-on-kubernetes](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes) locally:
+To get started with our example application, clone [carvel-simple-app-on-kubernetes](https://github.com/carvel-dev/simple-app-on-kubernetes) locally:
 
 ```bash-plain
-$ git clone https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes
+$ git clone https://github.com/carvel-dev/simple-app-on-kubernetes
 $ cd carvel-simple-app-on-kubernetes
 ```
 
@@ -60,7 +60,7 @@ config-step-3-build-local
 config-step-4-build-and-push
 ```
 
-Typically, an application deployed to Kubernetes will include Deployment and Service resources in its configuration. In our example, [`config-step-1-minimal/` directory](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-1-minimal/) contains `config.yml` which contains exactly that. (Note that the Docker image is already preset and environment variable `HELLO_MSG` is hard coded. We'll get to those shortly.)
+Typically, an application deployed to Kubernetes will include Deployment and Service resources in its configuration. In our example, [`config-step-1-minimal/` directory](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/config-step-1-minimal/) contains `config.yml` which contains exactly that. (Note that the Docker image is already preset and environment variable `HELLO_MSG` is hard coded. We'll get to those shortly.)
 
 Traditionally, you can use `kubectl apply -f config-step-1-minimal/config.yml` to deploy this application. However, kubectl (1) does not indicate which resources are affected and how they are affected before applying changes, and (2) does not yet have a robust prune functionality to converge a set of resources ([GH issue](https://github.com/kubernetes/kubectl/issues/572)). kapp addresses and improves on several kubectl's limitations as it was designed from the start around the notion of a "Kubernetes Application" - a set of resources with the same label:
 
@@ -173,7 +173,7 @@ $ kubectl port-forward svc/simple-app 8080:80
 
 One downside to the kubectl command above: it has to be restarted if the application pod is recreated.
 
-Alternatively, you can use Carvel's [kwt](https://github.com/vmware-tanzu/carvel-kwt) tool which exposes cluster IP subnets and cluster DNS to your machine. This way, you can access the application without requiring any restarts.
+Alternatively, you can use Carvel's [kwt](https://github.com/carvel-dev/kwt) tool which exposes cluster IP subnets and cluster DNS to your machine. This way, you can access the application without requiring any restarts.
 
 With kwt installed, run the following command
 
@@ -186,7 +186,7 @@ and open [http://simple-app.default.svc.cluster.local/](http://simple-app.defaul
 ---
 ## Deploying configuration changes
 
-Let's make a change to the application configuration to simulate a common occurrence in a development workflow. A simple observable change we can make is to change the value of the `HELLO_MSG` environment variable in [`config-step-1-minimal/config.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-1-minimal/config.yml):
+Let's make a change to the application configuration to simulate a common occurrence in a development workflow. A simple observable change we can make is to change the value of the `HELLO_MSG` environment variable in [`config-step-1-minimal/config.yml`](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/config-step-1-minimal/config.yml):
 
 ```diff
          - name: HELLO_MSG
@@ -259,7 +259,7 @@ This problem is typically solved in two ways: templating or patching. ytt suppor
 
 Unlike many [other tools used for templating](/ytt/docs/latest/ytt-vs-x/), ytt takes a different approach to working with YAML files. Instead of interpreting YAML configuration as plain text, it works with YAML structures such as maps, lists, YAML documents, scalars, etc. By doing so ytt is able to eliminate a lot of problems that plague other tools (character escaping, ambiguity, etc.). Additionally ytt provides Python-like language ([Starlark](https://github.com/bazelbuild/starlark)) that executes in a hermetic environment making it friendly, yet more deterministic compared to just using general purpose languages directly or non-familiar custom templating languages. Take a look at [ytt](/ytt).
 
-To tie it all together, let's take a look at [`config-step-2-template/config.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2-template/config.yml). You'll immediately notice that YAML comments (`#@ ...`) store templating metadata within a YAML file, for example:
+To tie it all together, let's take a look at [`config-step-2-template/config.yml`](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/config-step-2-template/config.yml). You'll immediately notice that YAML comments (`#@ ...`) store templating metadata within a YAML file, for example:
 
 ```yaml
         env:
@@ -267,7 +267,7 @@ To tie it all together, let's take a look at [`config-step-2-template/config.yml
           value: #@ data.values.hello_msg
 ```
 
-Above snippet tells ytt that `HELLO_MSG` environment variable value should be set to the value of `data.values.hello_msg`. `data.values` structure comes from the builtin ytt data library that allows us to expose configuration knobs through a separate file, namely [`config-step-2-template/values.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2-template/values.yml). Deployers of simple-app can now decide, for example, what hello message to set without making application code or configuration changes.
+Above snippet tells ytt that `HELLO_MSG` environment variable value should be set to the value of `data.values.hello_msg`. `data.values` structure comes from the builtin ytt data library that allows us to expose configuration knobs through a separate file, namely [`config-step-2-template/values.yml`](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/config-step-2-template/values.yml). Deployers of simple-app can now decide, for example, what hello message to set without making application code or configuration changes.
 
 Let's chain ytt and kapp to deploy an update, and note `-v` flag which sets `hello_msg` value.
 
@@ -327,7 +327,7 @@ Check out [ytt overview w/ interactive playground](/ytt) and [ytt docs](/ytt/doc
 
 ytt also offers another way to customize application configuration. Instead of relying on configuration authors (e.g. here authors of carvel-simple-app-on-kubernetes) to expose a set of configuration knobs, configuration consumers (e.g. here users that deploy carvel-simple-app-on-kubernetes) can use the [ytt overlay feature](/ytt/docs/latest/lang-ref-ytt-overlay/) to patch YAML documents with arbitrary changes.
 
-For example, our simple app configuration templates do not make Deployment's `spec.replicas` configurable as a data value to control how may Pods are running. Instead of asking authors of simple app to expose a new data value, we can create an overlay file [`config-step-2a-overlays/custom-scale.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-2a-overlays/custom-scale.yml) that changes `spec.replicas` to a new value. Here is how it looks:
+For example, our simple app configuration templates do not make Deployment's `spec.replicas` configurable as a data value to control how may Pods are running. Instead of asking authors of simple app to expose a new data value, we can create an overlay file [`config-step-2a-overlays/custom-scale.yml`](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/config-step-2a-overlays/custom-scale.yml) that changes `spec.replicas` to a new value. Here is how it looks:
 
 ```yaml
 #@ load("@ytt:overlay", "overlay")
@@ -399,9 +399,9 @@ Check out [ytt's Overlay module docs](/ytt/docs/latest/lang-ref-ytt-overlay/).
 
 Kubernetes embraced use of container images to package source code and its dependencies. One way to deliver updated application is to rebuild a container when changing source code. [kbld](/kbld) is a small tool that provides a simple way to insert container image building into deployment workflow. kbld looks for images within application configuration (currently it looks for image keys), checks if there is an associated source code, if so builds these images via Docker (could be pluggable with other builders), and finally captures built image digests and updates configuration with new references.
 
-Before running kbld, let's change [`app.go`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/app.go) by uncommenting `fmt.Fprintf(w, "<p>local change</p>")` to make a small change in our application.
+Before running kbld, let's change [`app.go`](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/app.go) by uncommenting `fmt.Fprintf(w, "<p>local change</p>")` to make a small change in our application.
 
-[`config-step-3-build-local/build.yml`](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/blob/develop/config-step-3-build-local/build.yml) is a new file in this config directory, which specifies that `docker.io/dkalinin/k8s-simple-app` image should be built from the current working directory where kbld runs (root of the repo).
+[`config-step-3-build-local/build.yml`](https://github.com/carvel-dev/simple-app-on-kubernetes/blob/develop/config-step-3-build-local/build.yml) is a new file in this config directory, which specifies that `docker.io/dkalinin/k8s-simple-app` image should be built from the current working directory where kbld runs (root of the repo).
 
 If you are using Minikube, make sure kbld has access to Docker CLI bundled inside Minikube by running:
 
@@ -510,7 +510,7 @@ resolve | final: docker.io/dkalinin/k8s-simple-app -> kbld:docker-io-dkalinin-k8
       7 +         - Path: /Users/dk/workspace/k14s-go/src/github.com/k14s/carvel-simple-app-on-kubernetes
       8 +           Type: local
       9 +         - Dirty: true
-     10 +           RemoteURL: git@github.com:vmware-tanzu/carvel-simple-app-on-kubernetes
+     10 +           RemoteURL: git@github.com:carvel-dev/simple-app-on-kubernetes
      11 +           SHA: 44625e5199dabaf1f90c92b78ff1dd524649136d
      12 +           Type: git
      13 +         URL: kbld:docker-io-dkalinin-k8s-simple-app-sha256-f7f3662589ff5a746c70c5ef6c644aad7c8e5804457aec374764e71d48a69ab1
@@ -562,7 +562,7 @@ Image     kbld:docker-io-dkalinin-k8s-simple-app-sha256-f7f3662589ff5a746c70c5ef
 Metadata  - Path: /Users/dk/workspace/k14s-go/src/github.com/k14s/carvel-simple-app-on-kubernetes
             Type: local
           - Dirty: true
-            RemoteURL: git@github.com:vmware-tanzu/carvel-simple-app-on-kubernetes
+            RemoteURL: git@github.com:carvel-dev/simple-app-on-kubernetes
             SHA: 44625e5199dabaf1f90c92b78ff1dd524649136d
             Type: git
 Resource  deployment/simple-app (apps/v1) namespace: default
@@ -665,10 +665,4 @@ Succeeded
 
 We've seen how [ytt](/ytt), [kbld](/kbld), and [kapp](/kapp) can be used together to deploy and iterate on an application running on Kubernetes. Each one of these tools has been designed to be single-purpose and composable with other tools in the larger Kubernetes ecosystem.
 
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

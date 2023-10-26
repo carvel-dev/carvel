@@ -59,9 +59,9 @@ It is not easy to get started contributing to Open-Source Software. But there ar
 
 Here are some suggestions where you can contribute:
 - **Improve documentation** by adding information/summary/missing steps
-- **Add examples** to [repo](https://github.com/vmware-tanzu/carvel-ytt/tree/develop/examples)
+- **Add examples** to [repo](https://github.com/carvel-dev/ytt/tree/develop/examples)
 - **Raise issues**/bugs
-- **Check for issues** labeled with [Good first issue](https://github.com/search?q=repo%3Avmware-tanzu%2Fcarvel-ytt+repo%3Avmware-tanzu%2Fcarvel-kapp+repo%3Avmware-tanzu%2Fcarvel-imgpkg+repo%3Avmware-tanzu%2Fvmware-tanzu%2Fcarvel-kapp-controller+repo%3Avmware-tanzu%2Fcarvel-kbld+repo%3Avmware-tanzu%2Fcarvel-vendir+repo%3Avmware-tanzu%2Fcarvel-kapp-controller+label%3A%22good+first+issue%22&type=issues)
+- **Check for issues** labeled with [Good first issue](https://github.com/search?q=repo%3Acarvel-dev%2Fytt+repo%3Acarvel-dev%2Fkapp+repo%3Acarvel-dev%2Fimgpkg+repo%3Acarvel-dev%2Fkapp-controller+repo%3Acarvel-dev%2Fkbld+repo%3Acarvel-dev%2Fvendir+repo%3Acarvel-dev%2Fkapp-controller+label%3A%22good+first+issue%22&type=issues)
 - **Add FAQs** or “How to” section for a common problem/scenario
 
 
@@ -73,7 +73,7 @@ Here are some suggestions where you can contribute:
 - Take the [ Product Tour](https://tanzu.vmware.com/developer/workshops/lab-getting-started-with-carvel/)
 (note: VMware's Tanzu products use Carvel, but you do not have to learn anything about Tanzu to use Carvel, yourself)
 - Visit the [Contributing Doc](https://carvel.dev/shared/docs/latest/contributing/) for reference
-- Fork and clone a repo - e.g. [carvel-ytt](https://github.com/vmware-tanzu/carvel-ytt)
+- Fork and clone a repo - e.g. [carvel-ytt](https://github.com/carvel-dev/ytt)
 - Make the appropriate changes and raise a Pull Request (PR)  
 - Reach out to us via [Carvel's Slack Channel](https://kubernetes.slack.com/archives/CH8KCCKA5) in the Kubernetes Slack Workspace for any support you need.\
   _(visit http://slack.k8s.io/ to join the Kubernetes Slack workspace if you are not already there.)_
@@ -85,13 +85,4 @@ Looking forward to seeing your first contribution!
 _This is the first blog in a series on how you can contribute to open-source projects like Carvel. So, stay tuned ..._
 
 
-## Join the Carvel Community
-
-The Carvel team is very helpful and welcoming to contributions and feedback. We love users who play around with our tools and raise an issue or reach out to us in Slack. We are also eager to know how you are using our tools, which product features you love the most, and which new features you want to be included in our tools.
-Here are several ways you can get involved:
-- Join the [Carvel's Slack Channel](https://kubernetes.slack.com/archives/CH8KCCKA5) in the Kubernetes Slack Workspace.\
-  _(visit http://slack.k8s.io/ to join the Kubernetes Slack workspace if you are not already there.)_
-- Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-- We also encourage you to attend our [community meetings](https://carvel.dev/community/) to get face-to-face interaction with the maintainers and other members of the community.
-
-
+{{< blog_footer >}}

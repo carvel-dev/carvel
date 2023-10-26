@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/vmware-tanzu/carvel/master/logos/CarvelLogo.png)
+![logo](https://raw.githubusercontent.com/carvel-dev/carvel/master/logos/CarvelLogo.png)
 # Website for [carvel.dev](https://carvel.dev)
 
 ## Local Development

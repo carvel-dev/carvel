@@ -215,12 +215,4 @@ Continue? [yN]: y
 Succeeded
 ```
 
-## Join us on Slack and GitHub
-
-We want to hear from you and learn with you. Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace and connect with over 1000+ Carvel users.
-* Find us on [GitHub]({{% named_link_url "github_url" %}}). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](https://carvel.netlify.app/community/) for full details on how to attend.
-
-We look forward to hearing from you!
+{{< blog_footer >}}

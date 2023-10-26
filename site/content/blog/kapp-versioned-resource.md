@@ -558,10 +558,4 @@ After adding annotion `kapp.k14s.io/versioned-explicit-ref` to the custom resour
 
 Congratulations! We now know how we can leverage `kapp` to manage inter-dependent resources better and help us get more done declaratively.
 
-## Join us on Slack and GitHub
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how and when to attend.
+{{< blog_footer >}}

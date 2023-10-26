@@ -38,7 +38,7 @@ $ wget -O- https://carvel.dev/install.sh > install.sh
 # Inspect install.sh before running...
 $ sudo bash install.sh
 # Install kapp-controller
-$ kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+$ kubectl apply -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
 ```
 
 --------------------------
@@ -253,7 +253,7 @@ As we can see, our published Nginx Helm package is available for us to install.
 **3. Create Service Account**: To install the above package, we need to create `default-ns-sa` service account that gives PackageInstall CR privileges to create resources in the default namespace.
 
 ```bash
-$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml -y
+$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/carvel-dev/kapp-controller/develop/examples/rbac/default-ns.yml -y
 Target cluster 'https://192.168.64.32:8443' (nodes: minikube)
 
 Changes
@@ -396,11 +396,4 @@ Response from Custom Server
 
 You have successfully wrapped, distributed, and installed an existing Helm chart as a Carvel package.
 
-
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

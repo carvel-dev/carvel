@@ -95,21 +95,21 @@ directories:
   contents:
   - path: app
     git:
-      url: https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes
+      url: https://github.com/carvel-dev/ytt-library-for-kubernetes
       ref: origin/develop
     newRootPath: app
 {{< / highlight >}}
         <p>Execute <code>vendir sync</code> command to download specified assets.</p>
         {{< highlight bash "" >}}
 $ vendir sync
-Fetching: config/_ytt_lib + app (git from https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes@origin/develop)
+Fetching: config/_ytt_lib + app (git from https://github.com/carvel-dev/ytt-library-for-kubernetes@origin/develop)
 
   --> git init
   Initialized empty Git repository in /tmp/build/ary23/foo/.vendir-tmp/incoming/git/.git/
   --> git config credential.helper store --file /tmp/build/ary23/foo/.vendir-tmp/incoming/git-auth/.git-credentials
-  --> git remote add origin https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes
+  --> git remote add origin https://github.com/carvel-dev/ytt-library-for-kubernetes
   --> git fetch origin
-  From https://github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes
+  From https://github.com/carvel-dev/ytt-library-for-kubernetes
    * [new branch]      develop    -> origin/develop
   --> git -c advice.detachedHead=false checkout origin/develop
   HEAD is now at 916fba7... adding action for marking issues as stale and closing stale issues

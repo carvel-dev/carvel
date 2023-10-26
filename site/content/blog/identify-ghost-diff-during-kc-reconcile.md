@@ -256,16 +256,9 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 
 Here, as we can see, the change in the number of replicas has resulted in the creation of ghost diffs. This is because HPA has reduced the no. of Replicas since there is no load on the server.
 
-Note: There is already an opened [issue](https://github.com/vmware-tanzu/carvel-kapp/issues/338) in kapp which will allow users to view the diff information by running `app-change`. Once it is available, users can directly see the diff information in the config map and they can skip the whole process of creating a new package and adding `diff-changes=true` to kapp.
+Note: There is already an opened [issue](https://github.com/carvel-dev/kapp/issues/338) in kapp which will allow users to view the diff information by running `app-change`. Once it is available, users can directly see the diff information in the config map and they can skip the whole process of creating a new package and adding `diff-changes=true` to kapp.
 
 This is how a Package consumer can discover the reason for ghost diffs and take appropriate action. In this case, adding a [rebase rule](https://carvel.dev/kapp/docs/latest/hpa-deployment-rebase/#docs) will remove the ghost diffs.
 
 
-
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

@@ -15,14 +15,14 @@ At a high level a deployment using Argo CD starts with a configuration change. A
 ## You will need these to start your journey:
 - [argocd cli](https://argo-cd.readthedocs.io/en/stable/getting_started/#2-download-argo-cd-cli)
 - Kubernetes cluster (I'm using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-with-a-package-manager))
-- [kapp](https://github.com/vmware-tanzu/carvel-kapp) or [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-- [ytt](https://github.com/vmware-tanzu/carvel-ytt)
+- [kapp](https://github.com/carvel-dev/kapp) or [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [ytt](https://github.com/carvel-dev/ytt)
 
 ## Create the Carvel Plugin
 To make the Carvel plugin available to the application we want to deploy, we need to make a couple patches to the Argo CD cluster configuration. We can do this with ytt overlays!
 
 ### Adding carvel-ytt binary to `argocd-repo-server`
-This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Adding this configuration to the existing deployment creates an `initContainer` using an [image](https://github.com/vmware-tanzu/carvel-docker-image) we publish that contains the Carvel tools. The container copies the ytt binary via a shared volume at `/custom-tools`, explained further in the [Argo docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/custom_tools/#adding-tools-via-volume-mounts).
+This overlay will copy the binary for ytt to the `argocd-repo-server` pod. Adding this configuration to the existing deployment creates an `initContainer` using an [image](https://github.com/carvel-dev/docker-image) we publish that contains the Carvel tools. The container copies the ytt binary via a shared volume at `/custom-tools`, explained further in the [Argo docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/custom_tools/#adding-tools-via-volume-mounts).
 
 ```yaml
 #! repo-server-overlay.yml
@@ -94,7 +94,7 @@ $ kapp deploy --app argo --namespace argocd -f <(ytt -f argocd-cm-overlay.yml -f
 ```
 
 ## Create and template an Application with the ytt plugin
-Now, create an Application resource that watches [this](https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes/tree/develop/config-step-2-template) git repo directory `config-step-2-template/`. This directory contains a simple ytt template and data values for a Service and Deployment.
+Now, create an Application resource that watches [this](https://github.com/carvel-dev/simple-app-on-kubernetes/tree/develop/config-step-2-template) git repo directory `config-step-2-template/`. This directory contains a simple ytt template and data values for a Service and Deployment.
 
 ```shell    
 $ tree .
@@ -122,7 +122,7 @@ spec:
   syncPolicy:
     automated: {}
   source:
-    repoURL: https://github.com/vmware-tanzu/carvel-simple-app-on-kubernetes.git
+    repoURL: https://github.com/carvel-dev/simple-app-on-kubernetes.git
     targetRevision: develop
     path: config-step-2-template
 
@@ -163,10 +163,4 @@ For fun, after you port forward, you can view the app at `127.0.0.1:8080`. Visit
 $ kubectl port-forward svc/simple-app 8080:80 --namespace default
 ```
 
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

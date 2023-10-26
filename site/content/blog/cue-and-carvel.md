@@ -412,12 +412,4 @@ Here is what will happen once above App CR is on the cluster:
 
 These were two short and sweet examples of how to use CUE and kapp-controller together as part of your GitOps workflow. And let us know if you are interested to learn how to turn your App CR into a Package CR so that you can easily distribute your CUE templates as Carvel packages (with help of [Carvel's imgpkg](/imgpkg)) but for now -- that's a wrap.
 
-## Join us on Slack and GitHub
-
-We want to hear from you and learn with you. Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace and connect with over 1000+ Carvel users.
-* Find us on [GitHub]({{% named_link_url "github_url" %}}). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
-
-We look forward to hearing from you!
+{{< blog_footer >}}

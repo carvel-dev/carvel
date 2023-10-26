@@ -232,10 +232,4 @@ The disadvantage of using this annotation is that kapp wouldn't show the _Replic
 ### Option 2
 The other option is to use the `fallback-on-replace` update-strategy as mentioned above which would delete and recreate the Deployment, but with a downtime.
 
-## Join us on Slack and GitHub
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

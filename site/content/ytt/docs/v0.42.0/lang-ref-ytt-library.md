@@ -68,7 +68,7 @@ Contructs a new [`@ytt:library.instance`](#library-instances) based on the conte
 instance = library.get(name, [<kwargs>])
 ```
 
-- **`name`** (`string`) — path to the base directory of the desired library: `./_ytt_lib/<name>`. Can contain slashes `/` for sub-directories (e.g. `github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes/app`)
+- **`name`** (`string`) — path to the base directory of the desired library: `./_ytt_lib/<name>`. Can contain slashes `/` for sub-directories (e.g. `github.com/carvel-dev/ytt-library-for-kubernetes/app`)
 - keyword arguments (optional):
   - **`alias=`** (`string`) — unique name for this library instance. See [Aliases](#aliases), below.
   - **`ignore_unknown_comments=`** (`bool`) — equivalent to `ytt --ignore-unknown-comments`; see [File Marks > type detection for YAML files](file-marks.md#type-detection-for-yaml-files) for more details (default: `False`). (as of v0.31.0)
@@ -245,7 +245,7 @@ Only supported on documents annotated with `@data/values` and `@data/values-sche
 ```
 @library/ref library_name
 ```
-- **`library_name`** (`string`) — `@`-prefixed path to the base directory of the desired library: `./_ytt_lib/<name>`. Can contain slashes `/` for sub-directories (e.g. `github.com/vmware-tanzu/carvel-ytt-library-for-kubernetes/app`). Can also be an [alias](#aliases) for specific library instance(s).
+- **`library_name`** (`string`) — `@`-prefixed path to the base directory of the desired library: `./_ytt_lib/<name>`. Can contain slashes `/` for sub-directories (e.g. `github.com/carvel-dev/ytt-library-for-kubernetes/app`). Can also be an [alias](#aliases) for specific library instance(s).
 
 **Examples:**
 

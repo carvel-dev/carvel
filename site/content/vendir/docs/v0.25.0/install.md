@@ -29,17 +29,17 @@ $ vendir version
 
 ## Via Homebrew (macOS or Linux)
 
-Based on [github.com/vmware-tanzu/homebrew-carvel](https://github.com/vmware-tanzu/homebrew-carvel).
+Based on [github.com/carvel-dev/homebrew](https://github.com/carvel-dev/homebrew).
 
 ```bash
-$ brew tap vmware-tanzu/carvel
+$ brew tap carvel-dev/carvel
 $ brew install vendir
 $ vendir version
 ```
 
 ## Specific version from a GitHub release
 
-To download, click on one of the assets in a [chosen GitHub release](https://github.com/vmware-tanzu/carvel-vendir/releases), for example for 'vendir-darwin-amd64'.
+To download, click on one of the assets in a [chosen GitHub release](https://github.com/carvel-dev/vendir/releases), for example for 'vendir-darwin-amd64'.
 
 ```bash
 # **Compare binary checksum** against what's specified in the release notes

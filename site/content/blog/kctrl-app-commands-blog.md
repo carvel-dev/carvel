@@ -10,7 +10,7 @@ tags: ['carvel', 'kapp-controller', 'gitops', 'apps', 'kctrl', 'cli']
 
 Since the previous release of `kctrl`, we have been iterating over how we can help users take a closer look at what App CRs are doing on the cluster. This includes ones authored by users and those that are created as a result of package installations.
 
-As promised, the latest release of `kctrl` introduces a set of commands which allow users to observe and interact with App CRs more conveniently. [`kctrl` v0.36.1](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.36.1) also introduces a status tailing experience which surfaces relevant information while waiting for resources to reconcile.
+As promised, the latest release of `kctrl` introduces a set of commands which allow users to observe and interact with App CRs more conveniently. [`kctrl` v0.36.1](https://github.com/carvel-dev/kapp-controller/releases/tag/v0.36.1) also introduces a status tailing experience which surfaces relevant information while waiting for resources to reconcile.
 
 # The `app` commands
 These commands aim to help users manage App CRs on the cluster better. Lets dig in and see what they look like!
@@ -502,10 +502,4 @@ In line with the app commands, `kctrl` has `package installed pause`, `package i
 
 The `app` commands and enhancements to the `package` improve observability and help users get to know what their apps are doing better!
 
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

@@ -39,19 +39,13 @@ Today, before package authors start on their authoring journey, are required to 
 
 ![Kctrl flow for kubernetes-package-authoring](/images/blog/introducing-kctrl-package-authoring-commands.png)
 
-All these commands are available from version [v0.40.0+](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest). You can find a tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/develop/kctrl-package-authoring.md)!
+All these commands are available from version [v0.40.0+](https://github.com/carvel-dev/kapp-controller/releases/latest). You can find a tutorial with end to end workflow for package authoring [here](/kapp-controller/docs/develop/kctrl-package-authoring.md)!
 
 ## We'd love your feedback!
-`kctrl` [v0.40.0](https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.40.0) is an alpha release of the package authoring commands. We are excited for you to try out the tool and eager to hear about your experiences and how it solves your use-case. There is a GitHub [issue](https://github.com/vmware-tanzu/carvel-kapp-controller/issues/831) created to collect the feedback/feature request/suggestion which you would like to see in the future releases. We encourage you to post it there. Alternatively, you can post it in the [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) slack channel.
+`kctrl` [v0.40.0](https://github.com/carvel-dev/kapp-controller/releases/tag/v0.40.0) is an alpha release of the package authoring commands. We are excited for you to try out the tool and eager to hear about your experiences and how it solves your use-case. There is a GitHub [issue](https://github.com/carvel-dev/kapp-controller/issues/831) created to collect the feedback/feature request/suggestion which you would like to see in the future releases. We encourage you to post it there. Alternatively, you can post it in the [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) slack channel.
 
 ## Are you using Carvel?
 
-If you are using any of the Carvel tools, first we would like to thank you! Our goal is to grow the community, improve Carvel and help each other. One of the best ways that helps us do that is to know how others are using the tools. Please add a comment to [this pinned issue](https://github.com/vmware-tanzu/carvel/issues/213) with details on your use case with any of the Carvel tools.
+If you are using any of the Carvel tools, first we would like to thank you! Our goal is to grow the community, improve Carvel and help each other. One of the best ways that helps us do that is to know how others are using the tools. Please add a comment to [this pinned issue](https://github.com/carvel-dev/carvel/issues/213) with details on your use case with any of the Carvel tools.
 
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}

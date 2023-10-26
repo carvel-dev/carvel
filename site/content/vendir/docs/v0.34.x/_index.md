@@ -22,4 +22,4 @@ Supported sources for fetching:
 - helmChart
 - directory
 
-Examples could be found in [carvel-vendir's `examples/` directory](https://github.com/vmware-tanzu/carvel-vendir/tree/develop/examples).
+Examples could be found in [carvel-vendir's `examples/` directory](https://github.com/carvel-dev/vendir/tree/develop/examples).

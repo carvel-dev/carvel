@@ -23,16 +23,16 @@ This is a great feature for reducing friction when running end-to-end tests duri
 Tilt supports deployment to local machine, docker, kubernetes and custom targets.  
 
 Tilt is configured using a [Starlark](https://github.com/bazelbuild/starlark) based language that will feel familiar to 
-[ytt](https://github.com/vmware-tanzu/carvel-ytt) users. By using a flexible configuration language, Tilt can easily
+[ytt](https://github.com/carvel-dev/ytt) users. By using a flexible configuration language, Tilt can easily
 be customized for individual needs and integrated with existing workflows.
 
 ## Tools you will need to run the demo
 - [tilt cli](https://docs.tilt.dev/index.html)
 - [go](https://go.dev/doc/install) for building the demo
 - Kubernetes cluster such as [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-with-a-package-manager)
-- [kapp](https://github.com/vmware-tanzu/carvel-kapp)
-- [ytt](https://github.com/vmware-tanzu/carvel-ytt)
-- [kbld](https://github.com/vmware-tanzu/carvel-kbld)
+- [kapp](https://github.com/carvel-dev/kapp)
+- [ytt](https://github.com/carvel-dev/ytt)
+- [kbld](https://github.com/carvel-dev/kbld)
 
 ## Checkout the demo project
 
@@ -62,7 +62,7 @@ The repository contains a simple Go webserver and a set of manifests for deployi
 ```
 
 ## Render Kubernetes manifests with ytt
-The demo uses [ytt](https://github.com/vmware-tanzu/carvel-ytt) to render the Kubernetes YAML, this allows variables such as HTTP port to be substituted at build time.
+The demo uses [ytt](https://github.com/carvel-dev/ytt) to render the Kubernetes YAML, this allows variables such as HTTP port to be substituted at build time.
 The YAML can be rendered with the command 
 ```shell
 ytt -f deployments
@@ -76,7 +76,7 @@ ytt -f deployments --data-value-yaml port=8085
 Note, `--data-value-yaml` is used instead of `--data-value` because port is an integer value
 
 ## Building the image with kbld
-[kbld](https://github.com/vmware-tanzu/carvel-kbld) is used to build the image, this is a very useful tool for local development as it will automatically tag
+[kbld](https://github.com/carvel-dev/kbld) is used to build the image, this is a very useful tool for local development as it will automatically tag
 the image and update the Kubernetes manifests. Updating the tag every build is important as it ensures Kubernetes
 will use the latest image version.
 
@@ -97,7 +97,7 @@ ytt -f deployments -v registry=${REGISTRY} | kbld -f -
 The output will show the Kubernetes yaml has been updated to use the tag of freshly built image
 
 ## Deploy to Kubernetes with kapp
-Now we know how to build and tag the image, [kapp](https://github.com/vmware-tanzu/carvel-kapp) can deploy the application. `kapp` builds on the functionality
+Now we know how to build and tag the image, [kapp](https://github.com/carvel-dev/kapp) can deploy the application. `kapp` builds on the functionality
 of `kubectl apply -f ...` by grouping resources and managing dependencies them.
 
 The app can be deployed with the command
@@ -195,10 +195,4 @@ You can see the complete Tiltfile here [https://github.com/ojhughes/carvel-tilt-
 ### See it in action!
 ![](/images/blog/tilt-animated-demo.gif)
 
-## Join the Carvel Community
-
-We are excited to hear from you and learn with you! Here are several ways you can get involved:
-
-* Join Carvel's slack channel, [#carvel in Kubernetes]({{% named_link_url "slack_url" %}}) workspace, and connect with over 1000+ Carvel users.
-* Find us on [GitHub](https://github.com/vmware-tanzu/carvel). Suggest how we can improve the project, the docs, or share any other feedback.
-* Attend our Community Meetings! Check out the [Community page](/community/) for full details on how to attend.
+{{< blog_footer >}}
