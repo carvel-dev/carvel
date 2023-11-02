@@ -127,7 +127,7 @@ Op:      2 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 2 reconcile, 0 delete, 0 noop
 ```
 
-You can control number of kept resource versions via `kapp.k14s.io/num-versions=int` annotation.
+You can control number of kept resource versions via `kapp.k14s.io/num-versions=str(int)` annotation, e.g. `kapp.k14s.io/num-versions: "5"`. 
 
 As of v0.41.0+, the `kapp.k14s.io/versioned-explicit-ref` can be used to explicitly refer to a versioned resource. This annotation allows a resource to be updated whenever a new version of the referred resource is created.
 
