@@ -14,8 +14,9 @@ If you are attending [KubeCon + CloudNativeCon North America](https://events.lin
     - **Location:** Cord (Hilton, level 3) - Hilton Garden Inn Chicago McCormick Place; connected to McCormick Place by skybridge. The skybridge at McCormick Place is on level 3.
     - **Agenda**
         - Welcome + Introductions
-        - Brief overview of the status of Carvel
-        - Open the floor to questions - What would folks like to talk about? Any demo requests? Anything you need help with?
+        - Brief overview of Carvel
+        - Roadmap updates
+        - Open the floor to questions - What would folks like to talk about? Any demo requests? Anything you need help with? **We highly encourage you to add your questions and/or anything you wish to discuss or request to the agenda ahead of time [here](https://hackmd.io/G8dN30WvQl-8Sirnp8AgRA?view#November-6-2023---KubeCon-In-Person-Project-Meeting).**
 
 ###### **Note**: You DO NOT need an all-access pass to attend a project meeting. A regular [in-person registration](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/register/#in-person-kubecon-cloudnativecon-only-rates) is all that is required.
 
@@ -28,5 +29,15 @@ Be sure to stop by our kiosk (#F29) in the project pavilion to grab some new swa
         - 10:30AM–5:00PM
     - **Thursday, November 9**
         - 10:30AM–2:30PM
+
+**HUGE thanks to those from the community that have volunteered their time to help out the Carvel team at our kiosk:**
+- Brian Kirkland
+- Corey Dinkens
+- Jamie Monserrate
+- Jonathan Gordon
+- Leigh Capili
+- Nicholas Hughes
+
+We could NOT do this event without you!!
 
 {{< blog_footer >}}
