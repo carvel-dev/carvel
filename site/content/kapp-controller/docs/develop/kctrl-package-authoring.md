@@ -294,7 +294,7 @@ $ tree -L 1
 └── simple-app
 ```
 
-The `--repo-output` flag can be used while releasing a package to create artifacts in the prescribed [PackageRepository bumdle](/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) format at a specified location.
+The `--repo-output` flag can be used while releasing a package to create artifacts in the prescribed [PackageRepository bundle](/kapp-controller/docs/latest/packaging-artifact-formats/#package-repository-bundle) format at a specified location.
 Let us make releases for both these packages while creating a repo bundle in the `demo-repo` folder.
 ```bash
 # Releasing package for cert-manager
