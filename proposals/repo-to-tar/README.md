@@ -9,7 +9,7 @@ approvers: [ @praveenrewar @100mik @joaopapereira ]
 
 ## Problem Statement
 
-Presently imgpkg does not support any way of creating and storing bundles in any format directly to local disk for sharing purposes, so as to remove the need of a registry in between. This proposal aims to add this functionality to imgpkg.
+Presently imgpkg does not support the creation of bundles directly to local disk for sharing purposes, so as to remove the need of a registry in between. This proposal aims to add this functionality to imgpkg.
 
 Consider this workflow, where a user wants to create a tar file of a bundle image and then push it to a registry. <br>
 In order to obtain a tar file, one needs to first push the bundle image to the registry and then leverage the [command](https://carvel.dev/imgpkg/docs/v0.37.x/air-gapped-workflow/#option-2-with-intermediate-tarball) for copying as tar in the air gapped workflow.
