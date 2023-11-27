@@ -32,15 +32,13 @@ This has 3 fold issues : <br>
 
 ## Proposal
 
+The proposal aims to remove the 3 fold issues by giving the option to create and share a tar, which is OCI compliant and can be pushed to a registry at a later point of time. <br>
+
 #### imgpkg
 
 Oci Tar Creation : <br>
 
-imgpkg save command will be added to imgpkg. This command will create a tar file from the bundle image. The command will be used as follows : <br>
-`imgpkg save -f some-folder --to-oci-tar local-oci-format.tar`<br>
-It should generate and save tar file at /tmp/my-image.
-
-And also to make it compatible to do both, pushing folders as bundle directly to the registry whilist also obtaining a tar image, we will similarily add a --oci-tar flag : <br>
+`--to-oci-tar` flag will be added to imgpkg push. This command will create a tar file from the bundle image. The command will be used as follows : <br>
 `imgpkg push -b registry.example.com/xyz -f some-folder --to-oci-tar local-oci-format.tar`
 
 Oci Tar Copying to the Registry : <br>
@@ -66,11 +64,9 @@ An example of directory structure formed from complying to [image spec](https://
 ```
 where one of the files in sha256 is the actual file tar and others 2 are configs and manifests.<br>
 
-2. Add functionality to `imgpkg save` to create and persist a oci tar file mentioned in point 1 which in turn is compatible with `imgpkg copy` command.<br>
-
-3. Add a flag `--to-oci-tar` to `imgpkg push`  to be able to creata a tar while pushing a tar with imgpkg push command.
+2. Add a flag `--to-oci-tar` to `imgpkg push`  to be able to creata a tar while pushing a tar with imgpkg push command.
  
-4. Add a flag `--oci-tar` to `imgpkg copy` to be able to copy this oci kind of tar to a registry and differentiate with the `--tar` flag.
+3. Add a flag `--oci-tar` to `imgpkg copy` to be able to copy this oci kind of tar to a registry and differentiate with the `--tar` flag.
 
 #### Future Goals
 
