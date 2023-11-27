@@ -22,7 +22,7 @@ For example, In order to obtain a tar of bundle image of examples/basic-step-2, 
 This has 3 fold issues : <br>
 1. Dependent on using a registry to create a tar file from a bundle image.
 2. The tar file is created from the bundle image, which is not required if the user just wants to create a tar file having a layer as tar with configurations/metadata.
-3. The bundle or image and it's tar file formed is not OCI compliant. This proposal aims to make the tar in a oci spec compliant format.
+3. The bundle or image when copied as a tar file is not OCI compliant. This proposal aims to add the possibility to create a tar that is compliant with oci image layout spec .
 
 ## Terminology / Concepts
 1. Definitions of terms used in the proposal with respect to imgpkg can be found [here.](https://carvel.dev/imgpkg/docs/v0.37.x/)<br>
