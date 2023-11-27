@@ -2,7 +2,7 @@
 title: "Building tarred bundles without being dependent on a OCI registry"
 authors: [ "Ashish Kumar <ashishndiitr@gmail.com>" ]
 status: "draft"
-approvers: [ ]
+approvers: [ @praveenrewar @100mik @joaopapereira ]
 ---
 
 # <Building tarred bundles without being dependent on a OCI registry>
