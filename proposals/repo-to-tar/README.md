@@ -43,7 +43,7 @@ It should generate and save tar file at /tmp/my-image.
 And also to make it compatible to do both, pushing folders as bundle directly to the registry whilist also obtaining a tar image, we will similarily add a --oci-tar flag : <br>
 `imgpkg push -b registry.example.com/xyz -f some-folder --to-oci-tar local-oci-format.tar`
 
-Oci Tar Pushing : <br>
+Oci Tar Copying to the Registry : <br>
 
 Now in order to push the tar file to the registry, we can use the already existing copy command with a new flag as follows : <br>
 `imgpkg copy --oci-tar local-oci-format.tar --to-repo registry.example.com/abc`
