@@ -140,7 +140,7 @@ spec:
         # (if ssh-knownhosts is not specified, git will not perform strict host checking)
         secretRef:
           name: secret-name
-        # grab only portion of repository (optional)
+        # grab only portion of repository. subpath becomes new root (optional)
         subPath: config-step-2-template
         # skip lfs download (optional)
         lfsSkipSmudge: true
