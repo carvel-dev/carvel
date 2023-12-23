@@ -17,6 +17,10 @@ For this tutorial we will package a release of `cert-manager` as a Carvel packag
 
 This tutorial requires `kapp-controller` to be installed on the cluster.
 
+### Prerequisites
+
+Identify Kubernetes manifest which needs to be packaged. [`Cert manager`](https://github.com/cert-manager/cert-manager) releases the [`cert-manager.yaml`](https://github.com/cert-manager/cert-manager/releases) which can be packaged and be available for distribution.
+
 ### Getting started
 
 To start off, let's create a directory which acts as our working directory.
@@ -33,7 +37,6 @@ $ kctrl package init
 ```
 
 `kctrl` asks a few quick questions to gather what it needs to know.
-We know that `cert-manager` lives on the GitHub repository [_cert-manager/cert-manager_](https://github.com/cert-manager/cert-manager) and that it's releases have a manifest `cert-manager.yaml` which let's users deploy cert-manager on cluster. Our goal would be to build a package around this artifact.
 
 If we want to package `cert-manager v1.9.0`, we interact with package init somewhat like this:
 
@@ -42,10 +45,118 @@ If we want to package `cert-manager v1.9.0`, we interact with package init somew
 In the first step, we can see that the artifact could have been a helm chart or another artifact residing in the repository itself.
 
 Once, `kctrl` knows where to find our config, it uses `vendir` to make a copy of the required artifacts in the upstream folder.
+
+`kctrl` will sync the required configurations into the `upstream` folder. Also, it will generate the `package-build.yml` and `package-resources.yml` files.
+
 ```bash
 $ ls upstream
 cert-manager.yaml
 ```
+{{< detail-tag "Understanding package-build.yml" >}}
+```yaml
+apiVersion: kctrl.carvel.dev/v1alpha1
+kind: PackageBuild
+metadata:
+  # The name of the PackageBuild (is the same as the 'spec.refName' of the Package it generates)
+  name: certmanager.carvel.dev
+spec:
+  # Describes the steps to be followed while building and releasing the project
+  template:
+    spec:
+      # Specifies `app.template` and `app.deploy` that will be used by the generated Package
+      # NOTE: The fetch section is not included as the generated Package always
+      # fetches from an 'imgpkg' bundle which is created and published when a package is released.
+      app:
+        spec:
+          # The deploy section is copied over to the generated Package and might be used
+          # to specify any additional 'rawOptions'
+          deploy:
+          - kapp: {}
+          # Specifies how the generated Package will template the fetched config
+          # The section should include paths to a `kbld` Config that describes
+          # how images should be built and where they should be pushed, if images should be built
+          # as a part of the release.
+          # 'kctrl' will build and push images if 'kbld's Config tells it to - before 
+          # 'kctrl' generates the ImagesLock file bundled into the 'imgpkg' bundle created by a release.
+          template:
+          # Options specified here will be used in the 'ytt' section of generated Package
+          - ytt:
+              paths:
+              - upstream
+          # Required (even if it does not specify paths) as 'kctrl' uses this step to generate lock
+          # files and build images.
+          # Paths pointing to the lockfile and piping output from the 'ytt' stage are added by 'kctrl'
+          - kbld: {}
+      # Describes any resources a release would have to publish
+      export:
+      # Paths to be included as a part of the published resource
+      - includePaths:
+        - upstream
+```
+{{< /detail-tag >}}
+
+{{< detail-tag "Understanding package-resources.yml" >}}
+```yaml
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: certmanager.carvel.dev.0.0.0
+spec:
+  refName: certmanager.carvel.dev
+  # Describes the steps to be followed while running `kctrl dev`
+  template:
+    spec:
+      deploy:
+      # The deploy section is used during `kctrl dev`
+      # 'rawOptions' can be used to specify any additional configuration
+      - kapp: {}
+      fetch:
+      # This is neglected during `kctrl dev` by providing `--local` flag
+      - git: {}
+      # Specifies how to template the fetched config during `kctrl dev`
+      # The section also include paths to a `kbld` Config that describes
+      # how images should be built and where they should be pushed, if images should be built
+      # as a part of the `kctrl dev`.
+      # 'kctrl' will build and push images if 'kbld's Config tells it to.
+      template:
+      - ytt:
+          paths:
+          - upstream
+      - kbld: {}
+  valuesSchema:
+    openAPIv3: null
+  version: 0.0.0
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  creationTimestamp: null
+  # Package name (spec.refName) used by associated Package CRs
+  name: certmanager.carvel.dev
+spec:
+  displayName: certmanager
+  longDescription: certmanager.carvel.dev
+  shortDescription: certmanager.carvel.dev
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kctrl.carvel.dev/local-fetch-0: .
+  creationTimestamp: null
+  name: certmanager
+spec:
+  packageRef:
+    refName: certmanager.carvel.dev
+    versionSelection:
+      constraints: 0.0.0
+  serviceAccountName: certmanager-sa
+status:
+  conditions: null
+  friendlyDescription: ""
+  observedGeneration: 0
+```
+{{< /detail-tag >}}
 
 ### Releasing packages
 
@@ -128,57 +239,79 @@ This tutorial is a walk-through of how `kctrl` can be used to build and package 
 For this tutorial we will start off with a [simple web server](https://github.com/cppforlife/simple-app).
 We will create resources to deploy the application on Kubernetes and then release a Carvel package for the same using `kctrl`.
 
+### Prerequisites
+Identify the K8s configuration which needs to be packaged. For this, as mentioned above we will create the necessary K8s configuration.
+
 First, the playground can be set up by cloning the project we are working with.
 ```bash
 $ git clone https://github.com/cppforlife/simple-app
 $ cd simple-app
 ```
 
-### Putting together some configuration
+#### Putting together K8s configuration
 
-We can add a `config` directory to store our Kubernetes config.
+We can add a `config` directory to store our Kubernetes config. 
+
+> **_NOTE:_** `kctrl` supports ytt templated K8s configurations.
+
+In this example, we will add ytt templated configurations. Alternatvely, K8s configurations without templating can also be supplied.
+
 ```bash
 $ mkdir config
 ```
 
 We will need a Deployment and a Service pointing to it to deploy this project. We can define these in `config/config.yml`.
-The image defined by the `Dockerfile` must be built and pushed to an OCI registry (`100mik/simple-app` in this case).
+Corresponding ytt values can be defined in `config/values.yml`.
+The image mentioned in the `Deployment` must be built and pushed to an OCI registry (`100mik/simple-app:latest` in this case).
 
 (See [here](/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl) to see how
 we can have `kctrl` build images while releasing)
 ```yaml
 # config/config.yml
+#@ load("@ytt:data", "data")
+
+#@ def labels():
+simple-app: ""
+#@ end
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: default
   name: simple-app
 spec:
   ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    simple-app: ""
+  - port: #@ data.values.svc_port
+    targetPort: #@ data.values.app_port
+  selector: #@ labels()
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: default
   name: simple-app
 spec:
   selector:
-    matchLabels:
-      simple-app: ""
+    matchLabels: #@ labels()
   template:
     metadata:
-      labels:
-        simple-app: ""
+      labels: #@ labels()
     spec:
       containers:
       - name: simple-app
-        image: 100mik/simple-app
+        image: 100mik/simple-app:latest
         env:
-        - name: SIMPLE_MSG
-          value: stranger
+        - name: HELLO_MSG
+          value: #@ data.values.hello_msg
+# config/values.yml
+#@data/values-schema
+---
+#@schema/desc "Port number for the service."
+svc_port: 80
+#@schema/desc "Target port for the application."
+app_port: 8080
+#@schema/desc "Name used in hello message from app when app is pinged."
+hello_msg: stranger
 ```
 Great! We now have our configuration in place.
 
@@ -202,8 +335,10 @@ We can release the first version of our carvel package using the `release` comma
 ```bash
 $ kctrl package release --version 1.0.0
 ```
-At this step we need to tell kctrl where we want to push our `imgpkg` bundle.
-Which is essentially an OCI image that contains all necessary config.
+kctrl will build and push the `imgpkg` bundle ( an `imgpkg` bundle is essentially an OCI image that contains all necessary config) to required registry. Hence we need a URL where we want to push this bundle.
+
+> **_NOTE:_** To create container image from source code while releasing a package, see [here](/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-container-images-while-releasing-a-package-using-kctrl)
+
 The interaction looks something like this,
 
 ![Package Release for Simple App](/images/kctrl/pkg-release-simple-app.png)
@@ -274,7 +409,7 @@ $ kctrl package install -i simple-app -p simple-app.carvel.dev --version 1.0.0
 Congratulations! `simple-app`s first Carvel package has been created using `kctrl`.
 
 ### Relevant FAQs
-- [How can I build images while releasing a package with `kctrl`?](/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-images-while-releasing-a-package-using-kctrl)
+- [How can I build container images while releasing a package with `kctrl`?](/kapp-controller/docs/latest/kctrl-faq/#how-can-i-build-container-images-while-releasing-a-package-using-kctrl)
 - [How can we add information to PackageMetadata generated by `kctrl package release`?](/kapp-controller/docs/latest/kctrl-faq/#how-can-we-add-information-to-packagemetadata-generated-by-kctrl-packge-release)
 - [Can kctrl be used to publish packages in a CI pipeline?](/kapp-controller/docs/latest/kctrl-faq/#can-kctrl-be-used-to-publish-packages-in-a-ci-pipeline)
 - [Can we provide our own ImagesLock resource?](/kapp-controller/docs/latest/kctrl-faq/#can-we-provide-our-own-imageslock-resource-instead-of-it-being-generated-when-we-run-the-pkg-release-command)
