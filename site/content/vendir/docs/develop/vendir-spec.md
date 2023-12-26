@@ -23,6 +23,11 @@ directories:
   - # path lives relative to directory path # (required)
     path: github.com/cloudfoundry/cf-k8s-networking
 
+    # skip fetching if the config for this path has not changed since the last sync
+    # optional, `false` by default, available since v0.36.0
+    # use `vendir sync --lazy=false` to forcefully sync when needed
+    lazy: true
+
     # uses git to clone Git repository (optional)
     git:
       # http or ssh urls are supported (required)
