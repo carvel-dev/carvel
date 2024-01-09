@@ -115,7 +115,7 @@ create the App for the PackageInstall and can lead to failures.
 ### Debugging PackageRepository CRs
 
 Failures for PackageRepositories can be viewed directly via the
-`usefulErrorMessage` property of the PackageRepository's status. More information [here](status.usefulErrorMessage)
+`usefulErrorMessage` property of the PackageRepository's status. More information [here](#statususefulerrormessage)
 
 A common source of errors is being unable to fetch the PackageRepository
 contents. Please check the `.spec.fetch` portion of the PackageRepository spec for issues related to this.
