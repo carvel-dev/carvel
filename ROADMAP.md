@@ -15,13 +15,12 @@ We work with and rely on community feedback to focus our efforts to improve Carv
 The following table includes the current roadmap for Carvel. If you have any questions or would like to contribute to Carvel, please attend a [community meeting](https://carvel.dev/community/) to discuss with our team. If you don't know where to start, we are always looking for contributors that will help us reduce technical, automation, and documentation debt.
 Please take the timelines & dates as proposals and goals, not commitments. Priorities and requirements change based on community feedback, roadblocks encountered, community contributions, etc. If you depend on a specific item, we encourage you to attend community meetings to get updated status information, or help us deliver that feature by contributing to Carvel.
 
-`Last Updated: October 2023`
+`Last Updated: January 2024`
 |Feature|Stage|Timeline| 
 |---|---|---|
-**[kctrl]** [Release package repository as tar](https://github.com/carvel-dev/kapp-controller/issues/1277) | Proposal in Progress | 2023 Q4 |
-**[kctrl]** [Multiple enhancements](https://github.com/carvel-dev/kapp-controller/issues/1270) | In Progress | 2023 Q4 |
-**[vendir]** [Lazy Synching](https://github.com/carvel-dev/vendir/issues/278) | In Progress| 2023 Q4 |
-**[Carvel]** [Signature and SLSA attestation for all Carvel artefacts](https://github.com/carvel-dev/carvel/issues/619) | Proposal added| TBD |
-**[Carvel]** Carvel supports the ability to sign and verify assets (such as images, bundles, pkg/pkgr). |Awaiting Proposal| TBD |
-
+**[kctrl]** [Release package repository as tar](https://github.com/carvel-dev/kapp-controller/issues/1277) | In Progress | 2024 Q1 |
+**[Carvel]** [Signature and SLSA attestation for all Carvel artefacts](https://github.com/carvel-dev/carvel/issues/619) | In Progress | 2024 Q1 |
+**[imgpkg]** [Provide information about layers for each image](https://github.com/carvel-dev/imgpkg/issues/348) | In Progress | 2024 Q1
+**[kapp-controller]** [Option to skip ssl verification for git](https://github.com/carvel-dev/kapp-controller/issues/1286) | In Progress | 2024 Q1 |
+**[kapp-controller]** [Make kapp controller extensible](https://github.com/carvel-dev/kapp-controller/issues/1413) | Awaiting Proposal | TBD |
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
