@@ -111,7 +111,7 @@ directories:
         # (required)
         name: my-image-auth
       # specify wether to skip TLS verification; defaults to false (optional;v0.18.0+)
-      dangerouSkipTLSVerify: false
+      dangerousSkipTLSVerify: false
 
     # fetches imgpkg bundle from an image registry (optional; v0.16.0+)
     imgpkgBundle:
@@ -138,7 +138,7 @@ directories:
         # (required)
         name: my-image-auth
       # specify wether to skip TLS verification; defaults to false (optional;v0.18.0+)
-      dangerouSkipTLSVerify: false
+      dangerousSkipTLSVerify: false
 
     # fetches assets from a github release (optional)
     githubRelease:
