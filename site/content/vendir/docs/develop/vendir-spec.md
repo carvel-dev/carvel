@@ -116,6 +116,8 @@ directories:
         name: my-image-auth
       # specify wether to skip TLS verification; defaults to false (optional;v0.18.0+)
       dangerousSkipTLSVerify: false
+      # specify the response timeout in seconds for imgpkg when querying the registry; defaults to 30 (optional; v0.40.0+)
+      dangerousSkipTLSVerify: 30
 
     # fetches imgpkg bundle from an image registry (optional; v0.16.0+)
     imgpkgBundle:
@@ -143,6 +145,8 @@ directories:
         name: my-image-auth
       # specify wether to skip TLS verification; defaults to false (optional;v0.18.0+)
       dangerousSkipTLSVerify: false
+      # specify the response timeout in seconds for imgpkg when querying the registry; defaults to 30 (optional; v0.40.0+)
+      dangerousSkipTLSVerify: 30
 
     # fetches assets from a github release (optional)
     githubRelease:
