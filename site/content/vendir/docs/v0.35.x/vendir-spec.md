@@ -1,5 +1,5 @@
 ---
-aliases: [/vendir/docs/latest/vendir-spec]
+
 title: vendir.yml spec
 ---
 

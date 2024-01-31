@@ -1,5 +1,5 @@
 ---
-aliases: [/vendir/docs/latest/]
+
 title: "About vendir"
 toc: "false"
 cascade:
