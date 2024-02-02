@@ -1,5 +1,5 @@
 ---
-aliases: [/kbld/docs/latest/]
+
 title: "About kbld"
 toc: "false"
 cascade:
