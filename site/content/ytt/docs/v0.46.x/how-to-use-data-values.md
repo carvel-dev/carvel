@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/how-to-use-data-values]
+
 title: Using Data Values
 ---
 

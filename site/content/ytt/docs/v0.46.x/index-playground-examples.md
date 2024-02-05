@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/index-playground-examples]
+
 title: Playground Examples Index
 ---
 
