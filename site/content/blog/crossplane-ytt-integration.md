@@ -34,7 +34,7 @@ To overcome this, Crossplane introduced the composition function.
 
 ## Prerequisites 
 * [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) -- to create a test Kubernetes cluster. Use this [link](https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster) to set up Kubernetes cluster on `kind`.
-* [kubectl](https://kubernetes.io/docs/reference/kubectl/) -- to apply manifests to provision cloud resources. Use this [link](https://kubernetes.io/docs/tasks/tools/#kubectl) to install `helm`.
+* [kubectl](https://kubernetes.io/docs/reference/kubectl/) -- to apply manifests to provision cloud resources. Use this [link](https://kubernetes.io/docs/tasks/tools/#kubectl) to install `kubectl`.
 * [Helm](https://helm.sh/) -- to install Crossplane on the test cluster. Use this [link](https://helm.sh/docs/intro/quickstart/#install-helm) to install `helm`.
 
 ## Install Crossplane
