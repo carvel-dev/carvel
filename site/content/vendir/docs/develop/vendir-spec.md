@@ -62,6 +62,9 @@ directories:
       secretRef:
         # (required)
         name: my-git-auth
+      # when this flag set to true it will set the Basic Auth header directly
+      # in git configuration to ensure that it does not try to use NTLM
+      forceHTTPBasicAuth: false
 
     # uses hg to clone Mercurial repository (optional; v0.22.0+)
     hg:
