@@ -29,7 +29,7 @@ As a [Cloud Native Computing Foundation Sandbox project](https://www.cncf.io/san
 
 If you are a company using any of the Carvel tools and would like to become more involved in open source software development, this is a great opportunity.
 
-We’ve created [this short form](https://forms.gle/nWzNdEnpPYp68Lyy9) to gather details for those that are interested in working with the Carvel team, whether you are an individual or representing a company. If you have any questions, please [email us](https://lists.cncf.io/g/cncf-carvel-users/join) or find us in the [#carvel channel](https://kubernetes.slack.com/archives/CH8KCCKA5) in the Kubernetes Slack workspace.
+We’ve created [this short form](https://forms.gle/nWzNdEnpPYp68Lyy9)(form no longer accessible due to Broadcom acquisition; was lost in the data transfer) to gather details for those that are interested in working with the Carvel team, whether you are an individual or representing a company. If you have any questions, please [email us](https://lists.cncf.io/g/cncf-carvel-users/join) or find us in the [#carvel channel](https://kubernetes.slack.com/archives/CH8KCCKA5) in the Kubernetes Slack workspace.
 
 ### A few of the top issues we wish we could work on now
 1. Carvel Overall: [Signature and SLSA attestation for all Carvel artefacts #619](https://github.com/carvel-dev/carvel/issues/619)
