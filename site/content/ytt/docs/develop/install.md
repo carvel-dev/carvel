@@ -36,6 +36,17 @@ $ brew install ytt
 $ ytt version
 ```
 
+## Via winget (Windows)
+
+Install binaries using the [Windows Package Manager](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
+client in PowerShell or Command Prompt (*Run as Administrator* is [recommended](https://learn.microsoft.com/en-us/windows/package-manager/winget/#administrator-considerations)):
+
+```console
+winget install --id Carvel.ytt
+```
+
+The `winget` will add `ytt` command to the `PATH`.
+
 ## Specific version from a GitHub release
 
 To download, click on one of the assets in a [chosen GitHub release](https://github.com/carvel-dev/ytt/releases), for example for 'ytt-darwin-amd64'.
