@@ -17,6 +17,8 @@ toc:
         url: /apply-ordering
       - page: Apply Waiting
         url: /apply-waiting
+      - page: Preflight Checks
+        url: /preflight
   - title: Reference
     subfolderitems:
       - page: Configuration
