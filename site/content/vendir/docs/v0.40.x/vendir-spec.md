@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-spec]
 title: vendir.yml spec
 ---
 
@@ -63,6 +63,9 @@ directories:
       secretRef:
         # (required)
         name: my-git-auth
+      # when this flag set to true it will set the Basic Auth header directly
+      # in git configuration to ensure that it does not try to use NTLM
+      forceHTTPBasicAuth: false
 
     # uses hg to clone Mercurial repository (optional; v0.22.0+)
     hg:
@@ -117,6 +120,8 @@ directories:
         name: my-image-auth
       # specify wether to skip TLS verification; defaults to false (optional;v0.18.0+)
       dangerousSkipTLSVerify: false
+      # specify the response timeout in seconds for imgpkg when querying the registry; defaults to 30 (optional; v0.40.0+)
+      responseHeaderTimeout: 30
 
     # fetches imgpkg bundle from an image registry (optional; v0.16.0+)
     imgpkgBundle:
@@ -144,6 +149,8 @@ directories:
         name: my-image-auth
       # specify wether to skip TLS verification; defaults to false (optional;v0.18.0+)
       dangerousSkipTLSVerify: false
+      # specify the response timeout in seconds for imgpkg when querying the registry; defaults to 30 (optional; v0.40.0+)
+      responseHeaderTimeout: 30
 
     # fetches assets from a github release (optional)
     githubRelease:

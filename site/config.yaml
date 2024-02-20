@@ -184,15 +184,16 @@ params:
     name: vendir
     short_name: vendir
     root_link: /vendir/
-    latest_docs_link: /vendir/docs/v0.39.x/
+    latest_docs_link: /vendir/docs/v0.40.x/
     github_url: https://github.com/carvel-dev/vendir
     search: true
     search_index_name: carvel-vendir
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.39.x
+    version_latest: v0.40.x
     versions:
     - develop
+    - v0.40.x
     - v0.39.x
     - v0.38.x
     - v0.37.x
