@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/automation-workflow]
 title: Automation Workflow
 ---
 
