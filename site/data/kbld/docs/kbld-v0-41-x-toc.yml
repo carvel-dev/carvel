@@ -1,0 +1,33 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: About kbld
+        url: /
+      - page: Install
+        url: /install
+  - title: Usage
+    subfolderitems:
+      - page: Resolving images
+        url: /resolving
+      - page: Building images
+        url: /building
+      - page: Packaging & Relocation
+        url: /packaging
+      - page: CNAB Image Mappings
+        url: /cnab-image-relocation
+  - title: Reference
+    subfolderitems:
+      - page: Configuration
+        url: /config
+      - page: Authentication
+        url: /auth
+  - title: FAQ
+    subfolderitems:
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
+      - page: Security
+        shared_url: /security-policy

@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/config]
 title: Configuration
 ---
 
