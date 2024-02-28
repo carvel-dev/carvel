@@ -15,9 +15,10 @@ We work with and rely on community feedback to focus our efforts to improve Carv
 The following table includes the current roadmap for Carvel. If you have any questions or would like to contribute to Carvel, please attend a [community meeting](https://carvel.dev/community/) to discuss with our team. If you don't know where to start, we are always looking for contributors that will help us reduce technical, automation, and documentation debt.
 Please take the timelines & dates as proposals and goals, not commitments. Priorities and requirements change based on community feedback, roadblocks encountered, community contributions, etc. If you depend on a specific item, we encourage you to attend community meetings to get updated status information, or help us deliver that feature by contributing to Carvel.
 
-`Last Updated: January 2024`
+`Last Updated: February 2024`
 |Feature|Stage|Timeline| 
 |---|---|---|
 **[kapp-controller]** [Dependency management](https://github.com/carvel-dev/kapp-controller/issues/361) | Awaiting Proposal | 2024 Q2 |
 **[kctrl]** [Release package repository as tar](https://github.com/carvel-dev/kapp-controller/issues/1277) | In Progress | 2024 Q1 |
+
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
