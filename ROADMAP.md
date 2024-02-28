@@ -18,9 +18,6 @@ Please take the timelines & dates as proposals and goals, not commitments. Prior
 `Last Updated: January 2024`
 |Feature|Stage|Timeline| 
 |---|---|---|
+**[kapp-controller]** [Dependency management](https://github.com/carvel-dev/kapp-controller/issues/361) | Awaiting Proposal | 2024 Q2 |
 **[kctrl]** [Release package repository as tar](https://github.com/carvel-dev/kapp-controller/issues/1277) | In Progress | 2024 Q1 |
-**[Carvel]** [Signature and SLSA attestation for all Carvel artefacts](https://github.com/carvel-dev/carvel/issues/619) | In Progress | 2024 Q1 |
-**[imgpkg]** [Provide information about layers for each image](https://github.com/carvel-dev/imgpkg/issues/348) | In Progress | 2024 Q1
-**[kapp-controller]** [Option to skip ssl verification for git](https://github.com/carvel-dev/kapp-controller/issues/1286) | In Progress | 2024 Q1 |
-**[kapp-controller]** [Make kapp controller extensible](https://github.com/carvel-dev/kapp-controller/issues/1413) | Awaiting Proposal | TBD |
 Please note that the maintainers are actively monitoring other Carvel tools that are not explicitly listed in the roadmap, e.g. kbld, vendir etc. While the maintainers have prioritized the big features listed above, if you would like us to address issues that are important to you please don't hesitate to share them with us. One way to share your feedback is by voting on an existing issue or you could simply bring them up during our community meeting.
