@@ -6,7 +6,7 @@ title: Namespace for State Storage
 
 To show list of deployed applications (via `kapp ls`), kapp manages metadata `ConfigMap` for each saved application. Each metadata `ConfigMap` contains generated label used to label all application resources. Additionally kapp creates `ConfigMap` per each deploy to record deployment history (seen via `kapp app-change list -a app1`).
 
-`-n` (`--namespace`) flag allows to control which namespace is used for finding and storing metadata `ConfigMaps`. If namespace is not explicitly specified your current namespace is selected from kube config (typically `~/.kube/config`).
+`--app-namespace` flag allows to control which namespace is used for finding and storing metadata `ConfigMaps`. If namespace is not explicitly specified the app-wide namespace is used as specified by `-n` or `--namespace`); if `-n` is not specified your current namespace is selected from kube config (typically `~/.kube/config`).
 
 There are currently two approaches to deciding which namespace to use for storing metadata `ConfigMaps`:
 
@@ -22,8 +22,8 @@ There are currently two approaches to deciding which namespace to use for storin
 
    ```bash
     $ kubectl create ns apps
-    $ kapp deploy -n apps -f app1/config.yml
-    $ kapp deploy -n apps -f app2/config.yml
+    $ kapp deploy --app-namespace apps -f app1/config.yml
+    $ kapp deploy --app-namespace apps -f app2/config.yml
     $ kapp ls -n apps
     ```
 
