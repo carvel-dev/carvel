@@ -20,8 +20,12 @@ tags: ['kubecon']
 ###### **Note:** You DO NOT need an all-access pass to attend the [project lightning talks](https://kccnceu2024.sched.com/overview/type/Project+Opportunities?iframe=no). A regular in-person registration ([KubeCon + CloudNativeCon Only Pass](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/register/#kubecon-cloudnativecon-only-rates)) is all that is required.
 
 ### Main Conference – Session Talks
+- [Building AI-Ready Platforms - Symphony for Developer and Platform Engineer - Thomas Vitale, Systematic & Lize Raes, LangChain4j](https://sched.co/1YeMm)
+    - When: Wednesday, March 20 • 15:25 - 16:00
+    - Where: Pavilion 7 | Level 7.1 | Room B
+
 - [KubeDDR! a Dance of Predictive Scoring with MLOps, Step by Step - Leigh Capili, Broadcom & Annie Talvasto, VSHN](https://sched.co/1YeRR)
-    - When: Friday, March 22 • 14:00–14:35
+    - When: Friday, March 22 • 14:00 – 14:35
     - Where: Pavilion 7 | Level 7.3 | Paris Room
 
 - [Project Carvel: Composable Tools for Application Management - Daniel Garnier-Moiroux & Soumik Majumder, Broadcom](https://sched.co/1YeRj)
