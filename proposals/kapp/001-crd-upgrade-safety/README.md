@@ -1,7 +1,7 @@
 ---
 title: "Adding CRD Upgrade Safety to kapp"
 authors: ["Bryce Palmer <bpalmer@redhat.com>"]
-status: "in review"
+status: "accepted"
 approvers: ["Carvel Maintainers"]
 ---
 
