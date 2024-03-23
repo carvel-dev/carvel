@@ -85,6 +85,8 @@ toc:
         url: /lang-ref-load
   - title: CLI configuration
     subfolderitems:
+      - page: Inputs
+        url: /inputs
       - page: Outputs
         url: /outputs
       - page: File Marks
