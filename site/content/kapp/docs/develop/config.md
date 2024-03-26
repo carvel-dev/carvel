@@ -63,6 +63,11 @@ diffMaskRules:
 - path: [data]
   resourceMatchers:
   - apiVersionKindMatcher: {apiVersion: v1, kind: Secret}
+
+preflightRules:
+- name: [preflight]
+  config:
+    [preflightSpecific]: [data]
 ```
 
 ### minimumRequiredVersion
@@ -216,6 +221,16 @@ waitRules:
 ### diffMaskRules
 
 `diffMaskRules` specify which field values should be masked in diff. By default `v1/Secret`'s `data` fields are masked. Currently only applied to `deploy` command.
+
+### preflightRules
+
+Available in v0.60.1+.
+
+`preflightRules` specify configuration for [preflight checks](preflight.md). Specifying the `name` of a preflight check enables it; additional configuration via the `config` field may be optionally provided. The contents of the `config` field are specific to each preflight check.
+
+The `--preflight` flag overrides the enabled setting in the configuration:
+* If a preflight check is omitted from the `--preflight` flag, it is disabled regardless of its presence in the configuration file.
+* If a preflight check is specified in the `--preflight` flag, it is enabled regardless of its absense in the confguration file.
 
 ### changeGroupBindings
 
