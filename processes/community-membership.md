@@ -36,7 +36,7 @@ Members are continuously active contributors in the community. They can have iss
     - Sponsors must have close interactions with the prospective member - e.g. code/design/proposal review, coordinating on issues, etc.
     - Sponsors must be approvers in at least one MAINTAINERS file.
     - With no objections from other approvers or leads.
-- Open an issue against the carvel repo.
+- [Open an issue][membership request] against the carvel repo.
     - Ensure your sponsors are @mentioned on the issue.
     - Complete every item on the checklist (preview the current version of the template)
     - Make sure that the list of contributions included is representative of your work on the project.
@@ -180,3 +180,6 @@ After an extended period away from the project with no activity those members wo
 
 ## Change in membership roles
 As described above, a change in membership role may be approved by the appropriate subproject lead if there are no objections from the other leads. By convention, role changes are discussed in a meeting with other approvers before being formally approved.
+
+
+[membership request]: https://github.com/carvel-dev/carvel/issues/new?template=membership.md&title=REQUEST%3A%20New%20membership%20for%20%3Cyour-GH-handle%3E
