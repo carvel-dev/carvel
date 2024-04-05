@@ -7,18 +7,8 @@ This page provides a list of Carvel Packages and Package Repositories that are a
 
 Do you have a Package or Package Repository you'd like to add to this list? Please make a PR with details to our [docs](https://github.com/carvel-dev/carvel/blob/develop/site/content/kapp-controller/docs/develop/oss-packages.md).
 
-## Tanzu Community Edition
-Tanzu Community Edition provides several open source [Carvel Packages](https://tanzucommunityedition.io/packages/). These are actively contributed to and maintained by contributors to Tanzu Community Edition. A list of the Package CRs can be found [here](https://github.com/vmware-tanzu/community-edition/tree/main/addons/packages). You can add the Package Repository to your cluster by creating a PackageRepository CR.
+## kapp-controller package
+kapp-controller can itself be installed as a package, this is sometimes useful to bootstrap other clusters by installing kapp-controller package from a management cluster where kapp-controller is already installed. The package can be found in the release artifacts of kapp-controller [releases](https://github.com/carvel-dev/kapp-controller/releases).
 
-```yaml
----
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageRepository
-metadata:
-  name: tce-repo
-spec:
-  fetch:
-    imgpkgBundle:
-      # Check out the latest version from Tanzu Community Edition docs
-      image: projects.registry.vmware.com/tce/main:0.9.1
-```
+## secretgen-controller package
+Similar to kapp-controller, secretgen-controller can also be installed via a package and it can be found in the release artifacts of secretgen-controller [releases](https://github.com/carvel-dev/secretgen-controller/releases). These packages are created via kctrl's package authoring commands.
