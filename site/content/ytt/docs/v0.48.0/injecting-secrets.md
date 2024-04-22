@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/injecting-secrets]
+
 title: Injecting Secrets
 ---
 

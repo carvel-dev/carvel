@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/ytt-vs-x]
+
 title: ytt vs x
 ---
 

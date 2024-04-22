@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/lang-ref-ytt]
+
 title: Built-in ytt Library
 ---
 
