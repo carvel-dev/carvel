@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/apply-ordering]
 title: Apply Ordering
 ---
 

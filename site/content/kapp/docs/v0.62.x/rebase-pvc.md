@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/rebase-pvc]
 title: PersistentVolumeClaim rebase
 ---
 ## PersistentVolumeClaim rebase

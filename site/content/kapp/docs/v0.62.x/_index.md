@@ -1,9 +1,9 @@
 ---
-
+aliases: [/kapp/docs/latest/]
 title: "About kapp"
 toc: "false"
 cascade:
-  version: v0.61.x
+  version: v0.62.x
   toc: "true"
   type: docs
   layout: docs

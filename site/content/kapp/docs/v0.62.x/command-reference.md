@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/command-reference]
 title: Command Reference
 ---
 

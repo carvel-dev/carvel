@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/state-namespace]
 title: Namespace for State Storage
 ---
 
