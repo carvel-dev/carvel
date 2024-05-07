@@ -5,7 +5,7 @@ date: 2023-08-08
 author: Nanci Lancaster
 excerpt: "For the last year, Carvel has faced a significant amount of loss from maintainers leaving due to moving onto other companies. After my experience at KubeCon in April, I realized that we are not the only project in need of maintainers and a different approach must be done to gain new contributors."
 image: /img/help-wanted.jpeg
-tags: ['maintainers', 'contributors', 'kubecon']
+tags: ['maintainers', 'contributors', 'kubecon', 'Nanci Lancaster']
 ---
 Before arriving in Amsterdam for [KubeCon + CloudNativeCon Europe](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/) this past April, we discussed as a team that our focus and messaging would be centered around getting more contributors, especially ones interested in eventually becoming a maintainer. For our [in-person project meeting](https://sched.co/1JWTN), we brought this to attendees’ attention and were very transparent in the attrition that Carvel has faced and our desire to have more people from outside of VMware join our efforts.
 

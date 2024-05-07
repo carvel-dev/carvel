@@ -5,7 +5,7 @@ date: 2024-03-14
 author: Nanci Lancaster
 excerpt: "On se verra à Paris! Read further to see where you can come find us at KubeCon + CloudNativeCon."
 image: /img/kceu24.png
-tags: ['kubecon']
+tags: ['kubecon', 'Nanci Lancaster']
 ---
 [KubeCon + CloudNativeCon Europe](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/) is less than a week away and we can't wait to see you all! We will have a lightning talk, CFP-accepted sessions, and a kiosk in the [Project Pavilion](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/project-engagement/#project-pavilion) within the [Solutions Showcase](https://kccnceu2024.sched.com/overview/type/Solutions+Showcase?iframe=no). Below you can find more details on the opportunities you have to attend talks covering Carvel to learn more about the project and engage with us and other users of the Carvel tools. It's a great way to ask questions, meet the team in person, provide feedback, and connect with others in the community. We look forward to seeing you there!
 

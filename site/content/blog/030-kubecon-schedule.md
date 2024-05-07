@@ -5,7 +5,7 @@ date: 2022-10-20
 author: Renu Yarday and Nanci Lancaster
 excerpt: "We're excited to join the community in Detroit! Read all about the talks and places we'll be for KubeCon + CloudNativeCon North America next week."
 image: /img/logo.svg
-tags: ['gitopscon', 'kubecon', 'schedule']
+tags: ['gitopscon', 'kubecon', 'schedule', 'Nanci Lancaster']
 ---
 Fresh off the news of being accepted as a Sandbox project to the [Cloud Native Computing Foundation](https://www.cncf.io/), Carvel is thrilled to head to Detroit next week to engage with the amazing community at [KubeCon + CloudNativeCon North America](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/). Below is the compilation of where to find us to learn more about Carvel and to say hello!
 ###### **Note**: All times mentioned below are in Eastern Daylight Time (EDT), UTC -4

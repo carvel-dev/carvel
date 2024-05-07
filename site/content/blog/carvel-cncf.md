@@ -2,10 +2,10 @@
 title: "Project Carvel has joined the Cloud Native Computing Foundation"
 slug: carvel-cncf-sandbox
 date: 2022-10-19
-author: Nanci Lancaster and Jen Siegal
+author: Nanci Lancaster
 excerpt: "Join us in celebration of this next step in Carvel's journey!"
 image: /img/cncf-color.svg
-tags: ['kapp', 'impgkg', 'kapp-controller', 'ytt', 'vendir','community','sandbox','secretgen-controller','cncf','kbld']
+tags: ['kapp', 'impgkg', 'kapp-controller', 'ytt', 'vendir','community','sandbox','secretgen-controller','cncf','kbld', 'Nanci Lancaster']
 ---
 We are excited to announce that on September 13, 2022, Carvel was accepted as a Sandbox project within the [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/). Each new milestone of our journey would not be possible without the support and contributions of our incredible community and we’d be remiss if we didn’t highlight a few of those individual’s here:
 

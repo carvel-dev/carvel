@@ -5,7 +5,7 @@ date: 2023-04-10
 author: Nanci Lancaster
 excerpt: "We're excited to join the community in Amsterdam as our first ever full appearance as a Cloud Native Computing Foundation Sandbox project! Read all about where you can find us next week."
 image: /img/kubeconeu2023.jpeg
-tags: ['europe', 'kubecon', 'schedule']
+tags: ['europe', 'kubecon', 'schedule', 'Nanci Lancaster']
 ---
 For the first time ever, Carvel will have a presence at KubeCon + CloudNativeCon as a Cloud Native Computing Foundation Sandbox project! Below are the opportunities you have to come engage with us and other members of the Carvel community. We can't wait to see you!
 

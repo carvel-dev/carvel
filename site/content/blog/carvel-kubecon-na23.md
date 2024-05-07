@@ -5,7 +5,7 @@ date: 2023-11-01
 author: Nanci Lancaster
 excerpt: "We're heading to Chi-town next week for KubeCon + CloudNativeCon North America! Read on to see where you can come find us."
 image: /img/kcna23.png
-tags: ['kubecon']
+tags: ['kubecon', 'Nanci Lancaster']
 ---
 If you are attending [KubeCon + CloudNativeCon North America](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/) we'd love to meet you! Below are the opportunities you have to come engage with us and other members of the Carvel community. It's a great way to ask questions, meet the team in person, provide feedback, and connect with others in the Carvel community. We look forward to seeing you there!
 

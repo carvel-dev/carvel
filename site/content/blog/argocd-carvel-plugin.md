@@ -5,7 +5,7 @@ date: 2022-02-23
 author: Cari Lynn
 excerpt: "Use your favorite Carvel templating tool in your GitOps continuous delivery using the Carvel ytt Argo CD plugin."
 image: /img/logo.svg
-tags: ['ytt', 'argocd', 'gitops']
+tags: ['ytt', 'argocd', 'gitops', 'Cari Lynn']
 ---
 
 Argo CD is a declarative, GitOps, continuous delivery tool for Kubernetes. It's design embraces GitOps philosophy of using Git as a single source of truth for the desired state of the system. In this example we're storing desired application state in ytt templates, and extending Argo CD to template and deploy them.
