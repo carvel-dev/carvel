@@ -11,7 +11,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | João Pereira          | [joaopapereira](https://github.com/joaopapereira)     | [VMware](https://www.github.com/vmware/) | [imgpkg](https://github.com/carvel-dev/imgpkg) (Lead), [kbld](https://github.com/carvel-dev/kbld), [vendir](https://github.com/carvel-dev/vendir) |
 | John Brunton          | [jbrunton](https://github.com/jbrunton)               | [converge.io](https://converge.io/)      | [carvel-setup-action](https://github.com/carvel-dev/setup-action) (Approver) |
 | Kumari Tanushree      | [kumaritanushree](https://github.com/kumaritanushree) | [VMware](https://www.github.com/vmware/) | [vendir](https://github.com/carvel-dev/vendir), [kapp](https://github.com/carvel-dev/kapp) |
-| Neil Hickey           | [neil-hickey](https://github.com/neil-hickey)         | [VMware](https://www.github.com/vmware/) | [kapp-controller](https://github.com/carvel-dev/kapp-controller) (Reviewer), [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) |
 | Praveen Rewar         | [praveenrewar](https://github.com/praveenrewar)       | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/carvel-dev/kapp) (Approver), [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli) (Approver), [kapp-controller](https://github.com/carvel-dev/kapp-controller)(Reviewer), [imgpkg](https://github.com/carvel-dev/imgpkg) |
 | Rohit Aggarwal        | [rohitagg2020](https://github.com/rohitagg2020)       | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/carvel-dev/kapp) (Reviewer), [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli) (Reviewer), [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) |
 | Soumik Majumder       | [100mik](https://github.com/100mik)                   | [VMware](https://www.github.com/vmware/) | [kapp](https://github.com/carvel-dev/kapp) (Approver), [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli) (Approver), [ytt](https://github.com/carvel-dev/ytt) |
@@ -31,6 +30,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Aaron Hurley, [aaronshurley](https://github.com/aaronshurley)
 * Joe Kimmel, [joe-kimmel-vmw](https://github.com/joe-kimmel-vmw)  
 * John Ryan, [pivotaljohn](https://github.com/pivotaljohn)
+* Neil Hickey, [neil-hickey](https://github.com/neil-hickey)
 
 ## Carvel Stakeholders
 
