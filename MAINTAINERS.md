@@ -19,7 +19,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Premkumar Bhaskal     | [prembhaskal](https://github.com/prembhaskal)         | [VMware](https://www.github.com/vmware/) | [ytt](https://github.com/carvel-dev/ytt)                                                                                                                                                                                |
 
 
-## Emeritus Maintainers
+## Emeritus Maintainers and Stakeholders
 * Eli Wrenn, [ewrenn8](https://github.com/ewrenn8)
 * Steven Locke, [StevenLocke](https://github.com/StevenLocke)
 * Daniel Helfand, [danielhelfand](https://github.com/danielhelfand)
@@ -31,6 +31,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Joe Kimmel, [joe-kimmel-vmw](https://github.com/joe-kimmel-vmw)  
 * John Ryan, [pivotaljohn](https://github.com/pivotaljohn)
 * Neil Hickey, [neil-hickey](https://github.com/neil-hickey)
+* Nanci Lancaster, [microwavables](https://github.com/microwavables)
 
 ## Carvel Stakeholders
 
@@ -39,4 +40,3 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | All                                                                                                                                             | Dmitriy Kalinin (cppforlife), Project Tech Lead  |
 | kapp, kctrl                                                                                                                                     |     Renu Yarday (renuy), Engineering Manager     |
 | [Windows Application Packages Contributor](https://github.com/adriens?tab=repositories&q=chocolatey-&type=&language=powershell&sort=stargazers) |              Adrien Sales (adriens)              |
-| Community Management                                                                                                                            |         Nanci Lancaster (microwavables)          |
