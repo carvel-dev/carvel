@@ -78,7 +78,7 @@ packages: ["carvel.dev/kbld"]
     </div>
     <div class="text-content" id="examples">
         <h2>Basic Usage</h2>
-        {{< highlight bash "" >}}
+{{< highlight bash "" >}}
 # Configurations picked up from a directory
 $ kbld -f examples/cassandra/ | kubectl apply -f -
 # Can be used with helm charts
@@ -90,7 +90,7 @@ $ ytt -f ./some-app | kbld -f - | kapp -y deploy -a some-app -f -{{< / highlight
         <h3>Examples</h3>
         <p>Resolves name-tag pair reference (<code>nginx:1.17</code>) into digest reference (<code>index.docker.io/library/nginx@sha256:2539d4344...</code>)</p>
         <p>Input:</p>
-        {{< highlight yaml "" >}}
+{{< highlight yaml "" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -114,7 +114,7 @@ spec:
         - containerPort: 80
 {{< / highlight >}}
         <p>Output:</p>
-        {{< highlight yaml "" >}}
+{{< highlight yaml "" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -146,7 +146,7 @@ spec:
 {{< / highlight >}}
         <p>Builds app from local directory (configured via Config's <code>sources</code>), pushes image as <code>docker.io/hk/simple-app</code> (configured via Config's <code>destinations</code>), and finally resolves it to a digest reference <code>index.docker.io/hk/simple-app@sha256:e932e46fd...</code>.</p>
         <p>Input:</p>
-        {{< highlight yaml "" >}}
+{{< highlight yaml "" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -179,7 +179,7 @@ destinations:
   newImage: docker.io/hk/simple-app # <-- where to push app1 image
 {{< / highlight >}}
         <p>Output:</p>
-        {{< highlight yaml "" >}}
+{{< highlight yaml "" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
