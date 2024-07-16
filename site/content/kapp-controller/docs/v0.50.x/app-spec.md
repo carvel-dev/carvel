@@ -267,6 +267,11 @@ spec:
         name: custom-name
         # set namespace explicitly, default is App CR's namespace (optional; v0.13.0+)
         namespace: custom-ns
+        # get Kubernetes version, defaults (empty) to retrieving the version from the cluster.
+        # can be manually overridden to a value instead.
+        kubernetesVersion: {}
+        # get kubernetes group/versions resources available in the live cluster
+        kubernetesAPIs: {}
         # one or more secrets, config maps, paths, downwardAPI that provide values (optional)
         valuesFrom:
           - secretRef:
