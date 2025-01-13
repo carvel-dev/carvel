@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/ytt-text-templating]
+
 title: Text Templating
 ---
 

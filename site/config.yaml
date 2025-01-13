@@ -23,15 +23,16 @@ params:
   ytt:
     name: ytt
     root_link: /ytt/
-    latest_docs_link: /ytt/docs/v0.51.0/
+    latest_docs_link: /ytt/docs/v0.51.1/
     github_url: https://github.com/carvel-dev/ytt
     search: true
     search_index_name: carvel-ytt
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.51.0
+    version_latest: v0.51.1
     versions:
     - develop
+    - v0.51.1
     - v0.51.0
     - v0.50.x
     - v0.49.x
