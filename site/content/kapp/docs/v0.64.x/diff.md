@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/diff]
 title: Diff stage
 ---
 ## Overview

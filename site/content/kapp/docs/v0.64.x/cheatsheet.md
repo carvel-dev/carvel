@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/cheatsheet]
 title: Cheatsheet
 ---
 

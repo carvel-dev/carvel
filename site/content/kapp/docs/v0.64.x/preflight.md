@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/preflight]
 title: Preflight Checks
 ---
 

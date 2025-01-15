@@ -1,0 +1,57 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: About kapp
+        url: /
+      - page: Install
+        url: /install
+      - page: Applications
+        url: /apps
+  - title: Deploy command
+    subfolderitems:
+      - page: Diff stage
+        url: /diff
+      - page: Apply stage
+        url: /apply
+      - page: Apply Ordering
+        url: /apply-ordering
+      - page: Apply Waiting
+        url: /apply-waiting
+      - page: Preflight Checks
+        url: /preflight
+  - title: Reference
+    subfolderitems:
+      - page: Configuration
+        url: /config
+      - page: Permissions
+        url: /rbac
+      - page: Namespace for State Storage
+        url: /state-namespace
+      - page: Cheatsheet
+        url: /cheatsheet
+      - page: Dangerous Flags
+        url: /dangerous-flags
+      - page: Configmap Migration (experimental)
+        url: /configmap-migration
+      - page: Command Reference
+        url: /command-reference
+  - title: Integrations
+    subfolderitems:
+      - page: Integrating With Other Tools
+        url: /integrating-with-other-tools
+      - page: GitOps
+        url: /gitops
+  - title: FAQ
+    subfolderitems:
+      - page: FAQ
+        url: /faq
+      - page: Resource Merge Method
+        url: /merge-method
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
+      - page: Security
+        shared_url: /security-policy

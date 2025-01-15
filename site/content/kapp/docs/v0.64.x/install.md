@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp/docs/latest/install]
 title: Install
 ---
 
