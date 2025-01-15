@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-overview]
 title: App CR High Level Overview
 ---
 

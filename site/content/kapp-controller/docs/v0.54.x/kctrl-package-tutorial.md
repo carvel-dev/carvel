@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/kctrl-package-tutorial]
 title: Consuming Packages using the CLI
 ---
 
