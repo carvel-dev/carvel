@@ -1,9 +1,9 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/]
 title: "About kapp-controller"
 toc: "false"
 cascade:
-  version: v0.54.x
+  version: v0.55.x
   toc: "true"
   type: docs
   layout: docs
