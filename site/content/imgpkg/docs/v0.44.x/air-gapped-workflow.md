@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/air-gapped-workflow]
 title: Air-gapped Workflow
 ---
 

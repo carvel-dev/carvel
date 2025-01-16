@@ -111,15 +111,16 @@ params:
     name: imgpkg
     short_name: imgpkg
     root_link: /imgpkg/
-    latest_docs_link: /imgpkg/docs/v0.43.x/
+    latest_docs_link: /imgpkg/docs/v0.44.x/
     github_url: https://github.com/carvel-dev/imgpkg
     search: true
     search_index_name: carvel-imgpkg
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.43.x
+    version_latest: v0.44.x
     versions:
     - develop
+    - v0.44.x
     - v0.43.x
     - v0.42.x
     - v0.41.x
