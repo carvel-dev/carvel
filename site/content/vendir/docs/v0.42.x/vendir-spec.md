@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-spec]
 title: vendir.yml spec
 ---
 
@@ -151,6 +151,8 @@ directories:
       dangerousSkipTLSVerify: false
       # specify the response timeout in seconds for imgpkg when querying the registry; defaults to 30 (optional; v0.40.0+)
       responseHeaderTimeout: 30
+      # paths to PEM files containing additional CA certificates required to securely connect to registries
+      additionalCACertificates: []
 
     # fetches assets from a github release (optional)
     githubRelease:
