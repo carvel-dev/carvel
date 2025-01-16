@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/sync]
 title: Sync command
 ---
 

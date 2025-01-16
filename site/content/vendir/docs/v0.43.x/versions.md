@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/versions]
 title: Versions
 ---
 

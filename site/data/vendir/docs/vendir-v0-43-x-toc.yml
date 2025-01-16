@@ -1,0 +1,29 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: About vendir
+        url: /
+      - page: Install
+        url: /install
+  - title: Reference
+    subfolderitems:
+      - page: Sync command
+        url: /sync
+      - page: vendir.yml Spec
+        url: /vendir-spec
+      - page: vendir.lock.yml Spec
+        url: /vendir-lock-spec
+      - page: Versions
+        url: /versions
+      - page: Github Release
+        url: /github-release
+  - title: FAQ
+    subfolderitems:
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
+      - page: Security
+        shared_url: /security-policy
