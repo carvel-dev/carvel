@@ -171,7 +171,7 @@ Supported flags:
 - `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
 - `--dangerous-allow-use-of-shared-namespace` _boolean_, Allow addition of package repositories in shared namespaces (`default`, `kube-public`)
 - `-r`, `--repository`, _string_, Set package repository name (required)
-- `--secret-ref`, _string_, SecretRef name for imgpkgbundle (optional)
+- `--secret-ref`, _string_, SecretRef name for imgpkg bundle (optional)
 - `--url`, _string_, OCI registry url for package repository bundle (required)
 - `--wait`, _boolean_, Wait for reconciliation to complete (default true)
 - `--wait-check-interval`, _duration_, Amount of time to sleep between checks while waiting (default 1s)
@@ -185,7 +185,7 @@ $ kctrl package repository update -r test-repo --url index.docker.io/k8slt/kc-e2
 Supported flags:
 - `-n`, `--namespace` _string_, Specified namespace ($KCTRL_NAMESPACE or default from kubeconfig)
 - `-r`, `--repository`, _string_, Set package repository name (required)
-- `--secret-ref`, _string_, SecretRef name for imgpkgbundle (optional)
+- `--secret-ref`, _string_, SecretRef name for imgpkg bundle (optional)
 - `--url`, _string_, OCI registry url for package repository bundle (required)
 - `--wait`, _boolean_, Wait for reconciliation to complete (default true)
 - `--wait-check-interval`, _duration_, Amount of time to sleep between checks while waiting (default 1s)
