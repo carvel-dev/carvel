@@ -279,6 +279,19 @@ Congratulations! `simple-app`s first Carvel package has been created using `kctr
 - [Can kctrl be used to publish packages in a CI pipeline?](/kapp-controller/docs/latest/kctrl-faq/#can-kctrl-be-used-to-publish-packages-in-a-ci-pipeline)
 - [Can we provide our own ImagesLock resource?](/kapp-controller/docs/latest/kctrl-faq/#can-we-provide-our-own-imageslock-resource-instead-of-it-being-generated-when-we-run-the-pkg-release-command)
 
+## Reviewing the schema
+
+Once you've got the package put together, it's definitely worth reviewing the details of the package's schema. A package
+communicates its schema as an OpenAPI v3 schema via `.spec.valuesSchema`. The schema gives you the rules for how to put
+together correct values for an installation of the package.
+
+In case of ytt templates, the schema will be exported using [ytt's schema export
+functionality](https://carvel.dev/ytt/docs/latest/how-to-export-schema/).
+
+In case of Helm charts, the schema will be inferred, but this is not a perfect process. The more clearly the Helm chart
+describes its values, the more accurate the schema will be. However, when a field in the Helm chart has `null` as
+its default value, its type cannot be inferred. In that case, it will be assumed to be _any_ possible type. See
+[kapp-controller!1677](https://github.com/carvel-dev/kapp-controller/pull/1677).
 
 ## Creating a package repository
 `kctrl` can be used to release packages grouped together as a PackageRepository.
