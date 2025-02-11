@@ -11,7 +11,6 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | João Pereira          | [joaopapereira](https://github.com/joaopapereira)     | [Broadcom](https://www.broadcom.com) | [imgpkg](https://github.com/carvel-dev/imgpkg) (Lead), [kbld](https://github.com/carvel-dev/kbld), [vendir](https://github.com/carvel-dev/vendir) |
 | John Brunton          | [jbrunton](https://github.com/jbrunton)               | [converge.io](https://converge.io/)      | [carvel-setup-action](https://github.com/carvel-dev/setup-action) (Approver) |
 | Praveen Rewar         | [praveenrewar](https://github.com/praveenrewar)       | [Broadcom](https://www.broadcom.com) | [kapp](https://github.com/carvel-dev/kapp) (Approver), [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli) (Approver), [kapp-controller](https://github.com/carvel-dev/kapp-controller)(Reviewer), [imgpkg](https://github.com/carvel-dev/imgpkg) |
-| Rohit Aggarwal        | [rohitagg2020](https://github.com/rohitagg2020)       | [Broadcom](https://www.broadcom.com) | [kapp](https://github.com/carvel-dev/kapp) (Reviewer), [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli) (Reviewer), [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) |
 | Soumik Majumder       | [100mik](https://github.com/100mik)                   | [Broadcom](https://www.broadcom.com) | [kapp](https://github.com/carvel-dev/kapp) (Approver), [kctrl](https://github.com/carvel-dev/kapp-controller/tree/develop/cli) (Approver), [ytt](https://github.com/carvel-dev/ytt) |
 | Premkumar Bhaskal     | [prembhaskal](https://github.com/prembhaskal)         | [Intuit](https://www.intuit.com) | [ytt](https://github.com/carvel-dev/ytt)                                                                                                                                                                                |
 | Thomas Vitale     | [ThomasVitale](https://github.com/ThomasVitale)         | [Systematic](https://systematic.com/en-gb/) | [ytt](https://github.com/carvel-dev/kapp-controller) , Community Champion |
@@ -38,6 +37,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 * Kumari Tanushree, [kumaritanushree](https://github.com/kumaritanushree)
 * Varsha Munishwar, [vmunishwar](https://github.com/vmunishwar)
 * Yash Sethiya, [sethiyash](https://github.com/sethiyash)     
+* Rohit Aggarwal, [rohitagg2020](https://github.com/rohitagg2020)
 
 ## Carvel Stakeholders
 
