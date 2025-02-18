@@ -87,6 +87,9 @@
 
 {{ if .Params.packages }}
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="go-import" content="{{ index .Params.packages 0 }} git {{ .Params.repo }}" />
-<meta name="go-source" content="{{ index .Params.packages 0 }} {{ .Params.repo }} {{ .Params.repo }}/tree/master{/dir} {{.Params.repo}}/blob/master{/dir}/{file}#L{line}" />
+{{ $params := .Params }}
+  {{ range $package := .Params.packages }}
+  <meta name="go-import" content="{{ $package }} git {{ $params.repo }}" />
+  <meta name="go-source" content="{{ $package }} {{ $params.repo }} {{ $params.repo }}/tree/master{/dir} {{$params.repo}}/blob/master{/dir}/{file}#L{line}" />
+  {{ end }}
 {{ end }}
