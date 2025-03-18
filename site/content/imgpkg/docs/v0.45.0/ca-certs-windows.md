@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/ca-certs-windows]
 title: CA Certs on Windows
 ---
 

@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/working-directly-with-images]
 title: Working directly with images
 ---
 

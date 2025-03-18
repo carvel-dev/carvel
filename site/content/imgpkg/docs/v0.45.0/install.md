@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/install]
 title: Install
 ---
 
