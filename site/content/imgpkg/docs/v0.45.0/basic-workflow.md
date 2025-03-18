@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/basic-workflow]
 title: Basic Workflow
 ---
 

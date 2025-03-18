@@ -1,5 +1,5 @@
 ---
-
+aliases: [/imgpkg/docs/latest/proxy]
 title: Proxy
 ---
 
