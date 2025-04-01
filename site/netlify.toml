@@ -64,3 +64,9 @@ HUGO_ENABLEGITINFO = "true"
   to = "https://carvel.dev/kapp-controller/docs/latest/packaging-tutorial"
   status = 301
   force = true
+
+[[redirects]]
+  from = "https://carvel.dev/kapp-controller/cli"
+  to = "https://carvel.dev/kapp-controller"
+  status = 301
+  force = true
