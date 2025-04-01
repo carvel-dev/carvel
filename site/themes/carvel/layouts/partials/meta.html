@@ -90,7 +90,7 @@
 <meta name="go-import" content="{{ index .Params.packages 0 }} git {{ .Params.repo }}" />
 <meta name="go-source" content="{{ index .Params.packages 0 }} {{ .Params.repo }} {{ .Params.repo }}/tree/develop{/dir} {{.Params.repo}}/blob/develop{/dir}/{file}#L{line}" />
   {{ if eq .Params.title "kapp-controller"}}
-  <meta name="go-import" content="{{ index .Params.packages 1 }} git {{ .Params.repo }}/cli" />
+  <meta name="go-import" content="{{ index .Params.packages 1 }} git {{ .Params.repo }}" />
   <meta name="go-source" content="{{ index .Params.packages 1 }} {{ .Params.repo }}/cli {{ .Params.repo }}/tree/develop/cli{/dir} {{.Params.repo}}/blob/develop/cli{/dir}/{file}#L{line}" />
   {{ end }}
 {{ end }}
