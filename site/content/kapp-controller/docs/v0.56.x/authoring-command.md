@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/authoring-command]
 title: Authoring Commands Reference
 ---
 
@@ -43,10 +43,6 @@ Supported flags:
 - `--copy-to` _string_, Output location for artifacts (default "carvel-artifacts")
 - `--chdir` _string_, Location of the working directory
 - `--tty`, _boolean_, Force TTY-like output
-- `--tag` _string_, Tag pushed with imgpkg bundle
-
-Note: If the `tag` flag is not provided, the value of `version` flag is added as tag.
-In case both flags are empty, the default tag would be unix TIMESTAMP
 
 ## Dev
 `kctrl dev` command help in testing the package locally using `kapp-controller`'s APIs.

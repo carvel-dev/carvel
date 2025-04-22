@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/packaging-artifact-formats]
 title: Artifact formats
 ---
 
