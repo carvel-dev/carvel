@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/debugging-crs]
 title: Debugging CRs
 ---
 

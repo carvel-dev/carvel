@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/dev]
 title: Development & Deploy
 ---
 

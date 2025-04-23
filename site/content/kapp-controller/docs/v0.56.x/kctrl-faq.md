@@ -1,6 +1,6 @@
 ---
-
-
+aliases: [/kapp-controller/docs/latest/kctrl-faq]
+aliases: [/kapp-controller/docs/latest/kctrl-faq]
 title: "`kctrl` FAQ"
 ---
 

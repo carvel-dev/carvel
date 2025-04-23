@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/package-consumer-concepts]
 title: Concepts for Package Consumers
 ---
 
