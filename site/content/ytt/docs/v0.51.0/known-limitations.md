@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/known-limitations]
+
 title: Known Limitations
 ---
 
