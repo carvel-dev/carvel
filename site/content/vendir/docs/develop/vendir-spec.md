@@ -264,6 +264,10 @@ directories:
     # LICENSE, NOTICE and COPYRIGHT variations (optional)
     legalPaths: []
 
+    # ignore paths from being overwritten or deleted by sync, preserving 
+    # the local file (optional)
+    ignorePaths: []
+
     # make subdirectory to be new root path within this asset (optional; v0.11.0+)
     newRootPath: cfroutesync
 
