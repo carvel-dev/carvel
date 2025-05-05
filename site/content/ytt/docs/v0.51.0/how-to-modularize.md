@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/how-to-modularize]
+
 title: Getting started
 ---
 

@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/how-it-works]
+
 title: "How it works"
 ---
 
