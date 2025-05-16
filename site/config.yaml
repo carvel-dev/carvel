@@ -148,15 +148,16 @@ params:
     name: kapp-controller
     short_name: kc
     root_link: /kapp-controller/
-    latest_docs_link: /kapp-controller/docs/v0.56.x/
+    latest_docs_link: /kapp-controller/docs/v0.57.x/
     github_url: https://github.com/carvel-dev/kapp-controller
     search: true
     search_index_name: carvel-kapp-controller
     search_api_key: a38560864c2e9128ae57d5734df438ff
     versioning: true
-    version_latest: v0.56.x
+    version_latest: v0.57.x
     versions:
     - develop
+    - v0.57.x
     - v0.56.x
     - v0.55.x
     - v0.54.x

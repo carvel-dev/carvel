@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/packaging-gitops]
 title: Package Management with GitOps
 ---
 

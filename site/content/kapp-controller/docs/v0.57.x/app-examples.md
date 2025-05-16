@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-examples]
 title: Example Usage
 ---
 

@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/air-gapped-workflow]
 title: Install Packages in an air-gapped (offline) environment
 ---
 

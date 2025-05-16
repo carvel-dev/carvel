@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/package-install-extensions]
 title: Overlays with PackageInstall
 ---
 
