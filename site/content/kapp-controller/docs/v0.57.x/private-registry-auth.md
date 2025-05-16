@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/private-registry-auth]
 title: Authenticating to Private Registries
 ---
 

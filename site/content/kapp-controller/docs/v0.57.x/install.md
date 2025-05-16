@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/install]
 title: Install
 ---
 

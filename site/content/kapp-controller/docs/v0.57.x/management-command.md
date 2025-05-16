@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/management-command]
 title: Management Commands Reference
 ---
 

@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/authoring-command]
 title: Authoring Commands Reference
 ---
 

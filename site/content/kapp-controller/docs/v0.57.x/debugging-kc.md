@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/debugging-kc]
 title: Debugging kapp-controller
 ---
 

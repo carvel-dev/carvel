@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kapp-controller/docs/latest/app-spec]
 title: App CR spec
 ---
 
@@ -260,6 +260,8 @@ spec:
         paths:
         - .imgpkg/images.yml
         - "-"
+        # Resolve to specific platform for image indexes (optional)
+        platform: linux/amd64
 
     # use helm template command to render helm chart
     - helmTemplate:
