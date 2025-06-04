@@ -87,6 +87,8 @@ searchRules:
     path:
 ```
 
+**NOTICE:** `name` and `path` are mutually exclusive and `name` as precedence.
+
 where:
 - `name` (string) specifies the key name (e.g. `sidecarImage`)
 - `path` (array) specifies key path from the root of the YAML document.\
