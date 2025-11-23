@@ -33,6 +33,23 @@ Experimental:
 
 * [kwt](https://github.com/carvel-dev/kwt)
 * [terraform-provider-carvel](https://github.com/carvel-dev/terraform-provider-carvel)
+## Prerequisites
+
+Before installing or using Carvel tools, ensure the following requirements are met:
+
+- **Kubernetes cluster** (local or remote)  
+  - You can use Minikube, Kind, k3d, or a managed Kubernetes service.
+- **kubectl installed and configured**  
+  - Verify using:  
+    ```bash
+    kubectl version --client
+    ```
+- **A container registry account** (optional but recommended)  
+  - Needed for tools like `kbld` and `imgpkg` when pushing or relocating images.
+- **macOS, Linux, or WSL2**  
+  - Carvel tools support modern Unix-like environments.
+
+These prerequisites help ensure that Carvel tools work consistently across different development setups.
 
 Installation:
 
