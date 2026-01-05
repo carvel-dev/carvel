@@ -347,7 +347,7 @@ spec:
             name: pgp-secrets
         # use age to decrypt files (v0.28.0+) (pgp or age is required)
         age:
-          # secret with private armored PGP private keys (required)
+          # secret with private armored age private keys (required)
           privateKeysSecretRef:
             # (required)
             name: age-secrets
