@@ -25,7 +25,7 @@ install() {
   if [[ `uname` == Darwin ]]; then
     binary_type=darwin-amd64
     
-    ytt_checksum=cc51c3040b91bb0871967f9960cd9286bafd334ffd153a86914b883f3adad9ef
+    ytt_checksum=c4dad8e654e9890a745aa62f3cbf87e5a6ccd5302afdf64855e918e5cdea81ca
     imgpkg_checksum=340fbd0b3a62d1db9150bab05b6718265e44f40b3fe813fd6b514cf5b8b8a0a2
     kbld_checksum=224eae07777ac6180a9911fa5be1d1e5fb2f1d053faa39b55c8e79092bde3795
     kapp_checksum=50f60126a3ab91b220ecf9f81b4da05a68231ad6fc5e944a1448bafab3d70774
@@ -35,7 +35,7 @@ install() {
   else
     binary_type=linux-amd64
     
-    ytt_checksum=18fe794d01c2539db39acb90994db0d8e51faa7892d0e749d74c29818017247a
+    ytt_checksum=6a1549260d7641585c4434c83ad237a66ec4fd4478edbd32e5e190ce1e755d20
     imgpkg_checksum=c8f0da1ee06a806a0480f874366d4dac1b35fffd64da6ff55e26ea01144e2f9c
     kbld_checksum=26be68f9ec354a2753f102707f4389e28111d36c2a318b72cd1bcff719fabb6c
     kapp_checksum=057d7fe33dd6afeb452a888d37995f789b9de0778ce4908896e37d37c52e6ead
@@ -48,11 +48,11 @@ install() {
 
   
   echo "Installing ytt..."
-  $dl_bin https://github.com/carvel-dev/ytt/releases/download/v0.53.2/ytt-${binary_type} > /tmp/ytt
+  $dl_bin https://github.com/carvel-dev/ytt/releases/download/v0.54.0/ytt-${binary_type} > /tmp/ytt
   echo "${ytt_checksum}  /tmp/ytt" | shasum -c -
   mv /tmp/ytt ${dst_dir}/ytt
   chmod +x ${dst_dir}/ytt
-  echo "Installed ${dst_dir}/ytt v0.53.2"
+  echo "Installed ${dst_dir}/ytt v0.54.0"
   
   echo "Installing imgpkg..."
   $dl_bin https://github.com/carvel-dev/imgpkg/releases/download/v0.47.2/imgpkg-${binary_type} > /tmp/imgpkg
