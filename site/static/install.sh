@@ -28,7 +28,7 @@ install() {
     ytt_checksum=6218426752505fffce393a18eb700e7ddb2ddcc1c8ad521d02101bdb9db2f7f6
     imgpkg_checksum=11104d72e3bf1e20e932379606ffa3cdfd2bed48daacf7f118d5e0f9010609c7
     kbld_checksum=224eae07777ac6180a9911fa5be1d1e5fb2f1d053faa39b55c8e79092bde3795
-    kapp_checksum=91bd0bcc041b9ce135d8f119dc8e404bce7f8f7aa1c3b10cb34ac25d88ca2d7f
+    kapp_checksum=cebb31f6b72cd94dc4e1c17b31ba6e4ac70caeb53e4b29aea1fbc1885605e9a7
     kwt_checksum=ea9e6eb76b203799d9f0d3177ac32b9d1d8e531bae363141dfe7030cb6e53a88
     vendir_checksum=52a584cf8c9c97b0f9693f33e404b971f3f65bff3a136d979d7b92c8a8f5cf62
     kctrl_checksum=db441c820a5d1d686ce4540532e37cbf47543d7cb1fab5d965df0949707d6ad4
@@ -38,7 +38,7 @@ install() {
     ytt_checksum=013adf9ed2fbd392b9861e5ec34015dabfcfa2e82da9e8cc0ee1e5c6a7f9b64b
     imgpkg_checksum=c35814ecab145c28700e9cc86826ed08942f17162cb1fb796e075058b022488c
     kbld_checksum=26be68f9ec354a2753f102707f4389e28111d36c2a318b72cd1bcff719fabb6c
-    kapp_checksum=38b0a6eb958210f5db2cf79ee4082adf7b6cf52de983b5364c56d03d898b6439
+    kapp_checksum=1724da4b62982285b1da696fb0354738e33913b33e59f3787b5c2b5ac7030327
     kwt_checksum=1022483a8b59fe238e782a9138f1fee6ca61ecf7ccd1e5f0d98e95c56df94d87
     vendir_checksum=7dc6dd9706170b442a7aaf3b4e29da57cca722a3252ed8f6ac9c2997e93a0aa5
     kctrl_checksum=76a5f88d562b8ed751d7865f3e328e0b60e8e4682e5c59bae6223706881752ab
@@ -69,11 +69,11 @@ install() {
   echo "Installed ${dst_dir}/kbld v0.47.3"
   
   echo "Installing kapp..."
-  $dl_bin https://github.com/carvel-dev/kapp/releases/download/v0.65.2/kapp-${binary_type} > /tmp/kapp
+  $dl_bin https://github.com/carvel-dev/kapp/releases/download/v0.65.3/kapp-${binary_type} > /tmp/kapp
   echo "${kapp_checksum}  /tmp/kapp" | shasum -c -
   mv /tmp/kapp ${dst_dir}/kapp
   chmod +x ${dst_dir}/kapp
-  echo "Installed ${dst_dir}/kapp v0.65.2"
+  echo "Installed ${dst_dir}/kapp v0.65.3"
   
   echo "Installing kwt..."
   $dl_bin https://github.com/carvel-dev/kwt/releases/download/v0.0.8/kwt-${binary_type} > /tmp/kwt
