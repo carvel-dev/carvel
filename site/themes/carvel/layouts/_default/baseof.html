@@ -25,7 +25,7 @@
 	{{ if .Params.asciinema }}
 		<script src="/js/asciinema-player.js"></script>
 	{{ end }}
-	{{ partial "_banner" . }}
+	{{/* partial "_banner" . */}}
 	{{ partial "_header" . }}
 	{{ block "main" . }}{{ end }}
 	{{ partial "_footer" . }}
