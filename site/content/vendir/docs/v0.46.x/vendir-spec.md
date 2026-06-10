@@ -1,5 +1,5 @@
 ---
-
+aliases: [/vendir/docs/latest/vendir-spec]
 title: vendir.yml spec
 ---
 
@@ -264,6 +264,10 @@ directories:
     # legal reasons such as LICENSE file. Defaults to few 
     # LICENSE, NOTICE and COPYRIGHT variations (optional)
     legalPaths: []
+
+    # ignore paths from being overwritten or deleted by sync, preserving 
+    # the local file (optional)
+    ignorePaths: []
 
     # make subdirectory to be new root path within this asset (optional; v0.11.0+)
     newRootPath: cfroutesync
