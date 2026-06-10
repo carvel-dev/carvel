@@ -283,7 +283,7 @@ kind: Config
 sources:
 - image: image1
   path: src/
-  ( docker | pack | kubectlBuildkit | ko | bazel ): ...
+  ( docker | pack | kubectlBuildkit | ko | bazel | maven ): ...
 ```
 
 where:
@@ -298,6 +298,7 @@ where:
   - `kubectlBuildkit:` use [Buildkit CLI for kubectl](#buildkit-cli-for-kubectl) to build the image via a Kubernetes cluster form source.
   - `ko:` use [ko](#ko) to build the image from Go source.
   - `bazel:` use [Bazel](#bazel) to build the image via Bazel Container Image Rules.
+  - `maven:` use [Maven/Jib](#mavenjib) to build the image via Maven and Jib.
   
 
 ### Docker
@@ -510,6 +511,34 @@ To skip this that launching step, append the args `-- --norun` via the `rawOptio
 ```
 
 See also https://github.com/bazelbuild/rules_docker#using-with-docker-locally.
+
+### Maven/Jib
+
+Using this integration requires:
+- Docker — https://docs.docker.com/get-docker
+- Maven — https://maven.apache.org/
+- `jib-maven-plugin` configured in `pom.xml`
+
+The `mvn` and `docker` CLI must be on the `$PATH`.
+
+```yaml
+---
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+  - image: image1
+    path: ./src/
+    maven:
+      run:
+        target: some-module
+        tag: my-tag
+        rawOptions: ["-P", "production"]
+```
+
+where:
+- `target` (string): path or module target directory.
+- `tag` (string): optional custom tag to apply to the built image in the local Docker daemon (defaults to `latest`).
+- `rawOptions` ([]string): additional options passed to the `mvn compile jib:dockerBuild` command.
 
 ---
 ## Destinations
