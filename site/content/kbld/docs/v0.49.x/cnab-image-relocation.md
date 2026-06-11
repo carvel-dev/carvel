@@ -1,5 +1,5 @@
 ---
-
+aliases: [/kbld/docs/latest/cnab-image-relocation]
 title: CNAB Image Maps
 ---
 
