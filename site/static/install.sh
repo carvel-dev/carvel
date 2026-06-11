@@ -42,7 +42,7 @@ install() {
     
     ytt_checksum=b6a946878b74883c093bcc3e93960c68a6058a7e2be6ee2c78f1ba5f80fe3c02
     imgpkg_checksum=db80447d06804162ba141689e1ca50cbbb59bb6355c1017f0838320e775ee2c7
-    kbld_checksum=fc0909f8a77f737cc075fc2e9dbf70408e00e933015863569dbd17a020e6fc06
+    kbld_checksum=c60055a764d6da6f18369d80d601483ee429dab2dd44501a87ebad60326c25c2
     kapp_checksum=cebb31f6b72cd94dc4e1c17b31ba6e4ac70caeb53e4b29aea1fbc1885605e9a7
     kwt_checksum=ea9e6eb76b203799d9f0d3177ac32b9d1d8e531bae363141dfe7030cb6e53a88
     vendir_checksum=5b417c837b0134fabf2c4a322db054eacb8cfbe8d0e8cbbb86afc7e4f0d625fd
@@ -52,7 +52,7 @@ install() {
     
     ytt_checksum=3a2c925ed222f8db4956946d40279688edd6ceb3e919f03f919a8fc8b8532eda
     imgpkg_checksum=6c7a1a2e6555e7827c3c97580be87c84d06778d0650d308f7dc67613aec7c7c8
-    kbld_checksum=9e417cb47dbf484cbf2a9f10b6a43186d2dded3597102de3f47f1d2989669884
+    kbld_checksum=f9ec8530fb677a37d9e9dd7c95fabaa2c857b2c46f21cdfdcec3a665a1236b6d
     kapp_checksum=1724da4b62982285b1da696fb0354738e33913b33e59f3787b5c2b5ac7030327
     kwt_checksum=1022483a8b59fe238e782a9138f1fee6ca61ecf7ccd1e5f0d98e95c56df94d87
     vendir_checksum=878f3c77cae21b9b63d0ea6c11454c0008d41652d2eb3d1844fdcf69cca6ae9e
@@ -77,11 +77,11 @@ install() {
   echo "Installed ${dst_dir}/imgpkg v0.48.1"
   
   echo "Installing kbld..."
-  $dl_bin https://github.com/carvel-dev/kbld/releases/download/v0.48.1/kbld-${binary_type} > /tmp/kbld
+  $dl_bin https://github.com/carvel-dev/kbld/releases/download/v0.49.0/kbld-${binary_type} > /tmp/kbld
   echo "${kbld_checksum}  /tmp/kbld" | $CHECKSUM_CMD -c -
   mv /tmp/kbld ${dst_dir}/kbld
   chmod +x ${dst_dir}/kbld
-  echo "Installed ${dst_dir}/kbld v0.48.1"
+  echo "Installed ${dst_dir}/kbld v0.49.0"
   
   echo "Installing kapp..."
   $dl_bin https://github.com/carvel-dev/kapp/releases/download/v0.65.3/kapp-${binary_type} > /tmp/kapp
