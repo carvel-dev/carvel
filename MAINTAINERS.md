@@ -19,7 +19,7 @@ Maintainers may focus on one or many tools. Some maintainers have different resp
 | Bryce Palmer   | [everettraven](https://github.com/everettraven)         | [RedHat](https://www.redhat.com/en) | [kapp](https://github.com/carvel-dev/kapp)                                                                                                                                                                                                                            |
 | Rashmi Gottipati   | [rashmigottipati](https://github.com/rashmigottipati)    | [RedHat](https://www.redhat.com/en) | [kapp](https://github.com/carvel-dev/kapp)                                                                                                                                                                                                                            |
 | Daman Arora   | [aroradaman](https://github.com/aroradaman)    | [Broadcom](https://www.broadcom.com) | [all](https://github.com/carvel-dev/)                                                                                                                                                                                                 |
-
+| Himanshu Ranjan | [himsngh](https://github.com/himsngh) | [Broadcom](https://www.broadcom.com) | [kapp-controller](https://github.com/carvel-dev/kapp-controller) |
 
 ## Emeritus Maintainers and Stakeholders
 * Eli Wrenn, [ewrenn8](https://github.com/ewrenn8)
