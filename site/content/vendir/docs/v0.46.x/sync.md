@@ -74,3 +74,54 @@ $ export VENDIR_CACHE_DIR=~/.vendir/cache
 $ export VENDIR_MAX_CACHE_SIZE=1Ki
 $ vendir sync
 ```
+
+## Sync with HTTP authentication
+
+For HTTP sources that require authentication, configure the HTTP content with a `secretRef`.
+
+Use `username` and `password` keys for basic authentication (Authorization: Basic <BASE64_CREDENTIALS>):
+
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: http-auth
+data:
+  username: dXNlcm5hbWU=
+  password: cGFzc3dvcmQ=
+---
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: stack
+  contents:
+  - path: "."
+    http:
+      url: https://<url>
+      secretRef:
+        name: http-auth
+```
+
+Use `token` for Bearer Token authentication (Authorization: Bearer <TOKEN>):
+
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: http-auth
+data:
+  token: dG9rZW4=
+---
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: stack
+  contents:
+  - path: "."
+    http:
+      url: https://<url>
+      secretRef:
+        name: http-auth
+```
