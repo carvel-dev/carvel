@@ -76,7 +76,7 @@ $ vendir sync
 
 ## Sync with HTTP authentication
 
-For HTTP sources that require authentication, configure the HTTP content with a `secretRef`.
+For HTTP sources that require authentication, configure the HTTP contents with a `secretRef`.
 
 Use `username` and `password` keys for basic authentication (Authorization: Basic <BASE64_CREDENTIALS>):
 
