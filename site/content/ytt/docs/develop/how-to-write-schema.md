@@ -44,6 +44,17 @@ system_domain: ""
 
 declares the Data Value, with the name `system_domain` to be of type **string** with the default value of an **empty string** (i.e. `""`).
 
+Additionally, a Data Value can also have a **title** and a **description** to make the schema easier to understand.
+
+For example,
+```yaml
+#@data/values-schema
+---
+#@schema/title "The system domain name"
+#@schema/desc "The domain this system will be available at"
+system_domain: ""
+```
+
 ---
 ## Implying Types
 
