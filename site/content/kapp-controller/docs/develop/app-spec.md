@@ -142,6 +142,8 @@ spec:
           name: secret-name
         # grab only portion of repository (optional)
         subPath: config-step-2-template
+        # depth of commits to fetch; 1 (default) means only latest commit, 0 means everything (optional)
+        depth: 1
         # skip lfs download (optional)
         lfsSkipSmudge: true
         # Force the usage of HTTP Basic Auth when Basic Auth is provided (optional)
