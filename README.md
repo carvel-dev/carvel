@@ -6,43 +6,62 @@
 
 Carvel provides a set of reliable, single-purpose, composable tools that aid in your application building, configuration, and deployment to Kubernetes.
 
+## New to Carvel?
+
+Carvel is a suite of Kubernetes tools designed to simplify application configuration, deployment, and management.
+
+If you are new to Carvel, here is a recommended learning path:
+
+1. Install the Carvel tools
+2. Learn YAML templating using `ytt`
+3. Deploy applications using `kapp`
+4. Explore example projects and documentation
+
+Recommended tools for beginners:
+
+- [`ytt`](https://github.com/carvel-dev/ytt)
+- [`kapp`](https://github.com/carvel-dev/kapp)
+
+Visit [carvel.dev](https://carvel.dev) for documentation, tutorials, and community resources.
+
 This is a list of repos associated with the [Carvel](https://carvel.dev) project.
 
-* [ytt](https://github.com/carvel-dev/ytt) - Template and overlay Kubernetes configuration via YAML structures, not text documents
-* [kapp](https://github.com/carvel-dev/kapp) - Install, upgrade, and delete multiple Kubernetes resources as one "application"
-* [kbld](https://github.com/carvel-dev/kbld) - Build or reference container images in Kubernetes configuration in an immutable way
-* [imgpkg](https://github.com/carvel-dev/imgpkg) - Bundle and relocate application configuration (with images) via Docker registries
-* [kapp-controller](https://github.com/carvel-dev/kapp-controller) - Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp.
-* [vendir](https://github.com/carvel-dev/vendir) - Declaratively state what files should be in a directory.
-* [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
+- [ytt](https://github.com/carvel-dev/ytt) - Template and overlay Kubernetes configuration via YAML structures, not text documents
+- [kapp](https://github.com/carvel-dev/kapp) - Install, upgrade, and delete multiple Kubernetes resources as one "application"
+- [kbld](https://github.com/carvel-dev/kbld) - Build or reference container images in Kubernetes configuration in an immutable way
+- [imgpkg](https://github.com/carvel-dev/imgpkg) - Bundle and relocate application configuration (with images) via Docker registries
+- [kapp-controller](https://github.com/carvel-dev/kapp-controller) - Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp.
+- [vendir](https://github.com/carvel-dev/vendir) - Declaratively state what files should be in a directory.
+- [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
 
 Experimental:
 
-* [kwt](https://github.com/carvel-dev/kwt)
-* [terraform-provider-carvel](https://github.com/carvel-dev/terraform-provider-carvel)
+- [kwt](https://github.com/carvel-dev/kwt)
+- [terraform-provider-carvel](https://github.com/carvel-dev/terraform-provider-carvel)
 
 Installation:
 
-* [homebrew](https://github.com/carvel-dev/homebrew)
-* [docker-image](https://github.com/carvel-dev/docker-image)
-* [asdf](https://github.com/carvel-dev/asdf)
-* [setup-action](https://github.com/carvel-dev/setup-action)
+- [homebrew](https://github.com/carvel-dev/homebrew)
+- [docker-image](https://github.com/carvel-dev/docker-image)
+- [asdf](https://github.com/carvel-dev/asdf)
+- [setup-action](https://github.com/carvel-dev/setup-action)
 
 Plugins:
 
-* [ytt.vim](https://github.com/carvel-dev/ytt.vim)
-* [vscode-ytt](https://github.com/carvel-dev/vscode-ytt)
+- [ytt.vim](https://github.com/carvel-dev/ytt.vim)
+- [vscode-ytt](https://github.com/carvel-dev/vscode-ytt)
 
 Examples:
 
-* [simple-app-on-kubernetes](https://github.com/carvel-dev/simple-app-on-kubernetes)
-* [ytt-library-for-kubernetes](https://github.com/carvel-dev/ytt-library-for-kubernetes)
-* [ytt-library-for-kubernetes-demo](https://github.com/carvel-dev/ytt-library-for-kubernetes-demo)
-* [guestbook-example-on-kubernetes](https://github.com/carvel-dev/guestbook-example-on-kubernetes)
+- [simple-app-on-kubernetes](https://github.com/carvel-dev/simple-app-on-kubernetes)
+- [ytt-library-for-kubernetes](https://github.com/carvel-dev/ytt-library-for-kubernetes)
+- [ytt-library-for-kubernetes-demo](https://github.com/carvel-dev/ytt-library-for-kubernetes-demo)
+- [guestbook-example-on-kubernetes](https://github.com/carvel-dev/guestbook-example-on-kubernetes)
 
 See what's planned in [our backlog](https://github.com/orgs/carvel-dev/projects/1).
 
 ---
+
 # Join the Community and Make Carvel Better
 
 Carvel is better because of our contributors and maintainers. It is because of you that we can bring great software to the community. Please join us during our online community meetings. Details can be found on our [Carvel website](https://carvel.dev/community/).
