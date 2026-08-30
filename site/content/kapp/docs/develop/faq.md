@@ -127,3 +127,7 @@ Additional resources: [tty flag in kapp code](https://github.com/carvel-dev/kapp
 ## How can I get kapp to skip waiting on some resources?
 
 kapp allows to control waiting behavior per resource via [resource annotations](apply-waiting.md#controlling-waiting-via-resource-annotations). When used, the resource will be applied to the cluster, but will not wait to reconcile.
+---
+## Does kapp support templating or variable substitution?
+
+No, `kapp` has no built-in support for templating, substitutions, or other manifest transformations. Use a manifest generation and templating tool like [`ytt`](https://carvel.dev/ytt/) or [`kustomize`](https://kustomize.io/) to provide input into `kapp`.
