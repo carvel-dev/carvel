@@ -10,15 +10,16 @@ body {
     font-size: 16px;
     color: $grey;
 }
+
 .wrapper {
     max-width: 980px;
-    //width: 100%;
     margin: 0px auto;
     padding: 20px;
     @include breakpoint(small) {
         max-width: 100%;
     }
 }
+
 .clearfix {
     *zoom: 1;
 	&:before, &:after {
@@ -30,45 +31,41 @@ body {
 		clear: both;
 	}
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
     line-height: 1.25;
     color: $black;
 }
-h1 {
-    font-size: 36px;
-}
-h2 {
-    font-size: 28px;
-}
-h3 {
-    font-size: 22px;
-}
-h4 {
-    font-size: 18px;
-    font-weight: 600;
-}
-h5 {
-    font-size: 16px;
-    font-weight: 600;
-}
-h6 {
-    font-size: 14px;
-    font-weight: 600;
-}
+
+h1 { font-size: 36px; }
+h2 { font-size: 28px; }
+h3 { font-size: 22px; }
+h4 { font-size: 18px; font-weight: 600; }
+h5 { font-size: 16px; font-weight: 600; }
+h6 { font-size: 14px; font-weight: 600; }
+
 .strong {
     font-family: $metropolis-medium;
 }
+
 a {
     text-decoration: none;
     color: $blue;
     font-family: $metropolis-medium;
+    &:hover {
+        color: $brightblue;
+        text-decoration: underline;
+    }
 }
 
 summary {
   text-decoration: underline;
   color: $blue;
   cursor: pointer;
+  &:hover {
+      color: $brightblue;
+  }
 }
 
 hr {
@@ -76,13 +73,12 @@ hr {
     border-width: 1px 0 0;
     border-color: $lightgrey;
 }
-a:hover {
-    text-decoration: underline;
-}
+
 button {
     background-color: unset;
     border: none;
 }
+
 .button {
     color: $blue;
     font-size: 12px;
@@ -92,30 +88,41 @@ button {
     padding: 14px 40px;
     text-transform: uppercase;
     border: 1px solid $white;
+
     &.secondary {
         background-color: $blue;
         color: $white;
     }
+
     &.tertiary {
         background-color: unset;
         color: $white;
     }
+
+    &:hover {
+        color: $white;
+        background-color: $brightblue;
+        text-decoration: underline;
+    }
 }
-.button:hover {
-  color: $white;
-  background-color: $brightblue;
-  text-decoration: underline;
-}
+
 .section-link {
     color: #bbb;
     font-size: 20px;
+    &:hover {
+        color: $blue;
+        text-decoration: underline;
+    }
 }
+
 strong {
     font-family: $metropolis-medium;
 }
+
 .bg-grey {
     background-color: $lightgrey;
 }
+
 .green-text {
     color: $green;
 }
@@ -125,9 +132,11 @@ strong {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 20px;
     column-gap: 15px;
+
     @include breakpoint(medium) {
         grid-template-columns: 1fr 1fr;
     }
+
     @include breakpoint(small) {
         grid-template-columns: 1fr;
     }
@@ -138,6 +147,7 @@ strong {
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 20px;
     column-gap: 20px;
+
     @include breakpoint(small) {
         grid-template-columns: 1fr;
     }
@@ -146,6 +156,7 @@ strong {
 .grid.two {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
     @include breakpoint(small) {
         grid-template-columns: 1fr;
     }
@@ -155,7 +166,12 @@ code {
     background: #efefef;
     padding: 2px 4px;
     font-size: 85%;
+
+    &:hover {
+        background: #ddd;
+    }
 }
+
 pre {
     code {
         display: block;
@@ -163,14 +179,21 @@ pre {
         margin-bottom: 30px;
         overflow-x: auto;
         background: #f6f8fa;
+
+        &:hover {
+            background: #e1e4e8;
+        }
+
         &.language-bash, &.language-bash-plain {
             background: #202020;
             color: #d0d0d0;
+
             // Cannot see dark letters on dark bg
             span[style*="color:#000"] {
                 color: #d0d0d0 !important;
             }
         }
+
         &.language-yaml {
             // A bit harder to read italicized text
             span[style*="font-style:italic"] {
