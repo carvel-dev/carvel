@@ -86,7 +86,7 @@ The `CRDUpgradeSafety` preflight check is a very nuanced preflight check and dif
 - Only issue warnings about potential problems
 - Fail closed/open
 
-In order to accomodate this configurability without introducing various versions of the same preflight check, the ability to specify preflight configurations will be added to the existing [`kapp` configuration file](https://carvel.dev/kapp/docs/v0.60.x/config/).
+In order to accommodate this configurability without introducing various versions of the same preflight check, the ability to specify preflight configurations will be added to the existing [`kapp` configuration file](https://carvel.dev/kapp/docs/v0.60.x/config/).
 
 As an example, configuring a preflight check could look something like:
 

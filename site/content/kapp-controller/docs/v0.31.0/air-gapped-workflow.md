@@ -23,7 +23,7 @@ Most of the steps documented for the [imgpkg air-gapped workflow docs](/imgpkg/d
 still apply in the case of working with kapp-controller package repositories. A summary of these docs is that you will need to copy your package repository 
 bundle with `imgpkg` via one of the following options:
 
-- Option 1: From a common location connected to both registries. This option is more efficient because only changed image layers will be transfered between registries.
+- Option 1: From a common location connected to both registries. This option is more efficient because only changed image layers will be transferred between registries.
 - Option 2: With intermediate tarball. This option works best when registries have no common network access.
 
 More detailed documents for [`Option 1`](/imgpkg/docs/latest/air-gapped-workflow/#option-1-from-a-location-connected-to-both-registries) and 
