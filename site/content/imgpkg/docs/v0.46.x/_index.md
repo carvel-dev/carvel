@@ -1,5 +1,5 @@
 ---
-aliases: [/imgpkg/docs/latest/]
+
 title: "About imgpkg"
 toc: "false"
 cascade:
