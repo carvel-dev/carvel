@@ -46,7 +46,7 @@ install() {
     kapp_checksum=df079c7a5cec7f1ea62ebb230e07f597d67e9ea4231ada0c19186d7b7114b48a
     kwt_checksum=ea9e6eb76b203799d9f0d3177ac32b9d1d8e531bae363141dfe7030cb6e53a88
     vendir_checksum=39b1025eb03142790d5b8d262edd1c9dd5987ae97a81d0c5c4affb13850caccb
-    kctrl_checksum=6329d858ff5d7e9e3e711e93f149ddf4146922ae95d4baa5fb5f15eebcb1f2b3
+    kctrl_checksum=fc2b9af6b517730a3e910f31481459017f341de67e6f736867a4e2ab3d3996ad
   else
     binary_type=linux-amd64
     
@@ -56,7 +56,7 @@ install() {
     kapp_checksum=96ef4d7da52628888542d741080c04fbdbdf313b8fbae9f63f3a35c53119461a
     kwt_checksum=1022483a8b59fe238e782a9138f1fee6ca61ecf7ccd1e5f0d98e95c56df94d87
     vendir_checksum=5af8823ecc67b3ce2359bb0b70e72a5dbd765135722ca0ff42c16bc4d7409847
-    kctrl_checksum=842ea6448d712b103e60b2e2acd91ddc7bda7ba789793af793d7899a64e2c2b0
+    kctrl_checksum=f397167dbc4be71267e1f70aaf362ce69739c69aa237c010abb132b3630628a5
   fi
 
   echo "Installing ${binary_type} binaries..."
@@ -105,11 +105,11 @@ install() {
   echo "Installed ${dst_dir}/vendir v0.46.3"
   
   echo "Installing kctrl..."
-  $dl_bin https://github.com/carvel-dev/kapp-controller/releases/download/v0.60.9/kctrl-${binary_type} > /tmp/kctrl
+  $dl_bin https://github.com/carvel-dev/kapp-controller/releases/download/v0.60.10/kctrl-${binary_type} > /tmp/kctrl
   echo "${kctrl_checksum}  /tmp/kctrl" | $CHECKSUM_CMD -c -
   mv /tmp/kctrl ${dst_dir}/kctrl
   chmod +x ${dst_dir}/kctrl
-  echo "Installed ${dst_dir}/kctrl v0.60.9"
+  echo "Installed ${dst_dir}/kctrl v0.60.10"
   
 }
 
