@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/data-values-schema-migration-guide]
+
 title: Schema Migration Guide
 toc: "true"
 ---

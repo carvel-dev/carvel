@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/lang-ref-yaml-fragment]
+
 title: YAMLFragments
 ---
 

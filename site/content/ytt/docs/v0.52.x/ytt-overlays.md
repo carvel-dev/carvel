@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/ytt-overlays]
+
 title: Overlays
 ---
 

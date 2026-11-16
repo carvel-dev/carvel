@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/ytt-data-values]
+
 title: Data Values
 ---
 

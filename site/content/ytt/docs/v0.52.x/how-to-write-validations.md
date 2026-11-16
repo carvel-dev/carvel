@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/how-to-write-validations]
+
 title: Writing Schema Validations
 ---
 

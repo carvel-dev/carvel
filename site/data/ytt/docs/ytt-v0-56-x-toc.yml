@@ -1,0 +1,115 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: About ytt
+        url: /
+      - page: Install
+        url: /install
+      - page: How it Works
+        url: /how-it-works
+  - title: Concepts
+    subfolderitems:
+      - page: YAML and Annotations
+        url: /yaml-primer
+  - title: Quick References
+    subfolderitems:
+      - page: Schema Validations Cheat Sheet
+        url: /schema-validations-cheat-sheet
+  - title: How To
+    subfolderitems:
+      - page: Get Started & Modularize code
+        url: /how-to-modularize
+      - page: Use Data Values
+        url: /how-to-use-data-values
+      - page: Write Schema
+        url: /how-to-write-schema
+      - page: Write Schema Validations
+        url: /how-to-write-validations
+      - page: Export Schema in OpenAPI format
+        url: /how-to-export-schema
+      - page: Use Overlays
+        url: /ytt-overlays
+      - page: Data Values vs. Overlays
+        url: /data-values-vs-overlays
+      - page: Inject secrets
+        url: /injecting-secrets
+  - title: Reference
+    subfolderitems:
+      - page: Language
+        url: /lang
+      - page: Annotations
+        url: /lang-ref-annotation
+      - page: Data Values
+        url: /ytt-data-values
+      - page: Data Values Schema
+        url: /lang-ref-ytt-schema
+      - page: Text Templating
+        url: /ytt-text-templating
+  - title: Built-in @ytt library
+    subfolderitems:
+      - page: All modules
+        url: /lang-ref-ytt
+      - page: Assert module
+        url: /lang-ref-ytt-assert
+      - page: Library module
+        url: /lang-ref-ytt-library
+      - page: Overlay module
+        url: /lang-ref-ytt-overlay
+      - page: Struct module
+        url: /lang-ref-ytt-struct
+      - page: Template module
+        url: /lang-ref-ytt-template
+      - page: Version module
+        url: /lang-ref-ytt-version
+  - title: Language
+    subfolderitems:
+      - page: General
+        url: /lang
+      - page: String
+        url: /lang-ref-string
+      - page: List
+        url: /lang-ref-list
+      - page: Dictionary
+        url: /lang-ref-dict
+      - page: Struct
+        url: /lang-ref-structs
+      - page: YAML Fragment
+        url: /lang-ref-yaml-fragment
+      - page: If conditional
+        url: /lang-ref-if
+      - page: For loop
+        url: /lang-ref-for
+      - page: Function
+        url: /lang-ref-def
+      - page: Load
+        url: /lang-ref-load
+  - title: CLI configuration
+    subfolderitems:
+      - page: Inputs
+        url: /inputs
+      - page: Outputs
+        url: /outputs
+      - page: File Marks
+        url: /file-marks
+      - page: Strict yaml
+        url: /strict
+  - title: FAQ
+    subfolderitems:
+      - page: FAQ
+        url: /faq
+      - page: Why ytt vs. x?
+        url: /ytt-vs-x
+      - page: Schema Migration Guide
+        url: /data-values-schema-migration-guide
+      - page: Code of Conduct
+        shared_url: /code-of-conduct
+      - page: Contributing
+        shared_url: /contributing
+      - page: Carvel Development Guidelines
+        shared_url: /development_guidelines
+      - page: Security
+        shared_url: /security-policy
+      - page: Known Limitations
+        url: /known-limitations
+      - page: Playground Examples
+        url: /index-playground-examples

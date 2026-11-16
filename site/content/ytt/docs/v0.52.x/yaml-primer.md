@@ -1,5 +1,5 @@
 ---
-aliases: [/ytt/docs/latest/yaml-primer]
+
 title: "YAML and Annotations"
 ---
 
