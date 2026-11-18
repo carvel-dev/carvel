@@ -8,6 +8,8 @@ Once change set is calculated (see [Diff](diff.md) section for details), kapp as
 
 Changes are applied in particular order as described in [Apply ordering](apply-ordering.md).
 
+### Resource labels
+
 All created resources are labeled with several labels:
 
 - `kapp.k14s.io/app` to track which application "owns" resource

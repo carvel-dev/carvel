@@ -128,7 +128,12 @@ See [ytt rebase rule](https://github.com/carvel-dev/kapp/blob/d3ee9a01b5f0d7d563
 
 ### labelScopingRules
 
-`labelScopingRules` specify locations for inserting kapp generated labels that scope resources to resources within current application. `kapp.k14s.io/disable-default-label-scoping-rules: ""` (as of v0.33.0+, or use `kapp.k14s.io/disable-label-scoping: ""` in earlier versions) annotation can be used to exclude an individual resource from label scoping.
+`labelScopingRules` specify locations for inserting [kapp generated labels](apply.md#resource-labels) that scope resources to resources within current application.
+
+The annotations `kapp.k14s.io/disable-default-label-scoping-rules: ""` (as of v0.33.0+, or use `kapp.k14s.io/disable-label-scoping: ""` in earlier versions) can be used to exclude an individual resource from label scoping.
+
+The global CLI option `--default-label-scoping-rules=false` can be used to disable addition of ownership labels
+entirely, but it's recommended to limit the scope of this option to specific use cases so kapp can do a better job of tracking the application's resources.
 
 ### waitRules
 

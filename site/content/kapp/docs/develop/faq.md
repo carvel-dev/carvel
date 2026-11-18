@@ -127,3 +127,14 @@ Additional resources: [tty flag in kapp code](https://github.com/carvel-dev/kapp
 ## How can I get kapp to skip waiting on some resources?
 
 kapp allows to control waiting behavior per resource via [resource annotations](apply-waiting.md#controlling-waiting-via-resource-annotations). When used, the resource will be applied to the cluster, but will not wait to reconcile.
+
+---
+## Why does kapp add `kapp.k14s.io/app` labels to my resources?
+
+[`kapp` adds the label `kapp.k14s.io/app` and other related labels](apply.md#resource-labels) to keep track of which app resources are part of.
+
+This can cause issues in situations where controllers or custom resources are used to deploy resources, as it may result in mismatches between selectors and the resources selected, e.g. a service selector not matching any pods.
+
+It may also result in [Field is immutable errors](#-field-is-immutable-error) when updating resources that were not previously managed by `kapp`, so they lacked the kapp labels. See [migration](#migrating-from-kubectl-apply-to-kapp).
+
+See [label scoping rules](config#labelscopingrules) for details and configuration.
