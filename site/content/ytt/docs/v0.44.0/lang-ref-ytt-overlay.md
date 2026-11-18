@@ -419,18 +419,20 @@ Inserts "right" node before/after the matched "left" node. The inserted node is 
 
 **Examples:**
 
-Add a `ConfigMap` into each `Namespace`:
+Add a `ConfigMap` into *every* `Namespace`:
 ```yaml
-#@ def configMap(namespace):
+#@ def global_config(namespace):
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: insert
-  namespace: #@ namespace.metadata.name
+  name: global-config
+  namespace: #@ namespace["metadata"]["name"]
+data:
+  important: content
 #@ end
 
-#@overlay/match overlay.subset({"kind": "Namespace"})
-#@overlay/insert after=True, via=lambda namespace, _: configMap(namespace)
+#@overlay/match by=overlay.subset({"kind": "Namespace"})
+#@overlay/insert after=True, via=lambda namespace, _: global_config(namespace)
 ---
 ```
 
