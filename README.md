@@ -12,14 +12,44 @@ This is a list of repos associated with the [Carvel](https://carvel.dev) project
 * [kapp](https://github.com/carvel-dev/kapp) - Install, upgrade, and delete multiple Kubernetes resources as one "application"
 * [kbld](https://github.com/carvel-dev/kbld) - Build or reference container images in Kubernetes configuration in an immutable way
 * [imgpkg](https://github.com/carvel-dev/imgpkg) - Bundle and relocate application configuration (with images) via Docker registries
-* [kapp-controller](https://github.com/carvel-dev/kapp-controller) - Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp.
-* [vendir](https://github.com/carvel-dev/vendir) - Declaratively state what files should be in a directory.
+* [kapp-controller](https://github.com/carvel-dev/kapp-controller) - Capture application deployment workflow in App CRD. Reliable GitOps experience powered by kapp.* [vendir](https://github.com/carvel-dev/vendir) - Declaratively state what files should be in a directory.
 * [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) - Provides CRDs to specify what secrets need to be on a cluster (generated or not).
+## Tool Overview Table
+
+The Carvel project includes multiple focused tools.
+
+| Tool | Purpose | Documentation | Repository |
+|------|---------|---------------|------------|
+| **ytt** | YAML templating and overlays | https://carvel.dev/ytt/ | https://github.com/carvel-dev/ytt |
+| **kapp** | Kubernetes application deployment and lifecycle management | https://carvel.dev/kapp/ | https://github.com/carvel-dev/kapp |
+| **kbld** | Image building and immutable references | https://carvel.dev/kbld/ | https://github.com/carvel-dev/kbld |
+| **imgpkg** | Distribute config + images as OCI bundles | https://carvel.dev/imgpkg/ | https://github.com/carvel-dev/imgpkg |
+| **kapp-controller** | GitOps-style application controller | https://carvel.dev/kapp-controller/ | https://github.com/carvel-dev/kapp-controller |
+| **vendir** | Declarative file/directory vendoring | https://carvel.dev/vendir/ | https://github.com/carvel-dev/vendir |
+| **secretgen-controller** | CRDs for secret generation | https://carvel.dev/secretgen-controller/ | https://github.com/carvel-dev/secretgen-controller |
+
 
 Experimental:
 
 * [kwt](https://github.com/carvel-dev/kwt)
 * [terraform-provider-carvel](https://github.com/carvel-dev/terraform-provider-carvel)
+## Prerequisites
+
+Before installing or using Carvel tools, ensure the following requirements are met:
+
+- **Kubernetes cluster** (local or remote)  
+  - You can use Minikube, Kind, k3d, or a managed Kubernetes service.
+- **kubectl installed and configured**  
+  - Verify using:  
+    ```bash
+    kubectl version --client
+    ```
+- **A container registry account** (optional but recommended)  
+  - Needed for tools like `kbld` and `imgpkg` when pushing or relocating images.
+- **macOS, Linux, or WSL2**  
+  - Carvel tools support modern Unix-like environments.
+
+These prerequisites help ensure that Carvel tools work consistently across different development setups.
 
 Installation:
 
