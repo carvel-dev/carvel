@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kbld-simple-app-build-local
+spec:
+  selector:
+    matchLabels:
+      app: kbld-simple-app-build-local
+  template:
+    metadata:
+      labels:
+        app: kbld-simple-app-build-local
+    spec:
+      containers:
+      - name: my-app-docker
+        image: simple-app-with-docker
+      - name: my-app-pack
+        image: simple-app-with-pack
+---
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+- image: simple-app-with-docker
+  path: simple-app
+  docker:
+    pull: true
+    noCache: true
+- image: simple-app-with-pack
+  path: simple-app
+  pack:
+    build:
+      builder: paketobuildpacks/builder:base
