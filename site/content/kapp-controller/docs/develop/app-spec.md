@@ -209,7 +209,7 @@ spec:
                 directoryPath: dir
         # lists paths to provide to ytt explicitly (optional)
         paths:
-        # - must be quoted when included with paths
+        # - must be quoted when included with paths. "-" means that output of the previous directive will be used as input for this directive
         - "-"
         - dir/common
         - dir/nested/app
@@ -255,7 +255,7 @@ spec:
     # use kbld to resolve image references to use digests
     - kbld:
         # lists paths to use explicitly (optional; v0.13.0+)
-        # - must be quoted when included with paths
+        # - must be quoted when included with paths. "-" means that output of the previous directive will be used as input for this directive
         paths:
         - .imgpkg/images.yml
         - "-"
