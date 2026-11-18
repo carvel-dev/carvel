@@ -207,8 +207,8 @@ Building on the previous solution, `name`, `namespace`, `version`, and `replicas
 #! schema.yml
 #@data/values-schema
 ---
-name: "frontend"     #! ensures that any value for 'frontend' must be a string
-namespace: "default" #! ensures that any value for 'default' must be a string
+name: "frontend"     #! ensures that any value for 'name' must be a string
+namespace: "default" #! ensures that any value for 'namespace' must be a string
 version: "0.1.0"     #! ensures that any value for 'version' must be a string
 replicas: 1          #! ensures that any value for 'replicas' must be a int
 ```
