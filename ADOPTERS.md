@@ -8,7 +8,7 @@ list, [follow these directions](#adding-your-organization-to-the-list-of-adopter
 (in alphabetical order)
 
 <a href="https://beam.lu/" border="0" target="_blank"><img alt="BEAM" src="logos/BEAM-SARL.png" height="50"></a>&nbsp; &nbsp; &nbsp;
-<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img alt="fabrique" src="logos/fabrique.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://educates.dev/" border="0" target="_blank"><img alt="Educates" src="logos/educates.svg" height="50"></a>&nbsp; &nbsp; &nbsp;<a href="https://www.fabrique.social.gouv.fr/" border="0" target="_blank"><img alt="fabrique" src="logos/fabrique.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://www.opt.nc/" border="0" target="_blank"><img alt="OPT-NC" src="logos/OPT-NC.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://www.orange.com/" border="0" target="_blank"><img alt="Orange" src="logos/Orange.png" height="50"></a>&nbsp; &nbsp; &nbsp; &nbsp; <br/><br/>
 <a href="https://rev.ng/" border="0" target="_blank"><img alt="Revng" src="logos/revng.svg" height="50"></a>&nbsp; &nbsp; &nbsp;
@@ -26,6 +26,10 @@ Below is a list of solutions where Carvel is being used as a component.
 **[BEAM](https://beam.lu/)**
 
 BEAM is a consulting company based in Luxembourg and specialized in DevOps, Cloud and automation. BEAM supports their customers in their workload and delivery optimizations and helps them transition from traditional IT models to DevOps.
+
+**[Educates Training Platform](https://educates.dev/)**
+
+Educates Training Platform is a FOSS Cloud-Native Hands-On Training Platform. The Educates project provides a system for hosting interactive workshop environments in Kubernetes, or on top of a local container runtime. It can be used for self paced or supervised workshops. It can also be useful where you need to package up demos of applications hosted in Kubernetes or a local container runtime. 
 
 **[Fabrique Numérique des Ministères Sociaux](https://www.fabrique.social.gouv.fr/)**
 
