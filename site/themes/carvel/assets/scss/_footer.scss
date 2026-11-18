@@ -12,22 +12,27 @@ footer {
         padding-bottom: 5px;
         margin-bottom: 10px;
     }
+
     li {
         list-style-type: none;
         display: inline;
         padding-right: 25px;
         font-size: 12px;
+
         &:last-of-type {
             padding-right: 0px;
         }
     }
+
     .right-links {
         padding: 0px;
+
         li {
             img {
                 vertical-align: bottom;
                 margin-right: 10px;
             }
+
             a {
                 color: $darkgrey;
                 font-weight: 300;
@@ -35,80 +40,110 @@ footer {
                 font-family: $metropolis-light;
             }
         }
+
         .mobile {
             display: none;
         }
     }
+
     .left-links {
         p {
             margin: 0px;
         }
+
         .copywrite {
             font-size: 12px;
             padding-right: 10px;
+
             a {
                 font-size: 12px;
                 color: $darkgrey;
                 font-family: $metropolis-light;
             }
         }
+
         a {
             vertical-align: middle;
         }
+
         img {
             height: 46px;
             width: auto;
             margin-right: 20px;
         }
     }
+
     .bottom-links {
         width: 60%;
+
         small {
             font-size: 12px;
             vertical-align: middle;
         }
+
         p {
             line-height: 16px;
         }
+
         a {
             font-size: 12px;
             font-family: $metropolis-light;
             vertical-align: middle;
         }
+
         img {
             height: 30px;
             width: auto;
             margin-right: 20px;
         }
     }
+
+    .footer {
+        border-top: 1px solid #e0e0e0; // Add a border for separation
+        background-color: #f7f7f7; // Add a light background
+        padding-top: 30px; // Adjust this value down to reduce the gap
+        padding-bottom: 30px; // Ensure padding at the bottom too
+        // ... existing styles ...
+    }
+
     @include breakpoint(small) {
         .footer-links {
             display: block;
+
             .right-links {
                 display: none;
             }
+
             .left-links {
                 float: none;
                 margin: 10px 0px;
+
                 .desktop {
                     display: none;
                 }
+
                 .mobile {
                     display: inline;
                 }
+
                 .copywrite {
                     display: block;
-                    margin-top:20px;
+                    margin-top: 20px;
                 }
             }
         }
-        .bottom-links {
-            margin: 10px 0px 20px 0px;
-            width: 100%;
-            img {
-                margin-left: 0px;
-                display: block;
-                margin-top: 10px;
+
+        .wrapper.footer-links {
+            display: flex;
+            justify-content: space-between; // Spreads out logo/links and social icons
+            align-items: center; // Vertically centers them
+        }
+
+        // Add a media query for mobile responsiveness
+        @media (max-width: 768px) {
+            .wrapper.footer-links {
+                flex-direction: column; // Stack elements vertically on small screens
+                text-align: center;
             }
         }
     }
