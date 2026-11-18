@@ -27,23 +27,33 @@ header {
         }
     }
     a {
-        color: $grey;
+        color: $grey; // Use a variable for color consistency
         font-weight: 300;
         font-size: 16px;
         font-family: $metropolis-light;
+        transition: all 0.3s ease; // Smooth transition for hover effects
+
         &.active {
             font-family: $metropolis-medium;
         }
     }
+    
+     // Updated hover effect for links
     a:hover {
-        color: $grey;
-        font-weight: 300;
-        font-family: $metropolis-light;
+        color: lighten($grey, 15%); // Make the text color lighter on hover
+        font-weight: 400; // Slightly increase font weight on hover
+        text-decoration: none; // Remove underline for a cleaner look
+        transform: scale(1.1); // Pop-up effect by scaling the link
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for pop-up effect
+        background-color: lighten($grey, 40%); // Background box on hover
+        padding: 5px 10px; // Add padding for a boxed feel
+        border-radius: 5px; // Rounded corners for the hover effect
+
         &.active {
             font-family: $metropolis-medium;
         }
-        text-decoration: underline;
     }
+    
     li {
         list-style-type: none;
         display: inline;
@@ -182,10 +192,12 @@ header {
     }
 }
 
+// Hover effect for subproject links
 .subprojects-in-primary-nav {
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px;
+
     ul {
         display: none;
         position: absolute;
@@ -195,15 +207,24 @@ header {
         z-index: 1;
         padding: 0;
         left: 0;
+        
         li {
             display: block;
             padding: 10px 15px;
             width: 150px;
+            transition: all 0.3s ease; // Smooth transition for sublinks
         }
     }
 }
+
 .subprojects-in-primary-nav:hover {
     ul {
         display: block;
+    }
+
+    li:hover {
+        background-color: lighten($grey, 40%); // Background on hover
+        transform: scale(1.05); // Slight scale effect
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow
     }
 }

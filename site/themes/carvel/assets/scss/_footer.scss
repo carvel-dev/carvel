@@ -21,6 +21,21 @@ footer {
             padding-right: 0px;
         }
     }
+
+    a {
+        color: $darkgrey;
+        font-weight: 300;
+        font-size: 12px;
+        font-family: $metropolis-light;
+        text-decoration: none;
+
+        &:hover {
+            color: darken($darkgrey, 15%); // Darken color on hover
+            font-weight: 400; // Adjust font weight on hover if needed
+            text-decoration: underline; // Add underline for hover state
+        }
+    }
+    
     .right-links {
         padding: 0px;
         li {
@@ -33,12 +48,18 @@ footer {
                 font-weight: 300;
                 font-size: 12px;
                 font-family: $metropolis-light;
+                text-decoration: none;
+
+                 &:hover {
+                    color: $blue; // Customize hover color for right-links
+                }
             }
         }
         .mobile {
             display: none;
         }
     }
+    
     .left-links {
         p {
             margin: 0px;
@@ -46,14 +67,23 @@ footer {
         .copywrite {
             font-size: 12px;
             padding-right: 10px;
-            a {
+           a {
                 font-size: 12px;
                 color: $darkgrey;
                 font-family: $metropolis-light;
+
+                &:hover {
+                    color: lighten($darkgrey, 10%); // Custom hover for copywrite links
+                    text-decoration: underline;
+                }
             }
         }
         a {
             vertical-align: middle;
+
+             &:hover {
+                color: $blue; // Global hover style for left-links
+            }
         }
         img {
             height: 46px;
@@ -74,6 +104,10 @@ footer {
             font-size: 12px;
             font-family: $metropolis-light;
             vertical-align: middle;
+
+            &:hover {
+                color: $blue; // Customize hover effect for bottom links
+            }
         }
         img {
             height: 30px;
