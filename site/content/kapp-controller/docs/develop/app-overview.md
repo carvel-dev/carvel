@@ -61,7 +61,7 @@ App CR supports multiple templating, overlaying, and data transformation tools t
 - `ytt`: uses [ytt](/ytt) to render templates
 - `kbld`: uses [kbld](/kbld) to resolve image URLs to include digests
 - `kustomize`: (not implemented yet) uses kustomize to render configuration
-- `jsonnnet`: (not implemented yet) renders jsonnet files
+- `jsonnet`: (not implemented yet) renders jsonnet files
 - `sops`: uses [sops](https://github.com/mozilla/sops) to decrypt secrets. [More details](sops.md). Available in v0.11.0+.
 
 ---
