@@ -65,6 +65,20 @@ directories:
       # when this flag set to true it will set the Basic Auth header directly
       # in git configuration to ensure that it does not try to use NTLM
       forceHTTPBasicAuth: false
+      # limits the tags considered when recording the tag of the fetched
+      # commit in the lock file. vendir records the result of
+      # 'git describe --tags', which prefers annotated tags. If a floating
+      # tag (e.g. v1.2) points at the same commit as a release tag (e.g. v1.2.0),
+      # the floating tag may be recorded and later change when it moves to a
+      # newer commit (optional; v0.48.0+)
+      describeTags:
+        # only consider tags matching at least one of these glob(7) patterns;
+        # passed to 'git describe' as '--match'. '*' also matches '.', so
+        # 'v*.*.*' matches v1.2.0 but not v1.2 (optional)
+        match: ["v*.*.*"]
+        # ignore tags matching any of these glob(7) patterns;
+        # passed to 'git describe' as '--exclude' (optional)
+        exclude: ["*-rc*"]
 
     # uses hg to clone Mercurial repository (optional; v0.22.0+)
     hg:
