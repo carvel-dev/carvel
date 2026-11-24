@@ -22,7 +22,8 @@ directories:
       sha: 2b009b61fa8afb330a4302c694ee61b11104c54c
       # resolved checked out commit title
       commitTitle: 'feat: add /metrics prometheus scrapable endpoint...'
-      # resolved to a set of tags pointing to sha (v0.11.0+)
+      # resolved to a set of tags pointing to sha (v0.11.0+);
+      # see git.describeTags in vendir.yml to control which tags are considered
       tags:
       - "4.0.0"
 
